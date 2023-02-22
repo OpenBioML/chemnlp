@@ -1,0 +1,28 @@
+# GitHub action that attempts to install the conda env
+# from conda.yaml
+# then run black, isort, flake8
+
+name: Install
+on: [push, pull_request]
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          environment-file: conda.yaml
+          activate-environment: chemnlp
+          python-version: 3.7
+          auto-update-conda: true
+          auto-activate-base: false
+      - name: Install
+        run: |
+          conda env create -f conda.yml 
+          conda activate chemnlp
+      - name: Lint
+        run: |
+          conda activate chemnlp
+          black --check .
+          isort --check-only .
+          flake8 .
