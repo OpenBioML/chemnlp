@@ -2,22 +2,33 @@ There are many different ways to contribute to ChemNLP!
 You can get in touch via the GitHub issues and our [Discord](https://t.co/YMzpevmkiN).
 
 ## Pre-Requisites
-Please make a [GitHub account]() prior to implementing a dataset; you can follow instructions to install git [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
+Please make a [GitHub account](https://github.com/) prior to implementing a dataset; you can follow instructions to install git [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
 
 1. [Fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) the [ChemNLP repository](https://github.com/OpenBioML/chemnlp)
 2. [Clone the you fork](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
 3. [Make a new branch](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
+
+## Create a development environment (For code/dataset contributions)
+
+For code and data contributions, we recommend you creata a [conda environment](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html). If you do not have conda already installed on your system, we recommend installing [miniconda](https://docs.conda.io/en/latest/miniconda.html):
+
+```bash
+conda env create -f conda.yml  # Creates a conda env
+conda activate chemnlp  # Activate your conda environment
+```
+
 # Implementing a dataset 
 
 ## Contributing a dataset 
-One of the most important way to contribute to the ChemNLP efforts is to implement a dataset. 
+One of the most important ways to contribute to the ChemNLP efforts is to implement a dataset. 
 With "implementing" we mean the following: 
 
 - Take a dataset from our [awesome list](https://github.com/kjappelbaum/awesome-chemistry-datasets) (if it is not there, please add it there first, so we keep track)
-- Make an issue in this repository that you want to add this dataset 
-- Make a PR that adds 
+- Make an issue in this repository that you want to add this dataset (we will label this issue and assign it to you)
+- Make a PR that adds in a new folder in `data`
   - `meta.yaml` describing the dataset 
-  - `transform.py` python code that transforms the original dataset (linked in `meta.yaml`) into a form that can be consumed by the loader 
+  - `transform.py` Python code that transforms the original dataset (linked in `meta.yaml`) into a form that can be consumed by the loader
+  - If you need additional dependencies, 
 
 
 
@@ -67,3 +78,11 @@ In case your dataset isn't a simple tabular dataset with chemical compounds and 
 
 
 ## Implement a dataloader
+
+TBD. 
+
+
+## Implement tokenizers 
+
+TBD.
+
