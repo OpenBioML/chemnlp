@@ -18,8 +18,6 @@ conda env create -f conda.yml  # Creates a conda env
 conda activate chemnlp  # Activate your conda environment
 ```
 
-# Implementing a dataset 
-
 ## Contributing a dataset 
 One of the most important ways to contribute to the ChemNLP efforts is to implement a dataset. 
 With "implementing" we mean the following: 
