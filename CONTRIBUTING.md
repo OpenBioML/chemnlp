@@ -1,18 +1,19 @@
 There are many different ways to contribute to ChemNLP! 
 You can get in touch via the GitHub issues and our [Discord](https://t.co/YMzpevmkiN).
 
-# Implementing a dataset 
-
-
 ## Pre-Requisites
-Please make a GitHub account prior to implementing a dataset; you can follow instructions to install git here.
+Please make a [GitHub account]() prior to implementing a dataset; you can follow instructions to install git [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
 
+1. [Fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) the [ChemNLP repository](https://github.com/OpenBioML/chemnlp)
+2. [Clone the you fork](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
+3. [Make a new branch](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
+# Implementing a dataset 
 
 ## Contributing a dataset 
 One of the most important way to contribute to the ChemNLP efforts is to implement a dataset. 
 With "implementing" we mean the following: 
 
-- Take a dataset from our [awesome list]() (if it is not there, please add it there first, so we keep track)
+- Take a dataset from our [awesome list](https://github.com/kjappelbaum/awesome-chemistry-datasets) (if it is not there, please add it there first, so we keep track)
 - Make an issue in this repository that you want to add this dataset 
 - Make a PR that adds 
   - `meta.yaml` describing the dataset 
@@ -63,3 +64,6 @@ bibtex: # citation(s) for this dataset in BibTeX format
 
 For the typical material-property datasets, we will later use the `identifier` and `property` columns to create and fill prompt templates. 
 In case your dataset isn't a simple tabular dataset with chemical compounds and properties, please also add the following additional fields for the templates:
+
+
+## Implement a dataloader
