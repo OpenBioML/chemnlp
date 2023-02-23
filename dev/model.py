@@ -1,10 +1,12 @@
-from pydantic import BaseModel, validator, root_validator
-from pydantic_yaml import YamlStrEnum, YamlModel
-from typing import List, Optional, Dict
+from typing import Dict, List, Optional
+
+from pydantic import root_validator, validator
+from pydantic_yaml import YamlModel, YamlStrEnum
+
 
 class IdentifierEnum(YamlStrEnum):
     """Identifier types."""
-    
+
     smiles = "SMILES"
     selfies = "SELFIES"
     iupac = "IUPAC"
@@ -12,9 +14,10 @@ class IdentifierEnum(YamlStrEnum):
     inchikey = "InChIKey"
     other = "Other"
 
+
 class Identifier(YamlModel):
     """Identifier information."""
-    
+
     id: str
     description: str
     type: IdentifierEnum
@@ -22,52 +25,60 @@ class Identifier(YamlModel):
 
     @root_validator
     def if_optional_has_names(cls, values):
-        if values.get('names') is None and values.get('type') == IdentifierEnum.other:
+        if (values.get("names") is None) and (
+            values.get("type") == IdentifierEnum.other
+        ):
             raise ValueError('names must be provided if type is "other"')
         return values
 
+
 class ColumnTypes(YamlStrEnum):
     """Column types."""
-    
+
     continuous = "continuous"
     categorical = "categorical"
     ordinal = "ordinal"
 
+
 class Target(YamlModel):
     """Target information."""
-    
+
     id: str
     description: str
     units: str
     type: ColumnTypes
     names: list[str]
 
+
 class Template(YamlModel):
     prompt: str
     completion: str
 
+
 class TemplateFieldValue(YamlModel):
     """Template field information."""
-    
+
     name: str
     column: Optional[str]
     text: Optional[str]
 
+
 class TemplateField(YamlModel):
     values: List[TemplateFieldValue]
 
+
 class Dataset(YamlModel):
-    name : str
-    description : str
-    targets : Optional[List[Target]]
-    identifiers : Optional[List[Identifier]]
-    license : str
-    num_points : int
+    name: str
+    description: str
+    targets: Optional[List[Target]]
+    identifiers: Optional[List[Identifier]]
+    license: str
+    num_points: int
     bibtex: List[str]
     templates: Optional[List[Template]]
     fields: Optional[Dict[str, TemplateField]]
 
-    @validator('num_points')
+    @validator("num_points")
     def num_points_must_be_positive(cls, v):
         if v < 0:
-            raise ValueError('num_points must be positive')
+            raise ValueError("num_points must be positive")

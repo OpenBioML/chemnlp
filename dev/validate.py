@@ -1,8 +1,8 @@
 import os
 from glob import glob
-from pathlib import Path
 
 import fire
+
 from .model import Dataset
 
 
@@ -11,7 +11,7 @@ def validate_meta(file):
 
     try:
         with open(file, "r") as f:
-            model = Dataset.parse_raw(f.read())
+            _model = Dataset.parse_raw(f.read())  # noqa:  F841 
     except Exception as e:
         raise ValueError(f"Error parsing {file}: {e}")
 
