@@ -1,3 +1,4 @@
+[flake8]
 ignore =
     S301 # pickle
     S403 # pickle
