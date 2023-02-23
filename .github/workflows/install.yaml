@@ -15,7 +15,7 @@ jobs:
           activate-environment: chemnlp
           python-version: 3.7
           auto-update-conda: true
-          auto-activate-base: true
+          auto-activate-base: false
       - name: Validate yaml
         run: |
           python -m dev.validate data
