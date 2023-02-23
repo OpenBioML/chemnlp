@@ -1,9 +1,5 @@
 There are many different ways to contribute to ChemNLP! 
-<<<<<<< HEAD
 You can get in touch via the GitHub [task board](https://github.com/orgs/OpenBioML/projects/5?query=is:open+sort:updated-desc) and [issues](https://github.com/OpenBioML/chemnlp/issues?q=is:issue+is:open+sort:updated-desc&query=is:open+sort:updated-desc) and our [Discord](https://t.co/YMzpevmkiN).
-=======
-You can get in touch via the GitHub [task board]() and [issues]() and our [Discord](https://t.co/YMzpevmkiN).
->>>>>>> 14b24af (feat: explain templating)
 
 ## Pre-Requisites
 Please make a [GitHub account](https://github.com/) prior to implementing a dataset; you can follow instructions to install git [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
@@ -53,7 +49,11 @@ targets:
   - id: SD
     description: Standard deviation of the experimental aqueous solubility value for multiple occurences
     units: log(mol/L)
+<<<<<<< HEAD
     type: continuous
+=======
+    type: continuos
+>>>>>>> 029563a (feat: add aliases/synonyms)
     names:
       - solubility
       - water solubility
@@ -90,7 +90,6 @@ In case your dataset isn't a simple tabular dataset with chemical compounds and 
 
 
 ```yaml
-<<<<<<< HEAD
 templates:
   - prompt: "Please answer the following chemistry question.\nDerive for the molecule with the <molecule_text> <molecule> the <expt_value_text>."
     completion: "<exp_value>"
@@ -110,27 +109,6 @@ fields:
       - name: smiles
         column: smiles
         text:
-=======
-templates: 
-    - prompt: "Please answer the following chemistry question.\nDerive for the molecule with the <molecule_text> <molecule> the <expt_value_text>."
-      completion: "<exp_value>"
-    - prompt: "Please answer the following question.\nPredict the <expt_value_text> for <molecule>."
-      completion: "<exp_value>"
-fields: 
-  exp_value:
-    values:
-      - name: exp_value
-        column: exp_value 
-        text: adsorption energy
-      - name: calc_value
-        column: calc_value 
-        text: adsorption free energy 
-  molecule: 
-    values: 
-      - name: smiles
-        column: smiles
-        text: 
->>>>>>> 14b24af (feat: explain templating)
       - name: smiles
         column: smiles
         text: SMILES

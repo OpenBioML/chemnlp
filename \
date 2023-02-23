@@ -1,0 +1,17 @@
+feat: explain templating
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# interactive rebase in progress; onto bd7ac30
+# Last commands done (5 commands done):
+#    pick 097e6a5 chore: dev and test
+#    pick 14b24af feat: explain templating
+# Next commands to do (4 remaining commands):
+#    pick 029563a feat: add aliases/synonyms
+#    pick a6ff82a chore: incorporate review feedback
+# You are currently rebasing branch 'kjappelbaum/issue15' on 'bd7ac30'.
+#
+# Changes to be committed:
+#	modified:   CONTRIBUTING.md
+#
