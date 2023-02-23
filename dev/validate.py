@@ -11,7 +11,7 @@ def validate_meta(file):
 
     try:
         with open(file, "r") as f:
-            _model = Dataset.parse_raw(f.read())  # noqa:  F841 
+            _model = Dataset.parse_raw(f.read())  # noqa:  F841
     except Exception as e:
         raise ValueError(f"Error parsing {file}: {e}")
 
