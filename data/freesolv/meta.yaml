@@ -1,6 +1,12 @@
-bibtex: "@article{mobley2013experimental,\n        title={Experimental and calculated\
-  \ small molecule hydration free energies},\n        author={Mobley, David L},\n\
-  \        year={2013}\n        "
+bibtex: '@article{mobley2013experimental,
+
+  title={Experimental and calculated small molecule hydration free energies},
+
+  author={Mobley, David L},
+
+  year={2013}
+
+  '
 description: ''
 identifiers:
 - description: SMILES
