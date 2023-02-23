@@ -50,10 +50,14 @@ targets:
     description: Standard deviation of the experimental aqueous solubility value for multiple occurences
     units: log(mol/L)
 <<<<<<< HEAD
+<<<<<<< HEAD
     type: continuous
 =======
     type: continuos
 >>>>>>> 029563a (feat: add aliases/synonyms)
+=======
+    type: continuous
+>>>>>>> a6ff82a (chore: incorporate review feedback)
     names:
       - solubility
       - water solubility
@@ -63,9 +67,13 @@ identifiers:
     type: InChI # can be "SMILES", "SELFIES", "IUPAC", "OTHER"
     description: International Chemical Identifier # description (optional, except for "OTHER")
 license: CC0 1.0 # license under which the original dataset was published
+<<<<<<< HEAD
 num_points: 10000 # number of datapoints in this dataset
 links: # list of relevant links (original dataset, other uses, etc.)
+=======
+>>>>>>> a6ff82a (chore: incorporate review feedback)
 num_points: 10000 # number of datapoints in this dataset
+links: # list of relevant links (original dataset, other uses, etc.)
   - name: dataset
     url: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/OVHAW8
     description: Original dataset
