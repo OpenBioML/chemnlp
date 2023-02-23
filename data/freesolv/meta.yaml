@@ -1,0 +1,45 @@
+bibtex: "@article{mobley2013experimental,\n        title={Experimental and calculated\
+  \ small molecule hydration free energies},\n        author={Mobley, David L},\n\
+  \        year={2013}\n        "
+description: ''
+identifiers:
+- description: SMILES
+  id: SMILES
+  type: SMILES
+- description: IUPAC
+  id: iupac_name
+  type: IUPAC
+license: CC BY-NC-SA 4.0
+links:
+- https://github.com/MobleyLab/FreeSolv
+- https://escholarship.org/uc/item/6sd403pz
+name: freesolv
+num_points: 642
+targets:
+- description: experimental hydration free energy value
+  id: exp_value
+  names:
+  - hydration free energy
+  type: continuous
+  units: kcal/mol
+- description: experimental hydration free energy uncertainty
+  id: exp_uncertainty
+  names:
+  - hydration free energy uncertainty
+  type: continuos
+  units: kcal/mol
+- description: mobley group calculated value
+  id: GAFF
+  names:
+  - GAFF
+  - mobley group calculated value
+  type: continuous
+  units: kcal/mol
+- description: mobley group calculated value calculated uncertainty
+  id: calc_uncertainty
+  names:
+  - GAFF uncertainty
+  - mobley group calculated value uncertainty
+  type: continuos
+  units: kcal/mol
+url: https://github.com/MobleyLab/FreeSolv
