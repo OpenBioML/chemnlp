@@ -18,7 +18,7 @@ jobs:
           auto-activate-base: false
       - name: Install
         run: |
-          conda env create -f conda.yml 
+          conda env create -f conda.yaml 
           conda activate chemnlp
       - name: Lint
         run: |
