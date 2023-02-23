@@ -1,5 +1,5 @@
 There are many different ways to contribute to ChemNLP! 
-You can get in touch via the GitHub [task board]() and [issues]() and our [Discord](https://t.co/YMzpevmkiN).
+You can get in touch via the GitHub [task board](https://github.com/orgs/OpenBioML/projects/5?query=is:open+sort:updated-desc) and [issues](https://github.com/OpenBioML/chemnlp/issues?q=is:issue+is:open+sort:updated-desc&query=is:open+sort:updated-desc) and our [Discord](https://t.co/YMzpevmkiN).
 
 ## Pre-Requisites
 Please make a [GitHub account](https://github.com/) prior to implementing a dataset; you can follow instructions to install git [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
@@ -44,25 +44,25 @@ targets:
   - id: Solubility # name of the column in a tabular dataset
     description: Experimental aqueous solubility value (LogS) # description of what this column means
     units: log(mol/L) # units of the values in this column (leave empty if unitless)
-    type: continuos # can be "categorical", "ordinal", "continuos"
+    type: continuous # can be "categorical", "ordinal", "continuous"
     names: # names for the property (to sample from for building the prompts)
-      - solubility 
+      - solubility
       - water solubility
   - id: SD
     description: Standard deviation of the experimental aqueous solubility value for multiple occurences
     units: log(mol/L)
-    type: continuos
+    type: continuous
     names:
       - solubility
       - water solubility
       - solubility in water
 identifiers:
-  - id: InChI # column name 
+  - id: InChI # column name
     type: InChI # can be "SMILES", "SELFIES", "IUPAC", "OTHER"
     description: International Chemical Identifier # description (optional, except for "OTHER")
 license: CC0 1.0 # license under which the original dataset was published
-links: # list of relevant links (original dataset, other uses, etc.)
 num_points: 10000 # number of datapoints in this dataset
+links: # list of relevant links (original dataset, other uses, etc.)
   - name: dataset
     url: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/OVHAW8
     description: Original dataset
@@ -87,25 +87,25 @@ In case your dataset isn't a simple tabular dataset with chemical compounds and 
 
 
 ```yaml
-templates: 
-    - prompt: "Please answer the following chemistry question.\nDerive for the molecule with the <molecule_text> <molecule> the <expt_value_text>."
-      completion: "<exp_value>"
-    - prompt: "Please answer the following question.\nPredict the <expt_value_text> for <molecule>."
-      completion: "<exp_value>"
-fields: 
+templates:
+  - prompt: "Please answer the following chemistry question.\nDerive for the molecule with the <molecule_text> <molecule> the <expt_value_text>."
+    completion: "<exp_value>"
+  - prompt: "Please answer the following question.\nPredict the <expt_value_text> for <molecule>."
+    completion: "<exp_value>"
+fields:
   exp_value:
     values:
       - name: exp_value
-        column: exp_value 
+        column: exp_value
         text: adsorption energy
       - name: calc_value
-        column: calc_value 
-        text: adsorption free energy 
-  molecule: 
-    values: 
+        column: calc_value
+        text: adsorption free energy
+  molecule:
+    values:
       - name: smiles
         column: smiles
-        text: 
+        text:
       - name: smiles
         column: smiles
         text: SMILES
