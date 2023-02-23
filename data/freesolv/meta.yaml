@@ -7,7 +7,7 @@ bibtex: '@article{mobley2013experimental,
   year={2013}
 
   '
-description: ''
+description: Experimental and calculated small molecule hydration free energies
 identifiers:
 - description: SMILES
   id: SMILES
