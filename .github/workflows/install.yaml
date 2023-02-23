@@ -17,10 +17,12 @@ jobs:
           auto-update-conda: true
           auto-activate-base: false
       - name: Validate yaml
+        shell: bash -l {0}
         run: |
           conda activate chemnlp  
           python -m dev.validate data
       - name: Lint
+        shell: bash -l {0}
         run: |
           conda activate chemnlp
           black --check .
