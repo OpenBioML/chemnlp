@@ -41,16 +41,23 @@ description: | # short description what this dataset is about
   Curation of nine open source datasets on aqueous solubility.
   The authors also assigned reliability groups.
 targets:
-  - name: Solubility # name of the column in a tabular dataset
+  - id: Solubility # name of the column in a tabular dataset
     description: Experimental aqueous solubility value (LogS) # description of what this column means
     units: log(mol/L) # units of the values in this column (leave empty if unitless)
     type: continuos # can be "categorical", "ordinal", "continuos"
-  - name: SD
+    names: # names for the property (to sample from for building the prompts)
+      - solubility 
+      - water solubility
+  - id: SD
     description: Standard deviation of the experimental aqueous solubility value for multiple occurences
     units: log(mol/L)
     type: continuos
+    names:
+      - solubility
+      - water solubility
+      - solubility in water
 identifiers:
-  - name: InChI # column name 
+  - id: InChI # column name 
     type: InChI # can be "SMILES", "SELFIES", "IUPAC", "OTHER"
     description: International Chemical Identifier # description (optional, except for "OTHER")
 license: CC0 1.0 # license under which the original dataset was published
