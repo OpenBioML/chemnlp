@@ -47,7 +47,7 @@ class Target(YamlModel):
     description: str
     units: str
     type: ColumnTypes
-    names: list[str]
+    names: List[str]
 
 
 class Template(YamlModel):
