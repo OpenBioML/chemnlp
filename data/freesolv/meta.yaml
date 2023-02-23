@@ -1,45 +1,55 @@
-bibtex: "@article{mobley2013experimental,\n        title={Experimental and calculated\
-  \ small molecule hydration free energies},\n        author={Mobley, David L},\n\
-  \        year={2013}"
+name: freesolv
 description: Experimental and calculated small molecule hydration free energies
 identifiers:
-- description: SMILES
-  id: SMILES
-  type: SMILES
-- description: IUPAC
-  id: iupac_name
-  type: IUPAC
+  - description: SMILES
+    id: SMILES
+    type: SMILES
+  - description: IUPAC
+    id: iupac_name
+    type: IUPAC
 license: CC BY-NC-SA 4.0
-links:
-- https://github.com/MobleyLab/FreeSolv
-- https://escholarship.org/uc/item/6sd403pz
-name: freesolv
 num_points: 642
 targets:
-- description: experimental hydration free energy value
-  id: exp_value
-  names:
-  - hydration free energy
-  type: continuous
-  units: kcal/mol
-- description: experimental hydration free energy uncertainty
-  id: exp_uncertainty
-  names:
-  - hydration free energy uncertainty
-  type: continuos
-  units: kcal/mol
-- description: mobley group calculated value
-  id: GAFF
-  names:
-  - GAFF
-  - mobley group calculated value
-  type: continuous
-  units: kcal/mol
-- description: mobley group calculated value calculated uncertainty
-  id: calc_uncertainty
-  names:
-  - GAFF uncertainty
-  - mobley group calculated value uncertainty
-  type: continuos
-  units: kcal/mol
-url: https://github.com/MobleyLab/FreeSolv
+  - description: experimental hydration free energy value
+    id: exp_value
+    names:
+      - hydration free energy
+    type: continuous
+    units: kcal/mol
+  - description: experimental hydration free energy uncertainty
+    id: exp_uncertainty
+    names:
+      - hydration free energy uncertainty
+    type: continuous
+    units: kcal/mol
+  - description: mobley group calculated value
+    id: GAFF
+    names:
+      - hydration free energy calculated using the GAFF small molecule force field and AMBER
+    type: continuous
+    units: kcal/mol
+  - description: mobley group calculated value calculated uncertainty
+    id: calc_uncertainty
+    names:
+      - uncertainty of hydration free energy calculated using the GAFF small molecule force field and AMBER
+    type: continuous
+    units: kcal/mol
+links:
+  - name: dataset
+    url: https://github.com/MobleyLab/FreeSolv
+    description: Dataset and issue tracker
+bibtex:
+  - |
+    "@article{Mobley_2014,
+    doi = {10.1007/s10822-014-9747-x},
+    url = {https://doi.org/10.1007%2Fs10822-014-9747-x},
+    year = 2014,
+    month = {jun},
+    publisher = {Springer Science and Business Media {LLC}},
+    volume = {28},
+    number = {7},
+    pages = {711--720},
+    author = {David L. Mobley and J. Peter Guthrie},
+    title = {{FreeSolv}: a database of experimental and calculated hydration free energies, with input files},
+    journal = {J Comput Aided Mol Des}
+    }"
