@@ -1,0 +1,16 @@
+ignore =
+    S301 # pickle
+    S403 # pickle
+    S404
+    S603
+    W503 # Line break before binary operator (flake8 is wrong)
+    E203  # whitespace before ':'
+    S101 # Complaining about assert statements
+    D101 # Docstring missing
+    D102 # Docstring missing
+    D103 # Docstring missing
+    D104 # Docstring missing
+    D400
+max-line-length = 120
+max-complexity = 20
+import-order-style = isort

@@ -16,11 +16,13 @@ jobs:
           python-version: 3.7
           auto-update-conda: true
           auto-activate-base: false
-      - name: Install
+      - name: Validate yaml
+        shell: bash -l {0}
         run: |
-          conda env create -f conda.yml 
-          conda activate chemnlp
+          conda activate chemnlp  
+          python -m dev.validate data
       - name: Lint
+        shell: bash -l {0}
         run: |
           conda activate chemnlp
           black --check .
