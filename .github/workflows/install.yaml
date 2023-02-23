@@ -16,13 +16,13 @@ jobs:
           python-version: 3.7
           auto-update-conda: true
           auto-activate-base: false
-      - name: Install
-        run: |
-          conda env create -f conda.yaml 
-          conda activate chemnlp
       - name: Lint
         run: |
           conda activate chemnlp
           black --check .
           isort --check-only .
           flake8 .
+      - name: Validate yaml
+        run: |
+          conda activate chemnlp
+          python -m dev.validate data

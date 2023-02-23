@@ -5,7 +5,7 @@ You can get in touch via the GitHub [task board](https://github.com/orgs/OpenBio
 Please make a [GitHub account](https://github.com/) prior to implementing a dataset; you can follow instructions to install git [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
 
 1. [Fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) the [ChemNLP repository](https://github.com/OpenBioML/chemnlp)
-2. [Clone the you fork](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
+2. [Clone your fork](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
 3. [Make a new branch](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
 4. Please try using [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for formatting your commit messages
 
@@ -14,7 +14,7 @@ Please make a [GitHub account](https://github.com/) prior to implementing a data
 For code and data contributions, we recommend you creata a [conda environment](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html). If you do not have conda already installed on your system, we recommend installing [miniconda](https://docs.conda.io/en/latest/miniconda.html):
 
 ```bash
-conda env create -f conda.yml  # Creates a conda env
+conda env create -f conda.yaml  # Creates a conda env
 conda activate chemnlp  # Activate your conda environment
 ```
 

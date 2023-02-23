@@ -1,4 +1,4 @@
-from pydantic import BaseModel, validator
+from pydantic import BaseModel, validator, root_validator
 from pydantic_yaml import YamlStrEnum, YamlModel
 from typing import List, Optional, Dict
 
@@ -18,12 +18,18 @@ class Identifier(YamlModel):
     id: str
     description: str
     type: IdentifierEnum
-    names: List[str]
+    names: Optional[List[str]]
+
+    @root_validator
+    def if_optional_has_names(cls, values):
+        if values.get('names') is None and values.get('type') == IdentifierEnum.other:
+            raise ValueError('names must be provided if type is "other"')
+        return values
 
 class ColumnTypes(YamlStrEnum):
     """Column types."""
     
-    continuos = "continuos"
+    continuous = "continuous"
     categorical = "categorical"
     ordinal = "ordinal"
 
