@@ -1,0 +1,22 @@
+bibtex: '?'
+description: Experimental results of octanol/water distribution coefficient (logD
+  at pH 7.4).
+identifiers:
+- description: SMILES
+  id: SMILES
+  type: SMILES
+license: '?'
+links:
+- https://deepchemdata.s3-us-west-1.amazonaws.com/datasets/Lipophilicity.csv
+name: lipophilicity
+num_points: 4200
+targets:
+- description: experimental results of octanol/water distribution coefficient (logD
+    at pH 7.4)
+  id: exp
+  names:
+  - octanol/water distribution coefficient (logD at pH 7.4)
+  - octanol/water distribution coefficient
+  type: continuous
+  units: logD
+url: https://deepchemdata.s3-us-west-1.amazonaws.com/datasets/Lipophilicity.csv
