@@ -1,5 +1,7 @@
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md)
 
+![ChemNLP logo](/assets/logo/logo_2.png)
+
 # ChemNLP project 🧪🚀
 The ChemNLP project aims to
 1) create an extensive chemistry dataset and
