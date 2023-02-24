@@ -23,6 +23,7 @@ Feel free to join our `#chemnlp` channel on our [OpenBioML discord server](https
 # Contributing
 ChemNLP is an open-source project - your involvement is warmly welcome! If you're excited to join us, we recommend the following steps:
 * Join our [Discord server](https://github.com/OpenBioML/chemnlp/tree/feat_readme#community).
+* Have a look at our [contributing guide](https://github.com/OpenBioML/chemnlp/blob/main/CONTRIBUTING.md).
 * Looking for ideas? See our [task board](https://github.com/orgs/OpenBioML/projects/5/views/1) to see what we may need help with.
 * Have an idea? Create an [issue](https://github.com/OpenBioML/chemnlp/issues)!
 
