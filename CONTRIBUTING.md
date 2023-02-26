@@ -129,6 +129,8 @@ We will collect the URLs of the raw data in `meta.yaml` and the code to produce 
 If your dataset is in tabular form, we will construct prompts using, for example, the LIFT framework. 
 In this case, we will sample from the identifier and targets columns. If you specify prompt templates, we will also sample from those. 
 Therefore, it is very important that the column names in the `meta.yaml` match the ones in the file that `transform.py` produces.
+One example of a prompt we might construct is `"What is the <target_name> of <identifier>"`, where we sample `target_name` from the names of the targets listed in `meta.yaml` and `identifier` from the identifiers provided in `meta.yaml`.
+
 
 For datasets that are not in tabular form, we are still discussing the best process, but we also envision that we might perform some named-entity-recognition to also use some of the text datasets in a framework such as LIFT. Otherwise, we will simple use them in the typical GPT pretraining task. 
 
