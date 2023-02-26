@@ -48,8 +48,8 @@ def get_and_transform_data():
 
     # data cleaning
     df.notes = (
-        df.notes.str.strip()
-    )  # remove leading and trailing white space characters
+        df.notes.str.strip()  # remove leading and trailing white space characters
+    )
 
     # save to csv
     fn_data_csv = "data_clean.csv"
@@ -65,7 +65,7 @@ def get_and_transform_data():
                 "description": "experimental hydration free energy value",  # description of what this column means
                 "units": "kcal/mol",  # units of the values in this column (leave empty if unitless)
                 "type": "continuous",  # can be "categorical", "ordinal", "continuous"
-                "names": [  # names for the property (to sample from for building the prompts)
+                "names": [  #  names for the property (to sample from for building the prompts)
                     "hydration free energy",
                 ],
             },
@@ -118,14 +118,16 @@ def get_and_transform_data():
         ],
         "num_points": len(df),  # number of datapoints in this dataset
         "url": "https://github.com/MobleyLab/FreeSolv",
-        "bibtex": """@article{mobley2013experimental,
-        title={Experimental and calculated small molecule hydration free energies},
-        author={Mobley, David L},
-        year={2013}""",
+        "bibtex": [
+            """@article{mobley2013experimental,
+            title={Experimental and calculated small molecule hydration free energies},
+            author={Mobley, David L},
+            year={2013}""",
+        ],
     }
     fn_meta = "meta.yaml"
     with open(fn_meta, "w") as f:
-        yaml.dump(meta, f)
+        yaml.dump(meta, f, sort_keys=False)
 
     print(f"Finished processing {meta['name']} dataset!")
 
