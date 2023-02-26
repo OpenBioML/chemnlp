@@ -1,6 +1,6 @@
-bibtex: "@techreport{hersey2015chembl,\ntitle={ChEMBL Deposited Data Set-AZ\\_dataset},\n\
-  author={Hersey, Anne},\nyear={2015},\ninstitution={Technical Report, Technical report,\
-  \ EMBL-EBI, 2015. https://www. ebi. ac. uk~\u2026}}"
+bibtex: "@techreport{hersey2015chembl,\n        title={ChEMBL Deposited Data Set-AZ\\\
+  _dataset},\n        author={Hersey, Anne},\n        year={2015},\n        institution={Technical\
+  \ Report, Technical report, EMBL-EBI, 2015. https://www. ebi. ac. uk~\u2026}}"
 description: Experimental results of octanol/water distribution coefficient (logD
   at pH 7.4).
 identifiers:
