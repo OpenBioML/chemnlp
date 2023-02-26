@@ -41,7 +41,7 @@ def get_and_transform_data():
         "targets": [
             {
                 "id": "exp",  # name of the column in a tabular dataset
-                "description": "experimental results of octanol/water distribution coefficient (logD at pH 7.4)",  # description of what this column means
+                "description": "experimental results of octanol/water distribution coefficient (logD at pH 7.4)",
                 "units": "logD",  # units of the values in this column (leave empty if unitless)
                 "type": "continuous",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
@@ -70,7 +70,7 @@ def get_and_transform_data():
         "url": "https://deepchemdata.s3-us-west-1.amazonaws.com/datasets/Lipophilicity.csv",
         "bibtex": [
             """@techreport{hersey2015chembl,
-            title={ChEMBL Deposited Data Set-AZ\_dataset},
+            title={ChEMBL Deposited Data Set-AZ dataset},
             author={Hersey, Anne},
             year={2015},
             institution={Technical Report, Technical report, EMBL-EBI, 2015. https://www. ebi. ac. uk~…}}"""
