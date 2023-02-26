@@ -4,23 +4,24 @@ import yaml
 
 
 def get_and_transform_data():
-    
     # get raw data
-    data_path = "https://deepchemdata.s3-us-west-1.amazonaws.com/datasets/Lipophilicity.csv"
+    data_path = (
+        "https://deepchemdata.s3-us-west-1.amazonaws.com/datasets/Lipophilicity.csv"
+    )
     fn_data_original = "data_original.txt"
     data = requests.get(data_path)
     with open(fn_data_original, "wb") as f:
         f.write(data.content)
-        
+
     # create dataframe
     df = pd.read_csv(fn_data_original, delimiter=",")
-    
+
     # check if fields are the same
     assert df.columns.tolist() == ["CMPD_CHEMBLID", "exp", "smiles"]
-    
+
     # check if no duplicated
-    assert not(df.duplicated().sum())
-    
+    assert not df.duplicated().sum()
+
     # overwrite column names = fields
     fields_clean = [
         "CMPD_CHEMBLID",
@@ -28,11 +29,11 @@ def get_and_transform_data():
         "SMILES",
     ]
     df.columns = fields_clean
-    
+
     # save to csv
     fn_data_csv = "data_clean.csv"
     df.to_csv(fn_data_csv, index=False)
-    
+
     # create meta yaml
     meta = {
         "name": "lipophilicity",  # unique identifier, we will also use this for directory names
@@ -67,18 +68,20 @@ def get_and_transform_data():
         ],
         "num_points": len(df),  # number of datapoints in this dataset
         "url": "https://deepchemdata.s3-us-west-1.amazonaws.com/datasets/Lipophilicity.csv",
-        "bibtex": ["""@techreport{hersey2015chembl,
-        title={ChEMBL Deposited Data Set-AZ\_dataset},
-        author={Hersey, Anne},
-        year={2015},
-        institution={Technical Report, Technical report, EMBL-EBI, 2015. https://www. ebi. ac. uk~…}}"""],
+        "bibtex": [
+            """@techreport{hersey2015chembl,
+            title={ChEMBL Deposited Data Set-AZ\_dataset},
+            author={Hersey, Anne},
+            year={2015},
+            institution={Technical Report, Technical report, EMBL-EBI, 2015. https://www. ebi. ac. uk~…}}"""
+        ],
     }
     fn_meta = "meta.yaml"
     with open(fn_meta, "w") as f:
         yaml.dump(meta, f, sort_keys=False)
-        
+
     print(f"Finished processing {meta['name']} dataset!")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     get_and_transform_data()
