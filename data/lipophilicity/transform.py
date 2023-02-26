@@ -75,7 +75,7 @@ def get_and_transform_data():
     }
     fn_meta = "meta.yaml"
     with open(fn_meta, "w") as f:
-        yaml.dump(meta, f)
+        yaml.dump(meta, f, sort_keys=False)
         
     print(f"Finished processing {meta['name']} dataset!")
 

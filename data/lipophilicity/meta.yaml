@@ -1,12 +1,19 @@
-bibtex: "@techreport{hersey2015chembl,\n        title={ChEMBL Deposited Data Set-AZ\\\
-  _dataset},\n        author={Hersey, Anne},\n        year={2015},\n        institution={Technical\
-  \ Report, Technical report, EMBL-EBI, 2015. https://www. ebi. ac. uk~\u2026}}"
+name: lipophilicity
 description: Experimental results of octanol/water distribution coefficient (logD
   at pH 7.4).
+targets:
+- id: exp
+  description: experimental results of octanol/water distribution coefficient (logD
+    at pH 7.4)
+  units: logD
+  type: continuous
+  names:
+  - octanol/water distribution coefficient (logD at pH 7.4)
+  - octanol/water distribution coefficient
 identifiers:
-- description: SMILES
-  id: SMILES
+- id: SMILES
   type: SMILES
+  description: SMILES
 license: CC BY-SA 3.0
 links:
 - https://deepchemdata.s3-us-west-1.amazonaws.com/datasets/Lipophilicity.csv
@@ -15,15 +22,8 @@ links:
 - https://www.ebi.ac.uk/chembl/document_report_card/CHEMBL3301361/
 - https://chembl.gitbook.io/chembl-interface-documentation/about#data-licensing
 - https://creativecommons.org/licenses/by-sa/3.0/
-name: lipophilicity
 num_points: 4200
-targets:
-- description: experimental results of octanol/water distribution coefficient (logD
-    at pH 7.4)
-  id: exp
-  names:
-  - octanol/water distribution coefficient (logD at pH 7.4)
-  - octanol/water distribution coefficient
-  type: continuous
-  units: logD
 url: https://deepchemdata.s3-us-west-1.amazonaws.com/datasets/Lipophilicity.csv
+bibtex: "@techreport{hersey2015chembl,\n        title={ChEMBL Deposited Data Set-AZ\\\
+  _dataset},\n        author={Hersey, Anne},\n        year={2015},\n        institution={Technical\
+  \ Report, Technical report, EMBL-EBI, 2015. https://www. ebi. ac. uk~\u2026}}"
