@@ -73,7 +73,7 @@ def get_and_transform_data():
                 "id": "exp_uncertainty",
                 "description": "experimental hydration free energy uncertainty",
                 "units": "kcal/mol",
-                "type": "continuos",
+                "type": "continuous",
                 "names": [
                     "hydration free energy uncertainty",
                 ],
@@ -92,7 +92,7 @@ def get_and_transform_data():
                 "id": "calc_uncertainty",
                 "description": "mobley group calculated value calculated uncertainty",
                 "units": "kcal/mol",
-                "type": "continuos",
+                "type": "continuous",
                 "names": [
                     "GAFF uncertainty",
                     "mobley group calculated value uncertainty",
