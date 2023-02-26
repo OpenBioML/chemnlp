@@ -67,12 +67,7 @@ def get_and_transform_data():
         ],
         "num_points": len(df),  # number of datapoints in this dataset
         "url": "https://deepchemdata.s3-us-west-1.amazonaws.com/datasets/Lipophilicity.csv",
-        "bibtex": """@techreport{hersey2015chembl,
-      title={ChEMBL Deposited Data Set-AZ\_dataset},
-      author={Hersey, Anne},
-      year={2015},
-      institution={Technical Report, Technical report, EMBL-EBI, 2015. https://www. ebi. ac. uk~…}
-    }""",
+        "bibtex": "@techreport{hersey2015chembl,\ntitle={ChEMBL Deposited Data Set-AZ\_dataset},\nauthor={Hersey, Anne},\nyear={2015},\ninstitution={Technical Report, Technical report, EMBL-EBI, 2015. https://www. ebi. ac. uk~…}}",
     }
     fn_meta = "meta.yaml"
     with open(fn_meta, "w") as f:
