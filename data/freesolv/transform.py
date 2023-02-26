@@ -48,8 +48,8 @@ def get_and_transform_data():
 
     # data cleaning
     df.notes = (
-        df.notes.str.strip()  # remove leading and trailing white space characters
-    )
+        df.notes.str.strip()
+    )  # remove leading and trailing white space characters
 
     # save to csv
     fn_data_csv = "data_clean.csv"
@@ -65,7 +65,7 @@ def get_and_transform_data():
                 "description": "experimental hydration free energy value",  # description of what this column means
                 "units": "kcal/mol",  # units of the values in this column (leave empty if unitless)
                 "type": "continuous",  # can be "categorical", "ordinal", "continuous"
-                "names": [  #  names for the property (to sample from for building the prompts)
+                "names": [  # names for the property (to sample from for building the prompts)
                     "hydration free energy",
                 ],
             },
