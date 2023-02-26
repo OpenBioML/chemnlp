@@ -1,0 +1,85 @@
+import requests
+import pandas as pd
+import yaml
+
+
+def get_and_transform_data():
+    
+    # get raw data
+    data_path = "https://deepchemdata.s3-us-west-1.amazonaws.com/datasets/Lipophilicity.csv"
+    fn_data_original = "data_original.txt"
+    data = requests.get(data_path)
+    with open(fn_data_original, "wb") as f:
+        f.write(data.content)
+        
+    # create dataframe
+    df = pd.read_csv(fn_data_original, delimiter=",")
+    
+    # check if fields are the same
+    assert df.columns.tolist() == ["CMPD_CHEMBLID", "exp", "smiles"]
+    
+    # check if no duplicated
+    assert not(df.duplicated().sum())
+    
+    # overwrite column names = fields
+    fields_clean = [
+        "CMPD_CHEMBLID",
+        "exp",
+        "SMILES",
+    ]
+    df.columns = fields_clean
+    
+    # save to csv
+    fn_data_csv = "data_clean.csv"
+    df.to_csv(fn_data_csv, index=False)
+    
+    # create meta yaml
+    meta = {
+        "name": "lipophilicity",  # unique identifier, we will also use this for directory names
+        "description": "Experimental results of octanol/water distribution coefficient (logD at pH 7.4).",
+        "targets": [
+            {
+                "id": "exp",  # name of the column in a tabular dataset
+                "description": "experimental results of octanol/water distribution coefficient (logD at pH 7.4)",  # description of what this column means
+                "units": "logD",  # units of the values in this column (leave empty if unitless)
+                "type": "continuous",  # can be "categorical", "ordinal", "continuous"
+                "names": [  # names for the property (to sample from for building the prompts)
+                    "octanol/water distribution coefficient (logD at pH 7.4)",
+                    "octanol/water distribution coefficient",
+                ],
+            },
+        ],
+        "identifiers": [
+            {
+                "id": "SMILES",  # column name
+                "type": "SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "OTHER"
+                "description": "SMILES",  # description (optional, except for "OTHER")
+            },
+        ],
+        "license": "CC BY-SA 3.0",  # license under which the original dataset was published
+        "links": [  # list of relevant links (original dataset, other uses, etc.)
+            "https://deepchemdata.s3-us-west-1.amazonaws.com/datasets/Lipophilicity.csv",
+            "https://github.com/cheminfo/molecule-features/blob/main/data/lipophilicity/meta.yaml",
+            "https://deepchem.readthedocs.io/en/latest/api_reference/moleculenet.html",
+            "https://www.ebi.ac.uk/chembl/document_report_card/CHEMBL3301361/",
+            "https://chembl.gitbook.io/chembl-interface-documentation/about#data-licensing",
+            "https://creativecommons.org/licenses/by-sa/3.0/",
+        ],
+        "num_points": len(df),  # number of datapoints in this dataset
+        "url": "https://deepchemdata.s3-us-west-1.amazonaws.com/datasets/Lipophilicity.csv",
+        "bibtex": """@techreport{hersey2015chembl,
+      title={ChEMBL Deposited Data Set-AZ\_dataset},
+      author={Hersey, Anne},
+      year={2015},
+      institution={Technical Report, Technical report, EMBL-EBI, 2015. https://www. ebi. ac. uk~…}
+    }""",
+    }
+    fn_meta = "meta.yaml"
+    with open(fn_meta, "w") as f:
+        yaml.dump(meta, f)
+        
+    print(f"Finished processing {meta['name']} dataset!")
+
+
+if __name__ == '__main__':
+    get_and_transform_data()
