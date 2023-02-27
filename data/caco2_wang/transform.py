@@ -67,6 +67,10 @@ def get_and_transform_data():
                 "id": "compound_id",
                 "type": "Other",
                 "description": "Compound id / name",
+                "names": [
+                    "compound id",
+                    "compound name",
+                ],
             },
         ],
         "license": "CC BY 4.0",  # license under which the original dataset was published
