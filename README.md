@@ -1,6 +1,6 @@
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md)
 
-![ChemNLP logo](/assets/logo/logo_1.png | width=100)
+<img src="/assets/logo/logo_1.png" width="100" height="100">
 
 # ChemNLP project 🧪🚀
 The ChemNLP project aims to
