@@ -65,7 +65,7 @@ def get_and_transform_data():
             },
             {
                 "id": "compound_id",
-                "type": "OTHER",
+                "type": "Other",
                 "description": "Compound id / name",
             },
         ],
