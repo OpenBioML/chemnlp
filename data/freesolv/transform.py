@@ -73,7 +73,7 @@ def get_and_transform_data():
                 "id": "exp_uncertainty",
                 "description": "experimental hydration free energy uncertainty",
                 "units": "kcal/mol",
-                "type": "continuos",
+                "type": "continuous",
                 "names": [
                     "hydration free energy uncertainty",
                 ],
@@ -92,7 +92,7 @@ def get_and_transform_data():
                 "id": "calc_uncertainty",
                 "description": "mobley group calculated value calculated uncertainty",
                 "units": "kcal/mol",
-                "type": "continuos",
+                "type": "continuous",
                 "names": [
                     "GAFF uncertainty",
                     "mobley group calculated value uncertainty",
@@ -118,14 +118,16 @@ def get_and_transform_data():
         ],
         "num_points": len(df),  # number of datapoints in this dataset
         "url": "https://github.com/MobleyLab/FreeSolv",
-        "bibtex": """@article{mobley2013experimental,
-        title={Experimental and calculated small molecule hydration free energies},
-        author={Mobley, David L},
-        year={2013}""",
+        "bibtex": [
+            """@article{mobley2013experimental,
+            title={Experimental and calculated small molecule hydration free energies},
+            author={Mobley, David L},
+            year={2013}""",
+        ],
     }
     fn_meta = "meta.yaml"
     with open(fn_meta, "w") as f:
-        yaml.dump(meta, f)
+        yaml.dump(meta, f, sort_keys=False)
 
     print(f"Finished processing {meta['name']} dataset!")
 
