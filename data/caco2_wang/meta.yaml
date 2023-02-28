@@ -20,6 +20,9 @@ identifiers:
 - id: compound_id
   type: Other
   description: Compound id / name
+  names:
+  - compound id
+  - compound name
 license: CC BY 4.0
 links:
 - https://tdcommons.ai/single_pred_tasks/adme/#caco-2-cell-effective-permeability-wang-et-al
