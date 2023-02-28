@@ -4,3 +4,4 @@ isort>=5.0.0
 pydantic
 pydantic_yaml
 fire
+pre-commit

@@ -1,4 +1,4 @@
-There are many different ways to contribute to ChemNLP! 
+There are many different ways to contribute to ChemNLP!
 You can get in touch via the GitHub [task board](https://github.com/orgs/OpenBioML/projects/5?query=is:open+sort:updated-desc) and [issues](https://github.com/OpenBioML/chemnlp/issues?q=is:issue+is:open+sort:updated-desc&query=is:open+sort:updated-desc) and our [Discord](https://t.co/YMzpevmkiN).
 
 ## Pre-Requisites
@@ -18,21 +18,21 @@ conda env create -f conda.yaml  # Creates a conda env
 conda activate chemnlp  # Activate your conda environment
 ```
 
-# Implementing a dataset 
+# Implementing a dataset
 
-## Contributing a dataset 
-One of the most important ways to contribute to the ChemNLP efforts is to implement a dataset. 
-With "implementing" we mean the following: 
+## Contributing a dataset
+One of the most important ways to contribute to the ChemNLP efforts is to implement a dataset.
+With "implementing" we mean the following:
 
 - Take a dataset from our [awesome list](https://github.com/kjappelbaum/awesome-chemistry-datasets) (if it is not there, please add it there first, so we keep track)
 - Make an issue in this repository that you want to add this dataset (we will label this issue and assign it to you)
 - Make a PR that adds in a new folder in `data`
   - `meta.yaml` describing the dataset in the form that `transform.py` produces. We will use this later to construct the prompts.
-  - `transform.py` Python code that transforms the original dataset (linked in `meta.yaml`) into a form that can be consumed by the loader. 
+  - `transform.py` Python code that transforms the original dataset (linked in `meta.yaml`) into a form that can be consumed by the loader.
     For tabular datasets that will mostly involve: Removing/merging duplicated entries, renaming columns, dropping unused columns.
     Try to keep the output your `transform.py` uses as lean as possible (i.e. no columns that will not be used).
     In some cases, you might envision that extra columns might be useful. If this is the case, please add them (e.g., indicating some grouping, etc.)
-    Even though some examples create the `meta.yaml` in `transform.py` there is no need to do so. You can also do it by hand. 
+    Even though some examples create the `meta.yaml` in `transform.py` there is no need to do so. You can also do it by hand.
   - If you need additional dependencies, add them to `dev-requirements.txt` (those are needed for linting/testing/validation) or `requirements.txt` (those are the ones for running `transform.py`)
 
 
@@ -117,30 +117,29 @@ fields:
 
 This templating syntax should allow for quite some flexibility: For every template field we will look for the key, e.g., `exp_value` as well as `exp_value_text` (which can be used to describe to the field type/value).
 If this (`text`) is a column name, we will use the values from the column (therefore, effectively, jointly sample the `column` and `text` columns).
-If there are multiple values for one field, we will sample combinations. 
+If there are multiple values for one field, we will sample combinations.
 If you want to suggest sampling from different prompt prefixes, you can do so by specifying a template fields and different `text` (but no `column`).
 
-In case you run into issues (or think you don't have enough compute or storage, please let us know). Also, in some cases `csv` might not be the best format. If you think that `csv` is not suitable for your dataset, let us know. 
+In case you run into issues (or think you don't have enough compute or storage, please let us know). Also, in some cases `csv` might not be the best format. If you think that `csv` is not suitable for your dataset, let us know.
 
-For now, you do not need to upload the transformed datasets anywhere. 
-We will collect the URLs of the raw data in `meta.yaml` and the code to produce curated data in `transform.py` and then run in this on dedicated infrastructure. 
+For now, you do not need to upload the transformed datasets anywhere.
+We will collect the URLs of the raw data in `meta.yaml` and the code to produce curated data in `transform.py` and then run in this on dedicated infrastructure.
 
-### How will the datasets be used? 
+### How will the datasets be used?
 
-If your dataset is in tabular form, we will construct prompts using, for example, the LIFT framework. 
-In this case, we will sample from the identifier and targets columns. If you specify prompt templates, we will also sample from those. 
+If your dataset is in tabular form, we will construct prompts using, for example, the LIFT framework.
+In this case, we will sample from the identifier and targets columns. If you specify prompt templates, we will also sample from those.
 Therefore, it is very important that the column names in the `meta.yaml` match the ones in the file that `transform.py` produces.
 One example of a prompt we might construct is `"What is the <target_name> of <identifier>"`, where we sample `target_name` from the names of the targets listed in `meta.yaml` and `identifier` from the identifiers provided in `meta.yaml`.
 
 
-For datasets that are not in tabular form, we are still discussing the best process, but we also envision that we might perform some named-entity-recognition to also use some of the text datasets in a framework such as LIFT. Otherwise, we will simple use them in the typical GPT pretraining task. 
+For datasets that are not in tabular form, we are still discussing the best process, but we also envision that we might perform some named-entity-recognition to also use some of the text datasets in a framework such as LIFT. Otherwise, we will simple use them in the typical GPT pretraining task.
 
 ## Implementing a dataloader
 
-TBD. 
-
-
-## Implementing tokenizers 
-
 TBD.
 
+
+## Implementing tokenizers
+
+TBD.
