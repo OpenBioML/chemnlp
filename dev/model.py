@@ -19,7 +19,7 @@ class Identifier(YamlModel):
     """Identifier information."""
 
     id: str
-    description: str
+    description: Optional[str]
     type: IdentifierEnum
     names: Optional[List[str]]
 
@@ -29,6 +29,11 @@ class Identifier(YamlModel):
             values.get("type") == IdentifierEnum.other
         ):
             raise ValueError('names must be provided if type is "other"')
+        if (values.get("description") is None) and (
+            values.get("type") == IdentifierEnum.other
+        ):
+            raise ValueError('names must be provided if type is "other"')
+
         return values
 
 
