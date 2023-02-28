@@ -52,7 +52,7 @@ def get_and_transform_data():
             {
                 "id": "permeability",  # name of the column in a tabular dataset
                 "description": "Caco-2 cell effective permeability.",  # description of what this column means
-                "units": "?",  # units of the values in this column (leave empty if unitless)
+                "units": "logPapp",  # units of the values in this column (leave empty if unitless)
                 "type": "continuous",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
                     "Caco-2 cell effective permeability",
@@ -80,8 +80,14 @@ def get_and_transform_data():
         ],
         "license": "CC BY 4.0",  # license under which the original dataset was published
         "links": [  # list of relevant links (original dataset, other uses, etc.)
-            "https://tdcommons.ai/single_pred_tasks/adme/#caco-2-cell-effective-permeability-wang-et-al",
-            "https://pubs.acs.org/doi/10.1021/acs.jcim.5b00642",
+            {
+                "url": "https://tdcommons.ai/single_pred_tasks/adme/#caco-2-cell-effective-permeability-wang-et-al",
+                "description": "tdcommons.ai dataset url",
+            },
+            {
+                "url": "https://pubs.acs.org/doi/10.1021/acs.jcim.5b00642",
+                "description": "corresponding publication",
+            },
         ],
         "num_points": len(df),  # number of datapoints in this dataset
         "url": "https://tdcommons.ai/single_pred_tasks/adme/#caco-2-cell-effective-permeability-wang-et-al",
