@@ -45,7 +45,9 @@ def get_and_transform_data():
     # create meta yaml
     meta = {
         "name": "caco2_wang",  # unique identifier, we will also use this for directory names
-        "description": "The human colon epithelial cancer cell line, Caco-2, is used as an in vitro model to simulate the human intestinal tissue. The experimental result on the rate of drug passing through the Caco-2 cells can approximate the rate at which the drug permeates through the human intestinal tissue.",
+        "description": """The human colon epithelial cancer cell line, Caco-2, is used as an in vitro model
+        to simulate the human intestinal tissue. The experimental result on the rate of drug passing through
+        the Caco-2 cells can approximate the rate at which the drug permeates through the human intestinal tissue.""",
         "targets": [
             {
                 "id": "permeability",  # name of the column in a tabular dataset
@@ -85,8 +87,10 @@ def get_and_transform_data():
         "url": "https://tdcommons.ai/single_pred_tasks/adme/#caco-2-cell-effective-permeability-wang-et-al",
         "bibtex": [
             """@article{wang2016adme,
-            title={ADME properties evaluation in drug discovery: prediction of Caco-2 cell permeability using a combination of NSGA-II and boosting},
-            author={Wang, Ning-Ning and Dong, Jie and Deng, Yin-Hua and Zhu, Min-Feng and Wen, Ming and Yao, Zhi-Jiang and Lu, Ai-Ping and Wang, Jian-Bing and Cao, Dong-Sheng},
+            title={ADME properties evaluation in drug discovery: prediction of Caco-2 cell permeability
+            using a combination of NSGA-II and boosting},
+            author={Wang, Ning-Ning and Dong, Jie and Deng, Yin-Hua and Zhu, Min-Feng and Wen, Ming and Yao,
+            Zhi-Jiang and Lu, Ai-Ping and Wang, Jian-Bing and Cao, Dong-Sheng},
             journal={Journal of Chemical Information and Modeling},
             volume={56},
             number={4},

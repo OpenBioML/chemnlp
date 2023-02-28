@@ -1,8 +1,8 @@
 name: caco2_wang
-description: The human colon epithelial cancer cell line, Caco-2, is used as an in
-  vitro model to simulate the human intestinal tissue. The experimental result on
-  the rate of drug passing through the Caco-2 cells can approximate the rate at which
-  the drug permeates through the human intestinal tissue.
+description: "The human colon epithelial cancer cell line, Caco-2, is used as an in\
+  \ vitro model\n        to simulate the human intestinal tissue. The experimental\
+  \ result on the rate of drug passing through\n        the Caco-2 cells can approximate\
+  \ the rate at which the drug permeates through the human intestinal tissue."
 targets:
 - id: permeability
   description: Caco-2 cell effective permeability.
@@ -31,10 +31,10 @@ num_points: 910
 url: https://tdcommons.ai/single_pred_tasks/adme/#caco-2-cell-effective-permeability-wang-et-al
 bibtex:
 - "@article{wang2016adme,\n            title={ADME properties evaluation in drug discovery:\
-  \ prediction of Caco-2 cell permeability using a combination of NSGA-II and boosting},\n\
-  \            author={Wang, Ning-Ning and Dong, Jie and Deng, Yin-Hua and Zhu, Min-Feng\
-  \ and Wen, Ming and Yao, Zhi-Jiang and Lu, Ai-Ping and Wang, Jian-Bing and Cao,\
-  \ Dong-Sheng},\n            journal={Journal of Chemical Information and Modeling},\n\
-  \            volume={56},\n            number={4},\n            pages={763--773},\n\
-  \            year={2016},\n            publisher={ACS Publications}\n          \
-  \  }"
+  \ prediction of Caco-2 cell permeability\n            using a combination of NSGA-II\
+  \ and boosting},\n            author={Wang, Ning-Ning and Dong, Jie and Deng, Yin-Hua\
+  \ and Zhu, Min-Feng and Wen, Ming and Yao,\n            Zhi-Jiang and Lu, Ai-Ping\
+  \ and Wang, Jian-Bing and Cao, Dong-Sheng},\n            journal={Journal of Chemical\
+  \ Information and Modeling},\n            volume={56},\n            number={4},\n\
+  \            pages={763--773},\n            year={2016},\n            publisher={ACS\
+  \ Publications}\n            }"
