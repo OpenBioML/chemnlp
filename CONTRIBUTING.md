@@ -32,6 +32,7 @@ With "implementing" we mean the following:
     For tabular datasets that will mostly involve: Removing/merging duplicated entries, renaming columns, dropping unused columns.
     Try to keep the output your `transform.py` uses as lean as possible (i.e. no columns that will not be used).
     In some cases, you might envision that extra columns might be useful. If this is the case, please add them (e.g., indicating some grouping, etc.)
+    Even though some examples create the `meta.yaml` in `transform.py` there is no need to do so. You can also do it by hand. 
   - If you need additional dependencies, add them to `dev-requirements.txt` (those are needed for linting/testing/validation) or `requirements.txt` (those are the ones for running `transform.py`)
 
 
