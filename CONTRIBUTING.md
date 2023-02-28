@@ -18,6 +18,15 @@ conda env create -f conda.yaml  # Creates a conda env
 conda activate chemnlp  # Activate your conda environment
 ```
 
+Then, please run
+
+```bash
+pre-commit install
+```
+
+to install the [pre-commit hooks](https://pre-commit.com/). These will automatically format and lint your code upon every commit.
+There might be some warnings, e.g., by `flake8`. If you struggle with them, do not hestiate to contact us.
+
 # Implementing a dataset
 
 ## Contributing a dataset
