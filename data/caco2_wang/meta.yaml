@@ -25,8 +25,10 @@ identifiers:
           - compound name
 license: CC BY 4.0
 links:
-    - https://tdcommons.ai/single_pred_tasks/adme/#caco-2-cell-effective-permeability-wang-et-al
-    - https://pubs.acs.org/doi/10.1021/acs.jcim.5b00642
+    - url: https://tdcommons.ai/single_pred_tasks/adme/#caco-2-cell-effective-permeability-wang-et-al
+      description: tdcommons.ai dataset url
+    - url: https://pubs.acs.org/doi/10.1021/acs.jcim.5b00642
+      description: corresponding publication
 num_points: 910
 url: https://tdcommons.ai/single_pred_tasks/adme/#caco-2-cell-effective-permeability-wang-et-al
 bibtex:
