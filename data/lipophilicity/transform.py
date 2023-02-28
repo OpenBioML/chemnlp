@@ -59,12 +59,30 @@ def get_and_transform_data():
         ],
         "license": "CC BY-SA 3.0",  # license under which the original dataset was published
         "links": [  # list of relevant links (original dataset, other uses, etc.)
-            "https://deepchemdata.s3-us-west-1.amazonaws.com/datasets/Lipophilicity.csv",
-            "https://github.com/cheminfo/molecule-features/blob/main/data/lipophilicity/meta.yaml",
-            "https://deepchem.readthedocs.io/en/latest/api_reference/moleculenet.html",
-            "https://www.ebi.ac.uk/chembl/document_report_card/CHEMBL3301361/",
-            "https://chembl.gitbook.io/chembl-interface-documentation/about#data-licensing",
-            "https://creativecommons.org/licenses/by-sa/3.0/",
+            {
+                "url": "https://deepchemdata.s3-us-west-1.amazonaws.com/datasets/Lipophilicity.csv",
+                "description": "original dataset",
+            },
+            {
+                "url": "https://github.com/cheminfo/molecule-features/blob/main/data/lipophilicity/meta.yaml",
+                "description": "original meta data",
+            },
+            {
+                "url": "https://deepchem.readthedocs.io/en/latest/api_reference/moleculenet.html#lipo-datasets",
+                "description": "original dataset link from moleculenet",
+            },
+            {
+                "url": "https://www.ebi.ac.uk/chembl/document_report_card/CHEMBL3301361/",
+                "description": "original report card",
+            },
+            {
+                "url": "https://chembl.gitbook.io/chembl-interface-documentation/about#data-licensing",
+                "description": "original dataset license from chembl",
+            },
+            {
+                "url": "https://creativecommons.org/licenses/by-sa/3.0/",
+                "description": "used dataset license",
+            },
         ],
         "num_points": len(df),  # number of datapoints in this dataset
         "url": "https://deepchemdata.s3-us-west-1.amazonaws.com/datasets/Lipophilicity.csv",
