@@ -1,0 +1,32 @@
+---
+name: pampa_ncats
+description: "PAMPA (parallel artificial membrane permeability assay) is a commonly\n        employed assay to evaluate drug permeability across the cellular\
+    \ membrane. PAMPA is a\n        non-cell-based, low-cost and high-throughput alternative to cellular models. Although\n        PAMPA does not model\
+    \ active and efflux transporters, it still provides permeability values\n        that are useful for absorption prediction because the majority of drugs\
+    \ are absorbed by\n        passive diffusion through the membrane."
+targets:
+    - id: permeability
+      description: Binary permeability in PAMPA assay.
+      units: Bool
+      type: categorical
+      names:
+          - binary permeability in PAMPA assay
+          - permeability in PAMPA assay
+          - PAMPA permeability
+identifiers:
+    - id: SMILES
+      type: SMILES
+      description: SMILES
+license: CC BY 4.0
+links:
+    - url: https://tdcommons.ai/single_pred_tasks/adme/#pampa-permeability-ncats
+      description: tdcommons.ai dataset url
+    - url: https://journals.sagepub.com/doi/full/10.1177/24725552211017520
+      description: corresponding publication
+num_points: 2034
+url: https://tdcommons.ai/single_pred_tasks/adme/#pampa-permeability-ncats
+bibtex:
+    - "@article{siramshetty2021validating,\n    title={Validating ADME QSAR Models Using Marketed Drugs},\n    author={Siramshetty, Vishal and Williams,\
+      \ Jordan and Nguyễn, DHắc-Trung and Neyra, Jorge and Southall,\n    Noel and Math'e, Ewy and Xu, Xin and Shah, Pranav},\n    journal={SLAS DISCOVERY:\
+      \ Advancing the Science of Drug Discovery},\n    volume={26},\n    number={10},\n    pages={1326--1336},\n    year={2021},\n    publisher={SAGE Publications\
+      \ Sage CA: Los Angeles, CA}\n    }"
