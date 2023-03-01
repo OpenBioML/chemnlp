@@ -26,7 +26,6 @@ links:
     - url: https://creativecommons.org/licenses/by-sa/3.0/
       description: used dataset license
 num_points: 4200
-url: https://deepchemdata.s3-us-west-1.amazonaws.com/datasets/Lipophilicity.csv
 bibtex:
     - |-
       @techreport{hersey2015chembl,

@@ -37,8 +37,10 @@ identifiers:
       description: IUPAC
 license: CC BY-NC-SA 4.0
 links:
-    - https://github.com/MobleyLab/FreeSolv
-    - https://escholarship.org/uc/item/6sd403pz
+    - url: https://github.com/MobleyLab/FreeSolv
+      description: issue tracker and source data
+    - url: https://escholarship.org/uc/item/6sd403pz
+      description: repository with data
 num_points: 642
 url: https://github.com/MobleyLab/FreeSolv
 bibtex:
