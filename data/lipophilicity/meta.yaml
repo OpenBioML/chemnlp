@@ -16,7 +16,7 @@ identifiers:
 license: CC BY-SA 3.0
 links:
     - url: https://deepchemdata.s3-us-west-1.amazonaws.com/datasets/Lipophilicity.csv
-      description: original data
+      description: original dataset link
     - url: https://github.com/cheminfo/molecule-features/blob/main/data/lipophilicity/meta.yaml
       description: original meta data
     - url: https://deepchem.readthedocs.io/en/latest/api_reference/moleculenet.html#lipo-datasets
