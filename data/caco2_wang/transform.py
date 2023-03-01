@@ -25,15 +25,15 @@ def get_and_transform_data():
 
     # overwrite column names = fields
     fields_clean = [
-        "compound_id",
+        "compound_name",
         "SMILES",
         "permeability",
     ]
     df.columns = fields_clean
 
     # data cleaning
-    df.compound_id = (
-        df.compound_id.str.strip()
+    df.compound_name = (
+        df.compound_name.str.strip()
     )  # remove leading and trailing white space characters
 
     assert not df.duplicated().sum()
@@ -69,21 +69,17 @@ def get_and_transform_data():
                 "description": "SMILES",  # description (optional, except for "OTHER")
             },
             {
-                "id": "compound_id",
+                "id": "compound_name",
                 "type": "Other",
-                "description": "Compound id / name",
+                "description": "compound name",
                 "names": [
-                    "compound id",
+                    "compound",
                     "compound name",
                 ],
             },
         ],
         "license": "CC BY 4.0",  # license under which the original dataset was published
         "links": [  # list of relevant links (original dataset, other uses, etc.)
-            {
-                "url": "https://tdcommons.ai/single_pred_tasks/adme/#caco-2-cell-effective-permeability-wang-et-al",
-                "description": "tdcommons.ai dataset url",
-            },
             {
                 "url": "https://pubs.acs.org/doi/10.1021/acs.jcim.5b00642",
                 "description": "corresponding publication",
