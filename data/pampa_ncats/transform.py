@@ -71,12 +71,15 @@ def get_and_transform_data():
         "license": "CC BY 4.0",  # license under which the original dataset was published
         "links": [  # list of relevant links (original dataset, other uses, etc.)
             {
+                "url": "https://tdcommons.ai/single_pred_tasks/adme/#pampa-permeability-ncats",
+                "description": "original dataset link",
+            },
+            {
                 "url": "https://journals.sagepub.com/doi/full/10.1177/24725552211017520",
                 "description": "corresponding publication",
             },
         ],
         "num_points": len(df),  # number of datapoints in this dataset
-        "url": "https://tdcommons.ai/single_pred_tasks/adme/#pampa-permeability-ncats",
         "bibtex": [
             """@article{siramshetty2021validating,
     title={Validating ADME QSAR Models Using Marketed Drugs},
