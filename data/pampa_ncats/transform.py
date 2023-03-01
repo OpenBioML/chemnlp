@@ -71,10 +71,6 @@ def get_and_transform_data():
         "license": "CC BY 4.0",  # license under which the original dataset was published
         "links": [  # list of relevant links (original dataset, other uses, etc.)
             {
-                "url": "https://tdcommons.ai/single_pred_tasks/adme/#pampa-permeability-ncats",
-                "description": "tdcommons.ai dataset url",
-            },
-            {
                 "url": "https://journals.sagepub.com/doi/full/10.1177/24725552211017520",
                 "description": "corresponding publication",
             },
@@ -84,7 +80,7 @@ def get_and_transform_data():
         "bibtex": [
             """@article{siramshetty2021validating,
     title={Validating ADME QSAR Models Using Marketed Drugs},
-    author={Siramshetty, Vishal and Williams, Jordan and Nguyễn, DHắc-Trung and Neyra, Jorge and Southall,
+    author={Siramshetty, Vishal and Williams, Jordan and Nguyen, DHac-Trung and Neyra, Jorge and Southall,
     Noel and Math'e, Ewy and Xu, Xin and Shah, Pranav},
     journal={SLAS DISCOVERY: Advancing the Science of Drug Discovery},
     volume={26},
@@ -95,6 +91,19 @@ def get_and_transform_data():
     }""",
         ],
     }
+
+    def str_presenter(dumper, data):
+        """configures yaml for dumping multiline strings
+        Ref: https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data
+        """
+        if data.count("\n") > 0:  # check for multiline string
+            return dumper.represent_scalar("tag:yaml.org,2002:str", data, style="|")
+        return dumper.represent_scalar("tag:yaml.org,2002:str", data)
+
+    yaml.add_representer(str, str_presenter)
+    yaml.representer.SafeRepresenter.add_representer(
+        str, str_presenter
+    )  # to use with safe_dum
     fn_meta = "meta.yaml"
     with open(fn_meta, "w") as f:
         yaml.dump(meta, f, sort_keys=False)
