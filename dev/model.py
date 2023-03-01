@@ -72,6 +72,13 @@ class TemplateField(YamlModel):
     values: List[TemplateFieldValue]
 
 
+class Link(YamlModel):
+    """Link information."""
+
+    url: str
+    description: str
+
+
 class Dataset(YamlModel):
     name: str
     description: str
@@ -82,6 +89,7 @@ class Dataset(YamlModel):
     bibtex: List[str]
     templates: Optional[List[Template]]
     fields: Optional[Dict[str, TemplateField]]
+    links: List[Link]
 
     @validator("num_points")
     def num_points_must_be_positive(cls, v):
