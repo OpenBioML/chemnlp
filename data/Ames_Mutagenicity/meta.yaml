@@ -21,13 +21,6 @@ identifiers:
 - id: SMILES
   type: SMILES
   description: SMILES
-- id: compound_id
-  type: Other
-  description: random drug id
-  names:
-  - compound
-  - compound id
-  - random id
 license: CC BY 4.0
 links:
 - url: https://doi.org/10.1021/ci300400a
