@@ -160,3 +160,5 @@ TBD.
 Our first experiments will be based on [Pythia model](https://github.com/EleutherAI/pythia) suite from [EleuetherAI](https://www.eleuther.ai) that is based on [GPT-NeoX](https://github.com/EleutherAI/gpt-neox).
 
 If you are not familiar LLM training have a look at this very good guide: [Large-scale language modeling tutorials with PyTorch from TUNiB](https://nbviewer-org.translate.goog/github/tunib-ai/large-scale-lm-tutorials/blob/main/notebooks/01_introduction.ipynb?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=de&_x_tr_pto=wapp)
+
+Please have a look for the details in the [corresponding section in our proposal](https://docs.google.com/document/d/1C44EKSJRojm39P2CaxnEq-0FGwDRaknKxJ8lZI6xr5M/edit#heading=h.aww08l8o9tti).
