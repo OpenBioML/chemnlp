@@ -65,16 +65,6 @@ def get_and_transform_data():
                 "type": "SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
                 "description": "SMILES",  # description (optional, except for "Other")
             },
-            {
-                "id": "compound_id",
-                "type": "Other",
-                "description": "drug id",
-                "names": [
-                    "compound",
-                    "compound id",
-                    "drug id",
-                ],
-            },
         ],
         "license": "CC BY 4.0",  # license under which the original dataset was published
         "links": [  # list of relevant links (original dataset, other uses, etc.)
