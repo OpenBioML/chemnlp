@@ -69,7 +69,7 @@ def get_and_transform_data():
                 },
                 {
                     "id": "compound_name",
-                    "type": "Other",
+                    "type": "Synonyms",
                     "description": "compound name",
                     "names": [
                         "compound",

@@ -17,7 +17,7 @@ identifiers:
   type: SMILES
   description: SMILES
 - id: compound_name
-  type: Other
+  type: Synonyms
   description: compound name
   names:
   - compound
