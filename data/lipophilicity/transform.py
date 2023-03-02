@@ -60,6 +60,10 @@ def get_and_transform_data():
         "license": "CC BY-SA 3.0",  # license under which the original dataset was published
         "links": [  # list of relevant links (original dataset, other uses, etc.)
             {
+                "url": "https://deepchemdata.s3-us-west-1.amazonaws.com/datasets/Lipophilicity.csv",
+                "description": "original dataset link",
+            },
+            {
                 "url": "https://github.com/cheminfo/molecule-features/blob/main/data/lipophilicity/meta.yaml",
                 "description": "original meta data",
             },
@@ -81,7 +85,6 @@ def get_and_transform_data():
             },
         ],
         "num_points": len(df),  # number of datapoints in this dataset
-        "url": "https://deepchemdata.s3-us-west-1.amazonaws.com/datasets/Lipophilicity.csv",
         "bibtex": [
             """@techreport{hersey2015chembl,
             title={ChEMBL Deposited Data Set-AZ dataset},
