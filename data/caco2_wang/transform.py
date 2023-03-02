@@ -81,12 +81,15 @@ def get_and_transform_data():
         "license": "CC BY 4.0",  # license under which the original dataset was published
         "links": [  # list of relevant links (original dataset, other uses, etc.)
             {
+                "url": "https://tdcommons.ai/single_pred_tasks/adme/#caco-2-cell-effective-permeability-wang-et-al",
+                "description": "original data set link",
+            },
+            {
                 "url": "https://pubs.acs.org/doi/10.1021/acs.jcim.5b00642",
                 "description": "corresponding publication",
             },
         ],
         "num_points": len(df),  # number of datapoints in this dataset
-        "url": "https://tdcommons.ai/single_pred_tasks/adme/#caco-2-cell-effective-permeability-wang-et-al",
         "bibtex": [
             """@article{wang2016adme,
             title={ADME properties evaluation in drug discovery: prediction of Caco-2 cell permeability
