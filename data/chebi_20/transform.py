@@ -64,7 +64,11 @@ def str_presenter(dumper, data):
 
 
 def get_dataset(split: str) -> datasets.Dataset:
-    """Retrieve the raw csvs"""
+    """
+    Retrieve the dataset from Hugging Face
+    Details on how to upload to Hugging Face 
+    https://huggingface.co/docs/datasets/upload_dataset
+    """
     # 3 splits of train, val, test
     return datasets.load_dataset("OpenBioML/chebi_20", split=split, delimiter="\t")
 
