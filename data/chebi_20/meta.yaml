@@ -17,6 +17,8 @@ links:
   description: Original Text2Mol paper which introduced the dataset.
 - url: https://github.com/cnedwards/text2mol
   description: Text2Mol data repository.
+- url: https://huggingface.co/datasets/OpenBioML/chebi_20
+  description: Hugging Face dataset for OpenBioML.
 num_points: null
 bibtex:
 - |-

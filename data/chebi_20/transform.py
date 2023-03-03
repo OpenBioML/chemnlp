@@ -56,7 +56,7 @@ META_TEMPLATE = {
 }
 
 
-def str_presenter(dumper, data):
+def str_presenter(dumper, data: dict):
     """Configures yaml for dumping multiline strings"""
     if data.count("\n") > 0:  # check for multiline string
         return dumper.represent_scalar("tag:yaml.org,2002:str", data, style="|")
@@ -66,14 +66,14 @@ def str_presenter(dumper, data):
 def get_dataset(split: str) -> datasets.Dataset:
     """
     Retrieve the dataset from Hugging Face
-    Details on how to upload to Hugging Face 
+    Details on how to upload to Hugging Face
     https://huggingface.co/docs/datasets/upload_dataset
     """
     # 3 splits of train, val, test
     return datasets.load_dataset("OpenBioML/chebi_20", split=split, delimiter="\t")
 
 
-def remove_whitespace(sample):
+def remove_whitespace(sample: dict) -> dict:
     sample["description"] = sample["description"].strip()
     return sample
 
@@ -96,15 +96,18 @@ def create_meta_yaml(num_samples: int):
     print(f"Finished processing {META_TEMPLATE['name']} dataset!")
 
 
-def get_and_transform_data(split: str):
+def get_and_transform_data(split: str, save_yaml: bool = True) -> datasets.Dataset:
     hf_data = get_dataset(split)
     hf_data = clean_dataset(hf_data)
 
-    yaml.add_representer(str, str_presenter)
-    yaml.representer.SafeRepresenter.add_representer(str, str_presenter)
-    create_meta_yaml(hf_data.num_rows)
+    if save_yaml:
+        yaml.add_representer(str, str_presenter)
+        yaml.representer.SafeRepresenter.add_representer(str, str_presenter)
+        create_meta_yaml(hf_data.num_rows)
+
+    return hf_data
 
 
 if __name__ == "__main__":
     for split in SPLITS:
-        get_and_transform_data(split)
+        data = get_and_transform_data(split)
