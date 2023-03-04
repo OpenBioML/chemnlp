@@ -5,7 +5,7 @@ from tdc.single_pred import Tox
 
 def get_and_transform_data():
     # get raw data
-    data = Tox(name = 'LD50_Zhu')
+    data = Tox(name="LD50_Zhu")
     fn_data_original = "data_original.csv"
     data.get_data().to_csv(fn_data_original, index=False)
 
@@ -44,51 +44,51 @@ def get_and_transform_data():
 
     # create meta yaml
     meta = {
-            "name": "ld50_zhu",  # unique identifier, we will also use this for directory names
-            "description": """Acute toxicity LD50 measures the most conservative dose that can lead to lethal adverse effects. The higher the dose, the more lethal of a drug.""",
-            "targets": [
-                {
-                    "id": "acute_toxicity",  # name of the column in a tabular dataset
-                    "description": "Acute Toxicity LD50.",  # description of what this column means
-                    "units": "ld50",  # units of the values in this column (leave empty if unitless)
-                    "type": "continuous",  # can be "categorical", "ordinal", "continuous"
-                    "names": [  # names for the property (to sample from for building the prompts)
-                        "Acute Toxicity LD50",
-                        "ld50",
-                        "conservative dose that can lead to lethal adverse effects.",
-                        "Rat Acute Toxicity by Oral Exposure",
-                        "Toxicity",
-                    ],
-                },
-            ],
-            "identifiers": [
-                {
-                    "id": "SMILES",  # column name
-                    "type": "SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
-                    "description": "SMILES",  # description (optional, except for "Other")
-                },
-                {
-                    "id": "compound_name",
-                    "type": "Synonyms",
-                    "description": "compound name",
-                    "names": [
-                        "compound",
-                        "compound name",
-                        "drug",
-                    ],
-                },
-            ],
-            "license": "CC BY 4.0",  # license under which the original dataset was published
-            "links": [  # list of relevant links (original dataset, other uses, etc.)
-                {
-                    "url": "https://doi.org/10.1021/tx900189p",
-                    "description": "corresponding publication",
-                },
-            ],
-            "num_points": len(df),  # number of datapoints in this dataset
-            "url": "https://tdcommons.ai/single_pred_tasks/tox/#acute-toxicity-ld50",
-            "bibtex": [
-                """@article{Zhu2009,
+        "name": "ld50_zhu",  # unique identifier, we will also use this for directory names
+        "description": """Acute toxicity LD50 measures the most conservative dose that can lead to lethal adverse effects. The higher the dose, the more lethal of a drug.""",
+        "targets": [
+            {
+                "id": "acute_toxicity",  # name of the column in a tabular dataset
+                "description": "Acute Toxicity LD50.",  # description of what this column means
+                "units": "ld50",  # units of the values in this column (leave empty if unitless)
+                "type": "continuous",  # can be "categorical", "ordinal", "continuous"
+                "names": [  # names for the property (to sample from for building the prompts)
+                    "Acute Toxicity LD50",
+                    "ld50",
+                    "conservative dose that can lead to lethal adverse effects.",
+                    "Rat Acute Toxicity by Oral Exposure",
+                    "Toxicity",
+                ],
+            },
+        ],
+        "identifiers": [
+            {
+                "id": "SMILES",  # column name
+                "type": "SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
+                "description": "SMILES",  # description (optional, except for "Other")
+            },
+            {
+                "id": "compound_name",
+                "type": "Synonyms",
+                "description": "compound name",
+                "names": [
+                    "compound",
+                    "compound name",
+                    "drug",
+                ],
+            },
+        ],
+        "license": "CC BY 4.0",  # license under which the original dataset was published
+        "links": [  # list of relevant links (original dataset, other uses, etc.)
+            {
+                "url": "https://doi.org/10.1021/tx900189p",
+                "description": "corresponding publication",
+            },
+        ],
+        "num_points": len(df),  # number of datapoints in this dataset
+        "url": "https://tdcommons.ai/single_pred_tasks/tox/#acute-toxicity-ld50",
+        "bibtex": [
+            """@article{Zhu2009,
               doi = {10.1021/tx900189p},
               url = {https://doi.org/10.1021/tx900189p},
               year = {2009},
@@ -100,8 +100,8 @@ def get_and_transform_data():
               author = {Hao Zhu and Todd M. Martin and Lin Ye and Alexander Sedykh and Douglas M. Young and Alexander Tropsha},
               title = {Quantitative Structure-Activity Relationship Modeling of Rat Acute Toxicity by Oral Exposure},
               journal = {Chemical Research in Toxicology}}""",
-            ],
-        }
+        ],
+    }
 
     def str_presenter(dumper, data):
         """configures yaml for dumping multiline strings
