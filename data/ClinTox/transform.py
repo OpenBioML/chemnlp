@@ -5,7 +5,7 @@ from tdc.single_pred import Tox
 
 def get_and_transform_data():
     # get raw data
-    data = Tox(name = 'ClinTox')
+    data = Tox(name="ClinTox")
     fn_data_original = "data_original.csv"
     data.get_data().to_csv(fn_data_original, index=False)
 
@@ -24,7 +24,7 @@ def get_and_transform_data():
     ]
 
     # overwrite column names = fields
-    fields_clean =[
+    fields_clean = [
         "compound_id",
         "SMILES",
         "clinical_toxicity",
@@ -43,7 +43,8 @@ def get_and_transform_data():
     df.to_csv(fn_data_csv, index=False)
 
     # create meta yaml
-    meta =  {"name": "ClinTox",  # unique identifier, we will also use this for directory names
+    meta = {
+        "name": "ClinTox",  # unique identifier, we will also use this for directory names
         "description": """The ClinTox dataset includes drugs that have failed clinical trials for toxicity reasons and also drugs that are associated with successful trials.""",
         "targets": [
             {
@@ -55,7 +56,7 @@ def get_and_transform_data():
                     "clinical toxicity",
                     "toxicity",
                     "drug Induced clinical toxicity",
-                    "drug failed in clinical trials"
+                    "drug failed in clinical trials",
                 ],
             },
         ],
