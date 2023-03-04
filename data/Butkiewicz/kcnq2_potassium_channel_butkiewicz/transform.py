@@ -6,7 +6,7 @@ from tdc.single_pred import HTS
 def get_and_transform_data():
     # get raw data
     label = "kcnq2_potassium_channel_butkiewicz"
-    data = HTS(name = label)
+    data = HTS(name=label)
     fn_data_original = "data_original.csv"
     data.get_data().to_csv(fn_data_original, index=False)
 
@@ -32,10 +32,10 @@ def get_and_transform_data():
     ]
     df.columns = fields_clean
 
-#     # data cleaning
-#     df.compound_id = (
-#         df.compound_id.str.strip()
-#     )  # remove leading and trailing white space characters
+    #     # data cleaning
+    #     df.compound_id = (
+    #         df.compound_id.str.strip()
+    #     )  # remove leading and trailing white space characters
 
     assert not df.duplicated().sum()
 
@@ -43,8 +43,8 @@ def get_and_transform_data():
     fn_data_csv = "data_clean.csv"
     df.to_csv(fn_data_csv, index=False)
 
-        # create meta yaml
-    meta =  {
+    # create meta yaml
+    meta = {
         "name": "kcnq2_potassium_channel_butkiewicz",  # unique identifier, we will also use this for directory names
         "description": """These are nine high-quality high-throughput screening (HTS) datasets from [1]. These datasets were curated from HTS data at the PubChem database [2]. Typically, HTS categorizes small molecules into hit, inactive, or unspecified against a certain therapeutic target. However, a compound may be falsely classified as a hit due to experimental artifacts such as optical interference. Moreover, because the screening is performed without duplicates, and the cutoff is often set loose to minimize the false negative rates, the results from the primary screens often contain high false positive rates [3]. Hence the result from the primary screen is only used as the first iteration to reduce the compound library to a smaller set of further confirmatory tests. Here each dataset is carefully collated through confirmation screens to validate active compounds. The curation process is documented in [1]. Each dataset is identified by the PubChem Assay ID (AID). Features of the datasets: (1) At least 150 confirmed active compounds present; (2) Diverse target classes; (3) Realistic (large number and highly imbalanced label).""",
         "targets": [
@@ -57,7 +57,7 @@ def get_and_transform_data():
                     "kcnq2 potassium channel activity",
                     "kcnq2 potassium channel Inhibitor",
                     "activity against kcnq2 potassium channel",
-                    "kcnq2 potassium channel receptor"
+                    "kcnq2 potassium channel receptor",
                 ],
             },
         ],
@@ -98,7 +98,6 @@ def get_and_transform_data():
               author = {Mariusz Butkiewicz and Edward Lowe and Ralf Mueller and Jeffrey Mendenhall and Pedro Teixeira and C. Weaver and Jens Meiler},
               title = {Benchmarking Ligand-Based Virtual High-Throughput Screening with the {PubChem} Database},
               journal = {Molecules}}""",
-
             """@article{Kim2018,
               doi = {10.1093/nar/gky1033},
               url = {https://doi.org/10.1093/nar/gky1033},
@@ -111,7 +110,6 @@ def get_and_transform_data():
               author = {Sunghwan Kim and Jie Chen and Tiejun Cheng and Asta Gindulyte and Jia He and Siqian He and Qingliang Li and Benjamin A Shoemaker and Paul A Thiessen and Bo Yu and Leonid Zaslavsky and Jian Zhang and Evan E Bolton},
               title = {{PubChem} 2019 update: improved access to chemical data},
               journal = {Nucleic Acids Research}}""",
-
             """@article{Butkiewicz2017,
               doi = {},
               url = {https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5962024/},
@@ -122,7 +120,6 @@ def get_and_transform_data():
               author = {Butkiewicz, M.  and Wang, Y.  and Bryant, S. H.  and Lowe, E. W.  and Weaver, D. C.  and Meiler, J.},
               title = {{H}igh-{T}hroughput {S}creening {A}ssay {D}atasets from the {P}ub{C}hem {D}atabase}},
               journal = {Chemical Science}}""",
-
         ],
     }
 
