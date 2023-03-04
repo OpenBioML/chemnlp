@@ -29,7 +29,7 @@ def get_and_transform_data():
         "epitope_aa",
         "epitope_smiles",
         "tcr",
-        "tcr_aa",
+        "tcr_full",
         "binding",
     ]
     df.columns = fields_clean
@@ -79,9 +79,15 @@ def get_and_transform_data():
     
             },
             {
-                "id": "tcr_full_aa",
+                "id": "tcr",
                 "type": "Other",
-                "description": "tcr amino acid sequence",
+                "description": "hypervariable CDR3 loop",
+    
+            },
+            {
+                "id": "tcr_full",
+                "type": "Other",
+                "description": "tcr full amino acid sequence",
     
             },
         ],
