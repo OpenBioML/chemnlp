@@ -1,9 +1,9 @@
 name: hERG
-description: "Human ether-\xE0-go-go related gene (hERG) is crucial for the coordination\
-  \ of the heart's beating. Thus, if a drug blocks the hERG, it could lead to severe\
-  \ adverse effects. Therefore, reliable prediction of hERG liability in the early\
-  \ stages of drug design is quite important to reduce the risk of cardiotoxicity-related\
-  \ attritions in the later development stages."
+description: Human ether-a-go-go related gene (hERG) is crucial for the coordination
+  of the heart's beating. Thus, if a drug blocks the hERG, it could lead to severe
+  adverse effects. Therefore, reliable prediction of hERG liability in the early stages
+  of drug design is quite important to reduce the risk of cardiotoxicity-related attritions
+  in the later development stages.
 targets:
 - id: hERG_blocker
   description: hERG active compound(blocker)
@@ -13,8 +13,8 @@ targets:
   - hERG activity
   - hERG active compound
   - hERG blocker
-  - "Human ether-\xE0-go-go related gene (hERG) blocker"
-  - "Activity against Human ether-\xE0-go-go related gene (hERG)"
+  - Human ether-a-go-go related gene (hERG) blocker
+  - Activity against Human ether-a-go-go related gene (hERG)
 identifiers:
 - id: SMILES
   type: SMILES
@@ -30,8 +30,9 @@ license: CC BY 4.0
 links:
 - url: https://doi.org/10.1021/acs.molpharmaceut.6b00471
   description: corresponding publication
+- url: https://tdcommons.ai/single_pred_tasks/tox/#herg-blockers
+  description: Data source
 num_points: 655
-url: https://tdcommons.ai/single_pred_tasks/tox/#herg-blockers
 bibtex:
 - |-
   @article{Wang2016,

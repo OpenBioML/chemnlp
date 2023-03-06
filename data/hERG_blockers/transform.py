@@ -45,7 +45,7 @@ def get_and_transform_data():
     # create meta yaml
     meta = {
         "name": "hERG",  # unique identifier, we will also use this for directory names
-        "description": """Human ether-à-go-go related gene (hERG) is crucial for the coordination of the heart's beating. Thus, if a drug blocks the hERG, it could lead to severe adverse effects. Therefore, reliable prediction of hERG liability in the early stages of drug design is quite important to reduce the risk of cardiotoxicity-related attritions in the later development stages.""",
+        "description": """Human ether-a-go-go related gene (hERG) is crucial for the coordination of the heart's beating. Thus, if a drug blocks the hERG, it could lead to severe adverse effects. Therefore, reliable prediction of hERG liability in the early stages of drug design is quite important to reduce the risk of cardiotoxicity-related attritions in the later development stages.""",
         "targets": [
             {
                 "id": "hERG_blocker",  # name of the column in a tabular dataset
@@ -56,8 +56,8 @@ def get_and_transform_data():
                     "hERG activity",
                     "hERG active compound",
                     "hERG blocker",
-                    "Human ether-à-go-go related gene (hERG) blocker",
-                    "Activity against Human ether-à-go-go related gene (hERG)",
+                    "Human ether-a-go-go related gene (hERG) blocker",
+                    "Activity against Human ether-a-go-go related gene (hERG)",
                 ],
             },
         ],
@@ -84,9 +84,12 @@ def get_and_transform_data():
                 "url": "https://doi.org/10.1021/acs.molpharmaceut.6b00471",
                 "description": "corresponding publication",
             },
+            {
+                "url": "https://tdcommons.ai/single_pred_tasks/tox/#herg-blockers",
+                "description": "Data source",
+            },
         ],
         "num_points": len(df),  # number of datapoints in this dataset
-        "url": "https://tdcommons.ai/single_pred_tasks/tox/#herg-blockers",
         "bibtex": [
             """@article{Wang2016,
       doi = {10.1021/acs.molpharmaceut.6b00471},
