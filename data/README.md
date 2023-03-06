@@ -15,65 +15,65 @@
 - [ ] contribution guide specify the following #69[kjappelbaum]
 - [ ] Add Therapeutic Data Commons dataset #27 [priority-high]
     -[ ] Single-instance
-    - [ ] Add Drug-Target Interaction data #68
-    - [ ] Add ADME Property
-      - [ ] Absorption
-        - [x] Caco-2 (Cell Effective Permeability), Wang et al. []
-        - [x] PAMPA Permeability, NCATS []
-        - [ ] HIA (Human Intestinal Absorption), Hou et al.
-        - [ ] Pgp (P-glycoprotein) Inhibition, Broccatelli et al.
-        - [ ] Bioavailability, Ma et al.
-        - [x] Lipophilicity, AstraZeneca []
-        - [ ] Solubility, AqSolDB
-        - [ ] Hydration Free Energy, FreeSolv
-      - [ ] Distribution
-        - [ ] BBB (Blood-Brain Barrier), Martins et al.
-        - [ ] PPBR (Plasma Protein Binding Rate), AstraZeneca
-        - [ ] VDss (Volumn of Distribution at steady state), Lombardo et al.
-      - [ ] Metabolism
-        - [ ] CYP P450 2C19 Inhibition, Veith et al.
-        - [ ] CYP P450 2D6 Inhibition, Veith et al.
-        - [ ] CYP P450 3A4 Inhibition, Veith et al.
-        - [ ] CYP P450 1A2 Inhibition, Veith et al.
-        - [ ] CYP P450 2C9 Inhibition, Veith et al.
-        - [ ] CYP2C9 Substrate, Carbon-Mangels et al.
-        - [ ] CYP2D6 Substrate, Carbon-Mangels et al.
-        - [ ] CYP3A4 Substrate, Carbon-Mangels et al.
-      - [ ] Excretion
-        - [ ] Half Life, Obach et al.
-        - [ ] Clearance, AstraZeneca
-    - [ ] Add Toxicity [phalem]
-      - [x] Acute Toxicity LD50
-      - [ ] hERG blockers
-      - [ ] hERG Central
-      - [ ] hERG Karim et al.
-      - [ ] Ames Mutagenicity
-      - [ ] DILI (Drug Induced Liver Injury)
-      - [ ] Skin Reaction
-      - [ ] Carcinogens
-      - [ ] Tox21
-      - [ ] ToxCast
-      - [x] ClinTox
-    - [ ] Add High-throughput Screening [phalem]
-    - [ ] SARS-CoV-2 In Vitro, Touret et al.
-    - [ ] SARS-CoV-2 3CL Protease, Diamond.
-    - [ ] HIV
-    - [x] Butkiewicz et al.
-    - [ ] Add Quantum Mechanics Modeling []
-      - [ ]QM7b
-      - [ ]QM8
-      - [ ]QM9
-    - [ ] Add Reaction Yields []
-      - [ ] Buchwald-Hartwig
-      - [ ] USPTO
-    - [ ] Add Epitope(Immunotherapy under Target discovery)[strubeyj]
-      - [ ] IEDB, Jespersen et al.
-      - [ ] PDB, Jespersen et al.
-    - [ ] Add Antibody Developability
-      - [ ] TAP
-      - [ ] SAbDab, Chen et al.
-    - [ ] Add CRISPR Repair Outcome
-      - [ ] Leenay et al.
+        - [ ] Add Drug-Target Interaction data #68
+        - [ ] Add ADME Property
+          - [ ] Absorption
+            - [x] Caco-2 (Cell Effective Permeability), Wang et al. []
+            - [x] PAMPA Permeability, NCATS []
+            - [ ] HIA (Human Intestinal Absorption), Hou et al.
+            - [ ] Pgp (P-glycoprotein) Inhibition, Broccatelli et al.
+            - [ ] Bioavailability, Ma et al.
+            - [x] Lipophilicity, AstraZeneca []
+            - [ ] Solubility, AqSolDB
+            - [ ] Hydration Free Energy, FreeSolv
+          - [ ] Distribution
+            - [ ] BBB (Blood-Brain Barrier), Martins et al.
+            - [ ] PPBR (Plasma Protein Binding Rate), AstraZeneca
+            - [ ] VDss (Volumn of Distribution at steady state), Lombardo et al.
+          - [ ] Metabolism
+            - [ ] CYP P450 2C19 Inhibition, Veith et al.
+            - [ ] CYP P450 2D6 Inhibition, Veith et al.
+            - [ ] CYP P450 3A4 Inhibition, Veith et al.
+            - [ ] CYP P450 1A2 Inhibition, Veith et al.
+            - [ ] CYP P450 2C9 Inhibition, Veith et al.
+            - [ ] CYP2C9 Substrate, Carbon-Mangels et al.
+            - [ ] CYP2D6 Substrate, Carbon-Mangels et al.
+            - [ ] CYP3A4 Substrate, Carbon-Mangels et al.
+          - [ ] Excretion
+            - [ ] Half Life, Obach et al.
+            - [ ] Clearance, AstraZeneca
+        - [ ] Add Toxicity [phalem]
+          - [x] Acute Toxicity LD50
+          - [ ] hERG blockers
+          - [ ] hERG Central
+          - [ ] hERG Karim et al.
+          - [ ] Ames Mutagenicity
+          - [ ] DILI (Drug Induced Liver Injury)
+          - [ ] Skin Reaction
+          - [ ] Carcinogens
+          - [ ] Tox21
+          - [ ] ToxCast
+          - [x] ClinTox
+        - [ ] Add High-throughput Screening [phalem]
+        - [ ] SARS-CoV-2 In Vitro, Touret et al.
+        - [ ] SARS-CoV-2 3CL Protease, Diamond.
+        - [ ] HIV
+        - [x] Butkiewicz et al.
+        - [ ] Add Quantum Mechanics Modeling []
+          - [ ]QM7b
+          - [ ]QM8
+          - [ ]QM9
+        - [ ] Add Reaction Yields []
+          - [ ] Buchwald-Hartwig
+          - [ ] USPTO
+        - [ ] Add Epitope(Immunotherapy under Target discovery)[strubeyj]
+          - [ ] IEDB, Jespersen et al.
+          - [ ] PDB, Jespersen et al.
+        - [ ] Add Antibody Developability
+          - [ ] TAP
+          - [ ] SAbDab, Chen et al.
+        - [ ] Add CRISPR Repair Outcome
+          - [ ] Leenay et al.
 
   -[ ] Multi-instance
     - [ ] Add Drug-Target Interaction data #68[strubeyj]
@@ -99,6 +99,7 @@
       - [ ] USPTO
     - [ ] Add TCR-Epitope Binding Affinity
       - [ ] Weber et al.
+ 
   -[ ] Generation data
     - [ ] Add Molecule Generation
       - [ ] MOSES
