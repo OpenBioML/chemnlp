@@ -12,7 +12,6 @@ targets:
   - Skin Reaction
   - skin sensitization
   - agent Induced Skin Reaction
-  - fatal liver disease caused by drugs
   - drug induced skin immune reaction
 identifiers:
 - id: SMILES
