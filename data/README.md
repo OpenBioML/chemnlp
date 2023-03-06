@@ -74,7 +74,8 @@
       - [ ] SAbDab, Chen et al.
     - [ ] Add CRISPR Repair Outcome
       - [ ]Leenay et al.
-  -[ ] Multi-instance
+
+-[ ] Multi-instance
     - [ ] Add Drug-Target Interaction data #68[strubeyj]
       - [ ] BindingDB
       - [ ] DAVIS
