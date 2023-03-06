@@ -25,7 +25,6 @@ links:
 - url: https://doi.org/10.1021/ci300367a
   description: corresponding publication
 num_points: 280
-url: https://tdcommons.ai/single_pred_tasks/tox/#carcinogens
 bibtex:
 - |-
   @article{Lagunin2009,
