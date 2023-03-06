@@ -18,7 +18,7 @@ identifiers:
   type: SMILES
   description: SMILES
 - id: compound_name
-  type: Synonyms
+  type: Other
   description: drug name
   names:
   - compound
