@@ -13,8 +13,8 @@ targets:
   - hERG active compound
   - hERG blocker
   - hERG active compound <10uM
-  - "Human ether-\xE0-go-go related gene (hERG) blocker"
-  - "Activity against Human ether-\xE0-go-go related gene (hERG)"
+  - Human ether-a-go-go related gene (hERG) blocker
+  - Activity against Human ether-a-go-go related gene (hERG)
 identifiers:
 - id: SMILES
   type: SMILES
@@ -23,8 +23,9 @@ license: CC BY 4.0
 links:
 - url: https://doi.org/10.1186/s13321-021-00541-z
   description: corresponding publication
+- url: https://tdcommons.ai/single_pred_tasks/tox/#herg-karim-et-al
+  description: Data source
 num_points: 13445
-url: https://tdcommons.ai/single_pred_tasks/tox/#herg-karim-et-al
 bibtex:
 - |-
   @article{Karim2021,

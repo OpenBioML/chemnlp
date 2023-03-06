@@ -58,8 +58,8 @@ def get_and_transform_data():
                     "hERG active compound",
                     "hERG blocker",
                     "hERG active compound <10uM",
-                    "Human ether-à-go-go related gene (hERG) blocker",
-                    "Activity against Human ether-à-go-go related gene (hERG)",
+                    "Human ether-a-go-go related gene (hERG) blocker",
+                    "Activity against Human ether-a-go-go related gene (hERG)",
                 ],
             },
         ],
@@ -76,9 +76,12 @@ def get_and_transform_data():
                 "url": "https://doi.org/10.1186/s13321-021-00541-z",
                 "description": "corresponding publication",
             },
+            {
+                "url": "https://tdcommons.ai/single_pred_tasks/tox/#herg-karim-et-al",
+                "description": "Data source",
+            },            
         ],
         "num_points": len(df),  # number of datapoints in this dataset
-        "url": "https://tdcommons.ai/single_pred_tasks/tox/#herg-karim-et-al",
         "bibtex": [
             """@article{Karim2021,
           doi = {10.1186/s13321-021-00541-z},
