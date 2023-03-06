@@ -14,9 +14,9 @@
 - [ ] Add EuroPMC Dataset #32 [abhinav-kashyap-asus]  
 - [ ] contribution guide specify the following #69[kjappelbaum]
 - [ ] Add Therapeutic Data Commons dataset #27 [priority-high]
-    -[] Single-instance
-    - [] Add Drug-Target Interaction data #68
-    - [] Add ADME Property
+    -[ ] Single-instance
+    - [ ] Add Drug-Target Interaction data #68
+    - [ ] Add ADME Property
       - [ ] Absorption
         - [x] Caco-2 (Cell Effective Permeability), Wang et al. []
         - [x] PAMPA Permeability, NCATS []
@@ -42,7 +42,7 @@
       - [ ] Excretion
         - [ ] Half Life, Obach et al.
         - [ ] Clearance, AstraZeneca
-    - [] Add Toxicity [phalem]
+    - [ ] Add Toxicity [phalem]
       - [x] Acute Toxicity LD50
       - [ ] hERG blockers
       - [ ] hERG Central
@@ -54,64 +54,64 @@
       - [ ] Tox21
       - [ ] ToxCast
       - [x] ClinTox
-    - [] Add High-throughput Screening [phalem]
+    - [ ] Add High-throughput Screening [phalem]
     - [ ] SARS-CoV-2 In Vitro, Touret et al.
     - [ ] SARS-CoV-2 3CL Protease, Diamond.
     - [ ] HIV
     - [x] Butkiewicz et al.
-    - [] Add Quantum Mechanics Modeling []
+    - [ ] Add Quantum Mechanics Modeling []
       - [ ]QM7b
       - [ ]QM8
       - [ ]QM9
-    - [] Add Reaction Yields []
+    - [ ] Add Reaction Yields []
       - [ ] Buchwald-Hartwig
       - [ ] USPTO
-    - [] Add Epitope(Immunotherapy under Target discovery)[strubeyj]
+    - [ ] Add Epitope(Immunotherapy under Target discovery)[strubeyj]
       - [ ] IEDB, Jespersen et al.
       - [ ] PDB, Jespersen et al.
-    - [] Add Antibody Developability
+    - [ ] Add Antibody Developability
       - [ ] TAP
       - [ ] SAbDab, Chen et al.
-    - [] Add CRISPR Repair Outcome
+    - [ ] Add CRISPR Repair Outcome
       - [ ]Leenay et al.
-  -[] Multi-instance
-    - [] Add Drug-Target Interaction data #68[strubeyj]
-      - [] BindingDB
-      - [] DAVIS
-      - [] KIBA
-    - [] Add Drug-Drug Interaction
-      - [] DrugBank Multi-Typed DDI
-      - [] TWOSIDES Polypharmacy Side Effects
-    - [] Add Gene-Disease Association
-      - [] DisGeNET
-    - [] Add Drug Response
-      - [] GDSC1
-      - [] GDSC2
-    - [] Add Peptide-MHC Binding
-      - [] MHC Class I, IEDB-IMGT, Nielsen et al.
-      - [] MHC Class II, IEDB, Jensen et al.
-    - [] Add Antibody-antigen Affinity 
-      - [] SAbDab
-    - [] Add MicroRNA-Target Interaction
-      - [] miRTarBase
-    - [] Add Catalyst
-      - [] USPTO
-    - [] Add TCR-Epitope Binding Affinity
-      - [] Weber et al.
-  -[] Generation data
-    - [] Add Molecule Generation
-      - [] MOSES
-      - [] ZINC
-      - [] ChEMBL
-    - [] Add Retrosynthesis
-      - [] USPTO-50K
-      - [] USPTO
-    - [] Add Reaction Outcome
-      - [] USPTO
-    - [] Add Structure-based Drug Design 
-      - [] PDBBind
-      - [] DUD-E
-      - [] scPDB
+  -[ ] Multi-instance
+    - [ ] Add Drug-Target Interaction data #68[strubeyj]
+      - [ ] BindingDB
+      - [ ] DAVIS
+      - [ ] KIBA
+    - [ ] Add Drug-Drug Interaction
+      - [ ] DrugBank Multi-Typed DDI
+      - [ ] TWOSIDES Polypharmacy Side Effects
+    - [ ] Add Gene-Disease Association
+      - [ ] DisGeNET
+    - [ ] Add Drug Response
+      - [ ] GDSC1
+      - [ ] GDSC2
+    - [ ] Add Peptide-MHC Binding
+      - [ ] MHC Class I, IEDB-IMGT, Nielsen et al.
+      - [ ] MHC Class II, IEDB, Jensen et al.
+    - [ ] Add Antibody-antigen Affinity 
+      - [ ] SAbDab
+    - [ ] Add MicroRNA-Target Interaction
+      - [ ] miRTarBase
+    - [ ] Add Catalyst
+      - [ ] USPTO
+    - [ ] Add TCR-Epitope Binding Affinity
+      - [ ] Weber et al.
+  -[ ] Generation data
+    - [ ] Add Molecule Generation
+      - [ ] MOSES
+      - [ ] ZINC
+      - [ ] ChEMBL
+    - [ ] Add Retrosynthesis
+      - [ ] USPTO-50K
+      - [ ] USPTO
+    - [ ] Add Reaction Outcome
+      - [ ] USPTO
+    - [ ] Add Structure-based Drug Design 
+      - [ ] PDBBind
+      - [ ] DUD-E
+      - [ ] scPDB
 
 ### Done ✓
 
