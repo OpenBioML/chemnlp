@@ -1,51 +1,50 @@
 name: hERG Central
-description: "Human ether-\xE0-go-go related gene (hERG) is crucial for the coordination\
-  \ of the heart's beating. Thus, if a drug blocks the hERG, it could lead to severe\
-  \ adverse effects. Therefore, reliable prediction of hERG liability in the early\
-  \ stages of drug design is quite important to reduce the risk of cardiotoxicity-related\
-  \ attritions in the later development stages. There are three targets: hERG_at_1uM,\
-  \ hERG_at_10uM, and hERG_inhib."
+description: 'Human ether-a-go-go related gene (hERG) is crucial for the coordination
+  of the heart''s beating. Thus, if a drug blocks the hERG, it could lead to severe
+  adverse effects. Therefore, reliable prediction of hERG liability in the early stages
+  of drug design is quite important to reduce the risk of cardiotoxicity-related attritions
+  in the later development stages. There are three targets: hERG_at_1microM, hERG_at_10microM,
+  and hERG_inhib.'
 targets:
 - id: hERG_at_1uM
-  description: "The percent inhibition at a 1\xB5M concentration"
-  units: "1\xB5M concentration"
+  description: The percent inhibition at a 1microM concentration
+  units: 1microM concentration
   type: continuous
   names:
   - hERG activity
   - hERG active compound
   - hERG blocker
-  - "Human ether-\xE0-go-go related gene (hERG) blocker"
-  - "Activity against Human ether-\xE0-go-go related gene (hERG)"
-  - hERG at 1uM
-  - hERG activity 1uM
-  - "The percent inhibition at a 1\xB5M concentration"
-  - Compound percent activity at 1uM
+  - Human ether-a-go-go related gene (hERG) blocker
+  - Activity against Human ether-a-go-go related gene (hERG)
+  - hERG at 1microM
+  - hERG activity 1microM
+  - The percent inhibition at a 1microM concentration
+  - Compound percent activity at 1microM
 - id: hERG_at_10uM
-  description: "The percent inhibition at a 10\xB5M concentration"
-  units: "1\xB5M concentration"
+  description: The percent inhibition at a 10microM concentration
+  units: 1microM concentration
   type: continuous
   names:
   - hERG activity
   - hERG active compound
   - hERG blocker
-  - "Human ether-\xE0-go-go related gene (hERG) blocker"
-  - "Activity against Human ether-\xE0-go-go related gene (hERG)"
-  - hERG at 10uM
-  - hERG activity 10uM
-  - "The percent inhibition at a 10\xB5M concentration"
-  - Compound percent activity at 10uM
+  - Human ether-a-go-go related gene (hERG) blocker
+  - Activity against Human ether-a-go-go related gene (hERG)
+  - hERG at 10microM
+  - hERG activity 10microM
+  - The percent inhibition at a 10microM concentration
+  - Compound percent activity at 10microM
 - id: hERG_inhib
-  description: "whether it blocks (1) or not blocks (0). This is equivalent to whether\
-    \ hERG_at_10uM < -50, i.e. whether the compound has an IC50 of less than 10\xB5\
-    M."
-  units: "1\xB5M concentration"
+  description: whether it blocks (1) or not blocks (0). This is equivalent to whether
+    hERG_at_10microM < -50, i.e. whether the compound has an IC50 of less than 10microM.
+  units: 1microM concentration
   type: categorical
   names:
   - hERG activity
   - hERG active compound
   - hERG blocker
-  - "Human ether-\xE0-go-go related gene (hERG) blocker"
-  - "Activity against Human ether-\xE0-go-go related gene (hERG)"
+  - Human ether-a-go-go related gene (hERG) blocker
+  - Activity against Human ether-a-go-go related gene (hERG)
 identifiers:
 - id: SMILES
   type: SMILES
@@ -56,8 +55,9 @@ links:
   description: corresponding publication
 - url: https://bbirnbaum.com/
   description: TDC Contributer
+- url: https://tdcommons.ai/single_pred_tasks/tox/#herg-central
+  description: Data source
 num_points: 306893
-url: https://tdcommons.ai/single_pred_tasks/tox/#herg-central
 bibtex:
 - |-
   @article{Du2011,

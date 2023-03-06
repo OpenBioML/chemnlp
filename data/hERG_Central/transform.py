@@ -51,54 +51,54 @@ def get_and_transform_data():
     # create meta yaml
     meta = {
             "name": "hERG Central",  # unique identifier, we will also use this for directory names
-            "description": """Human ether-à-go-go related gene (hERG) is crucial for the coordination of the heart's beating. Thus, if a drug blocks the hERG, it could lead to severe adverse effects. Therefore, reliable prediction of hERG liability in the early stages of drug design is quite important to reduce the risk of cardiotoxicity-related attritions in the later development stages. There are three targets: hERG_at_1uM, hERG_at_10uM, and hERG_inhib.""",
+            "description": """Human ether-a-go-go related gene (hERG) is crucial for the coordination of the heart's beating. Thus, if a drug blocks the hERG, it could lead to severe adverse effects. Therefore, reliable prediction of hERG liability in the early stages of drug design is quite important to reduce the risk of cardiotoxicity-related attritions in the later development stages. There are three targets: hERG_at_1microM, hERG_at_10microM, and hERG_inhib.""",
             "targets": [
                 {
                     "id": "hERG_at_1uM",  # name of the column in a tabular dataset
-                    "description": "The percent inhibition at a 1µM concentration",  # description of what this column means
-                    "units": "1µM concentration",  # units of the values in this column (leave empty if unitless)
+                    "description": "The percent inhibition at a 1microM concentration",  # description of what this column means
+                    "units": "1microM concentration",  # units of the values in this column (leave empty if unitless)
                     "type": "continuous",  # can be "categorical", "ordinal", "continuous"
                     "names": [  # names for the property (to sample from for building the prompts)
                         "hERG activity",
                         "hERG active compound",
                         "hERG blocker",
-                        "Human ether-à-go-go related gene (hERG) blocker",
-                        "Activity against Human ether-à-go-go related gene (hERG)",
-                        "hERG at 1uM",
-                        "hERG activity 1uM",
-                        "The percent inhibition at a 1µM concentration",
-                        "Compound percent activity at 1uM"
+                        "Human ether-a-go-go related gene (hERG) blocker",
+                        "Activity against Human ether-a-go-go related gene (hERG)",
+                        "hERG at 1microM",
+                        "hERG activity 1microM",
+                        "The percent inhibition at a 1microM concentration",
+                        "Compound percent activity at 1microM"
                         ,
                     ],
                 },
                 {
                     "id": "hERG_at_10uM",  # name of the column in a tabular dataset
-                    "description": "The percent inhibition at a 10µM concentration",  # description of what this column means
-                    "units": "1µM concentration",  # units of the values in this column (leave empty if unitless)
+                    "description": "The percent inhibition at a 10microM concentration",  # description of what this column means
+                    "units": "1microM concentration",  # units of the values in this column (leave empty if unitless)
                     "type": "continuous",  # can be "categorical", "ordinal", "continuous"
                     "names": [  # names for the property (to sample from for building the prompts)
                         "hERG activity",
                         "hERG active compound",
                         "hERG blocker",
-                        "Human ether-à-go-go related gene (hERG) blocker",
-                        "Activity against Human ether-à-go-go related gene (hERG)",
-                        "hERG at 10uM",
-                        "hERG activity 10uM",
-                        "The percent inhibition at a 10µM concentration",
-                        "Compound percent activity at 10uM"
+                        "Human ether-a-go-go related gene (hERG) blocker",
+                        "Activity against Human ether-a-go-go related gene (hERG)",
+                        "hERG at 10microM",
+                        "hERG activity 10microM",
+                        "The percent inhibition at a 10microM concentration",
+                        "Compound percent activity at 10microM"
                     ],
                 },
                 {
                     "id": "hERG_inhib",  # name of the column in a tabular dataset
-                    "description": "whether it blocks (1) or not blocks (0). This is equivalent to whether hERG_at_10uM < -50, i.e. whether the compound has an IC50 of less than 10µM.",  # description of what this column means
-                    "units": "1µM concentration",  # units of the values in this column (leave empty if unitless)
+                    "description": "whether it blocks (1) or not blocks (0). This is equivalent to whether hERG_at_10microM < -50, i.e. whether the compound has an IC50 of less than 10microM.",  # description of what this column means
+                    "units": "1microM concentration",  # units of the values in this column (leave empty if unitless)
                     "type": "categorical",  # can be "categorical", "ordinal", "continuous"
                     "names": [  # names for the property (to sample from for building the prompts)
                         "hERG activity",
                         "hERG active compound",
                         "hERG blocker",
-                        "Human ether-à-go-go related gene (hERG) blocker",
-                        "Activity against Human ether-à-go-go related gene (hERG)",
+                        "Human ether-a-go-go related gene (hERG) blocker",
+                        "Activity against Human ether-a-go-go related gene (hERG)",
                     ],
                 },
             ],
@@ -119,9 +119,12 @@ def get_and_transform_data():
                     "url": "https://bbirnbaum.com/",
                     "description": "TDC Contributer",
                 },
+                {
+                    "url": "https://tdcommons.ai/single_pred_tasks/tox/#herg-central",
+                    "description": "Data source",
+                },
             ],
             "num_points": len(df),  # number of datapoints in this dataset
-            "url": "https://tdcommons.ai/single_pred_tasks/tox/#herg-central",
             "bibtex": [
                 """@article{Du2011,
                   doi = {10.1089/adt.2011.0425},
