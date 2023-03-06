@@ -16,7 +16,6 @@ targets:
   - Mutagenicity
   - Ames Mutagenicity
   - ability of a drug to induce genetic alterations
-  - mutagens
 identifiers:
 - id: SMILES
   type: SMILES
