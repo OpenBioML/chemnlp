@@ -10,7 +10,6 @@ targets:
   units: liver_injury
   type: categorical
   names:
-  - DILI
   - liver injury
   - Drug Induced Liver Injury
   - fatal liver disease caused by drugs
