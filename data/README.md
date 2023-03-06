@@ -15,7 +15,6 @@
 - [ ] contribution guide specify the following #69[kjappelbaum]
 - [ ] Add Therapeutic Data Commons dataset #27 [priority-high]
   -[ ] Single-instance
-    - [ ] Add Drug-Target Interaction data #68
     - [ ] Add ADME Property
       - [ ] Absorption
           - [x] Caco-2 (Cell Effective Permeability), Wang et al. []
