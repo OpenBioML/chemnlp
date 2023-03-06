@@ -78,9 +78,12 @@ def get_and_transform_data():
                 "url": "https://doi.org/10.1039/C7SC02664A",
                 "description": "corresponding publication",
             },
+            {
+                "url": "https://tdcommons.ai/single_pred_tasks/hts/#hiv",
+                "description": "data source",
+            },
         ],
         "num_points": len(df),  # number of datapoints in this dataset
-        "url": "https://tdcommons.ai/single_pred_tasks/hts/#hiv",
         "bibtex": [
             """@article{Wu2018,
               doi = {10.1039/c7sc02664a},
