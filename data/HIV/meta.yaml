@@ -23,8 +23,9 @@ links:
   description: data source
 - url: https://doi.org/10.1039/C7SC02664A
   description: corresponding publication
+- url: https://tdcommons.ai/single_pred_tasks/hts/#hiv
+  description: data soure
 num_points: 1484
-url: https://tdcommons.ai/single_pred_tasks/hts/#hiv
 bibtex:
 - |-
   @article{Wu2018,
