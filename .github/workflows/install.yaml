@@ -21,7 +21,7 @@ jobs:
               shell: bash -l {0}
               run: |
                   conda activate chemnlp
-                  python -m dev.validate data
+                  python -m src.data.validate data
             - name: Lint
               shell: bash -l {0}
               run: |
