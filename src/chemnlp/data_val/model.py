@@ -23,9 +23,9 @@ class Identifier(YamlModel):
     type: IdentifierEnum
     names: Optional[List[str]]
 
-    """A URI or multiple (consitent ) URIs for the field. 
+    """A URI or multiple (consitent ) URIs for the field.
 
-    Ideally this would be a link to an entry in an ontrology or controlled 
+    Ideally this would be a link to an entry in an ontrology or controlled
     vocabulary that can also provide a canonical description for the field.
     """
     uri: Optional[List[str]]
