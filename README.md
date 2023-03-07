@@ -34,3 +34,20 @@ Our OpenBioML ChemNLP project is not afiliated to the [ChemNLP library from NIST
 
 # About OpenBioML.org
 See https://openbioml.org, especially [our approach and partners](https://openbioml.org/approach-and-partners.html).
+
+# Installation and set-up
+Create a new conda environment for Python 3.8:
+```
+conda create -n chemnlp python=3.8
+conda activate chemnlp
+```
+To install the `chemnlp` package (and required dependencies):
+
+```
+pip install chemnlp
+```
+
+If working on developing the python package:
+```
+pip install -e "chemnlp[dev]"  # to install development dependencies
+```

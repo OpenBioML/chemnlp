@@ -1,7 +1,7 @@
 ---
 name: chemnlp
 dependencies:
-    - python>=3.7
+    - python==3.7
     - pip
     - pip:
           - -r dev-requirements.txt
