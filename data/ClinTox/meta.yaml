@@ -12,6 +12,9 @@ targets:
           - toxicity
           - drug Induced clinical toxicity
           - drug failed in clinical trials
+      uris:
+          - http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C27990
+          - http://purl.bioontology.org/ontology/MESH/Q000633
 identifiers:
     - id: SMILES
       type: SMILES

@@ -13,6 +13,10 @@ targets:
           - conservative dose that can lead to lethal adverse effects.
           - Rat Acute Toxicity by Oral Exposure
           - Toxicity
+      uris:
+          - http://www.bioassayontology.org/bao#BAO_0002117
+          - http://sbmi.uth.tmc.edu/ontology/ochv#C0023378
+
 identifiers:
     - id: SMILES
       type: SMILES

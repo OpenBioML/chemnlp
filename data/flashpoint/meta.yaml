@@ -14,6 +14,8 @@ targets:
       type: continuous
       names:
           - flash point
+      uris:
+          - https://doi.org/10.1351/goldbook.F02419
 identifiers:
     - id: smiles
       type: SMILES

@@ -8,6 +8,8 @@ targets:
       type: continuous
       names:
           - hydration free energy
+      uris:
+          - https://doi.org/10.1351/goldbook.F02515
     - id: exp_uncertainty
       description: experimental hydration free energy uncertainty
       units: kcal/mol

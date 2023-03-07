@@ -14,6 +14,8 @@ targets:
           - Caco-2 cell permeability
           - Caco-2 permeability
           - permeability
+      uris:
+          - http://www.bioassayontology.org/bao#BAO_0002808
 identifiers:
     - id: SMILES
       type: SMILES

@@ -16,6 +16,8 @@ targets:
           - binary permeability in PAMPA assay
           - permeability in PAMPA assay
           - PAMPA permeability
+      uris:
+          - http://www.bioassayontology.org/bao#BAO_0010072
 identifiers:
     - id: SMILES
       type: SMILES
