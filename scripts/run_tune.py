@@ -70,12 +70,8 @@ def run():
         wandb.init(
             project=config.train.wandb_project,
             name=f"{config.model.name}-{config.train.run_name}-finetuned",
-            config=config,
+            config=config.dict(),
         )
-
-    # TODO: the config is formatted wrong in wandb
-    # TODO: are we saving the tuned model?
-    # TODO: can we remove repo wandb logs and only send logs to online?
 
     trainer = Trainer(
         model=model,

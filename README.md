@@ -51,3 +51,6 @@ If working on developing the python package:
 ```
 pip install -e "chemnlp[dev]"  # to install development dependencies
 ```
+
+If working on model training, request access to the wandb project 'chemnlp'
+and login to wandb with your API key https://docs.wandb.ai/quickstart

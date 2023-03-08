@@ -32,7 +32,5 @@ dev = [
         "wandb",
 ]
 
-# TODO: wandb login api code is needed
-
 [tool.setuptools_scm]
 version_scheme = "post-release"
