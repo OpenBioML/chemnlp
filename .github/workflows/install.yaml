@@ -14,7 +14,7 @@ jobs:
               with:
                   environment-file: conda.yaml
                   activate-environment: chemnlp
-                  python-version: 3.7
+                  python-version: 3.8
                   auto-update-conda: true
                   auto-activate-base: false
             - name: Validate yaml

@@ -52,5 +52,9 @@ If working on developing the python package:
 pip install -e "chemnlp[dev]"  # to install development dependencies
 ```
 
-If working on model training, request access to the wandb project 'chemnlp'
-and login to wandb with your API key https://docs.wandb.ai/quickstart
+If working on model training, request access to the `wandb` project `chemnlp`
+and log-in to `wandb` with your API key per [here](https://docs.wandb.ai/quickstart).
+
+### Adding a new dataset (to the model training pipline)
+
+We specify datasets by creating a new function [here](src/chemnlp/data/hf_datasets.py) which is named per the dataset on Hugging Face. At present the function must accept a tokenizer and return back the tokenized train and validation datasets.
