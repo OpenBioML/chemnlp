@@ -29,7 +29,10 @@ dev = [
         "pre-commit",
         "pydantic_yaml",
         "pytest",
+        "wandb",
 ]
+
+# TODO: wandb login api code is needed
 
 [tool.setuptools_scm]
 version_scheme = "post-release"
