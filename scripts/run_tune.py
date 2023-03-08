@@ -1,6 +1,7 @@
 from pathlib import Path
 
 import transformers
+import wandb
 from peft import PromptTuningConfig, PromptTuningInit, TaskType, get_peft_model
 from transformers import (
     AutoTokenizer,
@@ -61,7 +62,16 @@ def run():
         num_train_epochs=config.train.epochs,
         per_device_train_batch_size=config.train.per_device_train_batch_size,
         per_device_eval_batch_size=config.train.per_device_eval_batch_size,
+        report_to="wandb" if config.train.is_wandb else None,
     )
+
+    if config.train.is_wandb:
+
+        wandb.init(
+            project=config.train.wandb_project,
+            name=f"{config.model.name}-{config.train.run_name}-finetuned",
+            config=config.dict(),
+        )
 
     trainer = Trainer(
         model=model,

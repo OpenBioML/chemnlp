@@ -29,6 +29,7 @@ dev = [
         "pre-commit",
         "pydantic_yaml",
         "pytest",
+        "wandb",
 ]
 
 [tool.setuptools_scm]
