@@ -66,7 +66,6 @@ def run():
     )
 
     if config.train.is_wandb:
-
         wandb.init(
             project=config.train.wandb_project,
             name=f"{config.model.name}-{config.train.run_name}-finetuned",
