@@ -1,5 +1,5 @@
 ---
-name: chemnlp_py37
+name: chemnlp
 dependencies:
     - python>=3.7
     - pip

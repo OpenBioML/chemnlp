@@ -13,19 +13,19 @@ jobs:
             - uses: conda-incubator/setup-miniconda@v2
               with:
                   environment-file: conda.yaml
-                  activate-environment: chemnlp_py37
+                  activate-environment: chemnlp
                   python-version: 3.7
                   auto-update-conda: true
                   auto-activate-base: false
             - name: Validate yaml
               shell: bash -l {0}
               run: |
-                  conda activate chemnlp_py37
-                  python -m src.chemnlp.data.validate data
+                  conda activate chemnlp
+                  python -m src.chemnlp.data_val.validate data
             - name: Lint
               shell: bash -l {0}
               run: |
-                  conda activate chemnlp_py37
+                  conda activate chemnlp
                   black --check .
                   isort --check-only .
                   flake8 .
