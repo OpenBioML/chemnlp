@@ -87,7 +87,7 @@ def get_and_transform_data():
                 "description": "corresponding publication",
             },
             {
-                "url": "https://tdcommons.ai/single_pred_tasks/tox/#herg-karim-et-al",
+                "url": "https://tdcommons.ai/single_pred_tasks/tox/#tox21",
                 "description": "data source",
 
             },

@@ -27,7 +27,7 @@ license: CC BY 4.0
 links:
 - url: http://dx.doi.org/10.3389/fenvs.2017.00003
   description: corresponding publication
-- url: https://tdcommons.ai/single_pred_tasks/tox/#herg-karim-et-al
+- url: https://tdcommons.ai/single_pred_tasks/tox/#tox21
   description: data source
 - url: https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-018-2523-5/tables/3
   description: Assay name
