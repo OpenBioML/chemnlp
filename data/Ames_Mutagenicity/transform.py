@@ -50,7 +50,7 @@ def get_and_transform_data():
             {
                 "id": "mutagenic",  # name of the column in a tabular dataset
                 "description": "whether it is mutagenic (1) or not mutagenic (0)",  # description of what this column means
-                "units": "ld50",  # units of the values in this column (leave empty if unitless)
+                "units": "mutagenic",  # units of the values in this column (leave empty if unitless)
                 "type": "categorical",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
                     "mutagenic",
@@ -59,6 +59,10 @@ def get_and_transform_data():
                     "ability of a drug to induce genetic alterations",
                     "mutagens"
                 ],
+                "uris":[
+                "https://bioportal.bioontology.org/ontologies/ENM?p=classes&conceptid=http%3A%2F%2Fpurl.enanomapper.org%2Fonto%2FENM_0000042",
+                    "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C16235",
+        ],
             },
         ],
         "identifiers": [

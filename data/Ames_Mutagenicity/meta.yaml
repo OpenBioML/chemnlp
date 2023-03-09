@@ -9,13 +9,17 @@ description: Mutagenicity means the ability of a drug to induce genetic alterati
 targets:
 - id: mutagenic
   description: whether it is mutagenic (1) or not mutagenic (0)
-  units: ld50
+  units: mutagenic
   type: categorical
   names:
   - mutagenic
   - Mutagenicity
   - Ames Mutagenicity
   - ability of a drug to induce genetic alterations
+  - mutagens
+  uris:
+  - https://bioportal.bioontology.org/ontologies/ENM?p=classes&conceptid=http%3A%2F%2Fpurl.enanomapper.org%2Fonto%2FENM_0000042
+  - https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C16235
 identifiers:
 - id: SMILES
   type: SMILES
@@ -24,9 +28,8 @@ license: CC BY 4.0
 links:
 - url: https://doi.org/10.1021/ci300400a
   description: corresponding publication
- - url: https://tdcommons.ai/single_pred_tasks/tox/#ames-mutagenicity
-   description: original dataset
 num_points: 7278
+url: https://tdcommons.ai/single_pred_tasks/tox/#ames-mutagenicity
 bibtex:
 - |-
   @article{Xu2012,
