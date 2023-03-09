@@ -56,9 +56,12 @@ def get_and_transform_data():
                         "Skin Reaction",
                         "skin sensitization",
                         "agent Induced Skin Reaction",
-                        "fatal liver disease caused by drugs",
                         "drug induced skin immune reaction"
                     ],
+                "uris":[
+                "https://bioportal.bioontology.org/ontologies/SNOMEDCT?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FSNOMEDCT%2F264519003",
+                    "https://bioportal.bioontology.org/ontologies/MEDDRA?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FMEDDRA%2F10040914"
+        ],
                 },
             ],
             "identifiers": [
@@ -88,9 +91,12 @@ def get_and_transform_data():
                     "url": "https://ntp.niehs.nih.gov/iccvam/docs/immunotox_docs/llna-ld/tmer.pdf",
                     "description": "related publication",
                 },
+                {
+                    "url": "https://tdcommons.ai/single_pred_tasks/tox/#skin-reaction",
+                    "description": "Data source",
+                },
             ],
             "num_points": len(df),  # number of datapoints in this dataset
-            "url": "https://tdcommons.ai/single_pred_tasks/tox/#skin-reaction",
             "bibtex": [
                 """@article{Alves2015,
                   doi = {10.1016/j.taap.2014.12.014},

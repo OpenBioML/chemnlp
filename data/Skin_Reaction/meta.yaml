@@ -13,12 +13,15 @@ targets:
   - skin sensitization
   - agent Induced Skin Reaction
   - drug induced skin immune reaction
+  uris:
+  - https://bioportal.bioontology.org/ontologies/SNOMEDCT?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FSNOMEDCT%2F264519003
+  - https://bioportal.bioontology.org/ontologies/MEDDRA?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FMEDDRA%2F10040914
 identifiers:
 - id: SMILES
   type: SMILES
   description: SMILES
 - id: compound_name
-  type: Other
+  type: Synonyms
   description: drug name
   names:
   - compound
@@ -30,8 +33,9 @@ links:
   description: corresponding publication
 - url: https://ntp.niehs.nih.gov/iccvam/docs/immunotox_docs/llna-ld/tmer.pdf
   description: related publication
+- url: https://tdcommons.ai/single_pred_tasks/tox/#skin-reaction
+  description: Data source
 num_points: 404
-url: https://tdcommons.ai/single_pred_tasks/tox/#skin-reaction
 bibtex:
 - |-
   @article{Alves2015,
