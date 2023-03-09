@@ -78,9 +78,12 @@ def get_and_transform_data():
                 "url": "https://doi.org/10.1021/ci300400a",
                 "description": "corresponding publication",
             },
+            {
+                "url": "https://tdcommons.ai/single_pred_tasks/tox/#ames-mutagenicity",
+                "description": "Data source",
+            },
         ],
         "num_points": len(df),  # number of datapoints in this dataset
-        "url": "https://tdcommons.ai/single_pred_tasks/tox/#ames-mutagenicity",
         "bibtex": [
             """@article{Xu2012,
               doi = {10.1021/ci300400a},

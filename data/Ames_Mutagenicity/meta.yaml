@@ -28,8 +28,9 @@ license: CC BY 4.0
 links:
 - url: https://doi.org/10.1021/ci300400a
   description: corresponding publication
+- url: https://tdcommons.ai/single_pred_tasks/tox/#ames-mutagenicity
+  description: Data source
 num_points: 7278
-url: https://tdcommons.ai/single_pred_tasks/tox/#ames-mutagenicity
 bibtex:
 - |-
   @article{Xu2012,
