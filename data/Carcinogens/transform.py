@@ -60,6 +60,10 @@ def get_and_transform_data():
                     "damage the genome",
                     "substance promotes carcinogenesis"
                 ],
+                "uris":[
+                "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C347",
+                 "https://bioportal.bioontology.org/ontologies/SNOMEDCT?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FSNOMEDCT%2F88376000"
+                ],
             },
         ],
         "identifiers": [
@@ -79,9 +83,12 @@ def get_and_transform_data():
                 "url": "https://doi.org/10.1021/ci300367a",
                 "description": "corresponding publication",
             },
+            {
+                "url": "https://tdcommons.ai/single_pred_tasks/tox/#carcinogens",
+                "description": "Data source",
+            },
         ],
         "num_points": len(df),  # number of datapoints in this dataset
-        "url": "https://tdcommons.ai/single_pred_tasks/tox/#carcinogens",
         "bibtex": [
             """@article{Lagunin2009,
           doi = {10.1002/qsar.200860192},
