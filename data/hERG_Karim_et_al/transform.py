@@ -61,6 +61,9 @@ def get_and_transform_data():
                     "Human ether-a-go-go related gene (hERG) blocker",
                     "Activity against Human ether-a-go-go related gene (hERG)",
                 ],
+                "uris":[
+                "https://bioportal.bioontology.org/ontologies/MI?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_2136",
+        ],
             },
         ],
         "identifiers": [
