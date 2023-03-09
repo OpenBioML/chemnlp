@@ -11,7 +11,7 @@ identifiers:
 - id: SMILES
   type: SMILES
   description: SMILES
-license: Y
+license: CC BY 4.0
 links:
 - url: https://aclanthology.org/2021.emnlp-main.47/
   description: Original Text2Mol paper which introduced the dataset.
@@ -19,7 +19,7 @@ links:
   description: Text2Mol data repository.
 - url: https://huggingface.co/datasets/OpenBioML/chebi_20
   description: Hugging Face dataset for OpenBioML.
-num_points: null
+num_points: 3300
 bibtex:
 - |-
   @inproceedings{edwards2021text2mol,
@@ -30,4 +30,3 @@ bibtex:
               year={2021},
               url = {https://aclanthology.org/2021.emnlp-main.47/}
               }
-num_samples: 3301
