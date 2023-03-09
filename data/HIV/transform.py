@@ -5,7 +5,7 @@ from tdc.single_pred import HTS
 
 def get_and_transform_data():
     # get raw data
-    data = HTS(name = 'SARSCoV2_Vitro_Touret')
+    data = HTS(name = 'HIV')
     fn_data_original = "data_original.csv"
     data.get_data().to_csv(fn_data_original, index=False)
 
@@ -59,6 +59,11 @@ def get_and_transform_data():
                     "HIV disease",
                     "HIV"
                 ],
+                "uris":[
+                "https://bioportal.bioontology.org/ontologies/MESH?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FMESH%2FD006678",
+                    "https://bioportal.bioontology.org/ontologies/OCHV?p=classes&conceptid=http%3A%2F%2Fsbmi.uth.tmc.edu%2Fontology%2Fochv%236185",
+        ],
+                
             },
         ],
         "identifiers": [
