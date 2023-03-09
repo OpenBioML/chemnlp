@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "chemnlp"
-description = "Open source Chemistry dataset & LLM"
+description = "Open source chemistry dataset & LLM"
 readme = "README.md"
 requires-python = "==3.8.*"  # required for gpt-neox
 dependencies = [
