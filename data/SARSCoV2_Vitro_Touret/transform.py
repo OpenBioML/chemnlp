@@ -58,8 +58,11 @@ def get_and_transform_data():
                     "activity against SARSCoV2",
                     "COVID19",
                     "Coronavirus disease",
-                    "Coronavirus"
+                    "Activity vs Coronavirus"
                 ],
+                "uris":[
+                "https://bioportal.bioontology.org/ontologies/DOID?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0080600",
+        ],
             },
         ],
         "identifiers": [
