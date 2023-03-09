@@ -36,7 +36,7 @@ class TrainerConfig(BaseModel):
     def small_positive_learning_rate(cls, v):
         if v < 0 or v > 1:
             raise ValueError("Specify a positive learning rate <= 1")
-        return v.title()
+        return v
 
 
 class TrainPipelineConfig(BaseModel):
