@@ -1,0 +1,59 @@
+name: HydrationFreeEnergy_FreeSolv
+description: The Free Solvation Database, FreeSolv(SAMPL), provides experimental and
+  calculated hydration free energy of small molecules in water. The calculated values
+  are derived from alchemical free energy calculations using molecular dynamics simulations.
+  From MoleculeNet.
+targets:
+- id: hydration_free_energy
+  description: alchemical free energy calculations using molecular dynamics simulations
+  units: hydration free energy(kJ mol-1)
+  type: continuous
+  names:
+  - hydration free energy
+  - free energy
+  - free energy calculations using molecular dynamics simulations
+  - alchemical free energy
+  uris:
+  - https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C18218
+identifiers:
+- id: SMILES
+  type: SMILES
+  description: SMILES
+- id: compound_name
+  type: IUPAC
+  description: compound name
+license: CC BY-NC-SA 4.0
+links:
+- url: https://doi.org/10.1007/s10822-014-9747-x
+  description: corresponding publication
+- url: https://doi.org/10.1039/C7SC02664A
+  description: corresponding publication
+- url: https://tdcommons.ai/single_pred_tasks/adme/#hydration-free-energy-freesolv
+  description: data source
+num_points: 642
+bibtex:
+- |-
+  @article{Mobley2014,
+            doi = {10.1007/s10822-014-9747-x},
+            url = {https://doi.org/10.1007/s10822-014-9747-x},
+            year = {2014},
+            month = jun,
+            publisher = {Springer Science and Business Media {LLC}},
+            volume = {28},
+            number = {7},
+            pages = {711--720},
+            author = {David L. Mobley and J. Peter Guthrie},
+            title = {{FreeSolv}: a database of experimental and calculated hydration free energies,  with input files},
+            journal = {Journal of Computer-Aided Molecular Design}}
+- |-
+  @article{Wu2018,
+            doi = {10.1039/c7sc02664a},
+            url = {https://doi.org/10.1039/c7sc02664a},
+            year = {2018},
+            publisher = {Royal Society of Chemistry ({RSC})},
+            volume = {9},
+            number = {2},
+            pages = {513--530},
+            author = {Zhenqin Wu and Bharath Ramsundar and Evan~N. Feinberg and Joseph Gomes and Caleb Geniesse and Aneesh S. Pappu and Karl Leswing and Vijay Pande},
+            title = {{MoleculeNet}: a benchmark for molecular machine learning},
+            journal = {Chemical Science}}
