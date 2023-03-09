@@ -1,0 +1,13 @@
+---
+_type: prompt
+input_variables:
+    - SMILES_description
+    - SMILES_data
+    - target_name
+    - target_value
+    - target_units
+output_parser:
+partial_variables: {}
+template: "\nThe molecule whith the {SMILES_description} representation {SMILES_data} has a {target_name} of {target_value} {target_units}.\n"
+template_format: f-string
+validate_template: true
