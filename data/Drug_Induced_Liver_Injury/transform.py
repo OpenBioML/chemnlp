@@ -59,6 +59,10 @@ def get_and_transform_data():
                         "fatal liver disease caused by drugs",
                         "liver toxicity"
                     ],
+                "uris":[
+                "https://bioportal.bioontology.org/ontologies/MEDDRA?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FMEDDRA%2F10072268",
+ "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C84427"
+                ],
                 },
             ],
             "identifiers": [
@@ -74,9 +78,12 @@ def get_and_transform_data():
                     "url": "https://doi.org/10.1021/acs.jcim.5b00238",
                     "description": "corresponding publication",
                 },
+            {
+                "url": "https://tdcommons.ai/single_pred_tasks/tox/#dili-drug-induced-liver-injury",
+                "description": "Data source",
+            },
             ],
             "num_points": len(df),  # number of datapoints in this dataset
-            "url": "https://tdcommons.ai/single_pred_tasks/tox/#dili-drug-induced-liver-injury",
             "bibtex": [
                 """@article{Xu2015,
                   doi = {10.1021/acs.jcim.5b00238},
