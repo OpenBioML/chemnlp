@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "chemnlp"
-description = "Open source Chemistry dataset & LLM"
+description = "Open source chemistry dataset & LLM"
 readme = "README.md"
 requires-python = "==3.8.*"  # required for gpt-neox
 dependencies = [
@@ -16,6 +16,7 @@ dependencies = [
         "pydantic",
         "pytdc>=0.3.9",
         "transformers",
+        "wandb",
 ]
 
 dynamic = ["version"]
@@ -29,8 +30,11 @@ dev = [
         "pre-commit",
         "pydantic_yaml",
         "pytest",
-        "wandb",
 ]
+
+# [project.optional-dependencies]
+# dataset_creation = [
+# ]
 
 [tool.setuptools_scm]
 version_scheme = "post-release"

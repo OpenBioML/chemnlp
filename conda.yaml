@@ -1,8 +1,9 @@
 ---
-name: chemnlp
+name: dummy
 dependencies:
-    - python>=3.8
+    - python==3.8.*
     - pip
     - pip:
-          - -r dev-requirements.txt
-          - -r requirements.txt
+          - .
+          - .[dev]
+        #   - ".[dataset_creation]"

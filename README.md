@@ -36,7 +36,7 @@ Our OpenBioML ChemNLP project is not afiliated to the [ChemNLP library from NIST
 See https://openbioml.org, especially [our approach and partners](https://openbioml.org/approach-and-partners.html).
 
 # Installation and set-up
-Create a new conda environment for Python 3.8:
+Create a new conda environment with Python 3.8:
 ```
 conda create -n chemnlp python=3.8
 conda activate chemnlp
@@ -51,6 +51,10 @@ If working on developing the python package:
 ```
 pip install -e "chemnlp[dev]"  # to install development dependencies
 ```
+
+If extra dependencies are required (e.g. for dataset creation) but are not needed for the main package please add to the `pyproject.toml` in the `dataset_creation` variable and ensure this is reflected in the `conda.yml` file.
+
+**Note**
 
 If working on model training, request access to the `wandb` project `chemnlp`
 and log-in to `wandb` with your API key per [here](https://docs.wandb.ai/quickstart).

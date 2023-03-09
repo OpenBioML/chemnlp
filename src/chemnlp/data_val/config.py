@@ -1,6 +1,6 @@
 from typing import List
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, validator
 
 
 class Data(BaseModel):
@@ -31,6 +31,12 @@ class TrainerConfig(BaseModel):
     is_wandb: bool = False
     wandb_project: str = "chemnlp"
     run_name: str
+
+    @validator("learning_rate")
+    def small_positive_learning_rate(cls, v):
+        if v < 0 or v > 1:
+            raise ValueError("Specify a positive learning rate <= 1")
+        return v.title()
 
 
 class TrainPipelineConfig(BaseModel):
