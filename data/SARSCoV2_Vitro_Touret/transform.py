@@ -78,9 +78,12 @@ def get_and_transform_data():
                 "url": "https://doi.org/10.1038/s41598-020-70143-6",
                 "description": "corresponding publication",
             },
+            {
+                "url": "https://tdcommons.ai/single_pred_tasks/hts/#sars-cov-2-in-vitro-touret-et-al",
+                "description": "Data source",
+            },
         ],
         "num_points": len(df),  # number of datapoints in this dataset
-        "url": "https://tdcommons.ai/single_pred_tasks/hts/#sars-cov-2-in-vitro-touret-et-al",
         "bibtex": [
             """@article{Touret2020,
               doi = {10.1038/s41598-020-70143-6},
