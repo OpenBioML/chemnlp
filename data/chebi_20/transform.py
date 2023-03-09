@@ -5,7 +5,7 @@ SPLITS = ["train", "test", "validation"]
 ORIGINAL_COLUMNS = ["CID", "SMILES", "description"]
 NEW_COLUMNS = ["compound_id", "SMILES", "description"]
 
-META_YAML_PATH = "./data/chebi_20/meta.yaml"
+META_YAML_PATH = "./data/chebi_20/{split}_meta.yaml"
 META_TEMPLATE = {
     "name": "chebi_20",  # unique identifier, we will also use this for directory names
     "description": "A dataset of pairs of natural language descriptions and SMILEs.",
@@ -27,7 +27,7 @@ META_TEMPLATE = {
             "description": "SMILES",  # description (optional, except for "OTHER")
         }
     ],
-    "license": "Y",  # license under which the original dataset was published
+    "license": "CC BY 4.0",  # license under which the original dataset was published
     "links": [  # list of relevant links (original dataset, other uses, etc.)
         {
             "url": "https://aclanthology.org/2021.emnlp-main.47/",
@@ -87,13 +87,13 @@ def clean_dataset(hf_data: datasets.Dataset) -> datasets.Dataset:
     return hf_data.map(remove_whitespace, num_proc=4)
 
 
-def create_meta_yaml(num_samples: int):
+def create_meta_yaml(num_points: int, split: str):
     """Create meta configuration file for the dataset"""
     # create meta yaml
-    META_TEMPLATE["num_samples"] = num_samples
-    with open(META_YAML_PATH, "w+") as f:
+    META_TEMPLATE["num_points"] = num_points
+    with open(META_YAML_PATH.format(split=split), "w+") as f:
         yaml.dump(META_TEMPLATE, f, sort_keys=False)
-    print(f"Finished processing {META_TEMPLATE['name']} dataset!")
+    print(f"Finished processing {split} split of {META_TEMPLATE['name']} dataset!")
 
 
 def get_and_transform_data(split: str, save_yaml: bool = True) -> datasets.Dataset:
@@ -103,7 +103,7 @@ def get_and_transform_data(split: str, save_yaml: bool = True) -> datasets.Datas
     if save_yaml:
         yaml.add_representer(str, str_presenter)
         yaml.representer.SafeRepresenter.add_representer(str, str_presenter)
-        create_meta_yaml(hf_data.num_rows)
+        create_meta_yaml(hf_data.num_rows, split)
 
     return hf_data
 
