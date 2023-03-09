@@ -20,6 +20,8 @@ targets:
   - hERG activity 1microM
   - The percent inhibition at a 1microM concentration
   - Compound percent activity at 1microM
+  uris:
+  - https://bioportal.bioontology.org/ontologies/MI?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_2136
 - id: hERG_at_10uM
   description: The percent inhibition at a 10microM concentration
   units: 1microM concentration
@@ -34,6 +36,8 @@ targets:
   - hERG activity 10microM
   - The percent inhibition at a 10microM concentration
   - Compound percent activity at 10microM
+  uris:
+  - https://bioportal.bioontology.org/ontologies/MI?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_2136
 - id: hERG_inhib
   description: whether it blocks (1) or not blocks (0). This is equivalent to whether
     hERG_at_10microM < -50, i.e. whether the compound has an IC50 of less than 10microM.
@@ -45,6 +49,8 @@ targets:
   - hERG blocker
   - Human ether-a-go-go related gene (hERG) blocker
   - Activity against Human ether-a-go-go related gene (hERG)
+  uris:
+  - https://bioportal.bioontology.org/ontologies/MI?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_2136
 identifiers:
 - id: SMILES
   type: SMILES

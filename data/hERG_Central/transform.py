@@ -70,6 +70,9 @@ def get_and_transform_data():
                         "Compound percent activity at 1microM"
                         ,
                     ],
+                "uris":[
+                "https://bioportal.bioontology.org/ontologies/MI?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_2136",
+        ],
                 },
                 {
                     "id": "hERG_at_10uM",  # name of the column in a tabular dataset
@@ -87,6 +90,9 @@ def get_and_transform_data():
                         "The percent inhibition at a 10microM concentration",
                         "Compound percent activity at 10microM"
                     ],
+                "uris":[
+                "https://bioportal.bioontology.org/ontologies/MI?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_2136",
+        ],
                 },
                 {
                     "id": "hERG_inhib",  # name of the column in a tabular dataset
@@ -100,6 +106,9 @@ def get_and_transform_data():
                         "Human ether-a-go-go related gene (hERG) blocker",
                         "Activity against Human ether-a-go-go related gene (hERG)",
                     ],
+                "uris":[
+                "https://bioportal.bioontology.org/ontologies/MI?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_2136",
+        ],
                 },
             ],
             "identifiers": [
