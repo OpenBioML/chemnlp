@@ -62,6 +62,8 @@ def get_and_transform_data():
                     "tcr binding affinity",
                     "binding affinity",
                     "binding",
+                    "epitope binding affinity",
+                    "epitope binding"
 
                 ],
             },
