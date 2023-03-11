@@ -54,7 +54,7 @@ def get_and_transform_data():
                 "id": "clinical_toxicity",  # name of the column in a tabular dataset
                 "description": "whether it can cause clinical toxicity (1) or not (0).",
                 "units": "clinical_toxicity",  # units of the values in this column (leave empty if unitless)
-                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
+                "type": None,  
                 "names": [  # names for the property (to sample from for building the prompts)
                     "clinically toxic",
                     "displaying clinical toxicity",

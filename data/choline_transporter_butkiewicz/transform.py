@@ -57,7 +57,7 @@ def get_and_transform_data():
             {
                 "id": "activity_choline_transporter",  # name of the column in a tabular dataset
                 "description": "whether it active against choline transporter receptor (1) or not (0).",  # description of what this column means
-                "units": "activity",  # units of the values in this column (leave empty if unitless)
+                "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
                     "a inhibitor of choline transporter activity",

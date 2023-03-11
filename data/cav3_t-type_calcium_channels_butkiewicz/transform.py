@@ -55,7 +55,7 @@ def get_and_transform_data():
             {
                 "id": "activity_cav3_t_type_calcium_channels",  # name of the column in a tabular dataset
                 "description": "whether it active against cav3 t-type calcium channels receptor (1) or not (0)",
-                "units": "activity",
+                "units": None,
                 "type": "boolean",
                 "names": [
                     "a inhibitor of cav3 t-type calcium channels activity",

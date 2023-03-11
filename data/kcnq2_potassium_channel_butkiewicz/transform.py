@@ -57,7 +57,7 @@ def get_and_transform_data():
             {
                 "id": "activity_kcnq2_potassium_channel",
                 "description": "whether it active against kcnq2 potassium channel receptor (1) or not (0).",
-                "units": "activity",
+                "units": None,
                 "type": "boolean",
                 "names": [
                     "inhibitor of kcnq2 potassium channel activity",

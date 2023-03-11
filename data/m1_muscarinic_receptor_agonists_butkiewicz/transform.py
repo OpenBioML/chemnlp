@@ -34,8 +34,6 @@ def get_and_transform_data():
     ]
     df.columns = fields_clean
 
-
-
     assert not df.duplicated().sum()
 
     # save to csv
@@ -44,32 +42,28 @@ def get_and_transform_data():
 
     # create meta yaml
     meta = {
-        "name": "m1_muscarinic_receptor_agonists_butkiewicz",  # unique identifier, we will also use this for directory names
-        "description": """These are nine high-quality high-throughput screening (HTS) datasets from [1]. \
-        These datasets were curated from HTS data at the PubChem database [2]. \
-        Typically, HTS categorizes small molecules into hit, inactive, or unspecified against a certain therapeutic target. \
-        However, a compound may be falsely classified as a hit due to experimental artifacts such as optical interference. \
-        Moreover, because the screening is performed without duplicates, \
-        and the cutoff is often set loose to minimize the false negative rates, \
-        the results from the primary screens often contain high false positive rates [3]. \
-        Hence the result from the primary screen is only used as the first iteration to reduce the compound library \
-        to a smaller set of further confirmatory tests. Here each dataset is carefully collated through confirmation screens \
-        to validate active compounds. The curation process is documented in [1]. \
-        Each dataset is identified by the PubChem Assay ID (AID). \
-        Features of the datasets: (1) At least 150 confirmed active compounds present; \
-        (2) Diverse target classes; (3) Realistic (large number and highly imbalanced label).""",
+        "name": "m1_muscarinic_receptor_agonists_butkiewicz", 
+        "description": """
+        Positive  allosteric modulation of the M1 Muscarinic receptor\
+        screened with AID626. \
+        Confirmed by screen AID 1488.\
+        A second counter screen AID 1741.\ 
+        The final set of selective positive allosteric modulators of M1\
+        was obtained by removing compounds active in AID 1741 \
+        from the compounds active in AID 1488 resulting in 188 compounds.
+        """,
         "targets": [
             {
-                "id": "m1_muscarinic_agonist",  # name of the column in a tabular dataset
-                "description": "whether it agonist on m1 muscarinic receptor (1) or not (0).",  # description of what this column means
-                "units": "agonist",  # units of the values in this column (leave empty if unitless)
-                "type": "categorical",  # can be "categorical", "ordinal", "continuous"
-                "names": [  # names for the property (to sample from for building the prompts)
-                    "m1 muscarinic activity",
-                    "m1 muscarinic agonist",
-                    "muscarinic",
-                    "m1 muscarinic receptor",
+                "id": "m1_muscarinic_agonist",  
+                "description": "whether it agonist on m1 muscarinic receptor (1) or not (0).", 
+                "units": None, 
+                "type": "boolean", 
+                "names": [  
+                    "a positive allosteric modulator of m1 muscarinic activity",
+                    "displaying positive allosteric modulation of the m1 muscarinic receptor",
                 ],
+                "pubchem_aids": [626, 1488, 1741],
+                "uris": [],
             },
         ],
         "identifiers": [
@@ -94,6 +88,7 @@ def get_and_transform_data():
                 "description": "corresponding publication",
             },
         ],
+        "split_col": "split", 
         "num_points": len(df),  # number of datapoints in this dataset
         "url": "https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al",
         "bibtex": [
