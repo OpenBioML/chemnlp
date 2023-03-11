@@ -64,7 +64,7 @@ def get_and_transform_data():
 
     meta = {
         "name": f"{target_folder}",  # unique identifier, we will also use this for directory names
-        "description": """Epitope prediction is to predict the active region in the antigen. 
+        "description": """Epitope prediction is to predict the active region in the antigen.
         This dataset is from Bepipred, which curates a dataset from PDB.
         It collects B-cell epitopes and non-epitope amino acids determined from crystal structures.""",
         "targets": [
