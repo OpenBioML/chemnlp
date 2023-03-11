@@ -5,15 +5,15 @@ from tdc.single_pred import Tox
 
 def get_and_transform_data():
     # get raw data
-    data = Tox(name="ClinTox")
-    fn_data_original = "data_original.csv"
-    data.get_data().to_csv(fn_data_original, index=False)
+    splits =  Tox(name="ClinTox").get_split()
+    df_train = splits['train']
+    df_valid = splits['valid']
+    df_test = splits['test']
+    df_train['split'] = 'train'
+    df_valid['split'] = 'valid'
+    df_test['split'] = 'test'
 
-    # create dataframe
-    df = pd.read_csv(
-        fn_data_original,
-        delimiter=",",
-    )  # not necessary but ensure we can load the saved data
+    df = pd.concat([df_train, df_valid, df_test], axis=0)
 
     # check if fields are the same
     fields_orig = df.columns.tolist()
@@ -21,6 +21,7 @@ def get_and_transform_data():
         "Drug_ID",
         "Drug",
         "Y",
+        "split"
     ]
 
     # overwrite column names = fields
@@ -28,6 +29,7 @@ def get_and_transform_data():
         "compound_id",
         "SMILES",
         "clinical_toxicity",
+        "split"
     ]
     df.columns = fields_clean
 
@@ -59,8 +61,14 @@ def get_and_transform_data():
                     "drug Induced clinical toxicity",
                     "drug failed in clinical trials",
                 ],
+                "uris": [
+                    "http://purl.bioontology.org/ontology/MESH/Q000633",
+                    "https://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI_Thesaurus&ns=ncit&code=C27990",
+                    "https://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI_Thesaurus&ns=ncit&code=C27955"
+                ]
             },
         ],
+        "split_col": "split",  # name of the column that contains the split information
         "identifiers": [
             {
                 "id": "SMILES",  # column name
