@@ -5,15 +5,15 @@ from tdc.single_pred import Tox
 
 def get_and_transform_data():
     # get raw data
-    data = Tox(name="LD50_Zhu")
-    fn_data_original = "data_original.csv"
-    data.get_data().to_csv(fn_data_original, index=False)
+    splits = Tox(name="LD50_Zhu").get_split()
+    df_train = splits['train']
+    df_valid = splits['valid']
+    df_test = splits['test']
+    df_train['split'] = 'train'
+    df_valid['split'] = 'valid'
+    df_test['split'] = 'test'
 
-    # create dataframe
-    df = pd.read_csv(
-        fn_data_original,
-        delimiter=",",
-    )  # not necessary but ensure we can load the saved data
+    df = pd.concat([df_train, df_valid, df_test], axis=0)
 
     # check if fields are the same
     fields_orig = df.columns.tolist()
@@ -21,6 +21,7 @@ def get_and_transform_data():
         "Drug_ID",
         "Drug",
         "Y",
+        "split",
     ]
 
     # overwrite column names = fields
@@ -28,6 +29,7 @@ def get_and_transform_data():
         "compound_name",
         "SMILES",
         "acute_toxicity",
+        "split",
     ]
     df.columns = fields_clean
 
@@ -52,15 +54,15 @@ def get_and_transform_data():
             {
                 "id": "acute_toxicity",  # name of the column in a tabular dataset
                 "description": "Acute Toxicity LD50.",  # description of what this column means
-                "units": "ld50",  # units of the values in this column (leave empty if unitless)
+                "units": "log(1/(mol/kg))",  # units of the values in this column (leave empty if unitless)
                 "type": "continuous",  # can be "categorical", "ordinal", "continuous"
-                "names": [  # names for the property (to sample from for building the prompts)
-                    "Acute Toxicity LD50",
-                    "ld50",
-                    "conservative dose that can lead to lethal adverse effects.",
-                    "Rat Acute Toxicity by Oral Exposure",
-                    "Toxicity",
+                "names": [
+                    "acute toxicity rat LD50",
+                    "rat ld50",
                 ],
+                "uri": [
+                    "http://www.bioassayontology.org/bao#BAO_0002117"
+                ]
             },
         ],
         "identifiers": [
@@ -87,6 +89,7 @@ def get_and_transform_data():
                 "description": "corresponding publication",
             },
         ],
+        "split_col": "split",
         "num_points": len(df),  # number of datapoints in this dataset
         "url": "https://tdcommons.ai/single_pred_tasks/tox/#acute-toxicity-ld50",
         "bibtex": [

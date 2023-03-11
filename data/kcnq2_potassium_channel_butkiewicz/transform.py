@@ -6,7 +6,15 @@ from tdc.single_pred import HTS
 def get_and_transform_data():
     # get raw data
     label = "kcnq2_potassium_channel_butkiewicz"
-    df = HTS(name=label)
+    splits = HTS(name=label).get_split()
+    df_train = splits['train']
+    df_valid = splits['valid']
+    df_test = splits['test']
+    df_train['split'] = 'train'
+    df_valid['split'] = 'valid'
+    df_test['split'] = 'test'
+
+    df = pd.concat([df_train, df_valid, df_test], axis=0)
 
     # create dataframe
     # check if fields are the same
@@ -15,6 +23,7 @@ def get_and_transform_data():
         "Drug_ID",
         "Drug",
         "Y",
+        "split",
     ]
 
     # overwrite column names = fields
@@ -22,13 +31,9 @@ def get_and_transform_data():
         "compound_id",
         "SMILES",
         "activity_kcnq2_potassium_channel",
+        "split",
     ]
     df.columns = fields_clean
-
-    #     # data cleaning
-    #     df.compound_id = (
-    #         df.compound_id.str.strip()
-    #     )  # remove leading and trailing white space characters
 
     assert not df.duplicated().sum()
 
@@ -39,31 +44,27 @@ def get_and_transform_data():
     # create meta yaml
     meta = {
         "name": "kcnq2_potassium_channel_butkiewicz",  # unique identifier, we will also use this for directory names
-        "description": """These are nine high-quality high-throughput screening (HTS) datasets from [1]. \
-        These datasets were curated from HTS data at the PubChem database [2]. \
-        Typically, HTS categorizes small molecules into hit, inactive, or unspecified against a certain therapeutic target. \
-        However, a compound may be falsely classified as a hit due to experimental artifacts such as optical interference. \
-        Moreover, because the screening is performed without duplicates, \
-        and the cutoff is often set loose to minimize the false negative rates, \
-        the results from the primary screens often contain high false positive rates [3]. \
-        Hence the result from the primary screen is only used as the first iteration to reduce the compound library \
-        to a smaller set of further confirmatory tests. Here each dataset is carefully collated through confirmation screens \
-        to validate active compounds. The curation process is documented in [1]. \
-        Each dataset is identified by the PubChem Assay ID (AID). \
-        Features of the datasets: (1) At least 150 confirmed active compounds present; \
-        (2) Diverse target classes; (3) Realistic (large number and highly imbalanced label).""",
+        "description": """
+        This dataset was initially curated from HTS data at the PubChem database. \
+        Details are reported by Butkiewicz et al. (2013). \
+        Primary screen AID 2239, AID 2287 validated active compounds to be potentiators. \
+        Counter screens: AID 2282, AID 2283, AID 2558.
+        Final set of 213 active compounds was acquired by removing the active compounds \
+        of AID 2282, AID 2283 and AID 2558 from the confirmatory screen active set \
+        of compounds (AID 2287).
+.       """,
         "targets": [
             {
-                "id": "activity_kcnq2_potassium_channel",  # name of the column in a tabular dataset
-                "description": "whether it active against kcnq2 potassium channel receptor (1) or not (0).",  # description of what this column means
-                "units": "activity",  # units of the values in this column (leave empty if unitless)
-                "type": "categorical",  # can be "categorical", "ordinal", "continuous"
-                "names": [  # names for the property (to sample from for building the prompts)
-                    "kcnq2 potassium channel activity",
-                    "kcnq2 potassium channel Inhibitor",
-                    "activity against kcnq2 potassium channel",
-                    "kcnq2 potassium channel receptor",
+                "id": "activity_kcnq2_potassium_channel",
+                "description": "whether it active against kcnq2 potassium channel receptor (1) or not (0).",
+                "units": "activity",
+                "type": "boolean",
+                "names": [
+                    "inhibitor of kcnq2 potassium channel activity",
+                    "displaying activity against kcnq2 potassium channel",
                 ],
+                "pubchem_aids": [2239, 2287, 2282, 2283, 2558],
+                "uris": []
             },
         ],
         "identifiers": [
@@ -88,6 +89,7 @@ def get_and_transform_data():
                 "description": "corresponding publication",
             },
         ],
+        "split_col": "split",
         "num_points": len(df),  # number of datapoints in this dataset
         "url": "https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al",
         "bibtex": [

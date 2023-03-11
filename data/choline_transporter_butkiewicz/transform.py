@@ -6,14 +6,22 @@ from tdc.single_pred import HTS
 def get_and_transform_data():
     # get raw data
     label = "choline_transporter_butkiewicz"
-    df = HTS(name=label)
+    splits = HTS(name=label).get_split()
+    df_train = splits['train']
+    df_valid = splits['valid']
+    df_test = splits['test']
+    df_train['split'] = 'train'
+    df_valid['split'] = 'valid'
+    df_test['split'] = 'test'
 
+    df = pd.concat([df_train, df_valid, df_test], axis=0)
     # check if fields are the same
     fields_orig = df.columns.tolist()
     assert fields_orig == [
         "Drug_ID",
         "Drug",
         "Y",
+        "split",
     ]
 
     # overwrite column names = fields
@@ -21,13 +29,9 @@ def get_and_transform_data():
         "compound_id",
         "SMILES",
         "activity_choline_transporter",
+        "split",
     ]
     df.columns = fields_clean
-
-    #     # data cleaning
-    #     df.compound_id = (
-    #         df.compound_id.str.strip()
-    #     )  # remove leading and trailing white space characters
 
     assert not df.duplicated().sum()
 
@@ -38,33 +42,31 @@ def get_and_transform_data():
     # create meta yaml
     meta = {
         "name": "choline_transporter_butkiewicz",  # unique identifier, we will also use this for directory names
-        "description": """These are nine high-quality high-throughput screening (HTS) datasets from [1]. \
-        These datasets were curated from HTS data at the PubChem database [2]. \
-        Typically, HTS categorizes small molecules into hit, inactive, or unspecified against a certain therapeutic target. \
-        However, a compound may be falsely classified as a hit due to experimental artifacts such as optical interference. \
-        Moreover, because the screening is performed without duplicates, \
-        and the cutoff is often set loose to minimize the false negative rates, \
-        the results from the primary screens often contain high false positive rates [3]. \
-        Hence the result from the primary screen is only used as the first iteration to reduce the compound library \
-        to a smaller set of further confirmatory tests. Here each dataset is carefully collated through confirmation screens \
-        to validate active compounds. The curation process is documented in [1]. \
-        Each dataset is identified by the PubChem Assay ID (AID). \
-        Features of the datasets: (1) At least 150 confirmed active compounds present; \
-        (2) Diverse target classes; (3) Realistic (large number and highly imbalanced label).""",
+        "description": """
+        This dataset was originally curated from HTS data at the PubChem database.   \
+        The primary screen AID 488975 identified inhibitors of CHT. \
+        The counter screen AID 493221 was used as a validation screen to confirm the active compounds that inhibit CHT. \
+        AID504840 and AID588401 experiments were used as additional validation experiments. \
+        The screen AID 493222 evaluated remaining active compounds for non-specific activity in parental HEK293 cells. \
+        AID602208 tested a selected set of compounds for 3H choline uptake. \
+        The final set of 254 active compounds was determined by the overlap of active compounds in screens AID 493221, \
+        AID504840, and AID588401 subtracting any non-specific hits from AID 49322 \
+        and all inactive compounds in the re-confirmation screen AID602208.
+        """,
         "targets": [
             {
                 "id": "activity_choline_transporter",  # name of the column in a tabular dataset
                 "description": "whether it active against choline transporter receptor (1) or not (0).",  # description of what this column means
                 "units": "activity",  # units of the values in this column (leave empty if unitless)
-                "type": "categorical",  # can be "categorical", "ordinal", "continuous"
+                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "choline transporter activity",
-                    "choline transporter Inhibitor",
-                    "activity against choline transporter",
-                    "choline transporter receptor",
+                    "a inhibitor of choline transporter activity",
+                    "inhibitor of choline transporter activity",
                 ],
+                "pubchem_aids": [488975, 493221, 504840, 588401, 493222, 602208],
             },
         ],
+        "split_col": "split",
         "identifiers": [
             {
                 "id": "SMILES",  # column name

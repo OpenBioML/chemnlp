@@ -54,12 +54,11 @@ def get_and_transform_data():
                 "id": "clinical_toxicity",  # name of the column in a tabular dataset
                 "description": "whether it can cause clinical toxicity (1) or not (0).",
                 "units": "clinical_toxicity",  # units of the values in this column (leave empty if unitless)
-                "type": "categorical",  # can be "categorical", "ordinal", "continuous"
+                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "clinical toxicity",
-                    "toxicity",
-                    "drug Induced clinical toxicity",
-                    "drug failed in clinical trials",
+                    "clinically toxic",
+                    "displaying clinical toxicity",
+                    "toxic"
                 ],
                 "uris": [
                     "http://purl.bioontology.org/ontology/MESH/Q000633",
@@ -83,6 +82,7 @@ def get_and_transform_data():
                 "description": "corresponding publication",
             },
         ],
+        "split_col": "split",
         "num_points": len(df),  # number of datapoints in this dataset
         "url": "https://tdcommons.ai/single_pred_tasks/tox/#clintox",
         "bibtex": [

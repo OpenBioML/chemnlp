@@ -56,17 +56,17 @@ def get_and_transform_data():
             {
                 "id": "permeability",  # name of the column in a tabular dataset
                 "description": "Caco-2 cell effective permeability.",  # description of what this column means
-                "units": "logPapp",  # units of the values in this column (leave empty if unitless)
+                "units": "cm/s",
                 "type": "continuous",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
                     "Caco-2 cell effective permeability",
                     "Caco-2 cell permeability",
                     "Caco-2 permeability",
-                    "permeability",
                 ],
                 "pubchem_aids": [678378],
                 "uris": [
-                    "http://www.bioassayontology.org/bao#BAO_0010008"
+                    "http://www.bioassayontology.org/bao#BAO_0010008",
+                    "http://purl.obolibrary.org/obo/MI_2162"
                 ]
             },
         ],

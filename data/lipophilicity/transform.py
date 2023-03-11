@@ -48,6 +48,10 @@ def get_and_transform_data():
                     "octanol/water distribution coefficient (logD at pH 7.4)",
                     "octanol/water distribution coefficient",
                 ],
+                "uris": [
+                    "http://www.bioassayontology.org/bao#BAO_0002129",
+                    "http://purl.obolibrary.org/obo/MI_2107"
+                ]
             },
         ],
         "identifiers": [

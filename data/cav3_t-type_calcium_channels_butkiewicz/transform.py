@@ -54,14 +54,13 @@ def get_and_transform_data():
         "targets": [
             {
                 "id": "activity_cav3_t_type_calcium_channels",  # name of the column in a tabular dataset
-                "description": "whether it active against cav3 t-type calcium channels receptor (1) or not (0).",  # description of what this column means
-                "units": "activity",  # units of the values in this column (leave empty if unitless)
-                "type": "categorical",  # can be "categorical", "ordinal", "continuous"
-                "names": [  # names for the property (to sample from for building the prompts)
-                    "cav3 t-type calcium channels activity",
-                    "cav3 t-type calcium channels Inhibitor",
-                    "activity against cav3 t-type calcium channels",
-                    "cav3 t-type calcium channels receptor",
+                "description": "whether it active against cav3 t-type calcium channels receptor (1) or not (0)",
+                "units": "activity",
+                "type": "boolean",
+                "names": [
+                    "a inhibitor of cav3 t-type calcium channels activity",
+                    "inhibiting cav3 t-type calcium channels activity",
+                    "a t-type calcium channel blocker"
                 ],
                 "pubchem_aids": [1053190, 489005, 493021, 493022, 493023, 493041],
                 "uris": [

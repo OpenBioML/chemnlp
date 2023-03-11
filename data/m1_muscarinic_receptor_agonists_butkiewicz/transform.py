@@ -6,15 +6,15 @@ from tdc.single_pred import HTS
 def get_and_transform_data():
     # get raw data
     label = "m1_muscarinic_receptor_agonists_butkiewicz"
-    data = HTS(name=label)
-    fn_data_original = "data_original.csv"
-    data.get_data().to_csv(fn_data_original, index=False)
+    splits = HTS(name=label).get_split()
+    df_train = splits['train']
+    df_valid = splits['valid']
+    df_test = splits['test']
+    df_train['split'] = 'train'
+    df_valid['split'] = 'valid'
+    df_test['split'] = 'test'
 
-    # create dataframe
-    df = pd.read_csv(
-        fn_data_original,
-        delimiter=",",
-    )  # not necessary but ensure we can load the saved data
+    df = pd.concat([df_train, df_valid, df_test], axis=0)
 
     # check if fields are the same
     fields_orig = df.columns.tolist()
@@ -22,6 +22,7 @@ def get_and_transform_data():
         "Drug_ID",
         "Drug",
         "Y",
+        "split",
     ]
 
     # overwrite column names = fields
@@ -29,13 +30,11 @@ def get_and_transform_data():
         "compound_id",
         "SMILES",
         "m1_muscarinic_agonist",
+        "split",
     ]
     df.columns = fields_clean
 
-    #     # data cleaning
-    #     df.compound_id = (
-    #         df.compound_id.str.strip()
-    #     )  # remove leading and trailing white space characters
+
 
     assert not df.duplicated().sum()
 
