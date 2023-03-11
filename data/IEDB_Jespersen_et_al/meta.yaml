@@ -1,0 +1,54 @@
+name: IEDB_Jespersen_et_al
+description: Epitope prediction is to predict the active region in the antigen. This
+  dataset is from Bepipred, which curates a dataset from IEDB. It collects B-cell
+  epitopes and non-epitope amino acids determined from crystal structures.
+targets:
+- id: active_position
+  description: amino acids sequence position that is active in binding
+  units: ''
+  type: Other
+  names:
+  - amino acids sequence active in binding
+  - Epitope
+  uris:
+  - https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C13189
+identifiers:
+- id: Antigen_sequence
+  type: Other
+  description: amino acid sequence
+license: CC BY 4.0
+links:
+- url: https://doi.org/10.1093/nar/gky1006
+  description: corresponding publication
+- url: https://doi.org/10.1093/nar/gkx346
+  description: corresponding publication
+- url: https://tdcommons.ai/single_pred_tasks/epitope/#iedb-jespersen-et-al
+  description: data source
+num_points: 3159
+bibtex:
+- |-
+  @article{Vita2018,
+                doi = {10.1093/nar/gky1006},
+                url = {https://doi.org/10.1093/nar/gky1006},
+                year = {2018},
+                month = oct,
+                publisher = {Oxford University Press ({OUP})},
+                volume = {47},
+                number = {D1},
+                pages = {D339--D343},
+                author = {Randi Vita and Swapnil Mahajan and James A Overton and Sandeep Kumar Dhanda and Sheridan Martini and Jason R Cantrell and Daniel K Wheeler and Alessandro Sette and Bjoern Peters},
+                title = {The Immune Epitope Database ({IEDB}): 2018 update},
+                journal = {Nucleic Acids Research}}
+- |-
+  @article{Jespersen2017,
+                doi = {10.1093/nar/gkx346},
+                url = {https://doi.org/10.1093/nar/gkx346},
+                year = {2017},
+                month = may,
+                publisher = {Oxford University Press ({OUP})},
+                volume = {45},
+                number = {W1},
+                pages = {W24--W29},
+                author = {Martin Closter Jespersen and Bjoern Peters and Morten Nielsen and Paolo Marcatili},
+                title = {{BepiPred}-2.0: improving sequence-based B-cell epitope prediction using conformational epitopes},
+                journal = {Nucleic Acids Research}}
