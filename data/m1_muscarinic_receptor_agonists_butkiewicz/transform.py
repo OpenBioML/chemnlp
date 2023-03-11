@@ -42,23 +42,23 @@ def get_and_transform_data():
 
     # create meta yaml
     meta = {
-        "name": "m1_muscarinic_receptor_agonists_butkiewicz", 
+        "name": "m1_muscarinic_receptor_agonists_butkiewicz",
         "description": """
         Positive  allosteric modulation of the M1 Muscarinic receptor\
         screened with AID626. \
         Confirmed by screen AID 1488.\
-        A second counter screen AID 1741.\ 
+        A second counter screen AID 1741.\
         The final set of selective positive allosteric modulators of M1\
         was obtained by removing compounds active in AID 1741 \
         from the compounds active in AID 1488 resulting in 188 compounds.
         """,
         "targets": [
             {
-                "id": "m1_muscarinic_agonist",  
-                "description": "whether it agonist on m1 muscarinic receptor (1) or not (0).", 
-                "units": None, 
-                "type": "boolean", 
-                "names": [  
+                "id": "m1_muscarinic_agonist",
+                "description": "whether it agonist on m1 muscarinic receptor (1) or not (0).",
+                "units": None,
+                "type": "boolean",
+                "names": [
                     "a positive allosteric modulator of m1 muscarinic activity",
                     "displaying positive allosteric modulation of the m1 muscarinic receptor",
                 ],
@@ -88,7 +88,7 @@ def get_and_transform_data():
                 "description": "corresponding publication",
             },
         ],
-        "split_col": "split", 
+        "split_col": "split",
         "num_points": len(df),  # number of datapoints in this dataset
         "url": "https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al",
         "bibtex": [
