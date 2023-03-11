@@ -32,7 +32,6 @@ dev = [
         "pytest",
 ]
 
-[project.optional-dependencies]
 dataset_creation = [
         "PyTDC",
 ]

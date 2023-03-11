@@ -42,6 +42,11 @@ With "implementing" we mean the following:
     Try to keep the output your `transform.py` uses as lean as possible (i.e. no columns that will not be used).
     In some cases, you might envision that extra columns might be useful. If this is the case, please add them (e.g., indicating some grouping, etc.)
     Even though some examples create the `meta.yaml` in `transform.py` there is no need to do so. You can also do it by hand.
+
+
+    In the `transform.py` please try to download the data from an official resource. 
+    We encourage you to upload the raw data to HuggingFace, Foundry or some other repository and then retrieve the data from there with your script. 
+
   - If you need additional dependencies, add them to `dev-requirements.txt` (those are needed for linting/testing/validation) or `requirements.txt` (those are the ones for running `transform.py`)
 
 
@@ -94,6 +99,7 @@ bibtex: # citation(s) for this dataset in BibTeX format
     journal = {Sci Data}
     }"
 ```
+Please do not simply copy/paste generic descriptions but try to give a concise and specific description for the dataset you are adding.
 
 For the typical material-property datasets, we will later use the `identifier` and `property` columns to create and fill prompt templates.
 In case your dataset isn't a simple tabular dataset with chemical compounds and properties, please also add the following additional fields for the templates:
@@ -140,6 +146,42 @@ If your dataset is in tabular form, we will construct prompts using, for example
 In this case, we will sample from the identifier and targets columns. If you specify prompt templates, we will also sample from those.
 Therefore, it is very important that the column names in the `meta.yaml` match the ones in the file that `transform.py` produces.
 One example of a prompt we might construct is `"What is the <target_name> of <identifier>"`, where we sample `target_name` from the names of the targets listed in `meta.yaml` and `identifier` from the identifiers provided in `meta.yaml`.
+
+#### Identifiers
+
+We ask you to add `uris` and `pubchem_aids` in case you find suitable references.
+
+
+##### Uniform Resource Identifiers (URIs)
+
+If you have a uniform resource identifier (URI) that links to a suitable name of a property, please list it in the `uris` list for a given `target`. 
+Please ensure that the link is specific. If you have a boolean target that measures inhibition of a protein, link to `inhbitor of XY` and _not_ to the protein. 
+If such a link does not exist, leave the field empty. 
+
+You might find suitable links using the following resources: 
+
+- https://bioportal.bioontology.org/search
+- https://goldbook.iupac.org/
+
+
+#### PubChem Assay IDs
+
+For some targets, the activity was measured using assays. In this case, please list the assays using with their _numeric_ PubChem assay id in the field `pubchem_aids`. 
+Please ensure that the _first_ entry in this list is a primary scan for which corresponds to the target property (and not to its inverse or a control).
+
+#### Prompt examples 
+
+##### Boolean variables
+
+- `Is <name> <identifier>?`
+- `What molecules in the list are <name>`?
+
+
+### Continuous variables 
+
+- `What is <name> of <identifier>?`
+- `What is the molecule with largest <name> in the following list?`
+
 
 
 For datasets that are not in tabular form, we are still discussing the best process, but we also envision that we might perform some named-entity-recognition to also use some of the text datasets in a framework such as LIFT. Otherwise, we will simple use them in the typical GPT pretraining task.
