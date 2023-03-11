@@ -168,19 +168,32 @@ You might find suitable links using the following resources:
 
 For some targets, the activity was measured using assays. In this case, please list the assays using with their _numeric_ PubChem assay id in the field `pubchem_aids`. 
 Please ensure that the _first_ entry in this list is a primary scan for which corresponds to the target property (and not to its inverse or a control).
+Keep in mind that we plan to look up the name and the description of the assay to build prompt. That is, the name of the assay of the _first entry_ in this list should also work in a prompt such as `Is <identifier> active in `<pubchem assay name>?`
 
 #### Prompt examples 
 
 ##### Boolean variables
 
 - `Is <name> <identifier>?`
-- `What molecules in the list are <name>`?
+- ```
+  What molecules in the list are <name>? 
+
+  - <identifier_1>
+  - <identifier_2>
+  - <identifier_3>
+  ```
 
 
-### Continuous variables 
+#### Continuous variables 
 
 - `What is <name> of <identifier>?`
-- `What is the molecule with largest <name> in the following list?`
+- ```
+  What is the molecule with largest <name> in the following list?
+
+  - <identifier_1>
+  - <identifier_2>
+  - <identifier_3>
+  ```
 
 
 
