@@ -2,61 +2,65 @@ import pandas as pd
 import yaml
 from tdc.single_pred import Epitope
 
+
 def get_and_transform_data():
     # get raw data
-    target_folder = 'IEDB_Jespersen_et_al'
-    target_subfolder = 'IEDB_Jespersen'
-    data = Epitope(name = target_subfolder)
+    target_folder = "IEDB_Jespersen_et_al"
+    target_subfolder = "IEDB_Jespersen"
+    data = Epitope(name=target_subfolder)
+
     def get_active_position(seq, active_poisition, sequence_only=False):
-        '''
-        Input: given a sequence and list of active index 
+        """
+        Input: given a sequence and list of active index
         Output: return active sequence and other sequence convert to _
         MASQKRPS ,[1,2,3,4,6] -> _ASQK_P_
-        '''
-        if sequence_only: 
-            _seq = ''.join([seq[x] for x in active_poisition])
+        """
+        if sequence_only:
+            _seq = "".join([seq[x] for x in active_poisition])
             return _seq
-        _seq = ['_' for a in range(len(seq))]
+        _seq = ["_" for a in range(len(seq))]
         for x in active_poisition:
-            _seq[x] = seq[x]    
-        _seq = ''.join(_seq)
+            _seq[x] = seq[x]
+        _seq = "".join(_seq)
         return _seq
 
-    df = pd.read_pickle('data/iedb_jespersen.pkl')
+    df = pd.read_pickle("data/iedb_jespersen.pkl")
     fields_orig = df.columns.tolist()
-    assert fields_orig == ['ID', 'X', 'Y']
- 
-    
-    #Rename columns of raw data
-    fields_clean = ['Antigen_ID', 'Antigen_sequence', 'active_positions_indices']
+    assert fields_orig == ["ID", "X", "Y"]
+
+    # Rename columns of raw data
+    fields_clean = ["Antigen_ID", "Antigen_sequence", "active_positions_indices"]
     df.columns = fields_clean
-    
-    #get active position
+
+    # get active position
     antigen_seq = df.Antigen_sequence.tolist()
     a_pos_ind_list = df.active_positions_indices.tolist()
-    df['active_position'] = [get_active_position(x,o) for x,o in zip(antigen_seq, a_pos_ind_list)]
-    
+    df["active_position"] = [
+        get_active_position(x, o) for x, o in zip(antigen_seq, a_pos_ind_list)
+    ]
+
     # save data to original
-    fn_data_original = 'data_original.csv'
-    df.to_csv(fn_data_original,index=None)
-    df = pd.read_csv(fn_data_original, sep=',')
+    fn_data_original = "data_original.csv"
+    df.to_csv(fn_data_original, index=None)
+    df = pd.read_csv(fn_data_original, sep=",")
     fields_orig = df.columns.tolist()
-    assert fields_orig == ['Antigen_ID',
-     'Antigen_sequence',
-     'active_positions_indices',
-     'active_position']
-    
+    assert fields_orig == [
+        "Antigen_ID",
+        "Antigen_sequence",
+        "active_positions_indices",
+        "active_position",
+    ]
+
     # get right columns
-    
-    df = df[['Antigen_sequence', 'active_position']]
-    fields_clean = ['Antigen_sequence', 'active_position']
+
+    df = df[["Antigen_sequence", "active_position"]]
+    fields_clean = ["Antigen_sequence", "active_position"]
     df.columns = fields_clean
     assert fields_orig != fields_clean
     assert not df.duplicated().sum()
     # save to csv
     fn_data_csv = "data_clean.csv"
     df.to_csv(fn_data_csv, index=False)
- 
 
     meta = {
         "name": f"{target_folder}",  # unique identifier, we will also use this for directory names
@@ -69,9 +73,9 @@ def get_and_transform_data():
                 "type": "Other",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
                     "amino acids sequence active in binding",
-                    "Epitope"
+                    "Epitope",
                 ],
-                "uris":[
+                "uris": [
                     "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C13189",
                 ],
             }
@@ -96,7 +100,7 @@ def get_and_transform_data():
             {
                 "url": "https://tdcommons.ai/single_pred_tasks/epitope/#iedb-jespersen-et-al",
                 "description": "data source",
-            }
+            },
         ],
         "num_points": len(df),  # number of datapoints in this dataset
         "bibtex": [
@@ -111,8 +115,7 @@ def get_and_transform_data():
               pages = {D339--D343},
               author = {Randi Vita and Swapnil Mahajan and James A Overton and Sandeep Kumar Dhanda and Sheridan Martini and Jason R Cantrell and Daniel K Wheeler and Alessandro Sette and Bjoern Peters},
               title = {The Immune Epitope Database ({IEDB}): 2018 update},
-              journal = {Nucleic Acids Research}}""", 
-
+              journal = {Nucleic Acids Research}}""",
             """@article{Jespersen2017,
               doi = {10.1093/nar/gkx346},
               url = {https://doi.org/10.1093/nar/gkx346},
@@ -124,11 +127,10 @@ def get_and_transform_data():
               pages = {W24--W29},
               author = {Martin Closter Jespersen and Bjoern Peters and Morten Nielsen and Paolo Marcatili},
               title = {{BepiPred}-2.0: improving sequence-based B-cell epitope prediction using conformational epitopes},
-              journal = {Nucleic Acids Research}}""", 
-
+              journal = {Nucleic Acids Research}}""",
         ],
     }
-    
+
     def str_presenter(dumper, data):
         """configures yaml for dumping multiline strings
         Ref: https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data
@@ -146,6 +148,7 @@ def get_and_transform_data():
         yaml.dump(meta, f, sort_keys=False)
 
     print(f"Finished processing {meta['name']} dataset!")
+
 
 if __name__ == "__main__":
     get_and_transform_data()
