@@ -44,8 +44,8 @@ With "implementing" we mean the following:
     Even though some examples create the `meta.yaml` in `transform.py` there is no need to do so. You can also do it by hand.
 
 
-    In the `transform.py` please try to download the data from an official resource. 
-    We encourage you to upload the raw data to HuggingFace, Foundry or some other repository and then retrieve the data from there with your script. 
+    In the `transform.py` please try to download the data from an official resource.
+    We encourage you to upload the raw data to HuggingFace, Foundry or some other repository and then retrieve the data from there with your script.
 
   - If you need additional dependencies, add them to `dev-requirements.txt` (those are needed for linting/testing/validation) or `requirements.txt` (those are the ones for running `transform.py`)
 
@@ -147,6 +147,9 @@ In this case, we will sample from the identifier and targets columns. If you spe
 Therefore, it is very important that the column names in the `meta.yaml` match the ones in the file that `transform.py` produces.
 One example of a prompt we might construct is `"What is the <target_name> of <identifier>"`, where we sample `target_name` from the names of the targets listed in `meta.yaml` and `identifier` from the identifiers provided in `meta.yaml`.
 
+#### Splits 
+
+If your dataset is part of a benchmark, please indicate what fold your data is part of using an additional `split_col` in which you use `train`, `valid`, `test` to indicate the split type. 
 #### Identifiers
 
 We ask you to add `uris` and `pubchem_aids` in case you find suitable references.
@@ -154,11 +157,11 @@ We ask you to add `uris` and `pubchem_aids` in case you find suitable references
 
 ##### Uniform Resource Identifiers (URIs)
 
-If you have a uniform resource identifier (URI) that links to a suitable name of a property, please list it in the `uris` list for a given `target`. 
-Please ensure that the link is specific. If you have a boolean target that measures inhibition of a protein, link to `inhbitor of XY` and _not_ to the protein. 
-If such a link does not exist, leave the field empty. 
+If you have a uniform resource identifier (URI) that links to a suitable name of a property, please list it in the `uris` list for a given `target`.
+Please ensure that the link is specific. If you have a boolean target that measures inhibition of a protein, link to `inhbitor of XY` and _not_ to the protein.
+If such a link does not exist, leave the field empty.
 
-You might find suitable links using the following resources: 
+You might find suitable links using the following resources:
 
 - https://bioportal.bioontology.org/search
 - https://goldbook.iupac.org/
@@ -166,17 +169,17 @@ You might find suitable links using the following resources:
 
 #### PubChem Assay IDs
 
-For some targets, the activity was measured using assays. In this case, please list the assays using with their _numeric_ PubChem assay id in the field `pubchem_aids`. 
+For some targets, the activity was measured using assays. In this case, please list the assays using with their _numeric_ PubChem assay id in the field `pubchem_aids`.
 Please ensure that the _first_ entry in this list is a primary scan for which corresponds to the target property (and not to its inverse or a control).
 Keep in mind that we plan to look up the name and the description of the assay to build prompt. That is, the name of the assay of the _first entry_ in this list should also work in a prompt such as `Is <identifier> active in `<pubchem assay name>?`
 
-#### Prompt examples 
+#### Prompt examples
 
 ##### Boolean variables
 
 - `Is <name> <identifier>?`
 - ```
-  What molecules in the list are <name>? 
+  What molecules in the list are <name>?
 
   - <identifier_1>
   - <identifier_2>
@@ -184,7 +187,7 @@ Keep in mind that we plan to look up the name and the description of the assay t
   ```
 
 
-#### Continuous variables 
+#### Continuous variables
 
 - `What is <name> of <identifier>?`
 - ```

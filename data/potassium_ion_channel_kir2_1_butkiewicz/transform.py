@@ -32,11 +32,6 @@ def get_and_transform_data():
     ]
     df.columns = fields_clean
 
-    #     # data cleaning
-    #     df.compound_id = (
-    #         df.compound_id.str.strip()
-    #     )  # remove leading and trailing white space characters
-
     assert not df.duplicated().sum()
 
     # save to csv

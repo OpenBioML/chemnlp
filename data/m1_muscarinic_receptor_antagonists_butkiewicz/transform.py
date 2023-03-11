@@ -46,19 +46,7 @@ def get_and_transform_data():
     # create meta yaml
     meta = {
         "name": "m1_muscarinic_receptor_antagonists_butkiewicz",  # unique identifier, we will also use this for directory names
-        "description": """These are nine high-quality high-throughput screening (HTS) datasets from [1]. \
-        These datasets were curated from HTS data at the PubChem database [2]. \
-        Typically, HTS categorizes small molecules into hit, inactive, or unspecified against a certain therapeutic target. \
-        However, a compound may be falsely classified as a hit due to experimental artifacts such as optical interference. \
-        Moreover, because the screening is performed without duplicates, \
-        and the cutoff is often set loose to minimize the false negative rates, \
-        the results from the primary screens often contain high false positive rates [3]. \
-        Hence the result from the primary screen is only used as the first iteration to reduce the compound library \
-        to a smaller set of further confirmatory tests. Here each dataset is carefully collated through confirmation screens \
-        to validate active compounds. The curation process is documented in [1]. \
-        Each dataset is identified by the PubChem Assay ID (AID). \
-        Features of the datasets: (1) At least 150 confirmed active compounds present; \
-        (2) Diverse target classes; (3) Realistic (large number and highly imbalanced label).""",
+        "description": """""",
         "targets": [
             {
                 "id": "m1_muscarinic_antagonists",  # name of the column in a tabular dataset
