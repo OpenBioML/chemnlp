@@ -70,15 +70,15 @@ def get_and_transform_data():
         "targets": [
             {
                 "id": "active_position",  # name of the column in a tabular dataset
-                "description": "",  # description of what this column means
-                "units": "amino acids sequence position that is active in binding",  # units of the values in this column (leave empty if unitless)
+                "description": "amino acids sequence position that is active in binding",  # description of what this column means
+                "units": "",  # units of the values in this column (leave empty if unitless)
                 "type": "Other",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
                     "amino acids sequence active in binding",
                     "Epitope",
                 ],
                 "uris": [
-                    "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C13189",
+                    "https://rb.gy/l1st1c",
                 ],
             }
         ],
