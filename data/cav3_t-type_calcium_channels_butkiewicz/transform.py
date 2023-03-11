@@ -6,14 +6,23 @@ from tdc.single_pred import HTS
 def get_and_transform_data():
     # get raw data
     label = "cav3_t-type_calcium_channels_butkiewicz"
-    df = HTS(name=label)
-    
+    splits = HTS(name=label).get_split()
+    df_train = splits['train']
+    df_valid = splits['valid']
+    df_test = splits['test']
+    df_train['split'] = 'train'
+    df_valid['split'] = 'valid'
+    df_test['split'] = 'test'
+
+    df = pd.concat([df_train, df_valid, df_test], axis=0)
+
     # check if fields are the same
     fields_orig = df.columns.tolist()
     assert fields_orig == [
         "Drug_ID",
         "Drug",
         "Y",
+        "split"
     ]
 
     # overwrite column names = fields
@@ -21,13 +30,9 @@ def get_and_transform_data():
         "compound_id",
         "SMILES",
         "activity_cav3_t_type_calcium_channels",
+        "split"
     ]
     df.columns = fields_clean
-
-    #     # data cleaning
-    #     df.compound_id = (
-    #         df.compound_id.str.strip()
-    #     )  # remove leading and trailing white space characters
 
     assert not df.duplicated().sum()
 
@@ -37,18 +42,15 @@ def get_and_transform_data():
 
     # create meta yaml
     meta = {
-        "name": "cav3_t-type_calcium_channels_butkiewicz",  # unique identifier, we will also use this for directory names
-        "description": """These are nine high-quality high-throughput screening (HTS) datasets from [1]. \
-        These datasets were curated from HTS data at the PubChem database [2]. \
-        Typically, HTS categorizes small molecules into hit, inactive, or unspecified against a certain therapeutic target. \
-        However, a compound may be falsely classified as a hit due to experimental artifacts such as optical interference. \
-        Moreover, because the screening is performed without duplicates, \
-        and the cutoff is often set loose to minimize the false negative rates, \
-        the results from the primary screens often contain high false positive rates [3]. \
-        Hence the result from the primary screen is only used as the first iteration to reduce the compound library \
-        to a smaller set of further confirmatory tests. Here each dataset is carefully collated through confirmation screens \
-        to validate active compounds. The curation process is documented in [1]. \
-        Each dataset is identified by the PubChem Assay ID (AID).""",
+        "name": "cav3_t-type_calcium_channels_butkiewicz",
+        "description": """
+        This dataset was initially curated from HTS data at the PubChem database. \
+        The curation process is documented in Butkiewicz et al. \
+        Primary screening with AID 449739 identified inhibitors of Cav3 T-type calcium channels. \
+        Four follow-up screens were performed to confirm inhibitory effects on smaller sets of compounds \
+        involving AID 493021, AID 493022, AID 493023, and AID 493041.
+        AID 489005 was performed as counter screen validating active compounds of the primary screen. \
+        """,
         "targets": [
             {
                 "id": "activity_cav3_t_type_calcium_channels",  # name of the column in a tabular dataset
@@ -61,6 +63,10 @@ def get_and_transform_data():
                     "activity against cav3 t-type calcium channels",
                     "cav3 t-type calcium channels receptor",
                 ],
+                "pubchem_aids": [1053190, 489005, 493021, 493022, 493023, 493041],
+                "uris": [
+                    "http://purl.obolibrary.org/obo/CHEBI_194338"
+                ]
             },
         ],
         "identifiers": [
@@ -85,6 +91,7 @@ def get_and_transform_data():
                 "description": "corresponding publication",
             },
         ],
+        "split_col": "split",  # name of the column that contains the split information
         "num_points": len(df),  # number of datapoints in this dataset
         "url": "https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al",
         "bibtex": [

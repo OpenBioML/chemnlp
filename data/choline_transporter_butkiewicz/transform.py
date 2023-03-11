@@ -6,15 +6,7 @@ from tdc.single_pred import HTS
 def get_and_transform_data():
     # get raw data
     label = "choline_transporter_butkiewicz"
-    data = HTS(name=label)
-    fn_data_original = "data_original.csv"
-    data.get_data().to_csv(fn_data_original, index=False)
-
-    # create dataframe
-    df = pd.read_csv(
-        fn_data_original,
-        delimiter=",",
-    )  # not necessary but ensure we can load the saved data
+    df = HTS(name=label)
 
     # check if fields are the same
     fields_orig = df.columns.tolist()

@@ -5,14 +5,23 @@ from tdc.single_pred import ADME
 
 def get_and_transform_data():
     # get raw data
-    df = ADME(name="Caco2_Wang")
-    
+    splits = ADME(name="Caco2_Wang").get_split()
+    df_train = splits['train']
+    df_valid = splits['valid']
+    df_test = splits['test']
+    df_train['split'] = 'train'
+    df_valid['split'] = 'valid'
+    df_test['split'] = 'test'
+
+    df = pd.concat([df_train, df_valid, df_test], axis=0)
+
     # check if fields are the same
     fields_orig = df.columns.tolist()
     assert fields_orig == [
         "Drug_ID",
         "Drug",
         "Y",
+        "split",
     ]
 
     # overwrite column names = fields
@@ -20,6 +29,7 @@ def get_and_transform_data():
         "compound_name",
         "SMILES",
         "permeability",
+        "split",
     ]
     df.columns = fields_clean
 
@@ -54,8 +64,13 @@ def get_and_transform_data():
                     "Caco-2 permeability",
                     "permeability",
                 ],
+                "pubchem_aids": [678378],
+                "uris": [
+                    "http://www.bioassayontology.org/bao#BAO_0010008"
+                ]
             },
         ],
+        "split_col": "split",  # name of the column that contains the split information
         "identifiers": [
             {
                 "id": "SMILES",  # column name

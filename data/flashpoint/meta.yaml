@@ -14,6 +14,8 @@ targets:
       type: continuous
       names:
           - flash point
+      uris:
+          - http://semanticscience.org/resource/CHEMINF_000417
 identifiers:
     - id: smiles
       type: SMILES
