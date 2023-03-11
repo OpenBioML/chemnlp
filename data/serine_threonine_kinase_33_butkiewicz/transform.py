@@ -5,7 +5,7 @@ from tdc.single_pred import HTS
 
 def get_and_transform_data():
     # get raw data
-    label = "tyrosyl-dna_phosphodiesterase_butkiewicz"
+    label = "serine_threonine_kinase_33_butkiewicz"
     data = HTS(name=label)
     fn_data_original = "data_original.csv"
     data.get_data().to_csv(fn_data_original, index=False)
@@ -28,7 +28,7 @@ def get_and_transform_data():
     fields_clean = [
         "compound_id",
         "SMILES",
-        "activity_tyrosyl_dna_phosphodiesterase",
+        "activity_serine_threonine_kinase33",
     ]
     df.columns = fields_clean
 
@@ -45,19 +45,31 @@ def get_and_transform_data():
 
     # create meta yaml
     meta = {
-        "name": "tyrosyl-dna_phosphodiesterase_butkiewicz",  # unique identifier, we will also use this for directory names
-        "description": """These are nine high-quality high-throughput screening (HTS) datasets from [1]. These datasets were curated from HTS data at the PubChem database [2]. Typically, HTS categorizes small molecules into hit, inactive, or unspecified against a certain therapeutic target. However, a compound may be falsely classified as a hit due to experimental artifacts such as optical interference. Moreover, because the screening is performed without duplicates, and the cutoff is often set loose to minimize the false negative rates, the results from the primary screens often contain high false positive rates [3]. Hence the result from the primary screen is only used as the first iteration to reduce the compound library to a smaller set of further confirmatory tests. Here each dataset is carefully collated through confirmation screens to validate active compounds. The curation process is documented in [1]. Each dataset is identified by the PubChem Assay ID (AID). Features of the datasets: (1) At least 150 confirmed active compounds present; (2) Diverse target classes; (3) Realistic (large number and highly imbalanced label).""",
+        "name": "serine_threonine_kinase_33_butkiewicz",  # unique identifier, we will also use this for directory names
+        "description": """These are nine high-quality high-throughput screening (HTS) datasets from [1]. \
+        These datasets were curated from HTS data at the PubChem database [2]. \
+        Typically, HTS categorizes small molecules into hit, inactive, or unspecified against a certain therapeutic target. \
+        However, a compound may be falsely classified as a hit due to experimental artifacts such as optical interference. \
+        Moreover, because the screening is performed without duplicates, \
+        and the cutoff is often set loose to minimize the false negative rates, \
+        the results from the primary screens often contain high false positive rates [3]. \
+        Hence the result from the primary screen is only used as the first iteration to reduce the compound library \
+        to a smaller set of further confirmatory tests. Here each dataset is carefully collated through confirmation screens \
+        to validate active compounds. The curation process is documented in [1]. \
+        Each dataset is identified by the PubChem Assay ID (AID). \
+        Features of the datasets: (1) At least 150 confirmed active compounds present; \
+        (2) Diverse target classes; (3) Realistic (large number and highly imbalanced label).""",
         "targets": [
             {
-                "id": "activity_tyrosyl_dna_phosphodiesterase",  # name of the column in a tabular dataset
-                "description": "whether it active against tyrosyl-dna phosphodiesterase receptor (1) or not (0).",  # description of what this column means
+                "id": "activity_serine_threonine_kinase33",  # name of the column in a tabular dataset
+                "description": "whether it active against serine threonine kinase 33 receptor (1) or not (0).",  # description of what this column means
                 "units": "activity",  # units of the values in this column (leave empty if unitless)
                 "type": "categorical",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "tyrosyl-dna phosphodiesterase activity",
-                    "tyrosyl-dna phosphodiesterase Inhibitor",
-                    "activity against tyrosyl-dna phosphodiesterase",
-                    "tyrosyl-dna phosphodiesterase receptor",
+                    "serine threonine kinase 33 activity",
+                    "serine threonine kinase 33 Inhibitor",
+                    "activity against serine threonine kinase 33",
+                    "serine threonine kinase 33 receptor",
                 ],
             },
         ],

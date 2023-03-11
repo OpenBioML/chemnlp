@@ -5,16 +5,8 @@ from tdc.single_pred import ADME
 
 def get_and_transform_data():
     # get raw data
-    data = ADME(name="Caco2_Wang")
-    fn_data_original = "data_original.csv"
-    data.get_data().to_csv(fn_data_original, index=False)
-
-    # create dataframe
-    df = pd.read_csv(
-        fn_data_original,
-        delimiter=",",
-    )  # not necessary but ensure we can load the saved data
-
+    df = ADME(name="Caco2_Wang")
+    
     # check if fields are the same
     fields_orig = df.columns.tolist()
     assert fields_orig == [
@@ -45,9 +37,11 @@ def get_and_transform_data():
     # create meta yaml
     meta = {
         "name": "caco2_wang",  # unique identifier, we will also use this for directory names
-        "description": """The human colon epithelial cancer cell line, Caco-2, is used as an in vitro model
-        to simulate the human intestinal tissue. The experimental result on the rate of drug passing through
-        the Caco-2 cells can approximate the rate at which the drug permeates through the human intestinal tissue.""",
+        "description": """The human colon epithelial cancer cell line, Caco-2, \
+        is used as an in vitro model to simulate the human intestinal tissue. \
+        The experimental result on the rate of drug passing through \
+        the Caco-2 cells can approximate the rate at which the drug permeates \
+        through the human intestinal tissue.""",
         "targets": [
             {
                 "id": "permeability",  # name of the column in a tabular dataset
@@ -108,7 +102,8 @@ def get_and_transform_data():
 
     def str_presenter(dumper, data):
         """configures yaml for dumping multiline strings
-        Ref: https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data
+        Ref:
+        https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data
         """
         if data.count("\n") > 0:  # check for multiline string
             return dumper.represent_scalar("tag:yaml.org,2002:str", data, style="|")

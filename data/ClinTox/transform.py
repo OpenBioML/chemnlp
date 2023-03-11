@@ -45,11 +45,12 @@ def get_and_transform_data():
     # create meta yaml
     meta = {
         "name": "ClinTox",  # unique identifier, we will also use this for directory names
-        "description": """The ClinTox dataset includes drugs that have failed clinical trials for toxicity reasons and also drugs that are associated with successful trials.""",
+        "description": """The ClinTox dataset includes drugs that have failed clinical trials \
+        for toxicity reasons and also drugs that are associated with successful trials.""",
         "targets": [
             {
                 "id": "clinical_toxicity",  # name of the column in a tabular dataset
-                "description": "whether it can cause clinical toxicity (1) or not (0).",  # description of what this column means
+                "description": "whether it can cause clinical toxicity (1) or not (0).",
                 "units": "clinical_toxicity",  # units of the values in this column (leave empty if unitless)
                 "type": "categorical",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
@@ -94,7 +95,9 @@ def get_and_transform_data():
 
     def str_presenter(dumper, data):
         """configures yaml for dumping multiline strings
-        Ref: https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data
+
+        Ref:
+        https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data
         """
         if data.count("\n") > 0:  # check for multiline string
             return dumper.represent_scalar("tag:yaml.org,2002:str", data, style="|")

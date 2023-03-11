@@ -32,9 +32,10 @@ dev = [
         "pytest",
 ]
 
-# [project.optional-dependencies]
-# dataset_creation = [
-# ]
+[project.optional-dependencies]
+dataset_creation = [
+        "PyTDC",
+]
 
 [tool.setuptools_scm]
 version_scheme = "post-release"

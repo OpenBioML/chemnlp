@@ -2,11 +2,11 @@
 name: pampa_ncats
 description: |-
     PAMPA (parallel artificial membrane permeability assay) is a commonly
-            employed assay to evaluate drug permeability across the cellular membrane. PAMPA is a
-            non-cell-based, low-cost and high-throughput alternative to cellular models. Although
-            PAMPA does not model active and efflux transporters, it still provides permeability values
-            that are useful for absorption prediction because the majority of drugs are absorbed by
-            passive diffusion through the membrane.
+    employed assay to evaluate drug permeability across the cellular membrane. PAMPA is a
+    non-cell-based, low-cost and high-throughput alternative to cellular models. Although
+    PAMPA does not model active and efflux transporters, it still provides permeability values
+    that are useful for absorption prediction because the majority of drugs are absorbed by
+    assive diffusion through the membrane.
 targets:
     - id: permeability
       description: Binary permeability in PAMPA assay.

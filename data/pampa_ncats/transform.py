@@ -42,12 +42,12 @@ def get_and_transform_data():
     # create meta yaml
     meta = {
         "name": "pampa_ncats",  # unique identifier, we will also use this for directory names
-        "description": """PAMPA (parallel artificial membrane permeability assay) is a commonly
-        employed assay to evaluate drug permeability across the cellular membrane. PAMPA is a
-        non-cell-based, low-cost and high-throughput alternative to cellular models. Although
-        PAMPA does not model active and efflux transporters, it still provides permeability values
-        that are useful for absorption prediction because the majority of drugs are absorbed by
-        passive diffusion through the membrane.""",
+        "description": """PAMPA (parallel artificial membrane permeability assay) is a commonly \
+        employed assay to evaluate drug permeability across the cellular membrane. \
+        PAMPA is a non-cell-based, low-cost and high-throughput alternative to cellular models. \
+        Although PAMPA does not model active and efflux transporters, it still provides permeability values \
+        that are useful for absorption prediction because the majority of drugs are absorbed \
+        by passive diffusion through the membrane.""",
         "targets": [
             {
                 "id": "permeability",  # name of the column in a tabular dataset
@@ -97,7 +97,8 @@ def get_and_transform_data():
 
     def str_presenter(dumper, data):
         """configures yaml for dumping multiline strings
-        Ref: https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data
+        Ref:
+        https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data
         """
         if data.count("\n") > 0:  # check for multiline string
             return dumper.represent_scalar("tag:yaml.org,2002:str", data, style="|")
