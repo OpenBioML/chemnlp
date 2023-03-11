@@ -1,100 +1,98 @@
+---
 name: TAP
-description: "Immunogenicity, instability, self-association, \n        high viscosity,\
-  \ polyspecificity, or poor expression can all preclude\n        an antibody from\
-  \ becoming a therapeutic. Early identification of these\n        negative characteristics\
-  \ is essential. Akin to the Lipinski guidelines,\n        which measure druglikeness\
-  \ in small molecules, \n        Therapeutic Antibody Profiler (TAP) highlights antibodies\
-  \ \n        that possess characteristics that are rare/unseen in \n        clinical-stage\
-  \ mAb therapeutics."
+description: "Immunogenicity, instability, self-association, \n        high viscosity, polyspecificity, or poor expression can all preclude\n        an\
+    \ antibody from becoming a therapeutic. Early identification of these\n        negative characteristics is essential. Akin to the Lipinski guidelines,\n\
+    \        which measure druglikeness in small molecules, \n        Therapeutic Antibody Profiler (TAP) highlights antibodies \n        that possess characteristics\
+    \ that are rare/unseen in \n        clinical-stage mAb therapeutics."
 targets:
-- id: CDR_Length
-  description: CDR Complementarity-determining regions length
-  units: ''
-  type: continuous
-  names:
-  - Antibody Complementarity-determining regions length
-  - Therapeutic Antibody Profiler
-  - antibody developability
-  - monoclonal anitbody
-  uris:
-  - https://rb.gy/s9gv88
-  - https://rb.gy/km77hq
-  - https://rb.gy/b8cx8i
-- id: PSH
-  description: patches of surface hydrophobicity
-  units: ''
-  type: continuous
-  names:
-  - antibody patches of surface hydrophobicity
-  - Therapeutic Antibody Profiler
-  - antibody developability
-  - monoclonal anitbody
-  uris:
-  - https://rb.gy/bchhaa
-  - https://rb.gy/2irr4l
-  - https://rb.gy/b8cx8i
-- id: PPC
-  description: patches of positive charge
-  units: ''
-  type: continuous
-  names:
-  - patches of positive charge
-  - Therapeutic Antibody Profiler
-  - antibody developability
-  - monoclonal anitbody
-  uris:
-  - https://rb.gy/b8cx8i
-- id: PNC
-  description: patches of negative charge
-  units: ''
-  type: continuous
-  names:
-  - anitbody patches of negative charge
-  - Therapeutic Antibody Profiler
-  - antibody developability
-  - monoclonal anitbody
-  uris:
-  - https://rb.gy/b8cx8i
-- id: SFvCSP
-  description: structural Fv charge symmetry parameter
-  units: ''
-  type: continuous
-  names:
-  - antibody structural Fv charge symmetry parameter
-  - Therapeutic Antibody Profiler
-  - antibody developability
-  - monoclonal anitbody
-  uris:
-  - https://rb.gy/uxyhc3
-  - https://rb.gy/b8cx8i
+    - id: CDR_Length
+      description: CDR Complementarity-determining regions length
+      units: ''
+      type: continuous
+      names:
+          - Antibody Complementarity-determining regions length
+          - Therapeutic Antibody Profiler
+          - antibody developability
+          - monoclonal anitbody
+      uris:
+          - https://rb.gy/s9gv88
+          - https://rb.gy/km77hq
+          - https://rb.gy/b8cx8i
+    - id: PSH
+      description: patches of surface hydrophobicity
+      units: ''
+      type: continuous
+      names:
+          - antibody patches of surface hydrophobicity
+          - Therapeutic Antibody Profiler
+          - antibody developability
+          - monoclonal anitbody
+      uris:
+          - https://rb.gy/bchhaa
+          - https://rb.gy/2irr4l
+          - https://rb.gy/b8cx8i
+    - id: PPC
+      description: patches of positive charge
+      units: ''
+      type: continuous
+      names:
+          - patches of positive charge
+          - Therapeutic Antibody Profiler
+          - antibody developability
+          - monoclonal anitbody
+      uris:
+          - https://rb.gy/b8cx8i
+    - id: PNC
+      description: patches of negative charge
+      units: ''
+      type: continuous
+      names:
+          - anitbody patches of negative charge
+          - Therapeutic Antibody Profiler
+          - antibody developability
+          - monoclonal anitbody
+      uris:
+          - https://rb.gy/b8cx8i
+    - id: SFvCSP
+      description: structural Fv charge symmetry parameter
+      units: ''
+      type: continuous
+      names:
+          - antibody structural Fv charge symmetry parameter
+          - Therapeutic Antibody Profiler
+          - antibody developability
+          - monoclonal anitbody
+      uris:
+          - https://rb.gy/uxyhc3
+          - https://rb.gy/b8cx8i
 identifiers:
-- id: antibody_name
-  type: Other
-  description: anitbody name
-- id: heavy_chain
-  type: Other
-  description: anitbody heavy chain amino acid sequence
-- id: light_chain
-  type: Other
-  description: anitbody light chain amino acid sequence
+    - id: antibody_name
+      type: Other
+      description: anitbody name
+    - id: heavy_chain
+      type: Other
+      description: anitbody heavy chain amino acid sequence
+    - id: light_chain
+      type: Other
+      description: anitbody light chain amino acid sequence
 license: CC BY 4.0
 links:
-- url: https://doi.org/10.1073/pnas.1810576116
-  description: corresponding publication
-- url: https://tdcommons.ai/single_pred_tasks/develop/#tap
-  description: data source
+    - url: https://doi.org/10.1073/pnas.1810576116
+      description: corresponding publication
+    - url: https://tdcommons.ai/single_pred_tasks/develop/#tap
+      description: data source
 num_points: 241
 bibtex:
-- |-
-  @article{Raybould2019,
-            doi = {10.1073/pnas.1810576116},
-            url = {https://doi.org/10.1073/pnas.1810576116},
-            year = {2019},
-            month = feb,
-            publisher = {Proceedings of the National Academy of Sciences},
-            volume = {116},
-            number = {10},
-            pages = {4025--4030},
-            author = {Matthew I. J. Raybould and Claire Marks and Konrad Krawczyk and Bruck Taddese and Jaroslaw Nowak and Alan P. Lewis and Alexander Bujotzek and Jiye Shi and Charlotte M. Deane},
-            title = {Five computational developability guidelines for therapeutic antibody profiling},
-            journal = {Proceedings of the National Academy of Sciences}}
+    - |-
+      @article{Raybould2019,
+                doi = {10.1073/pnas.1810576116},
+                url = {https://doi.org/10.1073/pnas.1810576116},
+                year = {2019},
+                month = feb,
+                publisher = {Proceedings of the National Academy of Sciences},
+                volume = {116},
+                number = {10},
+                pages = {4025--4030},
+                author = {Matthew I. J. Raybould and Claire Marks and Konrad Krawczyk and Bruck Taddese and Jaroslaw Nowak and Alan P. Lewis and Alexander Bujotzek and Jiye Shi and Charlotte M. Deane},
+                title = {Five computational developability guidelines for therapeutic antibody profiling},
+                journal = {Proceedings of the National Academy of Sciences}}
