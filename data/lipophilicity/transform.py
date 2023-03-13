@@ -50,8 +50,8 @@ def get_and_transform_data():
                 ],
                 "uris": [
                     "http://www.bioassayontology.org/bao#BAO_0002129",
-                    "http://purl.obolibrary.org/obo/MI_2107"
-                ]
+                    "http://purl.obolibrary.org/obo/MI_2107",
+                ],
             },
         ],
         "identifiers": [

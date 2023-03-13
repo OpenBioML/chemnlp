@@ -7,12 +7,12 @@ def get_and_transform_data():
     # get raw data
     label = "choline_transporter_butkiewicz"
     splits = HTS(name=label).get_split()
-    df_train = splits['train']
-    df_valid = splits['valid']
-    df_test = splits['test']
-    df_train['split'] = 'train'
-    df_valid['split'] = 'valid'
-    df_test['split'] = 'test'
+    df_train = splits["train"]
+    df_valid = splits["valid"]
+    df_test = splits["test"]
+    df_train["split"] = "train"
+    df_valid["split"] = "valid"
+    df_test["split"] = "test"
 
     df = pd.concat([df_train, df_valid, df_test], axis=0)
     # check if fields are the same

@@ -43,17 +43,25 @@ def get_and_transform_data():
     # create meta yaml
     meta = {
         "name": "potassium_ion_channel_kir2_1_butkiewicz",  # unique identifier, we will also use this for directory names
-        "description": """""",
+        "description": """The Kir2.1 inward-rectifier potassium ion channel is a target in the treatment of cardiovascular, neurological, renal and metabolic disorders. \
+        Primary assay AID 1672. Validation screens AID 2032 and AID 463252.\
+        Counter screens  AID 2105, AID 2345, AID 2236, and AID 2329. \
+        The final set of 172 active compounds was constructed \ subtracting the actives in AID 2105, AID 2345, AID 2236, \
+        and AID 2329 from the molecules found active in both, \
+        AID 2032 and AID 463252""",
         "targets": [
             {
                 "id": "activity_potassium_ion_channel",  # name of the column in a tabular dataset
                 "description": "whether it active against potassium ion channel (1) or not (0).",  # description of what this column means
-                "units": None,  
-                "type": "boolean",  
-                "names": [  
+                "units": None,
+                "type": "boolean",
+                "names": [
                     "is blocking potassium ion channel activity",
                     "blocks potassium ion channel activity",
+                    "inhibts the I  nward-Rectifying Potassium Ion Channel Kir2.1",
                 ],
+                "pubchem_aids": [1672, 2032, 463252, 2105, 2345, 2236, 2329],
+                "uris": ["http://purl.obolibrary.org/obo/XCO_0000225"],
             },
         ],
         "identifiers": [
@@ -63,7 +71,7 @@ def get_and_transform_data():
                 "description": "SMILES",  # description (optional, except for "Other")
             },
         ],
-        "split_col": "split",  
+        "split_col": "split",
         "license": "CC BY 4.0",  # license under which the original dataset was published
         "links": [  # list of relevant links (original dataset, other uses, etc.)
             {

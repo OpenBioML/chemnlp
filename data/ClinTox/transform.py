@@ -5,32 +5,22 @@ from tdc.single_pred import Tox
 
 def get_and_transform_data():
     # get raw data
-    splits =  Tox(name="ClinTox").get_split()
-    df_train = splits['train']
-    df_valid = splits['valid']
-    df_test = splits['test']
-    df_train['split'] = 'train'
-    df_valid['split'] = 'valid'
-    df_test['split'] = 'test'
+    splits = Tox(name="ClinTox").get_split()
+    df_train = splits["train"]
+    df_valid = splits["valid"]
+    df_test = splits["test"]
+    df_train["split"] = "train"
+    df_valid["split"] = "valid"
+    df_test["split"] = "test"
 
     df = pd.concat([df_train, df_valid, df_test], axis=0)
 
     # check if fields are the same
     fields_orig = df.columns.tolist()
-    assert fields_orig == [
-        "Drug_ID",
-        "Drug",
-        "Y",
-        "split"
-    ]
+    assert fields_orig == ["Drug_ID", "Drug", "Y", "split"]
 
     # overwrite column names = fields
-    fields_clean = [
-        "compound_id",
-        "SMILES",
-        "clinical_toxicity",
-        "split"
-    ]
+    fields_clean = ["compound_id", "SMILES", "clinical_toxicity", "split"]
     df.columns = fields_clean
 
     # data cleaning
@@ -58,13 +48,13 @@ def get_and_transform_data():
                 "names": [  # names for the property (to sample from for building the prompts)
                     "clinically toxic",
                     "displaying clinical toxicity",
-                    "toxic"
+                    "toxic",
                 ],
                 "uris": [
                     "http://purl.bioontology.org/ontology/MESH/Q000633",
                     "https://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI_Thesaurus&ns=ncit&code=C27990",
-                    "https://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI_Thesaurus&ns=ncit&code=C27955"
-                ]
+                    "https://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI_Thesaurus&ns=ncit&code=C27955",
+                ],
             },
         ],
         "split_col": "split",  # name of the column that contains the split information

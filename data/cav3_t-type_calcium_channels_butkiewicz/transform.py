@@ -7,30 +7,25 @@ def get_and_transform_data():
     # get raw data
     label = "cav3_t-type_calcium_channels_butkiewicz"
     splits = HTS(name=label).get_split()
-    df_train = splits['train']
-    df_valid = splits['valid']
-    df_test = splits['test']
-    df_train['split'] = 'train'
-    df_valid['split'] = 'valid'
-    df_test['split'] = 'test'
+    df_train = splits["train"]
+    df_valid = splits["valid"]
+    df_test = splits["test"]
+    df_train["split"] = "train"
+    df_valid["split"] = "valid"
+    df_test["split"] = "test"
 
     df = pd.concat([df_train, df_valid, df_test], axis=0)
 
     # check if fields are the same
     fields_orig = df.columns.tolist()
-    assert fields_orig == [
-        "Drug_ID",
-        "Drug",
-        "Y",
-        "split"
-    ]
+    assert fields_orig == ["Drug_ID", "Drug", "Y", "split"]
 
     # overwrite column names = fields
     fields_clean = [
         "compound_id",
         "SMILES",
         "activity_cav3_t_type_calcium_channels",
-        "split"
+        "split",
     ]
     df.columns = fields_clean
 
@@ -60,12 +55,10 @@ def get_and_transform_data():
                 "names": [
                     "a inhibitor of cav3 t-type calcium channels activity",
                     "inhibiting cav3 t-type calcium channels activity",
-                    "a t-type calcium channel blocker"
+                    "a t-type calcium channel blocker",
                 ],
                 "pubchem_aids": [1053190, 489005, 493021, 493022, 493023, 493041],
-                "uris": [
-                    "http://purl.obolibrary.org/obo/CHEBI_194338"
-                ]
+                "uris": ["http://purl.obolibrary.org/obo/CHEBI_194338"],
             },
         ],
         "identifiers": [

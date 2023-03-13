@@ -6,12 +6,12 @@ from tdc.single_pred import Tox
 def get_and_transform_data():
     # get raw data
     splits = Tox(name="LD50_Zhu").get_split()
-    df_train = splits['train']
-    df_valid = splits['valid']
-    df_test = splits['test']
-    df_train['split'] = 'train'
-    df_valid['split'] = 'valid'
-    df_test['split'] = 'test'
+    df_train = splits["train"]
+    df_valid = splits["valid"]
+    df_test = splits["test"]
+    df_train["split"] = "train"
+    df_valid["split"] = "valid"
+    df_test["split"] = "test"
 
     df = pd.concat([df_train, df_valid, df_test], axis=0)
 
@@ -60,9 +60,7 @@ def get_and_transform_data():
                     "acute toxicity rat LD50",
                     "rat ld50",
                 ],
-                "uri": [
-                    "http://www.bioassayontology.org/bao#BAO_0002117"
-                ]
+                "uri": ["http://www.bioassayontology.org/bao#BAO_0002117"],
             },
         ],
         "identifiers": [
