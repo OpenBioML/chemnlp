@@ -66,7 +66,7 @@ class Target(YamlModel):
 
     """A list of names describing the field.
 
-    Note that this will be used in builing the prompts. Some example for prompts:
+    Note that this will be used in building the prompts. Some example for prompts:
 
     - Boolean variables
 
