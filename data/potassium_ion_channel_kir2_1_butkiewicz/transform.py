@@ -48,13 +48,11 @@ def get_and_transform_data():
             {
                 "id": "activity_potassium_ion_channel",  # name of the column in a tabular dataset
                 "description": "whether it active against potassium ion channel (1) or not (0).",  # description of what this column means
-                "units": "activity",  # units of the values in this column (leave empty if unitless)
-                "type": "categorical",  # can be "categorical", "ordinal", "continuous"
-                "names": [  # names for the property (to sample from for building the prompts)
-                    "potassium ion channel activity",
-                    "potassium ion channel",
-                    "activity against potassium ion channel",
-                    "activity",
+                "units": None,  
+                "type": "boolean",  
+                "names": [  
+                    "is blocking potassium ion channel activity",
+                    "blocks potassium ion channel activity",
                 ],
             },
         ],
@@ -65,7 +63,7 @@ def get_and_transform_data():
                 "description": "SMILES",  # description (optional, except for "Other")
             },
         ],
-        "split_col": "split",  # column name that contains the split information
+        "split_col": "split",  
         "license": "CC BY 4.0",  # license under which the original dataset was published
         "links": [  # list of relevant links (original dataset, other uses, etc.)
             {
