@@ -69,6 +69,7 @@ def get_and_transform_data():
                     "hydration free energy",
                 ],
             },
+            # ToDo: do we keep in the uncertainty?
             {
                 "id": "exp_uncertainty",
                 "description": "experimental hydration free energy uncertainty",
@@ -84,8 +85,7 @@ def get_and_transform_data():
                 "units": "kcal/mol",  # units of the values in this column (leave empty if unitless)
                 "type": "continuous",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "GAFF",
-                    "mobley group calculated value",
+                    "hydration free energy computed using the GAFF force field",
                 ],
             },
             {
@@ -94,8 +94,7 @@ def get_and_transform_data():
                 "units": "kcal/mol",
                 "type": "continuous",
                 "names": [
-                    "GAFF uncertainty",
-                    "mobley group calculated value uncertainty",
+                    "uncertainty in hydration free energy computed using the GAFF force field",
                 ],
             },
         ],

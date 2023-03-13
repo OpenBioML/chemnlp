@@ -33,9 +33,9 @@ dev = [
         "pubchempy"
 ]
 
-# [project.optional-dependencies]
-# dataset_creation = [
-# ]
+dataset_creation = [
+        "PyTDC",
+]
 
 [tool.setuptools_scm]
 version_scheme = "post-release"
