@@ -59,7 +59,7 @@ class Target(YamlModel):
     description: str
 
     """The units of the field. None if unitless."""
-    units: str
+    units: Optional[str]
 
     """The type of the field. Can be one of `continuous`, `categorical`, `ordinal`, `boolean`."""
     type: ColumnTypes
