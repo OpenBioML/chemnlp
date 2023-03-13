@@ -72,7 +72,6 @@ def get_and_transform_data():
                 "description": "corresponding publication",
             },
         ],
-        "split_col": "split",
         "num_points": len(df),  # number of datapoints in this dataset
         "url": "https://tdcommons.ai/single_pred_tasks/tox/#clintox",
         "bibtex": [
