@@ -45,7 +45,7 @@ With "implementing" we mean the following:
 
 
     In the `transform.py` please try to download the data from an official resource.
-    We encourage you to upload the raw data to HuggingFace, Foundry or some other repository and then retrieve the data from there with your script.
+    We encourage you to upload the raw data to HuggingFace Hub, Foundry or some other repository and then retrieve the data from there with your script, if the raw data license permits it.
 
   - If you need additional dependencies, add them to `dev-requirements.txt` (those are needed for linting/testing/validation) or `requirements.txt` (those are the ones for running `transform.py`)
 
@@ -151,6 +151,7 @@ One example of a prompt we might construct is `"What is the <target_name> of <id
 
 If your dataset is part of a benchmark, please indicate what fold your data is part of using an additional `split_col` in which you use `train`, `valid`, `test` to indicate the split type.
 Please indicate this in the `meta.yaml` under the field `split_col`.
+
 #### Identifiers
 
 We ask you to add `uris` and `pubchem_aids` in case you find suitable references.
