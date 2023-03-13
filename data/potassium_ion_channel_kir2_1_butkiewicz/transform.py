@@ -6,15 +6,15 @@ from tdc.single_pred import HTS
 def get_and_transform_data():
     # get raw data
     label = "potassium_ion_channel_kir2.1_butkiewicz"
-    data = HTS(name=label)
-    fn_data_original = "data_original.csv"
-    data.get_data().to_csv(fn_data_original, index=False)
+    splits = HTS(name=label).get_split()
+    df_train = splits["train"]
+    df_valid = splits["valid"]
+    df_test = splits["test"]
+    df_train["split"] = "train"
+    df_valid["split"] = "valid"
+    df_test["split"] = "test"
 
-    # create dataframe
-    df = pd.read_csv(
-        fn_data_original,
-        delimiter=",",
-    )  # not necessary but ensure we can load the saved data
+    df = pd.concat([df_train, df_valid, df_test], axis=0)
 
     # check if fields are the same
     fields_orig = df.columns.tolist()
@@ -22,6 +22,7 @@ def get_and_transform_data():
         "Drug_ID",
         "Drug",
         "Y",
+        "split",
     ]
 
     # overwrite column names = fields
@@ -29,6 +30,7 @@ def get_and_transform_data():
         "compound_id",
         "SMILES",
         "activity_potassium_ion_channel",
+        "split",
     ]
     df.columns = fields_clean
 
@@ -41,19 +43,7 @@ def get_and_transform_data():
     # create meta yaml
     meta = {
         "name": "potassium_ion_channel_kir2_1_butkiewicz",  # unique identifier, we will also use this for directory names
-        "description": """These are nine high-quality high-throughput screening (HTS) datasets from [1]. \
-        These datasets were curated from HTS data at the PubChem database [2]. \
-        Typically, HTS categorizes small molecules into hit, inactive, or unspecified against a certain therapeutic target. \
-        However, a compound may be falsely classified as a hit due to experimental artifacts such as optical interference. \
-        Moreover, because the screening is performed without duplicates, \
-        and the cutoff is often set loose to minimize the false negative rates, \
-        the results from the primary screens often contain high false positive rates [3]. \
-        Hence the result from the primary screen is only used as the first iteration to reduce the compound library \
-        to a smaller set of further confirmatory tests. Here each dataset is carefully collated through confirmation screens \
-        to validate active compounds. The curation process is documented in [1]. \
-        Each dataset is identified by the PubChem Assay ID (AID). \
-        Features of the datasets: (1) At least 150 confirmed active compounds present; \
-        (2) Diverse target classes; (3) Realistic (large number and highly imbalanced label).""",
+        "description": """""",
         "targets": [
             {
                 "id": "activity_potassium_ion_channel",  # name of the column in a tabular dataset
@@ -75,6 +65,7 @@ def get_and_transform_data():
                 "description": "SMILES",  # description (optional, except for "Other")
             },
         ],
+        "split_col": "split",  # column name that contains the split information
         "license": "CC BY 4.0",  # license under which the original dataset was published
         "links": [  # list of relevant links (original dataset, other uses, etc.)
             {

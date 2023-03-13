@@ -147,9 +147,10 @@ In this case, we will sample from the identifier and targets columns. If you spe
 Therefore, it is very important that the column names in the `meta.yaml` match the ones in the file that `transform.py` produces.
 One example of a prompt we might construct is `"What is the <target_name> of <identifier>"`, where we sample `target_name` from the names of the targets listed in `meta.yaml` and `identifier` from the identifiers provided in `meta.yaml`.
 
-#### Splits 
+#### Splits
 
-If your dataset is part of a benchmark, please indicate what fold your data is part of using an additional `split_col` in which you use `train`, `valid`, `test` to indicate the split type. 
+If your dataset is part of a benchmark, please indicate what fold your data is part of using an additional `split_col` in which you use `train`, `valid`, `test` to indicate the split type.
+Please indicate this in the `meta.yaml` under the field `split_col`.
 #### Identifiers
 
 We ask you to add `uris` and `pubchem_aids` in case you find suitable references.

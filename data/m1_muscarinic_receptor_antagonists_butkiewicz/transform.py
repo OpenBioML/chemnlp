@@ -5,37 +5,24 @@ from tdc.single_pred import HTS
 
 def get_and_transform_data():
     # get raw data
-    label = "m1_muscarinic_receptor_antagonists_butkiewicz"
-    data = HTS(name=label)
-    fn_data_original = "data_original.csv"
-    data.get_data().to_csv(fn_data_original, index=False)
+    label = "m1_muscarinic_receptor_aantagonists_butkiewicz"
+    splits = HTS(name=label).get_split()
+    df_train = splits["train"]
+    df_valid = splits["valid"]
+    df_test = splits["test"]
+    df_train["split"] = "train"
+    df_valid["split"] = "valid"
+    df_test["split"] = "test"
 
-    # create dataframe
-    df = pd.read_csv(
-        fn_data_original,
-        delimiter=",",
-    )  # not necessary but ensure we can load the saved data
+    df = pd.concat([df_train, df_valid, df_test], axis=0)
 
     # check if fields are the same
     fields_orig = df.columns.tolist()
-    assert fields_orig == [
-        "Drug_ID",
-        "Drug",
-        "Y",
-    ]
+    assert fields_orig == ["Drug_ID", "Drug", "Y", "split"]
 
     # overwrite column names = fields
-    fields_clean = [
-        "compound_id",
-        "SMILES",
-        "m1_muscarinic_antagonists",
-    ]
+    fields_clean = ["compound_id", "SMILES", "m1_muscarinic_antagonists", "split"]
     df.columns = fields_clean
-
-    #     # data cleaning
-    #     df.compound_id = (
-    #         df.compound_id.str.strip()
-    #     )  # remove leading and trailing white space characters
 
     assert not df.duplicated().sum()
 
@@ -46,19 +33,22 @@ def get_and_transform_data():
     # create meta yaml
     meta = {
         "name": "m1_muscarinic_receptor_antagonists_butkiewicz",  # unique identifier, we will also use this for directory names
-        "description": """""",
+        "description": """Primary screen AID628 confirmed by screen AID677. \
+        AID859 confirmed activity on rat M1 receptor. \
+        The counter screen AID860 removed non-selective compounds being active also at the rat M4 receptor. \
+        Final set of active compoundsobtained by subtracting active compounds of AID860 from those in AID677, resulting in 448 total active compounds.""",
         "targets": [
             {
                 "id": "m1_muscarinic_antagonists",  # name of the column in a tabular dataset
-                "description": "whether it antagonists on m1 muscarinic receptor (1) or not (0).",  # description of what this column means
-                "units": "antagonists",  # units of the values in this column (leave empty if unitless)
-                "type": "categorical",  # can be "categorical", "ordinal", "continuous"
+                "description": "whether it negatively modulates m1 muscarinic receptor (1) or not (0).",  # description of what this column means
+                "units": None,  # units of the values in this column (leave empty if unitless)
+                "type": "boolean",
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "m1 muscarinic activity",
-                    "m1 muscarinic antagonists",
-                    "muscarinic",
-                    "m1 muscarinic receptor",
+                    "a negative modulator of M1 muscarinic receptors",
+                    "negatively modulating M1 muscarinic receptors",
                 ],
+                "pubchem_aids": [628, 677, 860],
+                "uris": [],
             },
         ],
         "identifiers": [
@@ -83,6 +73,7 @@ def get_and_transform_data():
                 "description": "corresponding publication",
             },
         ],
+        "split_col": "split",  # name of the column that contains the split information
         "num_points": len(df),  # number of datapoints in this dataset
         "url": "https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al",
         "bibtex": [
@@ -95,8 +86,10 @@ def get_and_transform_data():
               volume = {18},
               number = {1},
               pages = {735--756},
-              author = {Mariusz Butkiewicz and Edward Lowe and Ralf Mueller and Jeffrey Mendenhall and Pedro Teixeira and C. Weaver and Jens Meiler},
-              title = {Benchmarking Ligand-Based Virtual High-Throughput Screening with the {PubChem} Database},
+              author = {Mariusz Butkiewicz and Edward Lowe and Ralf Mueller \
+                and Jeffrey Mendenhall and Pedro Teixeira and C. Weaver and Jens Meiler},
+              title = {Benchmarking Ligand-Based Virtual High-Throughput Screening \
+                with the {PubChem} Database},
               journal = {Molecules}}""",
             """@article{Kim2018,
               doi = {10.1093/nar/gky1033},
@@ -107,7 +100,9 @@ def get_and_transform_data():
               volume = {47},
               number = {D1},
               pages = {D1102--D1109},
-              author = {Sunghwan Kim and Jie Chen and Tiejun Cheng and Asta Gindulyte and Jia He and Siqian He and Qingliang Li and Benjamin A Shoemaker and Paul A Thiessen and Bo Yu and Leonid Zaslavsky and Jian Zhang and Evan E Bolton},
+              author = {Sunghwan Kim and Jie Chen and Tiejun Cheng and Asta Gindulyte \
+                and Jia He and Siqian He and Qingliang Li and Benjamin A Shoemaker \
+                    and Paul A Thiessen and Bo Yu and Leonid Zaslavsky and Jian Zhang and Evan E Bolton},
               title = {{PubChem} 2019 update: improved access to chemical data},
               journal = {Nucleic Acids Research}}""",
             """@article{Butkiewicz2017,
@@ -117,8 +112,10 @@ def get_and_transform_data():
               publisher = {Chem Inform},
               volume = {3},
               number = {1},
-              author = {Butkiewicz, M.  and Wang, Y.  and Bryant, S. H.  and Lowe, E. W.  and Weaver, D. C.  and Meiler, J.},
-              title = {{H}igh-{T}hroughput {S}creening {A}ssay {D}atasets from the {P}ub{C}hem {D}atabase}},
+              author = {Butkiewicz, M.  and Wang, Y.  and Bryant, S. H.  \
+                and Lowe, E. W.  and Weaver, D. C.  and Meiler, J.},
+              title = {{H}igh-{T}hroughput {S}creening {A}ssay {D}atasets \
+                from the {P}ub{C}hem {D}atabase}},
               journal = {Chemical Science}}""",
         ],
     }

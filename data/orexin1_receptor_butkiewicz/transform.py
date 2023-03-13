@@ -6,36 +6,23 @@ from tdc.single_pred import HTS
 def get_and_transform_data():
     # get raw data
     label = "orexin1_receptor_butkiewicz"
-    data = HTS(name=label)
-    fn_data_original = "data_original.csv"
-    data.get_data().to_csv(fn_data_original, index=False)
+    splits = HTS(name=label).get_split()
+    df_train = splits["train"]
+    df_valid = splits["valid"]
+    df_test = splits["test"]
+    df_train["split"] = "train"
+    df_valid["split"] = "valid"
+    df_test["split"] = "test"
 
-    # create dataframe
-    df = pd.read_csv(
-        fn_data_original,
-        delimiter=",",
-    )  # not necessary but ensure we can load the saved data
+    df = pd.concat([df_train, df_valid, df_test], axis=0)
 
     # check if fields are the same
     fields_orig = df.columns.tolist()
-    assert fields_orig == [
-        "Drug_ID",
-        "Drug",
-        "Y",
-    ]
+    assert fields_orig == ["Drug_ID", "Drug", "Y", "split"]
 
     # overwrite column names = fields
-    fields_clean = [
-        "compound_id",
-        "SMILES",
-        "activity_orexin1",
-    ]
+    fields_clean = ["compound_id", "SMILES", "activity_orexin1", "split"]
     df.columns = fields_clean
-
-    #     # data cleaning
-    #     df.compound_id = (
-    #         df.compound_id.str.strip()
-    #     )  # remove leading and trailing white space characters
 
     assert not df.duplicated().sum()
 
@@ -46,31 +33,26 @@ def get_and_transform_data():
     # create meta yaml
     meta = {
         "name": "orexin1_receptor_butkiewicz",  # unique identifier, we will also use this for directory names
-        "description": """These are nine high-quality high-throughput screening (HTS) datasets from [1]. \
-        These datasets were curated from HTS data at the PubChem database [2]. \
-        Typically, HTS categorizes small molecules into hit, inactive, or unspecified against a certain therapeutic target. \
-        However, a compound may be falsely classified as a hit due to experimental artifacts such as optical interference. \
-        Moreover, because the screening is performed without duplicates, \
-        and the cutoff is often set loose to minimize the false negative rates, \
-        the results from the primary screens often contain high false positive rates [3]. \
-        Hence the result from the primary screen is only used as the first iteration to reduce the compound library \
-        to a smaller set of further confirmatory tests. Here each dataset is carefully collated through confirmation screens \
-        to validate active compounds. The curation process is documented in [1]. \
-        Each dataset is identified by the PubChem Assay ID (AID). \
-        Features of the datasets: (1) At least 150 confirmed active compounds present; \
-        (2) Diverse target classes; (3) Realistic (large number and highly imbalanced label).""",
+        "description": """"GPCR Orexin 1 is relevant for behavioral plasticity, \
+            the sleep-wake cycle, and gastric acid secretion.
+            Three primary screens, AID 485270, AID 463079, AID 434989, were performed. \
+            Validation assay AID504701, AD492963. Counter screen 493232. \
+            More specific assay AID504699.
+            AID504701 and AID504699 were combined to identify 234 active compounds \
+            excluding an overlap of 155 molecules.
+            """,
         "targets": [
             {
                 "id": "activity_orexin1",  # name of the column in a tabular dataset
                 "description": "whether it active against orexin1 receptor (1) or not (0).",  # description of what this column means
-                "units": "activity",  # units of the values in this column (leave empty if unitless)
-                "type": "categorical",  # can be "categorical", "ordinal", "continuous"
+                "units": None,
+                "type": "boolean",
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "orexin1 activity",
-                    "orexin1 Inhibitor",
-                    "activity against orexin1",
-                    "orexin1 receptor",
+                    "is a orexin 1 inhibitor",
+                    "is a orexin 1 receptor antagonist",
                 ],
+                "pubchem_aids": [485270, 463079, 434989, 504701, 493232, 504699],
+                "uris": ["http://purl.bioontology.org/ontology/SNOMEDCT/838464006"],
             },
         ],
         "identifiers": [
@@ -80,6 +62,7 @@ def get_and_transform_data():
                 "description": "SMILES",  # description (optional, except for "Other")
             },
         ],
+        "split_col": "split",
         "license": "CC BY 4.0",  # license under which the original dataset was published
         "links": [  # list of relevant links (original dataset, other uses, etc.)
             {
@@ -107,8 +90,10 @@ def get_and_transform_data():
               volume = {18},
               number = {1},
               pages = {735--756},
-              author = {Mariusz Butkiewicz and Edward Lowe and Ralf Mueller and Jeffrey Mendenhall and Pedro Teixeira and C. Weaver and Jens Meiler},
-              title = {Benchmarking Ligand-Based Virtual High-Throughput Screening with the {PubChem} Database},
+              author = {Mariusz Butkiewicz and Edward Lowe and Ralf Mueller and Jeffrey Mendenhall \
+                and Pedro Teixeira and C. Weaver and Jens Meiler},
+              title = {Benchmarking Ligand-Based Virtual High-Throughput Screening \
+                with the {PubChem} Database},
               journal = {Molecules}}""",
             """@article{Kim2018,
               doi = {10.1093/nar/gky1033},
@@ -119,7 +104,9 @@ def get_and_transform_data():
               volume = {47},
               number = {D1},
               pages = {D1102--D1109},
-              author = {Sunghwan Kim and Jie Chen and Tiejun Cheng and Asta Gindulyte and Jia He and Siqian He and Qingliang Li and Benjamin A Shoemaker and Paul A Thiessen and Bo Yu and Leonid Zaslavsky and Jian Zhang and Evan E Bolton},
+              author = {Sunghwan Kim and Jie Chen and Tiejun Cheng and Asta Gindulyte and Jia He \
+                and Siqian He and Qingliang Li and Benjamin A Shoemaker and Paul A Thiessen \
+                    and Bo Yu and Leonid Zaslavsky and Jian Zhang and Evan E Bolton},
               title = {{PubChem} 2019 update: improved access to chemical data},
               journal = {Nucleic Acids Research}}""",
             """@article{Butkiewicz2017,
@@ -129,8 +116,10 @@ def get_and_transform_data():
               publisher = {Chem Inform},
               volume = {3},
               number = {1},
-              author = {Butkiewicz, M.  and Wang, Y.  and Bryant, S. H.  and Lowe, E. W.  and Weaver, D. C.  and Meiler, J.},
-              title = {{H}igh-{T}hroughput {S}creening {A}ssay {D}atasets from the {P}ub{C}hem {D}atabase}},
+              author = {Butkiewicz, M.  and Wang, Y.  and Bryant, S. H.  and Lowe, E. W.  \
+                and Weaver, D. C.  and Meiler, J.},
+              title = {{H}igh-{T}hroughput {S}creening {A}ssay \
+                {D}atasets from the {P}ub{C}hem {D}atabase}},
               journal = {Chemical Science}}""",
         ],
     }
