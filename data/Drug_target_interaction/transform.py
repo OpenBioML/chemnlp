@@ -59,7 +59,7 @@ def get_and_transform_data():
                 "id": "binding",  # name of the column in a tabular dataset
                 "description": "small-molecule protein interaction.",  # description of what this column means
                 "units": "Kd",  # units of the values in this column (leave empty if unitless)
-                "type": "regression",  # can be "categorical", "ordinal", "continuous"
+                "type": "continous",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
                     "Drug-Target Interaction"
                     "small-molecule binding affinity",
