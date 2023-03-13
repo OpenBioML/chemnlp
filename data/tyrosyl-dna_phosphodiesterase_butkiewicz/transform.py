@@ -42,7 +42,7 @@ def get_and_transform_data():
 
     # create meta yaml
     meta = {
-        "name": "tyrosyl-dna_phosphodiesterase_butkiewicz",  # unique identifier, we will also use this for directory names
+        "name": "tyrosyl-dna_phosphodiesterase_butkiewicz",
         "description": """Inhibition of Human tyrosyl-DNA phosphodiesterase 1 (TDP1) \
             potentially enhances anticancer activity of DNA topoisomerase I inhibitors.
             Primary screen AID 485290. Counter screen AID 489007.\

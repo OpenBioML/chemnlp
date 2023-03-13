@@ -32,18 +32,20 @@ def get_and_transform_data():
 
     # create meta yaml
     meta = {
-        "name": "m1_muscarinic_receptor_antagonists_butkiewicz",  # unique identifier, we will also use this for directory names
+        "name": "m1_muscarinic_receptor_antagonists_butkiewicz",
         "description": """Primary screen AID628 confirmed by screen AID677. \
         AID859 confirmed activity on rat M1 receptor. \
-        The counter screen AID860 removed non-selective compounds being active also at the rat M4 receptor. \
-        Final set of active compoundsobtained by subtracting active compounds of AID860 from those in AID677, resulting in 448 total active compounds.""",
+        The counter screen AID860 removed non-selective compounds \
+        being active also at the rat M4 receptor. \
+        Final set of active compoundsobtained by subtracting active compounds of AID860 \
+            from those in AID677, resulting in 448 total active compounds.""",
         "targets": [
             {
-                "id": "m1_muscarinic_antagonists",  # name of the column in a tabular dataset
-                "description": "whether it negatively modulates m1 muscarinic receptor (1) or not (0).",  # description of what this column means
-                "units": None,  # units of the values in this column (leave empty if unitless)
+                "id": "m1_muscarinic_antagonists",
+                "description": "whether it negatively modulates m1 muscarinic receptor (1) or not (0).",
+                "units": None,
                 "type": "boolean",
-                "names": [  # names for the property (to sample from for building the prompts)
+                "names": [
                     "a negative modulator of M1 muscarinic receptors",
                     "negatively modulating M1 muscarinic receptors",
                 ],

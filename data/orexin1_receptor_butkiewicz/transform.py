@@ -32,7 +32,7 @@ def get_and_transform_data():
 
     # create meta yaml
     meta = {
-        "name": "orexin1_receptor_butkiewicz",  # unique identifier, we will also use this for directory names
+        "name": "orexin1_receptor_butkiewicz",
         "description": """"GPCR Orexin 1 is relevant for behavioral plasticity, \
             the sleep-wake cycle, and gastric acid secretion.
             Three primary screens, AID 485270, AID 463079, AID 434989, were performed. \
@@ -44,12 +44,13 @@ def get_and_transform_data():
         "targets": [
             {
                 "id": "activity_orexin1",  # name of the column in a tabular dataset
-                "description": "whether it active against orexin1 receptor (1) or not (0).",  # description of what this column means
+                "description": "whether it active against orexin1 receptor (1) or not (0).",
                 "units": None,
                 "type": "boolean",
-                "names": [  # names for the property (to sample from for building the prompts)
+                "names": [
                     "is a orexin 1 inhibitor",
                     "is a orexin 1 receptor antagonist",
+                    "inhibits orexin 1 receptor",
                 ],
                 "pubchem_aids": [485270, 463079, 434989, 504701, 493232, 504699],
                 "uris": ["http://purl.bioontology.org/ontology/SNOMEDCT/838464006"],

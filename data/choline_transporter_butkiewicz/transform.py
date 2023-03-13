@@ -41,22 +41,25 @@ def get_and_transform_data():
 
     # create meta yaml
     meta = {
-        "name": "choline_transporter_butkiewicz",  # unique identifier, we will also use this for directory names
+        "name": "choline_transporter_butkiewicz",
         "description": """
         This dataset was originally curated from HTS data at the PubChem database.   \
         The primary screen AID 488975 identified inhibitors of CHT. \
-        The counter screen AID 493221 was used as a validation screen to confirm the active compounds that inhibit CHT. \
+        The counter screen AID 493221 was used as a validation screen \
+            to confirm the active compounds that inhibit CHT. \
         AID504840 and AID588401 experiments were used as additional validation experiments. \
-        The screen AID 493222 evaluated remaining active compounds for non-specific activity in parental HEK293 cells. \
+        The screen AID 493222 evaluated remaining active compounds for non-specific activity \
+              in parental HEK293 cells. \
         AID602208 tested a selected set of compounds for 3H choline uptake. \
-        The final set of 254 active compounds was determined by the overlap of active compounds in screens AID 493221, \
-        AID504840, and AID588401 subtracting any non-specific hits from AID 49322 \
+        The final set of 254 active compounds was determined by the overlap of active compounds \
+            in screens AID 493221, AID504840, and AID588401 \
+            subtracting any non-specific hits from AID 49322 \
         and all inactive compounds in the re-confirmation screen AID602208.
         """,
         "targets": [
             {
                 "id": "activity_choline_transporter",  # name of the column in a tabular dataset
-                "description": "whether it active against choline transporter receptor (1) or not (0).",  # description of what this column means
+                "description": "inhibition of choline transporter receptor (1) or not (0).",
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
@@ -101,8 +104,10 @@ def get_and_transform_data():
               volume = {18},
               number = {1},
               pages = {735--756},
-              author = {Mariusz Butkiewicz and Edward Lowe and Ralf Mueller and Jeffrey Mendenhall and Pedro Teixeira and C. Weaver and Jens Meiler},
-              title = {Benchmarking Ligand-Based Virtual High-Throughput Screening with the {PubChem} Database},
+              author = {Mariusz Butkiewicz and Edward Lowe and Ralf Mueller \
+                and Jeffrey Mendenhall and Pedro Teixeira and C. Weaver and Jens Meiler},
+              title = {Benchmarking Ligand-Based Virtual High-Throughput Screening \
+                with the {PubChem} Database},
               journal = {Molecules}}""",
             """@article{Kim2018,
               doi = {10.1093/nar/gky1033},
@@ -113,7 +118,10 @@ def get_and_transform_data():
               volume = {47},
               number = {D1},
               pages = {D1102--D1109},
-              author = {Sunghwan Kim and Jie Chen and Tiejun Cheng and Asta Gindulyte and Jia He and Siqian He and Qingliang Li and Benjamin A Shoemaker and Paul A Thiessen and Bo Yu and Leonid Zaslavsky and Jian Zhang and Evan E Bolton},
+              author = {Sunghwan Kim and Jie Chen and Tiejun Cheng and \
+                Asta Gindulyte and Jia He and Siqian He and Qingliang Li \
+                    and Benjamin A Shoemaker and Paul A Thiessen and Bo Yu and \
+                        Leonid Zaslavsky and Jian Zhang and Evan E Bolton},
               title = {{PubChem} 2019 update: improved access to chemical data},
               journal = {Nucleic Acids Research}}""",
             """@article{Butkiewicz2017,
@@ -123,15 +131,18 @@ def get_and_transform_data():
               publisher = {Chem Inform},
               volume = {3},
               number = {1},
-              author = {Butkiewicz, M.  and Wang, Y.  and Bryant, S. H.  and Lowe, E. W.  and Weaver, D. C.  and Meiler, J.},
-              title = {{H}igh-{T}hroughput {S}creening {A}ssay {D}atasets from the {P}ub{C}hem {D}atabase}},
+              author = {Butkiewicz, M.  and Wang, Y.  and Bryant, S. H.  \
+                and Lowe, E. W.  and Weaver, D. C.  and Meiler, J.},
+              title = {{H}igh-{T}hroughput {S}creening {A}ssay {D}atasets \
+                from the {P}ub{C}hem {D}atabase}},
               journal = {Chemical Science}}""",
         ],
     }
 
     def str_presenter(dumper, data):
         """configures yaml for dumping multiline strings
-        Ref: https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data
+        Ref:
+        https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data
         """
         if data.count("\n") > 0:  # check for multiline string
             return dumper.represent_scalar("tag:yaml.org,2002:str", data, style="|")

@@ -42,7 +42,7 @@ def get_and_transform_data():
 
     # create meta yaml
     meta = {
-        "name": "serine_threonine_kinase_33_butkiewicz",  # unique identifier, we will also use this for directory names
+        "name": "serine_threonine_kinase_33_butkiewicz",
         "description": """The serine/threonine kinase, STK33, \
         has been shown to be relevant for proliferation of mutant KRAS-dependent cells involved in cancer. \
         Primary screen AID 2661. \
@@ -51,8 +51,8 @@ def get_and_transform_data():
         resulted in the final set of 172 active compounds.""",
         "targets": [
             {
-                "id": "activity_serine_threonine_kinase33",  # name of the column in a tabular dataset
-                "description": "whether it active against serine threonine kinase 33 receptor (1) or not (0).",  # description of what this column means
+                "id": "activity_serine_threonine_kinase33",
+                "description": "whether it active against serine threonine kinase 33 receptor (1) or not (0).",
                 "units": None,
                 "type": "boolean",
                 "names": [  # names for the property (to sample from for building the prompts)
