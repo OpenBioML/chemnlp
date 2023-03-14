@@ -1,6 +1,6 @@
 #! /bin/bash
 ## Must already have miniconda installed!
-export CONDA_ENV_PATH=/fsx/proj-chemnlp/conda/env/chemnlp-standard
+export CONDA_ENV_PATH=/fsx/proj-chemnlp/${USER}/conda/env/chemnlp-standard
 export PYTHON_VER=3.8
 
 # Create Python environment through conda
