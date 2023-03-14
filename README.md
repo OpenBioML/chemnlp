@@ -62,3 +62,22 @@ and log-in to `wandb` with your API key per [here](https://docs.wandb.ai/quickst
 ### Adding a new dataset (to the model training pipline)
 
 We specify datasets by creating a new function [here](src/chemnlp/data/hf_datasets.py) which is named per the dataset on Hugging Face. At present the function must accept a tokenizer and return back the tokenized train and validation datasets.
+
+### Installing submodules
+
+In order to ensure you also clone and install the required submodules (i.e. gpt-neox) you will have to do one of the following;
+
+- Recursively clone the submodule from GitHub
+
+  ```
+  git clone --recurse-submodules --remote-submodules <path-to-repo>
+  ```
+
+  > This will automatically initialize and update each submodule in the repository, including nested submodules if any of the submodules in the repository have submodules themselve
+
+- Initialise and install the submodule after cloning
+
+  ```
+  git submodule init # registers submodule
+  git submodule update # clones and updates submodule
+  ```
