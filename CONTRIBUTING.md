@@ -154,11 +154,13 @@ Please have a look for the details in the [corresponding section in our proposal
 
 ## Hugging Face Hub
 
-We have a preference for using the Hugging Face Hub through the [`datasets`](https://github.com/huggingface/datasets) package when storing larger datasets on the [OpenBioML](https://huggingface.co/OpenBioML) hub as it can offer us a lot of nice features such as
+We have a preference for using the Hugging Face Hub and processing datasets through the [`datasets`](https://github.com/huggingface/datasets) package when storing larger datasets on the [OpenBioML](https://huggingface.co/OpenBioML) hub as it can offer us a lot of nice features such as
 
 - Easy multiprocessing parallelism for data cleaning
 - Version controlling of the datasets as well as our code
 - Easy interface into tokenisation & other aspects for model training
 - Reuse of utility functions once we have a consistent data structure.
 
-However, don't feel pressured to use this if you're more comfortable contributing an external dataset. We are primarily thinking of using this functionality for processed, combined datasets that are ready for training.
+However, don't feel pressured to use this if you're more comfortable contributing an external dataset in another format. We are primarily thinking of using this functionality for processed, combined datasets which are ready for training.
+
+Feel free to reach out to one of the team and read [this guide](https://huggingface.co/docs/datasets/upload_dataset#share-a-dataset-to-the-hub) for more information.
