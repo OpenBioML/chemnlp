@@ -42,20 +42,18 @@ def get_and_transform_data():
     # create meta yaml
     meta = {
         "name": "choline_transporter_butkiewicz",
-        "description": """
-        This dataset was originally curated from HTS data at the PubChem database.   \
-        The primary screen AID 488975 identified inhibitors of CHT. \
-        The counter screen AID 493221 was used as a validation screen \
-            to confirm the active compounds that inhibit CHT. \
-        AID504840 and AID588401 experiments were used as additional validation experiments. \
-        The screen AID 493222 evaluated remaining active compounds for non-specific activity \
-              in parental HEK293 cells. \
-        AID602208 tested a selected set of compounds for 3H choline uptake. \
-        The final set of 254 active compounds was determined by the overlap of active compounds \
-            in screens AID 493221, AID504840, and AID588401 \
-            subtracting any non-specific hits from AID 49322 \
-        and all inactive compounds in the re-confirmation screen AID602208.
-        """,
+        "description": """This dataset was originally curated from HTS data at
+        the PubChem database. The primary screen AID 488975 identified
+        inhibitors of CHT. The counter screen AID 493221 was used as a
+        validation screen to confirm the active compounds that inhibit CHT.
+        AID504840 and AID588401 experiments were used as additional validation
+        experiments. The screen AID 493222 evaluated remaining active compounds
+        for non-specific activity in parental HEK293 cells. AID602208 tested a
+        selected set of compounds for 3H choline uptake. The final set of 254
+        active compounds was determined by the overlap of active compounds in
+        screens AID 493221, AID504840, and AID588401 subtracting any
+        non-specific hits from AID 49322 and all inactive compounds in the
+        re-confirmation screen AID602208.""",
         "targets": [
             {
                 "id": "activity_choline_transporter",  # name of the column in a tabular dataset
