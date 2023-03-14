@@ -43,16 +43,16 @@ def get_and_transform_data():
     # create meta yaml
     meta = {
         "name": "serine_threonine_kinase_33_butkiewicz",
-        "description": """The serine/threonine kinase, STK33, \
-        has been shown to be relevant for proliferation of mutant KRAS-dependent cells involved in cancer. \
-        Primary screen AID 2661. \
-        Counter screen AID 2821. AID504583 as validation screen.
-        Actives in AID 2821 subtracted by the actives from screen AID504583 \
-        resulted in the final set of 172 active compounds.""",
+        "description": """The serine/threonine kinase, STK33, has been shown to
+        be relevant for proliferation of mutant KRAS-dependent cells involved
+        in cancer. Primary screen AID 2661. Counter screen AID 2821. AID504583
+        as validation screen. Actives in AID 2821 subtracted by the actives
+        from screen AID504583 resulted in the final set of 172 active
+        compounds.""",
         "targets": [
             {
                 "id": "activity_serine_threonine_kinase33",
-                "description": "whether it active against serine threonine kinase 33 receptor (1) or not (0).",
+                "description": "whether it is active against serine threonine kinase 33 receptor (1) or not (0).",
                 "units": None,
                 "type": "boolean",
                 "names": [  # names for the property (to sample from for building the prompts)
@@ -98,10 +98,11 @@ def get_and_transform_data():
               volume = {18},
               number = {1},
               pages = {735--756},
-              author = {Mariusz Butkiewicz and Edward Lowe and Ralf Mueller\
-                  and Jeffrey Mendenhall and Pedro Teixeira and C. Weaver and Jens Meiler},
-              title = {Benchmarking Ligand-Based Virtual High-Throughput Screening \
-                with the {PubChem} Database},
+              author = {Mariusz Butkiewicz and Edward Lowe and Ralf Mueller and
+              Jeffrey Mendenhall and Pedro Teixeira and C. Weaver and Jens
+              Meiler},
+              title = {Benchmarking Ligand-Based Virtual High-Throughput
+              Screening with the {PubChem} Database},
               journal = {Molecules}}""",
             """@article{Kim2018,
               doi = {10.1093/nar/gky1033},
@@ -112,9 +113,10 @@ def get_and_transform_data():
               volume = {47},
               number = {D1},
               pages = {D1102--D1109},
-              author = {Sunghwan Kim and Jie Chen and Tiejun Cheng and Asta Gindulyte \
-                  and Jia He and Siqian He and Qingliang Li and Benjamin A Shoemaker \
-                    and Paul A Thiessen and Bo Yu and Leonid Zaslavsky and Jian Zhang and Evan E Bolton},
+              author = {Sunghwan Kim and Jie Chen and Tiejun Cheng and Asta
+              Gindulyte and Jia He and Siqian He and Qingliang Li and Benjamin
+              A Shoemaker and Paul A Thiessen and Bo Yu and Leonid Zaslavsky
+              and Jian Zhang and Evan E Bolton},
               title = {{PubChem} 2019 update: improved access to chemical data},
               journal = {Nucleic Acids Research}}""",
             """@article{Butkiewicz2017,
@@ -124,10 +126,10 @@ def get_and_transform_data():
               publisher = {Chem Inform},
               volume = {3},
               number = {1},
-              author = {Butkiewicz, M.  and Wang, Y.  and Bryant, S. H.  \
-                and Lowe, E. W.  and Weaver, D. C.  and Meiler, J.},
-              title = {{H}igh-{T}hroughput {S}creening {A}ssay {D}atasets \
-                from the {P}ub{C}hem {D}atabase}},
+              author = {Butkiewicz, M. and Wang, Y. and Bryant, S. H. and Lowe,
+              E. W. and Weaver, D. C. and Meiler, J.},
+              title = {{H}igh-{T}hroughput {S}creening {A}ssay {D}atasets from
+              the {P}ub{C}hem {D}atabase}},
               journal = {Chemical Science}}""",
         ],
     }
