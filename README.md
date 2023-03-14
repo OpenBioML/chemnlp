@@ -71,8 +71,8 @@ In order to ensure you also clone and install the required submodules (i.e. gpt-
 
   ```
    # using ssh (if you have your ssh key on GitHub)
-  git clone --recurse-submodules --remote-submodules git@github.com:OpenBioML/chemnlp.git 
-   
+  git clone --recurse-submodules --remote-submodules git@github.com:OpenBioML/chemnlp.git
+
    # using https (if you use personal access token)
   git clone --recurse-submodules --remote-submodules [git@github.com:OpenBioML/chemnlp.git ](https://github.com/OpenBioML/chemnlp.git)
   ```
