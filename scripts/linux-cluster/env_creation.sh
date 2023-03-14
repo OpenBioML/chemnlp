@@ -11,8 +11,8 @@ conda activate ${CONDA_ENV_PATH}
 ## cd into your directory inside of proj-chemnlp
 cd /fsx/proj-chemnlp/${USER}
 
-## clone + submodules
-git clone --recurse-submodules --remote-submodules git@github.com:OpenBioML/chemnlp.git
+## clone + submodules (ok if exists)
+[ ! -d 'chemnlp' ] && git clone --recurse-submodules --remote-submodules git@github.com:OpenBioML/chemnlp.git
 
 ## install
 pip install chemnlp # our repo
