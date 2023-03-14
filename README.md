@@ -70,7 +70,11 @@ In order to ensure you also clone and install the required submodules (i.e. gpt-
 - Recursively clone the submodule from GitHub
 
   ```
-  git clone --recurse-submodules --remote-submodules <path-to-repo>
+   # using ssh (if you have your ssh key on GitHub)
+  git clone --recurse-submodules --remote-submodules git@github.com:OpenBioML/chemnlp.git 
+   
+   # using https (if you use personal access token)
+  git clone --recurse-submodules --remote-submodules [git@github.com:OpenBioML/chemnlp.git ](https://github.com/OpenBioML/chemnlp.git)
   ```
 
   > This will automatically initialize and update each submodule in the repository, including nested submodules if any of the submodules in the repository have submodules themselve
