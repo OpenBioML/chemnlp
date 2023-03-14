@@ -58,8 +58,8 @@ def get_and_transform_data():
                 "units": None,
                 "type": "boolean",
                 "names": [
-                    "inhibitor of kcnq2 potassium channel activity",
-                    "displaying activity against kcnq2 potassium channel",
+                    "inhibitor of the kcnq2 potassium channel activity",
+                    "displaying activity against the kcnq2 potassium channel",
                 ],
                 "pubchem_aids": [2239, 2287, 2282, 2283, 2558],
                 "uris": [],
