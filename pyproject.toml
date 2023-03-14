@@ -30,6 +30,7 @@ dev = [
         "pre-commit",
         "pydantic_yaml",
         "pytest",
+        "pubchempy"
 ]
 
 dataset_creation = [
