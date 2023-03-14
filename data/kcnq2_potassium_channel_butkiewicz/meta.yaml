@@ -5,7 +5,7 @@ description: This dataset was initially curated from HTS data at the PubChem dat
     was acquired by removing the active compounds of AID 2282, AID 2283 and AID 2558 from the confirmatory screen active set of compounds (AID 2287).
 targets:
     - id: activity_kcnq2_potassium_channel
-      description: whether it active against kcnq2 potassium channel receptor (1) or not (0).
+      description: whether it is active against kcnq2 potassium channel receptor (1) or not (0).
       units:
       type: boolean
       names:
