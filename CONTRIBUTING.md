@@ -151,3 +151,14 @@ Our first experiments will be based on [Pythia model](https://github.com/Eleuthe
 If you are not familiar LLM training have a look at this very good guide: [Large-scale language modeling tutorials with PyTorch from TUNiB](https://nbviewer-org.translate.goog/github/tunib-ai/large-scale-lm-tutorials/blob/main/notebooks/01_introduction.ipynb?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=de&_x_tr_pto=wapp)
 
 Please have a look for the details in the [corresponding section in our proposal](https://docs.google.com/document/d/1C44EKSJRojm39P2CaxnEq-0FGwDRaknKxJ8lZI6xr5M/edit#heading=h.aww08l8o9tti).
+
+## Hugging Face Hub
+
+We have a preference for using the Hugging Face Hub through the [`datasets`](https://github.com/huggingface/datasets) package when storing larger datasets on the [OpenBioML](https://huggingface.co/OpenBioML) hub as it can offer us a lot of nice features such as
+
+- Easy multiprocessing parallelism for data cleaning
+- Version controlling of the datasets as well as our code
+- Easy interface into tokenisation & other aspects for model training
+- Reuse of utility functions once we have a consistent data structure.
+
+However, don't feel pressured to use this if you're more comfortable contributing an external dataset. We are primarily thinking of using this functionality for processed, combined datasets that are ready for training.
