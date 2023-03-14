@@ -30,7 +30,6 @@ dev = [
         "pre-commit",
         "pydantic_yaml",
         "pytest",
-        "pubchempy"
 ]
 
 # [project.optional-dependencies]
