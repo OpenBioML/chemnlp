@@ -4,7 +4,7 @@ export CONDA_ENV_PATH=/fsx/proj-chemnlp/conda/env/chemnlp-standard
 export PYTHON_VER=3.8
 
 # Create Python environment through conda
-conda create --prefix ${CONDA_ENV_PATH} python=${PYTHON_VER} -y
+conda create --force --prefix ${CONDA_ENV_PATH} python=${PYTHON_VER} -y
 conda activate ${CONDA_ENV_PATH}
 
 # Python requirements
