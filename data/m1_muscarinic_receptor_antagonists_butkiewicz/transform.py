@@ -33,16 +33,16 @@ def get_and_transform_data():
     # create meta yaml
     meta = {
         "name": "m1_muscarinic_receptor_antagonists_butkiewicz",
-        "description": """Primary screen AID628 confirmed by screen AID677. \
-        AID859 confirmed activity on rat M1 receptor. \
-        The counter screen AID860 removed non-selective compounds \
-        being active also at the rat M4 receptor. \
-        Final set of active compoundsobtained by subtracting active compounds of AID860 \
-            from those in AID677, resulting in 448 total active compounds.""",
+        "description": """Primary screen AID628 confirmed by screen AID677.
+        AID859 confirmed activity on rat M1 receptor.
+        The counter screen AID860 removed non-selective compounds
+        being active also at the rat M4 receptor.
+        Final set of active compoundsobtained by subtracting active compounds of AID860
+        from those in AID677, resulting in 448 total active compounds.""",
         "targets": [
             {
                 "id": "m1_muscarinic_antagonists",
-                "description": "whether it negatively modulates m1 muscarinic receptor (1) or not (0).",
+                "description": "whether it negatively modulates the m1 muscarinic receptor (1) or not (0).",
                 "units": None,
                 "type": "boolean",
                 "names": [
@@ -88,10 +88,11 @@ def get_and_transform_data():
               volume = {18},
               number = {1},
               pages = {735--756},
-              author = {Mariusz Butkiewicz and Edward Lowe and Ralf Mueller \
-                and Jeffrey Mendenhall and Pedro Teixeira and C. Weaver and Jens Meiler},
-              title = {Benchmarking Ligand-Based Virtual High-Throughput Screening \
-                with the {PubChem} Database},
+              author = {Mariusz Butkiewicz and Edward Lowe and Ralf Mueller and
+              Jeffrey Mendenhall and Pedro Teixeira and C. Weaver and Jens
+              Meiler},
+              title = {Benchmarking Ligand-Based Virtual High-Throughput
+              Screening with the {PubChem} Database},
               journal = {Molecules}}""",
             """@article{Kim2018,
               doi = {10.1093/nar/gky1033},
@@ -102,9 +103,10 @@ def get_and_transform_data():
               volume = {47},
               number = {D1},
               pages = {D1102--D1109},
-              author = {Sunghwan Kim and Jie Chen and Tiejun Cheng and Asta Gindulyte \
-                and Jia He and Siqian He and Qingliang Li and Benjamin A Shoemaker \
-                    and Paul A Thiessen and Bo Yu and Leonid Zaslavsky and Jian Zhang and Evan E Bolton},
+              author = {Sunghwan Kim and Jie Chen and Tiejun Cheng and Asta
+              Gindulyte and Jia He and Siqian He and Qingliang Li and Benjamin
+              A Shoemaker and Paul A Thiessen and Bo Yu and Leonid Zaslavsky
+              and Jian Zhang and Evan E Bolton},
               title = {{PubChem} 2019 update: improved access to chemical data},
               journal = {Nucleic Acids Research}}""",
             """@article{Butkiewicz2017,
@@ -114,10 +116,10 @@ def get_and_transform_data():
               publisher = {Chem Inform},
               volume = {3},
               number = {1},
-              author = {Butkiewicz, M.  and Wang, Y.  and Bryant, S. H.  \
-                and Lowe, E. W.  and Weaver, D. C.  and Meiler, J.},
-              title = {{H}igh-{T}hroughput {S}creening {A}ssay {D}atasets \
-                from the {P}ub{C}hem {D}atabase}},
+              author = {Butkiewicz, M. and Wang, Y. and Bryant, S. H. and Lowe,
+              E. W. and Weaver, D. C. and Meiler, J.},
+              title = {{H}igh-{T}hroughput {S}creening {A}ssay {D}atasets from
+              the {P}ub{C}hem {D}atabase}},
               journal = {Chemical Science}}""",
         ],
     }
