@@ -69,7 +69,6 @@ def get_and_transform_data():
                     "hydration free energy",
                 ],
             },
-            # ToDo: do we keep in the uncertainty?
             {
                 "id": "exp_uncertainty",
                 "description": "experimental hydration free energy uncertainty",
