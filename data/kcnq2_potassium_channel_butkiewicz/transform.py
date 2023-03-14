@@ -44,19 +44,17 @@ def get_and_transform_data():
     # create meta yaml
     meta = {
         "name": "kcnq2_potassium_channel_butkiewicz",  # unique identifier, we will also use this for directory names
-        "description": """
-        This dataset was initially curated from HTS data at the PubChem database. \
-        Details are reported by Butkiewicz et al. (2013). \
-        Primary screen AID 2239, AID 2287 validated active compounds to be potentiators. \
-        Counter screens: AID 2282, AID 2283, AID 2558.
-        Final set of 213 active compounds was acquired by removing the active compounds \
-        of AID 2282, AID 2283 and AID 2558 from the confirmatory screen active set \
-        of compounds (AID 2287).
-.       """,
+        "description": """This dataset was initially curated from HTS data at
+        the PubChem database. Details are reported by Butkiewicz et al. (2013).
+        Primary screen AID 2239, AID 2287 validated active compounds to be
+        potentiators. Counter screens are AID 2282, AID 2283, and AID 2558.
+        Final set of 213 active compounds was acquired by removing the active
+        compounds of AID 2282, AID 2283 and AID 2558 from the confirmatory
+        screen active set of compounds (AID 2287).""",
         "targets": [
             {
                 "id": "activity_kcnq2_potassium_channel",
-                "description": "whether it active against kcnq2 potassium channel receptor (1) or not (0).",
+                "description": "whether it is active against kcnq2 potassium channel receptor (1) or not (0).",
                 "units": None,
                 "type": "boolean",
                 "names": [
@@ -102,10 +100,11 @@ def get_and_transform_data():
               volume = {18},
               number = {1},
               pages = {735--756},
-              author = {Mariusz Butkiewicz and Edward Lowe and Ralf Mueller \
-                and Jeffrey Mendenhall and Pedro Teixeira and C. Weaver and Jens Meiler},
-              title = {Benchmarking Ligand-Based Virtual High-Throughput Screening \
-                with the {PubChem} Database},
+              author = {Mariusz Butkiewicz and Edward Lowe and Ralf Mueller and
+              Jeffrey Mendenhall and Pedro Teixeira and C. Weaver and Jens
+              Meiler},
+              title = {Benchmarking Ligand-Based Virtual High-Throughput
+              Screening with the {PubChem} Database},
               journal = {Molecules}}""",
             """@article{Kim2018,
               doi = {10.1093/nar/gky1033},
@@ -116,9 +115,10 @@ def get_and_transform_data():
               volume = {47},
               number = {D1},
               pages = {D1102--D1109},
-              author = {Sunghwan Kim and Jie Chen and Tiejun Cheng and Asta Gindulyte \
-                and Jia He and Siqian He and Qingliang Li and Benjamin A Shoemaker \
-                    and Paul A Thiessen and Bo Yu and Leonid Zaslavsky and Jian Zhang and Evan E Bolton},
+              author = {Sunghwan Kim and Jie Chen and Tiejun Cheng and Asta
+              Gindulyte and Jia He and Siqian He and Qingliang Li and Benjamin
+              A Shoemaker and Paul A Thiessen and Bo Yu and Leonid Zaslavsky
+              and Jian Zhang and Evan E Bolton},
               title = {{PubChem} 2019 update: improved access to chemical data},
               journal = {Nucleic Acids Research}}""",
             """@article{Butkiewicz2017,
@@ -128,10 +128,10 @@ def get_and_transform_data():
               publisher = {Chem Inform},
               volume = {3},
               number = {1},
-              author = {Butkiewicz, M.  and Wang, Y.  and Bryant, S. H.  \
-                and Lowe, E. W.  and Weaver, D. C.  and Meiler, J.},
-              title = {{H}igh-{T}hroughput {S}creening {A}ssay {D}atasets \
-                from the {P}ub{C}hem {D}atabase}},
+              author = {Butkiewicz, M. and Wang, Y. and Bryant, S. H. and Lowe,
+              E. W. and Weaver, D. C. and Meiler, J.},
+              title = {{H}igh-{T}hroughput {S}creening {A}ssay {D}atasets from
+              the {P}ub{C}hem {D}atabase}},
               journal = {Chemical Science}}""",
         ],
     }
