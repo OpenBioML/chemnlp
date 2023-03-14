@@ -13,19 +13,7 @@ Please make a [GitHub account](https://github.com/) prior to implementing a data
 
 For code and data contributions, we recommend you creata a [conda environment](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html). If you do not have conda already installed on your system, we recommend installing [miniconda](https://docs.conda.io/en/latest/miniconda.html):
 
-```bash
-conda env create -f conda.yaml  # Creates a conda env
-conda activate chemnlp  # Activate your conda environment
-```
-
-Then, please run
-
-```bash
-pre-commit install
-```
-
-to install the [pre-commit hooks](https://pre-commit.com/). These will automatically format and lint your code upon every commit.
-There might be some warnings, e.g., by `flake8`. If you struggle with them, do not hestiate to contact us.
+To create your developer environment please follow the guidelines in the `Installation and set-up` of [README.md](README.md)
 
 # Implementing a dataset
 
