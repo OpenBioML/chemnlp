@@ -25,6 +25,7 @@ With "implementing" we mean the following:
 - Make an issue in this repository that you want to add this dataset (we will label this issue and assign it to you)
 - Make a PR that adds in a new folder in `data`
   - `meta.yaml` describing the dataset in the form that `transform.py` produces. We will use this later to construct the prompts.
+    > If your dataset has multiple natural splits (i.e. train, test, validation) you can create a <split>\_meta.yaml for each.
   - `transform.py` Python code that transforms the original dataset (linked in `meta.yaml`) into a form that can be consumed by the loader.
     For tabular datasets that will mostly involve: Removing/merging duplicated entries, renaming columns, dropping unused columns.
     Try to keep the output your `transform.py` uses as lean as possible (i.e. no columns that will not be used).
