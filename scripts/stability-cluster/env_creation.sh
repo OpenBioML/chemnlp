@@ -11,10 +11,6 @@ source $CONDA_BASE/etc/profile.d/conda.sh
 conda create --force --prefix ${CONDA_ENV_PATH} python=${PYTHON_VER} -y
 conda activate ${CONDA_ENV_PATH}
 
-# Create Python environment through conda
-conda create --force --prefix ${CONDA_ENV_PATH} python=${PYTHON_VER} -y
-conda activate ${CONDA_ENV_PATH}
-
 # Python requirements
 ## cd into your directory inside of proj-chemnlp
 cd /fsx/proj-chemnlp/${USER}
