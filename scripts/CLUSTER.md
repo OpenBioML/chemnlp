@@ -8,4 +8,18 @@ running on the cluster.
    installs miniconda for your cluster environment.
 
 2. [Create Environment](stability-cluster/env_creation.sh) -
-   creates a basic conda environment with the requirements to run experiments.
+   creates a basic conda environment for experiments.
+
+   - Creates a conda environment at the prefix `CONDA_ENV_PATH` path.
+     > Using the positional argument passed into the script
+   - Clones `chemnlp` into your personal cluster `USER` directory.
+   - Installs the current revision of the `chemnlp` repository and
+     dependencies that are in your personal directory into the conda environment.
+
+   ```bash
+   # for creating a personal environment
+   source scripts/stability-cluster/env_creation.sh ${USER}
+
+   # for creating an specific experiment environment
+   source scripts/stability-cluster/env_creation.sh experiments/my-experiment
+   ```
