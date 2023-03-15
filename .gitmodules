@@ -1,3 +1,4 @@
 [submodule "gpt-neox"]
 	path = gpt-neox
 	url = git@github.com:EleutherAI/gpt-neox.git
+	branch = main
