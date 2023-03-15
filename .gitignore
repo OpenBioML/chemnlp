@@ -129,4 +129,4 @@ dmypy.json
 .pyre/
 
 # wandb
-scripts/wandb
+experiments/scripts/wandb
