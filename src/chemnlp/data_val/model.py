@@ -111,7 +111,9 @@ class Target(YamlModel):
                 # perform a request to the URI and check if it resolves
                 response = requests.get(uri)
                 if response.status_code == 403:
-                    print(f"URI {uri} does not resolve (403) since forbidden, please check manually")
+                    print(
+                        f"URI {uri} does not resolve (403) since forbidden, please check manually"
+                    )
                 elif response.status_code != 200:
                     raise ValueError(f"URI {uri} does not resolve")
 
@@ -171,7 +173,9 @@ class Dataset(YamlModel):
             for link in v:
                 response = requests.get(link.url)
                 if response.status_code == 403:
-                    print(f"Link {link.url} does not resolve (403) since forbidden, please check manually")
+                    print(
+                        f"Link {link.url} does not resolve (403) since forbidden, please check manually"
+                    )
                 elif response.status_code != 200:
                     if not (("acs" in response.text) or ("sage" in response.text)):
                         raise ValueError(f"Link {link.url} does not resolve")
