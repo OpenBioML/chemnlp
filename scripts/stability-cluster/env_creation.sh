@@ -3,6 +3,14 @@
 export CONDA_ENV_PATH=/fsx/proj-chemnlp/${USER}/conda/env/chemnlp-standard
 export PYTHON_VER=3.8
 
+## ensure we can use activate syntax in slurm scripts
+CONDA_BASE=$(conda info --base)
+source $CONDA_BASE/etc/profile.d/conda.sh
+
+# Create Python environment through conda
+conda create --force --prefix ${CONDA_ENV_PATH} python=${PYTHON_VER} -y
+conda activate ${CONDA_ENV_PATH}
+
 # Create Python environment through conda
 conda create --force --prefix ${CONDA_ENV_PATH} python=${PYTHON_VER} -y
 conda activate ${CONDA_ENV_PATH}
