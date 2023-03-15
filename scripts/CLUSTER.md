@@ -18,8 +18,8 @@ running on the cluster.
 
    ```bash
    # for creating a personal environment
-   source scripts/stability-cluster/env_creation.sh ${USER}
+   source scripts/stability-cluster/env_creation.sh jack/ jack/
 
    # for creating an specific experiment environment
-   source scripts/stability-cluster/env_creation.sh experiments/my-experiment
+   source scripts/stability-cluster/env_creation.sh experiments/my-experiment jack/
    ```
