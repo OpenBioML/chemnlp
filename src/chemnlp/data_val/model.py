@@ -104,10 +104,10 @@ class Target(YamlModel):
     """
     pubchem_aids: Optional[List[int]]
 
-    @validator("pubchem_aids")
+    @validator("uris")
     def uris_resolves(cls, values):
         if values is not None:
-            for uri in values.get("uris"):
+            for uri in values:
                 # perform a request to the URI and check if it resolves
                 response = requests.get(uri)
                 if response.status_code != 200:
