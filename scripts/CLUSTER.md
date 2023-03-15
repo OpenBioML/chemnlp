@@ -20,6 +20,6 @@ running on the cluster.
    # for creating a personal environment
    source scripts/stability-cluster/env_creation.sh jack/ jack/
 
-   # for creating an specific experiment environment
+   # for creating an experiment environment (usually called by another script)
    source scripts/stability-cluster/env_creation.sh experiments/my-experiment jack/
    ```
