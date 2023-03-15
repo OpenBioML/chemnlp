@@ -1,4 +1,2 @@
 ---
-# Model architecture found at https://huggingface.co/EleutherAI/pythia-160m
-# Pretraining config at https://github.com/EleutherAI/pythia/blob/main/models/160M/pythia-160m.yml
-# See other examples at https://github.com/EleutherAI/gpt-neox/tree/main/configs
+...
