@@ -1,14 +1,15 @@
-""" 
+"""
 Preparing chemrxiv dataset as per GPT-NeoX guidelines
 NOTE this needs to be run from the root of this repository directory
 
 Example usage:
     python experiments/chem_data_prep.py /fsx/proj-chemnlp/data/ chemnlp/gpt-neox/
 """
-import datasets
-import jsonlines
 import argparse
 import os
+
+import datasets
+import jsonlines
 
 DATASET = "marianna13/chemrxiv"
 GPT_NEOX_KEY = "text"
