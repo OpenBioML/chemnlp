@@ -1,40 +1,41 @@
+---
 name: USPTO_500k
 description: United States Patent and Trademark Office reaction dataset with yields.
 targets:
-- id: yield
-  description: Reaction yields analyzed by UPLC
-  units: '%'
-  type: continuous
-  names:
-  - Reaction yield
-  - yield
-  uris:
-  - https://bioportal.bioontology.org/ontologies/AFO?p=classes&conceptid=http%3A%2F%2Fpurl.allotrope.org%2Fontologies%2Fquality%23AFQ_0000227
-  - https://en.wikipedia.org/wiki/Yield_(chemistry)
+    - id: yield
+      description: Reaction yields analyzed by UPLC
+      units: '%'
+      type: continuous
+      names:
+          - Reaction yield
+          - yield
+      uris:
+          - https://bioportal.bioontology.org/ontologies/AFO?p=classes&conceptid=http%3A%2F%2Fpurl.allotrope.org%2Fontologies%2Fquality%23AFQ_0000227
+          - https://en.wikipedia.org/wiki/Yield_(chemistry)
 identifiers:
-- id: reaction_SMILES
-  type: RXN-SMILES
-  description: reaction SMILES
+    - id: reaction_SMILES
+      type: RXN-SMILES
+      description: reaction SMILES
 license: CC0
 links:
-- url: https://doi.org/10.17863/CAM.16293
-  description: corresponding publication
-- url: https://github.com/reymond-group/drfp/blob/main/data/uspto_yields_below.csv
-  description: data source
-- url: https://github.com/reymond-group/drfp/blob/main/data/uspto_yields_above.csv
-  description: data source
-- url: https://tdcommons.ai/single_pred_tasks/yields/#uspto
-  description: other source
+    - url: https://doi.org/10.17863/CAM.16293
+      description: corresponding publication
+    - url: https://github.com/reymond-group/drfp/blob/main/data/uspto_yields_below.csv
+      description: data source
+    - url: https://github.com/reymond-group/drfp/blob/main/data/uspto_yields_above.csv
+      description: data source
+    - url: https://tdcommons.ai/single_pred_tasks/yields/#uspto
+      description: other source
 num_points: 498721
 bibtex:
-- |-
-  @article{https://doi.org/10.17863/cam.16293,
-                doi = {10.17863/CAM.16293},
-                url = {https://www.repository.cam.ac.uk/handle/1810/244727},
-                author = {Lowe,  Daniel Mark},
-                keywords = {Name to structure,  OPSIN,  Chemical text mining,  Text mining,  Patent reaction extraction,  Reaction mining,  Patents},
-                language = {en},
-                title = {Extraction of chemical structures and reactions from the literature},
-                publisher = {Apollo - University of Cambridge Repository},
-                year = {2012},
-                copyright = {All Rights Reserved}}
+    - |-
+      @article{https://doi.org/10.17863/cam.16293,
+                    doi = {10.17863/CAM.16293},
+                    url = {https://www.repository.cam.ac.uk/handle/1810/244727},
+                    author = {Lowe,  Daniel Mark},
+                    keywords = {Name to structure,  OPSIN,  Chemical text mining,  Text mining,  Patent reaction extraction,  Reaction mining,  Patents},
+                    language = {en},
+                    title = {Extraction of chemical structures and reactions from the literature},
+                    publisher = {Apollo - University of Cambridge Repository},
+                    year = {2012},
+                    copyright = {All Rights Reserved}}

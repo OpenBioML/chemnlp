@@ -5,41 +5,41 @@ from tdc.single_pred import Tox
 
 def get_and_transform_data():
     # get raw data
-    df1 = pd.read_csv('https://github.com/reymond-group/drfp/raw/main/data/uspto_yields_above.csv')
-    df2 = pd.read_csv('https://github.com/reymond-group/drfp/raw/main/data/uspto_yields_below.csv')
-    data = pd.concat([df1,df2])
-    data = data[['rxn','yield']]
-    data= data.drop_duplicates(subset='rxn')
+    df1 = pd.read_csv(
+        "https://github.com/reymond-group/drfp/raw/main/data/uspto_yields_above.csv"
+    )
+    df2 = pd.read_csv(
+        "https://github.com/reymond-group/drfp/raw/main/data/uspto_yields_below.csv"
+    )
+    data = pd.concat([df1, df2])
+    data = data[["rxn", "yield"]]
+    data = data.drop_duplicates(subset="rxn")
     fn_data_original = "uptso.csv"
     data.to_csv(fn_data_original, index=False)
-    
+
     # create dataframe
-    df = pd.read_csv(fn_data_original, 
-                     delimiter=","
-        )# not necessary but ensure we can load the saved data
-    
+    df = pd.read_csv(
+        fn_data_original, delimiter=","
+    )  # not necessary but ensure we can load the saved data
+
     # check if fields are the same
     fields_orig = df.columns.tolist()
-    assert fields_orig == ['rxn', 'yield']
-    fields_clean = [
-        "reaction_SMILES",
-        "yield"
-    ]
-    
+    assert fields_orig == ["rxn", "yield"]
+    fields_clean = ["reaction_SMILES", "yield"]
+
     # overwrite column names = fields
     df.columns = fields_clean
     assert fields_orig != fields_clean
-    
+
     # remove leading and trailing white space characters
     assert not df.duplicated().sum()
-    
+
     # save to csv
     fn_data_csv = "data_clean.csv"
     df.to_csv(fn_data_csv, index=False)
 
-    
     # create meta yaml
-    meta =  {
+    meta = {
         "name": "USPTO_500k",  # unique identifier, we will also use this for directory names
         "description": """United States Patent and Trademark Office reaction dataset with yields.""",
         "targets": [
@@ -52,7 +52,7 @@ def get_and_transform_data():
                     "Reaction yield",
                     "yield",
                 ],
-                "uris":[
+                "uris": [
                     "https://bioportal.bioontology.org/ontologies/AFO?p=classes&conceptid=http%3A%2F%2Fpurl.allotrope.org%2Fontologies%2Fquality%23AFQ_0000227",
                     "https://en.wikipedia.org/wiki/Yield_(chemistry)",
                 ],
@@ -82,7 +82,7 @@ def get_and_transform_data():
             {
                 "url": "https://tdcommons.ai/single_pred_tasks/yields/#uspto",
                 "description": "other source",
-            }
+            },
         ],
         "num_points": len(df),  # number of datapoints in this dataset
         "bibtex": [
