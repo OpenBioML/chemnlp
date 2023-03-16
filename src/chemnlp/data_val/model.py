@@ -22,8 +22,9 @@ class Identifier(YamlModel):
 
     id: str
 
-    """A description of the field"""
     description: Optional[str]
+    """A description of the field"""
+
     type: IdentifierEnum
     names: Optional[List[str]]
 
@@ -55,15 +56,16 @@ class Target(YamlModel):
 
     id: str
 
-    """A english description of the field"""
     description: str
+    """A english description of the field"""
 
-    """The units of the field. None if unitless."""
     units: Optional[str]
+    """The units of the field. None if unitless."""
 
-    """The type of the field. Can be one of `continuous`, `categorical`, `ordinal`, `boolean`."""
     type: ColumnTypes
+    """The type of the field. Can be one of `continuous`, `categorical`, `ordinal`, `boolean`."""
 
+    names: List[str]
     """A list of names describing the field.
 
     Note that this will be used in building the prompts. Some example for prompts:
@@ -89,20 +91,19 @@ class Target(YamlModel):
         - <identifier_3>
         ```
     """
-    names: List[str]
 
+    uris: Optional[List[str]]
     """A URI or multiple (consitent ) URIs for the field.
 
     Ideally this would be a link to an entry in an ontrology or controlled
     vocabulary that can also provide a canonical description for the field.
     """
-    uris: Optional[List[str]]
 
+    pubchem_aids: Optional[List[int]]
     """A PubChem assay IDs or multiple (consistent) PubChem assay IDs.
 
     Make sure that the first assay ID is the primary assay ID.
     """
-    pubchem_aids: Optional[List[int]]
 
     @validator("uris")
     def uris_resolves(cls, values):
