@@ -1,44 +1,45 @@
+---
 name: Drug-Target Interaction
 description: |-
-  The activity of a small-molecule drug is measured by its binding affinity with the target protein.
-          Given a new target protein, the very first step is to screen a set of potential compounds to find their activity.
-          Traditional method to gauge the affinities are through high-throughput screening wet-lab experiments.
-          However, they are very expensive and are thus restricted by their abilities to search over a large set of candidates
-          Drug-target interaction prediction task aims to predict the interaction activity score in silico given only the accessible compound structural information and protein amino acid sequence.
+    The activity of a small-molecule drug is measured by its binding affinity with the target protein.
+            Given a new target protein, the very first step is to screen a set of potential compounds to find their activity.
+            Traditional method to gauge the affinities are through high-throughput screening wet-lab experiments.
+            However, they are very expensive and are thus restricted by their abilities to search over a large set of candidates
+            Drug-target interaction prediction task aims to predict the interaction activity score in silico given only the accessible compound structural information and protein amino acid sequence.
 targets:
-- id: binding
-  description: small-molecule protein interaction.
-  units: Kd
-  type: regression
-  names:
-  - Drug-Target Interactionsmall-molecule binding affinity
-  - small-molecule binding
-  - protein-ligand binding
-  - protein-ligandbinding affinity
-  - binding
+    - id: binding
+      description: small-molecule protein interaction.
+      units: Kd
+      type: regression
+      names:
+          - Drug-Target Interactionsmall-molecule binding affinity
+          - small-molecule binding
+          - protein-ligand binding
+          - protein-ligandbinding affinity
+          - binding
 identifiers:
-- id: SMILES
-  type: SMILES
-  description: small-molecule
-- id: Target
-  type: Other
-  description: Target amino acid sequence
+    - id: SMILES
+      type: SMILES
+      description: small-molecule
+    - id: Target
+      type: Other
+      description: Target amino acid sequence
 license: CC BY 4.0
 links:
-- url: https://tdcommons.ai/multi_pred_tasks/dti/
-  description: original data set link
-- url: https://doi.org/10.1093/nar/gkl999
-  description: corresponding publication
+    - url: https://tdcommons.ai/multi_pred_tasks/dti/
+      description: original data set link
+    - url: https://doi.org/10.1093/nar/gkl999
+      description: corresponding publication
 num_points: 52274
 bibtex:
-- |-
-  @article{Liu2006bindingdb,
-              title={BindingDB: a web-accessible database of experimentally determined protein-ligand binding affinities},
-              author={Tiqing Liu, Yuhmei Lin, Xin Wen, Robert N. Jorissen, Micahel, K. Gilson},
-              journal={Journal of Chemical Information and Modeling},
-              volume={35},
-              number={4},
-              pages={D198-D201},
-              year={2006},
-              publisher={Oxford Academic}
-              }
+    - |-
+      @article{Liu2006bindingdb,
+                  title={BindingDB: a web-accessible database of experimentally determined protein-ligand binding affinities},
+                  author={Tiqing Liu, Yuhmei Lin, Xin Wen, Robert N. Jorissen, Micahel, K. Gilson},
+                  journal={Journal of Chemical Information and Modeling},
+                  volume={35},
+                  number={4},
+                  pages={D198-D201},
+                  year={2006},
+                  publisher={Oxford Academic}
+                  }
