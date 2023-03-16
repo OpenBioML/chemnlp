@@ -14,7 +14,7 @@ from chemnlp.data_val.model import Dataset
 
 def get_and_transform_data():
     """Downloads the archived version of ThermoML, extracts it and
-    loops through the provided JSON-LD files to construct a dataframe.
+    parses the provided XML files with thermopyl to construct a flat csv.
 
     """
     # get raw data
