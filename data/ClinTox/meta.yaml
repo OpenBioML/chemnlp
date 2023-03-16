@@ -15,7 +15,10 @@ targets:
           - http://purl.bioontology.org/ontology/MESH/Q000633
           - https://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI_Thesaurus&ns=ncit&code=C27990
           - https://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI_Thesaurus&ns=ncit&code=C27955
-split_col: split
+benchmarks:
+    - name: TDC
+      link: https://tdcommons.ai/
+      split_column: split
 identifiers:
     - id: SMILES
       type: SMILES

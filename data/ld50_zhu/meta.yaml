@@ -27,7 +27,10 @@ license: CC BY 4.0
 links:
     - url: https://doi.org/10.1021/tx900189p
       description: corresponding publication
-split_col: split
+benchmarks:
+    - name: TDC
+      link: https://tdcommons.ai/
+      split_column: split
 num_points: 7385
 url: https://tdcommons.ai/single_pred_tasks/tox/#acute-toxicity-ld50
 bibtex:

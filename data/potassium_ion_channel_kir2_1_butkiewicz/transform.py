@@ -72,7 +72,9 @@ def get_and_transform_data():
                 "description": "SMILES",  # description (optional, except for "Other")
             },
         ],
-        "split_col": "split",
+        "benchmarks": [
+            {"name": "TDC", "link": "https://tdcommons.ai/", "split_column": "split"}
+        ],
         "license": "CC BY 4.0",  # license under which the original dataset was published
         "links": [  # list of relevant links (original dataset, other uses, etc.)
             {

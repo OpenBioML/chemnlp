@@ -84,6 +84,9 @@ def get_and_transform_data():
                 "description": "corresponding publication",
             },
         ],
+        "benchmarks": [
+            {"name": "TDC", "link": "https://tdcommons.ai/", "split_column": "split"}
+        ],
         "num_points": len(df),  # number of datapoints in this dataset
         "url": "https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al",
         "bibtex": [

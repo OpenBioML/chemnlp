@@ -163,7 +163,7 @@ class Benchmark(YamlModel):
 
     """The name of the benchmark, e.g. MoleculeNet."""
     name: str
-    
+
     """The link to the benchmark."""
     link: str
 
