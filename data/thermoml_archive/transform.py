@@ -2,12 +2,13 @@ import hashlib
 import pathlib
 import tarfile
 import warnings
+from typing import BinaryIO
 
 import pandas as pd
 import requests
 import tqdm
 import yaml
-from thermopyl import Parser
+from thermopyl import Parser as ThermoPylParser
 
 from chemnlp.data_val.model import Dataset
 
@@ -17,13 +18,16 @@ def get_and_transform_data():
     parses the provided XML files with thermopyl to construct a flat csv.
 
     """
+
     # get raw data
     fname = "ThermoML.v2020-09-30.tgz"
     download_path = pathlib.Path(__file__).parent / fname
     remote_data_path = f"https://data.nist.gov/od/ds/mds2-2422/{fname}"
     sha256_checksum = "231161b5e443dc1ae0e5da8429d86a88474cb722016e5b790817bb31c58d7ec2"
     final_csv_path = pathlib.Path(__file__).parent / "thermoml_archive.csv"
-    final_expected_csv_checksum = ""
+    final_expected_csv_checksum = (
+        "fc296f47c1877b6ace72f7aa4a80c489b80d0eb25ea3a59885d067e554378b08"
+    )
 
     if not download_path.exists():
         data = requests.get(remote_data_path)
@@ -34,12 +38,10 @@ def get_and_transform_data():
                 f.write(chunk)
 
     # check if checksum is correct
-    sha256 = hashlib.sha256()
     with open(download_path, "rb") as f:
-        for chunk in tqdm.tqdm(iter(lambda: f.read(8192), b""), desc="Checking hash"):
-            sha256.update(chunk)
+        received_hash = _sha256_chunked_file_digest(f)
 
-    if received_hash := sha256.hexdigest() != sha256_checksum:
+    if received_hash != sha256_checksum:
         raise RuntimeError(
             "Downloaded file did not match expected checksum -- "
             "either a new version has been released or something has gone wrong!\n"
@@ -47,24 +49,24 @@ def get_and_transform_data():
             f"Received: {received_hash}"
         )
 
-    # Extract tar.gz archive
-    with tarfile.open(download_path, "r:*") as tar:
-        tar.extractall(pathlib.Path(__file__).parent)
-
     # Loop through journal DOI folders and scrape files
-
     if final_csv_path.exists():
-        sha256 = hashlib.sha256()
         with open(final_csv_path, "rb") as f:
-            for chunk in tqdm.tqdm(
-                iter(lambda: f.read(8192), b""), desc="Checking hash"
-            ):
-                sha256.update(chunk)
-        if sha256.hexdigest() != final_expected_csv_checksum:
+            csv_sha256_checksum = _sha256_chunked_file_digest(f)
+
+        if csv_sha256_checksum != final_expected_csv_checksum:
             warnings.warn(
                 "Old CSV file did not match expected checksum, will try to recreate."
             )
-        final_csv_path.rename(final_csv_path.with_suffix(".old.csv"))
+            final_csv_path.rename(final_csv_path.with_suffix(".old.csv"))
+
+        else:
+            print(f"Correct csv file already available at {final_csv_path}, exiting...")
+            return
+
+    # Extract tar.gz archive
+    with tarfile.open(download_path, "r:*") as tar:
+        tar.extractall(pathlib.Path(__file__).parent)
 
     root_dois = ("10.1007", "10.1016", "10.1021")
 
@@ -77,19 +79,19 @@ def get_and_transform_data():
         ):
             with open(path, "r") as f:
                 try:
-                    pd.DataFrame(Parser(path).parse()).to_csv(final_csv_path, mode="a")
+                    pd.DataFrame(ThermoPylParser(path).parse()).to_csv(
+                        final_csv_path, mode="a"
+                    )
                     num_points += 1
                 except Exception:
                     num_failed += 1
 
     print(f"Ingested {num_points} with {num_failed} failures.")
 
-    sha256 = hashlib.sha256()
     with open(final_csv_path, "rb") as f:
-        for chunk in tqdm.tqdm(iter(lambda: f.read(8192), b""), desc="Checking hash"):
-            sha256.update(chunk)
+        csv_hash = _sha256_chunked_file_digest(f)
 
-    if csv_hash := sha256.hexdigest() != final_expected_csv_checksum:
+    if csv_hash != final_expected_csv_checksum:
         warnings.warn(
             "Final CSV file did not match expected checksum!\n"
             f"Expected: {final_expected_csv_checksum}\n"
@@ -134,6 +136,15 @@ def get_and_transform_data():
     )
     with open("meta.yaml", "w") as f:
         yaml.dump(meta.dict(), f, sort_keys=False)
+
+
+def _sha256_chunked_file_digest(fp: BinaryIO) -> str:
+    """Compute the SHA256 digest of a file in chunks."""
+    sha256 = hashlib.sha256()
+    for chunk in tqdm.tqdm(iter(lambda: fp.read(8192), b""), desc="Checking hash"):
+        sha256.update(chunk)
+
+    return sha256.hexdigest()
 
 
 if __name__ == "__main__":
