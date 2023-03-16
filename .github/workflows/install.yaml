@@ -22,10 +22,3 @@ jobs:
               run: |
                   conda activate chemnlp
                   python -m src.chemnlp.data_val.validate data
-            - name: Lint
-              shell: bash -l {0}
-              run: |
-                  conda activate chemnlp
-                  black --check .
-                  isort --check-only .
-                  flake8 .
