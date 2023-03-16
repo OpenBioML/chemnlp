@@ -13,7 +13,7 @@ targets:
   - https://en.wikipedia.org/wiki/Yield_(chemistry)
 identifiers:
 - id: reaction_SMILES
-  type: SMILES
+  type: RXN-SMILES
   description: reaction SMILES
 license: CC0
 links:
