@@ -1,7 +1,7 @@
 # Suggested data paths when using GPT-NeoX locally
 {
   # see example configs for sampling options
-  "data-path": "/fsx/proj-chemnlp/data/marianna13/chemrxiv",
+  "data-path": "/fsx/proj-chemnlp/data/marianna13/chemrxiv/data_text_document",
 
   "save": "/fsx/proj-chemnlp/experiments/checkpoints/finetuned/pythia-160M",
   "load": "/fsx/proj-chemnlp/experiments/checkpoints/pretrained/pythia-160M",
