@@ -36,9 +36,10 @@ def get_and_transform_data():
 
     # create meta yaml
     meta = {
-        "name": "ClinTox",  # unique identifier, we will also use this for directory names
-        "description": """The ClinTox dataset includes drugs that have failed clinical trials \
-        for toxicity reasons and also drugs that are associated with successful trials.""",
+        "name": "clintox",  # unique identifier, we will also use this for directory names
+        "description": """The ClinTox dataset includes drugs that have failed
+        clinical trials for toxicity reasons and also drugs that are associated
+        with successful trials.""",
         "targets": [
             {
                 "id": "clinical_toxicity",  # name of the column in a tabular dataset
