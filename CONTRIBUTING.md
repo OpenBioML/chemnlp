@@ -13,19 +13,7 @@ Please make a [GitHub account](https://github.com/) prior to implementing a data
 
 For code and data contributions, we recommend you creata a [conda environment](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html). If you do not have conda already installed on your system, we recommend installing [miniconda](https://docs.conda.io/en/latest/miniconda.html):
 
-```bash
-conda env create -f conda.yaml  # Creates a conda env
-conda activate chemnlp  # Activate your conda environment
-```
-
-Then, please run
-
-```bash
-pre-commit install
-```
-
-to install the [pre-commit hooks](https://pre-commit.com/). These will automatically format and lint your code upon every commit.
-There might be some warnings, e.g., by `flake8`. If you struggle with them, do not hestiate to contact us.
+To create your developer environment please follow the guidelines in the `Installation and set-up` of [README.md](README.md)
 
 # Implementing a dataset
 
@@ -37,6 +25,7 @@ With "implementing" we mean the following:
 - Make an issue in this repository that you want to add this dataset (we will label this issue and assign it to you)
 - Make a PR that adds in a new folder in `data`
   - `meta.yaml` describing the dataset in the form that `transform.py` produces. We will use this later to construct the prompts.
+    > If your dataset has multiple natural splits (i.e. train, test, validation) you can create a <split>\_meta.yaml for each.
   - `transform.py` Python code that transforms the original dataset (linked in `meta.yaml`) into a form that can be consumed by the loader.
     For tabular datasets that will mostly involve: Removing/merging duplicated entries, renaming columns, dropping unused columns.
     Try to keep the output your `transform.py` uses as lean as possible (i.e. no columns that will not be used).
@@ -222,3 +211,16 @@ Our first experiments will be based on [Pythia model](https://github.com/Eleuthe
 If you are not familiar LLM training have a look at this very good guide: [Large-scale language modeling tutorials with PyTorch from TUNiB](https://nbviewer-org.translate.goog/github/tunib-ai/large-scale-lm-tutorials/blob/main/notebooks/01_introduction.ipynb?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=de&_x_tr_pto=wapp)
 
 Please have a look for the details in the [corresponding section in our proposal](https://docs.google.com/document/d/1C44EKSJRojm39P2CaxnEq-0FGwDRaknKxJ8lZI6xr5M/edit#heading=h.aww08l8o9tti).
+
+## Hugging Face Hub
+
+We have a preference for using the Hugging Face Hub and processing datasets through the [`datasets`](https://github.com/huggingface/datasets) package when storing larger datasets on the [OpenBioML](https://huggingface.co/OpenBioML) hub as it can offer us a lot of nice features such as
+
+- Easy multiprocessing parallelism for data cleaning
+- Version controlling of the datasets as well as our code
+- Easy interface into tokenisation & other aspects for model training
+- Reuse of utility functions once we have a consistent data structure.
+
+However, don't feel pressured to use this if you're more comfortable contributing an external dataset in another format. We are primarily thinking of using this functionality for processed, combined datasets which are ready for training.
+
+Feel free to reach out to one of the team and read [this guide](https://huggingface.co/docs/datasets/upload_dataset#share-a-dataset-to-the-hub) for more information.
