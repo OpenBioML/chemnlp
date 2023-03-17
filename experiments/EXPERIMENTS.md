@@ -17,9 +17,23 @@ running on the cluster.
      dependencies that are in your personal directory into the conda environment.
 
    ```bash
+   # general case
+   source experiments/scripts/stability-cluster/env_creation.sh where/to/store/conda where/to/build/conda/from/
+
    # for creating a personal environment
    source experiments/scripts/stability-cluster/env_creation.sh jack/ jack/
+   ```
 
-   # for creating an experiment environment (usually called by another script)
-   source experiments/scripts/stability-cluster/env_creation.sh experiments/my-experiment jack/
+3. [Running Experiment](stability-cluster/sbatch_run.sh) -
+   runs a GPT-NeoX training pipeline
+
+   - creates a conda environment using the `env_creation.sh` script.
+   - runs the GPT-NeoX `train.py` script using a hardcoded configuration
+
+   ```bash
+   # general case
+   source experiments/scripts/stability-cluster/sbatch_run.sh where/to/store/conda where/to/build/conda/from/ <cluster-config-name.yml> <training-config-name.yml>
+
+   # for typical small model experiments
+   source experiments/scripts/stability-cluster/sbatch_run.sh experiments/my-experiment jack/ cluster_setup.yml 160.yml
    ```
