@@ -34,8 +34,8 @@ num_points: 4200
 bibtex:
     - |-
       @techreport{hersey2015chembl,
-                  title={ChEMBL Deposited Data Set-AZ dataset},
-                  author={Hersey, Anne},
-                  year={2015},
-                  institution={Technical Report, Technical report, EMBL-EBI, 2015. https://www. ebi. ac. uk}
-                  }
+      title={ChEMBL Deposited Data Set-AZ dataset},
+      author={Hersey, Anne},
+      year={2015},
+      institution={Technical Report, Technical report, EMBL-EBI, 2015. https://www. ebi. ac. uk}
+      }
