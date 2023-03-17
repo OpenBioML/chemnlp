@@ -27,5 +27,5 @@ CHEMNLP_PATH=/fsx/proj-chemnlp/$2/chemnlp
 source $CHEMNLP_PATH/experiments/scripts/stability-cluster/env_creation.sh $1 $2
 
 # trigger run
-python3 $CHEMNLP_PATH/gpt-neox/deepy.py $CHEMNLP_PATH/gpt-neox/train.py \
-    --conf_dir $CHEMNLP_PATH/experiments/configs $3 $4
+cd $CHEMNLP_PATH/gpt-neox
+python3 deepy.py train.py  --conf_dir $CHEMNLP_PATH/experiments/configs $3 $4
