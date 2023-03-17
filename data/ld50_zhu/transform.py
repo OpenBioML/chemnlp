@@ -47,9 +47,9 @@ def get_and_transform_data():
     # create meta yaml
     meta = {
         "name": "ld50_zhu",  # unique identifier, we will also use this for directory names
-        "description": """Acute toxicity LD50 measures \
-        the most conservative dose that can lead to lethal adverse effects. \
-        The higher the dose, the more lethal of a drug.""",
+        "description": """Acute toxicity LD50 measures
+the most conservative dose that can lead to lethal adverse effects.
+The higher the dose, the more lethal of a drug.""",
         "targets": [
             {
                 "id": "acute_toxicity",  # name of the column in a tabular dataset
@@ -92,19 +92,19 @@ def get_and_transform_data():
         "url": "https://tdcommons.ai/single_pred_tasks/tox/#acute-toxicity-ld50",
         "bibtex": [
             """@article{Zhu2009,
-              doi = {10.1021/tx900189p},
-              url = {https://doi.org/10.1021/tx900189p},
-              year = {2009},
-              month = oct,
-              publisher = {American Chemical Society ({ACS})},
-              volume = {22},
-              number = {12},
-              pages = {1913--1921},
-              author = {Hao Zhu and Todd M. Martin and Lin Ye and Alexander \
-              Sedykh and Douglas M. Young and Alexander Tropsha},
-              title = {Quantitative Structure-Activity Relationship Modeling \
-                of Rat Acute Toxicity by Oral Exposure},
-              journal = {Chemical Research in Toxicology}}""",
+doi = {10.1021/tx900189p},
+url = {https://doi.org/10.1021/tx900189p},
+year = {2009},
+month = oct,
+publisher = {American Chemical Society ({ACS})},
+volume = {22},
+number = {12},
+pages = {1913--1921},
+author = {Hao Zhu and Todd M. Martin and Lin Ye and Alexander
+Sedykh and Douglas M. Young and Alexander Tropsha},
+title = {Quantitative Structure-Activity Relationship Modeling
+of Rat Acute Toxicity by Oral Exposure},
+journal = {Chemical Research in Toxicology}}""",
         ],
     }
 
