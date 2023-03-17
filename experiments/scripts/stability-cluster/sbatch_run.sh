@@ -15,8 +15,9 @@
 ### This script runs a GPT-NeoX experiments
 ### The first arg ($1) is the prefix directory where the environment is saved
 ### The second arg ($2) is the directory to use when building the environment
-### The third arg ($3) is the name of the cluster configuration
-### The fourth arg ($4) is the name of the training configuration
+### The third arg ($3) is the name of the cluster config
+### The fourth arg ($4) is the name of the training config
+### The fifth arg ($5) is the name of any supplementary config (prompt tuning)
 
 set -ex # allow for exiting based on non-0 codes
 
@@ -28,4 +29,4 @@ source $CHEMNLP_PATH/experiments/scripts/stability-cluster/env_creation.sh $1 $2
 
 # trigger run
 cd $CHEMNLP_PATH/gpt-neox
-python3 deepy.py train.py  --conf_dir $CHEMNLP_PATH/experiments/configs $3 $4
+python3 deepy.py train.py  --conf_dir $CHEMNLP_PATH/experiments/configs $3 $4 $5
