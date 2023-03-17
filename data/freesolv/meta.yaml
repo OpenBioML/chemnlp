@@ -41,5 +41,4 @@ links:
       description: repository with data
 num_points: 642
 bibtex:
-    - "@article{mobley2013experimental,\n            title={Experimental and calculated small molecule hydration free energies},\n            author={Mobley,\
-      \ David L},\n            year={2013}"
+    - "@article{mobley2013experimental,\ntitle={Experimental and calculated small molecule hydration free energies},\nauthor={Mobley, David L},\nyear={2013}"
