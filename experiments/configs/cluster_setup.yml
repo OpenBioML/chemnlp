@@ -13,5 +13,7 @@
   "use_wandb": False, # disabling for now to get rest working
   "wandb_host": "stability.wandb.io/",
   "wandb_project": "LLCheM",
-  "hostfile": "/mock_path"
+
+  "hostfile": "/mock_path",
+  "num_gpus": 1
 }
