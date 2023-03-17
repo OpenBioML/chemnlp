@@ -1,7 +1,9 @@
 ---
 name: clintox
-description: The ClinTox dataset includes drugs that have failed clinical trials for toxicity reasons and also drugs that are associated with successful
-    trials.
+description: |-
+    The ClinTox dataset includes drugs that have failed
+    clinical trials for toxicity reasons and also drugs that are associated
+    with successful trials.
 targets:
     - id: clinical_toxicity
       description: whether it can cause clinical toxicity (1) or not (0).
