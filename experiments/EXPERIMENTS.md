@@ -32,8 +32,8 @@ running on the cluster.
 
    ```bash
    # general case
-   source experiments/scripts/stability-cluster/sbatch_run.sh where/to/store/conda where/to/build/conda/from/ <cluster-config-name.yml> <training-config-name.yml>
+   sbatch experiments/scripts/stability-cluster/sbatch_run.sh where/to/store/conda where/to/build/conda/from/ <cluster-config-name.yml> <training-config-name.yml>
 
    # for typical small model experiments
-   source experiments/scripts/stability-cluster/sbatch_run.sh experiments/my-experiment jack cluster_setup.yml 160M.yml
+   sbatch experiments/scripts/stability-cluster/sbatch_run.sh experiments/my-experiment jack cluster_setup.yml 160M.yml
    ```
