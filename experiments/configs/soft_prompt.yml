@@ -1,0 +1,9 @@
+{
+  # peft method settings
+   "soft_prompt_tuning": {
+      "enabled": True, # also freezes all other parameters
+      "n_tokens": 10,
+      "init_string": "",
+      "init_range": 0.5,
+   }
+}

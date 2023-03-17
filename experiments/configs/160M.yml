@@ -8,14 +8,6 @@
    "pipe-parallel-size": 1,
    "model-parallel-size": 1,
 
-   # peft method settings
-   "soft_prompt_tuning": {
-      "enabled": True, # also freezes all other parameters
-      "n_tokens": 10,
-      "init_string": "",
-      "init_range": 0.5,
-   },
-
    # model settings
    "num-layers": 12,
    "hidden-size": 768,
