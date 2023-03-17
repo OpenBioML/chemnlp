@@ -10,8 +10,8 @@
 
   # "tensorboard-dir": "/fsx/proj-chemnlp/experiments/tensorboard",
   "log-dir": "/fsx/proj-chemnlp/experiments/logs",
-  "use_wandb": False, # disabling for now as unsure how host works
-  "wandb_host": "https://stability.wandb.io/",
+  "use_wandb": False, # disabling for now to get rest working
+  "wandb_host": "stability.wandb.io/",
   "wandb_project": "LLCheM",
   "hostfile": "/mock_path"
 }
