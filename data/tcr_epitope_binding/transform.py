@@ -1,7 +1,7 @@
 def get_and_transform_data():
     # get raw data
     data = TCREpitopeBinding(name = 'weber', path = './data')
-    
+
     split = data.get_split()
     df_train=split['train']
     df_valid=split['valid']
@@ -80,19 +80,19 @@ def get_and_transform_data():
                 "id": "epitope_aa",
                 "type": "Other",
                 "description": "epitope amino acid sequence",
-    
+
             },
             {
                 "id": "tcr",
                 "type": "Other",
                 "description": "hypervariable CDR3 loop",
-    
+
             },
             {
                 "id": "tcr_full",
                 "type": "Other",
                 "description": "tcr full amino acid sequence",
-    
+
             },
         ],
         "license": "CC BY 4.0",  # license under which the original dataset was published
