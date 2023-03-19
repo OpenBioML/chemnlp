@@ -2,18 +2,18 @@ import pandas as pd
 import yaml
 from tdc.multi_pred import DTI
 
-
 def get_and_transform_data():
     # get raw data
     data = DTI(name="BindingDB_Kd")
-    fn_data_original = "data_original.csv"
-    data.get_data().to_csv(fn_data_original, index=False)
+    splits = data.get_split()
+    df_train = splits["train"]
+    df_valid = splits["valid"]
+    df_test = splits["test"]
+    df_train["split"] = "train"
+    df_valid["split"] = "valid"
+    df_test["split"] = "test"
 
-    # create dataframe
-    df = pd.read_csv(
-        fn_data_original,
-        delimiter=",",
-    )  # not necessary but ensure we can load the saved data
+    df = pd.concat([df_train, df_valid, df_test], axis=0)
 
     # check if fields are the same
     fields_orig = df.columns.tolist()
@@ -23,6 +23,7 @@ def get_and_transform_data():
         "Target_ID",
         "Target",
         "Y",
+        "split",
     ]
 
     # overwrite column names = fields
@@ -32,15 +33,16 @@ def get_and_transform_data():
         "target_name",
         "Target_aa",
         "binding",
+        "split"
     ]
     df.columns = fields_clean
 
     # data cleaning
-    """
+    '''
     df.compound_name = (
         df.compound_name.str.strip()
     )  # remove leading and trailing white space characters
-    """
+    '''
     assert not df.duplicated().sum()
 
     # save to csv
@@ -60,13 +62,16 @@ def get_and_transform_data():
                 "id": "binding",  # name of the column in a tabular dataset
                 "description": "small-molecule protein interaction.",  # description of what this column means
                 "units": "Kd",  # units of the values in this column (leave empty if unitless)
-                "type": "continous",  # can be "categorical", "ordinal", "continuous"
+                "type": "regression",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "Drug-Target Interaction" "small-molecule binding affinity",
+                    "Drug-Target Interaction"
+                    "small-molecule binding affinity",
                     "small-molecule binding",
                     "protein-ligand binding",
-                    "protein-ligand" "binding affinity",
+                    "protein-ligand"
+                    "binding affinity",
                     "binding",
+
                 ],
             },
         ],
@@ -80,6 +85,7 @@ def get_and_transform_data():
                 "id": "Target",
                 "type": "Other",
                 "description": "Target amino acid sequence",
+    
             },
         ],
         "license": "CC BY 4.0",  # license under which the original dataset was published
