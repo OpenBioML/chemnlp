@@ -1,18 +1,18 @@
-import pandas as pd
-import yaml
-from tdc.multi_pred import TCREpitopeBinding 
-
 def get_and_transform_data():
     # get raw data
     data = TCREpitopeBinding(name = 'weber', path = './data')
-    fn_data_original = "data_original.csv"
-    data.get_data().to_csv(fn_data_original, index=False)
+    
+    split = data.get_split()
+    df_train=split['train']
+    df_valid=split['valid']
+    df_test=split['test']
+    df_train['split']="train"
+    df_valid['split']="valid"
+    df_test['split']="test"
+    df=pd.concat(df_train,df_valid,df_test,axis=0)
 
     # create dataframe
-    df = pd.read_csv(
-        fn_data_original,
-        delimiter=",",
-    )  # not necessary but ensure we can load the saved data
+ not necessary but ensure we can load the saved data
 
     # check if fields are the same
     fields_orig = df.columns.tolist()
@@ -22,6 +22,7 @@ def get_and_transform_data():
         "tcr",
         "tcr_aa",
         "label",
+        "split"
     ]
 
     # overwrite column names = fields
@@ -31,6 +32,7 @@ def get_and_transform_data():
         "tcr",
         "tcr_full",
         "binding",
+        "split"
     ]
     df.columns = fields_clean
 
@@ -104,6 +106,7 @@ def get_and_transform_data():
                 "description": "corresponding publication",
             },
         ],
+        "split col": "split"
         "num_points": len(df),  # number of datapoints in this dataset
         "bibtex": [
             """@article{weber2021titan,
