@@ -2,6 +2,7 @@ import pandas as pd
 import yaml
 from tdc.multi_pred import DTI
 
+
 def get_and_transform_data():
     # get raw data
     data = DTI(name="BindingDB_Kd")
@@ -33,16 +34,16 @@ def get_and_transform_data():
         "target_name",
         "Target_aa",
         "binding",
-        "split"
+        "split",
     ]
     df.columns = fields_clean
 
     # data cleaning
-    '''
+    """
     df.compound_name = (
         df.compound_name.str.strip()
     )  # remove leading and trailing white space characters
-    '''
+    """
     assert not df.duplicated().sum()
 
     # save to csv
@@ -64,14 +65,11 @@ def get_and_transform_data():
                 "units": "Kd",  # units of the values in this column (leave empty if unitless)
                 "type": "regression",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "Drug-Target Interaction"
-                    "small-molecule binding affinity",
+                    "Drug-Target Interaction" "small-molecule binding affinity",
                     "small-molecule binding",
                     "protein-ligand binding",
-                    "protein-ligand"
-                    "binding affinity",
+                    "protein-ligand" "binding affinity",
                     "binding",
-
                 ],
             },
         ],
@@ -85,7 +83,6 @@ def get_and_transform_data():
                 "id": "Target",
                 "type": "Other",
                 "description": "Target amino acid sequence",
-    
             },
         ],
         "license": "CC BY 4.0",  # license under which the original dataset was published
