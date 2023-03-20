@@ -61,6 +61,15 @@ pip install -e "chemnlp[dev]"  # to install development dependencies
 
 If extra dependencies are required (e.g. for dataset creation) but are not needed for the main package please add to the `pyproject.toml` in the `dataset_creation` variable and ensure this is reflected in the `conda.yml` file.
 
+Then, please run
+
+```bash
+pre-commit install
+```
+
+to install the [pre-commit hooks](https://pre-commit.com/). These will automatically format and lint your code upon every commit.
+There might be some warnings, e.g., by `flake8`. If you struggle with them, do not hestiate to contact us.
+
 **Note**
 
 If working on model training, request access to the `wandb` project `chemnlp`

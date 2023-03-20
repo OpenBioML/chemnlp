@@ -5,30 +5,22 @@ from tdc.single_pred import Tox
 
 def get_and_transform_data():
     # get raw data
-    data = Tox(name="ClinTox")
-    fn_data_original = "data_original.csv"
-    data.get_data().to_csv(fn_data_original, index=False)
+    splits = Tox(name="ClinTox").get_split()
+    df_train = splits["train"]
+    df_valid = splits["valid"]
+    df_test = splits["test"]
+    df_train["split"] = "train"
+    df_valid["split"] = "valid"
+    df_test["split"] = "test"
 
-    # create dataframe
-    df = pd.read_csv(
-        fn_data_original,
-        delimiter=",",
-    )  # not necessary but ensure we can load the saved data
+    df = pd.concat([df_train, df_valid, df_test], axis=0)
 
     # check if fields are the same
     fields_orig = df.columns.tolist()
-    assert fields_orig == [
-        "Drug_ID",
-        "Drug",
-        "Y",
-    ]
+    assert fields_orig == ["Drug_ID", "Drug", "Y", "split"]
 
     # overwrite column names = fields
-    fields_clean = [
-        "compound_id",
-        "SMILES",
-        "clinical_toxicity",
-    ]
+    fields_clean = ["compound_id", "SMILES", "clinical_toxicity", "split"]
     df.columns = fields_clean
 
     # data cleaning
@@ -45,21 +37,27 @@ def get_and_transform_data():
     # create meta yaml
     meta = {
         "name": "ClinTox",  # unique identifier, we will also use this for directory names
-        "description": """The ClinTox dataset includes drugs that have failed clinical trials for toxicity reasons and also drugs that are associated with successful trials.""",
+        "description": """The ClinTox dataset includes drugs that have failed clinical trials \
+        for toxicity reasons and also drugs that are associated with successful trials.""",
         "targets": [
             {
                 "id": "clinical_toxicity",  # name of the column in a tabular dataset
-                "description": "whether it can cause clinical toxicity (1) or not (0).",  # description of what this column means
-                "units": "clinical_toxicity",  # units of the values in this column (leave empty if unitless)
-                "type": "categorical",  # can be "categorical", "ordinal", "continuous"
+                "description": "whether it can cause clinical toxicity (1) or not (0).",
+                "units": None,  # units of the values in this column (leave empty if unitless)
+                "type": "boolean",
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "clinical toxicity",
-                    "toxicity",
-                    "drug Induced clinical toxicity",
-                    "drug failed in clinical trials",
+                    "clinically toxic",
+                    "displaying clinical toxicity",
+                    "toxic",
+                ],
+                "uris": [
+                    "http://purl.bioontology.org/ontology/MESH/Q000633",
+                    "https://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI_Thesaurus&ns=ncit&code=C27990",  # noqa: E501
+                    "https://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI_Thesaurus&ns=ncit&code=C27955",  # noqa: E501
                 ],
             },
         ],
+        "split_col": "split",  # name of the column that contains the split information
         "identifiers": [
             {
                 "id": "SMILES",  # column name
@@ -94,7 +92,9 @@ def get_and_transform_data():
 
     def str_presenter(dumper, data):
         """configures yaml for dumping multiline strings
-        Ref: https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data
+
+        Ref:
+        https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data
         """
         if data.count("\n") > 0:  # check for multiline string
             return dumper.represent_scalar("tag:yaml.org,2002:str", data, style="|")

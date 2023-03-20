@@ -4,11 +4,14 @@ description: Experimental results of octanol/water distribution coefficient (log
 targets:
     - id: exp
       description: experimental results of octanol/water distribution coefficient (logD at pH 7.4)
-      units: logD
+      units:
       type: continuous
       names:
           - octanol/water distribution coefficient (logD at pH 7.4)
           - octanol/water distribution coefficient
+      uris:
+          - http://www.bioassayontology.org/bao#BAO_0002129
+          - http://purl.obolibrary.org/obo/MI_2107
 identifiers:
     - id: SMILES
       type: SMILES

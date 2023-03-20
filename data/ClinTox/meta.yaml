@@ -1,17 +1,21 @@
 ---
 name: ClinTox
-description: The ClinTox dataset includes drugs that have failed clinical trials for toxicity reasons and also drugs that are associated with successful
+description: The ClinTox dataset includes drugs that have failed clinical trials         for toxicity reasons and also drugs that are associated with successful
     trials.
 targets:
     - id: clinical_toxicity
       description: whether it can cause clinical toxicity (1) or not (0).
-      units: clinical_toxicity
-      type: categorical
+      units:
+      type: boolean
       names:
-          - clinical toxicity
-          - toxicity
-          - drug Induced clinical toxicity
-          - drug failed in clinical trials
+          - clinically toxic
+          - displaying clinical toxicity
+          - toxic
+      uris:
+          - http://purl.bioontology.org/ontology/MESH/Q000633
+          - https://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI_Thesaurus&ns=ncit&code=C27990
+          - https://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI_Thesaurus&ns=ncit&code=C27955
+split_col: split
 identifiers:
     - id: SMILES
       type: SMILES
