@@ -34,12 +34,12 @@ def get_and_transform_data():
     # create meta yaml
     meta = {
         "name": "pampa_ncats",  # unique identifier, we will also use this for directory names
-        "description": """PAMPA (parallel artificial membrane permeability assay) is a commonly \
-        employed assay to evaluate drug permeability across the cellular membrane. \
-        PAMPA is a non-cell-based, low-cost and high-throughput alternative to cellular models. \
-        Although PAMPA does not model active and efflux transporters, it still provides permeability values \
-        that are useful for absorption prediction because the majority of drugs are absorbed \
-        by passive diffusion through the membrane.""",
+        "description": """PAMPA (parallel artificial membrane permeability assay) is a commonly
+employed assay to evaluate drug permeability across the cellular membrane.
+PAMPA is a non-cell-based, low-cost and high-throughput alternative to cellular models.
+Although PAMPA does not model active and efflux transporters, it still provides permeability values
+that are useful for absorption prediction because the majority of drugs are absorbed
+by passive diffusion through the membrane.""",
         "targets": [
             {
                 "id": "permeability",  # name of the column in a tabular dataset
@@ -76,16 +76,16 @@ def get_and_transform_data():
         "num_points": len(df),  # number of datapoints in this dataset
         "bibtex": [
             """@article{siramshetty2021validating,
-    title={Validating ADME QSAR Models Using Marketed Drugs},
-    author={Siramshetty, Vishal and Williams, Jordan and Nguyen, DHac-Trung and Neyra, Jorge and Southall,
-    Noel and Math'e, Ewy and Xu, Xin and Shah, Pranav},
-    journal={SLAS DISCOVERY: Advancing the Science of Drug Discovery},
-    volume={26},
-    number={10},
-    pages={1326--1336},
-    year={2021},
-    publisher={SAGE Publications Sage CA: Los Angeles, CA}
-    }""",
+title={Validating ADME QSAR Models Using Marketed Drugs},
+author={Siramshetty, Vishal and Williams, Jordan and Nguyen, DHac-Trung and Neyra, Jorge and Southall,
+Noel and Math'e, Ewy and Xu, Xin and Shah, Pranav},
+journal={SLAS DISCOVERY: Advancing the Science of Drug Discovery},
+volume={26},
+number={10},
+pages={1326--1336},
+year={2021},
+publisher={SAGE Publications Sage CA: Los Angeles, CA}
+}""",
         ],
     }
 
