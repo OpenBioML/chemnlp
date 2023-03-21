@@ -45,3 +45,5 @@ to the core team on Discord.
    # for typical small model soft-prompt experiments
    sbatch experiments/scripts/stability-cluster/sbatch_run.sh experiments/my-experiment jack cluster_setup.yml 160M.yml soft_prompt.yml
    ```
+
+   > To interact with WandB services you need to authenticate yourself as per the [Stability HPC guidelines](https://www.notion.so/stabilityai/Stability-HPC-Cluster-User-Guide-226c46436df94d24b682239472e36843) to append a username + password to your .netrc file.
