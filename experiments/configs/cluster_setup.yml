@@ -13,8 +13,6 @@
   "log_grad_pct_zeros": False,
   "log_param_norm": False,
   "log_grad_norm": False,
-  "log_optimizer_states": False,
-  "log_gradient_noise_scale": False,
 
   "use_wandb": True,
   "wandb_host": "https://stability.wandb.io",
