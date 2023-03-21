@@ -36,9 +36,10 @@ def get_and_transform_data():
 
     # create meta yaml
     meta = {
-        "name": "ClinTox",  # unique identifier, we will also use this for directory names
-        "description": """The ClinTox dataset includes drugs that have failed clinical trials \
-        for toxicity reasons and also drugs that are associated with successful trials.""",
+        "name": "clintox",  # unique identifier, we will also use this for directory names
+        "description": """The ClinTox dataset includes drugs that have failed
+clinical trials for toxicity reasons and also drugs that are associated
+with successful trials.""",
         "targets": [
             {
                 "id": "clinical_toxicity",  # name of the column in a tabular dataset
@@ -76,17 +77,17 @@ def get_and_transform_data():
         "url": "https://tdcommons.ai/single_pred_tasks/tox/#clintox",
         "bibtex": [
             """@article{Gayvert2016,
-              doi = {10.1016/j.chembiol.2016.07.023},
-              url = {https://doi.org/10.1016/j.chembiol.2016.07.023},
-              year = {2016},
-              month = oct,
-              publisher = {Elsevier {BV}},
-              volume = {23},
-              number = {10},
-              pages = {1294--1301},
-              author = {Kaitlyn~M. Gayvert and Neel~S. Madhukar and Olivier Elemento},
-              title = {A Data-Driven Approach to Predicting Successes and Failures of Clinical Trials},
-              journal = {Cell Chemical Biology}}""",
+doi = {10.1016/j.chembiol.2016.07.023},
+url = {https://doi.org/10.1016/j.chembiol.2016.07.023},
+year = {2016},
+month = oct,
+publisher = {Elsevier {BV}},
+volume = {23},
+number = {10},
+pages = {1294--1301},
+author = {Kaitlyn~M. Gayvert and Neel~S. Madhukar and Olivier Elemento},
+title = {A Data-Driven Approach to Predicting Successes and Failures of Clinical Trials},
+journal = {Cell Chemical Biology}}""",
         ],
     }
 

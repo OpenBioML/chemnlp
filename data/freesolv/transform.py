@@ -123,9 +123,9 @@ def get_and_transform_data():
         "num_points": len(df),  # number of datapoints in this dataset
         "bibtex": [
             """@article{mobley2013experimental,
-            title={Experimental and calculated small molecule hydration free energies},
-            author={Mobley, David L},
-            year={2013}""",
+title={Experimental and calculated small molecule hydration free energies},
+author={Mobley, David L},
+year={2013}""",
         ],
     }
     fn_meta = "meta.yaml"

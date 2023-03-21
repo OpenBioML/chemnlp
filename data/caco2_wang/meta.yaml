@@ -1,8 +1,11 @@
 ---
 name: caco2_wang
-description: The human colon epithelial cancer cell line, Caco-2,         is used as an in vitro model to simulate the human intestinal tissue.         The
-    experimental result on the rate of drug passing through         the Caco-2 cells can approximate the rate at which the drug permeates         through
-    the human intestinal tissue.
+description: |-
+    The human colon epithelial cancer cell line, Caco-2,
+    is used as an in vitro model to simulate the human intestinal tissue.
+    The experimental result on the rate of drug passing through
+    the Caco-2 cells can approximate the rate at which the drug permeates
+    through the human intestinal tissue.
 targets:
     - id: permeability
       description: Caco-2 cell effective permeability.
@@ -38,14 +41,14 @@ num_points: 910
 bibtex:
     - |-
       @article{wang2016adme,
-                  title={ADME properties evaluation in drug discovery: prediction of Caco-2 cell permeability
-                  using a combination of NSGA-II and boosting},
-                  author={Wang, Ning-Ning and Dong, Jie and Deng, Yin-Hua and Zhu, Min-Feng and Wen, Ming and Yao,
-                  Zhi-Jiang and Lu, Ai-Ping and Wang, Jian-Bing and Cao, Dong-Sheng},
-                  journal={Journal of Chemical Information and Modeling},
-                  volume={56},
-                  number={4},
-                  pages={763--773},
-                  year={2016},
-                  publisher={ACS Publications}
-                  }
+      title={ADME properties evaluation in drug discovery: prediction of Caco-2 cell permeability
+      using a combination of NSGA-II and boosting},
+      author={Wang, Ning-Ning and Dong, Jie and Deng, Yin-Hua and Zhu, Min-Feng and Wen, Ming and Yao,
+      Zhi-Jiang and Lu, Ai-Ping and Wang, Jian-Bing and Cao, Dong-Sheng},
+      journal={Journal of Chemical Information and Modeling},
+      volume={56},
+      number={4},
+      pages={763--773},
+      year={2016},
+      publisher={ACS Publications}
+      }

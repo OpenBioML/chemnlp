@@ -43,15 +43,12 @@ def get_and_transform_data():
     # create meta yaml
     meta = {
         "name": "m1_muscarinic_receptor_agonists_butkiewicz",
-        "description": """
-        Positive  allosteric modulation of the M1 Muscarinic receptor\
-        screened with AID626. \
-        Confirmed by screen AID 1488.\
-        A second counter screen AID 1741.\
-        The final set of selective positive allosteric modulators of M1\
-        was obtained by removing compounds active in AID 1741 \
-        from the compounds active in AID 1488 resulting in 188 compounds.
-        """,
+        "description": """Positive  allosteric modulation of the M1 Muscarinic
+receptor screened with AID626.  Confirmed by screen AID 1488.  A second
+counter screen AID 1741.  The final set of selective positive
+allosteric modulators of M1 was obtained by removing compounds active
+in AID 1741 from the compounds active in AID 1488 resulting in 188
+compounds.""",
         "targets": [
             {
                 "id": "m1_muscarinic_agonist",
@@ -93,45 +90,45 @@ def get_and_transform_data():
         "url": "https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al",
         "bibtex": [
             """@article{Butkiewicz2013,
-              doi = {10.3390/molecules18010735},
-              url = {https://doi.org/10.3390/molecules18010735},
-              year = {2013},
-              month = jan,
-              publisher = {{MDPI} {AG}},
-              volume = {18},
-              number = {1},
-              pages = {735--756},
-              author = {Mariusz Butkiewicz and Edward Lowe and Ralf Mueller \
-                and Jeffrey Mendenhall and Pedro Teixeira and C. Weaver and Jens Meiler},
-              title = {Benchmarking Ligand-Based Virtual High-Throughput Screening \
-                with the {PubChem} Database},
-              journal = {Molecules}}""",
+doi = {10.3390/molecules18010735},
+url = {https://doi.org/10.3390/molecules18010735},
+year = {2013},
+month = jan,
+publisher = {{MDPI} {AG}},
+volume = {18},
+number = {1},
+pages = {735--756},
+author = {Mariusz Butkiewicz and Edward Lowe and Ralf Mueller
+and Jeffrey Mendenhall and Pedro Teixeira and C. Weaver and Jens Meiler},
+title = {Benchmarking Ligand-Based Virtual High-Throughput Screening
+with the {PubChem} Database},
+journal = {Molecules}}""",
             """@article{Kim2018,
-              doi = {10.1093/nar/gky1033},
-              url = {https://doi.org/10.1093/nar/gky1033},
-              year = {2018},
-              month = oct,
-              publisher = {Oxford University Press ({OUP})},
-              volume = {47},
-              number = {D1},
-              pages = {D1102--D1109},
-              author = {Sunghwan Kim and Jie Chen and Tiejun Cheng and Asta Gindulyte \
-                  and Jia He and Siqian He and Qingliang Li and Benjamin A Shoemaker \
-                    and Paul A Thiessen and Bo Yu and Leonid Zaslavsky and Jian Zhang and Evan E Bolton},
-              title = {{PubChem} 2019 update: improved access to chemical data},
-              journal = {Nucleic Acids Research}}""",
+doi = {10.1093/nar/gky1033},
+url = {https://doi.org/10.1093/nar/gky1033},
+year = {2018},
+month = oct,
+publisher = {Oxford University Press ({OUP})},
+volume = {47},
+number = {D1},
+pages = {D1102--D1109},
+author = {Sunghwan Kim and Jie Chen and Tiejun Cheng and Asta Gindulyte
+and Jia He and Siqian He and Qingliang Li and Benjamin A Shoemaker
+and Paul A Thiessen and Bo Yu and Leonid Zaslavsky and Jian Zhang and Evan E Bolton},
+title = {{PubChem} 2019 update: improved access to chemical data},
+journal = {Nucleic Acids Research}}""",
             """@article{Butkiewicz2017,
-              doi = {},
-              url = {https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5962024/},
-              year = {2017},
-              publisher = {Chem Inform},
-              volume = {3},
-              number = {1},
-              author = {Butkiewicz, M.  and Wang, Y.  and Bryant, S. H.  \
-                and Lowe, E. W.  and Weaver, D. C.  and Meiler, J.},
-              title = {{H}igh-{T}hroughput {S}creening {A}ssay {D}atasets \
-                from the {P}ub{C}hem {D}atabase}},
-              journal = {Chemical Science}}""",
+doi = {},
+url = {https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5962024/},
+year = {2017},
+publisher = {Chem Inform},
+volume = {3},
+number = {1},
+author = {Butkiewicz, M.  and Wang, Y.  and Bryant, S. H.
+and Lowe, E. W.  and Weaver, D. C.  and Meiler, J.},
+title = {{H}igh-{T}hroughput {S}creening {A}ssay {D}atasets
+from the {P}ub{C}hem {D}atabase}},
+journal = {Chemical Science}}""",
         ],
     }
 

@@ -91,11 +91,11 @@ def get_and_transform_data():
         "num_points": len(df),  # number of datapoints in this dataset
         "bibtex": [
             """@techreport{hersey2015chembl,
-            title={ChEMBL Deposited Data Set-AZ dataset},
-            author={Hersey, Anne},
-            year={2015},
-            institution={Technical Report, Technical report, EMBL-EBI, 2015. https://www. ebi. ac. uk}
-            }"""
+title={ChEMBL Deposited Data Set-AZ dataset},
+author={Hersey, Anne},
+year={2015},
+institution={Technical Report, Technical report, EMBL-EBI, 2015. https://www. ebi. ac. uk}
+}""",
         ],
     }
 
