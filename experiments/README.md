@@ -4,6 +4,9 @@ We currently run our large scale experiments on the Stability AI HPC cluster.
 This subdirectory features a few helpful scripts that can help you get up and
 running on the cluster.
 
+If you believe you need access to the cluster for your work please reach out
+to the core team on Discord.
+
 1. [Install Miniconda](stability-cluster/miniconda_install.sh) -
    installs miniconda for your cluster environment.
 
