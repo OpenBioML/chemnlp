@@ -8,8 +8,14 @@
   "finetune": True,
   "checkpoint_validation_with_forward_pass": False,
 
-  # "tensorboard-dir": "/fsx/proj-chemnlp/experiments/tensorboard",
   "log-dir": "/fsx/proj-chemnlp/experiments/logs",
+  "log_interval": 100,
+  "log_grad_pct_zeros": False,
+  "log_param_norm": False,
+  "log_grad_norm": False,
+  "log_optimizer_states": False,
+  "log_gradient_noise_scale": False,
+
   "use_wandb": True,
   "wandb_host": "https://stability.wandb.io",
   "wandb_project": "LLCheM",
