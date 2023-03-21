@@ -19,6 +19,7 @@
   "use_wandb": True,
   "wandb_host": "https://stability.wandb.io",
   "wandb_project": "LLCheM",
+  "wandb_group": "Test Runs",
 
   "hostfile": "/mock_path",
   "num_gpus": 1,
