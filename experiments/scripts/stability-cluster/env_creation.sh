@@ -23,5 +23,9 @@ cd /fsx/proj-chemnlp/$2
 [ ! -d 'chemnlp' ] && git clone --recurse-submodules --remote-submodules git@github.com:OpenBioML/chemnlp.git
 
 ## install
-pip install chemnlp # our repo
-pip install -r chemnlp/gpt-neox/requirements/requirements.txt # base gpt-neox requirements
+pip install -r chemnlp/gpt-neox/requirements/requirements.txt # base gpt-neox reqs
+pip install -r chemnlp/gpt-neox/requirements/requirements-tensorboard.txt # add tensorboard monitorin reqs
+
+## downgrades / pins
+pip install protobuf=="3.20"
+pip install numpy=="1.23"
