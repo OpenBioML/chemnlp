@@ -37,7 +37,6 @@ links:
       description: corresponding publication
     - url: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5962024/
       description: corresponding publication
-split_col: split
 benchmarks:
     - name: TDC
       link: https://tdcommons.ai/

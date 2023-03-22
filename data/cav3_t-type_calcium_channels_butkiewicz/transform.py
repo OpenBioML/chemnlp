@@ -81,7 +81,6 @@ AID 489005 was performed as counter screen validating active compounds of the pr
                 "description": "corresponding publication",
             },
         ],
-        "split_col": "split",  # name of the column that contains the split information
         "benchmarks": [
             {
                 "name": "TDC",
