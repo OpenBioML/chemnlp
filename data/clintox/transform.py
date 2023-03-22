@@ -58,7 +58,6 @@ with successful trials.""",
                 ],
             },
         ],
-        "split_col": "split",  # name of the column that contains the split information
         "benchmarks": [
             {
                 "name": "TDC",
