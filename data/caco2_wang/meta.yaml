@@ -21,9 +21,9 @@ targets:
           - http://www.bioassayontology.org/bao#BAO_0010008
           - http://purl.obolibrary.org/obo/MI_2162
 benchmarks:
-    name: TDC
-    link: https://tdcommons.ai/
-    split_column: split
+    - name: TDC
+      link: https://tdcommons.ai/
+      split_column: split
 identifiers:
     - id: SMILES
       type: SMILES
