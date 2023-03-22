@@ -59,6 +59,13 @@ with successful trials.""",
             },
         ],
         "split_col": "split",  # name of the column that contains the split information
+        "benchmarks": [
+            {
+                "name": "TDC",
+                "link": "https://tdcommons.ai/",
+                "split_column": "split",
+            }
+        ],
         "identifiers": [
             {
                 "id": "SMILES",  # column name
