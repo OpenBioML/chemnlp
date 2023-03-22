@@ -67,7 +67,13 @@ re-confirmation screen AID602208.""",
                 "pubchem_aids": [488975, 493221, 504840, 588401, 493222, 602208],
             },
         ],
-        "split_col": "split",
+        "benchmarks": [
+            {
+                "name": "TDC",
+                "link": "https://tdcommons.ai/",
+                "split_column": "split",
+            }
+        ],
         "identifiers": [
             {
                 "id": "SMILES",  # column name
