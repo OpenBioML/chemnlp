@@ -151,6 +151,19 @@ class Link(YamlModel):
     description: str
 
 
+class Benchmark(YamlModel):
+    """Benchmark information."""
+
+    """The name of the benchmark, e.g. MoleculeNet."""
+    name: str
+
+    """The link to the benchmark."""
+    link: str
+
+    """The name of the column in the dataset that indicates the fold of the data point."""
+    split_column: str
+
+
 class Dataset(YamlModel):
     name: str
     description: str
@@ -162,6 +175,8 @@ class Dataset(YamlModel):
     templates: Optional[List[Template]]
     fields: Optional[Dict[str, TemplateField]]
     links: List[Link]
+
+    benchmarks: Optional[List[Benchmark]]
 
     @validator("num_points")
     def num_points_must_be_positive(cls, v):
