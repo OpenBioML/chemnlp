@@ -17,13 +17,6 @@ class IdentifierEnum(YamlStrEnum):
     other = "Other"
 
 
-class SplitEnum(YamlStrEnum):
-    """Split types."""
-
-    train = "train"
-    valid = "valid"
-    test = "test"
-
 
 class Identifier(YamlModel):
     """Identifier information."""
@@ -169,7 +162,7 @@ class Benchmark(YamlModel):
     link: str
 
     """The name of the column in the dataset that indicates the fold of the data point."""
-    split_column: SplitEnum
+    split_column: str
 
 
 class Dataset(YamlModel):
@@ -184,7 +177,7 @@ class Dataset(YamlModel):
     fields: Optional[Dict[str, TemplateField]]
     links: List[Link]
 
-    benchmarks: Optional[Benchmark]
+    benchmarks: Optional[List[Benchmark]]
 
     @validator("num_points")
     def num_points_must_be_positive(cls, v):
