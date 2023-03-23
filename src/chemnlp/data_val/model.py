@@ -17,7 +17,6 @@ class IdentifierEnum(YamlStrEnum):
     other = "Other"
 
 
-
 class Identifier(YamlModel):
     """Identifier information."""
 
