@@ -5,7 +5,7 @@ SPLITS = ["train", "test", "validation"]
 ORIGINAL_COLUMNS = ["CID", "SMILES", "description"]
 NEW_COLUMNS = ["compound_id", "SMILES", "description"]
 
-META_YAML_PATH = "./data/chebi_20/{split}_meta.yaml"
+META_YAML_PATH = "./data/chebi_20/meta.yaml"
 META_TEMPLATE = {
     "name": "chebi_20",  # unique identifier, we will also use this for directory names
     "description": "A dataset of pairs of natural language descriptions and SMILEs.",
@@ -87,27 +87,22 @@ def clean_dataset(hf_data: datasets.Dataset) -> datasets.Dataset:
     return hf_data.map(remove_whitespace, num_proc=4)
 
 
-def create_meta_yaml(num_points: int, split: str):
+def create_meta_yaml(num_points: int):
     """Create meta configuration file for the dataset"""
     # create meta yaml
     META_TEMPLATE["num_points"] = num_points
-    with open(META_YAML_PATH.format(split=split), "w+") as f:
+    with open(META_YAML_PATH, "w+") as f:
         yaml.dump(META_TEMPLATE, f, sort_keys=False)
-    print(f"Finished processing {split} split of {META_TEMPLATE['name']} dataset!")
-
-
-def get_and_transform_data(split: str, save_yaml: bool = True) -> datasets.Dataset:
-    hf_data = get_dataset(split)
-    hf_data = clean_dataset(hf_data)
-
-    if save_yaml:
-        yaml.add_representer(str, str_presenter)
-        yaml.representer.SafeRepresenter.add_representer(str, str_presenter)
-        create_meta_yaml(hf_data.num_rows, split)
-
-    return hf_data
+    print(f"Finished processing chebi-20 {META_TEMPLATE['name']} dataset!")
 
 
 if __name__ == "__main__":
+    num_samples = 0
     for split in SPLITS:
-        data = get_and_transform_data(split)
+        hf_data_split = get_dataset(split)
+        hf_data_split = clean_dataset(hf_data)
+        num_samples += hf_data_split.num_rows
+
+    yaml.add_representer(str, str_presenter)
+    yaml.representer.SafeRepresenter.add_representer(str, str_presenter)
+    create_meta_yaml(num_samples)
