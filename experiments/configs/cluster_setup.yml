@@ -8,12 +8,17 @@
   "finetune": True,
   "checkpoint_validation_with_forward_pass": False,
 
-  # "tensorboard-dir": "/fsx/proj-chemnlp/experiments/tensorboard",
   "log-dir": "/fsx/proj-chemnlp/experiments/logs",
-  "use_wandb": False, # disabling for now to get rest working
-  "wandb_host": "stability.wandb.io/",
+  "log_interval": 100,
+  "log_grad_pct_zeros": False,
+  "log_param_norm": False,
+  "log_grad_norm": False,
+
+  "use_wandb": True,
+  "wandb_host": "https://stability.wandb.io",
   "wandb_project": "LLCheM",
+  "wandb_group": "Test Runs",
 
   "hostfile": "/mock_path",
-  "num_gpus": 1
+  "num_gpus": 1,
 }

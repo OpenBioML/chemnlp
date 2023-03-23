@@ -24,7 +24,7 @@ cd /fsx/proj-chemnlp/$2
 
 ## install
 pip install -r chemnlp/gpt-neox/requirements/requirements.txt # base gpt-neox reqs
-pip install -r chemnlp/gpt-neox/requirements/requirements-tensorboard.txt # add tensorboard monitorin reqs
+pip install -r chemnlp/gpt-neox/requirements/requirements-wandb.txt # add wand monitoring reqs
 
 ## downgrades / pins
 pip install protobuf=="3.20"
