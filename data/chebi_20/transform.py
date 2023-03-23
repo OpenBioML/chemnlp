@@ -99,9 +99,9 @@ def create_meta_yaml(num_points: int):
 if __name__ == "__main__":
     num_samples = 0
     for split in SPLITS:
-        hf_data_split = get_dataset(split)
-        hf_data_split = clean_dataset(hf_data)
-        num_samples += hf_data_split.num_rows
+        hf_data = get_dataset(split)
+        hf_data_clean = clean_dataset(hf_data)
+        num_samples += hf_data_clean.num_rows
 
     yaml.add_representer(str, str_presenter)
     yaml.representer.SafeRepresenter.add_representer(str, str_presenter)
