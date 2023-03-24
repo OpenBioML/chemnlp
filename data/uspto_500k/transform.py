@@ -59,11 +59,11 @@ def get_and_transform_data():
             },
         ],
         "benchmarks": [
-            {
-                "name": "TDC",  # unique benchmark name
-                "link": "https://tdcommons.ai/",  # benchmark URL
-                "split_column": "split",  # name of the column that contains the split information
-            },
+        {
+            "name": "TDC",  # unique benchmark name
+            "link": "https://tdcommons.ai/",  # benchmark URL
+            "split_column": "split",  # name of the column that contains the split information
+        },
         ],
         "identifiers": [
             {
