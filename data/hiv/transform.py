@@ -5,7 +5,7 @@ from tdc.single_pred import HTS
 
 def get_and_transform_data():
     # get raw data
-    data = HTS(name = 'HIV')
+    data = HTS(name="HIV")
     fn_data_original = "data_original.csv"
     data.get_data().to_csv(fn_data_original, index=False)
 
@@ -31,10 +31,10 @@ def get_and_transform_data():
     ]
     df.columns = fields_clean
 
-#     # data cleaning
-#     df.compound_id = (
-#         df.compound_id.str.strip()
-#     )  # remove leading and trailing white space characters
+    #     # data cleaning
+    #     df.compound_id = (
+    #         df.compound_id.str.strip()
+    #     )  # remove leading and trailing white space characters
 
     assert not df.duplicated().sum()
 
@@ -43,7 +43,7 @@ def get_and_transform_data():
     df.to_csv(fn_data_csv, index=False)
 
     # create meta yaml
-    meta =  {
+    meta = {
         "name": "hiv",  # unique identifier, we will also use this for directory names
         "description": """The HIV dataset was introduced by the Drug Therapeutics Program (DTP)
 AIDS Antiviral Screen, which tested the ability to inhibit HIV replication for
@@ -59,21 +59,20 @@ over 40,000 compounds. From MoleculeNet.""",
                     "HIV Inhibitor",
                     "activity against HIV",
                     "HIV disease",
-                    "HIV"
+                    "HIV",
                 ],
-                "uris":[
-                "https://bioportal.bioontology.org/ontologies/MESH?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FMESH%2FD006678",
+                "uris": [
+                    "https://bioportal.bioontology.org/ontologies/MESH?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FMESH%2FD006678",
                     "https://bioportal.bioontology.org/ontologies/OCHV?p=classes&conceptid=http%3A%2F%2Fsbmi.uth.tmc.edu%2Fontology%2Fochv%236185",
-        ],
-                
+                ],
             },
         ],
         "benchmarks": [
-        {
-            "name": "TDC",  # unique benchmark name
-            "link": "https://tdcommons.ai/",  # benchmark URL
-            "split_column": "split",  # name of the column that contains the split information
-        },
+            {
+                "name": "TDC",  # unique benchmark name
+                "link": "https://tdcommons.ai/",  # benchmark URL
+                "split_column": "split",  # name of the column that contains the split information
+            },
         ],
         "identifiers": [
             {
