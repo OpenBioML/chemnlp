@@ -1,0 +1,87 @@
+name: herg_central
+description: |-
+  Human ether-a-go-go related gene (hERG) is crucial for the coordination
+  of the heart's beating. Thus, if a drug blocks the hERG, it could lead to severe
+  adverse effects. Therefore, reliable prediction of hERG liability in the early
+  stages of drug design is quite important to reduce the risk of cardiotoxicity-related
+  attritions in the later development stages. There are three targets: hERG_at_1microM,
+  hERG_at_10microM, and hERG_inhib.
+targets:
+- id: hERG_at_1uM
+  description: The percent inhibition at a 1microM concentration
+  units: 1microM concentration
+  type: continuous
+  names:
+  - hERG activity
+  - hERG active compound
+  - hERG blocker
+  - Human ether-a-go-go related gene (hERG) blocker
+  - Activity against Human ether-a-go-go related gene (hERG)
+  - hERG at 1microM
+  - hERG activity 1microM
+  - The percent inhibition at a 1microM concentration
+  - Compound percent activity at 1microM
+  uris:
+  - https://bioportal.bioontology.org/ontologies/MI?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_2136
+- id: hERG_at_10uM
+  description: The percent inhibition at a 10microM concentration
+  units: 1microM concentration
+  type: continuous
+  names:
+  - hERG activity
+  - hERG active compound
+  - hERG blocker
+  - Human ether-a-go-go related gene (hERG) blocker
+  - Activity against Human ether-a-go-go related gene (hERG)
+  - hERG at 10microM
+  - hERG activity 10microM
+  - The percent inhibition at a 10microM concentration
+  - Compound percent activity at 10microM
+  uris:
+  - https://bioportal.bioontology.org/ontologies/MI?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_2136
+- id: hERG_inhib
+  description: whether it blocks (1) or not blocks (0). This is equivalent to whether
+    hERG_at_10microM < -50, i.e. whether the compound has an IC50 of less than 10microM.
+  units: 1microM concentration
+  type: categorical
+  names:
+  - hERG activity
+  - hERG active compound
+  - hERG blocker
+  - Human ether-a-go-go related gene (hERG) blocker
+  - Activity against Human ether-a-go-go related gene (hERG)
+  uris:
+  - https://bioportal.bioontology.org/ontologies/MI?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_2136
+benchmarks:
+- name: TDC
+  link: https://tdcommons.ai/
+  split_column: split
+identifiers:
+- id: SMILES
+  type: SMILES
+  description: SMILES
+license: CC BY 4.0
+links:
+- url: https://doi.org/10.1089/adt.2011.0425
+  description: corresponding publication
+- url: https://bbirnbaum.com/
+  description: TDC Contributer
+- url: https://tdcommons.ai/single_pred_tasks/tox/#herg-central
+  description: Data source
+num_points: 306893
+bibtex:
+- |-
+  @article{Du2011,
+  doi = {10.1089/adt.2011.0425},
+  url = {https://doi.org/10.1089/adt.2011.0425},
+  year = {2011},
+  month = dec,
+  publisher = {Mary Ann Liebert Inc},
+  volume = {9},
+  number = {6},
+  pages = {580--588},
+  author = {Fang Du and Haibo Yu and Beiyan Zou and Joseph Babcock
+  and Shunyou Long and Min Li},
+  title = {hERGCentral: A Large Database to Store,  Retrieve,  and Analyze Compound Human
+  Ether-a-go-go Related Gene Channel Interactions to Facilitate Cardiotoxicity Assessment in Drug Development},
+  journal = {ASSAY and Drug Development Technologies}
