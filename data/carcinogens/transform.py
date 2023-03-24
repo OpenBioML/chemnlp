@@ -5,7 +5,7 @@ from tdc.single_pred import Tox
 
 def get_and_transform_data():
     # get raw data
-    data = Tox(name = 'Carcinogens_Lagunin')
+    data = Tox(name="Carcinogens_Lagunin")
     fn_data_original = "data_original.csv"
     data.get_data().to_csv(fn_data_original, index=False)
 
@@ -24,7 +24,7 @@ def get_and_transform_data():
     ]
 
     # overwrite column names = fields
-    fields_clean =[
+    fields_clean = [
         "compound_id",
         "SMILES",
         "carcinogen",
@@ -32,9 +32,9 @@ def get_and_transform_data():
     df.columns = fields_clean
 
     # data cleaning
-#     df.compound_id = (
-#         df.compound_id.str.strip()
-#     )  # remove leading and trailing white space characters
+    #     df.compound_id = (
+    #         df.compound_id.str.strip()
+    #     )  # remove leading and trailing white space characters
 
     assert not df.duplicated().sum()
 
@@ -43,28 +43,28 @@ def get_and_transform_data():
     df.to_csv(fn_data_csv, index=False)
 
     # create meta yaml
-    meta =  {
+    meta = {
         "name": "carcinogens",  # unique identifier, we will also use this for directory names
         "description": """A carcinogen is any substance, radionuclide, or radiation that promotes
 carcinogenesis, the formation of cancer. This may be due to the ability to damage
 the genome or to the disruption of cellular metabolic processes.""",
         "targets": [
             {
-        "id": "carcinogen",  # name of the column in a tabular dataset
-        "description": "whether it can cause carcinogen (1) or not (0).",
-        "units": "carcinogen",  # units of the values in this column (leave empty if unitless)
-        "type": "categorical",  # can be "categorical", "ordinal", "continuous"
-        "names": [  # names for the property (to sample from for building the prompts)
-            "carcinogen",
-            "promotes carcinogenesis",
-            "carcinogenesis",
-            "any substance, radionuclide, or radiation that promotes carcinogenesis",
-            "damage the genome",
-            "substance promotes carcinogenesis"
+                "id": "carcinogen",  # name of the column in a tabular dataset
+                "description": "whether it can cause carcinogen (1) or not (0).",
+                "units": "carcinogen",  # units of the values in this column (leave empty if unitless)
+                "type": "categorical",  # can be "categorical", "ordinal", "continuous"
+                "names": [  # names for the property (to sample from for building the prompts)
+                    "carcinogen",
+                    "promotes carcinogenesis",
+                    "carcinogenesis",
+                    "any substance, radionuclide, or radiation that promotes carcinogenesis",
+                    "damage the genome",
+                    "substance promotes carcinogenesis",
                 ],
-                "uris":[
-                "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C347",
-                 "https://bioportal.bioontology.org/ontologies/SNOMEDCT?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FSNOMEDCT%2F88376000"
+                "uris": [
+                    "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C347",
+                    "https://bioportal.bioontology.org/ontologies/SNOMEDCT?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FSNOMEDCT%2F88376000",
                 ],
             },
         ],
