@@ -5,7 +5,7 @@ from tdc.single_pred import HTS
 
 def get_and_transform_data():
     # get raw data
-    data = HTS(name = 'SARSCoV2_Vitro_Touret')
+    data = HTS(name="SARSCoV2_Vitro_Touret")
     fn_data_original = "data_original.csv"
     data.get_data().to_csv(fn_data_original, index=False)
 
@@ -31,10 +31,10 @@ def get_and_transform_data():
     ]
     df.columns = fields_clean
 
-#     # data cleaning
-#     df.compound_id = (
-#         df.compound_id.str.strip()
-#     )  # remove leading and trailing white space characters
+    #     # data cleaning
+    #     df.compound_id = (
+    #         df.compound_id.str.strip()
+    #     )  # remove leading and trailing white space characters
 
     assert not df.duplicated().sum()
 
@@ -43,7 +43,7 @@ def get_and_transform_data():
     df.to_csv(fn_data_csv, index=False)
 
     # create meta yaml
-    meta =  {
+    meta = {
         "name": "SARSCoV2_Vitro_Touret",  # unique identifier, we will also use this for directory names
         "description": """An in-vitro screen of the Prestwick chemical library composed of 1,480 approved drugs in an infected cell-based assay. From MIT AiCures.""",
         "targets": [
@@ -58,11 +58,11 @@ def get_and_transform_data():
                     "activity against SARSCoV2",
                     "COVID19",
                     "Coronavirus disease",
-                    "Activity vs Coronavirus"
+                    "Activity vs Coronavirus",
                 ],
-                "uris":[
-                "https://bioportal.bioontology.org/ontologies/DOID?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0080600",
-        ],
+                "uris": [
+                    "https://bioportal.bioontology.org/ontologies/DOID?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0080600",
+                ],
             },
         ],
         "identifiers": [
