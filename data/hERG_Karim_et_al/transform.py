@@ -5,7 +5,7 @@ from tdc.single_pred import Tox
 
 def get_and_transform_data():
     # get raw data
-    data = Tox(name = 'hERG_Karim')
+    data = Tox(name="hERG_Karim")
     fn_data_original = "data_original.csv"
     data.get_data().to_csv(fn_data_original, index=False)
 
@@ -32,9 +32,9 @@ def get_and_transform_data():
     df.columns = fields_clean
 
     # data cleaning
-#     df.compound_name = (
-#         df.compound_name.str.strip()
-#     )  
+    #     df.compound_name = (
+    #         df.compound_name.str.strip()
+    #     )
     # remove leading and trailing white space characters
 
     assert not df.duplicated().sum()
@@ -61,9 +61,9 @@ def get_and_transform_data():
                     "Human ether-a-go-go related gene (hERG) blocker",
                     "Activity against Human ether-a-go-go related gene (hERG)",
                 ],
-                "uris":[
-                "https://bioportal.bioontology.org/ontologies/MI?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_2136",
-        ],
+                "uris": [
+                    "https://bioportal.bioontology.org/ontologies/MI?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_2136",
+                ],
             },
         ],
         "identifiers": [
@@ -82,7 +82,7 @@ def get_and_transform_data():
             {
                 "url": "https://tdcommons.ai/single_pred_tasks/tox/#herg-karim-et-al",
                 "description": "Data source",
-            },            
+            },
         ],
         "num_points": len(df),  # number of datapoints in this dataset
         "bibtex": [
