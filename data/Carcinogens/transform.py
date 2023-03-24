@@ -5,7 +5,7 @@ from tdc.single_pred import Tox
 
 def get_and_transform_data():
     # get raw data
-    data = Tox(name = 'Carcinogens_Lagunin')
+    data = Tox(name="Carcinogens_Lagunin")
     fn_data_original = "data_original.csv"
     data.get_data().to_csv(fn_data_original, index=False)
 
@@ -24,7 +24,7 @@ def get_and_transform_data():
     ]
 
     # overwrite column names = fields
-    fields_clean =[
+    fields_clean = [
         "compound_id",
         "SMILES",
         "carcinogen",
@@ -32,9 +32,9 @@ def get_and_transform_data():
     df.columns = fields_clean
 
     # data cleaning
-#     df.compound_id = (
-#         df.compound_id.str.strip()
-#     )  # remove leading and trailing white space characters
+    #     df.compound_id = (
+    #         df.compound_id.str.strip()
+    #     )  # remove leading and trailing white space characters
 
     assert not df.duplicated().sum()
 
@@ -43,7 +43,7 @@ def get_and_transform_data():
     df.to_csv(fn_data_csv, index=False)
 
     # create meta yaml
-    meta =  {
+    meta = {
         "name": "Carcinogens",  # unique identifier, we will also use this for directory names
         "description": """A carcinogen is any substance, radionuclide, or radiation that promotes carcinogenesis, the formation of cancer. This may be due to the ability to damage the genome or to the disruption of cellular metabolic processes.""",
         "targets": [
@@ -58,11 +58,11 @@ def get_and_transform_data():
                     "carcinogenesis",
                     "any substance, radionuclide, or radiation that promotes carcinogenesis",
                     "damage the genome",
-                    "substance promotes carcinogenesis"
+                    "substance promotes carcinogenesis",
                 ],
-                "uris":[
-                "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C347",
-                 "https://bioportal.bioontology.org/ontologies/SNOMEDCT?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FSNOMEDCT%2F88376000"
+                "uris": [
+                    "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C347",
+                    "https://bioportal.bioontology.org/ontologies/SNOMEDCT?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FSNOMEDCT%2F88376000",
                 ],
             },
         ],
@@ -101,8 +101,7 @@ def get_and_transform_data():
           pages = {806--810},
           author = {Alexey Lagunin and Dmitrii Filimonov and Alexey Zakharov and Wei Xie and Ying Huang and Fucheng Zhu and Tianxiang Shen and Jianhua Yao and Vladimir Poroikov},
           title = {Computer-Aided Prediction of Rodent Carcinogenicity by {PASS} and {CISOC}-{PSCT}},
-          journal = {{QSAR} {\&}amp$\mathsemicolon$ Combinatorial Science}}"""
-            ,
+          journal = {{QSAR} {\&}amp$\mathsemicolon$ Combinatorial Science}}""",
             """@article{Cheng2012,
               doi = {10.1021/ci300367a},
               url = {https://doi.org/10.1021/ci300367a},

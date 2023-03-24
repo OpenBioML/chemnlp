@@ -1,59 +1,59 @@
+---
 name: Carcinogens
-description: A carcinogen is any substance, radionuclide, or radiation that promotes
-  carcinogenesis, the formation of cancer. This may be due to the ability to damage
-  the genome or to the disruption of cellular metabolic processes.
+description: A carcinogen is any substance, radionuclide, or radiation that promotes carcinogenesis, the formation of cancer. This may be due to the ability
+    to damage the genome or to the disruption of cellular metabolic processes.
 targets:
-- id: carcinogen
-  description: whether it can cause carcinogen (1) or not (0).
-  units: carcinogen
-  type: categorical
-  names:
-  - carcinogen
-  - promotes carcinogenesis
-  - carcinogenesis
-  - any substance, radionuclide, or radiation that promotes carcinogenesis
-  - damage the genome
-  - substance promotes carcinogenesis
-  uris:
-  - https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C347
-  - https://bioportal.bioontology.org/ontologies/SNOMEDCT?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FSNOMEDCT%2F88376000
+    - id: carcinogen
+      description: whether it can cause carcinogen (1) or not (0).
+      units: carcinogen
+      type: categorical
+      names:
+          - carcinogen
+          - promotes carcinogenesis
+          - carcinogenesis
+          - any substance, radionuclide, or radiation that promotes carcinogenesis
+          - damage the genome
+          - substance promotes carcinogenesis
+      uris:
+          - https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C347
+          - https://bioportal.bioontology.org/ontologies/SNOMEDCT?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FSNOMEDCT%2F88376000
 identifiers:
-- id: SMILES
-  type: SMILES
-  description: SMILES
+    - id: SMILES
+      type: SMILES
+      description: SMILES
 license: CC BY 4.0
 links:
-- url: https://doi.org/10.1002/qsar.200860192
-  description: corresponding publication
-- url: https://doi.org/10.1021/ci300367a
-  description: corresponding publication
-- url: https://tdcommons.ai/single_pred_tasks/tox/#carcinogens
-  description: Data source
+    - url: https://doi.org/10.1002/qsar.200860192
+      description: corresponding publication
+    - url: https://doi.org/10.1021/ci300367a
+      description: corresponding publication
+    - url: https://tdcommons.ai/single_pred_tasks/tox/#carcinogens
+      description: Data source
 num_points: 280
 bibtex:
-- |-
-  @article{Lagunin2009,
-            doi = {10.1002/qsar.200860192},
-            url = {https://doi.org/10.1002/qsar.200860192},
-            year = {2009},
-            month = jun,
-            publisher = {Wiley},
-            volume = {28},
-            number = {8},
-            pages = {806--810},
-            author = {Alexey Lagunin and Dmitrii Filimonov and Alexey Zakharov and Wei Xie and Ying Huang and Fucheng Zhu and Tianxiang Shen and Jianhua Yao and Vladimir Poroikov},
-            title = {Computer-Aided Prediction of Rodent Carcinogenicity by {PASS} and {CISOC}-{PSCT}},
-            journal = {{QSAR} {\&}amp$\mathsemicolon$ Combinatorial Science}}
-- |-
-  @article{Cheng2012,
-                doi = {10.1021/ci300367a},
-                url = {https://doi.org/10.1021/ci300367a},
-                year = {2012},
-                month = nov,
-                publisher = {American Chemical Society ({ACS})},
-                volume = {52},
-                number = {11},
-                pages = {3099--3105},
-                author = {Feixiong Cheng and Weihua Li and Yadi Zhou and Jie Shen and Zengrui Wu and Guixia Liu and Philip W. Lee and Yun Tang},
-                title = {{admetSAR}: A Comprehensive Source and Free Tool for Assessment of Chemical {ADMET} Properties},
-                journal = {Journal of Chemical Information and Modeling}}
+    - |-
+      @article{Lagunin2009,
+                doi = {10.1002/qsar.200860192},
+                url = {https://doi.org/10.1002/qsar.200860192},
+                year = {2009},
+                month = jun,
+                publisher = {Wiley},
+                volume = {28},
+                number = {8},
+                pages = {806--810},
+                author = {Alexey Lagunin and Dmitrii Filimonov and Alexey Zakharov and Wei Xie and Ying Huang and Fucheng Zhu and Tianxiang Shen and Jianhua Yao and Vladimir Poroikov},
+                title = {Computer-Aided Prediction of Rodent Carcinogenicity by {PASS} and {CISOC}-{PSCT}},
+                journal = {{QSAR} {\&}amp$\mathsemicolon$ Combinatorial Science}}
+    - |-
+      @article{Cheng2012,
+                    doi = {10.1021/ci300367a},
+                    url = {https://doi.org/10.1021/ci300367a},
+                    year = {2012},
+                    month = nov,
+                    publisher = {American Chemical Society ({ACS})},
+                    volume = {52},
+                    number = {11},
+                    pages = {3099--3105},
+                    author = {Feixiong Cheng and Weihua Li and Yadi Zhou and Jie Shen and Zengrui Wu and Guixia Liu and Philip W. Lee and Yun Tang},
+                    title = {{admetSAR}: A Comprehensive Source and Free Tool for Assessment of Chemical {ADMET} Properties},
+                    journal = {Journal of Chemical Information and Modeling}}
