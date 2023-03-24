@@ -80,7 +80,10 @@ def get_and_transform_data(
     # These are the only output columns
     cols_to_write = ["smiles", "flashpoint"]
 
-    processed_df[cols_to_write].to_csv(output_data_path, index=False)
+    processed_df = processed_df[cols_to_write]
+    processed_df.columns = ["SMILES", "flashpoint"]
+
+    processed_df.to_csv(output_data_path, index=False)
     print(
         f"Finished processing {dataset_name} dataset! ({len(processed_df)} datapoints)"
     )
