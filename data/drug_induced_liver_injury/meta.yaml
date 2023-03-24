@@ -1,51 +1,52 @@
+---
 name: drug_induced_liver_injury
 description: |-
-  Drug-induced liver injury (DILI) is fatal liver disease caused by drugs
-  and it has been the single most frequent cause of safety-related drug marketing
-  withdrawals for the past 50 years (e.g. iproniazid, ticrynafen, benoxaprofen).
-  This dataset is aggregated from U.S. FDA 2019s National Center for Toxicological
-  Research.
+    Drug-induced liver injury (DILI) is fatal liver disease caused by drugs
+    and it has been the single most frequent cause of safety-related drug marketing
+    withdrawals for the past 50 years (e.g. iproniazid, ticrynafen, benoxaprofen).
+    This dataset is aggregated from U.S. FDA 2019s National Center for Toxicological
+    Research.
 targets:
-- id: mutagenic
-  description: whether it can cause liver injury (1) or not (0).
-  units: liver_injury
-  type: categorical
-  names:
-  - DILI
-  - liver injury
-  - Drug Induced Liver Injury
-  - fatal liver disease caused by drugs
-  - liver toxicity
-  uris:
-  - https://bioportal.bioontology.org/ontologies/MEDDRA?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FMEDDRA%2F10072268
-  - https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C84427
+    - id: mutagenic
+      description: whether it can cause liver injury (1) or not (0).
+      units: liver_injury
+      type: categorical
+      names:
+          - DILI
+          - liver injury
+          - Drug Induced Liver Injury
+          - fatal liver disease caused by drugs
+          - liver toxicity
+      uris:
+          - https://bioportal.bioontology.org/ontologies/MEDDRA?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FMEDDRA%2F10072268
+          - https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C84427
 benchmarks:
-- name: TDC
-  link: https://tdcommons.ai/
-  split_column: split
+    - name: TDC
+      link: https://tdcommons.ai/
+      split_column: split
 identifiers:
-- id: SMILES
-  type: SMILES
-  description: SMILES
+    - id: SMILES
+      type: SMILES
+      description: SMILES
 license: CC BY 4.0
 links:
-- url: https://doi.org/10.1021/acs.jcim.5b00238
-  description: corresponding publication
-- url: https://tdcommons.ai/single_pred_tasks/tox/#dili-drug-induced-liver-injury
-  description: Data source
+    - url: https://doi.org/10.1021/acs.jcim.5b00238
+      description: corresponding publication
+    - url: https://tdcommons.ai/single_pred_tasks/tox/#dili-drug-induced-liver-injury
+      description: Data source
 num_points: 475
 bibtex:
-- |-
-  @article{Xu2015,
-  doi = {10.1021/acs.jcim.5b00238},
-  url = {https://doi.org/10.1021/acs.jcim.5b00238},
-  year = {2015},
-  month = oct,
-  publisher = {American Chemical Society (ACS)},
-  volume = {55},
-  number = {10},
-  pages = {2085-2093},
-  author = {Youjun Xu and Ziwei Dai and Fangjin Chen
-  and Shuaishi Gao and Jianfeng Pei and Luhua Lai},
-  title = {Deep Learning for Drug-Induced Liver Injury},
-  journal = {Journal of Chemical Information and Modeling}
+    - |-
+      @article{Xu2015,
+      doi = {10.1021/acs.jcim.5b00238},
+      url = {https://doi.org/10.1021/acs.jcim.5b00238},
+      year = {2015},
+      month = oct,
+      publisher = {American Chemical Society (ACS)},
+      volume = {55},
+      number = {10},
+      pages = {2085-2093},
+      author = {Youjun Xu and Ziwei Dai and Fangjin Chen
+      and Shuaishi Gao and Jianfeng Pei and Luhua Lai},
+      title = {Deep Learning for Drug-Induced Liver Injury},
+      journal = {Journal of Chemical Information and Modeling}
