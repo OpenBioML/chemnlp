@@ -55,7 +55,7 @@ The dataset is aggregated from four papers.""",
         "targets": [
             {
                 "id": "mutagenic",  # name of the column in a tabular dataset
-                "description": "whether it is mutagenic (1) or not mutagenic (0)",  # description of what this column means
+                "description": "whether it is mutagenic (1) or not mutagenic (0)",
                 "units": "mutagenic",  # units of the values in this column (leave empty if unitless)
                 "type": "categorical",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
