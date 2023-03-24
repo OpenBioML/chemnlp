@@ -1,18 +1,20 @@
+import os
+
 import pandas as pd
 import yaml
 from tdc.single_pred import Tox
 from tdc.utils import retrieve_label_name_list
-import os
+
 
 def get_and_transform_data():
     # get raw data
-    target_folder = 'Tox21'
-    label_list = retrieve_label_name_list(f'{target_folder}')
-    target_subfolder = f'{label_list[6]}'
-    data = Tox(name = f'{target_folder}', label_name = target_subfolder)
+    target_folder = "Tox21"
+    label_list = retrieve_label_name_list(f"{target_folder}")
+    target_subfolder = f"{label_list[6]}"
+    data = Tox(name=f"{target_folder}", label_name=target_subfolder)
     fn_data_original = "data_original.csv"
     data.get_data().to_csv(fn_data_original, index=False)
-    
+
     # create dataframe
     df = pd.read_csv(
         fn_data_original,
@@ -27,25 +29,24 @@ def get_and_transform_data():
         "Y",
     ]
 
-
     # overwrite column names = fields
-    fields_clean =['compound_id', 'SMILES', f'toxicity_{target_subfolder}']
+    fields_clean = ["compound_id", "SMILES", f"toxicity_{target_subfolder}"]
     df.columns = fields_clean
 
     # data cleaning
-#     df.compound_name = (
-#         df.compound_name.str.strip()
-#     )  
+    #     df.compound_name = (
+    #         df.compound_name.str.strip()
+    #     )
     # remove leading and trailing white space characters
     df = df.dropna()
     assert not df.duplicated().sum()
-    
+
     # save to csv
     fn_data_csv = "data_clean.csv"
     df.to_csv(fn_data_csv, index=False)
-    
+
     # create meta yaml
-    meta =  {
+    meta = {
         "name": f"{target_subfolder}",  # unique identifier, we will also use this for directory names
         "description": """Tox21 is a data challenge which contains qualitative toxicity measurements for 7,831 compounds on 12 different targets, such as nuclear receptors and stree response pathways.""",
         "targets": [
@@ -62,15 +63,13 @@ def get_and_transform_data():
                     "NR-Peroxisome proliferator-activated receptor gamma",
                     "Peroxisome proliferator-activated receptor gamma",
                     "Peroxisome proliferator-activated receptor gamma toxicity",
-
                 ],
             },
         ],
-        "uris":[
-                "https://bioportal.bioontology.org/ontologies/CRISP?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FCSP%2F5000-0067",
-                "https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-018-2523-5/tables/3",
-        ]
-        ,
+        "uris": [
+            "https://bioportal.bioontology.org/ontologies/CRISP?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FCSP%2F5000-0067",
+            "https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-018-2523-5/tables/3",
+        ],
         "identifiers": [
             {
                 "id": "SMILES",  # column name
@@ -87,12 +86,11 @@ def get_and_transform_data():
             {
                 "url": "https://tdcommons.ai/single_pred_tasks/tox/#tox21",
                 "description": "data source",
-
             },
             {
-                "url":"https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-018-2523-5/tables/3",
+                "url": "https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-018-2523-5/tables/3",
                 "description": "Assay name",
-            }
+            },
         ],
         "num_points": len(df),  # number of datapoints in this dataset
         "bibtex": [
@@ -108,7 +106,7 @@ def get_and_transform_data():
           journal = {Frontiers in Environmental Science}}""",
         ],
     }
-    
+
     def str_presenter(dumper, data):
         """configures yaml for dumping multiline strings
         Ref: https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data
@@ -126,6 +124,7 @@ def get_and_transform_data():
         yaml.dump(meta, f, sort_keys=False)
 
     print(f"Finished processing {meta['name']} dataset!")
+
 
 if __name__ == "__main__":
     get_and_transform_data()

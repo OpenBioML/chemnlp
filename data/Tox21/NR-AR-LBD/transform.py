@@ -1,18 +1,20 @@
+import os
+
 import pandas as pd
 import yaml
 from tdc.single_pred import Tox
 from tdc.utils import retrieve_label_name_list
-import os
+
 
 def get_and_transform_data():
     # get raw data
-    target_folder = 'Tox21'
-    label_list = retrieve_label_name_list(f'{target_folder}')
-    target_subfolder = f'{label_list[1]}'
-    data = Tox(name = f'{target_folder}', label_name = target_subfolder)
+    target_folder = "Tox21"
+    label_list = retrieve_label_name_list(f"{target_folder}")
+    target_subfolder = f"{label_list[1]}"
+    data = Tox(name=f"{target_folder}", label_name=target_subfolder)
     fn_data_original = "data_original.csv"
     data.get_data().to_csv(fn_data_original, index=False)
-    
+
     # create dataframe
     df = pd.read_csv(
         fn_data_original,
@@ -27,28 +29,27 @@ def get_and_transform_data():
         "Y",
     ]
 
-
     # overwrite column names = fields
-    fields_clean =['compound_id', 'SMILES', f'toxicity_{target_subfolder}']
+    fields_clean = ["compound_id", "SMILES", f"toxicity_{target_subfolder}"]
     df.columns = fields_clean
 
     # data cleaning
-#     df.compound_name = (
-#         df.compound_name.str.strip()
-#     )  
+    #     df.compound_name = (
+    #         df.compound_name.str.strip()
+    #     )
     # remove leading and trailing white space characters
 
     assert not df.duplicated().sum()
-    
+
     # save to csv
     fn_data_csv = "data_clean.csv"
     df.to_csv(fn_data_csv, index=False)
-    
+
     # create meta yaml
-    meta =  {
-    "name": f"{target_subfolder}",  # unique identifier, we will also use this for directory names
-    "description": """Tox21 is a data challenge which contains qualitative toxicity measurements for 7,831 compounds on 12 different targets, such as nuclear receptors and stree response pathways.""",
-    "targets": [
+    meta = {
+        "name": f"{target_subfolder}",  # unique identifier, we will also use this for directory names
+        "description": """Tox21 is a data challenge which contains qualitative toxicity measurements for 7,831 compounds on 12 different targets, such as nuclear receptors and stree response pathways.""",
+        "targets": [
             {
                 "id": f"toxicity_{target_subfolder}",  # name of the column in a tabular dataset
                 "description": "whether it toxic in a specific assay (1) or not toxic (0)",  # description of what this column means
@@ -62,15 +63,13 @@ def get_and_transform_data():
                     "androgen receptor-ligand binding domain",
                     "androgen receptor-ligand binding domain assay",
                     "androgen receptor-ligand binding domain toxicity",
-
                 ],
             },
         ],
-        "uris":[
-                "https://bioportal.bioontology.org/ontologies/ORDO/?p=classes&conceptid=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_132285",
-                "https://bioportal.bioontology.org/ontologies/GO?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0050693"
-        ]
-        ,
+        "uris": [
+            "https://bioportal.bioontology.org/ontologies/ORDO/?p=classes&conceptid=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_132285",
+            "https://bioportal.bioontology.org/ontologies/GO?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0050693",
+        ],
         "identifiers": [
             {
                 "id": "SMILES",  # column name
@@ -87,12 +86,11 @@ def get_and_transform_data():
             {
                 "url": "https://tdcommons.ai/single_pred_tasks/tox/#tox21",
                 "description": "data source",
-
             },
             {
-                "url":"https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-018-2523-5/tables/3",
+                "url": "https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-018-2523-5/tables/3",
                 "description": "Assay name",
-            }
+            },
         ],
         "num_points": len(df),  # number of datapoints in this dataset
         "bibtex": [
@@ -126,6 +124,7 @@ def get_and_transform_data():
         yaml.dump(meta, f, sort_keys=False)
 
     print(f"Finished processing {meta['name']} dataset!")
+
 
 if __name__ == "__main__":
     get_and_transform_data()
