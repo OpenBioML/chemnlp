@@ -5,7 +5,7 @@ from tdc.single_pred import HTS
 
 def get_and_transform_data():
     # get raw data
-    data = HTS(name = 'SARSCoV2_3CLPro_Diamond')
+    data = HTS(name="SARSCoV2_3CLPro_Diamond")
     fn_data_original = "data_original.csv"
     data.get_data().to_csv(fn_data_original, index=False)
 
@@ -31,10 +31,10 @@ def get_and_transform_data():
     ]
     df.columns = fields_clean
 
-#     # data cleaning
-#     df.compound_id = (
-#         df.compound_id.str.strip()
-#     )  # remove leading and trailing white space characters
+    #     # data cleaning
+    #     df.compound_id = (
+    #         df.compound_id.str.strip()
+    #     )  # remove leading and trailing white space characters
 
     assert not df.duplicated().sum()
 
@@ -43,7 +43,7 @@ def get_and_transform_data():
     df.to_csv(fn_data_csv, index=False)
 
     # create meta yaml
-    meta =  {
+    meta = {
         "name": "sarscov2_3clpro_diamond",  # unique identifier, we will also use this for directory names
         "description": """A large XChem crystallographic fragment screen against SARS-CoV-2
 main protease at high resolution. From MIT AiCures.""",
@@ -60,17 +60,17 @@ main protease at high resolution. From MIT AiCures.""",
                     "3CL Protease",
                     "activity against Coronavirus disease",
                 ],
-             "uris":[
-                "https://bioportal.bioontology.org/ontologies/HOIP?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FHOIP%2FHOIP_0038025",
-                "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C171532",
-               ],
+                "uris": [
+                    "https://bioportal.bioontology.org/ontologies/HOIP?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FHOIP%2FHOIP_0038025",
+                    "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C171532",
+                ],
             },
         ],
         "benchmarks": [
             {
-        "name": "TDC",  # unique benchmark name
-        "link": "https://tdcommons.ai/",  # benchmark URL
-        "split_column": "split",  # name of the column that contains the split information
+                "name": "TDC",  # unique benchmark name
+                "link": "https://tdcommons.ai/",  # benchmark URL
+                "split_column": "split",  # name of the column that contains the split information
             },
         ],
         "identifiers": [
@@ -86,7 +86,7 @@ main protease at high resolution. From MIT AiCures.""",
                 "url": "https://www.diamond.ac.uk/covid-19/for-scientists/Main-protease-structure-and-XChem.html",
                 "description": "data source",
             },
-                    {
+            {
                 "url": "https://www.diamond.ac.uk/dam/jcr:9fdc4297-15b6-47e2-8d53-befb0970bf7c/COVID19-summary-20200324.xlsx",
                 "description": "data source",
             },
@@ -94,7 +94,7 @@ main protease at high resolution. From MIT AiCures.""",
                 "url": "http://doi.org/10.1021/jacs.9b02822",
                 "description": "corresponding publication",
             },
-                    {
+            {
                 "url": "https://doi.org/10.1016/j.jmb.2006.11.073",
                 "description": "corresponding publication",
             },
@@ -135,7 +135,7 @@ a Novel Tag-cleavage Endopeptidase for Protein Overproduction},
 journal = {Journal of Molecular Biology}""",
         ],
     }
-    
+
     def str_presenter(dumper, data):
         """configures yaml for dumping multiline strings
         Ref: https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data
