@@ -1,59 +1,60 @@
+---
 name: skin_reaction
 description: |-
-  Repetitive exposure to a chemical agent can induce an immune reaction
-  in inherently susceptible individuals that leads to skin sensitization. The
-  dataset used in this study was retrieved from the ICCVAM (Interagency Coordinating
-  Committee on the Validation of Alternative Methods) report on the rLLNA.
+    Repetitive exposure to a chemical agent can induce an immune reaction
+    in inherently susceptible individuals that leads to skin sensitization. The
+    dataset used in this study was retrieved from the ICCVAM (Interagency Coordinating
+    Committee on the Validation of Alternative Methods) report on the rLLNA.
 targets:
-- id: Skin_Reaction
-  description: whether it can cause skin reaction (1) or not (0).
-  units: Skin_Reaction
-  type: categorical
-  names:
-  - Skin Reaction
-  - skin sensitization
-  - agent Induced Skin Reaction
-  - drug induced skin immune reaction
-  uris:
-  - https://bioportal.bioontology.org/ontologies/SNOMEDCT?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FSNOMEDCT%2F264519003
-  - https://bioportal.bioontology.org/ontologies/MEDDRA?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FMEDDRA%2F10040914
+    - id: Skin_Reaction
+      description: whether it can cause skin reaction (1) or not (0).
+      units: Skin_Reaction
+      type: categorical
+      names:
+          - Skin Reaction
+          - skin sensitization
+          - agent Induced Skin Reaction
+          - drug induced skin immune reaction
+      uris:
+          - https://bioportal.bioontology.org/ontologies/SNOMEDCT?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FSNOMEDCT%2F264519003
+          - https://bioportal.bioontology.org/ontologies/MEDDRA?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FMEDDRA%2F10040914
 benchmarks:
-- name: TDC
-  link: https://tdcommons.ai/
-  split_column: split
+    - name: TDC
+      link: https://tdcommons.ai/
+      split_column: split
 identifiers:
-- id: SMILES
-  type: SMILES
-  description: SMILES
-- id: compound_name
-  type: Synonyms
-  description: drug name
-  names:
-  - compound
-  - compound name
-  - chemical agent
+    - id: SMILES
+      type: SMILES
+      description: SMILES
+    - id: compound_name
+      type: Synonyms
+      description: drug name
+      names:
+          - compound
+          - compound name
+          - chemical agent
 license: CC BY 4.0
 links:
-- url: https://doi.org/10.1016/j.taap.2014.12.014
-  description: corresponding publication
-- url: https://ntp.niehs.nih.gov/iccvam/docs/immunotox_docs/llna-ld/tmer.pdf
-  description: related publication
-- url: https://tdcommons.ai/single_pred_tasks/tox/#skin-reaction
-  description: Data source
+    - url: https://doi.org/10.1016/j.taap.2014.12.014
+      description: corresponding publication
+    - url: https://ntp.niehs.nih.gov/iccvam/docs/immunotox_docs/llna-ld/tmer.pdf
+      description: related publication
+    - url: https://tdcommons.ai/single_pred_tasks/tox/#skin-reaction
+      description: Data source
 num_points: 404
 bibtex:
-- |-
-  @article{Alves2015,
-  doi = {10.1016/j.taap.2014.12.014},
-  url = {https://doi.org/10.1016/j.taap.2014.12.014},
-  year = {2015},
-  month = apr,
-  publisher = {Elsevier BV},
-  volume = {284},
-  number = {2},
-  pages = {262--272},
-  author = {Vinicius M. Alves and Eugene Muratov and Denis Fourches and Judy Strickland
-  and Nicole Kleinstreuer and Carolina H. Andrade and Alexander Tropsha},
-  title = {Predicting chemically-induced skin reactions. Part I: QSAR models of skin sensitization
-  and their application to identify potentially hazardous compounds},
-  journal = {Toxicology and Applied Pharmacology}
+    - |-
+      @article{Alves2015,
+      doi = {10.1016/j.taap.2014.12.014},
+      url = {https://doi.org/10.1016/j.taap.2014.12.014},
+      year = {2015},
+      month = apr,
+      publisher = {Elsevier BV},
+      volume = {284},
+      number = {2},
+      pages = {262--272},
+      author = {Vinicius M. Alves and Eugene Muratov and Denis Fourches and Judy Strickland
+      and Nicole Kleinstreuer and Carolina H. Andrade and Alexander Tropsha},
+      title = {Predicting chemically-induced skin reactions. Part I: QSAR models of skin sensitization
+      and their application to identify potentially hazardous compounds},
+      journal = {Toxicology and Applied Pharmacology}

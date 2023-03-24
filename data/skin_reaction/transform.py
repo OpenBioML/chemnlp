@@ -5,7 +5,7 @@ from tdc.single_pred import Tox
 
 def get_and_transform_data():
     # get raw data
-    data = Tox(name = 'Skin Reaction')
+    data = Tox(name="Skin Reaction")
     fn_data_original = "data_original.csv"
     data.get_data().to_csv(fn_data_original, index=False)
 
@@ -43,71 +43,71 @@ def get_and_transform_data():
     df.to_csv(fn_data_csv, index=False)
 
     # create meta yaml
-    meta =  {
-            "name": "skin_reaction",  # unique identifier, we will also use this for directory names
-            "description": """Repetitive exposure to a chemical agent can induce an immune reaction
+    meta = {
+        "name": "skin_reaction",  # unique identifier, we will also use this for directory names
+        "description": """Repetitive exposure to a chemical agent can induce an immune reaction
 in inherently susceptible individuals that leads to skin sensitization. The
 dataset used in this study was retrieved from the ICCVAM (Interagency Coordinating
 Committee on the Validation of Alternative Methods) report on the rLLNA.""",
-            "targets": [
-                {
-                    "id": "Skin_Reaction",  # name of the column in a tabular dataset
-                    "description": "whether it can cause skin reaction (1) or not (0).",  # description of what this column means
-                    "units": "Skin_Reaction",  # units of the values in this column (leave empty if unitless)
-                    "type": "categorical",  # can be "categorical", "ordinal", "continuous"
-                    "names": [  # names for the property (to sample from for building the prompts)
-                        "Skin Reaction",
-                        "skin sensitization",
-                        "agent Induced Skin Reaction",
-                        "drug induced skin immune reaction"
-                    ],
-                "uris":[
-                "https://bioportal.bioontology.org/ontologies/SNOMEDCT?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FSNOMEDCT%2F264519003",
-                    "https://bioportal.bioontology.org/ontologies/MEDDRA?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FMEDDRA%2F10040914"
+        "targets": [
+            {
+                "id": "Skin_Reaction",  # name of the column in a tabular dataset
+                "description": "whether it can cause skin reaction (1) or not (0).",  # description of what this column means
+                "units": "Skin_Reaction",  # units of the values in this column (leave empty if unitless)
+                "type": "categorical",  # can be "categorical", "ordinal", "continuous"
+                "names": [  # names for the property (to sample from for building the prompts)
+                    "Skin Reaction",
+                    "skin sensitization",
+                    "agent Induced Skin Reaction",
+                    "drug induced skin immune reaction",
+                ],
+                "uris": [
+                    "https://bioportal.bioontology.org/ontologies/SNOMEDCT?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FSNOMEDCT%2F264519003",
+                    "https://bioportal.bioontology.org/ontologies/MEDDRA?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FMEDDRA%2F10040914",
+                ],
+            },
         ],
-                },
-            ],
-            "benchmarks": [
+        "benchmarks": [
             {
                 "name": "TDC",  # unique benchmark name
                 "link": "https://tdcommons.ai/",  # benchmark URL
                 "split_column": "split",  # name of the column that contains the split information
             },
-            ],
-            "identifiers": [
-                {
-                    "id": "SMILES",  # column name
-                    "type": "SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
-                    "description": "SMILES",  # description (optional, except for "Other")
-                },
-                {
-                    "id": "compound_name",
-                    "type": "Synonyms",
-                    "description": "drug name",
-                    "names": [
-                        "compound",
-                        "compound name",
-                        "chemical agent",
-                    ],
-                },
-            ],
-            "license": "CC BY 4.0",  # license under which the original dataset was published
-            "links": [  # list of relevant links (original dataset, other uses, etc.)
-                {
-                    "url": "https://doi.org/10.1016/j.taap.2014.12.014",
-                    "description": "corresponding publication",
-                },
-                {
-                    "url": "https://ntp.niehs.nih.gov/iccvam/docs/immunotox_docs/llna-ld/tmer.pdf",
-                    "description": "related publication",
-                },
-                {
-                    "url": "https://tdcommons.ai/single_pred_tasks/tox/#skin-reaction",
-                    "description": "Data source",
-                },
-            ],
-            "num_points": len(df),  # number of datapoints in this dataset
-            "bibtex": [
+        ],
+        "identifiers": [
+            {
+                "id": "SMILES",  # column name
+                "type": "SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
+                "description": "SMILES",  # description (optional, except for "Other")
+            },
+            {
+                "id": "compound_name",
+                "type": "Synonyms",
+                "description": "drug name",
+                "names": [
+                    "compound",
+                    "compound name",
+                    "chemical agent",
+                ],
+            },
+        ],
+        "license": "CC BY 4.0",  # license under which the original dataset was published
+        "links": [  # list of relevant links (original dataset, other uses, etc.)
+            {
+                "url": "https://doi.org/10.1016/j.taap.2014.12.014",
+                "description": "corresponding publication",
+            },
+            {
+                "url": "https://ntp.niehs.nih.gov/iccvam/docs/immunotox_docs/llna-ld/tmer.pdf",
+                "description": "related publication",
+            },
+            {
+                "url": "https://tdcommons.ai/single_pred_tasks/tox/#skin-reaction",
+                "description": "Data source",
+            },
+        ],
+        "num_points": len(df),  # number of datapoints in this dataset
+        "bibtex": [
             """@article{Alves2015,
 doi = {10.1016/j.taap.2014.12.014},
 url = {https://doi.org/10.1016/j.taap.2014.12.014},
@@ -122,8 +122,8 @@ and Nicole Kleinstreuer and Carolina H. Andrade and Alexander Tropsha},
 title = {Predicting chemically-induced skin reactions. Part I: QSAR models of skin sensitization
 and their application to identify potentially hazardous compounds},
 journal = {Toxicology and Applied Pharmacology}""",
-            ],
-        }
+        ],
+    }
 
     def str_presenter(dumper, data):
         """configures yaml for dumping multiline strings
