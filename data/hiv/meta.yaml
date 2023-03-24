@@ -1,0 +1,50 @@
+name: hiv
+description: |-
+  The HIV dataset was introduced by the Drug Therapeutics Program (DTP)
+  AIDS Antiviral Screen, which tested the ability to inhibit HIV replication for
+  over 40,000 compounds. From MoleculeNet.
+targets:
+- id: activity_HIV
+  description: whether it active against HIV virus (1) or not (0).
+  units: activity
+  type: categorical
+  names:
+  - HIV activity
+  - HIV Inhibitor
+  - activity against HIV
+  - HIV disease
+  - HIV
+  uris:
+  - https://bioportal.bioontology.org/ontologies/MESH?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FMESH%2FD006678
+  - https://bioportal.bioontology.org/ontologies/OCHV?p=classes&conceptid=http%3A%2F%2Fsbmi.uth.tmc.edu%2Fontology%2Fochv%236185
+benchmarks:
+- name: TDC
+  link: https://tdcommons.ai/
+  split_column: split
+identifiers:
+- id: SMILES
+  type: SMILES
+  description: SMILES
+license: CC BY 4.0
+links:
+- url: https://wiki.nci.nih.gov/display/NCIDTPdata/AIDS+Antiviral+Screen+Data
+  description: data source
+- url: https://doi.org/10.1039/C7SC02664A
+  description: corresponding publication
+- url: https://tdcommons.ai/single_pred_tasks/hts/#hiv
+  description: data source
+num_points: 41127
+bibtex:
+- |-
+  @article{Wu2018,
+  doi = {10.1039/c7sc02664a},
+  url = {https://doi.org/10.1039/c7sc02664a},
+  year = {2018},
+  publisher = {Royal Society of Chemistry (RSC)},
+  volume = {9},
+  number = {2},
+  pages = {513--530},
+  author = {Zhenqin Wu and Bharath Ramsundar and Evan~N. Feinberg and Joseph Gomes
+  and Caleb Geniesse and Aneesh S. Pappu and Karl Leswing and Vijay Pande},
+  title = {MoleculeNet: a benchmark for molecular machine learning},
+  journal = {Chemical Science}
