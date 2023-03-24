@@ -1,0 +1,51 @@
+name: nr_ppar_gamma_tox21
+description: |-
+  Tox21 is a data challenge which contains qualitative toxicity measurements
+  for 7,831 compounds on 12 different targets, such as nuclear receptors and stress
+  response pathways.
+targets:
+- id: toxicity_NR-PPAR-gamma
+  description: whether it toxic in a specific assay (1) or not toxic (0)
+  units: toxicity
+  type: categorical
+  names:
+  - NR-PPAR-gamma toxicity
+  - NR-PPAR-gamma
+  - Tox21
+  - Tox21 NR-Peroxisome proliferator-activated receptor gamma
+  - NR-Peroxisome proliferator-activated receptor gamma
+  - Peroxisome proliferator-activated receptor gamma
+  - Peroxisome proliferator-activated receptor gamma toxicity
+uris:
+- https://bioportal.bioontology.org/ontologies/CRISP?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FCSP%2F5000-0067
+- https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-018-2523-5/tables/3
+benchmarks:
+- name: TDC
+  link: https://tdcommons.ai/
+  split_column: split
+identifiers:
+- id: SMILES
+  type: SMILES
+  description: SMILES
+license: CC BY 4.0
+links:
+- url: http://dx.doi.org/10.3389/fenvs.2017.00003
+  description: corresponding publication
+- url: https://tdcommons.ai/single_pred_tasks/tox/#tox21
+  description: data source
+- url: https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-018-2523-5/tables/3
+  description: Assay name
+num_points: 6450
+bibtex:
+- |-
+  @article{Huang2017,
+  doi = {10.3389/fenvs.2017.00003},
+  url = {https://doi.org/10.3389/fenvs.2017.00003},
+  year = {2017},
+  month = jan,
+  publisher = {Frontiers Media SA},
+  volume = {5},
+  author = {Ruili Huang and Menghang Xia},
+  title = {Editorial: Tox21 Challenge to Build Predictive Models of Nuclear Receptor
+  and Stress Response Pathways As Mediated by Exposure to Environmental Toxicants and Drugs},
+  journal = {Frontiers in Environmental Science}
