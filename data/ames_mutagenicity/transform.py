@@ -5,7 +5,7 @@ from tdc.single_pred import Tox
 
 def get_and_transform_data():
     # get raw data
-    data = Tox(name = 'AMES')
+    data = Tox(name="AMES")
     fn_data_original = "data_original.csv"
     data.get_data().to_csv(fn_data_original, index=False)
 
@@ -43,7 +43,7 @@ def get_and_transform_data():
     df.to_csv(fn_data_csv, index=False)
 
     # create meta yaml
-    meta =  {
+    meta = {
         "name": "ames_mutagenicity",  # unique identifier, we will also use this for directory names
         "description": """Mutagenicity means the ability of a drug to induce genetic alterations.
 Drugs that can cause damage to the DNA can result in cell death or other severe
@@ -63,12 +63,12 @@ The dataset is aggregated from four papers.""",
                     "Mutagenicity",
                     "Ames Mutagenicity",
                     "ability of a drug to induce genetic alterations",
-                    "mutagens"
+                    "mutagens",
                 ],
-                "uris":[
-                "https://bioportal.bioontology.org/ontologies/ENM?p=classes&conceptid=http%3A%2F%2Fpurl.enanomapper.org%2Fonto%2FENM_0000042",
+                "uris": [
+                    "https://bioportal.bioontology.org/ontologies/ENM?p=classes&conceptid=http%3A%2F%2Fpurl.enanomapper.org%2Fonto%2FENM_0000042",
                     "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C16235",
-        ],
+                ],
             },
         ],
         "benchmarks": [
