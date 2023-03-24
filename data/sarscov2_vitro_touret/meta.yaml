@@ -1,0 +1,48 @@
+name: sarscov2_vitro_touret
+description: |-
+  An in-vitro screen of the Prestwick chemical library composed of 1,480
+  approved drugs in an infected cell-based assay. From MIT AiCures.
+targets:
+- id: activity_SARSCoV2
+  description: whether it active against SARSCoV2 (1) or not (0).
+  units: activity
+  type: categorical
+  names:
+  - Corona activity
+  - activity
+  - activity against SARSCoV2
+  - COVID19
+  - Coronavirus disease
+  - Activity vs Coronavirus
+  uris:
+  - https://bioportal.bioontology.org/ontologies/DOID?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0080600
+benchmarks:
+- name: TDC
+  link: https://tdcommons.ai/
+  split_column: split
+identifiers:
+- id: SMILES
+  type: SMILES
+  description: SMILES
+license: CC BY 4.0
+links:
+- url: https://doi.org/10.1038/s41598-020-70143-6
+  description: corresponding publication
+- url: https://tdcommons.ai/single_pred_tasks/hts/#sars-cov-2-in-vitro-touret-et-al
+  description: Data source
+num_points: 1484
+bibtex:
+- |-
+  @article{Touret2020,
+  doi = {10.1038/s41598-020-70143-6},
+  url = {https://doi.org/10.1038/s41598-020-70143-6},
+  year = {2020},
+  month = aug,
+  publisher = {Springer Science and Business Media LLC},
+  volume = {10},
+  number = {1},
+  author = {Franck Touret and Magali Gilles and Karine Barral and  Antoine Nougairede
+  and Jacques van Helden and Etienne Decroly and Xavier de Lamballerie and Bruno Coutard},
+  title = {In vitro screening of a FDA approved chemical library reveals potential inhibitors of
+  SARS-CoV-2 replication},
+  journal = {Scientific Reports}
