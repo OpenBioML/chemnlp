@@ -1,0 +1,24 @@
+# Suggested data paths when using GPT-NeoX locally
+{
+  # see example configs for sampling options
+  "data-path": "/fsx/proj-chemnlp/data/marianna13/chemrxiv/data_text_document",
+
+  "save": "/fsx/proj-chemnlp/experiments/checkpoints/finetuned/pythia-160M",
+  "load": "/fsx/proj-chemnlp/experiments/checkpoints/pretrained/pythia-160M",
+  "finetune": True,
+  "checkpoint_validation_with_forward_pass": False,
+
+  "log-dir": "/fsx/proj-chemnlp/experiments/logs",
+  "log_interval": 100,
+  "log_grad_pct_zeros": False,
+  "log_param_norm": False,
+  "log_grad_norm": False,
+
+  "use_wandb": True,
+  "wandb_host": "https://stability.wandb.io",
+  "wandb_project": "LLCheM",
+  "wandb_group": "Test Runs",
+
+  "hostfile": "/mock_path",
+  "num_gpus": 1,
+}
