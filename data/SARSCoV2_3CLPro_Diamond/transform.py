@@ -5,7 +5,7 @@ from tdc.single_pred import HTS
 
 def get_and_transform_data():
     # get raw data
-    data = HTS(name = 'SARSCoV2_3CLPro_Diamond')
+    data = HTS(name="SARSCoV2_3CLPro_Diamond")
     fn_data_original = "data_original.csv"
     data.get_data().to_csv(fn_data_original, index=False)
 
@@ -31,10 +31,10 @@ def get_and_transform_data():
     ]
     df.columns = fields_clean
 
-#     # data cleaning
-#     df.compound_id = (
-#         df.compound_id.str.strip()
-#     )  # remove leading and trailing white space characters
+    #     # data cleaning
+    #     df.compound_id = (
+    #         df.compound_id.str.strip()
+    #     )  # remove leading and trailing white space characters
 
     assert not df.duplicated().sum()
 
@@ -43,7 +43,7 @@ def get_and_transform_data():
     df.to_csv(fn_data_csv, index=False)
 
     # create meta yaml
-    meta =  {
+    meta = {
         "name": "SARSCoV2_3CLPro_Diamond",  # unique identifier, we will also use this for directory names
         "description": """A large XChem crystallographic fragment screen against SARS-CoV-2 main protease at high resolution. From MIT AiCures.""",
         "targets": [
@@ -59,10 +59,10 @@ def get_and_transform_data():
                     "3CL Protease",
                     "activity against Coronavirus disease",
                 ],
-             "uris":[
-                "https://bioportal.bioontology.org/ontologies/HOIP?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FHOIP%2FHOIP_0038025",
-                "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C171532",
-               ],
+                "uris": [
+                    "https://bioportal.bioontology.org/ontologies/HOIP?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FHOIP%2FHOIP_0038025",
+                    "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C171532",
+                ],
             },
         ],
         "identifiers": [
@@ -78,7 +78,7 @@ def get_and_transform_data():
                 "url": "https://www.diamond.ac.uk/covid-19/for-scientists/Main-protease-structure-and-XChem.html",
                 "description": "data source",
             },
-                    {
+            {
                 "url": "https://www.diamond.ac.uk/dam/jcr:9fdc4297-15b6-47e2-8d53-befb0970bf7c/COVID19-summary-20200324.xlsx",
                 "description": "data source",
             },
@@ -86,7 +86,7 @@ def get_and_transform_data():
                 "url": "http://doi.org/10.1021/jacs.9b02822",
                 "description": "corresponding publication",
             },
-                    {
+            {
                 "url": "https://doi.org/10.1016/j.jmb.2006.11.073",
                 "description": "corresponding publication",
             },
@@ -105,7 +105,6 @@ def get_and_transform_data():
             author = {Efrat Resnick and Anthony Bradley and Jinrui Gan and Alice Douangamath and Tobias Krojer and Ritika Sethi and Paul P. Geurink and Anthony Aimon and Gabriel Amitai and Dom Bellini and James Bennett and Michael Fairhead and Oleg Fedorov and Ronen Gabizon and Jin Gan and Jingxu Guo and Alexander Plotnikov and Nava Reznik and Gian Filippo Ruda and Laura D{\'{\i}}az-S{\'{a}}ez and Verena M. Straub and Tamas Szommer and Srikannathasan Velupillai and Daniel Zaidman and Yanling Zhang and Alun R. Coker and Christopher G. Dowson and Haim M. Barr and Chu Wang and Kilian V.M. Huber and Paul E. Brennan and Huib Ovaa and Frank von Delft and Nir London},
             title = {Rapid Covalent-Probe Discovery by Electrophile-Fragment Screening},
             journal = {Journal of the American Chemical Society}}""",
-
             """@article{Xue_2007,
             doi = {10.1016/j.jmb.2006.11.073},
             url = {https://doi.org/10.1016%2Fj.jmb.2006.11.073},
@@ -118,10 +117,9 @@ def get_and_transform_data():
             author = {Xiaoyu Xue and Haitao Yang and Wei Shen and Qi Zhao and Jun Li and Kailin Yang and Cheng Chen and Yinghua Jin and Mark Bartlam and Zihe Rao},
             title = {Production of Authentic {SARS}-{CoV} Mpro with Enhanced Activity: Application as a Novel Tag-cleavage Endopeptidase for Protein Overproduction},
             journal = {Journal of Molecular Biology}}""",
-
         ],
     }
-    
+
     def str_presenter(dumper, data):
         """configures yaml for dumping multiline strings
         Ref: https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data
