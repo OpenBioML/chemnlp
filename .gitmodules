@@ -1,0 +1,4 @@
+[submodule "gpt-neox"]
+	path = gpt-neox
+	url = git@github.com:OpenBioML/gpt-neox.git
+	branch = main

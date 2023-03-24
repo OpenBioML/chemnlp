@@ -1,0 +1,47 @@
+---
+name: clintox
+description: |-
+    The ClinTox dataset includes drugs that have failed
+    clinical trials for toxicity reasons and also drugs that are associated
+    with successful trials.
+targets:
+    - id: clinical_toxicity
+      description: whether it can cause clinical toxicity (1) or not (0).
+      units:
+      type: boolean
+      names:
+          - clinically toxic
+          - displaying clinical toxicity
+          - toxic
+      uris:
+          - http://purl.bioontology.org/ontology/MESH/Q000633
+          - https://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI_Thesaurus&ns=ncit&code=C27990
+          - https://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI_Thesaurus&ns=ncit&code=C27955
+benchmarks:
+    - name: TDC
+      link: https://tdcommons.ai/
+      split_column: split
+identifiers:
+    - id: SMILES
+      type: SMILES
+      description: SMILES
+license: CC BY 4.0
+links:
+    - url: https://doi.org/10.1016/j.chembiol.2016.07.023
+      description: corresponding publication
+num_points: 1478
+url: https://tdcommons.ai/single_pred_tasks/tox/#clintox
+bibtex:
+    - |-
+      @article{Gayvert2016,
+      doi = {10.1016/j.chembiol.2016.07.023},
+      url = {https://doi.org/10.1016/j.chembiol.2016.07.023},
+      year = {2016},
+      month = oct,
+      publisher = {Elsevier {BV}},
+      volume = {23},
+      number = {10},
+      pages = {1294--1301},
+      author = {Kaitlyn~M. Gayvert and Neel~S. Madhukar and Olivier Elemento},
+      title = {A Data-Driven Approach to Predicting Successes and Failures of Clinical Trials},
+      journal = {Cell Chemical Biology}}
