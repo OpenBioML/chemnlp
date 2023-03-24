@@ -5,7 +5,7 @@ from tdc.single_pred import Tox
 
 def get_and_transform_data():
     # get raw data
-    data = Tox(name = 'hERG')
+    data = Tox(name="hERG")
     fn_data_original = "data_original.csv"
     data.get_data().to_csv(fn_data_original, index=False)
 
@@ -63,16 +63,16 @@ related attritions in the later development stages.""",
                     "Human ether-a-go-go related gene (hERG) blocker",
                     "Activity against Human ether-a-go-go related gene (hERG)",
                 ],
-                "uris":[
-                "https://bioportal.bioontology.org/ontologies/MI?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_2136",
-        ],
+                "uris": [
+                    "https://bioportal.bioontology.org/ontologies/MI?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_2136",
+                ],
             },
         ],
         "benchmarks": [
             {
-        "name": "TDC",  # unique benchmark name
-        "link": "https://tdcommons.ai/",  # benchmark URL
-        "split_column": "split",  # name of the column that contains the split information
+                "name": "TDC",  # unique benchmark name
+                "link": "https://tdcommons.ai/",  # benchmark URL
+                "split_column": "split",  # name of the column that contains the split information
             },
         ],
         "identifiers": [
@@ -105,7 +105,7 @@ related attritions in the later development stages.""",
         ],
         "num_points": len(df),  # number of datapoints in this dataset
         "bibtex": [
-         """@article{Wang2016,
+            """@article{Wang2016,
 doi = {10.1021/acs.molpharmaceut.6b00471},
 url = {https://doi.org/10.1021/acs.molpharmaceut.6b00471},
 year = {2016},
