@@ -1,75 +1,75 @@
+---
 name: sabdab_chen
 description: |-
-  Antibody data from Chen et al, where they process from the SAbDab.
-  From an initial dataset of 3816 antibodies, they retained 2426 antibodies that
-  satisfy the following criteria:  1.have both sequence (FASTA) and Protein Data
-  Bank (PDB) structure files, 2. contain both a heavy chain and a light chain,
-  and  3.have crystal structures with resolution < 3 A. The DI label is derived
-  from BIOVIA's pipelines.
+    Antibody data from Chen et al, where they process from the SAbDab.
+    From an initial dataset of 3816 antibodies, they retained 2426 antibodies that
+    satisfy the following criteria:  1.have both sequence (FASTA) and Protein Data
+    Bank (PDB) structure files, 2. contain both a heavy chain and a light chain,
+    and  3.have crystal structures with resolution < 3 A. The DI label is derived
+    from BIOVIA's pipelines.
 targets:
-- id: developability
-  description: functional antibody candidate to be developed into a manufacturable(1),
-    or not(0)
-  units: ''
-  type: categorical
-  names:
-  - antibody developability
-  - monoclonal anitbody
-  - functional antibody candidate
-  - manufacturable, stable, safe, and effective antibody drug
-  uris:
-  - https://rb.gy/idkdqp
-  - https://rb.gy/b8cx8i
+    - id: developability
+      description: functional antibody candidate to be developed into a manufacturable(1), or not(0)
+      units: ''
+      type: categorical
+      names:
+          - antibody developability
+          - monoclonal anitbody
+          - functional antibody candidate
+          - manufacturable, stable, safe, and effective antibody drug
+      uris:
+          - https://rb.gy/idkdqp
+          - https://rb.gy/b8cx8i
 benchmarks:
-- name: TDC
-  link: https://tdcommons.ai/
-  split_column: split
+    - name: TDC
+      link: https://tdcommons.ai/
+      split_column: split
 identifiers:
-- id: antibody_pdb_ID
-  type: Other
-  description: anitbody pdb id
-- id: heavy_chain
-  type: Other
-  description: anitbody heavy chain amino acid sequence in FASTA
-- id: light_chain
-  type: Other
-  description: anitbody light chain amino acid sequence in FASTA
+    - id: antibody_pdb_ID
+      type: Other
+      description: anitbody pdb id
+    - id: heavy_chain
+      type: Other
+      description: anitbody heavy chain amino acid sequence in FASTA
+    - id: light_chain
+      type: Other
+      description: anitbody light chain amino acid sequence in FASTA
 license: CC BY 4.0
 links:
-- url: https://doi.org/10.1101/2020.06.18.159798
-  description: corresponding publication
-- url: https://doi.org/10.1093/nar/gkt1043
-  description: corresponding publication
-- url: https://www.3ds.com/products-services/biovia/products/data-science/pipeline-pilot/
-  description: corresponding tools used
-- url: https://tdcommons.ai/single_pred_tasks/develop/#sabdab-chen-et-al
-  description: data source
+    - url: https://doi.org/10.1101/2020.06.18.159798
+      description: corresponding publication
+    - url: https://doi.org/10.1093/nar/gkt1043
+      description: corresponding publication
+    - url: https://www.3ds.com/products-services/biovia/products/data-science/pipeline-pilot/
+      description: corresponding tools used
+    - url: https://tdcommons.ai/single_pred_tasks/develop/#sabdab-chen-et-al
+      description: data source
 num_points: 2409
 bibtex:
-- |-
-  @article{Chen2020,
-  doi = {10.1101/2020.06.18.159798},
-  url = {https://doi.org/10.1101/2020.06.18.159798},
-  year = {2020},
-  month = jun,
-  publisher = {Cold Spring Harbor Laboratory},
-  author = {Xingyao Chen and Thomas Dougherty and
-  Chan Hong and Rachel Schibler and Yi Cong Zhao and
-  Reza Sadeghi and Naim Matasci and Yi-Chieh Wu and Ian Kerman},
-  title = {Predicting Antibody Developability from Sequence
-  using Machine Learning}
-- |-
-  @article{Dunbar2013,
-  doi = {10.1093/nar/gkt1043},
-  url = {https://doi.org/10.1093/nar/gkt1043},
-  year = {2013},
-  month = nov,
-  publisher = {Oxford University Press ({OUP})},
-  volume = {42},
-  number = {D1},
-  pages = {D1140--D1146},
-  author = {James Dunbar and Konrad Krawczyk and Jinwoo Leem
-  and Terry Baker and Angelika Fuchs and Guy Georges and Jiye Shi and
-  Charlotte M. Deane},
-  title = {SAbDab: the structural antibody database},
-  journal = {Nucleic Acids Research}
+    - |-
+      @article{Chen2020,
+      doi = {10.1101/2020.06.18.159798},
+      url = {https://doi.org/10.1101/2020.06.18.159798},
+      year = {2020},
+      month = jun,
+      publisher = {Cold Spring Harbor Laboratory},
+      author = {Xingyao Chen and Thomas Dougherty and
+      Chan Hong and Rachel Schibler and Yi Cong Zhao and
+      Reza Sadeghi and Naim Matasci and Yi-Chieh Wu and Ian Kerman},
+      title = {Predicting Antibody Developability from Sequence
+      using Machine Learning}
+    - |-
+      @article{Dunbar2013,
+      doi = {10.1093/nar/gkt1043},
+      url = {https://doi.org/10.1093/nar/gkt1043},
+      year = {2013},
+      month = nov,
+      publisher = {Oxford University Press ({OUP})},
+      volume = {42},
+      number = {D1},
+      pages = {D1140--D1146},
+      author = {James Dunbar and Konrad Krawczyk and Jinwoo Leem
+      and Terry Baker and Angelika Fuchs and Guy Georges and Jiye Shi and
+      Charlotte M. Deane},
+      title = {SAbDab: the structural antibody database},
+      journal = {Nucleic Acids Research}
