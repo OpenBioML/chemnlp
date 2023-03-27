@@ -1,0 +1,62 @@
+name: solubility_aqsoldb
+description: |-
+  Aqeuous solubility measures a drug's ability to dissolve in water.
+  Poor water solubility could lead to slow drug absorptions, inadequate bioavailablity
+  and even induce toxicity. More than 40 percent of new chemical entities are
+  not soluble.
+targets:
+- id: aqeuous_solubility
+  description: drug's ability to dissolve in water it can be in mg/L or ppm
+  units: aqueous solubility
+  type: continuous
+  names:
+  - aqeuous solubility
+  - dissolve in a water
+  - ADME aqeuous solubility
+  - Drug Absorption
+  - solubility
+  - ability of a drug to dissolve in a water
+  uris:
+  - https://bioportal.bioontology.org/ontologies/IOBC?p=classes&conceptid=http%3A%2F%2Fpurl.jp%2Fbio%2F4%2Fid%2F200906006880450101
+  - https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C60821
+benchmarks:
+- name: TDC
+  link: https://tdcommons.ai/
+  split_column: split
+identifiers:
+- id: SMILES
+  type: SMILES
+  description: SMILES
+- id: compound_name
+  type: Other
+  names:
+  - iupac like name
+  - Synonyms
+  - drug bank name
+  - drug name pubchem
+  - drug generic name
+  - drug chemical (generic) name
+  - chemical name
+  description: compound name
+license: CC BY 4.0
+links:
+- url: https://doi.org/10.1038/s41597-019-0151-1
+  description: corresponding publication
+- url: https://tdcommons.ai/single_pred_tasks/adme/#solubility-aqsoldb
+  description: data source
+num_points: 9982
+bibtex:
+- |-
+  @article{Sorkun_2019,
+  doi = {10.1038/s41597-019-0151-1},
+  url = {https://doi.org/10.1038%2Fs41597-019-0151-1},
+  year = {2019},
+  month = aug,
+  publisher = {Springer Science and Business Media LLC},
+  volume = {6},
+  number = {1},
+  author = {Murat Cihan Sorkun and Abhishek Khetan and
+  Suleyman Er},
+  title = {AqSolDB, a curated reference set of aqueous solubility
+  and 2D descriptors for a diverse set of compounds},
+  journal = {Scientific Data}

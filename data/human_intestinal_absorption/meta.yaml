@@ -1,0 +1,60 @@
+name: human_intestinal_absorption
+description: |-
+  When a drug is orally administered, it needs to be absorbed from the
+  human gastrointestinal system into the bloodstream of the human body. This ability
+  of absorption is called human intestinal absorption (HIA) and it is crucial
+  for a drug to be delivered to the target.
+targets:
+- id: absorption_HIA_Hou
+  description: whether it absorption activity of HIA (1) or not active (0)
+  units: HIA_absorption
+  type: categorical
+  names:
+  - Human Intestinal Absorption
+  - HIA absorption
+  - HIA
+  - ADME absorption HIA
+  - drug delivery
+  - HIA activity
+  - HIA absorption activity
+  uris:
+  - https://bioportal.bioontology.org/ontologies/MESH?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FMESH%2FD007408
+benchmarks:
+- name: TDC
+  link: https://tdcommons.ai/
+  split_column: split
+identifiers:
+- id: SMILES
+  type: SMILES
+  description: SMILES
+- id: compound_name
+  type: Other
+  names:
+  - drug bank name
+  - drug name pubchem
+  - drug generic name
+  - drug chemical (generic) name
+  - chemical name
+  description: Drug name
+license: CC BY 4.0
+links:
+- url: https://doi.org/10.1021/ci600343x
+  description: corresponding publication
+- url: https://tdcommons.ai/single_pred_tasks/adme/#hia-human-intestinal-absorption-hou-et-al
+  description: data source
+num_points: 578
+bibtex:
+- |-
+  @article{Hou2006,
+  doi = {10.1021/ci600343x},
+  url = {https://doi.org/10.1021/ci600343x},
+  year = {2006},
+  month = nov,
+  publisher = {American Chemical Society (ACS)},
+  volume = {47},
+  number = {1},
+  pages = {208--218},
+  author = {Tingjun Hou and Junmei Wang and Wei Zhang and Xiaojie Xu},
+  title = {ADME Evaluation in Drug Discovery. 7. Prediction of Oral Absorption
+  by Correlation and Classification},
+  journal = {Journal of Chemical Information and Modeling}
