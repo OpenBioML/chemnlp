@@ -5,7 +5,6 @@ from tdc.single_pred import Develop
 
 def get_and_transform_data():
     # get raw data
-    target_folder = "SAbDab_Chen"
     target_subfolder = "SAbDab_Chen"
     data = Develop(name=target_subfolder)
 

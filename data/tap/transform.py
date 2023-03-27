@@ -6,7 +6,6 @@ from tdc.utils import retrieve_label_name_list
 
 def get_and_transform_data():
     # get raw data
-    target_folder = "TAP"
     target_subfolder = "TAP"
     label_list = retrieve_label_name_list(target_subfolder)
     data = Develop(name=target_subfolder, label_name=label_list[0])
@@ -96,7 +95,7 @@ clinical-stage mAb therapeutics.""",
         "targets": [
             {
                 "id": "CDR_Length",  # name of the column in a tabular dataset
-                "description": "CDR Complementarity-determining regions length",  # description of what this column means
+                "description": "CDR Complementarity-determining regions length", 
                 "units": "",  # units of the values in this column (leave empty if unitless)
                 "type": "continuous",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
@@ -113,7 +112,7 @@ clinical-stage mAb therapeutics.""",
             },
             {
                 "id": "PSH",  # name of the column in a tabular dataset
-                "description": "patches of surface hydrophobicity",  # description of what this column means
+                "description": "patches of surface hydrophobicity",  
                 "units": "",  # units of the values in this column (leave empty if unitless)
                 "type": "continuous",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
@@ -130,7 +129,7 @@ clinical-stage mAb therapeutics.""",
             },
             {
                 "id": "PPC",  # name of the column in a tabular dataset
-                "description": "patches of positive charge",  # description of what this column means
+                "description": "patches of positive charge", 
                 "units": "",  # units of the values in this column (leave empty if unitless)
                 "type": "continuous",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
@@ -145,7 +144,7 @@ clinical-stage mAb therapeutics.""",
             },
             {
                 "id": "PNC",  # name of the column in a tabular dataset
-                "description": "patches of negative charge",  # description of what this column means
+                "description": "patches of negative charge", 
                 "units": "",  # units of the values in this column (leave empty if unitless)
                 "type": "continuous",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
@@ -160,7 +159,7 @@ clinical-stage mAb therapeutics.""",
             },
             {
                 "id": "SFvCSP",  # name of the column in a tabular dataset
-                "description": "structural Fv charge symmetry parameter",  # description of what this column means
+                "description": "structural Fv charge symmetry parameter",
                 "units": "",  # units of the values in this column (leave empty if unitless)
                 "type": "continuous",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
