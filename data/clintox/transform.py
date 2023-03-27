@@ -1,11 +1,11 @@
 import pandas as pd
 import yaml
-from tdc.single_pred import ADME
+from tdc.single_pred import Tox
 
 
 def get_and_transform_data():
     # get raw data
-    splits = ADME(name="PAMPA_NCATS").get_split()
+    splits = Tox(name="ClinTox").get_split()
     df_train = splits["train"]
     df_valid = splits["valid"]
     df_test = splits["test"]
@@ -20,11 +20,14 @@ def get_and_transform_data():
     assert fields_orig == ["Drug_ID", "Drug", "Y", "split"]
 
     # overwrite column names = fields
-    fields_clean = ["compound_id", "SMILES", "permeability", "split"]
+    fields_clean = ["compound_id", "SMILES", "clinical_toxicity", "split"]
     df.columns = fields_clean
 
     # data cleaning
-    df.drop(columns=["compound_id"], inplace=True)
+    df.compound_id = (
+        df.compound_id.str.strip()
+    )  # remove leading and trailing white space characters
+
     assert not df.duplicated().sum()
 
     # save to csv
@@ -33,26 +36,34 @@ def get_and_transform_data():
 
     # create meta yaml
     meta = {
-        "name": "pampa_ncats",  # unique identifier, we will also use this for directory names
-        "description": """PAMPA (parallel artificial membrane permeability assay) is a commonly
-employed assay to evaluate drug permeability across the cellular membrane.
-PAMPA is a non-cell-based, low-cost and high-throughput alternative to cellular models.
-Although PAMPA does not model active and efflux transporters, it still provides permeability values
-that are useful for absorption prediction because the majority of drugs are absorbed
-by passive diffusion through the membrane.""",
+        "name": "clintox",  # unique identifier, we will also use this for directory names
+        "description": """The ClinTox dataset includes drugs that have failed
+clinical trials for toxicity reasons and also drugs that are associated
+with successful trials.""",
         "targets": [
             {
-                "id": "permeability",  # name of the column in a tabular dataset
-                "description": "Binary permeability in PAMPA assay.",  # description of what this column means
-                "units": None,
-                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
+                "id": "clinical_toxicity",  # name of the column in a tabular dataset
+                "description": "whether it can cause clinical toxicity (1) or not (0).",
+                "units": None,  # units of the values in this column (leave empty if unitless)
+                "type": "boolean",
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "is permeable in the PAMPA assay",
-                    "shows permeability in parallel artificial membrane permeability assay (PAMPA) assay",
+                    "clinically toxic",
+                    "displaying clinical toxicity",
+                    "toxic",
                 ],
-                "pubchem_aids": [1508612],
-                "uris": ["http://purl.bioontology.org/ontology/MESH/D002463"],
+                "uris": [
+                    "http://purl.bioontology.org/ontology/MESH/Q000633",
+                    "https://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI_Thesaurus&ns=ncit&code=C27990",  # noqa: E501
+                    "https://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI_Thesaurus&ns=ncit&code=C27955",  # noqa: E501
+                ],
             },
+        ],
+        "benchmarks": [
+            {
+                "name": "TDC",
+                "link": "https://tdcommons.ai/",
+                "split_column": "split",
+            }
         ],
         "identifiers": [
             {
@@ -64,39 +75,31 @@ by passive diffusion through the membrane.""",
         "license": "CC BY 4.0",  # license under which the original dataset was published
         "links": [  # list of relevant links (original dataset, other uses, etc.)
             {
-                "url": "https://tdcommons.ai/single_pred_tasks/adme/#pampa-permeability-ncats",
-                "description": "original dataset link",
-            },
-            {
-                "url": "https://journals.sagepub.com/doi/full/10.1177/24725552211017520",
+                "url": "https://doi.org/10.1016/j.chembiol.2016.07.023",
                 "description": "corresponding publication",
             },
         ],
-        "benchmarks": [
-            {
-                "name": "TDC",
-                "link": "https://tdcommons.ai/",
-                "split_column": "split",
-            }
-        ],
         "num_points": len(df),  # number of datapoints in this dataset
+        "url": "https://tdcommons.ai/single_pred_tasks/tox/#clintox",
         "bibtex": [
-            """@article{siramshetty2021validating,
-title={Validating ADME QSAR Models Using Marketed Drugs},
-author={Siramshetty, Vishal and Williams, Jordan and Nguyen, DHac-Trung and Neyra, Jorge and Southall,
-Noel and Math'e, Ewy and Xu, Xin and Shah, Pranav},
-journal={SLAS DISCOVERY: Advancing the Science of Drug Discovery},
-volume={26},
-number={10},
-pages={1326--1336},
-year={2021},
-publisher={SAGE Publications Sage CA: Los Angeles, CA}
-}""",
+            """@article{Gayvert2016,
+doi = {10.1016/j.chembiol.2016.07.023},
+url = {https://doi.org/10.1016/j.chembiol.2016.07.023},
+year = {2016},
+month = oct,
+publisher = {Elsevier {BV}},
+volume = {23},
+number = {10},
+pages = {1294--1301},
+author = {Kaitlyn~M. Gayvert and Neel~S. Madhukar and Olivier Elemento},
+title = {A Data-Driven Approach to Predicting Successes and Failures of Clinical Trials},
+journal = {Cell Chemical Biology}}""",
         ],
     }
 
     def str_presenter(dumper, data):
         """configures yaml for dumping multiline strings
+
         Ref:
         https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data
         """

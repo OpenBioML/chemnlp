@@ -129,4 +129,18 @@ dmypy.json
 .pyre/
 
 # wandb
+**/wandb/
 scripts/wandb
+
+# scratch
+scratch/
+
+
+# let's don't commit data unless we really want to
+*.tab
+*.csv
+
+
+# vim
+*~
+*.swp
