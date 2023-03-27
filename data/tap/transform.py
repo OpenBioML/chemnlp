@@ -186,16 +186,29 @@ clinical-stage mAb therapeutics.""",
             {
                 "id": "antibody_name",  # column name
                 "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
+                "names":[
+                "Name of the antibody",
+                         "Name of the antibody drug",
+                         "Name of drug"
+                ],
                 "description": "anitbody name",  # description (optional, except for "Other")
             },
             {
                 "id": "heavy_chain",  # column name
                 "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
+                "names":[
+                "Fastq",
+                "gene sequence",
+                ],
                 "description": "anitbody heavy chain amino acid sequence",  # description (optional, except for "Other")
             },
             {
                 "id": "light_chain",  # column name
                 "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
+                "names":[
+                "Fastq",
+                "gene sequence",
+                ],
                 "description": "anitbody light chain amino acid sequence",  # description (optional, except for "Other")
             },
         ],

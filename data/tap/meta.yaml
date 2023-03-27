@@ -76,12 +76,22 @@ benchmarks:
 identifiers:
 - id: antibody_name
   type: Other
+  names:
+  - Name of the antibody
+  - Name of the antibody drug
+  - Name of drug
   description: anitbody name
 - id: heavy_chain
   type: Other
+  names:
+  - Fastq
+  - gene sequence
   description: anitbody heavy chain amino acid sequence
 - id: light_chain
   type: Other
+  names:
+  - Fastq
+  - gene sequence
   description: anitbody light chain amino acid sequence
 license: CC BY 4.0
 links:

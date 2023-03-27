@@ -27,12 +27,21 @@ benchmarks:
 identifiers:
 - id: antibody_pdb_ID
   type: Other
+  names:
+  - pdb id
+  - Protein Data Bank id
   description: anitbody pdb id
 - id: heavy_chain
   type: Other
+  names:
+  - Fastq
+  - gene sequence
   description: anitbody heavy chain amino acid sequence in FASTA
 - id: light_chain
   type: Other
+  names:
+  - Fastq
+  - gene sequence
   description: anitbody light chain amino acid sequence in FASTA
 license: CC BY 4.0
 links:

@@ -74,16 +74,28 @@ from BIOVIA's pipelines.""",
             {
                 "id": "antibody_pdb_ID",  # column name
                 "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
+                "names":[
+                "pdb id",
+                "Protein Data Bank id",
+                ],
                 "description": "anitbody pdb id",  # description (optional, except for "Other")
             },
             {
                 "id": "heavy_chain",  # column name
                 "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
+                "names":[
+                "Fastq",
+                "gene sequence",
+                ],
                 "description": "anitbody heavy chain amino acid sequence in FASTA",  # description (optional, except for "Other")
             },
             {
                 "id": "light_chain",  # column name
                 "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
+                "names":[
+                "Fastq",
+                "gene sequence",
+                ],
                 "description": "anitbody light chain amino acid sequence in FASTA",  # description (optional, except for "Other")
             },
         ],
