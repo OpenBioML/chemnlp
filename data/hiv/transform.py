@@ -84,11 +84,11 @@ over 40,000 compounds. From MoleculeNet.""",
         "license": "CC BY 4.0",  # license under which the original dataset was published
         "links": [  # list of relevant links (original dataset, other uses, etc.)
             {
-                "url": "https://wiki.nci.nih.gov/display/NCIDTPdata/AIDS+Antiviral+Screen+Data",
+                "url": "https://rb.gy/wphpqg",
                 "description": "data source",
             },
             {
-                "url": "https://doi.org/10.1039/C7SC02664A",
+                "url": "https://rb.gy/0xx91v",
                 "description": "corresponding publication",
             },
             {

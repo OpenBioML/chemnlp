@@ -26,9 +26,9 @@ identifiers:
   description: SMILES
 license: CC BY 4.0
 links:
-- url: https://wiki.nci.nih.gov/display/NCIDTPdata/AIDS+Antiviral+Screen+Data
+- url: https://rb.gy/wphpqg
   description: data source
-- url: https://doi.org/10.1039/C7SC02664A
+- url: https://rb.gy/0xx91v
   description: corresponding publication
 - url: https://tdcommons.ai/single_pred_tasks/hts/#hiv
   description: data source
