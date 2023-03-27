@@ -1,0 +1,65 @@
+name: pdb_jespersen_et_al
+description: |-
+  Epitope prediction is to predict the active region in the antigen.
+  This dataset is from Bepipred, which curates a dataset from PDB.
+  It collects B-cell epitopes and non-epitope amino acids determined from crystal structures.
+targets:
+- id: active_position
+  description: amino acids sequence position that is active in binding
+  units: ''
+  type: categorical
+  names:
+  - amino acids sequence active in binding
+  - Epitope
+  uris:
+  - https://rb.gy/l1st1c
+benchmarks:
+- name: TDC
+  link: https://tdcommons.ai/
+  split_column: split
+identifiers:
+- id: Antigen_sequence
+  type: Other
+  names:
+  - amino acid sequence
+  - FASTQ
+  - fastq sequence
+  - Protien sequence
+  description: amino acid sequence
+license: CC BY 4.0
+links:
+- url: https://doi.org/10.1093/nar/gkx346
+  description: corresponding publication
+- url: https://doi.org/10.1093/nar/28.1.235
+  description: corresponding publication
+- url: https://tdcommons.ai/single_pred_tasks/epitope/#pdb-jespersen-et-al
+  description: data source
+num_points: 447
+bibtex:
+- |-
+  @article{Jespersen2017,
+  doi = {10.1093/nar/gkx346},
+  url = {https://doi.org/10.1093/nar/gkx346},
+  year = {2017},
+  month = may,
+  publisher = {Oxford University Press (OUP)},
+  volume = {45},
+  number = {W1},
+  pages = {W24--W29},
+  author = {Martin Closter Jespersen and Bjoern Peters and Morten Nielsen and Paolo Marcatili},
+  title = {BepiPred 2.0: improving sequence-based B-cell epitope prediction using
+  conformational epitopes},
+  journal = {Nucleic Acids Research}
+- |-
+  @article{Berman2000,
+  doi = {10.1093/nar/28.1.235},
+  url = {https://doi.org/10.1093/nar/28.1.235},
+  year = {2000},
+  month = jan,
+  publisher = {Oxford University Press (OUP)},
+  volume = {28},
+  number = {1},
+  pages = {235--242},
+  author = {H. M. Berman},
+  title = {The Protein Data Bank},
+  journal = {Nucleic Acids Research}
