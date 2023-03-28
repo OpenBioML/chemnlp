@@ -14,7 +14,7 @@ def get_and_transform_data():
     df_train["split"] = "train"
     df_valid["split"] = "valid"
     df_test["split"] = "test"
-    df = pd.concat(df_train, df_valid, df_test, axis=0)
+    df = pd.concat([df_train, df_valid, df_test], axis=0)
 
     # create dataframenot necessary but ensure we can load the saved data
 
@@ -24,7 +24,7 @@ def get_and_transform_data():
         "epitope_aa",
         "epitope_smi",
         "tcr",
-        "tcr_aa",
+        "tcr_full",
         "label",
         "split",
     ]
