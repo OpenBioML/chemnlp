@@ -1,12 +1,10 @@
-
 import pandas as pd
 import yaml
 from tdc.multi_pred import TCREpitopeBinding 
-
 def get_and_transform_data():
     # get raw data
     data = TCREpitopeBinding(name = 'weber', path = './data')
-
+    
     split = data.get_split()
     df_train=split['train']
     df_valid=split['valid']
@@ -14,7 +12,7 @@ def get_and_transform_data():
     df_train['split']="train"
     df_valid['split']="valid"
     df_test['split']="test"
-    df=pd.concat(df_train,df_valid,df_test,axis=0)
+    df=pd.concat([df_train,df_valid,df_test],axis=0)
 
     # create dataframenot necessary but ensure we can load the saved data
 
@@ -24,7 +22,7 @@ def get_and_transform_data():
         "epitope_aa",
         "epitope_smi",
         "tcr",
-        "tcr_aa",
+        "tcr_full",
         "label",
         "split"
     ]
@@ -54,11 +52,10 @@ def get_and_transform_data():
     # create meta yaml
     meta = {
         "name": "tcr_epitope_binding",  # unique identifier, we will also use this for directory names
-        "description": """T-cells are an integral part of the adaptive immune system, whose survival, proliferation, 
-        activationand function are all governed by the interaction of their T-cell receptor (TCR) with immunogenic 
-        peptides (epitopes).A large repertoire of T-cell receptors with different specificity is needed to provide 
-        protection against a wide range of pathogens.This new task aims to predict the binding affinity 
-        given a pair of TCR sequence and epitope sequence.""",
+        "description": """T-cells are an integral part of the adaptive immune system, whose survival, proliferation, activation
+        and function are all governed by the interaction of their T-cell receptor (TCR) with immunogenic peptides (epitopes).
+        A large repertoire of T-cell receptors with different specificity is needed to provide protection against a wide range of pathogens.
+        This new task aims to predict the binding affinity given a pair of TCR sequence and epitope sequence.""",
         "targets": [
             {
                 "id": "binding",  # name of the column in a tabular dataset
@@ -85,19 +82,19 @@ def get_and_transform_data():
                 "id": "epitope_aa",
                 "type": "Other",
                 "description": "epitope amino acid sequence",
-
+    
             },
             {
                 "id": "tcr",
                 "type": "Other",
                 "description": "hypervariable CDR3 loop",
-
+    
             },
             {
                 "id": "tcr_full",
                 "type": "Other",
                 "description": "tcr full amino acid sequence",
-
+    
             },
         ],
         "license": "CC BY 4.0",  # license under which the original dataset was published
