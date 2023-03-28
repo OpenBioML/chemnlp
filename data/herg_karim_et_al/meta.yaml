@@ -6,19 +6,19 @@ description: |-
     in the form of SMILES strings was obtained from the DeepHIT, the BindingDB database,
     ChEMBL bioactivity database, and other literature.
 targets:
-    - id: hERG_blocker
-      description: whether it blocks (1, <10uM) or not blocks (0, >=10uM)
-      units: activity
-      type: categorical
+    - id: herg_blocker
+      description: whether it blocks hERG (1, <10uM) or not (0, >=10uM)
+      units:
+      type: boolean
       names:
           - hERG blocker
           - hERG active compound
           - hERG blocker
           - hERG active compound <10uM
-          - Human ether-a-go-go related gene (hERG) blocker
-          - Activity against Human ether-a-go-go related gene (hERG)
+          - human ether-a-go-go related gene (hERG) blocker
+          - activity against Human ether-a-go-go related gene (hERG)
       uris:
-          - https://bioportal.bioontology.org/ontologies/MI?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_2136
+          - http://purl.obolibrary.org/obo/MI_2136
 benchmarks:
     - name: TDC
       link: https://tdcommons.ai/

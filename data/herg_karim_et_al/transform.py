@@ -5,9 +5,18 @@ from tdc.single_pred import Tox
 
 def get_and_transform_data():
     # get raw data
-    data = Tox(name="hERG_Karim")
+    splits = Tox(name="hERG_Karim").get_split()
+    df_train = splits["train"]
+    df_valid = splits["valid"]
+    df_test = splits["test"]
+    df_train["split"] = "train"
+    df_valid["split"] = "valid"
+    df_test["split"] = "test"
+    df = pd.concat([df_train, df_valid, df_test], axis=0)
+
     fn_data_original = "data_original.csv"
-    data.get_data().to_csv(fn_data_original, index=False)
+    df.to_csv(fn_data_original, index=False)
+    del df
 
     # create dataframe
     df = pd.read_csv(
@@ -21,21 +30,17 @@ def get_and_transform_data():
         "Drug_ID",
         "Drug",
         "Y",
+        "split",
     ]
 
     # overwrite column names = fields
     fields_clean = [
         "compound_id",
         "SMILES",
-        "hERG_blocker",
+        "herg_blocker",
+        "split",
     ]
     df.columns = fields_clean
-
-    # data cleaning
-    #     df.compound_name = (
-    #         df.compound_name.str.strip()
-    #     )
-    # remove leading and trailing white space characters
 
     assert not df.duplicated().sum()
 
@@ -52,20 +57,20 @@ in the form of SMILES strings was obtained from the DeepHIT, the BindingDB datab
 ChEMBL bioactivity database, and other literature.""",
         "targets": [
             {
-                "id": "hERG_blocker",  # name of the column in a tabular dataset
-                "description": "whether it blocks (1, <10uM) or not blocks (0, >=10uM)",  # description of what this column means
-                "units": "activity",  # units of the values in this column (leave empty if unitless)
-                "type": "categorical",  # can be "categorical", "ordinal", "continuous"
+                "id": "herg_blocker",  # name of the column in a tabular dataset
+                "description": "whether it blocks hERG (1, <10uM) or not (0, >=10uM)",
+                "units": None,  # units of the values in this column (leave empty if unitless)
+                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
                     "hERG blocker",
                     "hERG active compound",
                     "hERG blocker",
                     "hERG active compound <10uM",
-                    "Human ether-a-go-go related gene (hERG) blocker",
-                    "Activity against Human ether-a-go-go related gene (hERG)",
+                    "human ether-a-go-go related gene (hERG) blocker",
+                    "activity against Human ether-a-go-go related gene (hERG)",
                 ],
                 "uris": [
-                    "https://bioportal.bioontology.org/ontologies/MI?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_2136",
+                    "http://purl.obolibrary.org/obo/MI_2136",
                 ],
             },
         ],
