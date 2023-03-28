@@ -80,11 +80,17 @@ sequence.""",
             {
                 "id": "target_name",
                 "type": "Other",
-                "description": "target name",
+                "names": [
+                    "target name",
+                ],
+                "description": "target amino acid name",
             },
             {
                 "id": "target_aa",
                 "type": "Other",
+                "names": [
+                    "target amino acid sequence",
+                ],
                 "description": "target amino acid sequence",
             },
         ],
