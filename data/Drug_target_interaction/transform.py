@@ -99,6 +99,13 @@ def get_and_transform_data():
                 "description": "corresponding publication",
             },
         ],
+        "benchmarks": [
+            {
+                "name": "TDC",
+                "link": "https://tdcommons.ai/",
+                "split_column": "split",
+            },
+        ],
         "num_points": len(df),  # number of datapoints in this dataset
         "bibtex": [
             """@article{Liu2006bindingdb,
