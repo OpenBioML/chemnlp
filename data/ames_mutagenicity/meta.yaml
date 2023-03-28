@@ -11,17 +11,16 @@ description: |-
 targets:
     - id: mutagenic
       description: whether it is mutagenic (1) or not mutagenic (0)
-      units: mutagenic
-      type: categorical
+      units:
+      type: boolean
       names:
-          - mutagenic
-          - Mutagenicity
-          - Ames Mutagenicity
+          - mutagenicity
+          - Ames mutagenicity
           - ability of a drug to induce genetic alterations
-          - mutagens
       uris:
-          - https://bioportal.bioontology.org/ontologies/ENM?p=classes&conceptid=http%3A%2F%2Fpurl.enanomapper.org%2Fonto%2FENM_0000042
-          - https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C16235
+          - http://purl.enanomapper.org/onto/ENM_0000042
+      pubchem_aids:
+          - http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C16235
 benchmarks:
     - name: TDC
       link: https://tdcommons.ai/

@@ -5,9 +5,18 @@ from tdc.single_pred import Tox
 
 def get_and_transform_data():
     # get raw data
-    data = Tox(name="AMES")
+    splits = Tox(name="AMES").get_split()
+    df_train = splits["train"]
+    df_valid = splits["valid"]
+    df_test = splits["test"]
+    df_train["split"] = "train"
+    df_valid["split"] = "valid"
+    df_test["split"] = "test"
+    df = pd.concat([df_train, df_valid, df_test], axis=0)
+
     fn_data_original = "data_original.csv"
-    data.get_data().to_csv(fn_data_original, index=False)
+    df.to_csv(fn_data_original, index=False)
+    del df
 
     # create dataframe
     df = pd.read_csv(
@@ -21,6 +30,7 @@ def get_and_transform_data():
         "Drug_ID",
         "Drug",
         "Y",
+        "split",
     ]
 
     # overwrite column names = fields
@@ -28,6 +38,7 @@ def get_and_transform_data():
         "compound_id",
         "SMILES",
         "mutagenic",
+        "split",
     ]
     df.columns = fields_clean
 
@@ -56,18 +67,18 @@ The dataset is aggregated from four papers.""",
             {
                 "id": "mutagenic",  # name of the column in a tabular dataset
                 "description": "whether it is mutagenic (1) or not mutagenic (0)",
-                "units": "mutagenic",  # units of the values in this column (leave empty if unitless)
-                "type": "categorical",  # can be "categorical", "ordinal", "continuous"
+                "units": None,  # units of the values in this column (leave empty if unitless)
+                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "mutagenic",
-                    "Mutagenicity",
-                    "Ames Mutagenicity",
+                    "mutagenicity",
+                    "Ames mutagenicity",
                     "ability of a drug to induce genetic alterations",
-                    "mutagens",
                 ],
                 "uris": [
-                    "https://rb.gy/ymtkry",
-                    "https://rb.gy/3o6bou",
+                    "http://purl.enanomapper.org/onto/ENM_0000042",
+                ],
+                "pubchem_aids": [
+                    "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C16235",
                 ],
             },
         ],
