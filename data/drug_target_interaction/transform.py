@@ -32,7 +32,7 @@ def get_and_transform_data():
         "compound_name",
         "SMILES",
         "target_name",
-        "Target_aa",
+        "target_aa",
         "binding",
         "split",
     ]
@@ -78,7 +78,12 @@ sequence.""",
                 "description": "small-molecule",  # description (optional, except for "OTHER")
             },
             {
-                "id": "Target",
+                "id": "target_name",
+                "type": "Other",
+                "description": "target name",
+            },
+            {
+                "id": "target_aa",
                 "type": "Other",
                 "description": "target amino acid sequence",
             },
