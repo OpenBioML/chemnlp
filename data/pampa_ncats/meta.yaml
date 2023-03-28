@@ -29,7 +29,10 @@ links:
       description: original dataset link
     - url: https://journals.sagepub.com/doi/full/10.1177/24725552211017520
       description: corresponding publication
-split_col: split
+benchmarks:
+    - name: TDC
+      link: https://tdcommons.ai/
+      split_column: split
 num_points: 2034
 bibtex:
     - |-

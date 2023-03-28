@@ -15,6 +15,11 @@ class IdentifierEnum(YamlStrEnum):
     inchi = "InChI"
     inchikey = "InChIKey"
     other = "Other"
+    # we distinguish two RXN-SMILES variants.
+    # the simple one only includes educt and product
+    # the other one (rxnsmilesWAdd) also includes solvents etc.
+    rxnsmiles = "RXNSMILES"
+    rxnsmilesWAdd = "RXNSMILESWAdd"
 
 
 class Identifier(YamlModel):
@@ -49,6 +54,7 @@ class ColumnTypes(YamlStrEnum):
     categorical = "categorical"
     ordinal = "ordinal"
     boolean = "boolean"
+    string = "string"
 
 
 class Target(YamlModel):
@@ -151,6 +157,19 @@ class Link(YamlModel):
     description: str
 
 
+class Benchmark(YamlModel):
+    """Benchmark information."""
+
+    """The name of the benchmark, e.g. MoleculeNet."""
+    name: str
+
+    """The link to the benchmark."""
+    link: str
+
+    """The name of the column in the dataset that indicates the fold of the data point."""
+    split_column: str
+
+
 class Dataset(YamlModel):
     name: str
     description: str
@@ -162,6 +181,8 @@ class Dataset(YamlModel):
     templates: Optional[List[Template]]
     fields: Optional[Dict[str, TemplateField]]
     links: List[Link]
+
+    benchmarks: Optional[List[Benchmark]]
 
     @validator("num_points")
     def num_points_must_be_positive(cls, v):
