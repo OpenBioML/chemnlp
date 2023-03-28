@@ -54,10 +54,11 @@ def get_and_transform_data():
     # create meta yaml
     meta = {
         "name": "tcr_epitope_binding",  # unique identifier, we will also use this for directory names
-        "description": """T-cells are an integral part of the adaptive immune system, whose survival, proliferation, activation
-        and function are all governed by the interaction of their T-cell receptor (TCR) with immunogenic peptides (epitopes).
-        A large repertoire of T-cell receptors with different specificity is needed to provide protection against a wide range of pathogens.
-        This new task aims to predict the binding affinity given a pair of TCR sequence and epitope sequence.""",
+        "description": """T-cells are an integral part of the adaptive immune system, whose survival, proliferation, 
+        activationand function are all governed by the interaction of their T-cell receptor (TCR) with immunogenic 
+        peptides (epitopes).A large repertoire of T-cell receptors with different specificity is needed to provide 
+        protection against a wide range of pathogens.This new task aims to predict the binding affinity 
+        given a pair of TCR sequence and epitope sequence.""",
         "targets": [
             {
                 "id": "binding",  # name of the column in a tabular dataset
