@@ -6,19 +6,15 @@ description: |-
     the genome or to the disruption of cellular metabolic processes.
 targets:
     - id: carcinogen
-      description: whether it can cause carcinogen (1) or not (0).
-      units: carcinogen
-      type: categorical
+      description: whether it is carcinogenic (1) or not (0).
+      units:
+      type: boolean
       names:
           - carcinogen
-          - promotes carcinogenesis
-          - carcinogenesis
-          - any substance, radionuclide, or radiation that promotes carcinogenesis
-          - damage the genome
-          - substance promotes carcinogenesis
+          - substance, radionuclide, or radiation that promotes carcinogenesis
       uris:
-          - https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C347
-          - https://bioportal.bioontology.org/ontologies/SNOMEDCT?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FSNOMEDCT%2F88376000
+          - http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C347
+          - http://purl.bioontology.org/ontology/SNOMEDCT/88376000
 benchmarks:
     - name: TDC
       link: https://tdcommons.ai/

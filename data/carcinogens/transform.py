@@ -5,9 +5,18 @@ from tdc.single_pred import Tox
 
 def get_and_transform_data():
     # get raw data
-    data = Tox(name="Carcinogens_Lagunin")
+    splits = Tox(name="Carcinogens_Lagunin").get_split()
+    df_train = splits["train"]
+    df_valid = splits["valid"]
+    df_test = splits["test"]
+    df_train["split"] = "train"
+    df_valid["split"] = "valid"
+    df_test["split"] = "test"
+    df = pd.concat([df_train, df_valid, df_test], axis=0)
+
     fn_data_original = "data_original.csv"
-    data.get_data().to_csv(fn_data_original, index=False)
+    df.to_csv(fn_data_original, index=False)
+    del df
 
     # create dataframe
     df = pd.read_csv(
@@ -21,6 +30,7 @@ def get_and_transform_data():
         "Drug_ID",
         "Drug",
         "Y",
+        "split",
     ]
 
     # overwrite column names = fields
@@ -28,13 +38,14 @@ def get_and_transform_data():
         "compound_id",
         "SMILES",
         "carcinogen",
+        "split",
     ]
     df.columns = fields_clean
 
     # data cleaning
-    #     df.compound_id = (
-    #         df.compound_id.str.strip()
-    #     )  # remove leading and trailing white space characters
+    df.compound_id = (
+        df.compound_id.str.strip()
+    )  # remove leading and trailing white space characters
 
     assert not df.duplicated().sum()
 
@@ -51,20 +62,16 @@ the genome or to the disruption of cellular metabolic processes.""",
         "targets": [
             {
                 "id": "carcinogen",  # name of the column in a tabular dataset
-                "description": "whether it can cause carcinogen (1) or not (0).",
-                "units": "carcinogen",  # units of the values in this column (leave empty if unitless)
-                "type": "categorical",  # can be "categorical", "ordinal", "continuous"
+                "description": "whether it is carcinogenic (1) or not (0).",
+                "units": None,
+                "type": "boolean",
                 "names": [  # names for the property (to sample from for building the prompts)
                     "carcinogen",
-                    "promotes carcinogenesis",
-                    "carcinogenesis",
-                    "any substance, radionuclide, or radiation that promotes carcinogenesis",
-                    "damage the genome",
-                    "substance promotes carcinogenesis",
+                    "substance, radionuclide, or radiation that promotes carcinogenesis",
                 ],
                 "uris": [
-                    "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C347",
-                    "https://bioportal.bioontology.org/ontologies/SNOMEDCT?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FSNOMEDCT%2F88376000",
+                    "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C347",
+                    "http://purl.bioontology.org/ontology/SNOMEDCT/88376000",
                 ],
             },
         ],
