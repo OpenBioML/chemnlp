@@ -11,7 +11,6 @@ targets:
           - yield
       uris:
           - https://bioportal.bioontology.org/ontologies/AFO?p=classes&conceptid=http%3A%2F%2Fpurl.allotrope.org%2Fontologies%2Fquality%23AFQ_0000227
-          - https://en.wikipedia.org/wiki/Yield_(chemistry)
 benchmarks:
     - name: TDC
       link: https://tdcommons.ai/
