@@ -126,15 +126,15 @@ def get_and_transform_data():
         "num_points": len(df),  # number of datapoints in this dataset
         "bibtex": [
             """@article{weber2021titan,
-            title={TITAN: T-cell receptor specificity prediction with bimodal attention network},
-            author={Weber Anna,Born Janis, Martinez Maria Rodriguez},
-            journal={Bioinformatics},
-            volume={56},
-            number={4},
-            pages={i237-i234},
-            year={2021},
-            publisher={Oxford Academic}
-            }""",
+title={TITAN: T-cell receptor specificity prediction with bimodal attention network},
+author={Weber Anna,Born Janis, Martinez Maria Rodriguez},
+journal={Bioinformatics},
+volume={56},
+number={4},
+pages={i237-i234},
+year={2021},
+publisher={Oxford Academic}
+}""",
         ],
     }
 
