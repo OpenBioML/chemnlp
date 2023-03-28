@@ -27,7 +27,12 @@ META_TEMPLATE = {
             "id": "SMILES",  # column name
             "type": "SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "OTHER"
             "description": "SMILES",  # description (optional, except for "OTHER")
-        }
+        },
+        {
+            "id": "compound_id",
+            "type": "OTHER",
+            "description": "This is the PubChem CID to identify a given molecule.",
+        },
     ],
     "license": "CC BY 4.0",  # license under which the original dataset was published
     "links": [  # list of relevant links (original dataset, other uses, etc.)
