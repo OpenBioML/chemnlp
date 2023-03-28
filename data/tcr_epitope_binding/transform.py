@@ -64,7 +64,7 @@ def get_and_transform_data():
                 "id": "binding",  # name of the column in a tabular dataset
                 "description": "TCR epitope binding.",  # description of what this column means
                 "units": "",  # units of the values in this column (leave empty if unitless)
-                "type": "binary classification",  # can be "categorical", "ordinal", "continuous"
+                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
                     "tcr binding affinity",
                     "binding affinity",
@@ -83,16 +83,25 @@ def get_and_transform_data():
             {
                 "id": "epitope_aa",
                 "type": "Other",
+                "names": [
+                    "epitope amino acid sequence",
+                ],
                 "description": "epitope amino acid sequence",
             },
             {
                 "id": "tcr",
                 "type": "Other",
+                "names": [
+                    "hypervariable CDR3 loop",
+                ],
                 "description": "hypervariable CDR3 loop",
             },
             {
                 "id": "tcr_full",
                 "type": "Other",
+                "names": [
+                    "tcr full amino acid sequence",
+                ],
                 "description": "tcr full amino acid sequence",
             },
         ],
