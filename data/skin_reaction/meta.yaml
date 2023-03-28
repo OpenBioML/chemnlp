@@ -16,8 +16,8 @@ targets:
           - agent Induced Skin Reaction
           - drug induced skin immune reaction
       uris:
-          - https://bioportal.bioontology.org/ontologies/SNOMEDCT?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FSNOMEDCT%2F264519003
-          - https://bioportal.bioontology.org/ontologies/MEDDRA?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FMEDDRA%2F10040914
+          - http://purl.bioontology.org/ontology/SNOMEDCT/264519003
+          - http://purl.bioontology.org/ontology/MEDDRA/10040914
 benchmarks:
     - name: TDC
       link: https://tdcommons.ai/
