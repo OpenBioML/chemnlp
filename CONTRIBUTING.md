@@ -70,6 +70,8 @@ benchmarks: # lists all benchmarks this dataset has been part of. split_column i
 identifiers:
   - id: InChI # column name
     type: InChI # can be "SMILES", "SELFIES", "IUPAC", "Other", "InChI", "InChiKey", "RXNSMILES", "RXNSMILESWAdd" see IdentifierEnum
+    names: # Optional | list  of type names if type was "Other"
+    - 
     description: International Chemical Identifier # description (optional, except for "OTHER")
 license: CC0 1.0 # license under which the original dataset was published
 num_points: 10000 # number of datapoints in this dataset
