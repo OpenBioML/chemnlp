@@ -40,15 +40,15 @@ def get_and_transform_data():
 
     # create meta yaml
     meta = {
-        "name": "uspto_500k",  # unique identifier, we will also use this for directory names
+        "name": "uspto_500k",  
         "description": """United States Patent and Trademark Office reaction dataset with yields.""",
         "targets": [
             {
-                "id": "yield",  # name of the column in a tabular dataset
-                "description": "Reaction yields analyzed by UPLC",  # description of what this column means
-                "units": "%",  # units of the values in this column (leave empty if unitless)
-                "type": "continuous",  # can be "categorical", "ordinal", "continuous"
-                "names": [  # names for the property (to sample from for building the prompts)
+                "id": "yield",  
+                "description": "Reaction yields analyzed by UPLC",
+                "units": "%",  
+                "type": "continuous",  
+                "names": [  
                     "Reaction yield",
                     "yield",
                 ],
@@ -58,18 +58,11 @@ def get_and_transform_data():
                 ],
             },
         ],
-        "benchmarks": [
-            {
-                "name": "TDC",  # unique benchmark name
-                "link": "https://tdcommons.ai/",  # benchmark URL
-                "split_column": "split",  # name of the column that contains the split information
-            },
-        ],
         "identifiers": [
             {
-                "id": "reaction_SMILES",  # column name
-                "type": "SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
-                "description": "reaction SMILES",  # description (optional, except for "Other")
+                "id": "reaction_SMILES",  
+                "type": "RXNSMILES",  
+                "description": "reaction SMILES", 
             },
         ],
         "license": "CC0",  # license under which the original dataset was published
