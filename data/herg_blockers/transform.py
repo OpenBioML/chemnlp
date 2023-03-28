@@ -5,9 +5,18 @@ from tdc.single_pred import Tox
 
 def get_and_transform_data():
     # get raw data
-    data = Tox(name="hERG")
+    splits = Tox(name="hERG").get_split()
+    df_train = splits["train"]
+    df_valid = splits["valid"]
+    df_test = splits["test"]
+    df_train["split"] = "train"
+    df_valid["split"] = "valid"
+    df_test["split"] = "test"
+    df = pd.concat([df_train, df_valid, df_test], axis=0)
+
     fn_data_original = "data_original.csv"
-    data.get_data().to_csv(fn_data_original, index=False)
+    df.to_csv(fn_data_original, index=False)
+    del df
 
     # create dataframe
     df = pd.read_csv(
@@ -21,13 +30,15 @@ def get_and_transform_data():
         "Drug_ID",
         "Drug",
         "Y",
+        "split",
     ]
 
     # overwrite column names = fields
     fields_clean = [
         "compound_name",
         "SMILES",
-        "hERG_blocker",
+        "herg_blocker",
+        "split",
     ]
     df.columns = fields_clean
 
@@ -53,18 +64,18 @@ related attritions in the later development stages.""",
         "targets": [
             {
                 "id": "hERG_blocker",  # name of the column in a tabular dataset
-                "description": "hERG active compound(blocker)",  # description of what this column means
-                "units": "ld50",  # units of the values in this column (leave empty if unitless)
-                "type": "categorical",  # can be "categorical", "ordinal", "continuous"
+                "description": "whether it blocks hERG (1) or not (0)",  # description of what this column means
+                "units": None,  # units of the values in this column (leave empty if unitless)
+                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "hERG activity",
+                    "hERG blocker",
                     "hERG active compound",
                     "hERG blocker",
-                    "Human ether-a-go-go related gene (hERG) blocker",
-                    "Activity against Human ether-a-go-go related gene (hERG)",
+                    "human ether-a-go-go related gene (hERG) blocker",
+                    "activity against Human ether-a-go-go related gene (hERG)",
                 ],
                 "uris": [
-                    "https://bioportal.bioontology.org/ontologies/MI?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_2136",
+                    "http://purl.obolibrary.org/obo/MI_2136",
                 ],
             },
         ],

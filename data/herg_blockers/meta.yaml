@@ -8,17 +8,17 @@ description: |-
     related attritions in the later development stages.
 targets:
     - id: hERG_blocker
-      description: hERG active compound(blocker)
-      units: ld50
-      type: categorical
+      description: whether it blocks hERG (1) or not (0)
+      units:
+      type: boolean
       names:
-          - hERG activity
+          - hERG blocker
           - hERG active compound
           - hERG blocker
-          - Human ether-a-go-go related gene (hERG) blocker
-          - Activity against Human ether-a-go-go related gene (hERG)
+          - human ether-a-go-go related gene (hERG) blocker
+          - activity against Human ether-a-go-go related gene (hERG)
       uris:
-          - https://bioportal.bioontology.org/ontologies/MI?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_2136
+          - http://purl.obolibrary.org/obo/MI_2136
 benchmarks:
     - name: TDC
       link: https://tdcommons.ai/
