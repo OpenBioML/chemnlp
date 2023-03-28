@@ -52,8 +52,8 @@ def get_and_transform_data():
     meta = {
         "name": "herg_karim_et_al",  # unique identifier, we will also use this for directory names
         "description": """A integrated Ether-a-go-go-related gene (hERG) dataset consisting
-of molecular structures labelled as hERG (<10uM) and non-hERG (>=10uM) blockers
-in the form of SMILES strings was obtained from the DeepHIT, the BindingDB database,
+of molecular structures labelled as hERG (<10uM) and non-hERG (>=10uM) blockers in
+the form of SMILES strings was obtained from the DeepHIT, the BindingDB database,
 ChEMBL bioactivity database, and other literature.""",
         "targets": [
             {
