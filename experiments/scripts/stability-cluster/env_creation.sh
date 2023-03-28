@@ -23,8 +23,9 @@ cd /fsx/proj-chemnlp/$2
 [ ! -d 'chemnlp' ] && git clone --recurse-submodules --remote-submodules git@github.com:OpenBioML/chemnlp.git
 
 ## install
-pip install -r chemnlp/gpt-neox/requirements/requirements.txt # base gpt-neox reqs
-pip install -r chemnlp/gpt-neox/requirements/requirements-wandb.txt # add wand monitoring reqs
+cd chemnlp/gpt-neox
+pip install -r requirements/requirements.txt # base gpt-neox reqs
+pip install -r requirements/requirements-wandb.txt # add wand monitoring reqs
 
 ## downgrades / pins
 pip install protobuf=="3.20"

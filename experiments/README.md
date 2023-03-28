@@ -21,10 +21,10 @@ to the core team on Discord.
 
    ```bash
    # general case
-   source experiments/scripts/stability-cluster/env_creation.sh where/to/store/conda where/to/build/conda/from/
+   source experiments/scripts/stability-cluster/env_creation.sh where/to/store/conda where/to/build/conda/from
 
    # for creating a personal environment
-   source experiments/scripts/stability-cluster/env_creation.sh jack/ jack/
+   source experiments/scripts/stability-cluster/env_creation.sh jack jack
    ```
 
 3. [Running Experiment](stability-cluster/sbatch_run.sh) -
@@ -37,7 +37,7 @@ to the core team on Discord.
 
    ```bash
    # general case
-   sbatch experiments/scripts/stability-cluster/sbatch_run.sh where/to/store/conda where/to/build/conda/from/ <cluster-config-name.yml> <training-config-names.yml>
+   sbatch experiments/scripts/stability-cluster/sbatch_run.sh where/to/store/conda where/to/build/conda/from <cluster-config-name.yml> <training-config-names.yml>
 
    # for typical small model finetuning experiments
    sbatch experiments/scripts/stability-cluster/sbatch_run.sh experiments/my-experiment jack cluster_setup.yml 160M.yml
