@@ -11,8 +11,7 @@ def get_and_transform_data():
     df_test['split']="test"
     df=pd.concat(df_train,df_valid,df_test,axis=0)
 
-    # create dataframe
- not necessary but ensure we can load the saved data
+    # create dataframenot necessary but ensure we can load the saved data
 
     # check if fields are the same
     fields_orig = df.columns.tolist()
@@ -106,7 +105,13 @@ def get_and_transform_data():
                 "description": "corresponding publication",
             },
         ],
-        "split col": "split"
+        "benchmarks": [
+            {
+                "name": "TDC",
+                "link": "https://tdcommons.ai/",
+                "split_column": "split",
+            },
+        ],
         "num_points": len(df),  # number of datapoints in this dataset
         "bibtex": [
             """@article{weber2021titan,
