@@ -1,45 +1,46 @@
+---
 name: tcr_epitope_binding
 description: |-
-  T-cells are an integral part of the adaptive immune system, whose survival, proliferation, activation
-      and function are all governed by the interaction of their T-cell receptor (TCR) with immunogenic peptides (epitopes).
-      A large repertoire of T-cell receptors with different specificity is needed to provide protection against a wide range of pathogens.
-      This new task aims to predict the binding affinity given a pair of TCR sequence and epitope sequence.
+    T-cells are an integral part of the adaptive immune system, whose survival, proliferation, activation
+        and function are all governed by the interaction of their T-cell receptor (TCR) with immunogenic peptides (epitopes).
+        A large repertoire of T-cell receptors with different specificity is needed to provide protection against a wide range of pathogens.
+        This new task aims to predict the binding affinity given a pair of TCR sequence and epitope sequence.
 targets:
-- id: binding
-  description: TCR epitope binding.
-  units: ''
-  type: binary classification
-  names:
-  - tcr binding affinity
-  - binding affinity
-  - binding
+    - id: binding
+      description: TCR epitope binding.
+      units: ''
+      type: binary classification
+      names:
+          - tcr binding affinity
+          - binding affinity
+          - binding
 identifiers:
-- id: epitope_smiles
-  type: SMILES
-  description: 'epitope smiles '
-- id: epitope_aa
-  type: amino acid
-  description: epitope amino acid sequence
-- id: tcr_full
-  type: amino acid
-  description: tcr amino acid sequence
+    - id: epitope_smiles
+      type: SMILES
+      description: 'epitope smiles '
+    - id: epitope_aa
+      type: amino acid
+      description: epitope amino acid sequence
+    - id: tcr_full
+      type: amino acid
+      description: tcr amino acid sequence
 license: CC BY 4.0
 links:
-- url: https://tdcommons.ai/multi_pred_tasks/tcrepitope/
-  description: original data set link
-- url: https://doi.org/10.1093/bioinformatics/btab294
-  description: corresponding publication
+    - url: https://tdcommons.ai/multi_pred_tasks/tcrepitope/
+      description: original data set link
+    - url: https://doi.org/10.1093/bioinformatics/btab294
+      description: corresponding publication
 split col: split
 num_points: 47182
 bibtex:
-- |-
-  @article{weber2021titan,
-          title={TITAN: T-cell receptor specificity prediction with bimodal attention network},
-          author={Weber Anna,Born Janis, Martinez Maria Rodriguez},
-          journal={Bioinformatics},
-          volume={56},
-          number={4},
-          pages={i237-i234},
-          year={2021},
-          publisher={Oxford Academic}
-          }
+    - |-
+      @article{weber2021titan,
+              title={TITAN: T-cell receptor specificity prediction with bimodal attention network},
+              author={Weber Anna,Born Janis, Martinez Maria Rodriguez},
+              journal={Bioinformatics},
+              volume={56},
+              number={4},
+              pages={i237-i234},
+              year={2021},
+              publisher={Oxford Academic}
+              }
