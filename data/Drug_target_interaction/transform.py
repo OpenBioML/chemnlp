@@ -53,11 +53,13 @@ def get_and_transform_data():
     # create meta yaml
     meta = {
         "name": "Drug-Target Interaction",  # unique identifier, we will also use this for directory names
-        "description": """The activity of a small-molecule drug is measured by its binding affinity with the target protein.
-        Given a new target protein, the very first step is to screen a set of potential compounds to find their activity.
-        Traditional method to gauge the affinities are through high-throughput screening wet-lab experiments.
-        However, they are very expensive and are thus restricted by their abilities to search over a large set of candidates
-        Drug-target interaction prediction task aims to predict the interaction activity score in silico given only the accessible compound structural information and protein amino acid sequence.""",
+        "description": """The activity of a small-molecule drug is measured by its binding affinity with the 
+        target protein.Given a new target protein, the very first step is to screen a set of potential compounds to 
+        find their activity.Traditional method to gauge the affinities are through high-throughput 
+        screening wet-lab experiments.However, they are very expensive and are thus restricted by their abilities to 
+        search over a large set of candidatesDrug-target interaction prediction task aims to predict the 
+        interaction activity score in silico given only the accessible compound structural information and protein 
+        amino acid sequence.""",
         "targets": [
             {
                 "id": "binding",  # name of the column in a tabular dataset
