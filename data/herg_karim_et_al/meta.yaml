@@ -1,50 +1,49 @@
----
 name: herg_karim_et_al
 description: |-
-    A integrated Ether-a-go-go-related gene (hERG) dataset consisting
-    of molecular structures labelled as hERG (<10uM) and non-hERG (>=10uM) blockers
-    in the form of SMILES strings was obtained from the DeepHIT, the BindingDB database,
-    ChEMBL bioactivity database, and other literature.
+  A integrated Ether-a-go-go-related gene (hERG) dataset consisting
+  of molecular structures labelled as hERG (<10uM) and non-hERG (>=10uM) blockers
+  in the form of SMILES strings was obtained from the DeepHIT, the BindingDB database,
+  ChEMBL bioactivity database, and other literature.
 targets:
-    - id: herg_blocker
-      description: whether it blocks hERG (1, <10uM) or not (0, >=10uM)
-      units:
-      type: boolean
-      names:
-          - hERG blocker
-          - hERG active compound
-          - hERG blocker
-          - hERG active compound <10uM
-          - human ether-a-go-go related gene (hERG) blocker
-          - activity against Human ether-a-go-go related gene (hERG)
-      uris:
-          - http://purl.obolibrary.org/obo/MI_2136
+- id: herg_blocker
+  description: whether it blocks hERG (1, <10uM) or not (0, >=10uM)
+  units: null
+  type: boolean
+  names:
+  - hERG blocker
+  - hERG active compound
+  - hERG blocker
+  - hERG active compound <10uM
+  - human ether-a-go-go related gene (hERG) blocker
+  - activity against Human ether-a-go-go related gene (hERG)
+  uris:
+  - http://purl.obolibrary.org/obo/MI_2136
 benchmarks:
-    - name: TDC
-      link: https://tdcommons.ai/
-      split_column: split
+- name: TDC
+  link: https://tdcommons.ai/
+  split_column: split
 identifiers:
-    - id: SMILES
-      type: SMILES
-      description: SMILES
+- id: SMILES
+  type: SMILES
+  description: SMILES
 license: CC BY 4.0
 links:
-    - url: https://doi.org/10.1186/s13321-021-00541-z
-      description: corresponding publication
-    - url: https://tdcommons.ai/single_pred_tasks/tox/#herg-karim-et-al
-      description: Data source
+- url: https://doi.org/10.1186/s13321-021-00541-z
+  description: corresponding publication
+- url: https://tdcommons.ai/single_pred_tasks/tox/#herg-karim-et-al
+  description: Data source
 num_points: 13445
 bibtex:
-    - |-
-      @article{Karim2021,
-      doi = {10.1186/s13321-021-00541-z},
-      url = {https://doi.org/10.1186/s13321-021-00541-z},
-      year = {2021},
-      month = aug,
-      publisher = {Springer Science and Business Media LLC},
-      volume = {13},
-      number = {1},
-      author = {Abdul Karim and Matthew Lee and Thomas Balle and Abdul Sattar},
-      title = {CardioTox net: a robust predictor for hERG channel blockade
-      based on deep learning meta-feature ensembles},
-      journal = {Journal of Cheminformatics}
+- |-
+  @article{Karim2021,
+  doi = {10.1186/s13321-021-00541-z},
+  url = {https://doi.org/10.1186/s13321-021-00541-z},
+  year = {2021},
+  month = aug,
+  publisher = {Springer Science and Business Media LLC},
+  volume = {13},
+  number = {1},
+  author = {Abdul Karim and Matthew Lee and Thomas Balle and Abdul Sattar},
+  title = {CardioTox net: a robust predictor for hERG channel blockade
+  based on deep learning meta-feature ensembles},
+  journal = {Journal of Cheminformatics}
