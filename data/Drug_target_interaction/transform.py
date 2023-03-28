@@ -39,11 +39,6 @@ def get_and_transform_data():
     df.columns = fields_clean
 
     # data cleaning
-    """
-    df.compound_name = (
-        df.compound_name.str.strip()
-    )  # remove leading and trailing white space characters
-    """
     assert not df.duplicated().sum()
 
     # save to csv
@@ -52,26 +47,27 @@ def get_and_transform_data():
 
     # create meta yaml
     meta = {
-        "name": "Drug-Target Interaction",  # unique identifier, we will also use this for directory names
-        "description": """The activity of a small-molecule drug is measured by its binding affinity with the 
-        target protein.Given a new target protein, the very first step is to screen a set of potential compounds to 
-        find their activity.Traditional method to gauge the affinities are through high-throughput 
-        screening wet-lab experiments.However, they are very expensive and are thus restricted by their abilities to 
-        search over a large set of candidatesDrug-target interaction prediction task aims to predict the 
-        interaction activity score in silico given only the accessible compound structural information and protein 
-        amino acid sequence.""",
+        "name": "drug-target interaction",  # unique identifier, we will also use this for directory names
+        "description": """The activity of a small-molecule drug is measured by
+its binding affinity with the target protein. Given a new target
+protein, the very first step is to screen a set of potential compounds
+to find their activity.Traditional method to gauge the affinities are
+through high-throughput screening wet-lab experiments. However, they
+are very expensive and are thus restricted by their abilities to search
+over a large set of candidates. Drug-target interaction prediction task
+aims to predict the interaction activity score in silico given only the
+accessible compound structural information and protein amino acid
+sequence.""",
         "targets": [
             {
                 "id": "binding",  # name of the column in a tabular dataset
-                "description": "small-molecule protein interaction.",  # description of what this column means
+                "description": "small-molecule protein interaction",  # description of what this column means
                 "units": "Kd",  # units of the values in this column (leave empty if unitless)
                 "type": "regression",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "Drug-Target Interaction" "small-molecule binding affinity",
-                    "small-molecule binding",
-                    "protein-ligand binding",
-                    "protein-ligand" "binding affinity",
-                    "binding",
+                    "drug-target interaction",
+                    "small-molecule binding affinity",
+                    "protein-ligand binding affinity",
                 ],
             },
         ],
@@ -84,7 +80,7 @@ def get_and_transform_data():
             {
                 "id": "Target",
                 "type": "Other",
-                "description": "Target amino acid sequence",
+                "description": "target amino acid sequence",
             },
         ],
         "license": "CC BY 4.0",  # license under which the original dataset was published
@@ -108,15 +104,15 @@ def get_and_transform_data():
         "num_points": len(df),  # number of datapoints in this dataset
         "bibtex": [
             """@article{Liu2006bindingdb,
-            title={BindingDB: a web-accessible database of experimentally determined protein-ligand binding affinities},
-            author={Tiqing Liu, Yuhmei Lin, Xin Wen, Robert N. Jorissen, Micahel, K. Gilson},
-            journal={Journal of Chemical Information and Modeling},
-            volume={35},
-            number={4},
-            pages={D198-D201},
-            year={2006},
-            publisher={Oxford Academic}
-            }""",
+title={BindingDB: a web-accessible database of experimentally determined protein-ligand binding affinities},
+author={Tiqing Liu, Yuhmei Lin, Xin Wen, Robert N. Jorissen, Micahel, K. Gilson},
+journal={Journal of Chemical Information and Modeling},
+volume={35},
+number={4},
+pages={D198-D201},
+year={2006},
+publisher={Oxford Academic}
+}""",
         ],
     }
 
