@@ -7,19 +7,18 @@ description: |-
     This dataset is aggregated from U.S. FDA 2019s National Center for Toxicological
     Research.
 targets:
-    - id: mutagenic
+    - id: liver_injury
       description: whether it can cause liver injury (1) or not (0).
-      units: liver_injury
-      type: categorical
+      units:
+      type: boolean
       names:
-          - DILI
           - liver injury
-          - Drug Induced Liver Injury
+          - drug induced liver injury
           - fatal liver disease caused by drugs
           - liver toxicity
       uris:
-          - https://bioportal.bioontology.org/ontologies/MEDDRA?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FMEDDRA%2F10072268
-          - https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C84427
+          - http://purl.bioontology.org/ontology/MEDDRA/10072268
+          - http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C84427
 benchmarks:
     - name: TDC
       link: https://tdcommons.ai/

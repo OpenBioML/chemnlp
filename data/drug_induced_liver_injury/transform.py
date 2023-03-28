@@ -5,9 +5,18 @@ from tdc.single_pred import Tox
 
 def get_and_transform_data():
     # get raw data
-    data = Tox(name="DILI")
+    splits = Tox(name="DILI").get_split()
+    df_train = splits["train"]
+    df_valid = splits["valid"]
+    df_test = splits["test"]
+    df_train["split"] = "train"
+    df_valid["split"] = "valid"
+    df_test["split"] = "test"
+    df = pd.concat([df_train, df_valid, df_test], axis=0)
+
     fn_data_original = "data_original.csv"
-    data.get_data().to_csv(fn_data_original, index=False)
+    df.to_csv(fn_data_original, index=False)
+    del df
 
     # create dataframe
     df = pd.read_csv(
@@ -21,6 +30,7 @@ def get_and_transform_data():
         "Drug_ID",
         "Drug",
         "Y",
+        "split",
     ]
 
     # overwrite column names = fields
@@ -28,13 +38,9 @@ def get_and_transform_data():
         "compound_id",
         "SMILES",
         "liver_injury",
+        "split",
     ]
     df.columns = fields_clean
-
-    # data cleaning
-    #     df.compound_id = (
-    #         df.compound_id.str.strip()
-    #     )  # remove leading and trailing white space characters
 
     assert not df.duplicated().sum()
 
@@ -52,20 +58,19 @@ This dataset is aggregated from U.S. FDA 2019s National Center for Toxicological
 Research.""",
         "targets": [
             {
-                "id": "mutagenic",  # name of the column in a tabular dataset
-                "description": "whether it can cause liver injury (1) or not (0).",  # description of what this column means
-                "units": "liver_injury",  # units of the values in this column (leave empty if unitless)
-                "type": "categorical",  # can be "categorical", "ordinal", "continuous"
+                "id": "liver_injury",  # name of the column in a tabular dataset
+                "description": "whether it can cause liver injury (1) or not (0).",
+                "units": None,  # units of the values in this column (leave empty if unitless)
+                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "DILI",
                     "liver injury",
-                    "Drug Induced Liver Injury",
+                    "drug induced liver injury",
                     "fatal liver disease caused by drugs",
                     "liver toxicity",
                 ],
                 "uris": [
-                    "https://bioportal.bioontology.org/ontologies/MEDDRA?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FMEDDRA%2F10072268",
-                    "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C84427",
+                    "http://purl.bioontology.org/ontology/MEDDRA/10072268",
+                    "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C84427",
                 ],
             },
         ],
