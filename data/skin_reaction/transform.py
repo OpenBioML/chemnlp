@@ -27,7 +27,7 @@ def get_and_transform_data():
     fields_clean = [
         "compound_name",
         "SMILES",
-        "Skin_Reaction",
+        "skin_reaction",
     ]
     df.columns = fields_clean
 
@@ -51,18 +51,17 @@ dataset used in this study was retrieved from the ICCVAM (Interagency Coordinati
 Committee on the Validation of Alternative Methods) report on the rLLNA.""",
         "targets": [
             {
-                "id": "Skin_Reaction",  # name of the column in a tabular dataset
+                "id": "skin_reaction",  # name of the column in a tabular dataset
                 "description": "whether it can cause skin reaction (1) or not (0).",
-                "units": "Skin_Reaction",  # units of the values in this column (leave empty if unitless)
-                "type": "categorical",  # can be "categorical", "ordinal", "continuous"
+                "units": None,  # units of the values in this column (leave empty if unitless)
+                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "Skin Reaction",
+                    "skin reaction",
                     "skin sensitization",
-                    "agent Induced Skin Reaction",
+                    "agent induced skin reaction",
                     "drug induced skin immune reaction",
                 ],
                 "uris": [
-                    "http://purl.bioontology.org/ontology/SNOMEDCT/264519003",
                     "http://purl.bioontology.org/ontology/MEDDRA/10040914",
                 ],
             },
@@ -87,7 +86,6 @@ Committee on the Validation of Alternative Methods) report on the rLLNA.""",
                 "names": [
                     "compound",
                     "compound name",
-                    "chemical agent",
                 ],
             },
         ],

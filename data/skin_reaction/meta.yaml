@@ -6,17 +6,16 @@ description: |-
     dataset used in this study was retrieved from the ICCVAM (Interagency Coordinating
     Committee on the Validation of Alternative Methods) report on the rLLNA.
 targets:
-    - id: Skin_Reaction
+    - id: skin_reaction
       description: whether it can cause skin reaction (1) or not (0).
-      units: Skin_Reaction
-      type: categorical
+      units:
+      type: boolean
       names:
-          - Skin Reaction
+          - skin reaction
           - skin sensitization
-          - agent Induced Skin Reaction
+          - agent induced skin reaction
           - drug induced skin immune reaction
       uris:
-          - http://purl.bioontology.org/ontology/SNOMEDCT/264519003
           - http://purl.bioontology.org/ontology/MEDDRA/10040914
 benchmarks:
     - name: TDC
@@ -32,7 +31,6 @@ identifiers:
       names:
           - compound
           - compound name
-          - chemical agent
 license: CC BY 4.0
 links:
     - url: https://doi.org/10.1016/j.taap.2014.12.014
