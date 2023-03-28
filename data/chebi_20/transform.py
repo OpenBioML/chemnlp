@@ -12,12 +12,14 @@ META_TEMPLATE = {
     "targets": [
         {
             "id": "description",  # name of the column in a tabular dataset
-            "description": "A natural language description of a SMILE",  # description of what this column means
+            "description": "A natural language description of the molecule SMILE",  # description of what this column means
             "units": None,  # units of the values in this column (leave empty if unitless)
             "type": "string",  # can be "categorical", "ordinal", "continuous"
             "names": [  # names for the property (to sample from for building the prompts)
                 "natural language description",
             ],
+            "pubchem_aids": [],
+            "uris": [],
         },
     ],
     "identifiers": [
@@ -30,18 +32,22 @@ META_TEMPLATE = {
     "license": "CC BY 4.0",  # license under which the original dataset was published
     "links": [  # list of relevant links (original dataset, other uses, etc.)
         {
+            "name": "Research Paper",
             "url": "https://aclanthology.org/2021.emnlp-main.47/",
-            "description": "Original Text2Mol paper which introduced the dataset.",
+            "description": "Original Text2Mol paper which introduced the chebi_20 dataset.",
         },
         {
+            "name": "Dataset",
             "url": "https://github.com/cnedwards/text2mol",
-            "description": "Text2Mol data repository.",
+            "description": "Text2Mol original data repository on GitHub.",
         },
         {
+            "name": "Hugging Face dataset upload",
             "url": "https://huggingface.co/datasets/OpenBioML/chebi_20",
-            "description": "Hugging Face dataset for OpenBioML.",
+            "description": "Hugging Face dataset uploaded to the OpenBioML organisation.",
         },
     ],
+    "benchmarks": [],
     "num_points": None,  # number of datapoints in this dataset
     "bibtex": [
         """@inproceedings{edwards2021text2mol,
@@ -51,6 +57,23 @@ META_TEMPLATE = {
             pages={595--607},
             year={2021},
             url = {https://aclanthology.org/2021.emnlp-main.47/}
+            }""",
+        """@inproceedings{edwards-etal-2022-translation,
+            title = "Translation between Molecules and Natural Language",
+            author = "Edwards, Carl  and
+                Lai, Tuan  and
+                Ros, Kevin  and
+                Honke, Garrett  and
+                Cho, Kyunghyun  and
+                Ji, Heng",
+            booktitle = "Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing",
+            month = dec,
+            year = "2022",
+            address = "Abu Dhabi, United Arab Emirates",
+            publisher = "Association for Computational Linguistics",
+            url = "https://aclanthology.org/2022.emnlp-main.26",
+            pages = "375--413",
+            abstract = "We present MolT5 - a self-supervised learning framework for pretraining models on a vast amount of unlabeled natural language text and molecule strings. MolT5 allows for new, useful, and challenging analogs of traditional vision-language tasks, such as molecule captioning and text-based de novo molecule generation (altogether: translation between molecules and language), which we explore for the first time. Since MolT5 pretrains models on single-modal data, it helps overcome the chemistry domain shortcoming of data scarcity. Furthermore, we consider several metrics, including a new cross-modal embedding-based metric, to evaluate the tasks of molecule captioning and text-based molecule generation. Our results show that MolT5-based models are able to generate outputs, both molecules and captions, which in many cases are high quality.",
             }""",
     ],
 }
