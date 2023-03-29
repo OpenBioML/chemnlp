@@ -13,10 +13,6 @@ targets:
   - Epitope
   uris:
   - https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C13189
-benchmarks:
-- name: TDC
-  link: https://tdcommons.ai/
-  split_column: split
 identifiers:
 - id: Antigen_sequence
   type: Other

@@ -13,10 +13,6 @@ targets:
   - Epitope
   uris:
   - https://rb.gy/l1st1c
-benchmarks:
-- name: TDC
-  link: https://tdcommons.ai/
-  split_column: split
 identifiers:
 - id: Antigen_sequence
   type: Other

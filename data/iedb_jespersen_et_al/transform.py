@@ -63,14 +63,14 @@ def get_and_transform_data():
     df.to_csv(fn_data_csv, index=False)
 
     meta = {
-        "name": "iedb_jespersen_et_al",  # unique identifier, we will also use this for directory names
+        "name": "iedb_jespersen_et_al", 
         "description": """Epitope prediction is to predict the active region in the antigen.
 This dataset is from Bepipred, which curates a dataset from IEDB. It collects B-cell
 epitopes and non-epitope amino acids determined from crystal structures.""",
         "targets": [
             {
                 "id": "active_position",  # name of the column in a tabular dataset
-                "description": "amino acids sequence position that is active in binding",  # description of what this column means
+                "description": "amino acids sequence position that is active in binding",
                 "units": "",  # units of the values in this column (leave empty if unitless)
                 "type": "categorical",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
@@ -82,13 +82,6 @@ epitopes and non-epitope amino acids determined from crystal structures.""",
                 ],
             }
         ],
-        "benchmarks": [
-            {
-            "name": "TDC",  # unique benchmark name
-            "link": "https://tdcommons.ai/",  # benchmark URL
-            "split_column": "split",  # name of the column that contains the split information
-            },
-        ],
         "identifiers": [
             {
                 "id": "Antigen_sequence",  # column name
@@ -99,7 +92,7 @@ epitopes and non-epitope amino acids determined from crystal structures.""",
                 "fastq sequence",
                 "Protien sequence"
                 ],
-                "description": "amino acid sequence",  # description (optional, except for "Other")
+                "description": "amino acid sequence",  # d
             }
         ],
         "license": "CC BY 4.0",  # license under which the original dataset was published

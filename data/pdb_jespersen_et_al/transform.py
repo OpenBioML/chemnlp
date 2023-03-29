@@ -82,13 +82,6 @@ It collects B-cell epitopes and non-epitope amino acids determined from crystal 
                 ],
             }
         ],
-        "benchmarks": [
-        {
-            "name": "TDC",  # unique benchmark name
-            "link": "https://tdcommons.ai/",  # benchmark URL
-            "split_column": "split",  # name of the column that contains the split information
-        },
-        ],
         "identifiers": [
             {
                 "id": "Antigen_sequence",  # column name
