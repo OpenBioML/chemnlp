@@ -51,7 +51,7 @@ targets:
   - id: Solubility # name of the column in a tabular dataset
     description: Experimental aqueous solubility value (LogS) # description of what this column means
     units: log(mol/L) # units of the values in this column (leave empty if unitless)
-    type: continuous # can be "categorical", "ordinal", "continuous"
+    type: continuous # can be "categorical", "ordinal", "continuous", "boolean"
     names: # names for the property (to sample from for building the prompts)
       - solubility
       - water solubility
@@ -63,9 +63,13 @@ targets:
       - solubility
       - water solubility
       - solubility in water
+benchmarks: # lists all benchmarks this dataset has been part of. split_column is a column in this dataframe with the value "train", "valid", "test" - indicating to which fold a specific entry belongs to
+    - name: TDC
+      link: https://tdcommons.ai/
+      split_column: split
 identifiers:
   - id: InChI # column name
-    type: InChI # can be "SMILES", "SELFIES", "IUPAC", "OTHER"
+    type: InChI # can be "SMILES", "SELFIES", "IUPAC", "Other", "InChI", "InChiKey", "RXNSMILES", "RXNSMILESWAdd" see IdentifierEnum
     description: International Chemical Identifier # description (optional, except for "OTHER")
 license: CC0 1.0 # license under which the original dataset was published
 num_points: 10000 # number of datapoints in this dataset
@@ -143,8 +147,16 @@ Please indicate this in the `meta.yaml` under the field `split_col`.
 
 #### Identifiers
 
-We ask you to add `uris` and `pubchem_aids` in case you find suitable references.
+We ask you to add `uris` and `pubchem_aids` in case you find suitable references. We distinguish certain types of identifiers, for which you have to specify the correct strings. The currently allowed types are in the `IdentifierEnum` in `src/chemnlp/data_val/model.py`:
 
+- `SMILES`: Use the canonical form ([RdKit](https://www.rdkit.org/docs/GettingStartedInPython.html))
+- `SELFIES`: [Self-referencing embedded strings](https://github.com/aspuru-guzik-group/selfies)
+- `IUPAC`: IUPAC-Name, not use it for non-standard, common names
+- `InChI`
+- `InChIKey`: The key derived from the `InChI`
+- `RXNSMILES`: The [reaction SMILES](https://www.daylight.com/meetings/summerschool98/course/dave/smiles-react.html) containing only educt and product
+- `RXNSMILESWAdd`: The reaction SMILES also containing solvent and additives
+- `Other`: For all other identifiers
 
 ##### Uniform Resource Identifiers (URIs)
 
