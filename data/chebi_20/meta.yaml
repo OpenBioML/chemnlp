@@ -1,0 +1,33 @@
+---
+name: chebi_20
+description: A dataset of pairs of natural language descriptions and SMILEs.
+targets:
+    - id: description
+      description: A natural language description of a SMILE
+      units:
+      type: string
+      names:
+          - natural language description
+identifiers:
+    - id: SMILES
+      type: SMILES
+      description: SMILES
+license: CC BY 4.0
+links:
+    - url: https://aclanthology.org/2021.emnlp-main.47/
+      description: Original Text2Mol paper which introduced the dataset.
+    - url: https://github.com/cnedwards/text2mol
+      description: Text2Mol data repository.
+    - url: https://huggingface.co/datasets/OpenBioML/chebi_20
+      description: Hugging Face dataset for OpenBioML.
+num_points: 33008
+bibtex:
+    - |-
+      @inproceedings{edwards2021text2mol,
+                  title={Text2Mol: Cross-Modal Molecule Retrieval with Natural Language Queries},
+                  author={Edwards, Carl and Zhai, ChengXiang and Ji, Heng},
+                  booktitle={Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing},
+                  pages={595--607},
+                  year={2021},
+                  url = {https://aclanthology.org/2021.emnlp-main.47/}
+                  }
