@@ -1,4 +1,8 @@
 [submodule "gpt-neox"]
 	path = gpt-neox
-	url = git@github.com:EleutherAI/gpt-neox.git
+	url = git@github.com:OpenBioML/gpt-neox.git
+	branch = main
+[submodule "lm-eval2"]
+	path = lm-eval2
+	url = git@github.com:OpenBioML/lm-eval2.git
 	branch = main
