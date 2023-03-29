@@ -105,6 +105,45 @@ def get_and_transform_data():
                 "description": "tcr full amino acid sequence",
             },
         ],
+        "templates": [
+            {
+                "prompt": "Please answer the following question.\nPredict the <expt_value_text> for <molecule>.",
+                "completion": "<exp_value>"
+            }
+        ],
+        "fields": [
+            {
+                "exp_value": [
+                 "values": [ 
+                {
+                    "name": "exp_value",
+                    "column": "exp_value",
+                    "text": "binding"
+                }
+                ]
+                ],
+                "molecule": [
+                "values": [
+                {
+                    "name": "epitope_smiles",
+                    "column": "epitope_smiles",
+                    "text": "SMILES"
+
+                },
+                {
+                    "name": "tcr_full",
+                    "column": "tcr_full",
+                    "text":
+
+                },
+
+            ]
+            ],
+
+            }
+        ],
+
+        
         "license": "CC BY 4.0",  # license under which the original dataset was published
         "links": [  # list of relevant links (original dataset, other uses, etc.)
             {
