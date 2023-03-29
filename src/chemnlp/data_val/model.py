@@ -15,6 +15,11 @@ class IdentifierEnum(YamlStrEnum):
     inchi = "InChI"
     inchikey = "InChIKey"
     other = "Other"
+    # we distinguish two RXN-SMILES variants.
+    # the simple one only includes educt and product
+    # the other one (rxnsmilesWAdd) also includes solvents etc.
+    rxnsmiles = "RXNSMILES"
+    rxnsmilesWAdd = "RXNSMILESWAdd"
 
 
 class Identifier(YamlModel):
@@ -49,6 +54,7 @@ class ColumnTypes(YamlStrEnum):
     categorical = "categorical"
     ordinal = "ordinal"
     boolean = "boolean"
+    string = "string"
 
 
 class Target(YamlModel):
