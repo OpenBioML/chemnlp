@@ -39,5 +39,12 @@ if __name__ == "__main__":
     # execute gpt-neox processing
     gpt_tool_path = f"{args.gptneox_dir}/tools/preprocess_data.py"
     os.system(
-        f"python {gpt_tool_path} --input {data_path} --output-prefix {save_path}/data --vocab /fsx/pile/20B_tokenizer.json --dataset-impl mmap --tokenizer-type HFTokenizer --append-eod"  # noqa: E501
+        f"""
+        python {gpt_tool_path}
+        --input {data_path}
+        --output-prefix {save_path}/data
+        --vocab /fsx/pile/20B_tokenizer.json
+        --dataset-impl mmap
+        --tokenizer-type HFTokenizer --append-eod
+        """
     )
