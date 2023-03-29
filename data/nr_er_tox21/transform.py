@@ -1,19 +1,26 @@
-import os
-
 import pandas as pd
 import yaml
 from tdc.single_pred import Tox
 from tdc.utils import retrieve_label_name_list
-
+import os
 
 def get_and_transform_data():
     # get raw data
-    target_folder = "Tox21"
-    label_list = retrieve_label_name_list(f"{target_folder}")
-    target_subfolder = f"{label_list[4]}"
-    data = Tox(name=f"{target_folder}", label_name=target_subfolder)
+    target_folder = 'Tox21'
+    label_list = retrieve_label_name_list(f'{target_folder}')
+    target_subfolder = f'{label_list[4]}'
+    splits = Tox(name = f'{target_folder}', label_name = target_subfolder).get_split()
+    df_train = splits["train"]
+    df_valid = splits["valid"]
+    df_test = splits["test"]
+    df_train["split"] = "train"
+    df_valid["split"] = "valid"
+    df_test["split"] = "test"
+    df = pd.concat([df_train, df_valid, df_test], axis=0)
+
     fn_data_original = "data_original.csv"
-    data.get_data().to_csv(fn_data_original, index=False)
+    df.to_csv(fn_data_original, index=False)
+    del df
 
     # create dataframe
     df = pd.read_csv(
@@ -27,26 +34,31 @@ def get_and_transform_data():
         "Drug_ID",
         "Drug",
         "Y",
+        "split"
     ]
 
+
     # overwrite column names = fields
-    fields_clean = ["compound_id", "SMILES", f"toxicity_{target_subfolder}"]
+    fields_clean =['compound_id', 
+                   'SMILES', 
+                   f'toxicity_{target_subfolder}',
+                   'split']
     df.columns = fields_clean
 
     # data cleaning
-    #     df.compound_name = (
-    #         df.compound_name.str.strip()
-    #     )
+#     df.compound_name = (
+#         df.compound_name.str.strip()
+#     )  
     # remove leading and trailing white space characters
     df = df.dropna()
     assert not df.duplicated().sum()
-
+    
     # save to csv
     fn_data_csv = "data_clean.csv"
     df.to_csv(fn_data_csv, index=False)
-
+    
     # create meta yaml
-    meta = {
+    meta =  {
         "name": "nr_er_tox21",  # unique identifier, we will also use this for directory names
         "description": """Tox21 is a data challenge which contains qualitative toxicity measurements
 for 7,831 compounds on 12 different targets, such as nuclear receptors and stress
@@ -65,21 +77,22 @@ response pathways.""",
                     "NR-Estrogen receptor alpha",
                     "Estrogen receptor alpha",
                     "Estrogen receptor alpha toxicity",
-                    "Estrogen receptor alpha using the BG1 cell line",
+                    "Estrogen receptor alpha using the BG1 cell line"
+
                 ],
             },
         ],
-        "uris": [
-            "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C38361",
-            "https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-018-2523-5/tables/3",
-            "https://bioportal.bioontology.org/ontologies/CLO?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCLO_0037345",
+        "uris":[
+                "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C38361",
+                "https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-018-2523-5/tables/3",
+                "https://bioportal.bioontology.org/ontologies/CLO?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCLO_0037345"
         ],
         "benchmarks": [
-            {
-                "name": "TDC",  # unique benchmark name
-                "link": "https://tdcommons.ai/",  # benchmark URL
-                "split_column": "split",  # name of the column that contains the split information
-            },
+        {
+            "name": "TDC",  # unique benchmark name
+            "link": "https://tdcommons.ai/",  # benchmark URL
+            "split_column": "split",  # name of the column that contains the split information
+        },
         ],
         "identifiers": [
             {
@@ -97,11 +110,12 @@ response pathways.""",
             {
                 "url": "https://tdcommons.ai/single_pred_tasks/tox/#tox21",
                 "description": "data source",
+
             },
             {
-                "url": "https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-018-2523-5/tables/3",
+                "url":"https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-018-2523-5/tables/3",
                 "description": "Assay name",
-            },
+            }
         ],
         "num_points": len(df),  # number of datapoints in this dataset
         "bibtex": [
@@ -118,7 +132,7 @@ and Stress Response Pathways As Mediated by Exposure to Environmental Toxicants 
 journal = {Frontiers in Environmental Science}""",
         ],
     }
-
+    
     def str_presenter(dumper, data):
         """configures yaml for dumping multiline strings
         Ref: https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data
@@ -136,7 +150,6 @@ journal = {Frontiers in Environmental Science}""",
         yaml.dump(meta, f, sort_keys=False)
 
     print(f"Finished processing {meta['name']} dataset!")
-
 
 if __name__ == "__main__":
     get_and_transform_data()

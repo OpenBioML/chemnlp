@@ -1,51 +1,50 @@
----
 name: nr_ahr_tox21
 description: |-
-    Tox21 is a data challenge which contains qualitative toxicity measurements
-    for 7,831 compounds on 12 different targets, such as nuclear receptors and stress
-    response pathways.
+  Tox21 is a data challenge which contains qualitative toxicity measurements
+  for 7,831 compounds on 12 different targets, such as nuclear receptors and stress
+  response pathways.
 targets:
-    - id: toxicity_NR-AhR
-      description: whether it toxic in a specific assay (1) or not toxic (0)
-      units: toxicity
-      type: categorical
-      names:
-          - NR-AhR toxicity
-          - NR-AhR
-          - Tox21
-          - Tox21 NR-AhR
-          - NR-Aryl hydrocarbon receptor
-          - Aryl hydrocarbon receptor
-          - aryl hydrocarbon receptor toxicity
+- id: toxicity_NR-AhR
+  description: whether it toxic in a specific assay (1) or not toxic (0)
+  units: toxicity
+  type: categorical
+  names:
+  - NR-AhR toxicity
+  - NR-AhR
+  - Tox21
+  - Tox21 NR-AhR
+  - NR-Aryl hydrocarbon receptor
+  - Aryl hydrocarbon receptor
+  - aryl hydrocarbon receptor toxicity
 uris:
-    - https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C17273
+- https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C17273
 benchmarks:
-    - name: TDC
-      link: https://tdcommons.ai/
-      split_column: split
+- name: TDC
+  link: https://tdcommons.ai/
+  split_column: split
 identifiers:
-    - id: SMILES
-      type: SMILES
-      description: SMILES
+- id: SMILES
+  type: SMILES
+  description: SMILES
 license: CC BY 4.0
 links:
-    - url: http://dx.doi.org/10.3389/fenvs.2017.00003
-      description: corresponding publication
-    - url: https://tdcommons.ai/single_pred_tasks/tox/#tox21
-      description: data source
-    - url: https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-018-2523-5/tables/3
-      description: Assay name
+- url: http://dx.doi.org/10.3389/fenvs.2017.00003
+  description: corresponding publication
+- url: https://tdcommons.ai/single_pred_tasks/tox/#tox21
+  description: data source
+- url: https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-018-2523-5/tables/3
+  description: Assay name
 num_points: 6549
 bibtex:
-    - |-
-      @article{Huang2017,
-      doi = {10.3389/fenvs.2017.00003},
-      url = {https://doi.org/10.3389/fenvs.2017.00003},
-      year = {2017},
-      month = jan,
-      publisher = {Frontiers Media SA},
-      volume = {5},
-      author = {Ruili Huang and Menghang Xia},
-      title = {Editorial: Tox21 Challenge to Build Predictive Models of Nuclear Receptor
-      and Stress Response Pathways As Mediated by Exposure to Environmental Toxicants and Drugs},
-      journal = {Frontiers in Environmental Science}
+- |-
+  @article{Huang2017,
+  doi = {10.3389/fenvs.2017.00003},
+  url = {https://doi.org/10.3389/fenvs.2017.00003},
+  year = {2017},
+  month = jan,
+  publisher = {Frontiers Media SA},
+  volume = {5},
+  author = {Ruili Huang and Menghang Xia},
+  title = {Editorial: Tox21 Challenge to Build Predictive Models of Nuclear Receptor
+  and Stress Response Pathways As Mediated by Exposure to Environmental Toxicants and Drugs},
+  journal = {Frontiers in Environmental Science}
