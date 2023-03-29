@@ -5,9 +5,18 @@ from tdc.single_pred import HTS
 
 def get_and_transform_data():
     # get raw data
-    data = HTS(name = 'HIV')
+    splits = HTS(name = 'HIV').get_split()
+    df_train = splits["train"]
+    df_valid = splits["valid"]
+    df_test = splits["test"]
+    df_train["split"] = "train"
+    df_valid["split"] = "valid"
+    df_test["split"] = "test"
+    df = pd.concat([df_train, df_valid, df_test], axis=0)
+
     fn_data_original = "data_original.csv"
-    data.get_data().to_csv(fn_data_original, index=False)
+    df.to_csv(fn_data_original, index=False)
+    del df
 
     # create dataframe
     df = pd.read_csv(
@@ -21,6 +30,7 @@ def get_and_transform_data():
         "Drug_ID",
         "Drug",
         "Y",
+        "split"
     ]
 
     # overwrite column names = fields
@@ -28,6 +38,7 @@ def get_and_transform_data():
         "compound_id",
         "SMILES",
         "activity_HIV",
+        "split"
     ]
     df.columns = fields_clean
 
