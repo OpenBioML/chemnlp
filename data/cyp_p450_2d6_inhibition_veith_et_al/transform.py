@@ -4,12 +4,20 @@ from tdc.single_pred import ADME
 
 def get_and_transform_data():
     # get raw data
-    target_folder = 'CYP_P450_2D6_Inhibition_Veith_et_al'
     target_subfolder = 'CYP2D6_Veith'
-    data = ADME(name = target_subfolder)
+    splits = ADME(name = target_subfolder).get_split()
+    df_train = splits["train"]
+    df_valid = splits["valid"]
+    df_test = splits["test"]
+    df_train["split"] = "train"
+    df_valid["split"] = "valid"
+    df_test["split"] = "test"
+    df = pd.concat([df_train, df_valid, df_test], axis=0)
+
     fn_data_original = "data_original.csv"
-    data.get_data().to_csv(fn_data_original, index=False)
-    
+    df.to_csv(fn_data_original, index=False)
+    del df
+
     # create dataframe
     df = pd.read_csv(
         fn_data_original,
@@ -18,12 +26,17 @@ def get_and_transform_data():
     
     # check if fields are the same
     fields_orig = df.columns.tolist()
-    assert fields_orig == ['Drug_ID', 'Drug', 'Y']
+    assert fields_orig == ['Drug_ID', 
+                           'Drug', 
+                           'Y',
+                           'split']
 
     # overwrite column names = fields
     fields_clean = ['chembl_id',
             'SMILES', 
-            f"{target_subfolder.split('_')[0]}_inhibition"]
+            f"{target_subfolder.split('_')[0]}_inhibition",
+            'split'
+            ]
     
     df.columns = fields_clean
 
