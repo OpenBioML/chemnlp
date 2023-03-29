@@ -6,12 +6,25 @@ from tdc.single_pred import Develop
 def get_and_transform_data():
     # get raw data
     target_subfolder = "SAbDab_Chen"
-    data = Develop(name=target_subfolder)
+    splits = Develop(name=target_subfolder).get_split()
+    df_train = splits["train"]
+    df_valid = splits["valid"]
+    df_test = splits["test"]
+    df_train["split"] = "train"
+    df_valid["split"] = "valid"
+    df_test["split"] = "test"
+    df = pd.concat([df_train, df_valid, df_test], axis=0)
+
+    fn_data_raw = "data_raw.csv"
+    df.to_csv(fn_data_raw, index=False)
+    del df
 
     # proceed raw data
-    df = data.get_data()
+    df = pd.read_csv(fn_data_raw, sep=",")
+
+    
     fields_orig = df.columns.tolist()
-    assert fields_orig == ["Antibody_ID", "Antibody", "Y"]
+    assert fields_orig == ["Antibody_ID", "Antibody", "Y","split"]
 
     fn_data_original = "data_original.csv"
 
@@ -21,14 +34,14 @@ def get_and_transform_data():
     )
     df["heavy_chain"] = [s2l(x)[0] for x in antibody_list]
     df["light_chain"] = [s2l(x)[1] for x in antibody_list]
-    df = df[["Antibody_ID", "heavy_chain", "light_chain", "Y"]]
+    df = df[["Antibody_ID", "heavy_chain", "light_chain", "Y","split"]]
     df.to_csv(fn_data_original, index=False)
 
     #  load raw data and assert columns
     df = pd.read_csv(fn_data_original, sep=",")
     fields_orig = df.columns.tolist()
-    assert fields_orig == ["Antibody_ID", "heavy_chain", "light_chain", "Y"]
-    fields_clean = ["antibody_pdb_ID", "heavy_chain", "light_chain", "developability"]
+    assert fields_orig == ["Antibody_ID", "heavy_chain", "light_chain", "Y","split"]
+    fields_clean = ["antibody_pdb_ID", "heavy_chain", "light_chain", "developability","split"]
     df.columns = fields_clean
     assert not df.duplicated().sum()
 

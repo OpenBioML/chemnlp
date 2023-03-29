@@ -69,10 +69,6 @@ targets:
   uris:
   - https://rb.gy/uxyhc3
   - https://rb.gy/b8cx8i
-benchmarks:
-- name: TDC
-  link: https://tdcommons.ai/
-  split_column: split
 identifiers:
 - id: antibody_name
   type: Other
