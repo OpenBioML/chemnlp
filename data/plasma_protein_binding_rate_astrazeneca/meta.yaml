@@ -22,10 +22,6 @@ targets:
   - https://bioportal.bioontology.org/ontologies/IOBC?p=classes&conceptid=http%3A%2F%2Fpurl.jp%2Fbio%2F4%2Fid%2F201306028362680450
   - https://bioportal.bioontology.org/ontologies/BAO?p=classes&conceptid=http%3A%2F%2Fwww.bioassayontology.org%2Fbao%23BAO_0010135
   - https://bioportal.bioontology.org/ontologies/MESH?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FMESH%2FD010599
-benchmarks:
-- name: TDC
-  link: https://tdcommons.ai/
-  split_column: split
 identifiers:
 - id: SMILES
   type: SMILES

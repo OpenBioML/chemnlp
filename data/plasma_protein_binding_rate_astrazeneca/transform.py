@@ -4,7 +4,6 @@ from tdc.single_pred import ADME
 
 def get_and_transform_data():
     # get raw data
-    target_folder = 'Plasma_Protein_Binding_Rate_AstraZeneca'
     target_subfolder = 'PPBR_AZ'
     data = ADME(name = target_subfolder)
     fn_data_original = 'data/ppbr_az.tab'
@@ -57,13 +56,6 @@ by AstraZeneca.""",
                     "https://bioportal.bioontology.org/ontologies/MESH?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FMESH%2FD010599",
                 ],
             },
-        ],
-        "benchmarks": [
-        {
-            "name": "TDC",  # unique benchmark name
-            "link": "https://tdcommons.ai/",  # benchmark URL
-            "split_column": "split",  # name of the column that contains the split information
-        },
         ],
         "identifiers": [
             {
