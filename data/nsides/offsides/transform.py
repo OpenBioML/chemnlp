@@ -26,6 +26,10 @@ def get_and_transform_data():
     ]
 
     assert df.columns.tolist() == expected_columns
+
+    # drop columns
+    # drop A, B, C, D
+    df.drop(columns=["A", "B", "C", "D"], inplace=True)
     # remove duplicates
     df.drop_duplicates(inplace=True)
     # check duplicates
@@ -47,7 +51,7 @@ def get_and_transform_data():
         "targets": [
             {
                 "id": "PRR",
-                "description": "Proportional reporting ratio, PRR=(A/(A+B))/(C/(C+D))",
+                "description": "Proportional reporting ratio",
                 "type": "continuous",
                 "names": ["Proportional reporting ratio"],
             },
@@ -59,7 +63,7 @@ def get_and_transform_data():
             },
             {
                 "id": "mean_reporting_frequency",
-                "description": "Proportion of reports for the drug that report the side effect,  A/(A+B)",
+                "description": "Proportion of reports for the drug that report the side effect",
                 "type": "continuous",
                 "names": ["mean reporting frequency"],
             },
