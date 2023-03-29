@@ -4,12 +4,20 @@ from tdc.single_pred import ADME
 
 def get_and_transform_data():
     # get raw data
-    target_folder = 'Solubility_AqSolDB'
     target_subfolder = 'Solubility_AqSolDB'
-    data = ADME(name = target_subfolder)
+    splits = ADME(name = target_subfolder).get_split()
+    df_train = splits["train"]
+    df_valid = splits["valid"]
+    df_test = splits["test"]
+    df_train["split"] = "train"
+    df_valid["split"] = "valid"
+    df_test["split"] = "test"
+    df = pd.concat([df_train, df_valid, df_test], axis=0)
+
     fn_data_original = "data_original.csv"
-    data.get_data().to_csv(fn_data_original, index=False)
-    
+    df.to_csv(fn_data_original, index=False)
+    del df
+
     # create dataframe
     df = pd.read_csv(
         fn_data_original,
@@ -22,11 +30,16 @@ def get_and_transform_data():
         "Drug_ID",
         "Drug",
         "Y",
+        "split"
     ]
 
 
     # overwrite column names = fields
-    fields_clean = ['compound_name', 'SMILES', 'aqeuous_solubility']
+    fields_clean = ['compound_name',
+                    'SMILES',
+                    'aqeuous_solubility',
+                    'split'
+                    ]
     df.columns = fields_clean
 
     # data cleaning
