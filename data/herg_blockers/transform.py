@@ -56,7 +56,7 @@ def get_and_transform_data():
     # create meta yaml
     meta = {
         "name": "herg_blockers",  # unique identifier, we will also use this for directory names
-        "description": """Human ether-a-go-go related gene (hERG) is crucial for the coordination
+        "description": """Human ether-à-go-go related gene (hERG) is crucial for the coordination
 of the heart's beating. Thus, if a drug blocks the hERG, it could lead to severe
 adverse effects. Therefore, reliable prediction of hERG liability in the early
 stages of drug design is quite important to reduce the risk of cardiotoxicity
@@ -71,8 +71,8 @@ related attritions in the later development stages.""",
                     "hERG blocker",
                     "hERG active compound",
                     "hERG blocker",
-                    "human ether-a-go-go related gene (hERG) blocker",
-                    "activity against Human ether-a-go-go related gene (hERG)",
+                    "human ether-à-go-go related gene (hERG) blocker",
+                    "activity against Human ether-à-go-go related gene (hERG)",
                 ],
                 "uris": [
                     "http://purl.obolibrary.org/obo/MI_2136",
