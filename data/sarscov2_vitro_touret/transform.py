@@ -5,7 +5,7 @@ from tdc.single_pred import HTS
 
 def get_and_transform_data():
     # get raw data
-    splits = HTS(name = 'SARSCoV2_Vitro_Touret').get_split()
+    splits = HTS(name="SARSCoV2_Vitro_Touret").get_split()
     df_train = splits["train"]
     df_valid = splits["valid"]
     df_test = splits["test"]
@@ -26,26 +26,11 @@ def get_and_transform_data():
 
     # check if fields are the same
     fields_orig = df.columns.tolist()
-    assert fields_orig == [
-        "Drug_ID",
-        "Drug",
-        "Y",
-        "split"
-    ]
+    assert fields_orig == ["Drug_ID", "Drug", "Y", "split"]
 
     # overwrite column names = fields
-    fields_clean = [
-        "compound_id",
-        "SMILES",
-        "activity_SARSCoV2",
-        "split"
-    ]
+    fields_clean = ["compound_id", "SMILES", "activity_SARSCoV2", "split"]
     df.columns = fields_clean
-
-#     # data cleaning
-#     df.compound_id = (
-#         df.compound_id.str.strip()
-#     )  # remove leading and trailing white space characters
 
     assert not df.duplicated().sum()
 
@@ -54,35 +39,29 @@ def get_and_transform_data():
     df.to_csv(fn_data_csv, index=False)
 
     # create meta yaml
-    meta =  {
+    meta = {
         "name": "sarscov2_vitro_touret",  # unique identifier, we will also use this for directory names
         "description": """An in-vitro screen of the Prestwick chemical library composed of 1,480
-approved drugs in an infected cell-based assay. From MIT AiCures.""",
+approved drugs in an infected cell-based assay.""",
         "targets": [
             {
                 "id": "activity_SARSCoV2",  # name of the column in a tabular dataset
-                "description": "whether it active against SARSCoV2 (1) or not (0).",
-                "units": "activity",  # units of the values in this column (leave empty if unitless)
-                "type": "categorical",  # can be "categorical", "ordinal", "continuous"
+                "description": "whether it is active against SARSCoV2 (1) or not (0).",
+                "units": None,  # units of the values in this column (leave empty if unitless)
+                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "Corona activity",
-                    "activity",
+                    "activity against the Corona virus",
                     "activity against SARSCoV2",
-                    "COVID19",
-                    "Coronavirus disease",
-                    "Activity vs Coronavirus"
+                    "activity against COVID19",
                 ],
-                "uris":[
-                "https://bioportal.bioontology.org/ontologies/DOID?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0080600",
-        ],
             },
         ],
         "benchmarks": [
-        {
-            "name": "TDC",  # unique benchmark name
-            "link": "https://tdcommons.ai/",  # benchmark URL
-            "split_column": "split",  # name of the column that contains the split information
-        },
+            {
+                "name": "TDC",  # unique benchmark name
+                "link": "https://tdcommons.ai/",  # benchmark URL
+                "split_column": "split",  # name of the column that contains the split information
+            },
         ],
         "identifiers": [
             {
