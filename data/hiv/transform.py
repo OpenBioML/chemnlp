@@ -5,7 +5,7 @@ from tdc.single_pred import HTS
 
 def get_and_transform_data():
     # get raw data
-    splits = HTS(name = 'HIV').get_split()
+    splits = HTS(name="HIV").get_split()
     df_train = splits["train"]
     df_valid = splits["valid"]
     df_test = splits["test"]
@@ -30,7 +30,7 @@ def get_and_transform_data():
         "Drug_ID",
         "Drug",
         "Y",
-        "split"
+        "split",
     ]
 
     # overwrite column names = fields
@@ -38,14 +38,14 @@ def get_and_transform_data():
         "compound_id",
         "SMILES",
         "activity_HIV",
-        "split"
+        "split",
     ]
     df.columns = fields_clean
 
-#     # data cleaning
-#     df.compound_id = (
-#         df.compound_id.str.strip()
-#     )  # remove leading and trailing white space characters
+    # data cleaning
+    df.compound_id = (
+        df.compound_id.str.strip()
+    )  # remove leading and trailing white space characters
 
     assert not df.duplicated().sum()
 
@@ -54,36 +54,29 @@ def get_and_transform_data():
     df.to_csv(fn_data_csv, index=False)
 
     # create meta yaml
-    meta =  {
+    meta = {
         "name": "hiv",  # unique identifier, we will also use this for directory names
         "description": """The HIV dataset was introduced by the Drug Therapeutics Program (DTP)
 AIDS Antiviral Screen, which tested the ability to inhibit HIV replication for
-over 40,000 compounds. From MoleculeNet.""",
+over 40,000 compounds.""",
         "targets": [
             {
                 "id": "activity_HIV",  # name of the column in a tabular dataset
-                "description": "whether it active against HIV virus (1) or not (0).",
-                "units": "",  # units of the values in this column (leave empty if unitless)
-                "type": "categorical",  # can be "categorical", "ordinal", "continuous"
+                "description": "whether it is active against HIV virus (1) or not (0).",
+                "units": None,  # units of the values in this column (leave empty if unitless)
+                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "HIV activity",
-                    "HIV Inhibitor",
+                    "activity against the human immunodeficiency virus",
                     "activity against HIV",
-                    "HIV disease",
                 ],
-         "uris":[
-                "https://bioportal.bioontology.org/ontologies/MESH?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FMESH%2FD006678",
-                    "https://bioportal.bioontology.org/ontologies/OCHV?p=classes&conceptid=http%3A%2F%2Fsbmi.uth.tmc.edu%2Fontology%2Fochv%236185",
-        ],
-                
             },
         ],
         "benchmarks": [
-        {
-            "name": "TDC",  # unique benchmark name
-            "link": "https://tdcommons.ai/",  # benchmark URL
-            "split_column": "split",  # name of the column that contains the split information
-        },
+            {
+                "name": "TDC",  # unique benchmark name
+                "link": "https://tdcommons.ai/",  # benchmark URL
+                "split_column": "split",  # name of the column that contains the split information
+            },
         ],
         "identifiers": [
             {
