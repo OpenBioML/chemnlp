@@ -51,7 +51,7 @@ def get_and_transform_data():
     # create meta yaml
     meta = {
         "name": "herg_central",  # unique identifier, we will also use this for directory names
-        "description": """Human ether-a-go-go related gene (hERG) is crucial for the coordination
+        "description": """Human ether-à-go-go related gene (hERG) is crucial for the coordination
 of the heart's beating. Thus, if a drug blocks the hERG, it could lead to severe
 adverse effects. Therefore, reliable prediction of hERG liability in the early
 stages of drug design is quite important to reduce the risk of cardiotoxicity-related
@@ -66,8 +66,8 @@ hERG_at_10microM, and hERG_inhib.""",
                 "names": [
                     "hERG percent inhibition at a 1uM concentration",
                     "hERG percent inhibition at 1uM",
-                    "Human ether-a-go-go related gene (hERG) percent inhibition at a 1uM concentration",
-                    "Human ether-a-go-go related gene (hERG) percent inhibition at 1uM",
+                    "Human ether-à-go-go related gene (hERG) percent inhibition at a 1uM concentration",
+                    "Human ether-à-go-go related gene (hERG) percent inhibition at 1uM",
                 ],
                 "uris": [
                     "http://purl.obolibrary.org/obo/MI_2136",
@@ -81,8 +81,8 @@ hERG_at_10microM, and hERG_inhib.""",
                 "names": [
                     "hERG percent inhibition at a 10uM concentration",
                     "hERG percent inhibition at 10uM",
-                    "Human ether-a-go-go related gene (hERG) percent inhibition at a 10uM concentration",
-                    "Human ether-a-go-go related gene (hERG) percent inhibition at 10uM",
+                    "Human ether-à-go-go related gene (hERG) percent inhibition at a 10uM concentration",
+                    "Human ether-à-go-go related gene (hERG) percent inhibition at 10uM",
                 ],
                 "uris": ["http://purl.obolibrary.org/obo/MI_2136"],
             },
@@ -95,10 +95,10 @@ whether the compound has an IC50 of less than 10microM.)""",
                 "type": "boolean",
                 "names": [
                     "hERG inhibition",
-                    "Human ether-a-go-go related gene (hERG) inhibition",
+                    "Human ether-à-go-go related gene (hERG) inhibition",
                     "hERG blocker",
-                    "Human ether-a-go-go related gene (hERG) blocker",
-                    "inhibition of Human ether-a-go-go related gene (hERG)",
+                    "Human ether-à-go-go related gene (hERG) blocker",
+                    "inhibition of Human ether-à-go-go related gene (hERG)",
                 ],
                 "uris": [
                     "http://purl.obolibrary.org/obo/MI_2136",
@@ -141,7 +141,7 @@ pages = {580--588},
 author = {Fang Du and Haibo Yu and Beiyan Zou and Joseph Babcock
 and Shunyou Long and Min Li},
 title = {hERGCentral: A Large Database to Store,  Retrieve,  and Analyze Compound Human
-Ether-a-go-go Related Gene Channel Interactions to Facilitate Cardiotoxicity Assessment in Drug Development},
+Ether-à-go-go Related Gene Channel Interactions to Facilitate Cardiotoxicity Assessment in Drug Development},
 journal = {ASSAY and Drug Development Technologies}""",
         ],
     }
