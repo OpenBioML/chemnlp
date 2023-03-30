@@ -15,6 +15,11 @@ class IdentifierEnum(YamlStrEnum):
     inchi = "InChI"
     inchikey = "InChIKey"
     other = "Other"
+    # we distinguish two RXN-SMILES variants.
+    # the simple one only includes educt and product
+    # the other one (rxnsmilesWAdd) also includes solvents etc.
+    rxnsmiles = "RXNSMILES"
+    rxnsmilesWAdd = "RXNSMILESWAdd"
 
 
 class Identifier(YamlModel):
@@ -22,8 +27,9 @@ class Identifier(YamlModel):
 
     id: str
 
-    """A description of the field"""
     description: Optional[str]
+    """A description of the field"""
+
     type: IdentifierEnum
     names: Optional[List[str]]
 
@@ -48,6 +54,7 @@ class ColumnTypes(YamlStrEnum):
     categorical = "categorical"
     ordinal = "ordinal"
     boolean = "boolean"
+    string = "string"
 
 
 class Target(YamlModel):
@@ -55,15 +62,16 @@ class Target(YamlModel):
 
     id: str
 
-    """A english description of the field"""
     description: str
+    """A english description of the field"""
 
-    """The units of the field. None if unitless."""
     units: Optional[str]
+    """The units of the field. None if unitless."""
 
-    """The type of the field. Can be one of `continuous`, `categorical`, `ordinal`, `boolean`."""
     type: ColumnTypes
+    """The type of the field. Can be one of `continuous`, `categorical`, `ordinal`, `boolean`."""
 
+    names: List[str]
     """A list of names describing the field.
 
     Note that this will be used in building the prompts. Some example for prompts:
@@ -89,28 +97,31 @@ class Target(YamlModel):
         - <identifier_3>
         ```
     """
-    names: List[str]
 
+    uris: Optional[List[str]]
     """A URI or multiple (consitent ) URIs for the field.
 
     Ideally this would be a link to an entry in an ontrology or controlled
     vocabulary that can also provide a canonical description for the field.
     """
-    uris: Optional[List[str]]
 
+    pubchem_aids: Optional[List[int]]
     """A PubChem assay IDs or multiple (consistent) PubChem assay IDs.
 
     Make sure that the first assay ID is the primary assay ID.
     """
-    pubchem_aids: Optional[List[int]]
 
-    @validator("pubchem_aids")
+    @validator("uris")
     def uris_resolves(cls, values):
         if values is not None:
-            for uri in values.get("uris"):
+            for uri in values:
                 # perform a request to the URI and check if it resolves
                 response = requests.get(uri)
-                if response.status_code != 200:
+                if response.status_code == 403:
+                    print(
+                        f"URI {uri} does not resolve (403) since forbidden, please check manually"
+                    )
+                elif response.status_code != 200:
                     raise ValueError(f"URI {uri} does not resolve")
 
     @validator("pubchem_aids")
@@ -146,6 +157,19 @@ class Link(YamlModel):
     description: str
 
 
+class Benchmark(YamlModel):
+    """Benchmark information."""
+
+    """The name of the benchmark, e.g. MoleculeNet."""
+    name: str
+
+    """The link to the benchmark."""
+    link: str
+
+    """The name of the column in the dataset that indicates the fold of the data point."""
+    split_column: str
+
+
 class Dataset(YamlModel):
     name: str
     description: str
@@ -158,6 +182,8 @@ class Dataset(YamlModel):
     fields: Optional[Dict[str, TemplateField]]
     links: List[Link]
 
+    benchmarks: Optional[List[Benchmark]]
+
     @validator("num_points")
     def num_points_must_be_positive(cls, v):
         if v < 0:
@@ -168,6 +194,10 @@ class Dataset(YamlModel):
         if v is not None:
             for link in v:
                 response = requests.get(link.url)
-                if response.status_code != 200:
+                if response.status_code == 403:
+                    print(
+                        f"Link {link.url} does not resolve (403) since forbidden, please check manually"
+                    )
+                elif response.status_code != 200:
                     if not (("acs" in response.text) or ("sage" in response.text)):
                         raise ValueError(f"Link {link.url} does not resolve")
