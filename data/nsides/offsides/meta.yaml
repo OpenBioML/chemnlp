@@ -5,7 +5,7 @@ description: OffSIDES is a database of individual drug side effect signals mined
     signals that are not already established by being listed on the structured product label -- hence they are off-label drug side effects.
 targets:
     - id: PRR
-      description: Proportional reporting ratio, PRR=(A/(A+B))/(C/(C+D))
+      description: Proportional reporting ratio)
       type: continuous
       names:
           - Proportional reporting ratio
@@ -15,7 +15,7 @@ targets:
       names:
           - Proportional reporting ratio error
     - id: mean_reporting_frequency
-      description: Proportion of reports for the drug that report the side effect,  A/(A+B)
+      description: Proportion of reports for the drug that report the side effect
       type: continuous
       names:
           - mean reporting frequency
