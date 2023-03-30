@@ -5,9 +5,18 @@ from tdc.single_pred import HTS
 
 def get_and_transform_data():
     # get raw data
-    data = HTS(name="SARSCoV2_Vitro_Touret")
+    splits = HTS(name = 'SARSCoV2_Vitro_Touret').get_split()
+    df_train = splits["train"]
+    df_valid = splits["valid"]
+    df_test = splits["test"]
+    df_train["split"] = "train"
+    df_valid["split"] = "valid"
+    df_test["split"] = "test"
+    df = pd.concat([df_train, df_valid, df_test], axis=0)
+
     fn_data_original = "data_original.csv"
-    data.get_data().to_csv(fn_data_original, index=False)
+    df.to_csv(fn_data_original, index=False)
+    del df
 
     # create dataframe
     df = pd.read_csv(
@@ -21,6 +30,7 @@ def get_and_transform_data():
         "Drug_ID",
         "Drug",
         "Y",
+        "split"
     ]
 
     # overwrite column names = fields
@@ -28,13 +38,14 @@ def get_and_transform_data():
         "compound_id",
         "SMILES",
         "activity_SARSCoV2",
+        "split"
     ]
     df.columns = fields_clean
 
-    #     # data cleaning
-    #     df.compound_id = (
-    #         df.compound_id.str.strip()
-    #     )  # remove leading and trailing white space characters
+#     # data cleaning
+#     df.compound_id = (
+#         df.compound_id.str.strip()
+#     )  # remove leading and trailing white space characters
 
     assert not df.duplicated().sum()
 
@@ -43,7 +54,7 @@ def get_and_transform_data():
     df.to_csv(fn_data_csv, index=False)
 
     # create meta yaml
-    meta = {
+    meta =  {
         "name": "sarscov2_vitro_touret",  # unique identifier, we will also use this for directory names
         "description": """An in-vitro screen of the Prestwick chemical library composed of 1,480
 approved drugs in an infected cell-based assay. From MIT AiCures.""",
@@ -59,19 +70,19 @@ approved drugs in an infected cell-based assay. From MIT AiCures.""",
                     "activity against SARSCoV2",
                     "COVID19",
                     "Coronavirus disease",
-                    "Activity vs Coronavirus",
+                    "Activity vs Coronavirus"
                 ],
-                "uris": [
-                    "https://bioportal.bioontology.org/ontologies/DOID?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0080600",
-                ],
+                "uris":[
+                "https://bioportal.bioontology.org/ontologies/DOID?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0080600",
+        ],
             },
         ],
         "benchmarks": [
-            {
-                "name": "TDC",  # unique benchmark name
-                "link": "https://tdcommons.ai/",  # benchmark URL
-                "split_column": "split",  # name of the column that contains the split information
-            },
+        {
+            "name": "TDC",  # unique benchmark name
+            "link": "https://tdcommons.ai/",  # benchmark URL
+            "split_column": "split",  # name of the column that contains the split information
+        },
         ],
         "identifiers": [
             {
