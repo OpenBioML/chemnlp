@@ -51,7 +51,7 @@ def get_and_transform_data():
     # create meta yaml
     meta = {
         "name": "herg_karim_et_al",  # unique identifier, we will also use this for directory names
-        "description": """A integrated Ether-a-go-go-related gene (hERG) dataset consisting
+        "description": """A integrated Ether-à-go-go-related gene (hERG) dataset consisting
 of molecular structures labelled as hERG (<10uM) and non-hERG (>=10uM) blockers in
 the form of SMILES strings was obtained from the DeepHIT, the BindingDB database,
 ChEMBL bioactivity database, and other literature.""",
@@ -66,8 +66,8 @@ ChEMBL bioactivity database, and other literature.""",
                     "hERG active compound",
                     "hERG blocker",
                     "hERG active compound <10uM",
-                    "human ether-a-go-go related gene (hERG) blocker",
-                    "activity against Human ether-a-go-go related gene (hERG)",
+                    "human ether-à-go-go related gene (hERG) blocker",
+                    "activity against Human ether-à-go-go related gene (hERG)",
                 ],
                 "uris": [
                     "http://purl.obolibrary.org/obo/MI_2136",
