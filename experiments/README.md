@@ -29,7 +29,7 @@ to the core team on Discord.
    source experiments/scripts/stability-cluster/env_creation_neox.sh jack jack
    ```
 
-2. [Running Experiment](scripts/stability-cluster/sbatch_train_neox.sh) -
+2. [Training Models](scripts/stability-cluster/sbatch_train_neox.sh) -
    runs a GPT-NeoX training pipeline
 
    - creates a conda environment using the `env_creation_neox.sh` script.
@@ -66,7 +66,7 @@ to the core team on Discord.
    source experiments/scripts/stability-cluster/env_creation_hf.sh jack jack
    ```
 
-2. [Running Experiment](scripts/stability-cluster/sbatch_train_hf.sh) -
+2. [Training Models](scripts/stability-cluster/sbatch_train_hf.sh) -
    runs a Hugging Face training pipeline
 
    - creates a conda environment using the `env_creation_hf.sh` script.
