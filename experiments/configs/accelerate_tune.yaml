@@ -1,31 +1,27 @@
 ---
 # Dataset configuration
 data:
-    datasets:
-        - boolq
-        - rotten_tomatoes
-    subsample: true
-    num_train_samples: 25
-    num_val_samples: 15
-    pad_to_multiple_of: 64
+  path: /fsx/proj-chemnlp/data/EleutherAI/pythia-160m/marianna13/chemrxiv
 
 # Model configuration
 model:
-    base: GPTNeoXForCausalLM
-    name: EleutherAI/pythia-70m-deduped
-    revision: step3000
+  base: GPTNeoXForCausalLM
+  name: EleutherAI/pythia-160m
+  revision: main # latest model
 
 # Training strategy
 prompt:
   enabled: true
+  num_virtual_tokens: 2
+  prompt_tuning_init_text: " "
 
 # Training configuration
 train:
-    output_dir: .
-    epochs: 2
-    learning_rate: 3e-4
-    per_device_train_batch_size: 32
-    per_device_eval_batch_size: 32
-    is_wandb: true
-    wandb_project: chemnlp
-    run_name: pipeline_test
+  output_dir: .
+  epochs: 2
+  learning_rate: 3e-4
+  per_device_train_batch_size: 32
+  per_device_eval_batch_size: 32
+  is_wandb: true
+  wandb_project: chemnlp
+  run_name: pipeline_test

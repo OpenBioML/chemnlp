@@ -1,6 +1,7 @@
 from pathlib import Path
 
 import transformers
+import datasets
 import wandb
 from peft import PromptTuningConfig, PromptTuningInit, TaskType, get_peft_model
 from transformers import (
@@ -10,7 +11,6 @@ from transformers import (
     TrainingArguments,
 )
 
-from chemnlp.data.utils import get_datasets, sample_dataset
 from chemnlp.data_val.config import TrainPipelineConfig
 from chemnlp.utils import load_config
 
@@ -23,13 +23,14 @@ def run():
     config = TrainPipelineConfig(**raw_config)
     print(config)
 
-    model_ref = getattr(transformers, config.model.base)
-    model = model_ref.from_pretrained(
+    tokenizer = AutoTokenizer.from_pretrained(
         pretrained_model_name_or_path=config.model.name,
         revision=config.model.revision,
     )
+    tokenizer.add_special_tokens({"pad_token": "<|padding|>"})
 
-    tokenizer = AutoTokenizer.from_pretrained(
+    model_ref = getattr(transformers, config.model.base)
+    model = model_ref.from_pretrained(
         pretrained_model_name_or_path=config.model.name,
         revision=config.model.revision,
     )
