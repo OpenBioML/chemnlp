@@ -17,8 +17,8 @@ prompt:
 
 # Training configuration
 train:
-  output_dir: .
-  epochs: 2
+  output_dir: /fsx/proj-chemnlp/experiments/my-experiment
+  epochs: 1
   learning_rate: 3e-4
   per_device_train_batch_size: 32
   per_device_eval_batch_size: 32
