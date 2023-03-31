@@ -25,7 +25,7 @@ set -ex # allow for exiting based on non-0 codes
 CHEMNLP_PATH=/fsx/proj-chemnlp/$2/chemnlp
 
 # create environment
-source $CHEMNLP_PATH/experiments/scripts/stability-cluster/env_creation.sh $1 $2
+source $CHEMNLP_PATH/experiments/scripts/stability-cluster/env_creation_neox.sh $1 $2
 
 # trigger run
 cd $CHEMNLP_PATH/gpt-neox
