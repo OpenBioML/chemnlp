@@ -33,17 +33,16 @@ def run():
         pretrained_model_name_or_path=config.model.name,
         revision=config.model.revision,
     )
-    tokenizer.add_special_tokens({"pad_token": "<|padding|>"})
 
-    peft_config = PromptTuningConfig(
-        task_type=TaskType.CAUSAL_LM,
-        prompt_tuning_init=PromptTuningInit.TEXT,
-        num_virtual_tokens=config.prompt.num_virtual_tokens,
-        prompt_tuning_init_text=config.prompt.prompt_tuning_init_text,
-        tokenizer_name_or_path=config.model.name,
-    )
-
-    model = get_peft_model(model, peft_config)
+    if config.prompt.enabled:
+        peft_config = PromptTuningConfig(
+            task_type=TaskType.CAUSAL_LM,
+            prompt_tuning_init=PromptTuningInit.TEXT,
+            num_virtual_tokens=config.prompt.num_virtual_tokens,
+            prompt_tuning_init_text=config.prompt.prompt_tuning_init_text,
+            tokenizer_name_or_path=config.model.name,
+        )
+        model = get_peft_model(model, peft_config)
     model.print_trainable_parameters()
 
     train_dataset, val_dataset = get_datasets(config, tokenizer)

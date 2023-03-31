@@ -17,8 +17,7 @@ model:
 
 # Training strategy
 prompt:
-    num_virtual_tokens: 2
-    prompt_tuning_init_text: ' '
+  enabled: true
 
 # Training configuration
 train:
