@@ -6,12 +6,13 @@ Example Usage:
 """
 import argparse
 import itertools
-import os
 import json
+import os
 
 import datasets
 from datasets.formatting.formatting import LazyBatch
 from transformers import AutoTokenizer
+
 from chemnlp.data.utils import chunks, pad_sequence
 
 DATASET = "marianna13/chemrxiv"
@@ -76,7 +77,9 @@ if __name__ == "__main__":
     )
     summary_stats = {
         "total_raw_samples": chem_data.num_rows,
-        "average_words_per_sample": round(sum(words_per_sample) / chem_data.num_rows, 0),
+        "average_words_per_sample": round(
+            sum(words_per_sample) / chem_data.num_rows, 0
+        ),
         "max_words_per_sample": max(words_per_sample),
         "min_words_per_sample": min(words_per_sample),
         "total_tokenised_samples": tokenised_data.num_rows,

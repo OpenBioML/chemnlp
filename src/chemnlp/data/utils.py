@@ -20,6 +20,7 @@ def get_datasets(config, tokenizer):
         val_datasets.append(val_tokenized)
     return concatenate_datasets(train_datasets), concatenate_datasets(val_datasets)
 
+
 def chunks(lst, n):
     """
     Yield successive n-sized chunks from lst.
