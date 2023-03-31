@@ -45,14 +45,9 @@ def run():
         model = get_peft_model(model, peft_config)
     model.print_trainable_parameters()
 
-    train_dataset, val_dataset = get_datasets(config, tokenizer)
-    if config.data.subsample:
-        train_dataset = sample_dataset(train_dataset, config.data.num_train_samples)
-        val_dataset = sample_dataset(val_dataset, config.data.num_val_samples)
-
-    data_collator = DataCollatorForLanguageModeling(
-        tokenizer, mlm=False, pad_to_multiple_of=config.data.pad_to_multiple_of
-    )
+    dataset = datasets.load_from_disk(config.data.path)
+    split_dataset = dataset.train_test_split(test_size=0.2)
+    data_collator = DataCollatorForLanguageModeling(tokenizer, mlm_probability=0.15)
 
     training_args = TrainingArguments(
         output_dir=config.train.output_dir,
@@ -74,8 +69,8 @@ def run():
     trainer = Trainer(
         model=model,
         args=training_args,
-        train_dataset=train_dataset,
-        eval_dataset=val_dataset,
+        train_dataset=split_dataset["train"],
+        eval_dataset=split_dataset["test"],
         tokenizer=tokenizer,
         data_collator=data_collator,
     )
