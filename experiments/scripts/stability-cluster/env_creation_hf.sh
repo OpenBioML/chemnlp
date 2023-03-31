@@ -22,6 +22,5 @@ cd /fsx/proj-chemnlp/$2
 ## clone + submodules (ok if exists)
 [ ! -d 'chemnlp' ] && git clone --recurse-submodules --remote-submodules git@github.com:OpenBioML/chemnlp.git
 
-## install
-cd chemnlp 
-pip install -e .
+## install 
+pip install -e chemnlp/
