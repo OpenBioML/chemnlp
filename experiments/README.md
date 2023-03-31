@@ -7,8 +7,10 @@ running on the cluster.
 If you believe you need access to the cluster for your work please reach out
 to the core team on Discord.
 
-1. [Install Miniconda](stability-cluster/miniconda_install.sh) -
-   installs miniconda for your cluster environment.
+- [Install Miniconda](stability-cluster/miniconda_install.sh) -
+  installs miniconda for your cluster environment.
+
+## GPT-Neox
 
 2. [Create Environment](stability-cluster/env_creation.sh) -
    creates a basic conda environment for experiments.
@@ -47,3 +49,5 @@ to the core team on Discord.
    ```
 
    > To interact with WandB services you need to authenticate yourself as per the [Stability HPC guidelines](https://www.notion.so/stabilityai/Stability-HPC-Cluster-User-Guide-226c46436df94d24b682239472e36843) to append a username + password to your .netrc file.
+
+## Hugging Face

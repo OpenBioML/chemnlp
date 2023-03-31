@@ -95,8 +95,8 @@ if __name__ == "__main__":
     )
     print(
         f"""
-        Found {chem_data.num_rows} raw text samples.
-        Average words {round(sum(words_per_sample) / chem_data.num_rows,0)}.
+        Found {chem_data.num_rows} raw text samples
+        Average words {round(sum(words_per_sample) / chem_data.num_rows,0)}
         Max words {max(words_per_sample)}
         Min words {min(words_per_sample)}
         Properties {chem_data.column_names}
