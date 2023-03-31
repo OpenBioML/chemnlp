@@ -15,7 +15,7 @@ from chemnlp.data_val.config import TrainPipelineConfig
 from chemnlp.utils import load_config
 
 HERE = Path(__file__).resolve()
-CONFIG_PATH = HERE.parent.parent / "configs/accelerate_tune.yaml"
+CONFIG_PATH = HERE.parent.parent / "configs/hugging-face/160M_hf.yaml"
 
 
 def run():

@@ -29,4 +29,4 @@ source $CHEMNLP_PATH/experiments/scripts/stability-cluster/env_creation.sh $1 $2
 
 # trigger run
 cd $CHEMNLP_PATH/gpt-neox
-python3 deepy.py train.py  --conf_dir $CHEMNLP_PATH/experiments/configs $3 $4 $5
+python3 deepy.py train.py  --conf_dir $CHEMNLP_PATH/experiments/configs/gpt-neox $3 $4 $5
