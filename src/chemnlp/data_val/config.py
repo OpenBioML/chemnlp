@@ -1,15 +1,9 @@
-from typing import List
-
-from pydantic import BaseModel, Field, validator
+from pydantic import BaseModel, validator
 
 
 class Data(BaseModel):
-    datasets: List[str] = Field(default_factory=list)
-    subsample: bool
-    num_train_samples: int
-    num_val_samples: int
-    pad_to_multiple_of: int
-
+    path: str
+    
 
 class Model(BaseModel):
     base: str
@@ -18,6 +12,7 @@ class Model(BaseModel):
 
 
 class PromptTune(BaseModel):
+    enabled: bool = False
     num_virtual_tokens: int = None
     prompt_tuning_init_text: str = " "
 
@@ -28,7 +23,7 @@ class TrainerConfig(BaseModel):
     learning_rate: float = 3e-4
     per_device_train_batch_size: int = 32
     per_device_eval_batch_size: int = 32
-    is_wandb: bool = False
+    wandb_enabled: bool = False
     wandb_project: str = "chemnlp"
     run_name: str
 
