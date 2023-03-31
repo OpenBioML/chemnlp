@@ -96,11 +96,11 @@ if __name__ == "__main__":
     )
     summary_stats = {
         "total_raw_samples": chem_data.num_rows,
-        "average_words": round(sum(words_per_sample) / chem_data.num_rows, 0),
-        "max_words": max(words_per_sample),
-        "min_words": min(words_per_sample),
+        "average_words_per_sample": round(sum(words_per_sample) / chem_data.num_rows, 0),
+        "max_words_per_sample": max(words_per_sample),
+        "min_words_per_sample": min(words_per_sample),
         "total_tokenised_samples": tokenised_data.num_rows,
-        "context_len": args.max_length,
+        "max_context_length": args.max_length,
         "total_tokens_in_billions": round(
             args.max_length * tokenised_data.num_rows / 1e9, 4
         ),
