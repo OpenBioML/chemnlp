@@ -7,6 +7,7 @@ Example Usage:
 import argparse
 import itertools
 import os
+import json
 
 import datasets
 from datasets.formatting.formatting import LazyBatch
@@ -93,19 +94,21 @@ if __name__ == "__main__":
         num_proc=os.cpu_count(),
         load_from_cache_file=False,
     )
-    print(
-        f"""
-        Found {chem_data.num_rows} raw text samples
-        Average words {round(sum(words_per_sample) / chem_data.num_rows,0)}
-        Max words {max(words_per_sample)}
-        Min words {min(words_per_sample)}
-        Properties {chem_data.column_names}
-
-        Found {tokenised_data.num_rows} tokenised samples
-        Context length {args.max_length}
-        Tokens {round(args.max_length * tokenised_data.num_rows / 1e9, 4)}B
-        """
-    )
+    summary_stats = {
+        "total_raw_samples": chem_data.num_rows,
+        "average_words": round(sum(words_per_sample) / chem_data.num_rows, 0),
+        "max_words": max(words_per_sample),
+        "min_words": min(words_per_sample),
+        "total_tokenised_samples": tokenised_data.num_rows,
+        "context_len": args.max_length,
+        "total_tokens_in_billions": round(
+            args.max_length * tokenised_data.num_rows / 1e9, 4
+        ),
+    }
+    print(summary_stats)
 
     # save to disk
-    tokenised_data.save_to_disk(f"{OUT_DIR}/{args.model_name}/{DATASET}")
+    save_path = f"{OUT_DIR}/{args.model_name}/{DATASET}"
+    tokenised_data.save_to_disk(save_path)
+    with open(f"{save_path}/summary_statistics.json", "w") as f:
+        f.write(json.dumps(summary_stats))
