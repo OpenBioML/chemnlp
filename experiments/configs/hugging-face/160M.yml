@@ -23,5 +23,5 @@ train:
   per_device_train_batch_size: 32
   per_device_eval_batch_size: 32
   is_wandb: true
-  wandb_project: chemnlp
+  wandb_project: LLCheM
   run_name: pipeline_test
