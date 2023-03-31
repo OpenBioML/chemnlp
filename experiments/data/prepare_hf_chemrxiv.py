@@ -12,31 +12,11 @@ import json
 import datasets
 from datasets.formatting.formatting import LazyBatch
 from transformers import AutoTokenizer
+from chemnlp.data.utils import chunks, pad_sequence
 
 DATASET = "marianna13/chemrxiv"
 STRING_KEY = "TEXT"  # only taking research article body (not abstract, etc)
 OUT_DIR = "/fsx/proj-chemnlp/data"
-
-
-def chunks(lst, n):
-    """
-    Yield successive n-sized chunks from lst.
-    NOTE Hugging face truncates any large samples -> 1 sample
-    """
-    for i in range(0, len(lst), n):
-        yield lst[i : i + n - 1]
-
-
-def pad_sequence(sequence, seq_len):
-    """Pad a input sequence"""
-    if len(sequence) != seq_len:
-        num_pad_tokens = seq_len - len(sequence)
-        attention_mask = [1] * len(sequence) + [0] * num_pad_tokens
-        sequence += [0] * num_pad_tokens
-    else:
-        attention_mask = [1] * seq_len
-
-    return sequence, attention_mask
 
 
 if __name__ == "__main__":

@@ -19,3 +19,23 @@ def get_datasets(config, tokenizer):
         train_datasets.append(train_tokenized)
         val_datasets.append(val_tokenized)
     return concatenate_datasets(train_datasets), concatenate_datasets(val_datasets)
+
+def chunks(lst, n):
+    """
+    Yield successive n-sized chunks from lst.
+    NOTE Hugging face truncates any large samples -> 1 sample
+    """
+    for i in range(0, len(lst), n):
+        yield lst[i : i + n - 1]
+
+
+def pad_sequence(sequence, seq_len):
+    """Pad a input sequence"""
+    if len(sequence) != seq_len:
+        num_pad_tokens = seq_len - len(sequence)
+        attention_mask = [1] * len(sequence) + [0] * num_pad_tokens
+        sequence += [0] * num_pad_tokens
+    else:
+        attention_mask = [1] * seq_len
+
+    return sequence, attention_mask
