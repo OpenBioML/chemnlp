@@ -6,9 +6,10 @@
 ## Must already have miniconda installed!
 export CONDA_ENV_PATH=/fsx/proj-chemnlp/$1/conda/env/chemnlp-standard
 export PYTHON_VER=3.8
+CUDA_VERSION=11.7
+CONDA_BASE=$(conda info --base)
 
 ## ensure we can use activate syntax in slurm scripts
-CONDA_BASE=$(conda info --base)
 source $CONDA_BASE/etc/profile.d/conda.sh
 
 # Create Python environment through conda
@@ -23,4 +24,6 @@ cd /fsx/proj-chemnlp/$2
 [ ! -d 'chemnlp' ] && git clone --recurse-submodules --remote-submodules git@github.com:OpenBioML/chemnlp.git
 
 ## install 
-pip install -e chemnlp/
+conda install -y pytorch torchvision torchaudio cudatoolkit=${CUDA_VERSION} -c pytorch -c conda-forge
+cd chemnlp/ 
+pip install ".[training]"

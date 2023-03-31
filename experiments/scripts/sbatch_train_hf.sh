@@ -26,4 +26,4 @@ CHEMNLP_PATH=/fsx/proj-chemnlp/$2/chemnlp
 source $CHEMNLP_PATH/experiments/scripts/env_creation_hf.sh $1 $2
 
 # trigger run
-python3 $CHEMNLP_PATH/experiments/scripts/run_tune.py  --config $CHEMNLP_PATH/experiments/configs/hugging-face/$3
+python3 $CHEMNLP_PATH/experiments/scripts/run_tune.py  $CHEMNLP_PATH/experiments/configs/hugging-face/$3
