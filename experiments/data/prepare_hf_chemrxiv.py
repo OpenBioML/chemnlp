@@ -1,8 +1,8 @@
 """
-Preparing chemrxiv dataset as per Hugging Face guidelines
+Preparing chemrxiv dataset as per HF guidelines on the Stability AI cluster
 
 Example Usage:
-    python prepare_hf_chemrxiv.py ./ EleutherAI/pythia-160m 768
+    python prepare_hf_chemrxiv.py EleutherAI/pythia-160m 768 <save-dir>
 """
 import argparse
 import itertools
@@ -40,9 +40,6 @@ def pad_sequence(sequence, seq_len):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "save_dir", help="Where to store the prepared dataset.", default=OUT_DIR
-    )
     parser.add_argument("model_name", help="Which HF tokeniser model class to use.")
     parser.add_argument(
         "max_length", help="Maximum context length of the model.", type=int
@@ -111,4 +108,4 @@ if __name__ == "__main__":
     )
 
     # save to disk
-    tokenised_data.save_to_disk(f"{args.save_dir}/{args.model_name}/{DATASET}")
+    tokenised_data.save_to_disk(f"{OUT_DIR}/{args.model_name}/{DATASET}")
