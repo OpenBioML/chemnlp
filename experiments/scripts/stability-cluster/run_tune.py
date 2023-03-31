@@ -1,8 +1,7 @@
-from pathlib import Path
-
 import transformers
 import datasets
 import wandb
+import argparse
 from peft import PromptTuningConfig, PromptTuningInit, TaskType, get_peft_model
 from transformers import (
     AutoTokenizer,
@@ -14,12 +13,8 @@ from transformers import (
 from chemnlp.data_val.config import TrainPipelineConfig
 from chemnlp.utils import load_config
 
-HERE = Path(__file__).resolve()
-CONFIG_PATH = HERE.parent.parent / "configs/hugging-face/160M_hf.yaml"
-
-
-def run():
-    raw_config = load_config(CONFIG_PATH)
+def run(config_path: str):
+    raw_config = load_config(config_path)
     config = TrainPipelineConfig(**raw_config)
     print(config)
 
@@ -80,4 +75,7 @@ def run():
 
 
 if __name__ == "__main__":
-    run()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("config_path", help="The full path to the YAML config file.")
+    args = parser.parse_args()
+    run(args.config_path)
