@@ -23,7 +23,7 @@ set -ex # allow for exiting based on non-0 codes
 CHEMNLP_PATH=/fsx/proj-chemnlp/$2/chemnlp
 
 # create environment
-source $CHEMNLP_PATH/experiments/scripts/stability-cluster/env_creation_hf.sh $1 $2
+source $CHEMNLP_PATH/experiments/scripts/env_creation_hf.sh $1 $2
 
 # trigger run
-python3 $CHEMNLP_PATH/experiments/scripts/stability-cluster/run_tune.py  --config $CHEMNLP_PATH/experiments/configs/hugging-face/$3
+python3 $CHEMNLP_PATH/experiments/scripts/run_tune.py  --config $CHEMNLP_PATH/experiments/configs/hugging-face/$3
