@@ -45,7 +45,7 @@ def run(config_path: str):
 
     dataset = datasets.load_from_disk(config.data.path)
     split_dataset = dataset.train_test_split(test_size=0.2)
-    data_collator = DataCollatorForLanguageModeling(tokenizer, mlm_probability=0.15)
+    data_collator = DataCollatorForLanguageModeling(tokenizer, mlm=False)
 
     training_args = TrainingArguments(
         output_dir=config.train.output_dir,
