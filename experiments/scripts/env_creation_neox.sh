@@ -12,6 +12,7 @@ CONDA_BASE=$(conda info --base)
 source $CONDA_BASE/etc/profile.d/conda.sh
 
 # Create Python environment through conda
+if [ -d "${CONDA_ENV_PATH}" ]; then rm -Rf ${CONDA_ENV_PATH}; fi
 conda create --force --prefix ${CONDA_ENV_PATH} python=${PYTHON_VER} -y
 conda activate ${CONDA_ENV_PATH}
 
