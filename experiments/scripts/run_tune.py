@@ -54,7 +54,7 @@ def run(config_path: str):
         num_train_epochs=config.train.epochs,
         per_device_train_batch_size=config.train.per_device_train_batch_size,
         per_device_eval_batch_size=config.train.per_device_eval_batch_size,
-        report_to="wandb" if config.train.is_wandb else None,
+        report_to="wandb" if config.train.wandb_enabled else None,
     )
 
     if config.train.is_wandb:
