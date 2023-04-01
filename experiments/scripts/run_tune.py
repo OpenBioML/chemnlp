@@ -57,7 +57,7 @@ def run(config_path: str):
         report_to="wandb" if config.train.wandb_enabled else None,
     )
 
-    if config.train.is_wandb:
+    if config.train.wandb_enabled:
         wandb.init(
             project=config.train.wandb_project,
             name=f"{config.model.name}-{config.train.run_name}-finetuned",
