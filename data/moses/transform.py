@@ -61,7 +61,7 @@ def get_and_transform_data():
             },
             {
                 "url": "https://pubs.acs.org/doi/abs/10.1021/acs.jcim.5b00559",
-                "description": "Like to publication of associated dataset - zinc",
+                "description": "Link to publication of associated dataset - zinc",
             },
             {
                 "url": "https://github.com/molecularsets/moses",

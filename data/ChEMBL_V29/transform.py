@@ -2,7 +2,7 @@ import pandas as pd
 import yaml
 from tdc.generation import MolGen
 
-DATASET_NAME = "zinc"
+DATASET_NAME = "ChEMBL_V29"
 
 def get_and_transform_data():
 
@@ -20,6 +20,7 @@ def get_and_transform_data():
         return df
     # get raw data
     df = get_single_dataset(DATASET_NAME)
+    df = df.drop_duplicates()
 
     # check if fields are the same
     fields_orig = df.columns.tolist()
@@ -38,10 +39,15 @@ def get_and_transform_data():
     meta = {
         "name": DATASET_NAME,  # unique identifier, we will also use this for directory names
         "description": """
-        ZINC is a free database of commercially-available compounds for virtual screening.
-        It contains over 230 million purchasable compounds in ready-to-dock, 3D formats.
-        TDC uses a 250,000 sampled version from the original Mol-VAE paper.
+        ChEMBL is a manually curated database of bioactive molecules with drug-like properties. It brings together chemical, bioactivity and genomic data to aid the translation of genomic information into effective new drugs.   
         """,
+        "benchmarks": [
+            {
+                "name": "TDC",  # unique benchmark name
+                "link": "https://tdcommons.ai/",  # benchmark URL
+                "split_column": "split",  # name of the column that contains the split information
+            },
+        ],
         "identifiers": [
             {
                 "id": "SMILES",  # column name
@@ -49,37 +55,34 @@ def get_and_transform_data():
                 "description": "SMILES",  # description (optional, except for "OTHER")
             },
         ],
-        "license": "ZINC is free to use for everyone. Redistribution of significant subsets requires written permission from the authors.",  # license under which the original dataset was published
+        "license": "CC BY-SA 3.0",  # license under which the original dataset was published
         "links": [  # list of relevant links (original dataset, other uses, etc.)
             {
-                "url": "https://pubs.acs.org/doi/full/10.1021/acs.jcim.5b00559",
+                "url": "https://academic.oup.com/nar/article/47/D1/D930/5162468",
                 "description": "Article about original dataset",
             },
             {
-                "url": "https://pubs.acs.org/doi/abs/10.1021/acscentsci.7b00572",
+                "url": "https://academic.oup.com/nar/article/43/W1/W612/2467881",
                 "description": "Exemplary related article shown in tdc's website",
-            }
+            },
         ],
         "num_points": len(df),  # number of datapoints in this dataset
         "bibtex": [
-            """
-        @article{doi:10.1021/acs.jcim.5b00559,
-                author = {Sterling, Teague and Irwin, John J.},
-                title = {ZINC 15 – Ligand Discovery for Everyone},
-                journal = {Journal of Chemical Information and Modeling},
-                volume = {55},
-                number = {11},
-                pages = {2324-2337},
-                year = {2015},
-                doi = {10.1021/acs.jcim.5b00559},
-                note ={PMID: 26479676},
-                URL = { 
-                        https://doi.org/10.1021/acs.jcim.5b00559     
-                },
-                eprint = { 
-                        https://doi.org/10.1021/acs.jcim.5b00559 
-                }
-        }
+            """@article{10.1093/nar/gky1075,
+    author = {Mendez, David and Gaulton, Anna and Bento, A Patrícia and Chambers, Jon and De Veij, Marleen and Félix, Eloy and Magariños, María Paula and Mosquera, Juan F and Mutowo, Prudence and Nowotka, Michał and Gordillo-Marañón, María and Hunter, Fiona and Junco, Laura and Mugumbate, Grace and Rodriguez-Lopez, Milagros and Atkinson, Francis and Bosc, Nicolas and Radoux, Chris J and Segura-Cabrera, Aldo and Hersey, Anne and Leach, Andrew R},
+    title = "{ChEMBL: towards direct deposition of bioassay data}",
+    journal = {Nucleic Acids Research},
+    volume = {47},
+    number = {D1},
+    pages = {D930-D940},
+    year = {2018},
+    month = {11},
+    abstract = "{ChEMBL is a large, open-access bioactivity database (https://www.ebi.ac.uk/chembl), previously described in the 2012, 2014 and 2017 Nucleic Acids Research Database Issues. In the last two years, several important improvements have been made to the database and are described here. These include more robust capture and representation of assay details; a new data deposition system, allowing updating of data sets and deposition of supplementary data; and a completely redesigned web interface, with enhanced search and filtering capabilities.}",
+    issn = {0305-1048},
+    doi = {10.1093/nar/gky1075},
+    url = {https://doi.org/10.1093/nar/gky1075},
+    eprint = {https://academic.oup.com/nar/article-pdf/47/D1/D930/27437436/gky1075.pdf},
+}
             """,
         ],
     }
