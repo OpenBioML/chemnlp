@@ -1,0 +1,28 @@
+name: zinc
+description: "\n        ZINC is a free database of commercially-available compounds\
+  \ for virtual screening.\n        It contains over 230 million purchasable compounds\
+  \ in ready-to-dock, 3D formats.\n        TDC uses a 250,000 sampled version from\
+  \ the original Mol-VAE paper.\n        "
+identifiers:
+- id: SMILES
+  type: SMILES
+  description: SMILES
+license: ZINC is free to use for everyone. Redistribution of significant subsets requires
+  written permission from the authors.
+links:
+- url: https://pubs.acs.org/doi/full/10.1021/acs.jcim.5b00559
+  description: Article about original dataset
+- url: https://pubs.acs.org/doi/abs/10.1021/acscentsci.7b00572
+  description: Exemplary related article to zinc shown in tdc's website
+num_points: 249455
+bibtex:
+- "\n        @article{doi:10.1021/acs.jcim.5b00559,\n                author = {Sterling,\
+  \ Teague and Irwin, John J.},\n                title = {ZINC 15 \u2013 Ligand Discovery\
+  \ for Everyone},\n                journal = {Journal of Chemical Information and\
+  \ Modeling},\n                volume = {55},\n                number = {11},\n \
+  \               pages = {2324-2337},\n                year = {2015},\n         \
+  \       doi = {10.1021/acs.jcim.5b00559},\n                note ={PMID: 26479676},\n\
+  \                URL = { \n                        https://doi.org/10.1021/acs.jcim.5b00559\
+  \     \n                },\n                eprint = { \n                      \
+  \  https://doi.org/10.1021/acs.jcim.5b00559 \n                }\n        }\n   \
+  \         "
