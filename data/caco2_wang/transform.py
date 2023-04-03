@@ -70,7 +70,13 @@ through the human intestinal tissue.""",
                 ],
             },
         ],
-        "split_col": "split",  # name of the column that contains the split information
+        "benchmarks": [
+            {
+                "name": "TDC",  # unique benchmark name
+                "link": "https://tdcommons.ai/",  # benchmark URL
+                "split_column": "split",  # name of the column that contains the split information
+            },
+        ],
         "identifiers": [
             {
                 "id": "SMILES",  # column name

@@ -29,7 +29,10 @@ identifiers:
     - id: SMILES
       type: SMILES
       description: SMILES
-split_col: split
+benchmarks:
+    - name: TDC
+      link: https://tdcommons.ai/
+      split_column: split
 license: CC BY 4.0
 links:
     - url: https://doi.org/10.3390/molecules18010735

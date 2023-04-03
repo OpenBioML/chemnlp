@@ -29,6 +29,10 @@ links:
       description: corresponding publication
     - url: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5962024/
       description: corresponding publication
+benchmarks:
+    - name: TDC
+      link: https://tdcommons.ai/
+      split_column: split
 num_points: 341365
 url: https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al
 bibtex:

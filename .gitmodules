@@ -5,3 +5,4 @@
 [submodule "lm-eval2"]
 	path = lm-eval2
 	url = git@github.com:OpenBioML/lm-eval2.git
+	branch = main
