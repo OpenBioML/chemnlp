@@ -1,3 +1,8 @@
+"""
+A Python script for finetuning language models.
+
+    Usage: python run_tune.py <path-to-config-yml>
+"""
 import argparse
 
 import datasets
@@ -15,7 +20,8 @@ from chemnlp.data_val.config import TrainPipelineConfig
 from chemnlp.utils import load_config
 
 
-def run(config_path: str):
+def run(config_path: str) -> None:
+    """Perform a training run for a given YAML defined configuration"""
     raw_config = load_config(config_path)
     config = TrainPipelineConfig(**raw_config)
     print(config)
@@ -32,36 +38,29 @@ def run(config_path: str):
         revision=config.model.revision,
     )
 
-    if config.prompt.enabled:
+    if config.prompt_tuning.enabled:
         peft_config = PromptTuningConfig(
             task_type=TaskType.CAUSAL_LM,
             prompt_tuning_init=PromptTuningInit.TEXT,
-            num_virtual_tokens=config.prompt.num_virtual_tokens,
-            prompt_tuning_init_text=config.prompt.prompt_tuning_init_text,
+            **config.prompt_tuning.dict(exclude={'enabled'}),
             tokenizer_name_or_path=config.model.name,
         )
         model = get_peft_model(model, peft_config)
     model.print_trainable_parameters()
 
     dataset = datasets.load_from_disk(config.data.path)
-    split_dataset = dataset.train_test_split(test_size=0.2)
+    split_dataset = dataset.train_test_split(test_size=0.025)
     data_collator = DataCollatorForLanguageModeling(tokenizer, mlm=False)
 
     training_args = TrainingArguments(
-        output_dir=config.train.output_dir,
-        evaluation_strategy="epoch",
-        learning_rate=config.train.learning_rate,
-        num_train_epochs=config.train.epochs,
-        per_device_train_batch_size=config.train.per_device_train_batch_size,
-        per_device_eval_batch_size=config.train.per_device_eval_batch_size,
-        report_to="wandb" if config.train.wandb_enabled else None,
+        **config.trainer.dict(exclude={'enabled'}),
+        report_to="wandb" if config.wandb.enabled else None,
     )
 
-    if config.train.wandb_enabled:
+    if config.wandb.enabled:
         wandb.init(
-            project=config.train.wandb_project,
-            name=f"{config.model.name}-{config.train.run_name}-finetuned",
-            config=config.dict(),
+            **config.wandb.dict(exclude={'enabled'}),
+            config=config.dict()
         )
 
     trainer = Trainer(

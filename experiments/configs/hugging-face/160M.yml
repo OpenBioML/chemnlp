@@ -1,27 +1,32 @@
 ---
-# Dataset configuration
+# Dataset configuration (datasets.load_from_disk arguments)
 data:
   path: /fsx/proj-chemnlp/data/EleutherAI/pythia-160m/marianna13/chemrxiv
 
-# Model configuration
+# Model configuration (model.from_pretrained arguments)
 model:
   base: GPTNeoXForCausalLM
   name: EleutherAI/pythia-160m
   revision: main # latest model
 
-# Training strategy
-prompt:
+# Training strategies (PromptTuningConfig arguments)
+prompt_tuning:
   enabled: true
   num_virtual_tokens: 2
   prompt_tuning_init_text: " "
 
-# Training configuration
-train:
-  output_dir: /fsx/proj-chemnlp/experiments/my-experiment
-  epochs: 1
+# Training configuration (TrainerArguments from HF)
+trainer:
+  output_dir: /fsx/proj-chemnlp/experiments/checkpoints/finetuned/160M
+  num_train_epochs: 1
   learning_rate: 3e-4
-  per_device_train_batch_size: 32
-  per_device_eval_batch_size: 32
-  wandb_enabled: true
-  wandb_project: LLCheM
-  run_name: pipeline_test
+  logging_steps: 10
+  per_device_train_batch_size: 44
+  per_device_eval_batch_size: 44
+
+# Logging configuration (WandB init arguments)
+wandb:
+  enabled: true
+  project: LLCheM
+  group: test
+  name: pipeline_test
