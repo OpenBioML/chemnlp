@@ -2,6 +2,6 @@
 	path = gpt-neox
 	url = git@github.com:OpenBioML/gpt-neox.git
 	branch = main
-[submodule "lm-evaluation-harness"]
-	path = lm-evaluation-harness
-	url = https://github.com/EleutherAI/lm-evaluation-harness
+[submodule "lm-eval2"]
+	path = lm-eval2
+	url = git@github.com:OpenBioML/lm-eval2.git
