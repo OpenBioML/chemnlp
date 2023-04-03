@@ -4,7 +4,7 @@
 ### The second arg ($2) is the directory to use when building the environment
 
 ## Must already have miniconda installed!
-export CONDA_ENV_PATH=/fsx/proj-chemnlp/$1/conda/env/chemnlp-standard
+export CONDA_ENV_PATH=/fsx/proj-chemnlp/$1/conda/env/chemnlp-neox
 export PYTHON_VER=3.8
 
 ## ensure we can use activate syntax in slurm scripts
