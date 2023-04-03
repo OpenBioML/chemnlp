@@ -5,7 +5,7 @@ description: OffSIDES is a database of individual drug side effect signals mined
     signals that are not already established by being listed on the structured product label -- hence they are off-label drug side effects.
 targets:
     - id: PRR
-      description: Proportional reporting ratio)
+      description: Proportional reporting ratio
       type: continuous
       names:
           - Proportional reporting ratio
