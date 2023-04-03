@@ -71,6 +71,7 @@ def run(config_path: str) -> None:
         tokenizer=tokenizer,
         data_collator=data_collator,
     )
+    assert trainer.model.device.type != 'cpu', 'Stopping as model is on CPU'
     trainer.train()
     print(trainer.state.log_history)
 
