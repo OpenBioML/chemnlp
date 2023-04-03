@@ -18,6 +18,7 @@
 ### The third arg ($3) is the name of the training config
 
 set -ex # allow for exiting based on non-0 codes
+export TOKENIZERS_PARALLELISM=false
 
 # set workdir
 CHEMNLP_PATH=/fsx/proj-chemnlp/$2/chemnlp
