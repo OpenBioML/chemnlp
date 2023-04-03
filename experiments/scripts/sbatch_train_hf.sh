@@ -3,7 +3,7 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=12
-# #SBATCH --gres=gpu:2
+# #SBATCH --gres=gpu:4
 #SBATCH --output=/fsx/proj-chemnlp/experiments/logs/job_%j.out
 #SBATCH --error=/fsx/proj-chemnlp/experiments/logs/job_%j.err
 #SBATCH --open-mode=append
