@@ -23,7 +23,7 @@ trainer:
   evaluation_strategy: steps
   logging_steps: 5
   eval_steps: 50
-  save_steps: 500
+  save_steps: 200
   dataloader_num_workers: 4
   bf16: true
   fp16: false
@@ -35,4 +35,4 @@ wandb:
   enabled: true
   project: LLCheM
   group: test
-  name: pipeline_test
+  name: peft_160M_v1
