@@ -1,11 +1,10 @@
-import itertools
 import random
+import itertools
 from typing import Dict, List
-
-import chemnlp.data.hf_datasets as hf_datasets
 from datasets import concatenate_datasets
 from datasets.formatting.formatting import LazyBatch
 from transformers import PreTrainedTokenizer
+import chemnlp.data.hf_datasets as hf_datasets
 
 
 def sample_dataset(dataset, num_samples):

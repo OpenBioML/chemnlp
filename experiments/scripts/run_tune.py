@@ -4,11 +4,13 @@ A Python script for finetuning language models.
     Usage: python run_tune.py <path-to-config-yml>
 """
 import argparse
-import os 
+import os
 
 import datasets
 import transformers
 import wandb
+from chemnlp.data_val.config import TrainPipelineConfig
+from chemnlp.utils import load_config
 from peft import PromptTuningConfig, PromptTuningInit, TaskType, get_peft_model
 from transformers import (
     AutoTokenizer,
@@ -16,9 +18,6 @@ from transformers import (
     Trainer,
     TrainingArguments,
 )
-
-from chemnlp.data_val.config import TrainPipelineConfig
-from chemnlp.utils import load_config
 
 
 def run(config_path: str) -> None:
@@ -44,7 +43,7 @@ def run(config_path: str) -> None:
         peft_config = PromptTuningConfig(
             task_type=TaskType.CAUSAL_LM,
             prompt_tuning_init=PromptTuningInit.TEXT,
-            **config.prompt_tuning.dict(exclude={'enabled'}),
+            **config.prompt_tuning.dict(exclude={"enabled"}),
             tokenizer_name_or_path=config.model.name,
         )
         model = get_peft_model(model, peft_config)
@@ -55,17 +54,14 @@ def run(config_path: str) -> None:
     data_collator = DataCollatorForLanguageModeling(tokenizer, mlm=False)
 
     training_args = TrainingArguments(
-        **config.trainer.dict(exclude={'enabled'}),
+        **config.trainer.dict(exclude={"enabled"}),
         report_to="wandb" if config.wandb.enabled else None,
-        local_rank=gpu_rank
+        local_rank=gpu_rank,
     )
 
     if config.wandb.enabled:
         config.wandb.name = f"{config.wandb.name}_rank_{gpu_rank}"
-        wandb.init(
-            **config.wandb.dict(exclude={'enabled'}),
-            config=config.dict()
-        )
+        wandb.init(**config.wandb.dict(exclude={"enabled"}), config=config.dict())
 
     trainer = Trainer(
         model=model,
@@ -75,7 +71,7 @@ def run(config_path: str) -> None:
         tokenizer=tokenizer,
         data_collator=data_collator,
     )
-    assert trainer.model.device.type != 'cpu', 'Stopping as model is on CPU'
+    assert trainer.model.device.type != "cpu", "Stopping as model is on CPU"
     trainer.train()
     print(trainer.state.log_history)
 

@@ -1,4 +1,5 @@
 from typing import Optional
+
 from pydantic import BaseModel, validator
 
 
@@ -24,7 +25,7 @@ class TrainerConfig(BaseModel):
     learning_rate: float = 3e-4
     bf16: bool = False
     fp16: bool = False
-    evaluation_strategy: str = 'steps'
+    evaluation_strategy: str = "steps"
     logging_steps: int = 50
     eval_steps: int = 100
     save_steps: int = 100
