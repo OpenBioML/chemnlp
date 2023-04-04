@@ -2,7 +2,7 @@
 Preparing chemrxiv dataset as per HF guidelines on the Stability AI cluster
 
 Example Usage:
-    python prepare_hf_chemrxiv.py EleutherAI/pythia-160m 768 <save-dir>
+    python prepare_hf_chemrxiv.py EleutherAI/pythia-160m 768
 """
 import argparse
 import itertools
