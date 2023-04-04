@@ -26,6 +26,10 @@ CHEMNLP_PATH=/fsx/proj-chemnlp/$2/chemnlp
 # create environment
 source $CHEMNLP_PATH/experiments/scripts/env_creation_hf.sh $1 $2
 
+# install extras
+cd $CHEMNLP_PATH
+pip install ".[training]"
+
 # trigger run
 torchrun --nnodes 1 --nproc-per-node 4 \
-    $CHEMNLP_PATH/experiments/scripts/run_tune.py  $CHEMNLP_PATH/experiments/configs/hugging-face/$3
+    experiments/scripts/run_tune.py  experiments/configs/hugging-face/$3
