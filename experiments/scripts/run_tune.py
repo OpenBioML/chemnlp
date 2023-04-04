@@ -25,6 +25,7 @@ def run(config_path: str) -> None:
     """Perform a training run for a given YAML defined configuration"""
     raw_config = load_config(config_path)
     config = TrainPipelineConfig(**raw_config)
+    gpu_rank = os.environ.get("LOCAL_RANK", -1)
     print(config)
 
     tokenizer = AutoTokenizer.from_pretrained(
@@ -56,10 +57,11 @@ def run(config_path: str) -> None:
     training_args = TrainingArguments(
         **config.trainer.dict(exclude={'enabled'}),
         report_to="wandb" if config.wandb.enabled else None,
-        local_rank=os.environ.get("LOCAL_RANK", -1)
+        local_rank=gpu_rank
     )
 
     if config.wandb.enabled:
+        config.wandb.name = f"{config.wandb.name}_rank_{gpu_rank}"
         wandb.init(
             **config.wandb.dict(exclude={'enabled'}),
             config=config.dict()
