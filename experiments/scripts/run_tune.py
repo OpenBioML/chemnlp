@@ -4,6 +4,7 @@ A Python script for finetuning language models.
     Usage: python run_tune.py <path-to-config-yml>
 """
 import argparse
+import os 
 
 import datasets
 import transformers
@@ -55,6 +56,7 @@ def run(config_path: str) -> None:
     training_args = TrainingArguments(
         **config.trainer.dict(exclude={'enabled'}),
         report_to="wandb" if config.wandb.enabled else None,
+        local_rank=os.environ.get("LOCAL_RANK", -1)
     )
 
     if config.wandb.enabled:
