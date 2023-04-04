@@ -26,13 +26,13 @@ Feel free to join our `#chemnlp` channel on our [OpenBioML discord server](https
 ChemNLP is an open-source project - your involvement is warmly welcome! If you're excited to join us, we recommend the following steps:
 
 - Join our [Discord server](#community).
-- Have a look at our [contributing guide](https://github.com/OpenBioML/chemnlp/blob/main/CONTRIBUTING.md).
+- Have a look at our [contributing guide](docs/CONTRIBUTING.md).
 - Looking for ideas? See our [task board](https://github.com/orgs/OpenBioML/projects/5/views/1) to see what we may need help with.
 - Have an idea? Create an [issue](https://github.com/OpenBioML/chemnlp/issues)!
 
 # Note on the "ChemNLP" name
 
-Our OpenBioML ChemNLP project is not afiliated to the [ChemNLP library from NIST](https://arxiv.org/abs/2209.08203) and we use "ChemNLP" as a general term to highlight our project focus. The datasets and models we create through our project will have a unique and recognizable name when we release them.
+Our OpenBioML ChemNLP project is not affiliated to the [ChemNLP library from NIST](https://arxiv.org/abs/2209.08203) and we use "ChemNLP" as a general term to highlight our project focus. The datasets and models we create through our project will have a unique and recognizable name when we release them.
 
 # About OpenBioML.org
 
@@ -79,28 +79,26 @@ and log-in to `wandb` with your API key per [here](https://docs.wandb.ai/quickst
 
 We specify datasets by creating a new function [here](src/chemnlp/data/hf_datasets.py) which is named per the dataset on Hugging Face. At present the function must accept a tokenizer and return back the tokenized train and validation datasets.
 
-### Installing submodules
+### Cloning submodules
 
-In order to ensure you also clone and install the required submodules (i.e. gpt-neox) you will have to do one of the following;
+In order to work on the git submodules (i.e. `gpt-neox`) you will need to ensure you have cloned them. 
 
-- Recursively clone the submodule from GitHub
+To do this at the same time as cloning ChemNLP:
 
   ```
    # using ssh (if you have your ssh key on GitHub)
-  git clone --recurse-submodules --remote-submodules git@github.com:OpenBioML/chemnlp.git
+  git clone --recurse-submodules git@github.com:OpenBioML/chemnlp.git
 
    # using https (if you use personal access token)
-  git clone --recurse-submodules --remote-submodules [git@github.com:OpenBioML/chemnlp.git ](https://github.com/OpenBioML/chemnlp.git)
+  git clone --recurse-submodules [git@github.com:OpenBioML/chemnlp.git ](https://github.com/OpenBioML/chemnlp.git)
   ```
 
-  > This will automatically initialize and update each submodule in the repository, including nested submodules if any of the submodules in the repository have submodules themselve
+  > This will automatically initialize and update each submodule in the repository, including nested submodules if any of the submodules in the repository have submodules themselves.
 
-- Initialise and install the submodule after cloning
-
-  ```
-  git submodule init # registers submodule
-  git submodule update # clones and updates submodule
-  ```
+ If you've already cloned ChemNLP and don't have the submodules you can run: 
+```
+git submodule update --init --recursive
+```
 
 ### Experiments
 
