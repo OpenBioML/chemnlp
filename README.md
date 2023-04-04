@@ -81,7 +81,7 @@ We specify datasets by creating a new function [here](src/chemnlp/data/hf_datase
 
 ### Cloning submodules
 
-In order to work on the git submodules (i.e. `gpt-neox`) you will need to ensure you have cloned them. 
+In order to work on the git submodules (i.e. `gpt-neox`) you will need to ensure you have cloned them.
 
 To do this at the same time as cloning ChemNLP:
 
@@ -95,7 +95,7 @@ To do this at the same time as cloning ChemNLP:
 
   > This will automatically initialize and update each submodule in the repository, including nested submodules if any of the submodules in the repository have submodules themselves.
 
- If you've already cloned ChemNLP and don't have the submodules you can run: 
+ If you've already cloned ChemNLP and don't have the submodules you can run:
 ```
 git submodule update --init --recursive
 ```
