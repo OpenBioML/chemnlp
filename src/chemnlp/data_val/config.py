@@ -22,6 +22,7 @@ class TrainerConfig(BaseModel):
     output_dir: str
     num_train_epochs: int = 1
     learning_rate: float = 3e-4
+    bf16: bool = False
     fp16: bool = False
     evaluation_strategy: str = 'steps'
     logging_steps: int = 50

@@ -25,7 +25,8 @@ trainer:
   eval_steps: 50
   save_steps: 500
   dataloader_num_workers: 4
-  fp16: true
+  bf16: true
+  fp16: false
   per_device_train_batch_size: 30
   per_device_eval_batch_size: 30
 
