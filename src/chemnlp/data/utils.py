@@ -34,18 +34,14 @@ def chunks(lst, n):
 
 def pad_sequence(sequence, seq_len):
     """Pad a input sequence"""
-    if len(sequence) != seq_len:
-        num_pad_tokens = seq_len - len(sequence)
-        attention_mask = [1] * len(sequence) + [0] * num_pad_tokens
-        sequence += [0] * num_pad_tokens
-    else:
-        attention_mask = [1] * seq_len
-
+    num_pad_tokens = seq_len - len(sequence)
+    attention_mask = [1] * len(sequence) + [0] * num_pad_tokens
+    sequence += [0] * num_pad_tokens
     return sequence, attention_mask
 
 def tokenise(batch: LazyBatch, tokenizer, max_length: int, string_key: str):
         """Tokenise a batch of data using sample chunking"""
-        tok_articles = [tokenizer(x)["input_ids"][1:] for x in batch[string_key]]
+        tok_articles = [tokenizer(x)["input_ids"] for x in batch[string_key]]
         tok_articles = list(itertools.chain.from_iterable(tok_articles))
         tok_articles = list(chunks(tok_articles, max_length))
 
@@ -55,10 +51,13 @@ def tokenise(batch: LazyBatch, tokenizer, max_length: int, string_key: str):
         # Since articles are stitched together at the batch level
         # we might need to pad the last article
         for article in tok_articles:
-            padded_sequences, attention_masks = pad_sequence(
-                article, seq_len=max_length
-            )
-            padded_sequences_all.append(padded_sequences)
+            if len(article) != max_length:
+                article, attention_masks = pad_sequence(
+                    article, seq_len=max_length
+                )
+            else:
+                attention_masks = [1] * max_length
+            padded_sequences_all.append(article)
             attention_masks_all.append(attention_masks)
 
         token_type_ids = [0] * max_length
