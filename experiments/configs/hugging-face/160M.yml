@@ -20,9 +20,9 @@ trainer:
   output_dir: /fsx/proj-chemnlp/experiments/checkpoints/finetuned/160M
   num_train_epochs: 1
   learning_rate: 3e-4
-  logging_steps: 10
-  per_device_train_batch_size: 48
-  per_device_eval_batch_size: 48
+  fp16: true
+  per_device_train_batch_size: 34
+  per_device_eval_batch_size: 34
 
 # Logging configuration (WandB init arguments)
 wandb:

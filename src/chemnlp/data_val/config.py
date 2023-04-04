@@ -22,6 +22,8 @@ class TrainerConfig(BaseModel):
     output_dir: str
     num_train_epochs: int = 1
     learning_rate: float = 3e-4
+    fp16: bool = False
+    logging_steps: int = 50
     per_device_train_batch_size: int = 32
     per_device_eval_batch_size: int = 32
 
