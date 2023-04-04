@@ -1,8 +1,8 @@
 name: ChEMBL_V29
 description: "\n        ChEMBL is a manually curated database of bioactive molecules\
-  \ with drug-like properties. It brings together chemical, bioactivity and genomic\
-  \ data to aid the translation of genomic information into effective new drugs. \
-  \  \n        "
+  \ with drug-like properties.\n        It brings together chemical, bioactivity and\
+  \ genomic data \n        to aid the translation of genomic information into effective\
+  \ new drugs.   \n        "
 benchmarks:
 - name: TDC
   link: https://tdcommons.ai/
@@ -20,21 +20,22 @@ links:
 num_points: 2084637
 bibtex:
 - "@article{10.1093/nar/gky1075,\n    author = {Mendez, David and Gaulton, Anna and\
-  \ Bento, A Patr\xEDcia and Chambers, Jon and De\_Veij, Marleen and F\xE9lix, Eloy\
-  \ and Magari\xF1os, Mar\xEDa\_Paula and Mosquera, Juan\_F and Mutowo, Prudence and\
-  \ Nowotka, Micha\u0142 and Gordillo-Mara\xF1\xF3n, Mar\xEDa and Hunter, Fiona and\
-  \ Junco, Laura and Mugumbate, Grace and Rodriguez-Lopez, Milagros and Atkinson,\
-  \ Francis and Bosc, Nicolas and Radoux, Chris\_J and Segura-Cabrera, Aldo and Hersey,\
-  \ Anne and Leach, Andrew\_R},\n    title = \"{ChEMBL: towards direct deposition\
-  \ of bioassay data}\",\n    journal = {Nucleic Acids Research},\n    volume = {47},\n\
-  \    number = {D1},\n    pages = {D930-D940},\n    year = {2018},\n    month = {11},\n\
-  \    abstract = \"{ChEMBL is a large, open-access bioactivity database (https://www.ebi.ac.uk/chembl),\
-  \ previously described in the 2012, 2014 and 2017 Nucleic Acids Research Database\
-  \ Issues. In the last two years, several important improvements have been made to\
-  \ the database and are described here. These include more robust capture and representation\
-  \ of assay details; a new data deposition system, allowing updating of data sets\
-  \ and deposition of supplementary data; and a completely redesigned web interface,\
-  \ with enhanced search and filtering capabilities.}\",\n    issn = {0305-1048},\n\
+  \ Bento,\n    A Patr\xEDcia and Chambers, Jon and De\_Veij, Marleen and F\xE9lix,\n\
+  \    Eloy and Magari\xF1os, Mar\xEDa\_Paula and Mosquera,\n    Juan\_F and Mutowo,\
+  \ Prudence and Nowotka, Micha\u0142 and Gordillo-Mara\xF1\xF3n,\n    Mar\xEDa and\
+  \ Hunter, Fiona and Junco, Laura and Mugumbate,\n    Grace and Rodriguez-Lopez,\
+  \ Milagros and Atkinson,\n    Francis and Bosc, Nicolas and Radoux, Chris\_J and\
+  \ Segura-Cabrera,\n    Aldo and Hersey, Anne and Leach, Andrew\_R},\n    title =\
+  \ \"{ChEMBL: towards direct deposition of bioassay data}\",\n    journal = {Nucleic\
+  \ Acids Research},\n    volume = {47},\n    number = {D1},\n    pages = {D930-D940},\n\
+  \    year = {2018},\n    month = {11},\n    abstract = \"{ChEMBL is a large, open-access\
+  \ bioactivity database\n    (https://www.ebi.ac.uk/chembl), previously described\
+  \ in the 2012,\n    2014 and 2017 Nucleic Acids Research Database Issues.\n    In\
+  \ the last two years, several important improvements have been made to the database\
+  \ and are described here.\n    These include more robust capture and representation\
+  \ of assay details;\n    a new data deposition system, allowing updating of data\
+  \ sets and deposition of supplementary data;\n    and a completely redesigned web\
+  \ interface, with enhanced search and filtering capabilities.}\",\n    issn = {0305-1048},\n\
   \    doi = {10.1093/nar/gky1075},\n    url = {https://doi.org/10.1093/nar/gky1075},\n\
   \    eprint = {https://academic.oup.com/nar/article-pdf/47/D1/D930/27437436/gky1075.pdf},\n\
   }\n            "

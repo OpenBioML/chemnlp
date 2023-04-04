@@ -7,8 +7,8 @@ identifiers:
 - id: SMILES
   type: SMILES
   description: SMILES
-license: ZINC is free to use for everyone. Redistribution of significant subsets requires
-  written permission from the authors.
+license: "ZINC is free to use for everyone.\n        Redistribution of significant\
+  \ subsets requires written permission from the authors.\n        "
 links:
 - url: https://pubs.acs.org/doi/full/10.1021/acs.jcim.5b00559
   description: Article about original dataset
