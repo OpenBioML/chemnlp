@@ -38,7 +38,8 @@ def get_and_transform_data():
     # create meta yaml
     meta = {
         "name": DATASET_NAME,  # unique identifier, we will also use this for directory names
-        "description": """Molecular Sets (MOSES) is a benchmark platform for distribution learning based molecule generation.
+        "description": """Molecular Sets (MOSES) is a benchmark platform
+        for distribution learning based molecule generation.
         Within this benchmark, MOSES provides a cleaned dataset of molecules that are ideal of optimization.
         It is processed from the ZINC Clean Leads dataset.
         """,

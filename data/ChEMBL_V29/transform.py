@@ -40,7 +40,9 @@ def get_and_transform_data():
     meta = {
         "name": DATASET_NAME,  # unique identifier, we will also use this for directory names
         "description": """
-        ChEMBL is a manually curated database of bioactive molecules with drug-like properties. It brings together chemical, bioactivity and genomic data to aid the translation of genomic information into effective new drugs.   
+        ChEMBL is a manually curated database of bioactive molecules with drug-like properties.
+        It brings together chemical, bioactivity and genomic data 
+        to aid the translation of genomic information into effective new drugs.   
         """,
         "benchmarks": [
             {
@@ -70,7 +72,14 @@ def get_and_transform_data():
         "num_points": len(df),  # number of datapoints in this dataset
         "bibtex": [
             """@article{10.1093/nar/gky1075,
-    author = {Mendez, David and Gaulton, Anna and Bento, A Patrícia and Chambers, Jon and De Veij, Marleen and Félix, Eloy and Magariños, María Paula and Mosquera, Juan F and Mutowo, Prudence and Nowotka, Michał and Gordillo-Marañón, María and Hunter, Fiona and Junco, Laura and Mugumbate, Grace and Rodriguez-Lopez, Milagros and Atkinson, Francis and Bosc, Nicolas and Radoux, Chris J and Segura-Cabrera, Aldo and Hersey, Anne and Leach, Andrew R},
+    author = {Mendez, David and Gaulton, Anna and Bento,
+    A Patrícia and Chambers, Jon and De Veij, Marleen and Félix,
+    Eloy and Magariños, María Paula and Mosquera,
+    Juan F and Mutowo, Prudence and Nowotka, Michał and Gordillo-Marañón,
+    María and Hunter, Fiona and Junco, Laura and Mugumbate,
+    Grace and Rodriguez-Lopez, Milagros and Atkinson,
+    Francis and Bosc, Nicolas and Radoux, Chris J and Segura-Cabrera,
+    Aldo and Hersey, Anne and Leach, Andrew R},
     title = "{ChEMBL: towards direct deposition of bioassay data}",
     journal = {Nucleic Acids Research},
     volume = {47},
@@ -78,7 +87,13 @@ def get_and_transform_data():
     pages = {D930-D940},
     year = {2018},
     month = {11},
-    abstract = "{ChEMBL is a large, open-access bioactivity database (https://www.ebi.ac.uk/chembl), previously described in the 2012, 2014 and 2017 Nucleic Acids Research Database Issues. In the last two years, several important improvements have been made to the database and are described here. These include more robust capture and representation of assay details; a new data deposition system, allowing updating of data sets and deposition of supplementary data; and a completely redesigned web interface, with enhanced search and filtering capabilities.}",
+    abstract = "{ChEMBL is a large, open-access bioactivity database
+    (https://www.ebi.ac.uk/chembl), previously described in the 2012,
+    2014 and 2017 Nucleic Acids Research Database Issues.
+    In the last two years, several important improvements have been made to the database and are described here.
+    These include more robust capture and representation of assay details;
+    a new data deposition system, allowing updating of data sets and deposition of supplementary data;
+    and a completely redesigned web interface, with enhanced search and filtering capabilities.}",
     issn = {0305-1048},
     doi = {10.1093/nar/gky1075},
     url = {https://doi.org/10.1093/nar/gky1075},
