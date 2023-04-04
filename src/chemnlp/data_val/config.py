@@ -24,6 +24,9 @@ class TrainerConfig(BaseModel):
     learning_rate: float = 3e-4
     fp16: bool = False
     logging_steps: int = 50
+    save_steps: int = 100
+    dataloader_num_workers: int = 0
+    torch_compile: bool = False
     per_device_train_batch_size: int = 32
     per_device_eval_batch_size: int = 32
 

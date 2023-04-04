@@ -12,7 +12,7 @@ model:
 # Training strategies (PromptTuningConfig arguments)
 prompt_tuning:
   enabled: true
-  num_virtual_tokens: 2
+  num_virtual_tokens: 5
   prompt_tuning_init_text: " "
 
 # Training configuration (TrainerArguments from HF)
@@ -20,6 +20,9 @@ trainer:
   output_dir: /fsx/proj-chemnlp/experiments/checkpoints/finetuned/160M
   num_train_epochs: 1
   learning_rate: 3e-4
+  logging_steps: 1
+  save_steps: 500
+  dataloader_num_workers: 4
   fp16: true
   per_device_train_batch_size: 30
   per_device_eval_batch_size: 30
