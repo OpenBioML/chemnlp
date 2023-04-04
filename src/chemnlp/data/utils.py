@@ -32,9 +32,9 @@ def chunks(lst, n):
         yield lst[i : i + n - 1]
 
 
-def pad_sequence(sequence, seq_len):
+def pad_sequence(sequence, max_len):
     """Pad a input sequence"""
-    num_pad_tokens = seq_len - len(sequence)
+    num_pad_tokens = max_len - len(sequence)
     attention_mask = [1] * len(sequence) + [0] * num_pad_tokens
     sequence += [0] * num_pad_tokens
     return sequence, attention_mask
@@ -53,17 +53,15 @@ def tokenise(batch: LazyBatch, tokenizer, max_length: int, string_key: str):
         for article in tok_articles:
             if len(article) != max_length:
                 article, attention_masks = pad_sequence(
-                    article, seq_len=max_length
+                    article, max_length
                 )
             else:
                 attention_masks = [1] * max_length
             padded_sequences_all.append(article)
             attention_masks_all.append(attention_masks)
 
-        token_type_ids = [0] * max_length
-        output = {
+        return {
             "input_ids": padded_sequences_all,
-            "token_type_ids": [token_type_ids] * len(padded_sequences_all),
+            "token_type_ids": [[0] * max_length] * len(padded_sequences_all),
             "attention_mask": attention_masks_all,
         }
-        return output
