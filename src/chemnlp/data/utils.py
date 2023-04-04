@@ -1,6 +1,8 @@
 import random
+import itertools
 
 from datasets import concatenate_datasets
+from datasets.formatting.formatting import LazyBatch
 
 import chemnlp.data.hf_datasets as hf_datasets
 
@@ -40,3 +42,29 @@ def pad_sequence(sequence, seq_len):
         attention_mask = [1] * seq_len
 
     return sequence, attention_mask
+
+def tokenise(batch: LazyBatch, tokenizer, max_length: int, string_key: str):
+        """Tokenise a batch of data using sample chunking"""
+        tok_articles = [tokenizer(x)["input_ids"][1:] for x in batch[string_key]]
+        tok_articles = list(itertools.chain.from_iterable(tok_articles))
+        tok_articles = list(chunks(tok_articles, max_length))
+
+        padded_sequences_all = []
+        attention_masks_all = []
+
+        # Since articles are stitched together at the batch level
+        # we might need to pad the last article
+        for article in tok_articles:
+            padded_sequences, attention_masks = pad_sequence(
+                article, seq_len=max_length
+            )
+            padded_sequences_all.append(padded_sequences)
+            attention_masks_all.append(attention_masks)
+
+        token_type_ids = [0] * max_length
+        output = {
+            "input_ids": padded_sequences_all,
+            "token_type_ids": [token_type_ids] * len(padded_sequences_all),
+            "attention_mask": attention_masks_all,
+        }
+        return output
