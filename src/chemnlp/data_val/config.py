@@ -23,10 +23,11 @@ class TrainerConfig(BaseModel):
     num_train_epochs: int = 1
     learning_rate: float = 3e-4
     fp16: bool = False
+    evaluation_strategy: str = 'steps'
     logging_steps: int = 50
+    eval_steps: int = 100
     save_steps: int = 100
     dataloader_num_workers: int = 0
-    torch_compile: bool = False
     per_device_train_batch_size: int = 32
     per_device_eval_batch_size: int = 32
 
