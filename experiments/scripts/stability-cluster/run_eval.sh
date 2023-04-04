@@ -30,5 +30,5 @@ cd $CHEMNLP_PATH/lm-eval2
 python main.py \
     --model hf-causal \
     --model_args pretrained=EleutherAI/pythia-160m \
-    --tasks arc_challenge \
+    --tasks arc_easy \
     --device 0 \
