@@ -12,7 +12,7 @@ model:
 # Training strategies (PromptTuningConfig arguments)
 prompt_tuning:
   enabled: true
-  num_virtual_tokens: 5
+  num_virtual_tokens: 10
   prompt_tuning_init_text: " "
 
 # Training configuration (TrainerArguments from HF)
