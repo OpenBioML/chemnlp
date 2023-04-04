@@ -4,11 +4,12 @@ from tdc.generation import MolGen
 
 DATASET_NAME = "moses"
 
+
 def get_and_transform_data():
 
     # get raw data per dataset
     def get_single_dataset(dataset_name):
-        splits = MolGen(name = dataset_name).get_split()
+        splits = MolGen(name=dataset_name).get_split()
         df_train = splits["train"]
         df_valid = splits["valid"]
         df_test = splits["test"]

@@ -4,11 +4,12 @@ from tdc.generation import MolGen
 
 DATASET_NAME = "zinc"
 
+
 def get_and_transform_data():
 
     # get raw data per dataset
     def get_single_dataset(dataset_name):
-        splits = MolGen(name = dataset_name).get_split()
+        splits = MolGen(name=dataset_name).get_split()
         df_train = splits["train"]
         df_valid = splits["valid"]
         df_test = splits["test"]
@@ -49,7 +50,8 @@ def get_and_transform_data():
                 "description": "SMILES",  # description (optional, except for "OTHER")
             },
         ],
-        "license": "ZINC is free to use for everyone. Redistribution of significant subsets requires written permission from the authors.",  # license under which the original dataset was published
+        # license under which the original dataset was published
+        "license": "ZINC is free to use for everyone. Redistribution of significant subsets requires written permission from the authors.",
         "links": [  # list of relevant links (original dataset, other uses, etc.)
             {
                 "url": "https://pubs.acs.org/doi/full/10.1021/acs.jcim.5b00559",
