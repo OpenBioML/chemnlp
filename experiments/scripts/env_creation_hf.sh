@@ -25,6 +25,6 @@ cd /fsx/proj-chemnlp/$2
 [ ! -d 'chemnlp' ] && git clone --recurse-submodules --remote-submodules git@github.com:OpenBioML/chemnlp.git
 
 ## install 
-conda install -y pytorch torchvision torchaudio cudatoolkit=${CUDA_VERSION} -c pytorch -c conda-forge
+conda install -y pytorch torchvision torchaudio pytorch-cuda=${CUDA_VERSION} -c pytorch -c nvidia --verbose
 cd chemnlp/ 
 pip install ".[training]"
