@@ -77,7 +77,7 @@ to the core team on Discord.
    sbatch experiments/scripts/sbatch_train_hf.sh where/to/store/conda where/to/build/conda/from <training-config-name.yml>
 
    # for typical finetuning experiments
-   sbatch experiments/scripts/sbatch_train_hf.sh experiments/my-experiment jack 160M.yml
+   sbatch experiments/scripts/sbatch_train_hf.sh experiments/my-experiment jack 160M_peft.yml
    ```
 
    > To interact with WandB services you need to authenticate yourself as per the [Stability HPC guidelines](https://www.notion.so/stabilityai/Stability-HPC-Cluster-User-Guide-226c46436df94d24b682239472e36843) to append a username + password to your .netrc file.
