@@ -4,8 +4,8 @@
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=12
 # #SBATCH --gres=gpu:2
-#SBATCH --output=/fsx/proj-chemnlp/experiments/logs/testing_beth.out
-#SBATCH --error=/fsx/proj-chemnlp/experiments/logs/testing_beth.err
+#SBATCH --output=/fsx/proj-chemnlp/experiments/logs/testing_%j.out
+#SBATCH --error=/fsx/proj-chemnlp/experiments/logs/testing_%j.err
 #SBATCH --open-mode=append
 #SBATCH --account=chemnlp
 #SBATCH --partition=g40
@@ -27,11 +27,4 @@ source $CHEMNLP_PATH/experiments/scripts/stability-cluster/env_creation_eval.sh 
 
 # trigger run
 cd $CHEMNLP_PATH/lm-eval2
-python main.py \
-    --model hf-causal \
-    --model_args pretrained=EleutherAI/pythia-160m \
-    --tasks arc_easy \
-    --device 0 \
-    --wandb_log True \
-    --wandb_project LLCheM \
-    --wandb_run_name testing_eval_pipeline_3 \
+python main.py $3
