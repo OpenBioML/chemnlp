@@ -32,3 +32,6 @@ python main.py \
     --model_args pretrained=EleutherAI/pythia-160m \
     --tasks arc_easy \
     --device 0 \
+    --wandb_log True \
+    --wandb_project LLCheM \
+    --wandb_run_name testing_eval_pipeline_3 \
