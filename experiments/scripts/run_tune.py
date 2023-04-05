@@ -9,8 +9,6 @@ import os
 import datasets
 import transformers
 import wandb
-from chemnlp.data_val.config import TrainPipelineConfig
-from chemnlp.utils import load_config
 from peft import PromptTuningConfig, PromptTuningInit, TaskType, get_peft_model
 from transformers import (
     AutoTokenizer,
@@ -18,6 +16,9 @@ from transformers import (
     Trainer,
     TrainingArguments,
 )
+
+from chemnlp.data_val.config import TrainPipelineConfig
+from chemnlp.utils import load_config
 
 
 def run(config_path: str) -> None:

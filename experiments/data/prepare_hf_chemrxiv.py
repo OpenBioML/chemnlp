@@ -9,8 +9,9 @@ import json
 import os
 
 import datasets
-from chemnlp.data.utils import tokenise
 from transformers import AutoTokenizer
+
+from chemnlp.data.utils import tokenise
 
 DATASET = "marianna13/chemrxiv"
 STRING_KEY = "TEXT"  # only taking research article body (not abstract, etc)
