@@ -49,7 +49,7 @@ def run(config_path: str) -> None:
         model = get_peft_model(model, peft_config)
         model.print_trainable_parameters()
     else:
-        print(f"Trainable Parameters: {model.num_parameters()}")
+        print(f"Total Parameters: {model.num_parameters()}")
 
     dataset = datasets.load_from_disk(config.data.path)
     split_dataset = dataset.train_test_split(test_size=0.025)
