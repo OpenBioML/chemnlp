@@ -57,7 +57,7 @@ def run(config_path: str) -> None:
 
     training_args = TrainingArguments(
         **config.trainer.dict(exclude={"enabled"}),
-        report_to="wandb" if config.wandb.enabled else None,
+        report_to="wandb" if config.wandb.enabled else "none",
         local_rank=gpu_rank,
     )
 
