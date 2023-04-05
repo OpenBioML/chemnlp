@@ -17,8 +17,9 @@ def get_and_transform_data():
         df_valid["split"] = "valid"
         df_test["split"] = "test"
         df = pd.concat([df_train, df_valid, df_test], axis=0)
-        df['dataset'] = dataset_name
+        df["dataset"] = dataset_name
         return df
+
     # get raw data
     df = get_single_dataset(DATASET_NAME)
 
@@ -69,8 +70,8 @@ def get_and_transform_data():
             },
             {
                 "url": "https://github.com/molecularsets/moses",
-                "description": "Github repository concering the datset"
-            }
+                "description": "Github repository concering the datset",
+            },
         ],
         "num_points": len(df),  # number of datapoints in this dataset
         "bibtex": [
@@ -82,8 +83,7 @@ Aleksey and Aladinskiy, Vladimir and Veselov, Mark and Kadurin, Artur and Johans
 Simon and  Chen, Hongming and Nikolenko, Sergey and Aspuru-Guzik, Alan and Zhavoronkov, Alex},
   journal={Frontiers in Pharmacology},
   year={2020}
-}
-            """,
+}""",
         ],
     }
 

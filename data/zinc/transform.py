@@ -17,8 +17,9 @@ def get_and_transform_data():
         df_valid["split"] = "valid"
         df_test["split"] = "test"
         df = pd.concat([df_train, df_valid, df_test], axis=0)
-        df['dataset'] = dataset_name
+        df["dataset"] = dataset_name
         return df
+
     # get raw data
     df = get_single_dataset(DATASET_NAME)
 
@@ -62,7 +63,7 @@ def get_and_transform_data():
             {
                 "url": "https://pubs.acs.org/doi/abs/10.1021/acscentsci.7b00572",
                 "description": "Exemplary related article shown in tdc's website",
-            }
+            },
         ],
         "num_points": len(df),  # number of datapoints in this dataset
         "bibtex": [
@@ -77,11 +78,11 @@ def get_and_transform_data():
                 year = {2015},
                 doi = {10.1021/acs.jcim.5b00559},
                 note ={PMID: 26479676},
-                URL = { 
-                        https://doi.org/10.1021/acs.jcim.5b00559     
+                URL = {
+                        https://doi.org/10.1021/acs.jcim.5b00559
                 },
-                eprint = { 
-                        https://doi.org/10.1021/acs.jcim.5b00559 
+                eprint = {
+                        https://doi.org/10.1021/acs.jcim.5b00559
                 }
         }
             """,

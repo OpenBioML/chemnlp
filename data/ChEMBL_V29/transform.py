@@ -17,8 +17,9 @@ def get_and_transform_data():
         df_valid["split"] = "valid"
         df_test["split"] = "test"
         df = pd.concat([df_train, df_valid, df_test], axis=0)
-        df['dataset'] = dataset_name
+        df["dataset"] = dataset_name
         return df
+
     # get raw data
     df = get_single_dataset(DATASET_NAME)
     df = df.drop_duplicates()
@@ -41,8 +42,8 @@ def get_and_transform_data():
         "name": DATASET_NAME,  # unique identifier, we will also use this for directory names
         "description": """
         ChEMBL is a manually curated database of bioactive molecules with drug-like properties.
-        It brings together chemical, bioactivity and genomic data 
-        to aid the translation of genomic information into effective new drugs.   
+        It brings together chemical, bioactivity and genomic data
+        to aid the translation of genomic information into effective new drugs.
         """,
         "benchmarks": [
             {
