@@ -15,7 +15,7 @@
 ### This script runs lm_eval2 experiments
 ### The first arg ($1) is the prefix directory where the environment is saved
 ### The second arg ($2) is the directory to use when building the environment
-### The third arg ($3) is the name of the eval config.yaml file 
+### The third arg ($3) is the name of the eval config.yaml file
 
 set -ex # allow for exiting based on non-0 codes
 
