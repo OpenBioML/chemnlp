@@ -21,7 +21,7 @@ There are many excellent introductions to submodules online and we won't repeat 
 
 
 # Getting help
-The instructions below attempt to guide you through the process of working with submodules. However, if you are still confused please reach out to on GitHub or Discord to a project maintainer.
+The instructions below attempt to guide you through the process of working with submodules. However, if you are still confused please reach out on GitHub or Discord to a project maintainer.
 
 # Workflow 1: making changes to a submodule only
 
