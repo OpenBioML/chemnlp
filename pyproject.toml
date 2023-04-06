@@ -37,5 +37,9 @@ dataset_creation = [
         "PyTDC",
 ]
 
+training = [
+        "deepspeed>=0.8.2" # https://github.com/microsoft/DeepSpeed/pull/2863
+]
+
 [tool.setuptools_scm]
 version_scheme = "post-release"
