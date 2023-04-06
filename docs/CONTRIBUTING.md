@@ -125,9 +125,10 @@ fields:
         text: SMILES
 ```
 
-This templating syntax should allow for quite some flexibility: For every template field we will look for the `ids` in the `targets` and `identifiers` and get the the column value if they end with `_value` or the corresponding value from the key starting with `_key-in-targets-or-identifiers`, e.g., `SMILES_names` will get you one of the entries of the `names` key. If there are multiple values for one field, we will sample combinations.
-With this setup the first prompt template will sample a SMILES name followed by the SMILES representation and the experiment name and needs to predict the experiment value from the experiment or the calculation value which are sampled again.
-In contrast, the second prompt template only focues on the calculated name and values and only shows the SMILES representation with the SMILES name.
+This templating syntax should allow for quite some flexibility: For every template field we will look for the key, e.g., `exp_value` as well as `exp_value_text` (which can be used to describe the field type/value).
+If this (`text`) is a column name, we will use the values from the column (therefore, effectively, jointly sample the `column` and `text` columns).
+If there are multiple values for one field, we will sample combinations.
+If you want to suggest sampling from different prompt prefixes, you can do so by specifying a template fields and different `text` (but no `column`).
 
 In case you run into issues (or think you don't have enough compute or storage, please let us know). Also, in some cases `csv` might not be the best format. If you think that `csv` is not suitable for your dataset, let us know.
 
