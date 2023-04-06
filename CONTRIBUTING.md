@@ -100,9 +100,9 @@ In case your dataset isn't a simple tabular dataset with chemical compounds and 
 
 ```yaml
 templates:
-  - prompt: "Please answer the following chemistry question.\nDerive for the molecule with the <SMILES_names> <SMILES_value> the <exp_names>."
-    completion: "<exp_values>"
-  - prompt: "Please answer the following question.\nPredict the <calc_names> for <SMILES_value>."
+  - prompt: "Please answer the following chemistry question.\nDerive for the molecule with the <SMILES_text> <SMILES_value> the <exp_text>."
+    completion: "<exp_value>"
+  - prompt: "Please answer the following question.\nPredict the <calc_text> for <SMILES_value>."
     completion: "<calc_value>"
 fields:
   - SMILES_names
