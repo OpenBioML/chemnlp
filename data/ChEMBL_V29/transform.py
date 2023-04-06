@@ -6,7 +6,6 @@ DATASET_NAME = "ChEMBL_V29"
 
 
 def get_and_transform_data():
-
     # get raw data per dataset
     def get_single_dataset(dataset_name):
         splits = MolGen(name=dataset_name).get_split()

@@ -6,7 +6,6 @@ DATASET_NAME = "zinc"
 
 
 def get_and_transform_data():
-
     # get raw data per dataset
     def get_single_dataset(dataset_name):
         splits = MolGen(name=dataset_name).get_split()
