@@ -105,13 +105,22 @@ templates:
   - prompt: "Please answer the following question.\nPredict the <calc_text> for <SMILES_value>."
     completion: "<calc_value>"
 fields:
-  - SMILES_names
-  - SMILES_values
-  - exp_names
-  - calc_names
-  - exp_values:
-      - exp_value
-      - calc_value
+  exp_value:
+    values:
+      - name: exp
+        column: exp
+        text: adsorption energy
+      - name: calc
+        column: calc
+        text: adsorption free energy
+  molecule:
+    values:
+      - name: smiles
+        column: smiles
+        text:
+      - name: smiles
+        column: smiles
+        text: SMILES
 ```
 
 This templating syntax should allow for quite some flexibility: For every template field we will look for the `ids` in the `targets` and `identifiers` and get the the column value if they end with `_value` or the corresponding value from the key starting with `_key-in-targets-or-identifiers`, e.g., `SMILES_names` will get you one of the entries of the `names` key. If there are multiple values for one field, we will sample combinations.
