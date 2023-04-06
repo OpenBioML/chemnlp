@@ -18,7 +18,6 @@ targets:
           - liver toxicity
       uris:
           - http://purl.bioontology.org/ontology/MEDDRA/10072268
-          - http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C84427
 benchmarks:
     - name: TDC
       link: https://tdcommons.ai/
