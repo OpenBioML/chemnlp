@@ -38,11 +38,9 @@ def get_and_transform_data():
     # create meta yaml
     meta = {
         "name": DATASET_NAME,  # unique identifier, we will also use this for directory names
-        "description": """
-        ZINC is a free database of commercially-available compounds for virtual screening.
-        It contains over 230 million purchasable compounds in ready-to-dock, 3D formats.
-        TDC uses a 250,000 sampled version from the original Mol-VAE paper.
-        """,
+        "description": """ZINC is a free database of commercially-available compounds for virtual screening.
+It contains over 230 million purchasable compounds in ready-to-dock, 3D formats.
+TDC uses a 250,000 sampled version from the original Mol-VAE paper.""",
         "identifiers": [
             {
                 "id": "SMILES",  # column name
@@ -52,8 +50,7 @@ def get_and_transform_data():
         ],
         # license under which the original dataset was published
         "license": """ZINC is free to use for everyone.
-        Redistribution of significant subsets requires written permission from the authors.
-        """,
+Redistribution of significant subsets requires written permission from the authors.""",
         "links": [  # list of relevant links (original dataset, other uses, etc.)
             {
                 "url": "https://pubs.acs.org/doi/full/10.1021/acs.jcim.5b00559",
@@ -66,25 +63,19 @@ def get_and_transform_data():
         ],
         "num_points": len(df),  # number of datapoints in this dataset
         "bibtex": [
-            """
-        @article{doi:10.1021/acs.jcim.5b00559,
-                author = {Sterling, Teague and Irwin, John J.},
-                title = {ZINC 15 – Ligand Discovery for Everyone},
-                journal = {Journal of Chemical Information and Modeling},
-                volume = {55},
-                number = {11},
-                pages = {2324-2337},
-                year = {2015},
-                doi = {10.1021/acs.jcim.5b00559},
-                note ={PMID: 26479676},
-                URL = {
-                        https://doi.org/10.1021/acs.jcim.5b00559
-                },
-                eprint = {
-                        https://doi.org/10.1021/acs.jcim.5b00559
-                }
-        }
-            """,
+            """@article{doi:10.1021/acs.jcim.5b00559,
+author = {Sterling, Teague and Irwin, John J.},
+title = {ZINC 15 - Ligand Discovery for Everyone},
+journal = {Journal of Chemical Information and Modeling},
+volume = {55},
+number = {11},
+pages = {2324-2337},
+year = {2015},
+doi = {10.1021/acs.jcim.5b00559},
+note ={PMID: 26479676},
+URL = {https://doi.org/10.1021/acs.jcim.5b00559},
+eprint = {https://doi.org/10.1021/acs.jcim.5b00559},
+}""",
         ],
     }
 

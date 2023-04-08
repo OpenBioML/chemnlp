@@ -39,10 +39,9 @@ def get_and_transform_data():
     meta = {
         "name": DATASET_NAME,  # unique identifier, we will also use this for directory names
         "description": """Molecular Sets (MOSES) is a benchmark platform
-        for distribution learning based molecule generation.
-        Within this benchmark, MOSES provides a cleaned dataset of molecules that are ideal of optimization.
-        It is processed from the ZINC Clean Leads dataset.
-        """,
+for distribution learning based molecule generation.
+Within this benchmark, MOSES provides a cleaned dataset of molecules that are ideal of optimization.
+It is processed from the ZINC Clean Leads dataset.""",
         "benchmarks": [
             {
                 "name": "TDC",  # unique benchmark name
@@ -75,13 +74,13 @@ def get_and_transform_data():
         "num_points": len(df),  # number of datapoints in this dataset
         "bibtex": [
             """@article{10.3389/fphar.2020.565644,
-  title={{M}olecular {S}ets ({MOSES}): {A} {B}enchmarking {P}latform for {M}olecular {G}eneration {M}odels},
-  author={Polykovskiy, Daniil and Zhebrak, Alexander and Sanchez-Lengeling, Benjamin and Golovanov,
+title={{M}olecular {S}ets ({MOSES}): {A} {B}enchmarking {P}latform for {M}olecular {G}eneration {M}odels},
+author={Polykovskiy, Daniil and Zhebrak, Alexander and Sanchez-Lengeling, Benjamin and Golovanov,
 Sergey and Tatanov, Oktai and Belyaev, Stanislav and Kurbanov, Rauf and Artamonov,
 Aleksey and Aladinskiy, Vladimir and Veselov, Mark and Kadurin, Artur and Johansson,
 Simon and  Chen, Hongming and Nikolenko, Sergey and Aspuru-Guzik, Alan and Zhavoronkov, Alex},
-  journal={Frontiers in Pharmacology},
-  year={2020}
+journal={Frontiers in Pharmacology},
+year={2020}
 }""",
         ],
     }
