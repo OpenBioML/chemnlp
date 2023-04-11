@@ -76,6 +76,7 @@ def run(config_path: str) -> None:
     )
     assert trainer.model.device.type != "cpu", "Stopping as model is on CPU"
     trainer.train()
+    trainer.save_model()
 
 
 if __name__ == "__main__":

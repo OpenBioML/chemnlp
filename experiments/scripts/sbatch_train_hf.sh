@@ -19,6 +19,7 @@
 
 set -ex # allow for exiting based on non-0 codes
 export TOKENIZERS_PARALLELISM=false
+export WANDB_BASE_URL="https://stability.wandb.io"
 
 # set workdir
 CHEMNLP_PATH=/fsx/proj-chemnlp/$2/chemnlp
@@ -28,7 +29,7 @@ source $CHEMNLP_PATH/experiments/scripts/env_creation_hf.sh $1 $2
 
 # install extras
 cd $CHEMNLP_PATH
-pip install ".[training]"
+pip install .
 
 # trigger run
 torchrun --nnodes 1 --nproc-per-node 4 \
