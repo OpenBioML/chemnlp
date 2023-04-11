@@ -22,7 +22,7 @@ conda activate ${CONDA_ENV_PATH}
 cd /fsx/proj-chemnlp/$2
 
 ## clone + submodules (ok if exists)
-[ ! -d 'chemnlp' ] && git clone --recurse-submodules --remote-submodules git@github.com:OpenBioML/chemnlp.git
+[ ! -d 'chemnlp' ] && git clone --recurse-submodules git@github.com:OpenBioML/chemnlp.git
 
 ## install
 conda install pytorch torchvision torchaudio pytorch-cuda=${CUDA_VERSION} -c pytorch -c nvidia --verbose
