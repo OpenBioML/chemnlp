@@ -9,4 +9,4 @@
 [submodule "lm-eval1"]
 	path = lm-evaluation-harness
 	url = git@github.com:OpenBioML/lm-evaluation-harness.git
-	branch = main
+	branch = master
