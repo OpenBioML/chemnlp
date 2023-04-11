@@ -2,7 +2,7 @@ import pandas as pd
 import yaml
 from tdc.generation import MolGen
 
-DATASET_NAME = "ChEMBL_V29"
+DATASET_NAME = "chembl_29"
 
 
 def get_and_transform_data():
