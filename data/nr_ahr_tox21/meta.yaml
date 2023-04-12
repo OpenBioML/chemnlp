@@ -5,15 +5,15 @@ description: |-
   response pathways.
 targets:
 - id: toxicity_NR-AhR
-  description: whether it is toxic in a specific assay (1) or not (0)
+  description: whether it shows activity in a aryl hydrocarbon receptor toxicity assay
+    (1) or not (0)
   units: null
   type: boolean
   names:
   - Tox21 NR-AhR toxicity
   - NR-AhR toxicity
   - aryl hydrocarbon receptor toxicity
-uris:
-- https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C17273
+uris: null
 benchmarks:
 - name: TDC
   link: https://tdcommons.ai/
