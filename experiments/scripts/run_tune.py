@@ -36,8 +36,10 @@ def run(config_path: str) -> None:
 
     model_ref = getattr(transformers, config.model.base)
     model = model_ref.from_pretrained(
-        pretrained_model_name_or_path=config.model.name,
-        revision=config.model.revision,
+        pretrained_model_name_or_path=config.model.checkpoint_path or config.model.name,
+        revision=config.model.revision
+        if config.model.checkpoint_path is None
+        else None,
     )
 
     if config.prompt_tuning.enabled:
@@ -76,6 +78,7 @@ def run(config_path: str) -> None:
     )
     assert trainer.model.device.type != "cpu", "Stopping as model is on CPU"
     trainer.train()
+    trainer.save_model(config.trainer.output_dir + "/checkpoint-final")
 
 
 if __name__ == "__main__":
