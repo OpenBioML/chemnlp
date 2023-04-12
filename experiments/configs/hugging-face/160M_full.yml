@@ -17,7 +17,7 @@ prompt_tuning:
 # Training configuration (TrainerArguments from HF)
 trainer:
   output_dir: /fsx/proj-chemnlp/experiments/checkpoints/finetuned/full_160M
-  num_train_epochs: 0.1
+  num_train_epochs: 1
   learning_rate: 3e-4
   evaluation_strategy: steps
   logging_steps: 5
