@@ -8,6 +8,7 @@ model:
   base: GPTNeoXForCausalLM
   name: EleutherAI/pythia-160m
   revision: main # latest model
+  #checkpoint_path: /fsx/proj-chemnlp/experiments/checkpoints/finetuned/full_160M/checkpoint-1600
 
 # Training strategies (PromptTuningConfig arguments)
 prompt_tuning:
@@ -16,7 +17,7 @@ prompt_tuning:
 # Training configuration (TrainerArguments from HF)
 trainer:
   output_dir: /fsx/proj-chemnlp/experiments/checkpoints/finetuned/full_160M
-  num_train_epochs: 1
+  num_train_epochs: 1.0
   learning_rate: 3e-4
   evaluation_strategy: steps
   logging_steps: 5
