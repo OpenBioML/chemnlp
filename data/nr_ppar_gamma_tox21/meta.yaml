@@ -7,8 +7,8 @@ description: |-
 targets:
     - id: toxicity_NR-PPAR-gamma
       description: whether it shows activity in NR-PPAR-gamma toxicity assay (1) or not (0)
-      units: toxicity
-      type: categorical
+      units:
+      type: boolean
       names:
           - Tox21 NR-PPAR-gamma toxicity
           - NR-PPAR-gamma toxicity
