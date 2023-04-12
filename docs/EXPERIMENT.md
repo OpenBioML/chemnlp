@@ -22,9 +22,10 @@ If the data is already tokenised for the model you wish to use you can proceed t
 - Example command:
 
 ```bash
-sbatch experiments/scripts/sbatch_train_hf.sh experiments/maw501 maw501 160M_full.yml
+sbatch experiments/scripts/sbatch_train_hf.sh $1 $2 $3  # see script for description of arguments
+sbatch experiments/scripts/sbatch_train_hf.sh experiments/maw501 maw501 160M_full.yml  # explicit example
 ```
-- Locally you can monitor your job at `/fsx/proj-chemnlp/experiments/logs` or as set in the `sbatch` script.
+- From within the stability cluster, you can monitor your job at `/fsx/proj-chemnlp/experiments/logs` or as set in the `sbatch` script.
 
 ## Using Weights and Biases
 If you don't have the required permission to log to W&B, please request this. In the interim you can disable this or log to a project under your name by changing the configuration options e.g. in `experiments/configs/hugging-face/full_160M.yml`.
