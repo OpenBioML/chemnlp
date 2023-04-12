@@ -7,8 +7,8 @@ description: |-
 targets:
     - id: toxicity_NR-AR
       description: whether it toxic in a androgen receptor toxicity assay (1) or not (0)
-      units: toxicity
-      type: categorical
+      units:
+      type: boolean
       names:
           - Tox21 NR-AR toxicity
           - NR-AR toxicity
