@@ -43,9 +43,10 @@ class TrainerConfig(BaseModel):
 
 class WandbConfig(BaseModel):
     enabled: bool = False
-    project: str = "chemnlp"
+    project: str = "LLCheM"
     group: str
     name: str
+    entity: str = "chemnlp"
 
 
 class TrainPipelineConfig(BaseModel):
