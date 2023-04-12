@@ -7,8 +7,8 @@ description: |-
 targets:
     - id: toxicity_SR-ATAD5
       description: whether it shows activitiy in the SR-ATAD5 assay (1) or not (0)
-      units: toxicity
-      type: categorical
+      units:
+      type: boolean
       names:
           - SR-ATAD5 toxicity
           - Tox21 SR-Luciferase-tagged ATAD5 toxicity
