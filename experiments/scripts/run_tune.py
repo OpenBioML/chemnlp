@@ -8,6 +8,7 @@ import os
 
 import datasets
 import transformers
+import wandb
 from peft import PromptTuningConfig, PromptTuningInit, TaskType, get_peft_model
 from transformers import (
     AutoTokenizer,
@@ -16,7 +17,6 @@ from transformers import (
     TrainingArguments,
 )
 
-import wandb
 from chemnlp.data_val.config import TrainPipelineConfig
 from chemnlp.utils import load_config
 
