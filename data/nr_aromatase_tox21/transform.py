@@ -53,8 +53,8 @@ response pathways.""",
             {
                 "id": f"toxicity_{target_subfolder}",  # name of the column in a tabular dataset
                 "description": "whether it shows activity in the NR-Aromatase enzyme toxicity assay (1) or not (0)",
-                "units": "toxicity",  # units of the values in this column (leave empty if unitless)
-                "type": "categorical",  # can be "categorical", "ordinal", "continuous"
+                "units": None,  # units of the values in this column (leave empty if unitless)
+                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
                     "Tox21 NR-Aromatase toxicity",
                     "NR-Aromatase enzyme toxicity",

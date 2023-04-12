@@ -7,8 +7,8 @@ description: |-
 targets:
     - id: toxicity_NR-Aromatase
       description: whether it shows activity in the NR-Aromatase enzyme toxicity assay (1) or not (0)
-      units: toxicity
-      type: categorical
+      units:
+      type: boolean
       names:
           - Tox21 NR-Aromatase toxicity
           - NR-Aromatase enzyme toxicity
