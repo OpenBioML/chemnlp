@@ -1,14 +1,10 @@
-from typing import List
+from typing import Optional
 
-from pydantic import BaseModel, Field, validator
+from pydantic import BaseModel, validator
 
 
 class Data(BaseModel):
-    datasets: List[str] = Field(default_factory=list)
-    subsample: bool
-    num_train_samples: int
-    num_val_samples: int
-    pad_to_multiple_of: int
+    path: str
 
 
 class Model(BaseModel):
@@ -18,19 +14,24 @@ class Model(BaseModel):
 
 
 class PromptTune(BaseModel):
-    num_virtual_tokens: int = None
+    enabled: bool = False
+    num_virtual_tokens: Optional[int] = None
     prompt_tuning_init_text: str = " "
 
 
 class TrainerConfig(BaseModel):
     output_dir: str
-    epochs: int = 1
+    num_train_epochs: int = 1
     learning_rate: float = 3e-4
+    bf16: bool = False
+    fp16: bool = False
+    evaluation_strategy: str = "steps"
+    logging_steps: int = 50
+    eval_steps: int = 100
+    save_steps: int = 100
+    dataloader_num_workers: int = 0
     per_device_train_batch_size: int = 32
     per_device_eval_batch_size: int = 32
-    is_wandb: bool = False
-    wandb_project: str = "chemnlp"
-    run_name: str
 
     @validator("learning_rate")
     def small_positive_learning_rate(cls, v):
@@ -39,8 +40,16 @@ class TrainerConfig(BaseModel):
         return v
 
 
+class WandbConfig(BaseModel):
+    enabled: bool = False
+    project: str = "chemnlp"
+    group: str
+    name: str
+
+
 class TrainPipelineConfig(BaseModel):
     data: Data
     model: Model
-    prompt: PromptTune
-    train: TrainerConfig
+    prompt_tuning: PromptTune
+    trainer: TrainerConfig
+    wandb: WandbConfig
