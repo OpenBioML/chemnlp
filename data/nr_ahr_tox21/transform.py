@@ -37,11 +37,6 @@ def get_and_transform_data():
     fields_clean = ["compound_id", "SMILES", f"toxicity_{target_subfolder}", "split"]
     df.columns = fields_clean
 
-    # data cleaning
-    #     df.compound_name = (
-    #         df.compound_name.str.strip()
-    #     )
-    # remove leading and trailing white space characters
     df = df.dropna()
     assert not df.duplicated().sum()
 
@@ -58,23 +53,17 @@ response pathways.""",
         "targets": [
             {
                 "id": f"toxicity_{target_subfolder}",  # name of the column in a tabular dataset
-                "description": "whether it toxic in a specific assay (1) or not toxic (0)",  # description of what this column means
-                "units": "toxicity",  # units of the values in this column (leave empty if unitless)
-                "type": "categorical",  # can be "categorical", "ordinal", "continuous"
+                "description": "whether it shows activity in a aryl hydrocarbon receptor toxicity assay (1) or not (0)",  # description of what this column means
+                "units": None,  # units of the values in this column (leave empty if unitless)
+                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
+                    "Tox21 NR-AhR toxicity",
                     "NR-AhR toxicity",
-                    "NR-AhR",
-                    "Tox21",
-                    "Tox21 NR-AhR",
-                    "NR-Aryl hydrocarbon receptor",
-                    "Aryl hydrocarbon receptor",
                     "aryl hydrocarbon receptor toxicity",
                 ],
             },
         ],
-        "uris": [
-            "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C17273",
-        ],
+        "uris": None,
         "benchmarks": [
             {
                 "name": "TDC",  # unique benchmark name
