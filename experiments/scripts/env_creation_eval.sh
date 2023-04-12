@@ -26,4 +26,4 @@ cd /fsx/proj-chemnlp/$2
 
 ## install
 conda install pytorch torchvision torchaudio pytorch-cuda=${CUDA_VERSION} -c pytorch -c nvidia --verbose
-pip install -e chemnlp/lm-eval2
+pip install -e chemnlp/lm-evaluation-harness

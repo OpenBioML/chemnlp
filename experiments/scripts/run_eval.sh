@@ -23,8 +23,8 @@ set -ex # allow for exiting based on non-0 codes
 CHEMNLP_PATH=/fsx/proj-chemnlp/$1/chemnlp
 
 # create environment
-source $CHEMNLP_PATH/experiments/scripts/stability-cluster/env_creation_eval.sh $1 $2
+source $CHEMNLP_PATH/experiments/scripts/env_creation_eval.sh $1 $2
 
 # trigger run
-cd $CHEMNLP_PATH/lm-eval2
-python main.py $3
+cd $CHEMNLP_PATH/lm-evaluation-harness
+python main_eval.py $3
