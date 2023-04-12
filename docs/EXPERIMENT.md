@@ -2,6 +2,7 @@
 Here we describe the set-up for training a model (including on the Stability cluster).
 
 ## General set-up
+- Configs are in: `experiments/configs`.
 -  If you wish to use a new model from Hugging Face as the starting point you will need to tokenise your data. We have an example script for `chemrxiv` which does this here: `experiments/data/prepare_hf_chemrxiv.py`.
 -  You will also need to create a configuration file for the model if one does not exist e.g. `experiments/configs/hugging-face/full_160M.yml`.
 
@@ -27,3 +28,20 @@ sbatch experiments/scripts/sbatch_train_hf.sh experiments/maw501 maw501 160M_ful
 
 ## Using Weights and Biases
 If you don't have the required permission to log to W&B, please request this. In the interim you can disable this or log to a project under your name by changing the configuration options e.g. in `experiments/configs/hugging-face/full_160M.yml`.
+
+## Restarting from a checkpoint
+This is for Hugging Face fine-tuning only at the moment.
+
+**WARNING:** Hugging Face **does not** know you are restarting from a checkpoint and so you may wish to change `output_dir` in the config file to avoid overwriting old checkpoints. You may wish to use a lower learning rate / different scheduler if continuing training.
+
+You can restart training from a checkpoint by passing `checkpoint_path`, a directory containing the output from a model saved by HF's `Trainer` class.
+
+Example config block:
+
+```yaml
+model:
+  base: GPTNeoXForCausalLM
+  name: EleutherAI/pythia-160m
+  revision: main
+  checkpoint_path: /fsx/proj-chemnlp/experiments/checkpoints/finetuned/full_160M/checkpoint-1600  # directory to restart training from
+```
