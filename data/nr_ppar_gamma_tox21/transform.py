@@ -2,7 +2,6 @@ import pandas as pd
 import yaml
 from tdc.single_pred import Tox
 from tdc.utils import retrieve_label_name_list
-import os
 
 
 def get_and_transform_data():
@@ -37,11 +36,6 @@ def get_and_transform_data():
     fields_clean = ["compound_id", "SMILES", f"toxicity_{target_subfolder}", "split"]
     df.columns = fields_clean
 
-    # data cleaning
-    #     df.compound_name = (
-    #         df.compound_name.str.strip()
-    #     )
-    # remove leading and trailing white space characters
     df = df.dropna()
     assert not df.duplicated().sum()
 
@@ -58,24 +52,19 @@ response pathways.""",
         "targets": [
             {
                 "id": f"toxicity_{target_subfolder}",  # name of the column in a tabular dataset
-                "description": "whether it toxic in a specific assay (1) or not toxic (0)",  # description of what this column means
+                "description": "whether it shows activity in NR-PPAR-gamma toxicity assay (1) or not (0)",
                 "units": "toxicity",  # units of the values in this column (leave empty if unitless)
                 "type": "categorical",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
+                    "Tox21 NR-PPAR-gamma toxicity",
                     "NR-PPAR-gamma toxicity",
-                    "NR-PPAR-gamma",
-                    "Tox21",
-                    "Tox21 NR-Peroxisome proliferator-activated receptor gamma",
-                    "NR-Peroxisome proliferator-activated receptor gamma",
-                    "Peroxisome proliferator-activated receptor gamma",
+                    "Tox21 NR-Peroxisome proliferator-activated receptor gamma toxicity",
+                    "NR-Peroxisome proliferator-activated receptor gamma toxicity",
                     "Peroxisome proliferator-activated receptor gamma toxicity",
                 ],
             },
         ],
-        "uris": [
-            "https://bioportal.bioontology.org/ontologies/CRISP?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FCSP%2F5000-0067",
-            "https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-018-2523-5/tables/3",
-        ],
+        "uris": None,
         "benchmarks": [
             {
                 "name": "TDC",  # unique benchmark name
@@ -102,7 +91,7 @@ response pathways.""",
             },
             {
                 "url": "https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-018-2523-5/tables/3",
-                "description": "Assay name",
+                "description": "assay name",
             },
         ],
         "num_points": len(df),  # number of datapoints in this dataset
