@@ -2,7 +2,6 @@ import pandas as pd
 import yaml
 from tdc.single_pred import Tox
 from tdc.utils import retrieve_label_name_list
-import os
 
 
 def get_and_transform_data():
@@ -37,12 +36,6 @@ def get_and_transform_data():
     fields_clean = ["compound_id", "SMILES", f"toxicity_{target_subfolder}", "split"]
     df.columns = fields_clean
 
-    # data cleaning
-    #     df.compound_name = (
-    #         df.compound_name.str.strip()
-    #     )
-    # remove leading and trailing white space characters
-
     assert not df.duplicated().sum()
 
     # save to csv
@@ -58,24 +51,17 @@ response pathways.""",
         "targets": [
             {
                 "id": f"toxicity_{target_subfolder}",  # name of the column in a tabular dataset
-                "description": "whether it toxic in a specific assay (1) or not toxic (0)",  # description of what this column means
-                "units": "toxicity",  # units of the values in this column (leave empty if unitless)
-                "type": "categorical",  # can be "categorical", "ordinal", "continuous"
+                "description": "whether it shows activity in the NR-AR-LBD toxicity assay (1) or not (0)",
+                "units": None,
+                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
+                    "Tox21 NR-AR-LBD toxicity",
                     "NR-AR-LBD toxicity",
-                    "NR-AR-LBD",
-                    "Tox21",
-                    "Tox21 NR-AR-LBD",
-                    "androgen receptor-ligand binding domain",
-                    "androgen receptor-ligand binding domain assay",
-                    "androgen receptor-ligand binding domain toxicity",
+                    "androgen receptor ligand-binding domain toxicity",
                 ],
             },
         ],
-        "uris": [
-            "https://bioportal.bioontology.org/ontologies/ORDO/?p=classes&conceptid=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_132285",
-            "https://bioportal.bioontology.org/ontologies/GO?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0050693",
-        ],
+        "uris": None,
         "benchmarks": [
             {
                 "name": "TDC",  # unique benchmark name
@@ -102,7 +88,7 @@ response pathways.""",
             },
             {
                 "url": "https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-018-2523-5/tables/3",
-                "description": "Assay name",
+                "description": "assay name",
             },
         ],
         "num_points": len(df),  # number of datapoints in this dataset
