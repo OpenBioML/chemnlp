@@ -2,10 +2,11 @@ import pandas as pd
 import yaml
 from tdc.single_pred import ADME
 
+
 def get_and_transform_data():
     # get raw data
-    target_subfolder = 'Pgp_Broccatelli'
-    splits = ADME(name = target_subfolder).get_split()
+    target_subfolder = "Pgp_Broccatelli"
+    splits = ADME(name=target_subfolder).get_split()
     df_train = splits["train"]
     df_valid = splits["valid"]
     df_test = splits["test"]
@@ -23,39 +24,29 @@ def get_and_transform_data():
         fn_data_original,
         delimiter=",",
     )  # not necessary but ensure we can load the saved data
-    
+
     # check if fields are the same
     fields_orig = df.columns.tolist()
-    assert fields_orig == [
-        "Drug_ID",
-        "Drug",
-        "Y",
-        "split"
-    ]
-
+    assert fields_orig == ["Drug_ID", "Drug", "Y", "split"]
 
     # overwrite column names = fields
-    fields_clean =['compound_name', 
-                   'SMILES', 
-                   "Pgp_inhibition",
-                   "split"]
+    fields_clean = ["compound_name", "SMILES", "Pgp_inhibition", "split"]
     df.columns = fields_clean
 
     # data cleaning
-#     df.compound_name = (
-#         df.compound_name.str.strip()
-#     )  
     # remove leading and trailing white space characters
+    df.compound_name = df.compound_name.str.strip()
+
     df = df.dropna()
     assert not df.duplicated().sum()
-    
+
     # save to csv
     fn_data_csv = "data_clean.csv"
     df.to_csv(fn_data_csv, index=False)
-    
+
     # create meta yaml
-    meta =  {
-        "name": "p_glycoprotein_inhibition_broccatelli_et_al",  # unique identifier, we will also use this for directory names
+    meta = {
+        "name": "p_glycoprotein_inhibition_broccatelli_et_al",
         "description": """P-glycoprotein (Pgp) is an ABC transporter protein involved in intestinal
 absorption, drug metabolism, and brain penetration, and its inhibition can seriously
 alter a drug's bioavailability and safety. In addition, inhibitors of Pgp can
@@ -63,28 +54,24 @@ be used to overcome multidrug resistance.""",
         "targets": [
             {
                 "id": "Pgp_inhibition",  # name of the column in a tabular dataset
-                "description": "whether it active toward Pgp inhibition (1) or not (0)",  # description of what this column means
-                "units": "Pgp_inhibition",  # units of the values in this column (leave empty if unitless)
-                "type": "categorical",  # can be "categorical", "ordinal", "continuous"
+                "description": "whether it shows Pgp inhibition (1) or not (0)",
+                "units": None,  # units of the values in this column (leave empty if unitless)
+                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "P-glycoprotein",
-                    "Pgp Inhibition",
-                    "Pgp",
-                    "ADME absorption Pgp",
-                    "Pgp activity",
-                    "Pgp Inhibition activity"
+                    "P-glycoprotein inhibition",
+                    "Pgp inhibition",
                 ],
-                "uris":[
-                "https://bioportal.bioontology.org/ontologies/CRISP?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FCSP%2F4000-0278",
+                "uris": [
+                    "http://purl.bioontology.org/ontology/CSP/4000-0278",
                 ],
             },
         ],
         "benchmarks": [
-        {
-            "name": "TDC",  # unique benchmark name
-            "link": "https://tdcommons.ai/",  # benchmark URL
-            "split_column": "split",  # name of the column that contains the split information
-        },
+            {
+                "name": "TDC",  # unique benchmark name
+                "link": "https://tdcommons.ai/",  # benchmark URL
+                "split_column": "split",  # name of the column that contains the split information
+            },
         ],
         "identifiers": [
             {
@@ -93,18 +80,14 @@ be used to overcome multidrug resistance.""",
                 "description": "SMILES",  # description (optional, except for "Other")
             },
             {
-                    "id": "compound_name",  # column name
-                    "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
-                    "names":[
-                    "iupac like name",
-                    "Synonyms",
-                    "drug bank name",
-                    "drug name pubchem",
-                    "drug generic name",
-                    "drug chemical (generic) name",
-                    "chemical name"
-                    ],
-                    "description": "Drug name",  # description (optional, except for "Other")
+                "id": "compound_name",  # column name
+                "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
+                "names": [
+                    "compound name",
+                    "drug name",
+                    "generic drug name",
+                ],
+                "description": "drug name",  # description (optional, except for "Other")
             },
         ],
         "license": "CC BY 4.0",  # license under which the original dataset was published
@@ -116,8 +99,7 @@ be used to overcome multidrug resistance.""",
             {
                 "url": "https://tdcommons.ai/single_pred_tasks/adme/#pgp-p-glycoprotein-inhibition-broccatelli-et-al",
                 "description": "data source",
-
-            }
+            },
         ],
         "num_points": len(df),  # number of datapoints in this dataset
         "bibtex": [
@@ -136,7 +118,7 @@ Using Molecular Interaction Fields},
 journal = {Journal of Medicinal Chemistry}""",
         ],
     }
-    
+
     def str_presenter(dumper, data):
         """configures yaml for dumping multiline strings
         Ref: https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data
@@ -154,6 +136,7 @@ journal = {Journal of Medicinal Chemistry}""",
         yaml.dump(meta, f, sort_keys=False)
 
     print(f"Finished processing {meta['name']} dataset!")
+
 
 if __name__ == "__main__":
     get_and_transform_data()
