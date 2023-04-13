@@ -45,7 +45,8 @@ META_TEMPLATE = {
         {
             "name": "Hugging Face dataset upload",
             "url": "https://huggingface.co/datasets/Hack90/libre_chem_textbooks",
-            "description": "Hugging Face dataset uploaded to HF account",  # Hopefully will move this to the openbioml space
+            "description": "Hugging Face dataset uploaded to HF account",  # Hopefully will move 
+            #this to the openbioml space soon
         },
     ],
     "benchmarks": [],
