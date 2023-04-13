@@ -1,12 +1,9 @@
-from datasets import  load_dataset
 import pandas as pd
-import yaml 
-
+import yaml
+from datasets import load_dataset
 
 LINES_TO_REMOVE = "/workspaces/chemnlp/data/libre_textbooks/lines_to_remove.jsonl"
 RAW_DATASET = "Hack90/libre_chem_textbooks"
-
-
 
 
 META_YAML_PATH = "./data/libre_textbooks/meta.yaml"
@@ -32,9 +29,9 @@ META_TEMPLATE = {
             "type": "string",  # can be "SMILES", "SELFIES", "IUPAC", "OTHER"
             "description": "url of the page the content is scraped from",
         },
-         {
-            "id": "text_length", # text character count
-            "type": "int",     # can be "SMILES", "SELFIES", "IUPAC", "OTHER"
+        {
+            "id": "text_length",  # text character count
+            "type": "int",  # can be "SMILES", "SELFIES", "IUPAC", "OTHER"
             "description": "text character count",
         },
     ],
@@ -48,13 +45,13 @@ META_TEMPLATE = {
         {
             "name": "Hugging Face dataset upload",
             "url": "https://huggingface.co/datasets/Hack90/libre_chem_textbooks",
-            "description": "Hugging Face dataset uploaded to HF account", # Hopefully will move this to the openbioml space
+            "description": "Hugging Face dataset uploaded to HF account",  # Hopefully will move this to the openbioml space
         },
     ],
     "benchmarks": [],
     "num_points": 3740,  # number of datapoints in this dataset
     "bibtex": [
-      # noqa
+        # noqa
     ],
 }
 
@@ -62,9 +59,8 @@ META_TEMPLATE = {
 def get_raw_data(raw_dataset: str = RAW_DATASET) -> pd.DataFrame:
     """Load the raw dataset into a pandas dataframe"""
     dataset = load_dataset(raw_dataset)
-    df_raw = pd.DataFrame(dataset['train'].to_pandas())
+    df_raw = pd.DataFrame(dataset["train"].to_pandas())
     return df_raw
-
 
 
 def create_meta_yaml(num_points: int):
