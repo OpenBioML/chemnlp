@@ -33,6 +33,10 @@ def get_and_transform_data():
     fields_clean = ["compound_name", "SMILES", "bioavailable", "split"]
     df.columns = fields_clean
 
+    # data cleaning
+    # remove leading and trailing white space characters
+    df.compound_name = df.compound_name.str.strip()
+
     df = df.dropna()
     assert not df.duplicated().sum()
 
@@ -78,10 +82,9 @@ available at the site of action.""",
                 "id": "compound_name",  # column name
                 "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
                 "names": [
-                    "drug name pubchem",
-                    "drug generic name",
-                    "drug chemical (generic) name",
-                    "chemical name",
+                    "compound name",
+                    "drug name",
+                    "generic drug name",
                 ],
                 "description": "drug name",  # description (optional, except for "Other")
             },
