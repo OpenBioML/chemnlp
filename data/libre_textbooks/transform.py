@@ -1,6 +1,7 @@
+from datasets import load_dataset
 import pandas as pd
 import yaml
-from datasets import load_dataset
+
 
 LINES_TO_REMOVE = "/workspaces/chemnlp/data/libre_textbooks/lines_to_remove.jsonl"
 RAW_DATASET = "Hack90/libre_chem_textbooks"
@@ -45,8 +46,8 @@ META_TEMPLATE = {
         {
             "name": "Hugging Face dataset upload",
             "url": "https://huggingface.co/datasets/Hack90/libre_chem_textbooks",
-            "description": "Hugging Face dataset uploaded to HF account",  # Hopefully will move 
-            #this to the openbioml space soon
+            "description": "Hugging Face dataset uploaded to HF account",  # Hopefully will move this
+            # to the openbioml space
         },
     ],
     "benchmarks": [],
