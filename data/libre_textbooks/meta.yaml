@@ -1,29 +1,29 @@
 name: libre_textbooks
-description: A dataset of pairs of natural language descriptions and SMILEs.
+description: A dataset of scraped articles from libre textbooks
 targets:
-- id: text
-  description: A line of string from the textbook
+- id: html
+  description: A scraped page from libre textbooks
   units: null
   type: string
   names:
-  - natural language description
+  - natural language article
   pubchem_aids: []
   uris: []
 identifiers:
-- id: book
+- id: 'url '
   type: string
-  description: name of the textbook the string line is from
+  description: url of the page the content is scraped from
+- id: text_length
+  type: int
+  description: text character count
 license: CC BY 4.0
 links:
 - name: Libre Textbooks
   url: https://chem.libretexts.org/Bookshelves
   description: ''
-- name: Google Drive host
-  url: https://drive.google.com/drive/folders/1iZFXnIw_wnXoR04-hiRmW2ax2b0Nx4qm?usp=sharing
-  description: Website hosting textbook pdfs.
 - name: Hugging Face dataset upload
   url: https://huggingface.co/datasets/Hack90/libre_chem_textbooks
   description: Hugging Face dataset uploaded to HF account
 benchmarks: []
-num_points: 1229098
+num_points: 3740
 bibtex: []

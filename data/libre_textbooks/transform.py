@@ -7,18 +7,20 @@ LINES_TO_REMOVE = "/workspaces/chemnlp/data/libre_textbooks/lines_to_remove.json
 RAW_DATASET = "Hack90/libre_chem_textbooks"
 
 
+
+
 META_YAML_PATH = "./data/libre_textbooks/meta.yaml"
 META_TEMPLATE = {
     "name": "libre_textbooks",  # unique identifier, we will also use this for directory names
-    "description": "A dataset of pairs of natural language descriptions and SMILEs.",
+    "description": "A dataset of scraped articles from libre textbooks",
     "targets": [
         {
-            "id": "html" #scraped content
+            "id": "html",  # name of the column in a tabular dataset
             "description": "A scraped page from libre textbooks",
             "units": None,  # units of the values in this column (leave empty if unitless)
             "type": "string",  # can be "categorical", "ordinal", "continuous", "string"
             "names": [  # names for the property (to sample from for building the prompts)
-                "natural language description",
+                "natural language article",
             ],
             "pubchem_aids": [],
             "uris": [],
@@ -77,6 +79,5 @@ def create_meta_yaml(num_points: int):
 if __name__ == "__main__":
     num_samples = 0
     raw_df = get_raw_data()
-    num_samples += len(clean_df)
-
+    num_samples += len(raw_df)
     create_meta_yaml(num_samples)
