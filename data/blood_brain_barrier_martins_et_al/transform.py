@@ -2,10 +2,11 @@ import pandas as pd
 import yaml
 from tdc.single_pred import ADME
 
+
 def get_and_transform_data():
     # get raw data
-    target_subfolder = 'BBB_Martins'
-    splits = ADME(name = target_subfolder).get_split()
+    target_subfolder = "BBB_Martins"
+    splits = ADME(name=target_subfolder).get_split()
     df_train = splits["train"]
     df_valid = splits["valid"]
     df_test = splits["test"]
@@ -23,64 +24,46 @@ def get_and_transform_data():
         fn_data_original,
         delimiter=",",
     )  # not necessary but ensure we can load the saved data
-    
+
     # check if fields are the same
     fields_orig = df.columns.tolist()
-    assert fields_orig == [
-        "Drug_ID",
-        "Drug",
-        "Y",
-        "split"
-    ]
-
+    assert fields_orig == ["Drug_ID", "Drug", "Y", "split"]
 
     # overwrite column names = fields
-    fields_clean = ['compound_name', 
-                    'SMILES', 
-                    'penetrate_BBB',
-                    'split'
-                    ]
+    fields_clean = ["compound_name", "SMILES", "penetrate_BBB", "split"]
     df.columns = fields_clean
 
     # data cleaning
-    df[fields_clean[0]] = (
-        df[fields_clean[0]].str.strip()
-    )  
     # remove leading and trailing white space characters
+    df.compound_name = df.compound_name.str.strip()
     df = df.dropna()
     assert not df.duplicated().sum()
-    
+
     # save to csv
     fn_data_csv = "data_clean.csv"
     df.to_csv(fn_data_csv, index=False)
-    
+
     # create meta yaml
-    meta =  {
+    meta = {
         "name": "blood_brain_barrier_martins_et_al",  # unique identifier, we will also use this for directory names
         "description": """As a membrane separating circulating blood and brain extracellular
 fluid, the blood-brain barrier (BBB) is the protection layer that blocks most
 foreign drugs. Thus the ability of a drug to penetrate the barrier to deliver
-to the site of action forms a crucial challenge in development of drugs for
-central nervous system From MoleculeNet.""",
+to the site of action forms a crucial challenge in development of drugs for the
+central nervous system.""",
         "targets": [
             {
-    "id": "penetrate_BBB",  # name of the column in a tabular dataset
-    "description": "The ability of a drug to penetrate the blood brain barrier (1) or not (0)",  # description of what this column means
-    "units": "penetrate blood brain barrier",  # units of the values in this column (leave empty if unitless)
-    "type": "categorical",  # can be "categorical", "ordinal", "continuous"
-    "names": [  # names for the property (to sample from for building the prompts)
-        "blood brain barrier",
-        "ADME blood-brain barrier",
-        "ability of a drug to have a CNS effect",
-        "drug reach central nervous system",
-        "drug reach the brain",
-        "ability of a drug to penetrate blood brain barrier to reach the brain",
-        "ability of a drug to penetrate blood brain barrier",
+                "id": "penetrate_BBB",  # name of the column in a tabular dataset
+                "description": "The ability of a drug to penetrate the blood brain barrier (1) or not (0)",
+                "units": None,  # units of the values in this column (leave empty if unitless)
+                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
+                "names": [  # names for the property (to sample from for building the prompts)
+                    "blood brain barrier penetration",
+                    "ADME blood-brain barrier penetration",
+                    "ability of a drug to penetrate blood brain barrier to reach the brain",
+                    "ability of a drug to penetrate blood brain barrier",
                 ],
-                "uris":[
-                    "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C13194",
-                    "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C12438",
-                ],
+                "uris": None,
             },
         ],
         "benchmarks": [
@@ -97,15 +80,14 @@ central nervous system From MoleculeNet.""",
                 "description": "SMILES",  # description (optional, except for "Other")
             },
             {
-                    "id": "compound_name",  # column name
-                    "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
-                    "names": [
-                    "drug names",
-                    "drug generic names",
-                    "chemical names",
-                    "random drug id"
-                    ],
-                    "description": "Mix of drug name and ids",  # description (optional, except for "Other")
+                "id": "compound_name",  # column name
+                "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
+                "names": [
+                    "compound name",
+                    "drug name",
+                    "generic drug name",
+                ],
+                "description": "compound name",  # description (optional, except for "Other")
             },
         ],
         "license": "CC BY 4.0",  # license under which the original dataset was published
@@ -118,11 +100,10 @@ central nervous system From MoleculeNet.""",
                 "url": "https://rb.gy/0xx91v",
                 "description": "corresponding publication",
             },
-
             {
                 "url": "https://tdcommons.ai/single_pred_tasks/adme/#bbb-blood-brain-barrier-martins-et-al",
                 "description": "data source",
-            }
+            },
         ],
         "num_points": len(df),  # number of datapoints in this dataset
         "bibtex": [
@@ -150,10 +131,10 @@ pages = {513--530},
 author = {Zhenqin Wu and Bharath Ramsundar and Evan~N. Feinberg and Joseph
 Gomes and Caleb Geniesse and Aneesh S. Pappu and Karl Leswing and Vijay Pande},
 title = {MoleculeNet: a benchmark for molecular machine learning},
-journal = {Chemical Science}"""
-          ],
-    }   
-    
+journal = {Chemical Science}""",
+        ],
+    }
+
     def str_presenter(dumper, data):
         """configures yaml for dumping multiline strings
         Ref: https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data
@@ -171,6 +152,7 @@ journal = {Chemical Science}"""
         yaml.dump(meta, f, sort_keys=False)
 
     print(f"Finished processing {meta['name']} dataset!")
+
 
 if __name__ == "__main__":
     get_and_transform_data()
