@@ -2,10 +2,11 @@ import pandas as pd
 import yaml
 from tdc.single_pred import ADME
 
+
 def get_and_transform_data():
     # get raw data
-    target_subfolder = 'VDss_Lombardo'
-    splits = ADME(name = target_subfolder).get_split()
+    target_subfolder = "VDss_Lombardo"
+    splits = ADME(name=target_subfolder).get_split()
     df_train = splits["train"]
     df_valid = splits["valid"]
     df_test = splits["test"]
@@ -23,64 +24,52 @@ def get_and_transform_data():
         fn_data_original,
         delimiter=",",
     )  # not necessary but ensure we can load the saved data
-    
+
     # check if fields are the same
     fields_orig = df.columns.tolist()
-    assert fields_orig == ['Drug_ID',
-                            'Drug',
-                            'Y',
-                            'split'
-                            ]
+    assert fields_orig == ["Drug_ID", "Drug", "Y", "split"]
 
     # overwrite column names = fields
-    fields_clean = ['compound_name',
-                    'SMILES', 
-                    'VDss_Lombardo',
-                    'split'
-                    ]
+    fields_clean = ["compound_name", "SMILES", "VDss_Lombardo", "split"]
     df.columns = fields_clean
 
     # data cleaning
-    df[fields_clean[0]] = (
-        df[fields_clean[0]].str.strip()
-    )  
     # remove leading and trailing white space characters
+    df.compound_name = df.compound_name.str.strip()
+
     df = df.dropna()
     assert not df.duplicated().sum()
-    
+
     # save to csv
     fn_data_csv = "data_clean.csv"
     df.to_csv(fn_data_csv, index=False)
     meta = {
-        "name": "volume_of_distribution_at_steady_state_lombardo_et_al",  # unique identifier, we will also use this for directory names
+        "name": "volume_of_distribution_at_steady_state_lombardo_et_al",
         "description": """The volume of distribution at steady state (VDss) measures the degree
-of a drug's concentration in body tissue compared to concentration in blood.
+of a drug's concentration in the body tissue compared to concentration in the blood.
 Higher VD indicates a higher distribution in the tissue and usually indicates
 the drug with high lipid solubility, low plasma protein binidng rate.""",
         "targets": [
             {
                 "id": "VDss_Lombardo",  # name of the column in a tabular dataset
-                "description": "The amount of the drug in the body divided by the plasma concentration",  # description of what this column means
+                "description": "volume of distribution at steady state (VDss)",
                 "units": "VDss(L/kg)",  # units of the values in this column (leave empty if unitless)
                 "type": "continuous",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "drug volume of distribution at steady state",
-                    "ADME VDss",
-                    "The amount of the drug in the body divided by the plasma concentration",
-                    "Pharmacokinetics volume of distribution at steady state",
-                    "Drug Distribution",
+                    "volume of distribution at steady state (VDss)",
+                    "VDss",
                 ],
-                "uris":[
-                    "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C85538",
-                   ],
+                "uris": [
+                    "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C85538",
+                ],
             },
         ],
         "benchmarks": [
-        {
-            "name": "TDC",  # unique benchmark name
-            "link": "https://tdcommons.ai/",  # benchmark URL
-            "split_column": "split",  # name of the column that contains the split information
-        },
+            {
+                "name": "TDC",  # unique benchmark name
+                "link": "https://tdcommons.ai/",  # benchmark URL
+                "split_column": "split",  # name of the column that contains the split information
+            },
         ],
         "identifiers": [
             {
@@ -91,18 +80,13 @@ the drug with high lipid solubility, low plasma protein binidng rate.""",
             {
                 "id": "compound_name",  # column name
                 "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
-                "names":[
-                    "iupac like name",
-                    "Synonyms",
-                    "drug bank name",
-                    "drug name pubchem",
-                    "drug generic name",
-                    "drug chemical (generic) name",
-                    "chemical name"
-                  ],
+                "names": [
+                    "compound name",
+                    "drug name",
+                    "generic drug name",
+                ],
                 "description": "mix of drug name and ids",  # description (optional, except for "Other")
             },
-
         ],
         "license": "CC BY 4.0",  # license under which the original dataset was published
         "links": [  # list of relevant links (original dataset, other uses, etc.)
@@ -111,9 +95,9 @@ the drug with high lipid solubility, low plasma protein binidng rate.""",
                 "description": "corresponding publication",
             },
             {
-                "url": "https://tdcommons.ai/single_pred_tasks/adme/#vdss-volumn-of-distribution-at-steady-state-lombardo-et-al",
+                "url": "https://tdcommons.ai/single_pred_tasks/adme/#vdss-volumn-of-distribution-at-steady-state-lombardo-et-al",  # noqa: E501
                 "description": "data source",
-            }
+            },
         ],
         "num_points": len(df),  # number of datapoints in this dataset
         "bibtex": [
@@ -130,9 +114,9 @@ author = {Franco Lombardo and Yankang Jing},
 title = {In Silico Prediction of Volume of Distribution in Humans. Extensive Data Set and the
 Exploration of Linear and Nonlinear Methods Coupled with Molecular Interaction Fields Descriptors},
 journal = {Journal of Chemical Information and Modeling}""",
-          ],
-    } 
-    
+        ],
+    }
+
     def str_presenter(dumper, data):
         """configures yaml for dumping multiline strings
         Ref: https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data
@@ -150,6 +134,7 @@ journal = {Journal of Chemical Information and Modeling}""",
         yaml.dump(meta, f, sort_keys=False)
 
     print(f"Finished processing {meta['name']} dataset!")
+
 
 if __name__ == "__main__":
     get_and_transform_data()
