@@ -2,58 +2,83 @@ import pandas as pd
 import yaml
 from tdc.single_pred import ADME
 
+
 def get_and_transform_data():
     # get raw data
-    target_subfolder = 'PPBR_AZ'
-    data = ADME(name = target_subfolder)
-    fn_data_original = 'data/ppbr_az.tab'
+    target_subfolder = "PPBR_AZ"
+    data = ADME(name=target_subfolder)
+    dfs = []
+    for species in [
+        "Canis lupus familiaris",
+        "Cavia porcellus",
+        "Homo sapiens",
+        "Mus musculus",
+        "Rattus norvegicus",
+    ]:
+        data.get_other_species(species)
+        splits = data.get_split()
+        df_train = splits["train"]
+        df_valid = splits["valid"]
+        df_test = splits["test"]
+        df_train["split"] = "train"
+        df_valid["split"] = "valid"
+        df_test["split"] = "test"
+        df_tmp = pd.concat([df_train, df_valid, df_test], axis=0)
+        df_tmp["Species"] = species
+        dfs.append(df_tmp)
+    df = pd.concat(dfs, axis=0)
+
+    fn_data_original = "data_original.csv"
+    df.to_csv(fn_data_original, index=False)
+    del df
+
     # create dataframe
-    df = pd.read_csv(fn_data_original, sep='\t')
+    df = pd.read_csv(
+        fn_data_original,
+        delimiter=",",
+    )  # not necessary but ensure we can load the saved data
+    # create dataframe
+    df = pd.read_csv(fn_data_original, sep=",")
     # check if fields are the same
     fields_orig = df.columns.tolist()
-    assert fields_orig == ['Drug_ID', 'Drug', 'Y', 'Species']
+    assert fields_orig == ["Drug_ID", "Drug", "Y", "split", "Species"]
 
     # overwrite column names = fields
-    fields_clean = ['chembl_id', 'SMILES', 'rate_of_PPBR', 'Species']
+    fields_clean = ["chembl_id", "SMILES", "rate_of_PPBR", "split", "Species"]
     df.columns = fields_clean
 
     # data cleaning
-    df[fields_clean[0]] = (
-        df[fields_clean[0]].str.strip()
-    )  
     # remove leading and trailing white space characters
+    df.chembl_id = df.chembl_id.str.strip()
+
     df = df.dropna()
     assert not df.duplicated().sum()
-    
+
     # save to csv
     fn_data_csv = "data_clean.csv"
     df.to_csv(fn_data_csv, index=False)
     meta = {
-        "name": "plasma_protein_binding_rate_astrazeneca",  # unique identifier, we will also use this for directory names
+        "name": "plasma_protein_binding_rate_astrazeneca",
         "description": """The human plasma protein binding rate (PPBR) is expressed as the percentage
 of a drug bound to plasma proteins in the blood. This rate strongly affect a drug's
 efficiency of delivery. The less bound a drug is, the more efficiently it can
-traverse and diffuse to the site of actions. From a ChEMBL assay deposited
-by AstraZeneca.""",
+traverse and diffuse to the site of actions.""",
         "targets": [
             {
                 "id": "rate_of_PPBR",  # name of the column in a tabular dataset
-                "description": "The percentage of a drug bound to plasma proteins in the blood",  # description of what this column means
+                "description": "percentage of a drug bound to plasma proteins in the blood",
                 "units": "percentage",  # units of the values in this column (leave empty if unitless)
                 "type": "continuous",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "a drug bound to plasma proteins",
-                    "ADME plasma proteins binding",
-                    "The percentage of a drug bound to plasma proteins in the blood",
-                    "drug bound plasma proteins in the blood",
-                    "drug body interaction",
-                    "Pharmacokinetics plasma protein binding rate",
-                    "ability of a drug to bind to bound to plasma proteins in the blood",
+                    "human plasma protein binding rate (PPBR)",
+                    "human plasma protein binding rate",
+                    "PPBR",
+                    "percentage of a drug bound to plasma proteins in the blood",
                 ],
-                "uris":[
-                    "https://bioportal.bioontology.org/ontologies/IOBC?p=classes&conceptid=http%3A%2F%2Fpurl.jp%2Fbio%2F4%2Fid%2F201306028362680450",
-                    "https://bioportal.bioontology.org/ontologies/BAO?p=classes&conceptid=http%3A%2F%2Fwww.bioassayontology.org%2Fbao%23BAO_0010135",
-                    "https://bioportal.bioontology.org/ontologies/MESH?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FMESH%2FD010599",
+                "uris": [
+                    "http://purl.jp/bio/4/id/201306028362680450",
+                    "http://www.bioassayontology.org/bao#BAO_0010135",
+                    # todo: this is the assay but is the number after BAO_ the PubChem assay id?
                 ],
             },
         ],
@@ -66,22 +91,15 @@ by AstraZeneca.""",
             {
                 "id": "Species",  # column name
                 "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
-                "names": [
-                "Species",
-                "Species that drug measure in"
-                ], 
-                "description": "Species which drug have a percentage bound to plasma proteins in blood", 
+                "names": "species",
+                "description": "species in which the measurement was carried out",
             },
             {
                 "id": "chembl_id",  # column name
                 "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
-                "names": [
-                "ChEMBL database id",
-                "ChEMBL identifier number"
-                ], 
+                "names": ["ChEMBL id", "ChEMBL identifier number"],
                 "description": "chembl ids",  # description (optional, except for "Other")
             },
-
         ],
         "license": "CC BY 4.0",  # license under which the original dataset was published
         "links": [  # list of relevant links (original dataset, other uses, etc.)
@@ -92,7 +110,7 @@ by AstraZeneca.""",
             {
                 "url": "https://tdcommons.ai/single_pred_tasks/adme/#ppbr-plasma-protein-binding-rate-astrazeneca",
                 "description": "data source",
-            }
+            },
         ],
         "num_points": len(df),  # number of datapoints in this dataset
         "bibtex": [
@@ -104,9 +122,9 @@ month = feb,
 publisher = {EMBL-EBI},
 author = {Anne Hersey},
 title = {ChEMBL Deposited Data Set - AZ dataset}""",
-          ],
-    } 
-    
+        ],
+    }
+
     def str_presenter(dumper, data):
         """configures yaml for dumping multiline strings
         Ref: https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data
@@ -124,6 +142,7 @@ title = {ChEMBL Deposited Data Set - AZ dataset}""",
         yaml.dump(meta, f, sort_keys=False)
 
     print(f"Finished processing {meta['name']} dataset!")
+
 
 if __name__ == "__main__":
     get_and_transform_data()
