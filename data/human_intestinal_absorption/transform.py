@@ -2,10 +2,11 @@ import pandas as pd
 import yaml
 from tdc.single_pred import ADME
 
+
 def get_and_transform_data():
     # get raw data
-    target_subfolder = 'HIA_Hou'
-    splits = ADME(name = target_subfolder).get_split()
+    target_subfolder = "HIA_Hou"
+    splits = ADME(name=target_subfolder).get_split()
     df_train = splits["train"]
     df_valid = splits["valid"]
     df_test = splits["test"]
@@ -23,39 +24,35 @@ def get_and_transform_data():
         fn_data_original,
         delimiter=",",
     )  # not necessary but ensure we can load the saved data
-    df['Drug_ID'] = [x.split('.')[0] for x in df.Drug_ID.tolist()]
+
+    df["Drug_ID"] = [x.split(".")[0] for x in df.Drug_ID.tolist()]
 
     # check if fields are the same
     fields_orig = df.columns.tolist()
-    assert fields_orig == [
-        "Drug_ID",
-        "Drug",
-        "Y",
-        "split"
-    ]
-
+    assert fields_orig == ["Drug_ID", "Drug", "Y", "split"]
 
     # overwrite column names = fields
-    fields_clean =['compound_name', 
-                   'SMILES', 
-                   f"absorption_{target_subfolder}",
-                   'split']
+    fields_clean = [
+        "compound_name",
+        "SMILES",
+        f"absorption_{target_subfolder}",
+        "split",
+    ]
     df.columns = fields_clean
 
     # data cleaning
-#     df.compound_name = (
-#         df.compound_name.str.strip()
-#     )  
     # remove leading and trailing white space characters
+    df.compound_name = df.compound_name.str.strip()
+
     df = df.dropna()
     assert not df.duplicated().sum()
-    
+
     # save to csv
     fn_data_csv = "data_clean.csv"
     df.to_csv(fn_data_csv, index=False)
-    
+
     # create meta yaml
-    meta =  {
+    meta = {
         "name": "human_intestinal_absorption",  # unique identifier, we will also use this for directory names
         "description": """When a drug is orally administered, it needs to be absorbed from the
 human gastrointestinal system into the bloodstream of the human body. This ability
@@ -64,32 +61,27 @@ for a drug to be delivered to the target.""",
         "targets": [
             {
                 "id": f"absorption_{target_subfolder}",  # name of the column in a tabular dataset
-                "description": "whether it absorption activity of HIA (1) or not active (0)",  # description of what this column means
-                "units": "HIA_absorption",  # units of the values in this column (leave empty if unitless)
-                "type": "categorical",  # can be "categorical", "ordinal", "continuous"
+                "description": "whether it is absorbed from the human gastrointestinal system (1) or not (0)",
+                "units": None,  # units of the values in this column (leave empty if unitless)
+                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "Human Intestinal Absorption",
-                    "HIA absorption",
+                    "human intestinal absorption",
                     "HIA",
-                    "ADME absorption HIA",
-                    "drug delivery",
-                    "HIA activity",
-                    "HIA absorption activity"
                 ],
-                "uris":[
-                "https://bioportal.bioontology.org/ontologies/MESH?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FMESH%2FD007408",
+                "uris": [
+                    "http://purl.bioontology.org/ontology/MESH/D007408",
                 ],
             },
         ],
         "benchmarks": [
-        {
-            "name": "TDC",  # unique benchmark name
-            "link": "https://tdcommons.ai/",  # benchmark URL
-            "split_column": "split",  # name of the column that contains the split information
-        },
-            ],
+            {
+                "name": "TDC",  # unique benchmark name
+                "link": "https://tdcommons.ai/",  # benchmark URL
+                "split_column": "split",  # name of the column that contains the split information
+            },
+        ],
         "identifiers": [
-             {
+            {
                 "id": "SMILES",  # column name
                 "type": "SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
                 "description": "SMILES",  # description (optional, except for "Other")
@@ -97,14 +89,14 @@ for a drug to be delivered to the target.""",
             {
                 "id": "compound_name",  # column name
                 "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
-                "names":[
-                    "drug bank name",
-                    "drug name pubchem",
+                "names": [
+                    "compound name",
+                    "drug name",
                     "drug generic name",
                     "drug chemical (generic) name",
-                    "chemical name"
+                    "chemical name",
                 ],
-                "description": "Drug name",  # description (optional, except for "Other")
+                "description": "drug name",  # description (optional, except for "Other")
             },
         ],
         "license": "CC BY 4.0",  # license under which the original dataset was published
@@ -116,8 +108,7 @@ for a drug to be delivered to the target.""",
             {
                 "url": "https://tdcommons.ai/single_pred_tasks/adme/#hia-human-intestinal-absorption-hou-et-al",
                 "description": "data source",
-
-            }
+            },
         ],
         "num_points": len(df),  # number of datapoints in this dataset
         "bibtex": [
@@ -136,7 +127,7 @@ by Correlation and Classification},
 journal = {Journal of Chemical Information and Modeling}""",
         ],
     }
-    
+
     def str_presenter(dumper, data):
         """configures yaml for dumping multiline strings
         Ref: https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data
@@ -154,6 +145,7 @@ journal = {Journal of Chemical Information and Modeling}""",
         yaml.dump(meta, f, sort_keys=False)
 
     print(f"Finished processing {meta['name']} dataset!")
+
 
 if __name__ == "__main__":
     get_and_transform_data()
