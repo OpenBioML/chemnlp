@@ -13,7 +13,7 @@ targets:
           - oral bioavailability
           - bioavailability
       uris:
-          - https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C70913
+          - http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C70913
 benchmarks:
     - name: TDC
       link: https://tdcommons.ai/
