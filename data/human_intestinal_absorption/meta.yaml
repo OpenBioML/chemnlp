@@ -28,9 +28,7 @@ identifiers:
       names:
           - compound name
           - drug name
-          - drug generic name
-          - drug chemical (generic) name
-          - chemical name
+          - generic drug name
       description: drug name
 license: CC BY 4.0
 links:

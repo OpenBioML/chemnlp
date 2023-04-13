@@ -92,9 +92,7 @@ for a drug to be delivered to the target.""",
                 "names": [
                     "compound name",
                     "drug name",
-                    "drug generic name",
-                    "drug chemical (generic) name",
-                    "chemical name",
+                    "generic drug name",
                 ],
                 "description": "drug name",  # description (optional, except for "Other")
             },
