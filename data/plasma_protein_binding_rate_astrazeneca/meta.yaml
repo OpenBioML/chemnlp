@@ -24,7 +24,8 @@ identifiers:
       description: SMILES
     - id: Species
       type: Other
-      names: species
+      names:
+          - species
       description: species in which the measurement was carried out
     - id: chembl_id
       type: Other

@@ -91,7 +91,7 @@ traverse and diffuse to the site of actions.""",
             {
                 "id": "Species",  # column name
                 "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
-                "names": "species",
+                "names": ["species"],
                 "description": "species in which the measurement was carried out",
             },
             {
