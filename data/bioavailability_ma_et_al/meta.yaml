@@ -1,56 +1,54 @@
+---
 name: bioavailability_ma_et_al
 description: |-
-  Oral bioavailability is defined as the rate and extent to which the
-  active ingredient or active moiety is absorbed from a drug product and becomes
-  available at the site of action.
+    Oral bioavailability is defined as the rate and extent to which the
+    active ingredient or active moiety is absorbed from a drug product and becomes
+    available at the site of action.
 targets:
-- id: bioavailable
-  description: whether it available at the site of action (1) or not (0)
-  units: bioavailable
-  type: categorical
-  names:
-  - Oral bioavailability
-  - bioavailability
-  - ADME bioavailability
-  - Drug delivery
-  uris:
-  - https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C70913
+    - id: bioavailable
+      description: whether it is bioavailable (1) or not (0)
+      units:
+      type: boolean
+      names:
+          - oral bioavailability
+          - bioavailability
+      uris:
+          - https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C70913
 benchmarks:
-- name: TDC
-  link: https://tdcommons.ai/
-  split_column: split
+    - name: TDC
+      link: https://tdcommons.ai/
+      split_column: split
 identifiers:
-- id: SMILES
-  type: SMILES
-  description: SMILES
-- id: compound_name
-  type: Other
-  names:
-  - drug bank name
-  - drug name pubchem
-  - drug generic name
-  - drug chemical (generic) name
-  - chemical name
-  description: Drug name
+    - id: SMILES
+      type: SMILES
+      description: SMILES
+    - id: compound_name
+      type: Other
+      names:
+          - drug name pubchem
+          - drug generic name
+          - drug chemical (generic) name
+          - chemical name
+      description: drug name
 license: CC BY 4.0
 links:
-- url: https://doi.org/10.1016/j.jpba.2008.03.023
-  description: corresponding publication
-- url: https://tdcommons.ai/single_pred_tasks/adme/#bioavailability-ma-et-al
-  description: data source
+    - url: https://doi.org/10.1016/j.jpba.2008.03.023
+      description: corresponding publication
+    - url: https://tdcommons.ai/single_pred_tasks/adme/#bioavailability-ma-et-al
+      description: data source
 num_points: 640
 bibtex:
-- |-
-  @article{Ma2008,
-  doi = {10.1016/j.jpba.2008.03.023},
-  url = {https://doi.org/10.1016/j.jpba.2008.03.023},
-  year = {2008},
-  month = aug,
-  publisher = {Elsevier BV},
-  volume = {47},
-  number = {4-5},
-  author = {Chang-Ying Ma and Sheng-Yong Yang and Hui Zhang
-  and Ming-Li Xiang and Qi Huang and Yu-Quan Wei},
-  title = {Prediction models of human plasma protein binding rate and
-  oral bioavailability derived by using GA-CG-SVM method},
-  journal = {Journal of Pharmaceutical and Biomedical Analysis}
+    - |-
+      @article{Ma2008,
+      doi = {10.1016/j.jpba.2008.03.023},
+      url = {https://doi.org/10.1016/j.jpba.2008.03.023},
+      year = {2008},
+      month = aug,
+      publisher = {Elsevier BV},
+      volume = {47},
+      number = {4-5},
+      author = {Chang-Ying Ma and Sheng-Yong Yang and Hui Zhang
+      and Ming-Li Xiang and Qi Huang and Yu-Quan Wei},
+      title = {Prediction models of human plasma protein binding rate and
+      oral bioavailability derived by using GA-CG-SVM method},
+      journal = {Journal of Pharmaceutical and Biomedical Analysis}

@@ -2,10 +2,11 @@ import pandas as pd
 import yaml
 from tdc.single_pred import ADME
 
+
 def get_and_transform_data():
     # get raw data
-    target_subfolder = 'Bioavailability_Ma'
-    splits = ADME(name = target_subfolder).get_split()
+    target_subfolder = "Bioavailability_Ma"
+    splits = ADME(name=target_subfolder).get_split()
     df_train = splits["train"]
     df_valid = splits["valid"]
     df_test = splits["test"]
@@ -23,64 +24,48 @@ def get_and_transform_data():
         fn_data_original,
         delimiter=",",
     )  # not necessary but ensure we can load the saved data
-    
+
     # check if fields are the same
     fields_orig = df.columns.tolist()
-    assert fields_orig == [
-        "Drug_ID",
-        "Drug",
-        "Y",
-        "split"
-    ]
-
+    assert fields_orig == ["Drug_ID", "Drug", "Y", "split"]
 
     # overwrite column names = fields
-    fields_clean =['compound_name', 
-                   'SMILES', 
-                   "bioavailable",
-                    'split']
+    fields_clean = ["compound_name", "SMILES", "bioavailable", "split"]
     df.columns = fields_clean
 
-    # data cleaning
-#     df.compound_name = (
-#         df.compound_name.str.strip()
-#     )  
-    # remove leading and trailing white space characters
     df = df.dropna()
     assert not df.duplicated().sum()
-    
+
     # save to csv
     fn_data_csv = "data_clean.csv"
     df.to_csv(fn_data_csv, index=False)
-    
+
     # create meta yaml
-    meta =  {
+    meta = {
         "name": "bioavailability_ma_et_al",  # unique identifier, we will also use this for directory names
         "description": """Oral bioavailability is defined as the rate and extent to which the
 active ingredient or active moiety is absorbed from a drug product and becomes
 available at the site of action.""",
         "targets": [
             {
-        "id": "bioavailable",  # name of the column in a tabular dataset
-        "description": "whether it available at the site of action (1) or not (0)",  # description of what this column means
-        "units": "bioavailable",  # units of the values in this column (leave empty if unitless)
-        "type": "categorical",  # can be "categorical", "ordinal", "continuous"
-        "names": [  # names for the property (to sample from for building the prompts)
-            "Oral bioavailability",
-            "bioavailability",
-            "ADME bioavailability",
-            "Drug delivery"
+                "id": "bioavailable",  # name of the column in a tabular dataset
+                "description": "whether it is bioavailable (1) or not (0)",  # description of what this column means
+                "units": None,  # units of the values in this column (leave empty if unitless)
+                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
+                "names": [  # names for the property (to sample from for building the prompts)
+                    "oral bioavailability",
+                    "bioavailability",
                 ],
-                "uris":[
-                "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C70913",
+                "uris": [
+                    "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C70913",
                 ],
             },
         ],
         "benchmarks": [
             {
-            "name": "TDC",  # unique benchmark name
-            "link": "https://tdcommons.ai/",  # benchmark URL
-            "split_column": "split",  # name of the column that contains the split information
+                "name": "TDC",  # unique benchmark name
+                "link": "https://tdcommons.ai/",  # benchmark URL
+                "split_column": "split",  # name of the column that contains the split information
             },
         ],
         "identifiers": [
@@ -90,16 +75,15 @@ available at the site of action.""",
                 "description": "SMILES",  # description (optional, except for "Other")
             },
             {
-                    "id": "compound_name",  # column name
-                    "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
-                    "names":[
-                    "drug bank name",
+                "id": "compound_name",  # column name
+                "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
+                "names": [
                     "drug name pubchem",
                     "drug generic name",
                     "drug chemical (generic) name",
-                    "chemical name"
-                    ],
-                    "description": "Drug name",  # description (optional, except for "Other")
+                    "chemical name",
+                ],
+                "description": "drug name",  # description (optional, except for "Other")
             },
         ],
         "license": "CC BY 4.0",  # license under which the original dataset was published
@@ -111,8 +95,7 @@ available at the site of action.""",
             {
                 "url": "https://tdcommons.ai/single_pred_tasks/adme/#bioavailability-ma-et-al",
                 "description": "data source",
-
-            }
+            },
         ],
         "num_points": len(df),  # number of datapoints in this dataset
         "bibtex": [
@@ -131,7 +114,7 @@ oral bioavailability derived by using GA-CG-SVM method},
 journal = {Journal of Pharmaceutical and Biomedical Analysis}""",
         ],
     }
-    
+
     def str_presenter(dumper, data):
         """configures yaml for dumping multiline strings
         Ref: https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data
@@ -149,6 +132,7 @@ journal = {Journal of Pharmaceutical and Biomedical Analysis}""",
         yaml.dump(meta, f, sort_keys=False)
 
     print(f"Finished processing {meta['name']} dataset!")
+
 
 if __name__ == "__main__":
     get_and_transform_data()
