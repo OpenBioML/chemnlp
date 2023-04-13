@@ -5,7 +5,6 @@ import yaml
 
 LINES_TO_REMOVE = "/workspaces/chemnlp/data/libre_textbooks/lines_to_remove.jsonl"
 RAW_DATASET = "Hack90/libre_chem_textbooks"
-SPLITS = ["train"]
 
 
 META_YAML_PATH = "./data/libre_textbooks/meta.yaml"
