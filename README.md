@@ -100,6 +100,8 @@ To do this at the same time as cloning ChemNLP:
 git submodule update --init --recursive
 ```
 
+See [here](docs/SUBMODULES.md) for more information about contributing to submodules.
+
 ### Experiments
 
-Follow the guidelines [here](experiments/README.md) for more information about running experiments on the Stability AI cluster.
+Follow the guidelines [here](docs/EXPERIMENT.md) for more information about running experiments on the Stability AI cluster.
