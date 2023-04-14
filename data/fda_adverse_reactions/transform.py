@@ -1,3 +1,4 @@
+import concurrent.futures
 import os
 from xml.etree import ElementTree
 
@@ -6,7 +7,7 @@ import requests
 import yaml
 
 DATASET_URL = "ftp://ftp.ebi.ac.uk/pub/databases/opentargets/platform/23.02/output/etl/json/fda/significantAdverseDrugReactions"  # noqa
-DOWNLOAD_FOLDER = "./data/fda_adverse_reactions/fda/significantAdverseDrugReactions"
+DOWNLOAD_FOLDER = "./fda/significantAdverseDrugReactions"
 EBI_URL = "https://www.ebi.ac.uk/chembl/api/data/molecule/{}"
 
 META_YAML_PATH = "./data/fda_adverse_reactions/meta.yaml"
@@ -37,6 +38,11 @@ META_TEMPLATE = {
             "id": "compound_id",
             "type": "OTHER",
             "description": "This is the PubChem CID to identify a given molecule.",
+        },
+        {
+            "id": "SMILES",
+            "type": "SMILES",
+            "description": "This is the SMILES identifier for a given molecule.",
         },
     ],
     "license": "CC BY-SA 3.0",  # license under which the original dataset was published
@@ -88,6 +94,13 @@ def validate_data(df: pd.DataFrame) -> pd.DataFrame:
     return df.dropna(subset=["SMILES"])
 
 
+def parallelise_smiles_retrieval(df: pd.DataFrame) -> dict:
+    unique_chemblids = df["chembl_id"].unique()
+    with concurrent.futures.ThreadPoolExecutor(max_workers=os.cpu_count()) as executor:
+        smiles = executor.map(get_smiles_from_chembl_id, unique_chemblids)
+    return {c: s for c, s in zip(unique_chemblids, smiles)}
+
+
 def get_smiles_from_chembl_id(id: str) -> str:
     try:
         xml_content = requests.get(EBI_URL.format(id))
@@ -101,7 +114,9 @@ def get_smiles_from_chembl_id(id: str) -> str:
 if __name__ == "__main__":
     get_data()
     df = read_data()
-    df["SMILES"] = df["chembl_id"].apply(lambda x: get_smiles_from_chembl_id(x))
+
+    chemblid_to_smile = parallelise_smiles_retrieval(df)
+    df["SMILES"] = df["chembl_id"].apply(lambda x: chemblid_to_smile[x])
     df_clean = validate_data(df)
     print(df.head())
     print(df.info())
