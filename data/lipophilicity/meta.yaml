@@ -1,0 +1,41 @@
+---
+name: lipophilicity
+description: Experimental results of octanol/water distribution coefficient (logD at pH 7.4).
+targets:
+    - id: exp
+      description: experimental results of octanol/water distribution coefficient (logD at pH 7.4)
+      units:
+      type: continuous
+      names:
+          - octanol/water distribution coefficient (logD at pH 7.4)
+          - octanol/water distribution coefficient
+      uris:
+          - http://www.bioassayontology.org/bao#BAO_0002129
+          - http://purl.obolibrary.org/obo/MI_2107
+identifiers:
+    - id: SMILES
+      type: SMILES
+      description: SMILES
+license: CC BY-SA 3.0
+links:
+    - url: https://deepchemdata.s3-us-west-1.amazonaws.com/datasets/Lipophilicity.csv
+      description: original dataset link
+    - url: https://github.com/cheminfo/molecule-features/blob/main/data/lipophilicity/meta.yaml
+      description: original meta data
+    - url: https://deepchem.readthedocs.io/en/latest/api_reference/moleculenet.html#lipo-datasets
+      description: original dataset link from moleculenet
+    - url: https://www.ebi.ac.uk/chembl/document_report_card/CHEMBL3301361/
+      description: original report card
+    - url: https://chembl.gitbook.io/chembl-interface-documentation/about#data-licensing
+      description: original dataset license from chembl
+    - url: https://creativecommons.org/licenses/by-sa/3.0/
+      description: used dataset license
+num_points: 4200
+bibtex:
+    - |-
+      @techreport{hersey2015chembl,
+      title={ChEMBL Deposited Data Set-AZ dataset},
+      author={Hersey, Anne},
+      year={2015},
+      institution={Technical Report, Technical report, EMBL-EBI, 2015. https://www. ebi. ac. uk}
+      }

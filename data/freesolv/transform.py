@@ -84,8 +84,7 @@ def get_and_transform_data():
                 "units": "kcal/mol",  # units of the values in this column (leave empty if unitless)
                 "type": "continuous",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "GAFF",
-                    "mobley group calculated value",
+                    "hydration free energy computed using the GAFF force field",
                 ],
             },
             {
@@ -94,8 +93,7 @@ def get_and_transform_data():
                 "units": "kcal/mol",
                 "type": "continuous",
                 "names": [
-                    "GAFF uncertainty",
-                    "mobley group calculated value uncertainty",
+                    "uncertainty in hydration free energy computed using the GAFF force field",
                 ],
             },
         ],
@@ -113,16 +111,21 @@ def get_and_transform_data():
         ],
         "license": "CC BY-NC-SA 4.0",  # license under which the original dataset was published
         "links": [  # list of relevant links (original dataset, other uses, etc.)
-            "https://github.com/MobleyLab/FreeSolv",
-            "https://escholarship.org/uc/item/6sd403pz",
+            {
+                "url": "https://github.com/MobleyLab/FreeSolv",
+                "description": "issue tracker and source data",
+            },
+            {
+                "url": "https://escholarship.org/uc/item/6sd403pz",
+                "description": "repository with data",
+            },
         ],
         "num_points": len(df),  # number of datapoints in this dataset
-        "url": "https://github.com/MobleyLab/FreeSolv",
         "bibtex": [
             """@article{mobley2013experimental,
-            title={Experimental and calculated small molecule hydration free energies},
-            author={Mobley, David L},
-            year={2013}""",
+title={Experimental and calculated small molecule hydration free energies},
+author={Mobley, David L},
+year={2013}""",
         ],
     }
     fn_meta = "meta.yaml"

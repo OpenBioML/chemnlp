@@ -1,3 +1,4 @@
+---
 # GitHub action that attempts to install the conda env
 # from conda.yaml
 # then run black, isort, flake8
@@ -5,26 +6,19 @@
 name: Install
 on: [push, pull_request]
 jobs:
-  install:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: conda-incubator/setup-miniconda@v2
-        with:
-          environment-file: conda.yaml
-          activate-environment: chemnlp
-          python-version: 3.7
-          auto-update-conda: true
-          auto-activate-base: false
-      - name: Validate yaml
-        shell: bash -l {0}
-        run: |
-          conda activate chemnlp  
-          python -m dev.validate data
-      - name: Lint
-        shell: bash -l {0}
-        run: |
-          conda activate chemnlp
-          black --check .
-          isort --check-only .
-          flake8 .
+    install:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: conda-incubator/setup-miniconda@v2
+              with:
+                  environment-file: conda.yaml
+                  activate-environment: chemnlp
+                  python-version: 3.8
+                  auto-update-conda: true
+                  auto-activate-base: false
+            - name: Validate yaml
+              shell: bash -l {0}
+              run: |
+                  conda activate chemnlp
+                  python -m src.chemnlp.data_val.validate data

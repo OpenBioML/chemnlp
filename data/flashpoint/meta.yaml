@@ -1,0 +1,37 @@
+---
+name: flashpoint
+description: |
+    Curation of experimentally determined flash point values measured with open cup and closed cup methods.
+    The values are from academic papers, the Hazardous Chemicals Handbook, and the PubChem chemical database.
+    Differences from the stated sources in the paper are:
+    * Values from the DIPPR database are not included in their dataset as they are proprietary.
+    * There are appear to be no values from Lange's handbook of chemistry in their dataset.
+    * We did our own processing to resolve duplicate SMILES.
+targets:
+    - id: flashpoint
+      description: Experimental flash point value (K)
+      units: K
+      type: continuous
+      names:
+          - flash point
+      uris:
+          - http://semanticscience.org/resource/CHEMINF_000417
+identifiers:
+    - id: SMILES
+      type: SMILES
+license: CC BY 4.0
+num_points: 9878 # downloaded dataset has 14696 datapoints, but there are duplicate smiles
+links:
+    - url: https://figshare.com/ndownloader/files/18509711
+      description: Original figshare dataset
+bibtex:
+    - |
+      "@article{sun2020assessing,
+      title={Assessing Graph-based Deep Learning Models for Predicting Flash Point},
+      author={Sun, Xiaoyu and Krakauer, Nathaniel J and Politowicz, Alexander and Chen, Wei-Ting and Li, Qiying and Li, Zuoyi and Shao, Xianjia and Sunaryo, Alfred and Shen, Mingren and Wang, James and others},
+      journal={Molecular informatics},
+      volume={39},
+      number={6},
+      pages={e1900101},
+      year={2020}
+      }"

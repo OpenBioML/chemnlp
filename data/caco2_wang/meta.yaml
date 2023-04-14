@@ -1,0 +1,57 @@
+---
+name: caco2_wang
+description: |-
+    The human colon epithelial cancer cell line, Caco-2,
+    is used as an in vitro model to simulate the human intestinal tissue.
+    The experimental result on the rate of drug passing through
+    the Caco-2 cells can approximate the rate at which the drug permeates
+    through the human intestinal tissue.
+targets:
+    - id: permeability
+      description: Caco-2 cell effective permeability.
+      units: cm/s
+      type: continuous
+      names:
+          - Caco-2 cell effective permeability
+          - Caco-2 cell permeability
+          - Caco-2 permeability
+      pubchem_aids:
+          - 678378
+      uris:
+          - http://www.bioassayontology.org/bao#BAO_0010008
+          - http://purl.obolibrary.org/obo/MI_2162
+benchmarks:
+    - name: TDC
+      link: https://tdcommons.ai/
+      split_column: split
+identifiers:
+    - id: SMILES
+      type: SMILES
+      description: SMILES
+    - id: compound_name
+      type: Other
+      description: compound name
+      names:
+          - compound
+          - compound name
+license: CC BY 4.0
+links:
+    - url: https://tdcommons.ai/single_pred_tasks/adme/#caco-2-cell-effective-permeability-wang-et-al
+      description: original data set link
+    - url: https://pubs.acs.org/doi/10.1021/acs.jcim.5b00642
+      description: corresponding publication
+num_points: 910
+bibtex:
+    - |-
+      @article{wang2016adme,
+      title={ADME properties evaluation in drug discovery: prediction of Caco-2 cell permeability
+      using a combination of NSGA-II and boosting},
+      author={Wang, Ning-Ning and Dong, Jie and Deng, Yin-Hua and Zhu, Min-Feng and Wen, Ming and Yao,
+      Zhi-Jiang and Lu, Ai-Ping and Wang, Jian-Bing and Cao, Dong-Sheng},
+      journal={Journal of Chemical Information and Modeling},
+      volume={56},
+      number={4},
+      pages={763--773},
+      year={2016},
+      publisher={ACS Publications}
+      }

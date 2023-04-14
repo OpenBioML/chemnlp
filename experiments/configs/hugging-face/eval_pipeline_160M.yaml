@@ -1,0 +1,6 @@
+model: hf-causal
+pre_trained_path: EleutherAI/pythia-160m
+tasks: "hendrycksTest-college_biology,hendrycksTest-college_chemistry,hendrycksTest-high_school_biology,hendrycksTest-high_school_chemistry"
+wandb_log: true
+wandb_project: LLCheM
+wandb_run_name: eval_baseline_160M
