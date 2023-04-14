@@ -2,11 +2,18 @@
 Here we describe the set-up for training a model (including on the Stability cluster).
 
 ## General set-up
+
+### Configs
+
 - Configs are in: `experiments/configs`.
--  If you wish to use a new model from Hugging Face as the starting point you will need to tokenise your data. We have an example script for `chemrxiv` which does this here: `experiments/data/prepare_hf_chemrxiv.py`.
--  You will also need to create a configuration file for the model if one does not exist e.g. `experiments/configs/hugging-face/full_160M.yml`.
+- If you wish to use a new model from Hugging Face as the starting point you will need to tokenise your data. We have an example script for `chemrxiv` which does this here: `experiments/data/prepare_hf_chemrxiv.py`.
+- You will also need to create a configuration file for the model if one does not exist e.g. `experiments/configs/hugging-face/full_160M.yml`.
 
 If the data is already tokenised for the model you wish to use you can proceed to the next step.
+
+### Miniconda
+
+We require Miniconda to be installed when working with the training scripts to create Python environments. You can follow the bash script [here](https://github.com/OpenBioML/chemnlp/blob/main/experiments/scripts/miniconda_install.sh) to install Miniconda.
 
 ## Interactive run
 -  Create a conda environment as shown in [the documentation](https://github.com/OpenBioML/chemnlp/tree/main/experiments/scripts) and install `chemnlp`.
