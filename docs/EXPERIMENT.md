@@ -16,7 +16,8 @@ If the data is already tokenised for the model you wish to use you can proceed t
 We require Miniconda to be installed when working with the training scripts to create Python environments. You can follow the bash script [here](https://github.com/OpenBioML/chemnlp/blob/main/experiments/scripts/miniconda_install.sh) to install Miniconda.
 
 ## Interactive run
--  Create a conda environment as shown in [the documentation](https://github.com/OpenBioML/chemnlp/tree/main/experiments/scripts) and install `chemnlp`.
+
+- Create a conda environment as shown in [the documentation](https://github.com/OpenBioML/chemnlp/tree/main/experiments) and install `chemnlp`.
 - If using Weights and Biases for logging: `export WANDB_BASE_URL="https://stability.wandb.io"`.
 - Run using `torchrun`, for example:
     ```
