@@ -5,7 +5,7 @@ from tdc.single_pred import HTS
 
 def get_and_transform_data():
     # get raw data
-    splits = HTS(name = 'SARSCoV2_3CLPro_Diamond').get_split()
+    splits = HTS(name="SARSCoV2_3CLPro_Diamond").get_split()
     df_train = splits["train"]
     df_valid = splits["valid"]
     df_test = splits["test"]
@@ -26,27 +26,14 @@ def get_and_transform_data():
 
     # check if fields are the same
     fields_orig = df.columns.tolist()
-    assert fields_orig == [
-        "Drug_ID",
-        "Drug",
-        "Y",
-        "split"
-    ]
+    assert fields_orig == ["Drug_ID", "Drug", "Y", "split"]
 
     # overwrite column names = fields
-    fields_clean = [
-        "compound_id",
-        "SMILES",
-        "activity_SARSCoV2_3CLPro",
-        "split"
-    ]
+    fields_clean = ["compound_id", "SMILES", "activity_SARSCoV2_3CLPro", "split"]
     df.columns = fields_clean
 
-#     # data cleaning
-#     df.compound_id = (
-#         df.compound_id.str.strip()
-#     )  # remove leading and trailing white space characters
-
+    # data cleaning
+    df = df.dropna()
     assert not df.duplicated().sum()
 
     # save to csv
@@ -54,34 +41,28 @@ def get_and_transform_data():
     df.to_csv(fn_data_csv, index=False)
 
     # create meta yaml
-    meta =  {
+    meta = {
         "name": "sarscov2_3clpro_diamond",  # unique identifier, we will also use this for directory names
         "description": """A large XChem crystallographic fragment screen against SARS-CoV-2
 main protease at high resolution. From MIT AiCures.""",
         "targets": [
             {
                 "id": "SARSCoV2_3CLPro_Diamond",  # name of the column in a tabular dataset
-                "description": "whether it active against SARSCoV2 3CL Protease (1) or not (0).",  # description of what this column means
-                "units": "activity",  # units of the values in this column (leave empty if unitless)
-                "type": "categorical",  # can be "categorical", "ordinal", "continuous"
+                "description": "activity against the SARSCoV2 3CL protease (1) or not (0)",
+                "units": None,  # units of the values in this column (leave empty if unitless)
+                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "Corona activity",
-                    "activity against SARSCoV2 3CL Protease",
-                    "SARSCoV2 3CL Protease",
-                    "3CL Protease",
-                    "activity against Coronavirus disease",
+                    "activity against SARSCoV2 3CL protease",
+                    "activity against SARS-CoV-2 3CL protease",
                 ],
-             "uris":[
-                "https://bioportal.bioontology.org/ontologies/HOIP?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FHOIP%2FHOIP_0038025",
-                "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C171532",
-               ],
+                "uris": None,
             },
         ],
         "benchmarks": [
             {
-        "name": "TDC",  # unique benchmark name
-        "link": "https://tdcommons.ai/",  # benchmark URL
-        "split_column": "split",  # name of the column that contains the split information
+                "name": "TDC",  # unique benchmark name
+                "link": "https://tdcommons.ai/",  # benchmark URL
+                "split_column": "split",  # name of the column that contains the split information
             },
         ],
         "identifiers": [
@@ -97,15 +78,15 @@ main protease at high resolution. From MIT AiCures.""",
                 "url": "https://www.diamond.ac.uk/covid-19/for-scientists/Main-protease-structure-and-XChem.html",
                 "description": "data source",
             },
-                    {
-                "url": "https://www.diamond.ac.uk/dam/jcr:9fdc4297-15b6-47e2-8d53-befb0970bf7c/COVID19-summary-20200324.xlsx",
+            {
+                "url": "https://www.diamond.ac.uk/dam/jcr:9fdc4297-15b6-47e2-8d53-befb0970bf7c/COVID19-summary-20200324.xlsx",  # noqa E501
                 "description": "data source",
             },
             {
                 "url": "http://doi.org/10.1021/jacs.9b02822",
                 "description": "corresponding publication",
             },
-                    {
+            {
                 "url": "https://doi.org/10.1016/j.jmb.2006.11.073",
                 "description": "corresponding publication",
             },
@@ -146,7 +127,7 @@ a Novel Tag-cleavage Endopeptidase for Protein Overproduction},
 journal = {Journal of Molecular Biology}""",
         ],
     }
-    
+
     def str_presenter(dumper, data):
         """configures yaml for dumping multiline strings
         Ref: https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data
