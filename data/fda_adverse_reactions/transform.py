@@ -84,8 +84,8 @@ def read_data() -> pd.DataFrame:
     return pd.concat(dfs, ignore_index=True)
 
 
-def validate_data():
-    ...
+def validate_data(df: pd.DataFrame) -> pd.DataFrame:
+    return df.dropna(subset=["SMILES"])
 
 
 def get_smiles_from_chembl_id(id: str) -> str:
@@ -99,7 +99,7 @@ def get_smiles_from_chembl_id(id: str) -> str:
 
 
 if __name__ == "__main__":
-    # get_data()
+    get_data()
     df = read_data()
     df["SMILES"] = df["chembl_id"].apply(lambda x: get_smiles_from_chembl_id(x))
     df_clean = validate_data(df)
