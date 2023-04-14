@@ -104,4 +104,4 @@ See [here](docs/SUBMODULES.md) for more information about contributing to submod
 
 ### Experiments
 
-Follow the guidelines [here](experiments/README.md) for more information about running experiments on the Stability AI cluster.
+Follow the guidelines [here](docs/EXPERIMENT.md) for more information about running experiments on the Stability AI cluster.
