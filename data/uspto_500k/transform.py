@@ -1,21 +1,28 @@
 import pandas as pd
 import yaml
-from tdc.single_pred import Tox
+from tdc.single_pred import Yields
 
 
 def get_and_transform_data():
     # get raw data
-    df1 = pd.read_csv(
-        "https://github.com/reymond-group/drfp/raw/main/data/uspto_yields_above.csv"
-    )
-    df2 = pd.read_csv(
-        "https://github.com/reymond-group/drfp/raw/main/data/uspto_yields_below.csv"
-    )
-    data = pd.concat([df1, df2])
-    data = data[["rxn", "yield"]]
-    data = data.drop_duplicates(subset="rxn")
-    fn_data_original = "uptso.csv"
-    data.to_csv(fn_data_original, index=False)
+    data = Yields(name="USPTO_Yields")
+    splits = data.get_split()
+    df_train = splits["train"]
+    df_valid = splits["valid"]
+    df_test = splits["test"]
+    df_train["split"] = "train"
+    df_valid["split"] = "valid"
+    df_test["split"] = "test"
+    df = pd.concat([df_train, df_valid, df_test], axis=0)
+
+    df["catalyst"] = df.Reaction.apply(lambda x: x["catalyst"])
+    df["reactant"] = df.Reaction.apply(lambda x: x["reactant"])
+    df["product"] = df.Reaction.apply(lambda x: x["product"])
+    df = df.drop("Reaction", axis=1)
+
+    fn_data_original = "data_original.csv"
+    df.to_csv(fn_data_original, index=False)
+    del df
 
     # create dataframe
     df = pd.read_csv(
@@ -24,12 +31,18 @@ def get_and_transform_data():
 
     # check if fields are the same
     fields_orig = df.columns.tolist()
-    assert fields_orig == ["rxn", "yield"]
-    fields_clean = ["reaction_SMILES", "yield"]
-
+    assert fields_orig == [
+        "Reaction_ID",
+        "Y",
+        "split",
+        "catalyst",
+        "reactant",
+        "product",
+    ]
+    fields_clean = ["Reaction_ID", "yield", "split", "catalyst", "reactant", "product"]
     # overwrite column names = fields
     df.columns = fields_clean
-    assert fields_orig != fields_clean
+    assert df.columns.tolist() == fields_clean
 
     # remove leading and trailing white space characters
     assert not df.duplicated().sum()
@@ -40,29 +53,28 @@ def get_and_transform_data():
 
     # create meta yaml
     meta = {
-        "name": "uspto_500k",  
+        "name": "uspto_500k",
         "description": """United States Patent and Trademark Office reaction dataset with yields.""",
         "targets": [
             {
-                "id": "yield",  
-                "description": "Reaction yields analyzed by UPLC",
-                "units": "%",  
-                "type": "continuous",  
-                "names": [  
-                    "Reaction yield",
+                "id": "yield",
+                "description": "reaction yields",
+                "units": "%",
+                "type": "continuous",
+                "names": [
+                    "reaction yield",
                     "yield",
                 ],
                 "uris": [
-                    "https://bioportal.bioontology.org/ontologies/AFO?p=classes&conceptid=http%3A%2F%2Fpurl.allotrope.org%2Fontologies%2Fquality%23AFQ_0000227",
-                    "https://en.wikipedia.org/wiki/Yield_(chemistry)",
+                    "http://purl.allotrope.org/ontologies/quality#AFQ_0000227",
                 ],
             },
         ],
         "identifiers": [
             {
-                "id": "reaction_SMILES",  
-                "type": "RXNSMILES",  
-                "description": "reaction SMILES", 
+                "id": "reaction_SMILES",
+                "type": "RXNSMILES",
+                "description": "reaction SMILES",
             },
         ],
         "license": "CC0",  # license under which the original dataset was published
