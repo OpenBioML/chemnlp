@@ -1,3 +1,4 @@
+import os
 import urllib.request
 import zipfile
 
@@ -27,8 +28,8 @@ def get_and_transform_data():
     assert not df.duplicated().sum(), "Found duplicate rows in the dataframe"
 
     # Save to CSV
-    fn_data_csv = "nlmchem_data_clean.csv"
-    df.to_csv(fn_data_csv, index=False)
+    clean_data = "nlmchem_data_clean.csv"
+    df.to_csv(clean_data, index=False)
 
     # Create meta.yaml
     meta = {
@@ -68,8 +69,8 @@ def get_and_transform_data():
             },
         ],
         "num_points": len(df),
-        "bibtex": """
-        @article{Islamaj2021,
+        "bibtex": [
+            """@article{Islamaj2021,
         author = {Islamaj, R. and Leaman, R. and Kim, S. and Lu, Z.},
         title = {NLM-Chem, a new resource for chemical entity recognition in PubMed full text literature},
         journal = {Nature Scientific Data},
@@ -78,8 +79,8 @@ def get_and_transform_data():
         year = {2021},
         doi = {10.1038/s41597-021-00875-1},
         url = {https://doi.org/10.1038/s41597-021-00875-1}
-        }
-        """,
+        }""",
+        ],
     }
 
     def str_presenter(dumper, data):
@@ -96,6 +97,9 @@ def get_and_transform_data():
     with open(fn_meta, "w") as f:
         yaml.dump(meta, f, sort_keys=False)
 
+    # Add the file_path code here
+    file_path = os.path.abspath(fn_meta)
+    print(f"Meta.yaml is being saved at: {file_path}")
     print(f"Finished processing {meta['name']} dataset!")
 
 
