@@ -87,11 +87,9 @@ and nonsubstrates from six publications.""",
                 "id": "compound_name",  # column name
                 "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
                 "names": [
-                    "drug bank name",
-                    "drug name pubchem",
-                    "drug generic name",
-                    "drug chemical (generic) name",
-                    "chemical name",
+                    "compound name",
+                    "drug name",
+                    "generic drug name",
                 ],
                 "description": "drug name",  # description (optional, except for "Other")
             },
