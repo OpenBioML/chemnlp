@@ -2,10 +2,11 @@ import pandas as pd
 import yaml
 from tdc.single_pred import ADME
 
+
 def get_and_transform_data():
     # get raw data
-    target_subfolder = 'Clearance_Hepatocyte_AZ'
-    splits = ADME(name = target_subfolder).get_split()
+    target_subfolder = "Clearance_Hepatocyte_AZ"
+    splits = ADME(name=target_subfolder).get_split()
     df_train = splits["train"]
     df_valid = splits["valid"]
     df_test = splits["test"]
@@ -23,30 +24,22 @@ def get_and_transform_data():
         fn_data_original,
         delimiter=",",
     )  # not necessary but ensure we can load the saved data
-    
+
     # check if fields are the same
     fields_orig = df.columns.tolist()
-    assert fields_orig == ['Drug_ID', 
-                           'Drug',
-                           'Y',
-                           'split'
-                            ]
+    assert fields_orig == ["Drug_ID", "Drug", "Y", "split"]
 
     # overwrite column names = fields
-    fields_clean = ['chembl_id',
-                    'SMILES', 
-                    'drug_clearance',
-                    'split']
+    fields_clean = ["chembl_id", "SMILES", "drug_clearance", "split"]
     df.columns = fields_clean
 
     # data cleaning
-    df[fields_clean[0]] = (
-        df[fields_clean[0]].str.strip()
-    )  
     # remove leading and trailing white space characters
+    df.chembl_id = df.chembl_id.str.strip()
+
     df = df.dropna()
     assert not df.duplicated().sum()
-    
+
     # save to csv
     fn_data_csv = "data_clean.csv"
     df.to_csv(fn_data_csv, index=False)
@@ -59,30 +52,25 @@ experimental results on intrinsic clearance, deposited from AstraZeneca. It
 contains clearance measures from two experiments types, hepatocyte and microsomes.""",
         "targets": [
             {
-        "id": "drug_clearance",  # name of the column in a tabular dataset
-        "description": "The volume of plasma cleared of a drug over a specified time period and it measures the rate at which the active drug is removed from the body",  # description of what this column means
-        "units": "mL.min-1.g-1",  # units of the values in this column (leave empty if unitless)
-        "type": "continuous",  # can be "categorical", "ordinal", "continuous"
-        "names": [  # names for the property (to sample from for building the prompts)
-            "Drug clearance",
-            "The rate at which the active drug is removed from the body",
-            "ADME Drug clearance",
-            "Pharmacokinetics drug clearance",
-            "Drug Excretion",
-            "microsome/hepatocyte clearance",
+                "id": "drug_clearance",  # name of the column in a tabular dataset
+                "description": "the volume of plasma cleared of a drug over a specified time period",
+                "units": "mL / (min g)",  # units of the values in this column (leave empty if unitless)
+                "type": "continuous",  # can be "categorical", "ordinal", "continuous"
+                "names": [  # names for the property (to sample from for building the prompts)
+                    "drug clearance",
+                    "the rate at which the active drug is removed from the body",
                 ],
-                "uris":[
-                    "https://bioportal.bioontology.org/ontologies/MESH?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FMESH%2FD006207",
-                    "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C94618",
+                "uris": [
+                    "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C94618",
                 ],
             },
         ],
-    "benchmarks": [
-        {
-            "name": "TDC",  # unique benchmark name
-            "link": "https://tdcommons.ai/",  # benchmark URL
-            "split_column": "split",  # name of the column that contains the split information
-        },
+        "benchmarks": [
+            {
+                "name": "TDC",  # unique benchmark name
+                "link": "https://tdcommons.ai/",  # benchmark URL
+                "split_column": "split",  # name of the column that contains the split information
+            },
         ],
         "identifiers": [
             {
@@ -93,13 +81,9 @@ contains clearance measures from two experiments types, hepatocyte and microsome
             {
                 "id": "chembl_id",  # column name
                 "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
-                "names": [
-                "ChEMBL database id",
-                "ChEMBL identifier number"
-                ],  
+                "names": ["ChEMBL id", "ChEMBL identifier number"],
                 "description": "ChEMBL ids",
             },
-
         ],
         "license": "CC BY 4.0",  # license under which the original dataset was published
         "links": [  # list of relevant links (original dataset, other uses, etc.)
@@ -114,7 +98,7 @@ contains clearance measures from two experiments types, hepatocyte and microsome
             {
                 "url": "https://tdcommons.ai/single_pred_tasks/adme/#clearance-astrazeneca",
                 "description": "data source",
-            }
+            },
         ],
         "num_points": len(df),  # number of datapoints in this dataset
         "bibtex": [
@@ -140,9 +124,9 @@ Katherine Fenner and Matthew D. Troutman and R. Scott Obach},
 title = {Mechanistic insights from comparing intrinsic clearance values between
 human liver microsomes and hepatocytes to guide drug design},
 journal = {European Journal of Medicinal Chemistry}""",
-          ],
+        ],
     }
-    
+
     def str_presenter(dumper, data):
         """configures yaml for dumping multiline strings
         Ref: https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data
@@ -160,6 +144,7 @@ journal = {European Journal of Medicinal Chemistry}""",
         yaml.dump(meta, f, sort_keys=False)
 
     print(f"Finished processing {meta['name']} dataset!")
+
 
 if __name__ == "__main__":
     get_and_transform_data()
