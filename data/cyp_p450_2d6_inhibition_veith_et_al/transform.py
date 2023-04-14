@@ -40,9 +40,6 @@ def get_and_transform_data():
     df.columns = fields_clean
 
     # data cleaning
-    #     df[fields_clean[0]] = (
-    #         df[fields_clean[0]].str.strip()
-    #     )
     # remove leading and trailing white space characters
     df = df.dropna()
     assert not df.duplicated().sum()
@@ -59,20 +56,14 @@ nervous system, including the substantia nigra.""",
         "targets": [
             {
                 "id": f"{target_subfolder.split('_')[0]}_inhibition",  # name of the column in a tabular dataset
-                "description": "The ability of the drug to inhibit CYP P450 2D6 (1) or not (0)",
-                "units": "active",  # units of the values in this column (leave empty if unitless)
-                "type": "categorical",  # can be "categorical", "ordinal", "continuous"
+                "description": "ability of the drug to inhibit CYP P450 2D6 (1) or not (0)",
+                "units": None,  # units of the values in this column (leave empty if unitless)
+                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "CYP P450 2D6",
+                    "CYP P450 2D6 inhibition",
                     "CYP 2D6 inhibition",
-                    "ADME Drug metabolism",
-                    "Pharmacokinetics metabolism",
-                    "activity toward CYP 2D6",
                 ],
-                "uris": [
-                    "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C26633",  # noqa E501
-                    "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C17287",  # noqa E501
-                ],
+                "uris": None,
             },
         ],
         "benchmarks": [
