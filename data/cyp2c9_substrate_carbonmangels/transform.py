@@ -40,8 +40,9 @@ def get_and_transform_data():
     df.columns = fields_clean
 
     # data cleaning
-    df[fields_clean[0]] = df[fields_clean[0]].str.strip()
     # remove leading and trailing white space characters
+    df.compound_name = df.compound_name.str.strip()
+
     df = df.dropna()
     assert not df.duplicated().sum()
 
@@ -57,21 +58,16 @@ and nonsubstrates from six publications.""",
         "targets": [
             {
                 "id": f"{'_'.join(target_subfolder.split('_')[:2])}",  # name of the column in a tabular dataset
-                "description": "The drugs that are metabolized by the CYP P450 2C9 (1) or not (0)",
-                "units": "substrate",  # units of the values in this column (leave empty if unitless)
-                "type": "categorical",  # can be "categorical", "ordinal", "continuous"
+                "description": "drugs that are metabolized by CYP P450 2C9 (1) or not (0)",
+                "units": None,  # units of the values in this column (leave empty if unitless)
+                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "CYP P450 2C9 Substrate",
-                    "CYP2C9 Substrate",
-                    "ADME Drug metabolism",
-                    "Pharmacokinetics metabolism",
-                    "Substrate toward CYP2C9",
+                    "CYP P450 2C9 substrate",
+                    "CYP2C9 substrate",
+                    "substrate for CYP2C9",
+                    "substrate for CYP P450 2C9",
                 ],
-                "uris": [
-                    "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C26633",  # noqa E501
-                    "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C28750",  # noqa E501
-                    "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C120264",  # noqa E501
-                ],
+                "uris": None,
             },
         ],
         "benchmarks": [
