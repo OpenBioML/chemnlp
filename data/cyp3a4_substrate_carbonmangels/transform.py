@@ -40,8 +40,9 @@ def get_and_transform_data():
     df.columns = fields_clean
 
     # data cleaning
-    df[fields_clean[0]] = df[fields_clean[0]].str.strip()
     # remove leading and trailing white space characters
+    df.compound_name = df.compound_name.str.strip()
+
     df = df.dropna()
     assert not df.duplicated().sum()
 
@@ -51,28 +52,23 @@ def get_and_transform_data():
     meta = {
         "name": "cyp3a4_substrate_carbonmangels",  # unique identifier, we will also use this for directory names
         "description": """CYP3A4 is an important enzyme in the body, mainly found in the liver
-and in the intestine. It oxidizes small foreign organic molecules(xenobiotics),
+and in the intestine. It oxidizes small foreign organic molecules (xenobiotics),
 such as toxins or drugs, so that they can be removed from the body. TDC used
 a dataset from Carbon Mangels et al, which merged information on substrates
 and nonsubstrates from six publications.""",
         "targets": [
             {
                 "id": f"{'_'.join(target_subfolder.split('_')[:2])}",  # name of the column in a tabular dataset
-                "description": "The drugs that are metabolized by the CYP P450 3A4(1) or not (0)",
-                "units": "substrate",  # units of the values in this column (leave empty if unitless)
-                "type": "categorical",  # can be "categorical", "ordinal", "continuous"
+                "description": "drugs that are metabolized by the CYP P450 3A4 (1) or not (0)",
+                "units": None,  # units of the values in this column (leave empty if unitless)
+                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "CYP P450 3A4 Substrate",
-                    "CYP3A4 Substrate",
-                    "ADME Drug metabolism",
-                    "Pharmacokinetics metabolism",
-                    "Substrate toward CYP3A4",
+                    "CYP P450 3A4 substrate",
+                    "CYP3A4 substrate",
+                    "substrate for CYP3A4",
+                    "substrate for CYP P450 3A4",
                 ],
-                "uris": [
-                    "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C26633",  # noqa E501
-                    "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C17573",  # noqa E501
-                    "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C120264",  # noqa E501
-                ],
+                "uris": None,
             },
         ],
         "benchmarks": [
@@ -92,11 +88,9 @@ and nonsubstrates from six publications.""",
                 "id": "compound_name",  # column name
                 "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
                 "names": [
-                    "drug bank name",
-                    "drug name pubchem",
-                    "drug generic name",
-                    "drug chemical (generic) name",
-                    "chemical name",
+                    "compound name",
+                    "drug name",
+                    "generic drug name",
                 ],
                 "description": "drug name",  # description (optional, except for "Other")
             },
