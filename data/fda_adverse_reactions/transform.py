@@ -10,8 +10,6 @@ DATASET_URL = "ftp://ftp.ebi.ac.uk/pub/databases/opentargets/platform/23.02/outp
 DOWNLOAD_FOLDER = "./fda/significantAdverseDrugReactions"
 EBI_URL = "https://www.ebi.ac.uk/chembl/api/data/molecule/{}"
 
-META_YAML_PATH = "./data/fda_adverse_reactions/meta.yaml"
-
 META_TEMPLATE = {
     "name": "fda_adverse_reactions",  # unique identifier, we will also use this for directory names
     "description": "A dataset of adverse reaction statistics for drugs and reaction events.",
@@ -23,6 +21,17 @@ META_TEMPLATE = {
             "type": "ordinal",  # can be "categorical", "ordinal", "continuous", "string"
             "names": [  # names for the property (to sample from for building the prompts)
                 "adverse reaction frequency",
+            ],
+            "pubchem_aids": [],
+            "uris": [],
+        },
+        {
+            "id": "event",  # name of the column in a tabular dataset
+            "description": "The type of event that occurred for this molecule interaction.",
+            "units": None,  # units of the values in this column (leave empty if unitless)
+            "type": "string",  # can be "categorical", "ordinal", "continuous", "string"
+            "names": [  # names for the property (to sample from for building the prompts)
+                "event reaction",
             ],
             "pubchem_aids": [],
             "uris": [],
@@ -70,7 +79,7 @@ def create_meta_yaml(num_points: int):
     """Create meta configuration file for the dataset"""
     # create meta yaml
     META_TEMPLATE["num_points"] = num_points
-    with open(META_YAML_PATH, "w+") as f:
+    with open("meta.yaml", "w+") as f:
         yaml.dump(META_TEMPLATE, f, sort_keys=False)
     print(f"Finished processing chebi-20 {META_TEMPLATE['name']} dataset!")
 
@@ -118,8 +127,8 @@ if __name__ == "__main__":
     chemblid_to_smile = parallelise_smiles_retrieval(df)
     df["SMILES"] = df["chembl_id"].apply(lambda x: chemblid_to_smile[x])
     df_clean = validate_data(df)
-    print(df.head())
-    print(df.info())
+    print(df_clean.head(1))
+    print(df_clean.info())
 
     yaml.add_representer(str, str_presenter)
     yaml.representer.SafeRepresenter.add_representer(str, str_presenter)
