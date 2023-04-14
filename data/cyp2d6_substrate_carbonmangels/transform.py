@@ -2,10 +2,11 @@ import pandas as pd
 import yaml
 from tdc.single_pred import ADME
 
+
 def get_and_transform_data():
     # get raw data
-    target_subfolder = 'CYP2D6_Substrate_CarbonMangels'
-    splits = ADME(name = target_subfolder).get_split()
+    target_subfolder = "CYP2D6_Substrate_CarbonMangels"
+    splits = ADME(name=target_subfolder).get_split()
     df_train = splits["train"]
     df_valid = splits["valid"]
     df_test = splits["test"]
@@ -23,31 +24,27 @@ def get_and_transform_data():
         fn_data_original,
         delimiter=",",
     )  # not necessary but ensure we can load the saved data
-    
+
     # check if fields are the same
     fields_orig = df.columns.tolist()
-    assert fields_orig == ['Drug_ID',
-                            'Drug', 
-                            'Y', 
-                            'split']
+    assert fields_orig == ["Drug_ID", "Drug", "Y", "split"]
 
     # overwrite column names = fields
-    fields_clean = ['compound_name',
-            'SMILES', 
-            f"{'_'.join(target_subfolder.split('_')[:2])}",
-            'split'
-            ]
-    
+    fields_clean = [
+        "compound_name",
+        "SMILES",
+        f"{'_'.join(target_subfolder.split('_')[:2])}",
+        "split",
+    ]
+
     df.columns = fields_clean
 
-#     # data cleaning
-    df[fields_clean[0]] = (
-        df[fields_clean[0]].str.strip()
-    )  
+    # data cleaning
+    df[fields_clean[0]] = df[fields_clean[0]].str.strip()
     # remove leading and trailing white space characters
     df = df.dropna()
     assert not df.duplicated().sum()
-    
+
     # save to csv
     fn_data_csv = "data_clean.csv"
     df.to_csv(fn_data_csv, index=False)
@@ -60,7 +57,7 @@ and nonsubstrates from six publications.""",
         "targets": [
             {
                 "id": f"{'_'.join(target_subfolder.split('_')[:2])}",  # name of the column in a tabular dataset
-                "description": "The drugs that are metabolized by the CYP P450 2D6(1) or not (0)",  # description of what this column means
+                "description": "The drugs that are metabolized by the CYP P450 2D6(1) or not (0)",
                 "units": "substrate",  # units of the values in this column (leave empty if unitless)
                 "type": "categorical",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
@@ -70,19 +67,19 @@ and nonsubstrates from six publications.""",
                     "Pharmacokinetics metabolism",
                     "Substrate toward CYP2D6",
                 ],
-                "uris":[
-                    "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C26633",
-                    "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C17287",
-                    "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C120264"
+                "uris": [
+                    "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C26633",  # noqa E501
+                    "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C17287",  # noqa E501
+                    "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C120264",  # noqa E501
                 ],
             },
         ],
         "benchmarks": [
-        {
-        "name": "TDC",  # unique benchmark name
-        "link": "https://tdcommons.ai/",  # benchmark URL
-        "split_column": "split",  # name of the column that contains the split information
-        },
+            {
+                "name": "TDC",  # unique benchmark name
+                "link": "https://tdcommons.ai/",  # benchmark URL
+                "split_column": "split",  # name of the column that contains the split information
+            },
         ],
         "identifiers": [
             {
@@ -93,13 +90,13 @@ and nonsubstrates from six publications.""",
             {
                 "id": "compound_name",  # column name
                 "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
-                "names":[
+                "names": [
                     "drug bank name",
                     "drug name pubchem",
                     "drug generic name",
                     "drug chemical (generic) name",
-                    "chemical name"
-                   ],
+                    "chemical name",
+                ],
                 "description": "drug name",  # description (optional, except for "Other")
             },
         ],
@@ -116,7 +113,7 @@ and nonsubstrates from six publications.""",
             {
                 "url": "https://tdcommons.ai/single_pred_tasks/adme/#cyp2d6-substrate-carbon-mangels-et-al",
                 "description": "data source",
-            }
+            },
         ],
         "num_points": len(df),  # number of datapoints in this dataset
         "bibtex": [
@@ -149,7 +146,7 @@ Assessment of Chemical ADMET Properties},
 journal = {Journal of Chemical Information and Modeling}""",
         ],
     }
-    
+
     def str_presenter(dumper, data):
         """configures yaml for dumping multiline strings
         Ref: https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data
@@ -167,6 +164,7 @@ journal = {Journal of Chemical Information and Modeling}""",
         yaml.dump(meta, f, sort_keys=False)
 
     print(f"Finished processing {meta['name']} dataset!")
+
 
 if __name__ == "__main__":
     get_and_transform_data()

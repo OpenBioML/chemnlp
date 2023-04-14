@@ -2,10 +2,11 @@ import pandas as pd
 import yaml
 from tdc.single_pred import ADME
 
+
 def get_and_transform_data():
     # get raw data
-    target_subfolder = 'CYP1A2_Veith'
-    splits = ADME(name = target_subfolder).get_split()
+    target_subfolder = "CYP1A2_Veith"
+    splits = ADME(name=target_subfolder).get_split()
     df_train = splits["train"]
     df_valid = splits["valid"]
     df_test = splits["test"]
@@ -23,31 +24,29 @@ def get_and_transform_data():
         fn_data_original,
         delimiter=",",
     )  # not necessary but ensure we can load the saved data
-    
+
     # check if fields are the same
     fields_orig = df.columns.tolist()
-    assert fields_orig == ['Drug_ID', 
-                           'Drug', 
-                           'Y',
-                           'split']
+    assert fields_orig == ["Drug_ID", "Drug", "Y", "split"]
 
     # overwrite column names = fields
-    fields_clean = ['chembl_id',
-            'SMILES', 
-            f"{target_subfolder.split('_')[0]}_inhibition",
-            "split"
-            ]
-    
+    fields_clean = [
+        "chembl_id",
+        "SMILES",
+        f"{target_subfolder.split('_')[0]}_inhibition",
+        "split",
+    ]
+
     df.columns = fields_clean
 
-#     # data cleaning
-#     df[fields_clean[0]] = (
-#         df[fields_clean[0]].str.strip()
-#     )  
+    # data cleaning
+    #     df[fields_clean[0]] = (
+    #         df[fields_clean[0]].str.strip()
+    #     )
     # remove leading and trailing white space characters
     df = df.dropna()
     assert not df.duplicated().sum()
-    
+
     # save to csv
     fn_data_csv = "data_clean.csv"
     df.to_csv(fn_data_csv, index=False)
@@ -61,29 +60,29 @@ is able to metabolize some PAHs to carcinogenic intermediates. Other xenobiotic
 substrates for this enzyme include caffeine, aflatoxin B1, and acetaminophen.""",
         "targets": [
             {
-        "id": f"{target_subfolder.split('_')[0]}_inhibition",  # name of the column in a tabular dataset
-        "description": "The ability of the drug to inhibit CYP P450 1A2 (1) or not (0)",  # description of what this column means
-        "units": "active",  # units of the values in this column (leave empty if unitless)
-        "type": "categorical",  # can be "categorical", "ordinal", "continuous"
-        "names": [  # names for the property (to sample from for building the prompts)
-            "CYP P450 1A2",
-            "CYP 1A2 inhibition",
-            "ADME Drug metabolism",
-            "Pharmacokinetics metabolism",
-            "activity toward CYP 1A2",
+                "id": f"{target_subfolder.split('_')[0]}_inhibition",  # name of the column in a tabular dataset
+                "description": "The ability of the drug to inhibit CYP P450 1A2 (1) or not (0)",
+                "units": "active",  # units of the values in this column (leave empty if unitless)
+                "type": "categorical",  # can be "categorical", "ordinal", "continuous"
+                "names": [  # names for the property (to sample from for building the prompts)
+                    "CYP P450 1A2",
+                    "CYP 1A2 inhibition",
+                    "ADME Drug metabolism",
+                    "Pharmacokinetics metabolism",
+                    "activity toward CYP 1A2",
                 ],
-                "uris":[
-                    "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C26633",
-                    "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C17673",
+                "uris": [
+                    "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C26633",  # noqa E501
+                    "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C17673",  # noqa E501
                 ],
             },
         ],
         "benchmarks": [
-        {
-            "name": "TDC",  # unique benchmark name
-            "link": "https://tdcommons.ai/",  # benchmark URL
-            "split_column": "split",  # name of the column that contains the split information
-        },
+            {
+                "name": "TDC",  # unique benchmark name
+                "link": "https://tdcommons.ai/",  # benchmark URL
+                "split_column": "split",  # name of the column that contains the split information
+            },
         ],
         "identifiers": [
             {
@@ -101,7 +100,7 @@ substrates for this enzyme include caffeine, aflatoxin B1, and acetaminophen."""
             {
                 "url": "https://tdcommons.ai/single_pred_tasks/adme/#cyp-p450-1a2-inhibition-veith-et-al",
                 "description": "data source",
-            }
+            },
         ],
         "num_points": len(df),  # number of datapoints in this dataset
         "bibtex": [
@@ -122,7 +121,7 @@ across chemical libraries},
 journal = {Nature Biotechnology}""",
         ],
     }
-    
+
     def str_presenter(dumper, data):
         """configures yaml for dumping multiline strings
         Ref: https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data
@@ -140,6 +139,7 @@ journal = {Nature Biotechnology}""",
         yaml.dump(meta, f, sort_keys=False)
 
     print(f"Finished processing {meta['name']} dataset!")
+
 
 if __name__ == "__main__":
     get_and_transform_data()
