@@ -1,54 +1,50 @@
+---
 name: cyp_p450_2c19_inhibition_veith_et_al
 description: |-
-  The CYP P450 genes are essential in the breakdown (metabolism) of
-  various molecules and chemicals within cells. A drug that can inhibit these
-  enzymes would mean poor metabolism to this drug and other drugs, which could lead
-  to drug-drug interactions and adverse effects. Specifically, the CYP2C19 gene
-  provides instructions for making an enzyme called the endoplasmic reticulum, which
-  is involved in protein processing and transport.
+    The CYP P450 genes are essential in the breakdown (metabolism) of
+    various molecules and chemicals within cells. A drug that can inhibit these
+    enzymes would mean poor metabolism to this drug and other drugs, which could lead
+    to drug-drug interactions and adverse effects. Specifically, the CYP2C19 gene
+    provides instructions for making an enzyme of the endoplasmic reticulum, which
+    is involved in protein processing and transport.
 targets:
-- id: CYP2C19_inhibition
-  description: The ability of the drug to inhibit CYP 2C19 (1) or not (0)
-  units: active
-  type: categorical
-  names:
-  - CYP P450 2C19
-  - CYP 2C19 inhibition
-  - ADME Drug metabolism
-  - Pharmacokinetics metabolism
-  - activity toward CYP2C19
-  uris:
-  - https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C26633
-  - https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C26512
+    - id: CYP2C19_inhibition
+      description: ability of the drug to inhibit CYP 2C19 (1) or not (0)
+      units:
+      type: boolean
+      names:
+          - CYP P450 2C19 inhibition
+          - CYP 2C19 inhibition
+      uris:
 benchmarks:
-- name: TDC
-  link: https://tdcommons.ai/
-  split_column: split
+    - name: TDC
+      link: https://tdcommons.ai/
+      split_column: split
 identifiers:
-- id: SMILES
-  type: SMILES
-  description: SMILES
+    - id: SMILES
+      type: SMILES
+      description: SMILES
 license: CC BY 4.0
 links:
-- url: https://doi.org/10.1038/nbt.1581
-  description: corresponding publication
-- url: https://tdcommons.ai/single_pred_tasks/adme/#cyp-p450-2c19-inhibition-veith-et-al
-  description: data source
+    - url: https://doi.org/10.1038/nbt.1581
+      description: corresponding publication
+    - url: https://tdcommons.ai/single_pred_tasks/adme/#cyp-p450-2c19-inhibition-veith-et-al
+      description: data source
 num_points: 12665
 bibtex:
-- |-
-  @article{Veith2009,
-  doi = {10.1038/nbt.1581},
-  url = {https://doi.org/10.1038/nbt.1581},
-  year = {2009},
-  month = oct,
-  publisher = {Springer Science and Business Media LLC},
-  volume = {27},
-  number = {11},
-  pages = {1050--1055},
-  author = {Henrike Veith and Noel Southall and Ruili Huang and Tim James
-  and Darren Fayne and Natalia Artemenko and Min Shen and James Inglese
-  and Christopher P Austin and David G Lloyd and Douglas S Auld},
-  title = {Comprehensive characterization of cytochrome P450 isozyme selectivity
-  across chemical libraries},
-  journal = {Nature Biotechnology}
+    - |-
+      @article{Veith2009,
+      doi = {10.1038/nbt.1581},
+      url = {https://doi.org/10.1038/nbt.1581},
+      year = {2009},
+      month = oct,
+      publisher = {Springer Science and Business Media LLC},
+      volume = {27},
+      number = {11},
+      pages = {1050--1055},
+      author = {Henrike Veith and Noel Southall and Ruili Huang and Tim James
+      and Darren Fayne and Natalia Artemenko and Min Shen and James Inglese
+      and Christopher P Austin and David G Lloyd and Douglas S Auld},
+      title = {Comprehensive characterization of cytochrome P450 isozyme selectivity
+      across chemical libraries},
+      journal = {Nature Biotechnology}

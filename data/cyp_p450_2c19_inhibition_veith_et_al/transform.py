@@ -40,10 +40,6 @@ def get_and_transform_data():
     df.columns = fields_clean
 
     # data cleaning
-    #     df[fields_clean[0]] = (
-    #         df[fields_clean[0]].str.strip()
-    #     )
-    # remove leading and trailing white space characters
     df = df.dropna()
     assert not df.duplicated().sum()
 
@@ -56,25 +52,19 @@ def get_and_transform_data():
 various molecules and chemicals within cells. A drug that can inhibit these
 enzymes would mean poor metabolism to this drug and other drugs, which could lead
 to drug-drug interactions and adverse effects. Specifically, the CYP2C19 gene
-provides instructions for making an enzyme called the endoplasmic reticulum, which
+provides instructions for making an enzyme of the endoplasmic reticulum, which
 is involved in protein processing and transport.""",
         "targets": [
             {
                 "id": "CYP2C19_inhibition",  # name of the column in a tabular dataset
-                "description": "The ability of the drug to inhibit CYP 2C19 (1) or not (0)",
-                "units": "active",  # units of the values in this column (leave empty if unitless)
-                "type": "categorical",  # can be "categorical", "ordinal", "continuous"
+                "description": "ability of the drug to inhibit CYP 2C19 (1) or not (0)",
+                "units": None,  # units of the values in this column (leave empty if unitless)
+                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "CYP P450 2C19",
+                    "CYP P450 2C19 inhibition",
                     "CYP 2C19 inhibition",
-                    "ADME Drug metabolism",
-                    "Pharmacokinetics metabolism",
-                    "activity toward CYP2C19",
                 ],
-                "uris": [
-                    "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C26633",  # noqa E501
-                    "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C26512",  # noqa E501
-                ],
+                "uris": None,
             },
         ],
         "benchmarks": [
