@@ -27,12 +27,12 @@ META_TEMPLATE = {
     "identifiers": [
         {
             "id": "url ",  # column name
-            "type": "string",  # can be "SMILES", "SELFIES", "IUPAC", "OTHER"
+            "type": "OTHER",  # can be "SMILES", "SELFIES", "IUPAC", "OTHER"
             "description": "url of the page the content is scraped from",
         },
         {
             "id": "text_length",  # text character count
-            "type": "int",  # can be "SMILES", "SELFIES", "IUPAC", "OTHER"
+            "type": "OTHER",  # can be "SMILES", "SELFIES", "IUPAC", "OTHER"
             "description": "text character count",
         },
     ],
