@@ -17,6 +17,18 @@ For code and data contributions, we recommend you creata a [conda environment](h
 
 To create your developer environment please follow the guidelines in the `Installation and set-up` of [README.md](README.md)
 
+## Work package leads
+
+If you are contributing to an existing task which contains a `Work Package: <name>` label, please refer to the list below to find a main point of contact for that piece of work. If you've any questions or wish to contribute additional issues feel free to reach out to these work package leads from the core team on the [OpenBioML Discord](https://discord.gg/GgDBFP8ZEt) or message directly on GitHub issues.
+
+| Name (discord & github)                                | Main Work Packages                                             |
+| ------------------------------------------------------ | -------------------------------------------------------------- |
+| Michael Pieler (MicPie#9427 & MicPie)                  | 💾 Structured Data, Knowledge Graph, Tokenisers, Data Sampling |
+| Kevin Jablonka (Kevin Jablonka#1694 & kjappelbaum)     | 💾 Structured Data, Knowledge Graph, Tokenisers, Data Sampling |
+| Bethany Connolly (bethconnolly#3951 & bethanyconnolly) | 📊 Model Evaluation                                            |
+| Jack Butler (Jack Butler#8114 & jackapbutler)          | ⚙️ Model Training                                              |
+| Mark Worrall (Mark Worrall#3307 & maw501)              | 🦑 Model Adaptations                                           |
+
 # Implementing a dataset
 
 ## Contributing a dataset
