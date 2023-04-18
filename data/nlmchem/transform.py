@@ -71,15 +71,15 @@ def get_and_transform_data():
         "num_points": len(df),
         "bibtex": [
             """@article{Islamaj2021,
-        author = {Islamaj, R. and Leaman, R. and Kim, S. and Lu, Z.},
-        title = {NLM-Chem, a new resource for chemical entity recognition in PubMed full text literature},
-        journal = {Nature Scientific Data},
-        volume = {8},
-        number = {91},
-        year = {2021},
-        doi = {10.1038/s41597-021-00875-1},
-        url = {https://doi.org/10.1038/s41597-021-00875-1}
-        }""",
+author = {Islamaj, R. and Leaman, R. and Kim, S. and Lu, Z.},
+title = {NLM-Chem, a new resource for chemical entity recognition in PubMed full text literature},
+journal = {Nature Scientific Data},
+volume = {8},
+number = {91},
+year = {2021},
+doi = {10.1038/s41597-021-00875-1},
+url = {https://doi.org/10.1038/s41597-021-00875-1}
+}""",
         ],
     }
 
