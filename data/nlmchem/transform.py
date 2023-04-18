@@ -28,8 +28,8 @@ def get_and_transform_data():
     assert not df.duplicated().sum(), "Found duplicate rows in the dataframe"
 
     # Save to CSV
-    clean_data = "nlmchem_data_clean.csv"
-    df.to_csv(clean_data, index=False)
+    fn_data_csv = "data_clean.csv"
+    df.to_csv(fn_data_csv, index=False)
 
     # Create meta.yaml
     meta = {
