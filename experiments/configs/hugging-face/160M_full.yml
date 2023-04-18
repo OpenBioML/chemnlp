@@ -1,0 +1,38 @@
+---
+# Dataset configuration (datasets.load_from_disk arguments)
+data:
+  path: /fsx/proj-chemnlp/data/EleutherAI/pythia-160m/marianna13/chemrxiv
+
+# Model configuration (model.from_pretrained arguments)
+model:
+  base: GPTNeoXForCausalLM
+  name: EleutherAI/pythia-160m
+  revision: main # latest model
+  #checkpoint_path: /fsx/proj-chemnlp/experiments/checkpoints/finetuned/full_160M/checkpoint-1600
+
+# Training strategies (PromptTuningConfig arguments)
+prompt_tuning:
+  enabled: false
+
+# Training configuration (TrainerArguments from HF)
+trainer:
+  output_dir: /fsx/proj-chemnlp/experiments/checkpoints/finetuned/full_160M
+  num_train_epochs: 1
+  learning_rate: 3e-4
+  evaluation_strategy: steps
+  logging_steps: 5
+  eval_steps: 50
+  save_steps: 200
+  dataloader_num_workers: 4
+  bf16: true
+  fp16: false
+  per_device_train_batch_size: 28
+  per_device_eval_batch_size: 28
+
+# Logging configuration (WandB init arguments)
+wandb:
+  enabled: true
+  project: LLCheM
+  group: test
+  name: test_160M_full # full_160M_v1
+  entity: chemnlp
