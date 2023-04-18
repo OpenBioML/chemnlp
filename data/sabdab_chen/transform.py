@@ -22,26 +22,32 @@ def get_and_transform_data():
     # proceed raw data
     df = pd.read_csv(fn_data_raw, sep=",")
 
-    
     fields_orig = df.columns.tolist()
-    assert fields_orig == ["Antibody_ID", "Antibody", "Y","split"]
+    assert fields_orig == ["Antibody_ID", "Antibody", "Y", "split"]
 
     fn_data_original = "data_original.csv"
 
     antibody_list = df.Antibody.tolist()
-    s2l = lambda list_string: list(
-        map(str.strip, list_string.strip("][").replace("'", "").split(","))
-    )
+
+    def s2l(list_string):
+        return list(map(str.strip, list_string.strip("][").replace("'", "").split(",")))
+
     df["heavy_chain"] = [s2l(x)[0] for x in antibody_list]
     df["light_chain"] = [s2l(x)[1] for x in antibody_list]
-    df = df[["Antibody_ID", "heavy_chain", "light_chain", "Y","split"]]
+    df = df[["Antibody_ID", "heavy_chain", "light_chain", "Y", "split"]]
     df.to_csv(fn_data_original, index=False)
 
     #  load raw data and assert columns
     df = pd.read_csv(fn_data_original, sep=",")
     fields_orig = df.columns.tolist()
-    assert fields_orig == ["Antibody_ID", "heavy_chain", "light_chain", "Y","split"]
-    fields_clean = ["antibody_pdb_ID", "heavy_chain", "light_chain", "developability","split"]
+    assert fields_orig == ["Antibody_ID", "heavy_chain", "light_chain", "Y", "split"]
+    fields_clean = [
+        "antibody_pdb_ID",
+        "heavy_chain",
+        "light_chain",
+        "developability",
+        "split",
+    ]
     df.columns = fields_clean
     assert not df.duplicated().sum()
 
@@ -53,62 +59,60 @@ def get_and_transform_data():
         "name": "sabdab_chen",  # unique identifier, we will also use this for directory names
         "description": """Antibody data from Chen et al, where they process from the SAbDab.
 From an initial dataset of 3816 antibodies, they retained 2426 antibodies that
-satisfy the following criteria:  1.have both sequence (FASTA) and Protein Data
+satisfy the following criteria: 1.have both sequence (FASTA) and Protein Data
 Bank (PDB) structure files, 2. contain both a heavy chain and a light chain,
-and  3.have crystal structures with resolution < 3 A. The DI label is derived
+and 3. have crystal structures with resolution < 0.3 nm. The DI label is derived
 from BIOVIA's pipelines.""",
         "targets": [
             {
                 "id": "developability",  # name of the column in a tabular dataset
-                "description": "functional antibody candidate to be developed into a manufacturable(1), or not(0)",
-                "units": "",  # units of the values in this column (leave empty if unitless)
-                "type": "categorical",  # can be "categorical", "ordinal", "continuous"
+                "description": "functional antibody candidate to be developed into a manufacturable one (1) or not (0)",
+                "units": None,  # units of the values in this column (leave empty if unitless)
+                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "antibody developability",
-                    "monoclonal anitbody",
-                    "functional antibody candidate",
-                    "manufacturable, stable, safe, and effective antibody drug",
+                    "developability",
+                    "developability of an antibody",
+                    "developable antibody",
                 ],
-                "uris": [
-                    "https://rb.gy/idkdqp",
-                    "https://rb.gy/b8cx8i",
-                ],
+                "uris": None,
             },
         ],
         "benchmarks": [
-        {
-            "name": "TDC",  # unique benchmark name
-            "link": "https://tdcommons.ai/",  # benchmark URL
-            "split_column": "split",  # name of the column that contains the split information
-        },
+            {
+                "name": "TDC",  # unique benchmark name
+                "link": "https://tdcommons.ai/",  # benchmark URL
+                "split_column": "split",  # name of the column that contains the split information
+            },
         ],
         "identifiers": [
             {
                 "id": "antibody_pdb_ID",  # column name
                 "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
-                "names":[
-                "pdb id",
-                "Protein Data Bank id",
+                "names": [
+                    "pdb id",
+                    "Protein Data Bank id",
                 ],
                 "description": "anitbody pdb id",  # description (optional, except for "Other")
             },
             {
                 "id": "heavy_chain",  # column name
                 "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
-                "names":[
-                "Fastq",
-                "gene sequence",
+                "names": [
+                    "amino acid sequence",
+                    "heavy chain amino acid sequence",
+                    "heavy chain AA sequence",
                 ],
-                "description": "anitbody heavy chain amino acid sequence in FASTA",  # description (optional, except for "Other")
+                "description": "anitbody heavy chain amino acid sequence in FASTA",
             },
             {
                 "id": "light_chain",  # column name
                 "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
-                "names":[
-                "Fastq",
-                "gene sequence",
+                "names": [
+                    "amino acid sequence",
+                    "light chain amino acid sequence",
+                    "light chain AA sequence",
                 ],
-                "description": "anitbody light chain amino acid sequence in FASTA",  # description (optional, except for "Other")
+                "description": "anitbody light chain amino acid sequence in FASTA",
             },
         ],
         "license": "CC BY 4.0",  # license under which the original dataset was published
