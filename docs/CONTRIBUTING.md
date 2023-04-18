@@ -19,7 +19,7 @@ To create your developer environment please follow the guidelines in the `Instal
 
 ## Work package leads
 
-If you are contributing to an existing task which contains a `Work Package: <name>` label, please refer to the list below to find a main point of contact for that piece of work. If you've any questions or wish to contribute additional issues feel free to reach out to these work package leads from the core team on the [OpenBioML Discord](https://discord.gg/GgDBFP8ZEt) or message directly on GitHub issues.
+If you are contributing to an existing task which contains a `work package: <name>` label, please refer to the list below to find a main point of contact for that piece of work. If you've any questions or wish to contribute additional issues feel free to reach out to these work package leads from the core team on the [OpenBioML Discord](https://discord.gg/GgDBFP8ZEt) or message directly on GitHub issues.
 
 | Name (discord & github)                                | Main Work Packages                                             |
 | ------------------------------------------------------ | -------------------------------------------------------------- |
