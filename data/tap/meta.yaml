@@ -1,114 +1,117 @@
+---
 name: tap
 description: |-
-  Immunogenicity, instability, self-association,
-  high viscosity, polyspecificity, or poor expression can all preclude
-  an antibody from becoming a therapeutic. Early identification of these
-  negative characteristics is essential. Akin to the Lipinski guidelines,
-  which measure druglikeness in small molecules,
-  Therapeutic Antibody Profiler (TAP) highlights antibodies
-  that possess characteristics that are rare/unseen in
-  clinical-stage mAb therapeutics.
+    Immunogenicity, instability, self-association,
+    high viscosity, polyspecificity, or poor expression can all preclude
+    an antibody from becoming a therapeutic. Early identification of these
+    negative characteristics is essential. Akin to the Lipinski guidelines,
+    which measure druglikeness in small molecules,
+    Therapeutic Antibody Profiler (TAP) highlights antibodies
+    that possess characteristics that are rare/unseen in
+    clinical-stage mAb therapeutics.
 targets:
-- id: CDR_Length
-  description: CDR Complementarity-determining regions length
-  units: ''
-  type: continuous
-  names:
-  - Antibody Complementarity-determining regions length
-  - Therapeutic Antibody Profiler
-  - antibody developability
-  - monoclonal anitbody
-  uris:
-  - https://rb.gy/s9gv88
-  - https://rb.gy/km77hq
-  - https://rb.gy/b8cx8i
-- id: PSH
-  description: patches of surface hydrophobicity
-  units: ''
-  type: continuous
-  names:
-  - antibody patches of surface hydrophobicity
-  - Therapeutic Antibody Profiler
-  - antibody developability
-  - monoclonal anitbody
-  uris:
-  - https://rb.gy/bchhaa
-  - https://rb.gy/2irr4l
-  - https://rb.gy/b8cx8i
-- id: PPC
-  description: patches of positive charge
-  units: ''
-  type: continuous
-  names:
-  - patches of positive charge
-  - Therapeutic Antibody Profiler
-  - antibody developability
-  - monoclonal anitbody
-  uris:
-  - https://rb.gy/b8cx8i
-- id: PNC
-  description: patches of negative charge
-  units: ''
-  type: continuous
-  names:
-  - anitbody patches of negative charge
-  - Therapeutic Antibody Profiler
-  - antibody developability
-  - monoclonal anitbody
-  uris:
-  - https://rb.gy/b8cx8i
-- id: SFvCSP
-  description: structural Fv charge symmetry parameter
-  units: ''
-  type: continuous
-  names:
-  - antibody structural Fv charge symmetry parameter
-  - Therapeutic Antibody Profiler
-  - antibody developability
-  - monoclonal anitbody
-  uris:
-  - https://rb.gy/uxyhc3
-  - https://rb.gy/b8cx8i
+    - id: CDR_Length
+      description: complementarity-determining regions (CDR) length
+      units: amino acids
+      type: continuous
+      names:
+          - antibody complementarity-determining regions length
+          - antibody complementarity-determining regions (CDR) length
+          - antibody CDR length
+          - complementarity-determining regions (CDR) length
+          - complementarity-determining regions length
+          - CDR length
+      uris:
+    - id: PSH
+      description: patches of surface hydrophobicity (PSH) score
+      units:
+      type: continuous
+      names:
+          - antibody patches of surface hydrophobicity (PSH) score
+          - antibody patches of surface hydrophobicity score
+          - antibody PSH score
+          - patches of surface hydrophobicity (PSH) score
+          - patches of surface hydrophobicity score
+          - PSH score
+      uris:
+    - id: PPC
+      description: patches of positive charge (PPC) score
+      units:
+      type: continuous
+      names:
+          - antibody patches of positive charge (PPC) score
+          - antibody patches of positive charge score
+          - antibody PPC score
+          - patches of positive charge (PPC) score
+          - patches of positive charge score
+          - PPC score
+      uris:
+    - id: PNC
+      description: patches of negative charge (PNC) score
+      units:
+      type: continuous
+      names:
+          - antibody patches of negative charge (PNC) score
+          - antibody patches of negative charge score
+          - antibody PNC score
+          - patches of negative charge (PNC) score
+          - patches of negative charge score
+          - PNC score
+      uris:
+    - id: SFvCSP
+      description: structural Fv charge symmetry parameter (SFvCSP) score
+      units:
+      type: continuous
+      names:
+          - antibody structural Fv charge symmetry parameter (SFvCSP) score
+          - antibody structural Fv charge symmetry parameter score
+          - antibody SFvCSP score
+          - structural Fv charge symmetry parameter (SFvCSP) score
+          - structural Fv charge symmetry parameter score
+          - SFvCSP score
+      uris:
 identifiers:
-- id: antibody_name
-  type: Other
-  names:
-  - Name of the antibody
-  - Name of the antibody drug
-  - Name of drug
-  description: anitbody name
-- id: heavy_chain
-  type: Other
-  names:
-  - Fastq
-  - gene sequence
-  description: anitbody heavy chain amino acid sequence
-- id: light_chain
-  type: Other
-  names:
-  - Fastq
-  - gene sequence
-  description: anitbody light chain amino acid sequence
+    - id: antibody_name
+      type: Other
+      names:
+          - antibody name
+          - name of the antibody
+          - name of the antibody drug
+      description: antibody name
+    - id: heavy_chain
+      type: Other
+      names:
+          - amino acid sequence
+          - heavy chain amino acid sequence
+          - heavy chain AA sequence
+      description: antibody heavy chain amino acid sequence
+    - id: light_chain
+      type: Other
+      names:
+          - amino acid sequence
+          - light chain amino acid sequence
+          - light chain AA sequence
+      description: antibody light chain amino acid sequence
 license: CC BY 4.0
 links:
-- url: https://doi.org/10.1073/pnas.1810576116
-  description: corresponding publication
-- url: https://tdcommons.ai/single_pred_tasks/develop/#tap
-  description: data source
+    - url: https://doi.org/10.1073/pnas.1810576116
+      description: corresponding publication
+    - url: https://tdcommons.ai/single_pred_tasks/develop/#tap
+      description: data source
 num_points: 241
 bibtex:
-- |-
-  @article{Raybould2019,
-  doi = {10.1073/pnas.1810576116},
-  url = {https://doi.org/10.1073/pnas.1810576116},
-  year = {2019},
-  month = feb,
-  publisher = {Proceedings of the National Academy of Sciences},
-  volume = {116},
-  number = {10},
-  pages = {4025--4030},
-  author = {Matthew I. J. Raybould and Claire Marks and Konrad Krawczyk
-  and Bruck Taddese and Jaroslaw Nowak and Alan P. Lewis and Alexander Bujotzek
-  and Jiye Shi and Charlotte M. Deane},
-  title = {Five computational developability guidelines for therapeutic antibody profiling},
-  journal = {Proceedings of the National Academy of Sciences}
+    - |-
+      @article{Raybould2019,
+      doi = {10.1073/pnas.1810576116},
+      url = {https://doi.org/10.1073/pnas.1810576116},
+      year = {2019},
+      month = feb,
+      publisher = {Proceedings of the National Academy of Sciences},
+      volume = {116},
+      number = {10},
+      pages = {4025--4030},
+      author = {Matthew I. J. Raybould and Claire Marks and Konrad Krawczyk
+      and Bruck Taddese and Jaroslaw Nowak and Alan P. Lewis and Alexander Bujotzek
+      and Jiye Shi and Charlotte M. Deane},
+      title = {Five computational developability guidelines for therapeutic antibody profiling},
+      journal = {Proceedings of the National Academy of Sciences}
