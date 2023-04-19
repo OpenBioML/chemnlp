@@ -5,38 +5,61 @@ from tdc.single_pred import Epitope
 
 def get_and_transform_data():
     # get raw data
-    target_folder = "IEDB_Jespersen_et_al"
     target_subfolder = "IEDB_Jespersen"
-    data = Epitope(name=target_subfolder)
+    splits = Epitope(name=target_subfolder).get_split()
+    df_train = splits["train"]
+    df_valid = splits["valid"]
+    df_test = splits["test"]
+    df_train["split"] = "train"
+    df_valid["split"] = "valid"
+    df_test["split"] = "test"
+    df = pd.concat([df_train, df_valid, df_test], axis=0)
 
-    def get_active_position(seq, active_poisition, sequence_only=False):
+    fn_data_raw = "data_raw.csv"
+    df.to_csv(fn_data_raw, index=False)
+    del df
+
+    def get_active_position(seq, active_position, sequence_only=False):
         """
         Input: given a sequence and list of active index
         Output: return active sequence and other sequence convert to _
         MASQKRPS ,[1,2,3,4,6] -> _ASQK_P_
         """
+        if isinstance(
+            active_position, str
+        ):  # if list is casted to string after loading from raw csv data file.
+            active_position = [int(x) for x in active_position[1:-1].split(", ")]
+
         if sequence_only:
-            _seq = "".join([seq[x] for x in active_poisition])
+            _seq = "".join([seq[x] for x in active_position])
             return _seq
+
         _seq = ["_" for a in range(len(seq))]
-        for x in active_poisition:
+        for x in active_position:
             _seq[x] = seq[x]
         _seq = "".join(_seq)
         return _seq
 
-    df = pd.read_pickle("data/iedb_jespersen.pkl")
+    # proceed raw data
+    df = pd.read_csv(fn_data_raw, sep=",")
     fields_orig = df.columns.tolist()
-    assert fields_orig == ["ID", "X", "Y"]
+    assert fields_orig == ["Antigen_ID", "Antigen", "Y", "split"]
 
     # Rename columns of raw data
-    fields_clean = ["Antigen_ID", "Antigen_sequence", "active_positions_indices"]
+    fields_clean = [
+        "Antigen_ID",
+        "Antigen_sequence",
+        "active_positions_indices",
+        "split",
+    ]
     df.columns = fields_clean
 
     # get active position
     antigen_seq = df.Antigen_sequence.tolist()
     a_pos_ind_list = df.active_positions_indices.tolist()
     df["active_position"] = [
-        get_active_position(x, o) for x, o in zip(antigen_seq, a_pos_ind_list)
+        get_active_position(x, o, sequence_only=True)
+        for x, o in zip(antigen_seq, a_pos_ind_list)
     ]
 
     # save data to original
@@ -48,6 +71,7 @@ def get_and_transform_data():
         "Antigen_ID",
         "Antigen_sequence",
         "active_positions_indices",
+        "split",
         "active_position",
     ]
 
@@ -63,7 +87,7 @@ def get_and_transform_data():
     df.to_csv(fn_data_csv, index=False)
 
     meta = {
-        "name": "iedb_jespersen_et_al", 
+        "name": "iedb_jespersen_et_al",
         "description": """Epitope prediction is to predict the active region in the antigen.
 This dataset is from Bepipred, which curates a dataset from IEDB. It collects B-cell
 epitopes and non-epitope amino acids determined from crystal structures.""",
@@ -71,14 +95,16 @@ epitopes and non-epitope amino acids determined from crystal structures.""",
             {
                 "id": "active_position",  # name of the column in a tabular dataset
                 "description": "amino acids sequence position that is active in binding",
-                "units": "",  # units of the values in this column (leave empty if unitless)
+                "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "categorical",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "amino acids sequence active in binding",
-                    "Epitope",
+                    "epitope",
+                    "amino acids sequence active in antigen binding",
+                    "epitope sequence active in antigen binding",
+                    "epitope sequence active in binding",
                 ],
                 "uris": [
-                    "https://bioportal.bioontology.org/ontologies/NCIT?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C13189",
+                    "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C13189",
                 ],
             }
         ],
@@ -87,10 +113,10 @@ epitopes and non-epitope amino acids determined from crystal structures.""",
                 "id": "Antigen_sequence",  # column name
                 "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
                 "names": [
-                "amino acid sequence",
-                "FASTQ",
-                "fastq sequence",
-                "Protien sequence"
+                    "amino acid sequence",
+                    "AA sequence",
+                    "epitope amino acid sequence",
+                    "epitope AA sequence",
                 ],
                 "description": "amino acid sequence",  # d
             }
