@@ -1,0 +1,49 @@
+---
+name: IUPAC Compendium of Chemical Terminology
+description: |-
+    The Compendium is popularly referred to as the Gold
+    Book, in recognition of the contribution of the late Victor Gold, who
+    initiated work on the first edition. It is one of the series of IUPAC
+    Colour Books on chemical nomenclature, terminology, symbols and units
+    (see the list of source documents), and collects together terminology
+    definitions from IUPAC recommendations already published in Pure and
+    Applied Chemistry and in the other Colour Books. Terminology
+    definitions published by IUPAC are drafted by international committees
+    of experts in the appropriate chemistry sub-disciplines, and ratified
+    by IUPAC's Interdivisional Committee on Terminology, Nomenclature and
+    Symbols (ICTNS). In this edition of the Compendium these IUPAC-approved
+    definitions are supplemented with some definitions from ISO and from
+    the International Vocabulary of Basic and General Terms in Metrology,
+    both these sources are recognised by IUPAC as authoritative. The result
+    is a collection of nearly 7000 terms, with authoritative definitions,
+    spanning the whole range of chemistry.
+targets:
+    - id: definition
+      description: definition of a chemistry term
+      units:
+      type: categorical
+      names:
+          - definition
+          - definition of a chemistry term
+identifiers:
+    - id: term
+      type: OTHER
+      description: chemistry term
+      names:
+          - term
+          - chemistry term
+license: CC BY-NC-ND 4.0
+links:
+    - url: https://goldbook.iupac.org
+      description: home page
+    - url: https://creativecommons.org/licenses/by-nc-nd/4.0/
+      description: license description
+num_points: 7035
+bibtex:
+    - |-
+      @article{iupac2023,title={IUPAC Compendium of Chemical Terminology},
+      publisher={International Union of Pure and Applied Chemistry},
+      isbn={978-0865426849},
+      doi={10.1351/goldbook},
+      accessdate={2023-01-13T17:08:12+00:00},
+      }
