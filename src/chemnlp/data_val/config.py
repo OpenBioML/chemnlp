@@ -34,6 +34,7 @@ class TrainerConfig(BaseModel):
     per_device_train_batch_size: int = 32
     per_device_eval_batch_size: int = 32
     gradient_checkpointing: bool = False
+    deepspeed: Optional[str] = None
 
     @validator("learning_rate")
     def small_positive_learning_rate(cls, v):
