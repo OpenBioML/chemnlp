@@ -1,0 +1,8 @@
+model: hf-causal
+model_args: "pretrained=/fsx/proj-chemnlp/experiments/checkpoints/finetuned/full_1b/checkpoint-final"
+# "pretrained=EleutherAI/pythia-1b"
+tasks: "hendrycksTest-college_biology,hendrycksTest-college_chemistry,hendrycksTest-college_mathematics,hendrycksTest-college_physics,hendrycksTest-high_school_mathematics,hendrycksTest-high_school_biology,hendrycksTest-high_school_chemistry,hendrycksTest-high_school_physics"
+wandb_log: true
+wandb_project: LLCheM
+wandb_group: evaluation
+wandb_run_name: 1B_fullfinetune_STEM
