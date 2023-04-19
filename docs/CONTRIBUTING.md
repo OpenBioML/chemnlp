@@ -1,7 +1,7 @@
 There are many different ways to contribute to ChemNLP!
 You can get in touch via the GitHub [task board](https://github.com/orgs/OpenBioML/projects/5?query=is:open+sort:updated-desc) and [issues](https://github.com/OpenBioML/chemnlp/issues?q=is:issue+is:open+sort:updated-desc&query=is:open+sort:updated-desc) and our [Discord](https://t.co/YMzpevmkiN).
 
-## Pre-Requisites
+## Prerequisites
 Please make a [GitHub account](https://github.com/) prior to implementing a dataset; you can follow instructions to install git [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
 
 1. [Fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) the [ChemNLP repository](https://github.com/OpenBioML/chemnlp)
@@ -9,11 +9,25 @@ Please make a [GitHub account](https://github.com/) prior to implementing a data
 3. [Make a new branch](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
 4. Please try using [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for formatting your commit messages
 
+If you wish to work on one of the submodules for the project, please see the [git workflow](SUBMODULES.md) docs.
+
 ## Create a development environment (For code/dataset contributions)
 
 For code and data contributions, we recommend you creata a [conda environment](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html). If you do not have conda already installed on your system, we recommend installing [miniconda](https://docs.conda.io/en/latest/miniconda.html):
 
 To create your developer environment please follow the guidelines in the `Installation and set-up` of [README.md](README.md)
+
+## Work package leads
+
+If you are contributing to an existing task which contains a `work package: <name>` label, please refer to the list below to find a main point of contact for that piece of work. If you've any questions or wish to contribute additional issues feel free to reach out to these work package leads from the core team on the [OpenBioML Discord](https://discord.gg/GgDBFP8ZEt) or message directly on GitHub issues.
+
+| Name (discord & github)                                | Main Work Packages                                             |
+| ------------------------------------------------------ | -------------------------------------------------------------- |
+| Michael Pieler (MicPie#9427 & MicPie)                  | 💾 Structured Data, Knowledge Graph, Tokenisers, Data Sampling |
+| Kevin Jablonka (Kevin Jablonka#1694 & kjappelbaum)     | 💾 Structured Data, Knowledge Graph, Tokenisers, Data Sampling |
+| Bethany Connolly (bethconnolly#3951 & bethanyconnolly) | 📊 Model Evaluation                                            |
+| Jack Butler (Jack Butler#8114 & jackapbutler)          | ⚙️ Model Training                                              |
+| Mark Worrall (Mark Worrall#3307 & maw501)              | 🦑 Model Adaptations                                           |
 
 # Implementing a dataset
 
