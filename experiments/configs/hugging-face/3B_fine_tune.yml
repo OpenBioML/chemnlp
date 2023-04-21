@@ -20,7 +20,7 @@ trainer:
   learning_rate: 3e-4
   evaluation_strategy: steps
   logging_steps: 50
-  eval_steps: 10
+  eval_steps: 500
   save_steps: 1000
   dataloader_num_workers: 4
   bf16: true
@@ -28,7 +28,7 @@ trainer:
   per_device_train_batch_size: 1
   per_device_eval_batch_size: 1
   gradient_checkpointing: True
-  deepspeed: /fsx/proj-chemnlp/jack/chemnlp/experiments/configs/hugging-face/deepspeed_offload_S3.json
+  deepspeed: deepspeed_offload_S3.json
 
 # Logging configuration (WandB init arguments)
 wandb:
