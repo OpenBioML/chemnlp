@@ -67,10 +67,7 @@ def run(config_path: str) -> None:
     print(training_args)
 
     if config.wandb.enabled:
-        rank_names = f"_local_{local_rank}_rank" 
-        if global_rank != local_rank:
-            rank_names = f"_global_{global_rank}{rank_names}"
-        config.wandb.name = f"{config.wandb.name}{rank_names}"
+        config.wandb.name += f"_global_{global_rank}_local_{local_rank}_rank"
         wandb.init(**config.wandb.dict(exclude={"enabled"}), config=config.dict())
 
     trainer = Trainer(
