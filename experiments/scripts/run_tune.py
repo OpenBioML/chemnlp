@@ -22,7 +22,8 @@ from chemnlp.data_val.config import TrainPipelineConfig
 from chemnlp.utils import load_config
 
 FILE_PATH = pathlib.Path(__file__).parent.resolve()
-CONFIG_DIR = FILE_PATH.parent / 'configs'
+CONFIG_DIR = FILE_PATH.parent / "configs"
+
 
 def run(config_path: str) -> None:
     """Perform a training run for a given YAML defined configuration"""
@@ -65,7 +66,9 @@ def run(config_path: str) -> None:
         **config.trainer.dict(exclude={"enabled", "deepspeed"}),
         report_to="wandb" if config.wandb.enabled else "none",
         local_rank=gpu_rank,
-        deepspeed=CONFIG_DIR / f"deepspeed/{config.trainer.deepspeed}" if config.trainer.deepspeed else None
+        deepspeed=CONFIG_DIR / f"deepspeed/{config.trainer.deepspeed}"
+        if config.trainer.deepspeed
+        else None,
     )
 
     if config.wandb.enabled:
