@@ -63,11 +63,11 @@ def run(config_path: str) -> None:
     data_collator = DataCollatorForLanguageModeling(tokenizer, mlm=False)
 
     training_args = TrainingArguments(
-        **config.trainer.dict(exclude={"enabled", "deepspeed"}),
+        **config.trainer.dict(exclude={"enabled", "deepspeed_config"}),
         report_to="wandb" if config.wandb.enabled else "none",
         local_rank=gpu_rank,
-        deepspeed=CONFIG_DIR / f"deepspeed/{config.trainer.deepspeed}"
-        if config.trainer.deepspeed
+        deepspeed=CONFIG_DIR / f"deepspeed/{config.trainer.deepspeed_config}"
+        if config.trainer.deepspeed_config
         else None,
     )
 
