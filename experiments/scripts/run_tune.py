@@ -25,7 +25,8 @@ def run(config_path: str) -> None:
     """Perform a training run for a given YAML defined configuration"""
     raw_config = load_config(config_path)
     config = TrainPipelineConfig(**raw_config)
-    gpu_rank = os.environ.get("LOCAL_RANK", -1)
+    local_rank = os.environ.get("LOCAL_RANK", -1)
+    global_rank = os.environ.get("RANK", -1)
     print(config)
 
     tokenizer = AutoTokenizer.from_pretrained(
@@ -61,11 +62,12 @@ def run(config_path: str) -> None:
     training_args = TrainingArguments(
         **config.trainer.dict(exclude={"enabled"}),
         report_to="wandb" if config.wandb.enabled else "none",
-        local_rank=gpu_rank,
+        local_rank=local_rank,
     )
+    print(training_args)
 
     if config.wandb.enabled:
-        config.wandb.name = f"{config.wandb.name}_rank_{gpu_rank}"
+        config.wandb.name += f"_global_{global_rank}_local_{local_rank}_rank"
         wandb.init(**config.wandb.dict(exclude={"enabled"}), config=config.dict())
 
     trainer = Trainer(
@@ -76,7 +78,6 @@ def run(config_path: str) -> None:
         tokenizer=tokenizer,
         data_collator=data_collator,
     )
-    assert trainer.model.device.type != "cpu", "Stopping as model is on CPU"
     trainer.train()
     trainer.save_model(config.trainer.output_dir + "/checkpoint-final")
 

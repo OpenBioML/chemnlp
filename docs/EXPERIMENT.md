@@ -42,6 +42,10 @@ sbatch experiments/scripts/sbatch_train_hf.sh experiments/maw501 maw501 160M_ful
 
 If you don't have the required permission to log to W&B, please request this. In the interim you can disable this or log to a project under your name by changing the configuration options e.g. in `experiments/configs/hugging-face/full_160M.yml`.
 
+## Multi-node training
+
+This is for Hugging Face fine-tuning only at the moment and is orchestrated through the `torch.distributed` package. It allows you to expand your computing environment to multiple nodes in a distributed data parallel manner. It uses multiprocessing to efficiently parallelise training across devices. In order to enable this feature you simply have to switch to using the `*_multinode` script instead of the original slurm training script as described in the [scripts documentation](https://github.com/OpenBioML/chemnlp/tree/main/experiments).
+
 ## Restarting from a checkpoint
 
 This is for Hugging Face fine-tuning only at the moment.
