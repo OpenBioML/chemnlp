@@ -47,9 +47,9 @@ with successful trials.""",
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "boolean",
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "clinically toxic",
-                    "displaying clinical toxicity",
-                    "toxic",
+                    {"adjective": "clinically toxic"},
+                    {"gerund": "displaying clinical toxicity"},
+                    {"adjective": "toxic"},
                 ],
                 "uris": [
                     "http://purl.bioontology.org/ontology/MESH/Q000633",

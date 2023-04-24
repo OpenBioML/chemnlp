@@ -16,7 +16,7 @@ META_TEMPLATE = {
             "units": None,  # units of the values in this column (leave empty if unitless)
             "type": "string",  # can be "categorical", "ordinal", "continuous", "string"
             "names": [  # names for the property (to sample from for building the prompts)
-                "natural language description",
+                {"noun": "natural language description"},
             ],
             "pubchem_aids": [],
             "uris": [],

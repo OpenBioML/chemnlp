@@ -57,6 +57,14 @@ class ColumnTypes(YamlStrEnum):
     string = "string"
 
 
+class Name(YamlModel):
+    """Name information."""
+
+    noun: Optional[str]
+    adjective: Optional[str]
+    gerund: Optional[str]
+
+
 class Target(YamlModel):
     """Target information."""
 
@@ -71,16 +79,16 @@ class Target(YamlModel):
     type: ColumnTypes
     """The type of the field. Can be one of `continuous`, `categorical`, `ordinal`, `boolean`."""
 
-    names: List[str]
+    names: List[Name]
     """A list of names describing the field.
 
     Note that this will be used in building the prompts. Some example for prompts:
 
     - Boolean variables
 
-        - `Is <name> <identifier>?`
+        - `Is <identifer> <names.adjective>?`
         - ```
-        What molecules in the list are <name>?
+        What molecules in the list are <name.adjective>?
         - <identifier_1>
         - <identifier_2>
         - <identifier_3>
@@ -89,9 +97,9 @@ class Target(YamlModel):
 
     - Continuous variables
 
-        - `What is <name> of <identifier>?`
+        - `What is <name.noun> of <identifier>?`
         - ```
-        What is the molecule with largest <name> in the following list?
+        What is the molecule with largest <name.noun> in the following list?
         - <identifier_1>
         - <identifier_2>
         - <identifier_3>

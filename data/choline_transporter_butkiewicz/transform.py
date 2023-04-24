@@ -61,8 +61,8 @@ re-confirmation screen AID602208.""",
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "a inhibitor of choline transporter activity",
-                    "inhibitor of choline transporter activity",
+                    {"noun": "a inhibitor of choline transporter activity"},
+                    {"noun": "inhibitor of choline transporter activity"},
                 ],
                 "pubchem_aids": [488975, 493221, 504840, 588401, 493222, 602208],
             },
