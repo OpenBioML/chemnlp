@@ -51,12 +51,22 @@ Final set contains all compounds active in the counter screen AID 489007.
         "targets": [
             {
                 "id": "activity_tyrosyl_dna_phosphodiesterase",
-                "description": "whether it active against tyrosyl-dna phosphodiesterase receptor (1) or not (0).",
+                "description": "whether it active against tyrosyl-DNA phosphodiesterase receptor 1 (1) or not (0).",
                 "units": None,
                 "type": "boolean",
                 "names": [
-                    "inhibiting human tyrosyl-DNA phosphodiesterase 1 (TDP1)",
-                    "a tyrosyl-DNA phosphodiesterase 1 (TDP1) inhibitor",
+                    {"noun": "a tyrosyl-DNA phosphodiesterase 1 (TDP1) inhibitor"},
+                    {"noun": "a tyrosyl-DNA phosphodiesterase 1 inhibitor"},
+                    {
+                        "gerund": "inhibiting human tyrosyl-DNA phosphodiesterase 1 (TDP1)"
+                    },
+                    {"gerund": "inhibiting human tyrosyl-DNA phosphodiesterase 1"},
+                    {
+                        "adjective": "active against the tyrosyl-DNA phosphodiesterase receptor 1"
+                    },
+                    {
+                        "adjective": "active against the tyrosyl-DNA phosphodiesterase receptor 1 (TDP1)"
+                    },
                 ],
                 "pubchem_aids": [485290, 489007],
                 "uris": [],
