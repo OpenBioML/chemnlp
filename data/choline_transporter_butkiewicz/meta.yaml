@@ -19,8 +19,9 @@ targets:
       units:
       type: boolean
       names:
-          - a inhibitor of choline transporter activity
-          - inhibitor of choline transporter activity
+          - noun: a inhibitor of choline transporter activity
+          - noun: inhibitor of choline transporter activity
+          - verb: inhibits choline transporter activity
       pubchem_aids:
           - 488975
           - 493221

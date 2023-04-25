@@ -13,8 +13,8 @@ targets:
       units:
       type: boolean
       names:
-          - a negative modulator of M1 muscarinic receptors
-          - negatively modulating M1 muscarinic receptors
+          - noun: a negative modulator of M1 muscarinic receptors
+          - gerund: negatively modulating M1 muscarinic receptors
       pubchem_aids:
           - 628
           - 677

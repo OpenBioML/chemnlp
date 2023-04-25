@@ -10,8 +10,8 @@ targets:
       units: log(1/(mol/kg))
       type: continuous
       names:
-          - acute toxicity rat LD50
-          - rat ld50
+          - noun: acute toxicity rat LD50
+          - noun: rat LD50
       uri:
           - http://www.bioassayontology.org/bao#BAO_0002117
 identifiers:

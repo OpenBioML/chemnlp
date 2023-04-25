@@ -5,7 +5,7 @@ SPLITS = ["train", "test", "validation"]
 ORIGINAL_COLUMNS = ["CID", "SMILES", "description"]
 NEW_COLUMNS = ["compound_id", "SMILES", "description"]
 
-META_YAML_PATH = "./data/chebi_20/meta.yaml"
+META_YAML_PATH = "meta.yaml"
 META_TEMPLATE = {
     "name": "chebi_20",  # unique identifier, we will also use this for directory names
     "description": "A dataset of pairs of natural language descriptions and SMILEs.",
@@ -27,11 +27,6 @@ META_TEMPLATE = {
             "id": "SMILES",  # column name
             "type": "SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "OTHER"
             "description": "SMILES",  # description (optional, except for "OTHER")
-        },
-        {
-            "id": "compound_id",
-            "type": "OTHER",
-            "description": "This is the PubChem CID to identify a given molecule.",
         },
     ],
     "license": "CC BY 4.0",  # license under which the original dataset was published

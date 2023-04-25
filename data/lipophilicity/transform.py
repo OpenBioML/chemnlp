@@ -45,9 +45,9 @@ def get_and_transform_data():
                 "units": None,
                 "type": "continuous",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    {"name": "octanol/water distribution coefficient (logD at pH 7.4)"},
-                    {"name": "logD at pH 7.4"},
-                    {"name": "octanol/water distribution coefficient"},
+                    {"noun": "octanol/water distribution coefficient (logD at pH 7.4)"},
+                    {"noun": "logD at pH 7.4"},
+                    {"noun": "octanol/water distribution coefficient"},
                 ],
                 "uris": [
                     "http://www.bioassayontology.org/bao#BAO_0002129",

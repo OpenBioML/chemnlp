@@ -13,9 +13,9 @@ targets:
       units:
       type: boolean
       names:
-          - is a orexin 1 inhibitor
-          - is a orexin 1 receptor antagonist
-          - inhibits orexin 1 receptor
+          - noun: orexin 1 inhibitor
+          - noun: a orexin 1 receptor antagonist
+          - gerund: inhibiting orexin 1 receptor
       pubchem_aids:
           - 485270
           - 463079

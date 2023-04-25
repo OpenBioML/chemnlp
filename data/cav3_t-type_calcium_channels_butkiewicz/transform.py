@@ -55,7 +55,7 @@ AID 489005 was performed as counter screen validating active compounds of the pr
                     {"gerund": "inhibiting cav3 t-type calcium channels activity"},
                     {"noun": "a t-type calcium channel blocker"},
                     {"verb": "blocks t-type calcium channels"},
-                    {"verb": "inhibts cav3 t-type calcium channels"},
+                    {"verb": "inhibits cav3 t-type calcium channels"},
                 ],
                 "pubchem_aids": [1053190, 489005, 493021, 493022, 493023, 493041],
                 "uris": ["http://purl.obolibrary.org/obo/CHEBI_194338"],

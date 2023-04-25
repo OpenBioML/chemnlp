@@ -14,8 +14,8 @@ targets:
       units:
       type: boolean
       names:
-          - inhibitor of the kcnq2 potassium channel activity
-          - displaying activity against the kcnq2 potassium channel
+          - noun: inhibitor of the kcnq2 potassium channel activity
+          - gerund: displaying activity against the kcnq2 potassium channel
       pubchem_aids:
           - 2239
           - 2287
