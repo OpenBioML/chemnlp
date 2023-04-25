@@ -52,12 +52,17 @@ compounds.""",
         "targets": [
             {
                 "id": "activity_serine_threonine_kinase33",
-                "description": "whether it is active against serine threonine kinase 33 receptor (1) or not (0).",
+                "description": "whether it is active against the serine threonine kinase 33 receptor (1) or not (0).",
                 "units": None,
                 "type": "boolean",
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "inhibits the activity of the serine/threonine kinase, STK3",
-                    "a serine/threonine kinase, STK3 inhibitor",
+                    {"noun": "a serine/threonine kinase, STK3 inhibitor"},
+                    {
+                        "gerund": "inhibiting the activity of the serine/threonine kinase, STK3"
+                    },
+                    {
+                        "adjective": "active against the serine threonine kinase 33 receptor"
+                    },
                 ],
                 "pubchem_aids": [2661, 2821, 504583],
                 "uris": [],
