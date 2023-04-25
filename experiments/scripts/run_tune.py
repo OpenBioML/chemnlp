@@ -5,6 +5,7 @@ A Python script for finetuning language models.
 """
 import argparse
 import os
+import pathlib
 
 import datasets
 import transformers
@@ -19,6 +20,9 @@ from transformers import (
 
 from chemnlp.data_val.config import TrainPipelineConfig
 from chemnlp.utils import load_config
+
+FILE_PATH = pathlib.Path(__file__).parent.resolve()
+CONFIG_DIR = FILE_PATH.parent / "configs"
 
 
 def run(config_path: str) -> None:
@@ -60,9 +64,12 @@ def run(config_path: str) -> None:
     data_collator = DataCollatorForLanguageModeling(tokenizer, mlm=False)
 
     training_args = TrainingArguments(
-        **config.trainer.dict(exclude={"enabled"}),
+        **config.trainer.dict(exclude={"enabled", "deepspeed_config"}),
         report_to="wandb" if config.wandb.enabled else "none",
         local_rank=local_rank,
+        deepspeed=CONFIG_DIR / f"deepspeed/{config.trainer.deepspeed_config}"
+        if config.trainer.deepspeed_config
+        else None,
     )
     print(training_args)
 

@@ -63,3 +63,15 @@ model:
   revision: main
   checkpoint_path: /fsx/proj-chemnlp/experiments/checkpoints/finetuned/full_160M/checkpoint-1600 # directory to restart training from
 ```
+
+## DeepSpeed integration
+
+This is for Hugging Face fine-tuning only and is described in detail [here](https://huggingface.co/docs/transformers/v4.27.2/en/main_classes/deepspeed). You can enable DeepSpeed through the Hugging Face `TrainerArguments` by adding a configuration key of `deepspeed_config` followed by the name of your configuration file inside of `experiments/configs/deepspeed` configuration directory.
+
+Example config block:
+
+```yaml
+trainer:
+  ...
+  deepspeed_config: deepspeed_offload_S3.json # looks in experiments/configs/deepspeed
+```
