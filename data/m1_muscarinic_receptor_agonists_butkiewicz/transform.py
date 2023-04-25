@@ -56,8 +56,12 @@ compounds.""",
                 "units": None,
                 "type": "boolean",
                 "names": [
-                    "a positive allosteric modulator of m1 muscarinic activity",
-                    "displaying positive allosteric modulation of the m1 muscarinic receptor",
+                    {
+                        "name": "a positive allosteric modulator of m1 muscarinic activity"
+                    },
+                    {
+                        "gerund": "displaying positive allosteric modulation of the m1 muscarinic receptor"
+                    },
                 ],
                 "pubchem_aids": [626, 1488, 1741],
                 "uris": [],

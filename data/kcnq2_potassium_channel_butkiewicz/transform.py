@@ -58,8 +58,10 @@ screen active set of compounds (AID 2287).""",
                 "units": None,
                 "type": "boolean",
                 "names": [
-                    "inhibitor of the kcnq2 potassium channel activity",
-                    "displaying activity against the kcnq2 potassium channel",
+                    {"noun": "inhibitor of the kcnq2 potassium channel activity"},
+                    {
+                        "gerund": "displaying activity against the kcnq2 potassium channel"
+                    },
                 ],
                 "pubchem_aids": [2239, 2287, 2282, 2283, 2558],
                 "uris": [],

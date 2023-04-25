@@ -57,8 +57,8 @@ The higher the dose, the more lethal of a drug.""",
                 "units": "log(1/(mol/kg))",  # units of the values in this column (leave empty if unitless)
                 "type": "continuous",  # can be "categorical", "ordinal", "continuous"
                 "names": [
-                    "acute toxicity rat LD50",
-                    "rat ld50",
+                    {"noun": "acute toxicity rat LD50"},
+                    {"noun": "rat LD50"},
                 ],
                 "uri": ["http://www.bioassayontology.org/bao#BAO_0002117"],
             },

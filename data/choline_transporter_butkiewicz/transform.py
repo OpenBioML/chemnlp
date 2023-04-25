@@ -63,6 +63,7 @@ re-confirmation screen AID602208.""",
                 "names": [  # names for the property (to sample from for building the prompts)
                     {"noun": "a inhibitor of choline transporter activity"},
                     {"noun": "inhibitor of choline transporter activity"},
+                    {"verb": "inhibits choline transporter activity"},
                 ],
                 "pubchem_aids": [488975, 493221, 504840, 588401, 493222, 602208],
             },
