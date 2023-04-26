@@ -56,11 +56,27 @@ response pathways.""",
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "Tox21 NR-PPAR-gamma toxicity",
-                    "NR-PPAR-gamma toxicity",
-                    "Tox21 NR-Peroxisome proliferator-activated receptor gamma toxicity",
-                    "NR-Peroxisome proliferator-activated receptor gamma toxicity",
-                    "Peroxisome proliferator-activated receptor gamma toxicity",
+                    {"noun": "NR-PPAR-gamma toxicity"},
+                    {
+                        "noun": "NR-peroxisome proliferator-activated receptor gamma toxicity"
+                    },
+                    {
+                        "noun": "peroxisome proliferator-activated receptor gamma toxicity"
+                    },
+                    {"verb": "activity in the NR-PPAR-gamma assay"},
+                    {
+                        "verb": "activity in the NR-peroxisome proliferator-activated receptor gamma assay"
+                    },
+                    {
+                        "verb": "activity in the peroxisome proliferator-activated receptor gamma assay"
+                    },
+                    {"adjective": "toxic in the NR-PPAR-gamma assay"},
+                    {
+                        "adjective": "toxic in the NR-peroxisome proliferator-activated receptor gamma assay"
+                    },
+                    {
+                        "adjective": "toxic in the peroxisome proliferator-activated receptor gamma assay"
+                    },
                 ],
             },
         ],
