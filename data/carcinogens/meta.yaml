@@ -10,8 +10,10 @@ targets:
       units:
       type: boolean
       names:
-          - carcinogen
-          - substance, radionuclide, or radiation that promotes carcinogenesis
+          - noun: carcinogen
+          - noun: substance, radionuclide, or radiation that promotes carcinogenesis
+          - adjective: carcinogenic
+          - gerund: having the potential to cause cancer
       uris:
           - http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C347
           - http://purl.bioontology.org/ontology/SNOMEDCT/88376000

@@ -66,8 +66,12 @@ the genome or to the disruption of cellular metabolic processes.""",
                 "units": None,
                 "type": "boolean",
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "carcinogen",
-                    "substance, radionuclide, or radiation that promotes carcinogenesis",
+                    {"noun": "carcinogen"},
+                    {
+                        "noun": "substance, radionuclide, or radiation that promotes carcinogenesis"
+                    },
+                    {"adjective": "carcinogenic"},
+                    {"gerund": "having the potential to cause cancer"},
                 ],
                 "uris": [
                     "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C347",
