@@ -56,11 +56,17 @@ response pathways.""",
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "Tox21 R-ER toxicity",
-                    "NR-ER toxicity",
-                    "Tox21 NR-Estrogen receptor alpha toxicity",
-                    "NR-Estrogen receptor alpha toxicity",
-                    "Estrogen receptor alpha toxicity",
+                    {"noun": "NR-ER toxicity"},
+                    {"noun": "NR-Estrogen receptor alpha toxicity"},
+                    {"noun": "estrogen receptor alpha toxicity"},
+                    {"verb": "activity in the NR-ER toxicity assay"},
+                    {
+                        "verb": "activity in the NR-Estrogen receptor alpha toxicity assay"
+                    },
+                    {"verb": "activity in the estrogen receptor alpha toxicity assay"},
+                    {"adjective": "toxic in the NR-ER assay"},
+                    {"adjective": "toxic in the NR-Estrogen receptor alpha assay"},
+                    {"adjective": "toxic in the estrogen receptor alpha assay"},
                 ],
             },
         ],
