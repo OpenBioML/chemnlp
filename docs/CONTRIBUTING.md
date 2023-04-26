@@ -1,7 +1,7 @@
 There are many different ways to contribute to ChemNLP!
 You can get in touch via the GitHub [task board](https://github.com/orgs/OpenBioML/projects/5?query=is:open+sort:updated-desc) and [issues](https://github.com/OpenBioML/chemnlp/issues?q=is:issue+is:open+sort:updated-desc&query=is:open+sort:updated-desc) and our [Discord](https://t.co/YMzpevmkiN).
 
-## Pre-Requisites
+## Prerequisites
 Please make a [GitHub account](https://github.com/) prior to implementing a dataset; you can follow instructions to install git [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
 
 1. [Fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) the [ChemNLP repository](https://github.com/OpenBioML/chemnlp)
@@ -9,11 +9,25 @@ Please make a [GitHub account](https://github.com/) prior to implementing a data
 3. [Make a new branch](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
 4. Please try using [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for formatting your commit messages
 
+If you wish to work on one of the submodules for the project, please see the [git workflow](SUBMODULES.md) docs.
+
 ## Create a development environment (For code/dataset contributions)
 
 For code and data contributions, we recommend you creata a [conda environment](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html). If you do not have conda already installed on your system, we recommend installing [miniconda](https://docs.conda.io/en/latest/miniconda.html):
 
 To create your developer environment please follow the guidelines in the `Installation and set-up` of [README.md](README.md)
+
+## Work package leads
+
+If you are contributing to an existing task which contains a `work package: <name>` label, please refer to the list below to find a main point of contact for that piece of work. If you've any questions or wish to contribute additional issues feel free to reach out to these work package leads from the core team on the [OpenBioML Discord](https://discord.gg/GgDBFP8ZEt) or message directly on GitHub issues.
+
+| Name (discord & github)                                | Main Work Packages                                            |
+| ------------------------------------------------------ | ------------------------------------------------------------- |
+| Michael Pieler (MicPie#9427 & MicPie)                  | 💾 Structured Data, Knowledge Graph, Tokenisers, Data Sampling |
+| Kevin Jablonka (Kevin Jablonka#1694 & kjappelbaum)     | 💾 Structured Data, Knowledge Graph, Tokenisers, Data Sampling |
+| Bethany Connolly (bethconnolly#3951 & bethanyconnolly) | 📊 Model Evaluation                                            |
+| Jack Butler (Jack Butler#8114 & jackapbutler)          | ⚙️ Model Training                                              |
+| Mark Worrall (Mark Worrall#3307 & maw501)              | 🦑 Model Adaptations                                           |
 
 # Implementing a dataset
 
@@ -53,16 +67,15 @@ targets:
     units: log(mol/L) # units of the values in this column (leave empty if unitless)
     type: continuous # can be "categorical", "ordinal", "continuous", "boolean"
     names: # names for the property (to sample from for building the prompts)
-      - solubility
-      - water solubility
+      - noun: aqueous solubility
+      - noun: solubility in water
   - id: SD
     description: Standard deviation of the experimental aqueous solubility value for multiple occurences
     units: log(mol/L)
     type: continuous
     names:
-      - solubility
-      - water solubility
-      - solubility in water
+      - noun: standard deviation of the aqueous solubility
+      - noun: tandard deviation of the solubility in water
 benchmarks: # lists all benchmarks this dataset has been part of. split_column is a column in this dataframe with the value "train", "valid", "test" - indicating to which fold a specific entry belongs to
     - name: TDC
       link: https://tdcommons.ai/
@@ -100,33 +113,31 @@ In case your dataset isn't a simple tabular dataset with chemical compounds and 
 
 ```yaml
 templates:
-  - prompt: "Please answer the following chemistry question.\nDerive for the molecule with the <molecule_text> <molecule> the <expt_value_text>."
-    completion: "<exp_value>"
-  - prompt: "Please answer the following question.\nPredict the <expt_value_text> for <molecule>."
-    completion: "<exp_value>"
+  - prompt: "Please answer the following chemistry question.\nDerive for the molecule with the <molecule#text> <molecule#value> the <expt_value#text>."
+    completion: "<exp_value.value>"
+  - prompt: "Please answer the following question.\nPredict the <expt_value#text> for <molecule#value>."
+    completion: "<exp_value#value>"
 fields:
   exp_value:
     values:
-      - name: exp_value
-        column: exp_value
+      - name: lab_value
+        column: lab_value
         text: adsorption energy
-      - name: calc_value
-        column: calc_value
-        text: adsorption free energy
   molecule:
     values:
       - name: smiles
         column: smiles
         text:
-      - name: smiles
-        column: smiles
-        text: SMILES
+      - name: inchi
+        column: inchi
+        text: InChI
 ```
 
-This templating syntax should allow for quite some flexibility: For every template field we will look for the key, e.g., `exp_value` as well as `exp_value_text` (which can be used to describe to the field type/value).
-If this (`text`) is a column name, we will use the values from the column (therefore, effectively, jointly sample the `column` and `text` columns).
+With this approach you can specify different fields, where each field maps to one of many columns in a dataframe.
+In the templates you can use `#` to either fill in the value of a particular entry or the `.text`, that you specify in the yaml.
+
 If there are multiple values for one field, we will sample combinations.
-If you want to suggest sampling from different prompt prefixes, you can do so by specifying a template fields and different `text` (but no `column`).
+If you want to suggest sampling from different prompt prefixes, you can do so by specifying a template fields and different `text`.
 
 In case you run into issues (or think you don't have enough compute or storage, please let us know). Also, in some cases `csv` might not be the best format. If you think that `csv` is not suitable for your dataset, let us know.
 
@@ -177,30 +188,6 @@ Please ensure that the _first_ entry in this list is a primary scan which corres
 Keep in mind that we plan to look up the name and the description of the assay to build prompt. That is, the name of the assay of the _first entry_ in this list should also work in a prompt such as `Is <identifier> active in `<pubchem assay name>?`
 
 #### Prompt examples
-
-##### Boolean variables
-
-- `Is <name> <identifier>?`
-- ```
-  What molecules in the list are <name>?
-
-  - <identifier_1>
-  - <identifier_2>
-  - <identifier_3>
-  ```
-
-
-#### Continuous variables
-
-- `What is <name> of <identifier>?`
-- ```
-  What is the molecule with largest <name> in the following list?
-
-  - <identifier_1>
-  - <identifier_2>
-  - <identifier_3>
-  ```
-
 
 
 For datasets that are not in tabular form, we are still discussing the best process, but we also envision that we might perform some named-entity-recognition to also use some of the text datasets in a framework such as LIFT. Otherwise, we will simple use them in the typical GPT pretraining task.

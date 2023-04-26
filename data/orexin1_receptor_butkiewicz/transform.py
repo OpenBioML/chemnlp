@@ -46,9 +46,9 @@ compounds excluding an overlap of 155 molecules.""",
                 "units": None,
                 "type": "boolean",
                 "names": [
-                    "is a orexin 1 inhibitor",
-                    "is a orexin 1 receptor antagonist",
-                    "inhibits orexin 1 receptor",
+                    {"noun": "orexin 1 inhibitor"},
+                    {"noun": "a orexin 1 receptor antagonist"},
+                    {"gerund": "inhibiting orexin 1 receptor"},
                 ],
                 "pubchem_aids": [485270, 463079, 434989, 504701, 493232, 504699],
                 "uris": ["http://purl.bioontology.org/ontology/SNOMEDCT/838464006"],
@@ -71,6 +71,10 @@ compounds excluding an overlap of 155 molecules.""",
         "license": "CC BY 4.0",  # license under which the original dataset was published
         "links": [  # list of relevant links (original dataset, other uses, etc.)
             {
+                "url": "https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al",
+                "description": "original dataset",
+            },
+            {
                 "url": "https://doi.org/10.3390/molecules18010735",
                 "description": "corresponding publication",
             },
@@ -84,7 +88,6 @@ compounds excluding an overlap of 155 molecules.""",
             },
         ],
         "num_points": len(df),  # number of datapoints in this dataset
-        "url": "https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al",
         "bibtex": [
             """@article{Butkiewicz2013,
 doi = {10.3390/molecules18010735},
