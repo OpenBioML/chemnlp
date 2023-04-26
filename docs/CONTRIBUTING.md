@@ -134,7 +134,7 @@ fields:
 ```
 
 With this approach you can specify different fields, where each field maps to one of many columns in a dataframe.
-In the templates you can use `#` to either fill in the value of a particular entry or the "text", that you specify in the yaml.
+In the templates you can use `#` to either fill in the value of a particular entry or the `.text`, that you specify in the yaml.
 
 If there are multiple values for one field, we will sample combinations.
 If you want to suggest sampling from different prompt prefixes, you can do so by specifying a template fields and different `text`.

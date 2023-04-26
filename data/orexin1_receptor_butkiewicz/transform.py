@@ -71,6 +71,10 @@ compounds excluding an overlap of 155 molecules.""",
         "license": "CC BY 4.0",  # license under which the original dataset was published
         "links": [  # list of relevant links (original dataset, other uses, etc.)
             {
+                "url": "https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al",
+                "description": "original dataset",
+            },
+            {
                 "url": "https://doi.org/10.3390/molecules18010735",
                 "description": "corresponding publication",
             },
@@ -84,7 +88,6 @@ compounds excluding an overlap of 155 molecules.""",
             },
         ],
         "num_points": len(df),  # number of datapoints in this dataset
-        "url": "https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al",
         "bibtex": [
             """@article{Butkiewicz2013,
 doi = {10.3390/molecules18010735},

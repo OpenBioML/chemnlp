@@ -60,7 +60,7 @@ The higher the dose, the more lethal of a drug.""",
                     {"noun": "acute toxicity rat LD50"},
                     {"noun": "rat LD50"},
                 ],
-                "uri": ["http://www.bioassayontology.org/bao#BAO_0002117"],
+                "uris": ["http://www.bioassayontology.org/bao#BAO_0002117"],
             },
         ],
         "identifiers": [
@@ -95,7 +95,6 @@ The higher the dose, the more lethal of a drug.""",
             }
         ],
         "num_points": len(df),  # number of datapoints in this dataset
-        "url": "https://tdcommons.ai/single_pred_tasks/tox/#acute-toxicity-ld50",
         "bibtex": [
             """@article{Zhu2009,
 doi = {10.1021/tx900189p},

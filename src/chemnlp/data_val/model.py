@@ -2,7 +2,7 @@ from typing import Dict, List, Optional
 
 import pubchempy as pcp
 import requests
-from pydantic import root_validator, validator
+from pydantic import root_validator, validator, Extra
 from pydantic_yaml import YamlModel, YamlStrEnum
 
 
@@ -22,7 +22,7 @@ class IdentifierEnum(YamlStrEnum):
     rxnsmilesWAdd = "RXNSMILESWAdd"
 
 
-class Identifier(YamlModel):
+class Identifier(YamlModel, extra=Extra.forbid):
     """Identifier information."""
 
     id: str
@@ -57,15 +57,16 @@ class ColumnTypes(YamlStrEnum):
     string = "string"
 
 
-class Name(YamlModel):
+class Name(YamlModel, extra=Extra.forbid):
     """Name information."""
 
     noun: Optional[str]
     adjective: Optional[str]
     gerund: Optional[str]
+    verb: Optional[str]
 
 
-class Target(YamlModel):
+class Target(YamlModel, extra=Extra.forbid):
     """Target information."""
 
     id: str
@@ -141,12 +142,12 @@ class Target(YamlModel):
                     raise ValueError(f"PubChem assay ID {aid} does not resolve")
 
 
-class Template(YamlModel):
+class Template(YamlModel, extra=Extra.forbid):
     prompt: str
     completion: str
 
 
-class TemplateFieldValue(YamlModel):
+class TemplateFieldValue(YamlModel, extra=Extra.forbid):
     """Template field information."""
 
     name: str
@@ -154,7 +155,7 @@ class TemplateFieldValue(YamlModel):
     text: Optional[str]
 
 
-class TemplateField(YamlModel):
+class TemplateField(YamlModel, extra=Extra.forbid):
     values: List[TemplateFieldValue]
 
 
@@ -165,7 +166,7 @@ class Link(YamlModel):
     description: str
 
 
-class Benchmark(YamlModel):
+class Benchmark(YamlModel, extra=Extra.forbid):
     """Benchmark information."""
 
     """The name of the benchmark, e.g. MoleculeNet."""
@@ -178,7 +179,7 @@ class Benchmark(YamlModel):
     split_column: str
 
 
-class Dataset(YamlModel):
+class Dataset(YamlModel, extra=Extra.forbid):
     name: str
     description: str
     targets: Optional[List[Target]]
