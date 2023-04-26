@@ -63,12 +63,12 @@ response pathways.""",
                     {
                         "noun": "peroxisome proliferator-activated receptor gamma toxicity"
                     },
-                    {"verb": "activity in the NR-PPAR-gamma assay"},
+                    {"verb": "activity in the NR-PPAR-gamma toxicity assay"},
                     {
-                        "verb": "activity in the NR-peroxisome proliferator-activated receptor gamma assay"
+                        "verb": "activity in the NR-peroxisome proliferator-activated receptor gamma toxicity assay"
                     },
                     {
-                        "verb": "activity in the peroxisome proliferator-activated receptor gamma assay"
+                        "verb": "activity in the peroxisome proliferator-activated receptor gamma toxicity assay"
                     },
                     {"adjective": "toxic in the NR-PPAR-gamma assay"},
                     {
