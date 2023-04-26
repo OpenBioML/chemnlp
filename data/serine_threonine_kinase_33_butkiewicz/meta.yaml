@@ -9,12 +9,13 @@ description: |-
     compounds.
 targets:
     - id: activity_serine_threonine_kinase33
-      description: whether it is active against serine threonine kinase 33 receptor (1) or not (0).
+      description: whether it is active against the serine threonine kinase 33 receptor (1) or not (0).
       units:
       type: boolean
       names:
-          - inhibits the activity of the serine/threonine kinase, STK3
-          - a serine/threonine kinase, STK3 inhibitor
+          - noun: a serine/threonine kinase, STK3 inhibitor
+          - gerund: inhibiting the activity of the serine/threonine kinase, STK3
+          - adjective: active against the serine threonine kinase 33 receptor
       pubchem_aids:
           - 2661
           - 2821
@@ -30,6 +31,8 @@ benchmarks:
       split_column: split
 license: CC BY 4.0
 links:
+    - url: https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al
+      description: original dataset
     - url: https://doi.org/10.3390/molecules18010735
       description: corresponding publication
     - url: https://doi.org/10.1093/nar/gky1033
@@ -37,7 +40,6 @@ links:
     - url: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5962024/
       description: corresponding publication
 num_points: 319792
-url: https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al
 bibtex:
     - |-
       @article{Butkiewicz2013,

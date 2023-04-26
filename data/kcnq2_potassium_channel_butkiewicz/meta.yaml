@@ -14,8 +14,8 @@ targets:
       units:
       type: boolean
       names:
-          - inhibitor of the kcnq2 potassium channel activity
-          - displaying activity against the kcnq2 potassium channel
+          - noun: inhibitor of the kcnq2 potassium channel activity
+          - gerund: displaying activity against the kcnq2 potassium channel
       pubchem_aids:
           - 2239
           - 2287
@@ -29,6 +29,8 @@ identifiers:
       description: SMILES
 license: CC BY 4.0
 links:
+    - url: https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al
+      description: original dataset
     - url: https://doi.org/10.3390/molecules18010735
       description: corresponding publication
     - url: https://doi.org/10.1093/nar/gky1033
@@ -40,7 +42,6 @@ benchmarks:
       link: https://tdcommons.ai/
       split_column: split
 num_points: 302405
-url: https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al
 bibtex:
     - |-
       @article{Butkiewicz2013,
