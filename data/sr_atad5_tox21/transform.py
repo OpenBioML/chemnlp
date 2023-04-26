@@ -57,10 +57,27 @@ response pathways.""",
                 "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
                     f"{target_subfolder} toxicity",
-                    "Tox21 SR-Luciferase-tagged ATAD5 toxicity",
-                    "SR-Luciferase-tagged ATAD5 in human embryonic kidney cells toxicity",
-                    "Luciferase-tagged ATAD5 in human embryonic kidney cells toxicity",
-                    "Luciferase-tagged ATAD5 toxicity",
+                    {
+                        "noun": "SR-Luciferase-tagged ATAD5 in human embryonic kidney cells toxicity"
+                    },
+                    {
+                        "noun": "Luciferase-tagged ATAD5 in human embryonic kidney cells toxicity"
+                    },
+                    {"noun": "Luciferase-tagged ATAD5 toxicity"},
+                    {
+                        "verb": "activity in the SR-Luciferase-tagged ATAD5 in human embryonic kidney cells toxicity assay"  # noqa E501
+                    },
+                    {
+                        "verb": "activity in the Luciferase-tagged ATAD5 in human embryonic kidney cells toxicity assay"
+                    },
+                    {"verb": "activity in the Luciferase-tagged ATAD5 toxicity assay"},
+                    {
+                        "adjective": "toxic in the SR-Luciferase-tagged ATAD5 in human embryonic kidney cells assay"
+                    },
+                    {
+                        "adjective": "toxic in the Luciferase-tagged ATAD5 in human embryonic kidney cells assay"
+                    },
+                    {"adjective": "toxic in the Luciferase-tagged ATAD5 assay"},
                 ],
             },
         ],

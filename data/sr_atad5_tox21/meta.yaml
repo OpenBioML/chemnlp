@@ -11,10 +11,15 @@ targets:
       type: boolean
       names:
           - SR-ATAD5 toxicity
-          - Tox21 SR-Luciferase-tagged ATAD5 toxicity
-          - SR-Luciferase-tagged ATAD5 in human embryonic kidney cells toxicity
-          - Luciferase-tagged ATAD5 in human embryonic kidney cells toxicity
-          - Luciferase-tagged ATAD5 toxicity
+          - noun: SR-Luciferase-tagged ATAD5 in human embryonic kidney cells toxicity
+          - noun: Luciferase-tagged ATAD5 in human embryonic kidney cells toxicity
+          - noun: Luciferase-tagged ATAD5 toxicity
+          - verb: activity in the SR-Luciferase-tagged ATAD5 in human embryonic kidney cells toxicity assay
+          - verb: activity in the Luciferase-tagged ATAD5 in human embryonic kidney cells toxicity assay
+          - verb: activity in the Luciferase-tagged ATAD5 toxicity assay
+          - adjective: toxic in the SR-Luciferase-tagged ATAD5 in human embryonic kidney cells assay
+          - adjective: toxic in the Luciferase-tagged ATAD5 in human embryonic kidney cells assay
+          - adjective: toxic in the Luciferase-tagged ATAD5 assay
 uris:
 benchmarks:
     - name: TDC
