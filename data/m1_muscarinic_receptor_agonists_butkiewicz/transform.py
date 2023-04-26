@@ -56,8 +56,12 @@ compounds.""",
                 "units": None,
                 "type": "boolean",
                 "names": [
-                    "a positive allosteric modulator of m1 muscarinic activity",
-                    "displaying positive allosteric modulation of the m1 muscarinic receptor",
+                    {
+                        "noun": "a positive allosteric modulator of m1 muscarinic activity"
+                    },
+                    {
+                        "gerund": "displaying positive allosteric modulation of the m1 muscarinic receptor"
+                    },
                 ],
                 "pubchem_aids": [626, 1488, 1741],
                 "uris": [],
@@ -72,6 +76,10 @@ compounds.""",
         ],
         "license": "CC BY 4.0",  # license under which the original dataset was published
         "links": [  # list of relevant links (original dataset, other uses, etc.)
+            {
+                "url": "https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al",
+                "description": "original dataset",
+            },
             {
                 "url": "https://doi.org/10.3390/molecules18010735",
                 "description": "corresponding publication",
@@ -93,7 +101,6 @@ compounds.""",
             },
         ],
         "num_points": len(df),  # number of datapoints in this dataset
-        "url": "https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al",
         "bibtex": [
             """@article{Butkiewicz2013,
 doi = {10.3390/molecules18010735},

@@ -59,9 +59,9 @@ through the human intestinal tissue.""",
                 "units": "cm/s",
                 "type": "continuous",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "Caco-2 cell effective permeability",
-                    "Caco-2 cell permeability",
-                    "Caco-2 permeability",
+                    {"noun": "Caco-2 cell effective permeability"},
+                    {"noun": "Caco-2 cell permeability"},
+                    {"noun": "Caco-2 permeability"},
                 ],
                 "pubchem_aids": [678378],
                 "uris": [
