@@ -50,9 +50,12 @@ approved drugs in an infected cell-based assay.""",
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "activity against the Corona virus",
-                    "activity against SARSCoV2",
-                    "activity against COVID19",
+                    {"noun": "activity against the Corona virus"},
+                    {"noun": "activity against SARSCoV2"},
+                    {"noun": "activity against COVID19"},
+                    {"adjective": "active against the Corona virus"},
+                    {"adjective": "active against SARSCoV2"},
+                    {"adjective": "active against COVID19"},
                 ],
             },
         ],

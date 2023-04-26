@@ -9,9 +9,12 @@ targets:
       units:
       type: boolean
       names:
-          - activity agains the Corona virus
-          - activity against SARSCoV2
-          - activity against COVID19
+          - noun: activity against the Corona virus
+          - noun: activity against SARSCoV2
+          - noun: activity against COVID19
+          - adjective: active against the Corona virus
+          - adjective: active against SARSCoV2
+          - adjective: active against COVID19
 benchmarks:
     - name: TDC
       link: https://tdcommons.ai/
