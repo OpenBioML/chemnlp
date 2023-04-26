@@ -2,7 +2,7 @@ from typing import Dict, List, Optional
 
 import pubchempy as pcp
 import requests
-from pydantic import root_validator, validator
+from pydantic import Extra, root_validator, validator
 from pydantic_yaml import YamlModel, YamlStrEnum
 
 
@@ -15,9 +15,14 @@ class IdentifierEnum(YamlStrEnum):
     inchi = "InChI"
     inchikey = "InChIKey"
     other = "Other"
+    # we distinguish two RXN-SMILES variants.
+    # the simple one only includes educt and product
+    # the other one (rxnsmilesWAdd) also includes solvents etc.
+    rxnsmiles = "RXNSMILES"
+    rxnsmilesWAdd = "RXNSMILESWAdd"
 
 
-class Identifier(YamlModel):
+class Identifier(YamlModel, extra=Extra.forbid):
     """Identifier information."""
 
     id: str
@@ -49,9 +54,19 @@ class ColumnTypes(YamlStrEnum):
     categorical = "categorical"
     ordinal = "ordinal"
     boolean = "boolean"
+    string = "string"
 
 
-class Target(YamlModel):
+class Name(YamlModel, extra=Extra.forbid):
+    """Name information."""
+
+    noun: Optional[str]
+    adjective: Optional[str]
+    gerund: Optional[str]
+    verb: Optional[str]
+
+
+class Target(YamlModel, extra=Extra.forbid):
     """Target information."""
 
     id: str
@@ -65,16 +80,16 @@ class Target(YamlModel):
     type: ColumnTypes
     """The type of the field. Can be one of `continuous`, `categorical`, `ordinal`, `boolean`."""
 
-    names: List[str]
+    names: List[Name]
     """A list of names describing the field.
 
     Note that this will be used in building the prompts. Some example for prompts:
 
     - Boolean variables
 
-        - `Is <name> <identifier>?`
+        - `Is <identifer> <names.adjective>?`
         - ```
-        What molecules in the list are <name>?
+        What molecules in the list are <name.adjective>?
         - <identifier_1>
         - <identifier_2>
         - <identifier_3>
@@ -83,9 +98,9 @@ class Target(YamlModel):
 
     - Continuous variables
 
-        - `What is <name> of <identifier>?`
+        - `What is <name.noun> of <identifier>?`
         - ```
-        What is the molecule with largest <name> in the following list?
+        What is the molecule with largest <name.noun> in the following list?
         - <identifier_1>
         - <identifier_2>
         - <identifier_3>
@@ -127,12 +142,12 @@ class Target(YamlModel):
                     raise ValueError(f"PubChem assay ID {aid} does not resolve")
 
 
-class Template(YamlModel):
+class Template(YamlModel, extra=Extra.forbid):
     prompt: str
     completion: str
 
 
-class TemplateFieldValue(YamlModel):
+class TemplateFieldValue(YamlModel, extra=Extra.forbid):
     """Template field information."""
 
     name: str
@@ -140,7 +155,7 @@ class TemplateFieldValue(YamlModel):
     text: Optional[str]
 
 
-class TemplateField(YamlModel):
+class TemplateField(YamlModel, extra=Extra.forbid):
     values: List[TemplateFieldValue]
 
 
@@ -151,7 +166,7 @@ class Link(YamlModel):
     description: str
 
 
-class Benchmark(YamlModel):
+class Benchmark(YamlModel, extra=Extra.forbid):
     """Benchmark information."""
 
     """The name of the benchmark, e.g. MoleculeNet."""
@@ -164,7 +179,7 @@ class Benchmark(YamlModel):
     split_column: str
 
 
-class Dataset(YamlModel):
+class Dataset(YamlModel, extra=Extra.forbid):
     name: str
     description: str
     targets: Optional[List[Target]]

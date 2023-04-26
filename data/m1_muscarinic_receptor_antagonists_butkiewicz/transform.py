@@ -46,8 +46,8 @@ from those in AID677, resulting in 448 total active compounds.""",
                 "units": None,
                 "type": "boolean",
                 "names": [
-                    "a negative modulator of M1 muscarinic receptors",
-                    "negatively modulating M1 muscarinic receptors",
+                    {"noun": "a negative modulator of M1 muscarinic receptors"},
+                    {"gerund": "negatively modulating M1 muscarinic receptors"},
                 ],
                 "pubchem_aids": [628, 677, 860],
                 "uris": [],
@@ -62,6 +62,10 @@ from those in AID677, resulting in 448 total active compounds.""",
         ],
         "license": "CC BY 4.0",  # license under which the original dataset was published
         "links": [  # list of relevant links (original dataset, other uses, etc.)
+            {
+                "url": "https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al",
+                "description": "original dataset",
+            },
             {
                 "url": "https://doi.org/10.3390/molecules18010735",
                 "description": "corresponding publication",
@@ -83,7 +87,6 @@ from those in AID677, resulting in 448 total active compounds.""",
             }
         ],
         "num_points": len(df),  # number of datapoints in this dataset
-        "url": "https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al",
         "bibtex": [
             """@article{Butkiewicz2013,
 doi = {10.3390/molecules18010735},
