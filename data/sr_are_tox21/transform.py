@@ -56,11 +56,19 @@ response pathways.""",
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "Tox21 SR-ARE toxicity",
-                    "SR-ARE toxicity",
-                    "Tox21 SR-Antioxidant response element toxicity",
-                    "SR-Antioxidant response element toxicity",
-                    "Antioxidant response element toxicity",
+                    {"noun": "SR-ARE toxicity"},
+                    {"noun": "SR-Antioxidant response element toxicity"},
+                    {"noun": "Antioxidant response element toxicity"},
+                    {"verb": "activity in the SR-ARE toxicity assay"},
+                    {
+                        "verb": "activity in the SR-Antioxidant response element toxicity assay"
+                    },
+                    {
+                        "verb": "activity in the Antioxidant response element toxicity assay"
+                    },
+                    {"adjective": "toxic in the SR-ARE assay"},
+                    {"adjective": "toxic in the SR-Antioxidant response element assay"},
+                    {"adjective": "toxic in the Antioxidant response element assay"},
                 ],
             },
         ],
