@@ -1,6 +1,6 @@
 #! /bin/bash
-#SBATCH --job-name="chemtest"
-#SBATCH --nodes=1
+#SBATCH --job-name="multinode-chemtest"
+#SBATCH --nodes=2
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=12
 # #SBATCH --gres=gpu:4
@@ -20,6 +20,7 @@
 set -ex # allow for exiting based on non-0 codes
 export TOKENIZERS_PARALLELISM=false
 export WANDB_BASE_URL="https://stability.wandb.io"
+export NCCL_DEBUG=INFO
 
 # set workdir
 CHEMNLP_PATH=/fsx/proj-chemnlp/$2/chemnlp
@@ -31,6 +32,16 @@ source $CHEMNLP_PATH/experiments/scripts/env_creation_hf.sh $1 $2
 cd $CHEMNLP_PATH
 pip install ".[training]"
 
-# trigger run
-python -m torch.distributed.launch --use-env --nnodes 1 --nproc-per-node 8 \
-    experiments/scripts/run_tune.py experiments/configs/hugging-face/$3
+# Get multinode information
+nodes=( $( scontrol show hostnames $SLURM_JOB_NODELIST ) )
+nodes_array=($nodes)
+head_node=${nodes_array[0]}
+head_node_ip=$(srun --nodes=1 --ntasks=1 -w "$head_node" hostname --ip-address)
+echo Node IP: $head_node_ip
+
+# Run script
+srun python -m torch.distributed.launch --use-env --nnodes 2 --nproc_per_node 8 \
+--rdzv_id $RANDOM \
+--rdzv_backend c10d \
+--rdzv_endpoint $head_node_ip:29500 \
+experiments/scripts/run_tune.py  experiments/configs/hugging-face/$3

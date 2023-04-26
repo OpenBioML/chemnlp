@@ -5,6 +5,7 @@ A Python script for finetuning language models.
 """
 import argparse
 import os
+import pathlib
 
 import datasets
 import transformers
@@ -20,12 +21,16 @@ from transformers import (
 from chemnlp.data_val.config import TrainPipelineConfig
 from chemnlp.utils import load_config
 
+FILE_PATH = pathlib.Path(__file__).parent.resolve()
+CONFIG_DIR = FILE_PATH.parent / "configs"
+
 
 def run(config_path: str) -> None:
     """Perform a training run for a given YAML defined configuration"""
     raw_config = load_config(config_path)
     config = TrainPipelineConfig(**raw_config)
-    gpu_rank = os.environ.get("LOCAL_RANK", -1)
+    local_rank = os.environ.get("LOCAL_RANK", -1)
+    global_rank = os.environ.get("RANK", -1)
     print(config)
 
     tokenizer = AutoTokenizer.from_pretrained(
@@ -36,8 +41,10 @@ def run(config_path: str) -> None:
 
     model_ref = getattr(transformers, config.model.base)
     model = model_ref.from_pretrained(
-        pretrained_model_name_or_path=config.model.name,
-        revision=config.model.revision,
+        pretrained_model_name_or_path=config.model.checkpoint_path or config.model.name,
+        revision=config.model.revision
+        if config.model.checkpoint_path is None
+        else None,
     )
 
     if config.prompt_tuning.enabled:
@@ -57,13 +64,17 @@ def run(config_path: str) -> None:
     data_collator = DataCollatorForLanguageModeling(tokenizer, mlm=False)
 
     training_args = TrainingArguments(
-        **config.trainer.dict(exclude={"enabled"}),
+        **config.trainer.dict(exclude={"enabled", "deepspeed_config"}),
         report_to="wandb" if config.wandb.enabled else "none",
-        local_rank=gpu_rank,
+        local_rank=local_rank,
+        deepspeed=CONFIG_DIR / f"deepspeed/{config.trainer.deepspeed_config}"
+        if config.trainer.deepspeed_config
+        else None,
     )
+    print(training_args)
 
     if config.wandb.enabled:
-        config.wandb.name = f"{config.wandb.name}_rank_{gpu_rank}"
+        config.wandb.name += f"_global_{global_rank}_local_{local_rank}_rank"
         wandb.init(**config.wandb.dict(exclude={"enabled"}), config=config.dict())
 
     trainer = Trainer(
@@ -74,8 +85,8 @@ def run(config_path: str) -> None:
         tokenizer=tokenizer,
         data_collator=data_collator,
     )
-    assert trainer.model.device.type != "cpu", "Stopping as model is on CPU"
     trainer.train()
+    trainer.save_model(config.trainer.output_dir + "/checkpoint-final")
 
 
 if __name__ == "__main__":

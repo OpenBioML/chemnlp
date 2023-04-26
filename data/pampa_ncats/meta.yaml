@@ -13,8 +13,9 @@ targets:
       units:
       type: boolean
       names:
-          - is permeable in the PAMPA assay
-          - shows permeability in parallel artificial membrane permeability assay (PAMPA) assay
+          - verb: is permeable in the PAMPA assay
+          - verb: shows permeability in parallel artificial membrane permeability assay (PAMPA) assay
+          - gerund: permeating in the PAMPA assay
       pubchem_aids:
           - 1508612
       uris:
