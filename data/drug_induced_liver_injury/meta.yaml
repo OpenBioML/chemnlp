@@ -12,12 +12,16 @@ targets:
       units:
       type: boolean
       names:
-          - liver injury
-          - drug induced liver injury
-          - fatal liver disease caused by drugs
-          - liver toxicity
+          - noun: liver injury
+          - noun: drug induced liver injury
+          - noun: fatal liver disease caused by drugs
+          - noun: liver toxicity
+          - verb: injures the liver
+          - verb: is toxic to the liver
+          - verb: causes liver injury
       uris:
           - http://purl.bioontology.org/ontology/MEDDRA/10072268
+          - http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C84427
 benchmarks:
     - name: TDC
       link: https://tdcommons.ai/

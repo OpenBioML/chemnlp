@@ -63,10 +63,13 @@ Research.""",
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "liver injury",
-                    "drug induced liver injury",
-                    "fatal liver disease caused by drugs",
-                    "liver toxicity",
+                    {"noun": "liver injury"},
+                    {"noun": "drug induced liver injury"},
+                    {"noun": "fatal liver disease caused by drugs"},
+                    {"noun": "liver toxicity"},
+                    {"verb": "injures the liver"},
+                    {"verb": "is toxic to the liver"},
+                    {"verb": "causes liver injury"},
                 ],
                 "uris": [
                     "http://purl.bioontology.org/ontology/MEDDRA/10072268",
