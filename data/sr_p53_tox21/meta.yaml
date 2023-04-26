@@ -10,12 +10,15 @@ targets:
       units:
       type: boolean
       names:
-          - Tox21 SR-p53 toxicity
-          - SR-p53 toxicity
-          - Tox21 SR-p53 response toxicity
-          - SR-p53 response toxicity
-          - p53 response toxicity
-          - Tox21 p53 toxicity
+          - noun: SR-p53 toxicity
+          - noun: SR-p53 response toxicity
+          - noun: p53 response toxicity
+          - verb: activitiy in the SR-p53 toxicity assay
+          - verb: activitiy in the SR-p53 response toxicity assay
+          - verb: activitiy in the p53 response toxicity assay
+          - adjective: toxic in the SR-p53 assay
+          - adjective: toxic in the SR-p53 response assay
+          - adjective: toxic in the p53 response assay
 uris:
 benchmarks:
     - name: TDC
