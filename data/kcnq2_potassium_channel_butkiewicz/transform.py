@@ -77,7 +77,7 @@ screen active set of compounds (AID 2287).""",
         "license": "CC BY 4.0",  # license under which the original dataset was published
         "links": [  # list of relevant links (original dataset, other uses, etc.)
             {
-                "url": "https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al", 
+                "url": "https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al",
                 "description": "original dataset",
             },
             {

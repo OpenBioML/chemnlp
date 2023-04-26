@@ -2,7 +2,7 @@ from typing import Dict, List, Optional
 
 import pubchempy as pcp
 import requests
-from pydantic import root_validator, validator, Extra
+from pydantic import Extra, root_validator, validator
 from pydantic_yaml import YamlModel, YamlStrEnum
 
 
