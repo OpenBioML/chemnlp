@@ -55,9 +55,13 @@ response pathways.""",
                 "units": None,
                 "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "Tox21 NR-AR-LBD toxicity",
-                    "NR-AR-LBD toxicity",
-                    "androgen receptor ligand-binding domain toxicity",
+                    {"noun": "NR-AR-LBD toxicity"},
+                    {"noun": "androgen receptor ligand-binding domain toxicity"},
+                    {"verb": "activity in the NR-AR-LBD toxicity assay"},
+                    {"adjective": "toxic in the NR-AR-LBD assay"},
+                    {
+                        "adjective": "toxic in the androgen receptor ligand-binding domain assay"
+                    },
                 ],
             },
         ],

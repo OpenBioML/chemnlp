@@ -6,13 +6,15 @@ description: |-
     response pathways.
 targets:
     - id: toxicity_NR-AR-LBD
-      description: whether it shows activity in the androgen receptor ligand-binding domain assay (1) or not toxic (0)
+      description: whether it shows activity in the NR-AR-LBD toxicity assay (1) or not (0)
       units:
       type: boolean
       names:
-          - Tox21 NR-AR-LBD toxicity
-          - NR-AR-LBD toxicity
-          - androgen receptor ligand-binding domain toxicity
+          - noun: NR-AR-LBD toxicity
+          - noun: androgen receptor ligand-binding domain toxicity
+          - verb: activity in the NR-AR-LBD toxicity assay
+          - adjective: toxic in the NR-AR-LBD assay
+          - adjective: toxic in the androgen receptor ligand-binding domain assay
 uris:
 benchmarks:
     - name: TDC
