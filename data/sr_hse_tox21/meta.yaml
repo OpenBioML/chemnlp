@@ -10,11 +10,15 @@ targets:
       units:
       type: boolean
       names:
-          - Tox21 SR-HSE toxicity
-          - SR-HSE toxicity
-          - Tox21 SR-Heat shock response toxicity
-          - SR-Heat shock response toxicity
-          - Heat shock response toxicity
+          - noun: SR-HSE toxicity
+          - noun: SR-Heat shock response toxicity
+          - noun: Heat shock response toxicity
+          - verb: SR-HSE toxicity
+          - verb: activity in the SR-Heat shock response toxicity assay
+          - verb: activity in the Heat shock response toxicity assay
+          - adjective: toxic in the SR-HSE assay
+          - adjective: toxic in the SR-Heat shock response assay
+          - adjective: toxic in the Heat shock response assay
 uris:
 benchmarks:
     - name: TDC
