@@ -56,9 +56,13 @@ response pathways.""",
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "Tox21 NR-AhR toxicity",
-                    "NR-AhR toxicity",
-                    "aryl hydrocarbon receptor toxicity",
+                    {"noun": "NR-AhR toxicity"},
+                    {"noun": "aryl hydrocarbon receptor toxicity"},
+                    {
+                        "verb": "activity in the aryl hydrocarbon receptor toxicity assay"
+                    },
+                    {"adjective": "toxic in the NR-AhR assay"},
+                    {"adjective": "toxic in the aryl hydrocarbon receptor assay"},
                 ],
             },
         ],

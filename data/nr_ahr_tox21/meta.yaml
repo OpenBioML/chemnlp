@@ -10,9 +10,11 @@ targets:
       units:
       type: boolean
       names:
-          - Tox21 NR-AhR toxicity
-          - NR-AhR toxicity
-          - aryl hydrocarbon receptor toxicity
+          - noun: NR-AhR toxicity
+          - noun: aryl hydrocarbon receptor toxicity
+          - verb: activity in the aryl hydrocarbon receptor toxicity assay
+          - adjective: toxic in the NR-AhR assay
+          - adjective: toxic in the aryl hydrocarbon receptor assay
 uris:
 benchmarks:
     - name: TDC
