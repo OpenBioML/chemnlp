@@ -10,9 +10,11 @@ targets:
       units:
       type: boolean
       names:
-          - Tox21 NR-AR toxicity
-          - NR-AR toxicity
-          - NR-androgen receptor toxicity
+          - noun: NR-AR toxicity
+          - noun: NR-androgen receptor toxicity
+          - verb: toxic in a androgen receptor toxicity assay
+          - adjective: toxic in the NR-AR assay
+          - adjective: toxic in the NR-androgen receptor assay
 uris:
 benchmarks:
     - name: TDC
