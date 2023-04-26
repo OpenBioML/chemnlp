@@ -68,11 +68,14 @@ related attritions in the later development stages.""",
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "hERG blocker",
-                    "hERG active compound",
-                    "hERG blocker",
-                    "human ether-à-go-go related gene (hERG) blocker",
-                    "activity against Human ether-à-go-go related gene (hERG)",
+                    {"noun": "hERG blocker"},
+                    {"noun": "hERG active compound"},
+                    {"noun": "hERG active compound (<10uM)"},
+                    {"noun": "human ether-à-go-go related gene (hERG) blocker"},
+                    {"verb": "blocks hERG"},
+                    {"verb": "blocks human ether-à-go-go related gene (hERG)"},
+                    {"verb": "active against hERG (<10uM)"},
+                    {"verb": "active against human ether-à-go-go related gene (hERG)"},
                 ],
                 "uris": [
                     "http://purl.obolibrary.org/obo/MI_2136",
