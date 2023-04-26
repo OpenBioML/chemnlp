@@ -56,11 +56,23 @@ response pathways.""",
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    f"Tox21 {target_subfolder} toxicity",
-                    f"{target_subfolder} toxicity",
-                    "Tox21 SR-Mitochondrial membrane potential toxicity",
-                    "SR-Mitochondrial membrane potential toxicity",
-                    "Mitochondrial membrane potential toxicity",
+                    {"noun": f"{target_subfolder} toxicity"},
+                    {"noun": "SR-Mitochondrial membrane potential toxicity"},
+                    {"noun": "Mitochondrial membrane potential toxicity"},
+                    {"verb": f"activity in the {target_subfolder} toxicity assay"},
+                    {
+                        "verb": "activity in the R-Mitochondrial membrane potential toxicity assay"
+                    },
+                    {
+                        "verb": "activity in the itochondrial membrane potential toxicity assay"
+                    },
+                    {"adjective": f"toxic in the {target_subfolder} assay"},
+                    {
+                        "adjective": "toxic in the SR-Mitochondrial membrane potential assay"
+                    },
+                    {
+                        "adjective": "toxic in the Mitochondrial membrane potential assay"
+                    },
                 ],
             },
         ],

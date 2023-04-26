@@ -10,11 +10,15 @@ targets:
       units:
       type: boolean
       names:
-          - Tox21 SR-MMP toxicity
-          - SR-MMP toxicity
-          - Tox21 SR-Mitochondrial membrane potential toxicity
-          - SR-Mitochondrial membrane potential toxicity
-          - Mitochondrial membrane potential toxicity
+          - noun: SR-MMP toxicity
+          - noun: SR-Mitochondrial membrane potential toxicity
+          - noun: Mitochondrial membrane potential toxicity
+          - verb: activity in the SR-MMP toxicity assay
+          - verb: activity in the R-Mitochondrial membrane potential toxicity assay
+          - verb: activity in the itochondrial membrane potential toxicity assay
+          - adjective: toxic in the SR-MMP assay
+          - adjective: toxic in the SR-Mitochondrial membrane potential assay
+          - adjective: toxic in the Mitochondrial membrane potential assay
 uris:
 benchmarks:
     - name: TDC
