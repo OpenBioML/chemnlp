@@ -58,8 +58,10 @@ screen active set of compounds (AID 2287).""",
                 "units": None,
                 "type": "boolean",
                 "names": [
-                    "inhibitor of the kcnq2 potassium channel activity",
-                    "displaying activity against the kcnq2 potassium channel",
+                    {"noun": "inhibitor of the kcnq2 potassium channel activity"},
+                    {
+                        "gerund": "displaying activity against the kcnq2 potassium channel"
+                    },
                 ],
                 "pubchem_aids": [2239, 2287, 2282, 2283, 2558],
                 "uris": [],
@@ -74,6 +76,10 @@ screen active set of compounds (AID 2287).""",
         ],
         "license": "CC BY 4.0",  # license under which the original dataset was published
         "links": [  # list of relevant links (original dataset, other uses, etc.)
+            {
+                "url": "https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al",
+                "description": "original dataset",
+            },
             {
                 "url": "https://doi.org/10.3390/molecules18010735",
                 "description": "corresponding publication",
@@ -95,7 +101,6 @@ screen active set of compounds (AID 2287).""",
             }
         ],
         "num_points": len(df),  # number of datapoints in this dataset
-        "url": "https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al",
         "bibtex": [
             """@article{Butkiewicz2013,
 doi = {10.3390/molecules18010735},

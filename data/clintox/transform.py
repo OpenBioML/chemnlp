@@ -47,9 +47,9 @@ with successful trials.""",
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "boolean",
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "clinically toxic",
-                    "displaying clinical toxicity",
-                    "toxic",
+                    {"adjective": "clinically toxic"},
+                    {"gerund": "displaying clinical toxicity"},
+                    {"adjective": "toxic"},
                 ],
                 "uris": [
                     "http://purl.bioontology.org/ontology/MESH/Q000633",
@@ -75,12 +75,15 @@ with successful trials.""",
         "license": "CC BY 4.0",  # license under which the original dataset was published
         "links": [  # list of relevant links (original dataset, other uses, etc.)
             {
+                "url": "https://tdcommons.ai/single_pred_tasks/tox/#clintox",
+                "description": "original dataset",
+            },
+            {
                 "url": "https://doi.org/10.1016/j.chembiol.2016.07.023",
                 "description": "corresponding publication",
             },
         ],
         "num_points": len(df),  # number of datapoints in this dataset
-        "url": "https://tdcommons.ai/single_pred_tasks/tox/#clintox",
         "bibtex": [
             """@article{Gayvert2016,
 doi = {10.1016/j.chembiol.2016.07.023},
