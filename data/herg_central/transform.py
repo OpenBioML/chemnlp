@@ -64,10 +64,18 @@ hERG_at_10microM, and hERG_inhib.""",
                 "units": "uM",
                 "type": "continuous",
                 "names": [
-                    "hERG percent inhibition at a 1uM concentration",
-                    "hERG percent inhibition at 1uM",
-                    "Human ether-à-go-go related gene (hERG) percent inhibition at a 1uM concentration",
-                    "Human ether-à-go-go related gene (hERG) percent inhibition at 1uM",
+                    {"noun": "hERG percent inhibition at a 1uM concentration"},
+                    {"noun": "hERG percent inhibition at 1uM"},
+                    {
+                        "noun": "human ether-à-go-go related gene (hERG) percent inhibition at a 1uM concentration"
+                    },
+                    {
+                        "noun": "human ether-à-go-go related gene (hERG) percent inhibition at 1uM"
+                    },
+                    {"verb": "active against hERG at a 1uM concentration"},
+                    {
+                        "verb": "active against human ether-à-go-go related gene (hERG) at a 1uM concentration"
+                    },
                 ],
                 "uris": [
                     "http://purl.obolibrary.org/obo/MI_2136",
