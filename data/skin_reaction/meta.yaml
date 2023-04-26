@@ -11,10 +11,13 @@ targets:
       units:
       type: boolean
       names:
-          - skin reaction
-          - skin sensitization
-          - agent induced skin reaction
-          - drug induced skin immune reaction
+          - noun: skin reaction
+          - noun: skin sensitization
+          - noun: agent induced skin reaction
+          - noun: drug induced skin immune reaction
+          - verb: causes skin reaction
+          - verb: causes skin sensitization
+          - verb: causes drug induced skin immune reaction
       uris:
           - http://purl.bioontology.org/ontology/MEDDRA/10040914
 benchmarks:

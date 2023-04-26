@@ -67,10 +67,13 @@ Committee on the Validation of Alternative Methods) report on the rLLNA.""",
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "skin reaction",
-                    "skin sensitization",
-                    "agent induced skin reaction",
-                    "drug induced skin immune reaction",
+                    {"noun": "skin reaction"},
+                    {"noun": "skin sensitization"},
+                    {"noun": "agent induced skin reaction"},
+                    {"noun": "drug induced skin immune reaction"},
+                    {"verb": "causes skin reaction"},
+                    {"verb": "causes skin sensitization"},
+                    {"verb": "causes drug induced skin immune reaction"},
                 ],
                 "uris": [
                     "http://purl.bioontology.org/ontology/MEDDRA/10040914",
