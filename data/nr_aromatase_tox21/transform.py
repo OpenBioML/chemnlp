@@ -56,9 +56,11 @@ response pathways.""",
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "Tox21 NR-Aromatase toxicity",
-                    "NR-Aromatase enzyme toxicity",
-                    "Aromatase enzyme toxicity",
+                    {"noun": "NR-Aromatase enzyme toxicity"},
+                    {"noun": "Aromatase enzyme toxicity"},
+                    {"verb": "activity in the NR-Aromatase enzyme toxicity assay"},
+                    {"activity": "toxic in the NR-Aromatase enzyme assay"},
+                    {"activity": "toxic in the Aromatase enzyme assay"},
                 ],
             },
         ],

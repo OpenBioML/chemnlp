@@ -10,9 +10,11 @@ targets:
       units:
       type: boolean
       names:
-          - Tox21 NR-Aromatase toxicity
-          - NR-Aromatase enzyme toxicity
-          - Aromatase enzyme toxicity
+          - noun: NR-Aromatase enzyme toxicity
+          - noun: Aromatase enzyme toxicity
+          - verb: activity in the NR-Aromatase enzyme toxicity assay
+          - activity: toxic in the NR-Aromatase enzyme assay
+          - activity: toxic in the Aromatase enzyme assay
 uris:
 benchmarks:
     - name: TDC
