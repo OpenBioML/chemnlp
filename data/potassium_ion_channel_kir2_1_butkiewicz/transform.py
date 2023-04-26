@@ -57,9 +57,12 @@ from the molecules found active in both, AID 2032 and AID 463252""",
                 "units": None,
                 "type": "boolean",
                 "names": [
-                    "is blocking potassium ion channel activity",
-                    "blocks potassium ion channel activity",
-                    "inhibts the I  nward-Rectifying Potassium Ion Channel Kir2.1",
+                    {"verb": "is blocking potassium ion channel activity"},
+                    {"verb": "blocks potassium ion channel activity"},
+                    {
+                        "verb": "inhibts the Inward-Rectifying Potassium Ion Channel Kir2.1"
+                    },
+                    {"noun": "blocker of potassium ion channel activity"},
                 ],
                 "pubchem_aids": [1672, 2032, 463252, 2105, 2345, 2236, 2329],
                 "uris": ["http://purl.obolibrary.org/obo/XCO_0000225"],
@@ -82,6 +85,10 @@ from the molecules found active in both, AID 2032 and AID 463252""",
         "license": "CC BY 4.0",  # license under which the original dataset was published
         "links": [  # list of relevant links (original dataset, other uses, etc.)
             {
+                "url": "https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al",
+                "description": "original dataset",
+            },
+            {
                 "url": "https://doi.org/10.3390/molecules18010735",
                 "description": "corresponding publication",
             },
@@ -95,7 +102,6 @@ from the molecules found active in both, AID 2032 and AID 463252""",
             },
         ],
         "num_points": len(df),  # number of datapoints in this dataset
-        "url": "https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al",
         "bibtex": [
             """@article{Butkiewicz2013,
 doi = {10.3390/molecules18010735},
