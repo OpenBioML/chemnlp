@@ -10,8 +10,10 @@ targets:
       units:
       type: boolean
       names:
-          - activity against the human immunodeficiency virus
-          - activity against HIV
+          - noun: activity against the human immunodeficiency virus
+          - noun: activity against HIV
+          - adjective: active against the human immunodeficiency virus
+          - adjective: active against HIV
 benchmarks:
     - name: TDC
       link: https://tdcommons.ai/

@@ -66,8 +66,10 @@ over 40,000 compounds.""",
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "activity against the human immunodeficiency virus",
-                    "activity against HIV",
+                    {"noun": "activity against the human immunodeficiency virus"},
+                    {"noun": "activity against HIV"},
+                    {"adjective": "active against the human immunodeficiency virus"},
+                    {"adjective": "active against HIV"},
                 ],
             },
         ],
