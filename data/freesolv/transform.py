@@ -66,7 +66,7 @@ def get_and_transform_data():
                 "units": "kcal/mol",  # units of the values in this column (leave empty if unitless)
                 "type": "continuous",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "hydration free energy",
+                    {"noun": "hydration free energy"},
                 ],
             },
             {
@@ -75,7 +75,7 @@ def get_and_transform_data():
                 "units": "kcal/mol",
                 "type": "continuous",
                 "names": [
-                    "hydration free energy uncertainty",
+                    {"noun": "hydration free energy uncertainty"},
                 ],
             },
             {
@@ -84,7 +84,9 @@ def get_and_transform_data():
                 "units": "kcal/mol",  # units of the values in this column (leave empty if unitless)
                 "type": "continuous",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "hydration free energy computed using the GAFF force field",
+                    {
+                        "noun": "hydration free energy computed using the GAFF force field"
+                    },
                 ],
             },
             {
@@ -93,7 +95,9 @@ def get_and_transform_data():
                 "units": "kcal/mol",
                 "type": "continuous",
                 "names": [
-                    "uncertainty in hydration free energy computed using the GAFF force field",
+                    {
+                        "noun": "uncertainty in hydration free energy computed using the GAFF force field"
+                    },
                 ],
             },
         ],
