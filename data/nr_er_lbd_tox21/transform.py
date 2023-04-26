@@ -56,11 +56,25 @@ response pathways.""",
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "Tox21 NR-ER-LBD toxicity",
-                    "NR-ER-LBD toxicity",
-                    "Tox21 NR-estrogen receptor alpha ligand binding domain toxicity",
-                    "NR-estrogen receptor alpha ligand binding domain toxicity",
-                    "estrogen receptor alpha ligand binding domain toxicity",
+                    {"noun": "NR-ER-LBD toxicity"},
+                    {
+                        "noun": "NR-estrogen receptor alpha ligand binding domain toxicity"
+                    },
+                    {"noun": "estrogen receptor alpha ligand binding domain toxicity"},
+                    {"verb": "activity in the NR-ER-LBD toxicity assay"},
+                    {
+                        "verb": "activity in the NR-estrogen receptor alpha ligand binding domain assay"
+                    },
+                    {
+                        "verb": "activity in the estrogen receptor alpha ligand binding domain assay"
+                    },
+                    {"adjective": "toxic in the NR-ER-LBD assay"},
+                    {
+                        "adjective": "toxic in the NR-estrogen receptor alpha ligand binding domain assay"
+                    },
+                    {
+                        "adjective": "toxic in the estrogen receptor alpha ligand binding domain assay"
+                    },
                 ],
             },
         ],
