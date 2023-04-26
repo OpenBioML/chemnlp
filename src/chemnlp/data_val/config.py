@@ -11,6 +11,7 @@ class Model(BaseModel):
     base: str
     name: str
     revision: str
+    checkpoint_path: Optional[str] = None
 
 
 class PromptTune(BaseModel):
@@ -21,7 +22,7 @@ class PromptTune(BaseModel):
 
 class TrainerConfig(BaseModel):
     output_dir: str
-    num_train_epochs: int = 1
+    num_train_epochs: float = 1.0
     learning_rate: float = 3e-4
     bf16: bool = False
     fp16: bool = False
@@ -32,6 +33,8 @@ class TrainerConfig(BaseModel):
     dataloader_num_workers: int = 0
     per_device_train_batch_size: int = 32
     per_device_eval_batch_size: int = 32
+    gradient_checkpointing: bool = False
+    deepspeed_config: Optional[str] = None
 
     @validator("learning_rate")
     def small_positive_learning_rate(cls, v):
@@ -42,9 +45,10 @@ class TrainerConfig(BaseModel):
 
 class WandbConfig(BaseModel):
     enabled: bool = False
-    project: str = "chemnlp"
+    project: str = "LLCheM"
     group: str
     name: str
+    entity: str = "chemnlp"
 
 
 class TrainPipelineConfig(BaseModel):

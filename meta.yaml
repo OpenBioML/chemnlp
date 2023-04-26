@@ -1,45 +1,51 @@
 ---
-name: tyrosyl-dna_phosphodiesterase_butkiewicz
-description: |
-    Inhibition of Human tyrosyl-DNA phosphodiesterase 1 (TDP1)
-    potentially enhances anticancer activity of DNA topoisomerase I inhibitors.
-    Primary screen AID 485290. Counter screen AID 489007.
-    Final set contains all compounds active in the counter screen AID 489007.
+name: potassium_ion_channel_kir2_1_butkiewicz
+description: |-
+    The Kir2.1 inward-rectifier potassium ion channel is
+    a target in the treatment of cardiovascular, neurological, renal and
+    metabolic disorders. Primary assay AID 1672. Validation screens AID
+    2032 and AID 463252. Counter screens  AID 2105, AID 2345, AID 2236, and
+    AID 2329. The final set of 172 active compounds was constructed
+    subtracting the actives in AID 2105, AID 2345, AID 2236, and AID 2329
+    from the molecules found active in both, AID 2032 and AID 463252
 targets:
-    - id: activity_tyrosyl_dna_phosphodiesterase
-      description: whether it active against tyrosyl-DNA phosphodiesterase receptor 1 (1) or not (0).
+    - id: activity_potassium_ion_channel
+      description: whether it is active against potassium ion channel (1) or not (0).
       units:
       type: boolean
       names:
-          - noun: a tyrosyl-DNA phosphodiesterase 1 (TDP1) inhibitor
-          - noun: a tyrosyl-DNA phosphodiesterase 1 inhibitor
-          - gerund: inhibiting human tyrosyl-DNA phosphodiesterase 1 (TDP1)
-          - gerund: inhibiting human tyrosyl-DNA phosphodiesterase 1
-          - adjective: active against the tyrosyl-DNA phosphodiesterase receptor 1
-          - adjective: active against the tyrosyl-DNA phosphodiesterase receptor 1 (TDP1)
+          - verb: is blocking potassium ion channel activity
+          - verb: blocks potassium ion channel activity
+          - verb: inhibts the Inward-Rectifying Potassium Ion Channel Kir2.1
+          - noun: blocker of potassium ion channel activity
       pubchem_aids:
-          - 485290
-          - 489007
-      uris: []
+          - 1672
+          - 2032
+          - 463252
+          - 2105
+          - 2345
+          - 2236
+          - 2329
+      uris:
+          - http://purl.obolibrary.org/obo/XCO_0000225
 identifiers:
     - id: SMILES
       type: SMILES
       description: SMILES
+benchmarks:
+    - name: TDC
+      link: https://tdcommons.ai/
+      split_column: split
 license: CC BY 4.0
 links:
-    - url: https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al
-      description: original dataset
     - url: https://doi.org/10.3390/molecules18010735
       description: corresponding publication
     - url: https://doi.org/10.1093/nar/gky1033
       description: corresponding publication
     - url: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5962024/
       description: corresponding publication
-benchmarks:
-    - name: TDC
-      link: https://tdcommons.ai/
-      split_column: split
-num_points: 341365
+num_points: 301493
+url: https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al
 bibtex:
     - |-
       @article{Butkiewicz2013,
@@ -68,7 +74,8 @@ bibtex:
       pages = {D1102--D1109},
       author = {Sunghwan Kim and Jie Chen and Tiejun Cheng and Asta Gindulyte
       and Jia He and Siqian He and Qingliang Li and Benjamin A Shoemaker
-      and Paul A Thiessen and Bo Yu and Leonid Zaslavsky and Jian Zhang and Evan E Bolton},
+      and Paul A Thiessen and Bo Yu and Leonid Zaslavsky and Jian Zhang
+      and Evan E Bolton},
       title = {{PubChem} 2019 update: improved access to chemical data},
       journal = {Nucleic Acids Research}}
     - |-
