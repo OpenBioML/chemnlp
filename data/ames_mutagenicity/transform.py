@@ -70,9 +70,13 @@ The dataset is aggregated from four papers.""",
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "mutagenicity",
-                    "Ames mutagenicity",
-                    "ability of a drug to induce genetic alterations",
+                    {"noun": "mutagenicity"},
+                    {"noun": "Ames mutagenicity"},
+                    {"adjective": "mutagenic"},
+                    {"adjective": "Ames mutagenic"},
+                    {"verb": "has the ability to induce genetic alterations"},
+                    {"gerund": "having the potential to cause mutations"},
+                    {"gerund": "having the potential to induce genetic alterations"},
                 ],
                 "uris": [
                     "http://purl.enanomapper.org/onto/ENM_0000042",

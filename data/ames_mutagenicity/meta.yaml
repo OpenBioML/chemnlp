@@ -14,9 +14,13 @@ targets:
       units:
       type: boolean
       names:
-          - mutagenicity
-          - Ames mutagenicity
-          - ability of a drug to induce genetic alterations
+          - noun: mutagenicity
+          - noun: Ames mutagenicity
+          - adjective: mutagenic
+          - adjective: Ames mutagenic
+          - verb: has the ability to induce genetic alterations
+          - gerund: having the potential to cause mutations
+          - gerund: having the potential to induce genetic alterations
       uris:
           - http://purl.enanomapper.org/onto/ENM_0000042
       pubchem_aids:
