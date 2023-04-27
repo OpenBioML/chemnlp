@@ -47,8 +47,11 @@ by passive diffusion through the membrane.""",
                 "units": None,
                 "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "is permeable in the PAMPA assay",
-                    "shows permeability in parallel artificial membrane permeability assay (PAMPA) assay",
+                    {"verb": "is permeable in the PAMPA assay"},
+                    {
+                        "verb": "shows permeability in parallel artificial membrane permeability assay (PAMPA) assay"
+                    },
+                    {"gerund": "permeating in the PAMPA assay"},
                 ],
                 "pubchem_aids": [1508612],
                 "uris": ["http://purl.bioontology.org/ontology/MESH/D002463"],
