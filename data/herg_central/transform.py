@@ -72,9 +72,9 @@ hERG_at_10microM, and hERG_inhib.""",
                     {
                         "noun": "human ether-à-go-go related gene (hERG) percent inhibition at 1uM"
                     },
-                    {"verb": "active against hERG at a 1uM concentration"},
+                    {"verb": "is active against hERG at a 1uM concentration"},
                     {
-                        "verb": "active against human ether-à-go-go related gene (hERG) at a 1uM concentration"
+                        "verb": "is active against human ether-à-go-go related gene (hERG) at a 1uM concentration"
                     },
                 ],
                 "uris": [
@@ -87,10 +87,18 @@ hERG_at_10microM, and hERG_inhib.""",
                 "units": "uM",
                 "type": "continuous",
                 "names": [
-                    "hERG percent inhibition at a 10uM concentration",
-                    "hERG percent inhibition at 10uM",
-                    "Human ether-à-go-go related gene (hERG) percent inhibition at a 10uM concentration",
-                    "Human ether-à-go-go related gene (hERG) percent inhibition at 10uM",
+                    {"noun": "hERG percent inhibition at a 10uM concentration"},
+                    {"noun": "hERG percent inhibition at 1uM"},
+                    {
+                        "noun": "human ether-à-go-go related gene (hERG) percent inhibition at a 10uM concentration"
+                    },
+                    {
+                        "noun": "human ether-à-go-go related gene (hERG) percent inhibition at 10uM"
+                    },
+                    {"verb": "is active against hERG at a 10uM concentration"},
+                    {
+                        "verb": "is active against human ether-à-go-go related gene (hERG) at a 10uM concentration"
+                    },
                 ],
                 "uris": ["http://purl.obolibrary.org/obo/MI_2136"],
             },
@@ -102,11 +110,9 @@ whether the compound has an IC50 of less than 10microM.)""",
                 "units": None,
                 "type": "boolean",
                 "names": [
-                    "hERG inhibition",
-                    "Human ether-à-go-go related gene (hERG) inhibition",
-                    "hERG blocker",
-                    "Human ether-à-go-go related gene (hERG) blocker",
-                    "inhibition of Human ether-à-go-go related gene (hERG)",
+                    {"noun": "hERG percent inhibitor"},
+                    {"verb": "is active against hERG"},
+                    {"verb": "inhbits human ether-à-go-go related gene (hERG)"},
                 ],
                 "uris": [
                     "http://purl.obolibrary.org/obo/MI_2136",
