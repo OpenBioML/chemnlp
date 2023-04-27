@@ -58,10 +58,10 @@ central nervous system.""",
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "blood brain barrier penetration",
-                    "ADME blood-brain barrier penetration",
-                    "ability of a drug to penetrate blood brain barrier to reach the brain",
-                    "ability of a drug to penetrate blood brain barrier",
+                    {"noun": "blood brain barrier penetration"},
+                    {"noun": "ADME blood-brain barrier penetration"},
+                    {"verb": "penetrates the blood brain barrier to reach the brain"},
+                    {"verb": "penetrates the blood brain barrier"},
                 ],
                 "uris": None,
             },
