@@ -13,9 +13,9 @@ targets:
       units:
       type: boolean
       names:
-          - is a orexin 1 inhibitor
-          - is a orexin 1 receptor antagonist
-          - inhibits orexin 1 receptor
+          - noun: orexin 1 inhibitor
+          - noun: a orexin 1 receptor antagonist
+          - gerund: inhibiting orexin 1 receptor
       pubchem_aids:
           - 485270
           - 463079
@@ -35,6 +35,8 @@ benchmarks:
       split_column: split
 license: CC BY 4.0
 links:
+    - url: https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al
+      description: original dataset
     - url: https://doi.org/10.3390/molecules18010735
       description: corresponding publication
     - url: https://doi.org/10.1093/nar/gky1033
@@ -42,7 +44,6 @@ links:
     - url: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5962024/
       description: corresponding publication
 num_points: 218158
-url: https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al
 bibtex:
     - |-
       @article{Butkiewicz2013,

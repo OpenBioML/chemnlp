@@ -13,7 +13,7 @@ targets:
       units: K
       type: continuous
       names:
-          - flash point
+          - noun: flash point
       uris:
           - http://semanticscience.org/resource/CHEMINF_000417
 identifiers:
