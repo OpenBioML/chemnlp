@@ -58,8 +58,9 @@ be used to overcome multidrug resistance.""",
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "P-glycoprotein inhibition",
-                    "Pgp inhibition",
+                    {"noun": "P-glycoprotein inhibition"},
+                    {"noun": "Pgp inhibition"},
+                    {"verb": "shows Pgp inhibition"},
                 ],
                 "uris": [
                     "http://purl.bioontology.org/ontology/CSP/4000-0278",

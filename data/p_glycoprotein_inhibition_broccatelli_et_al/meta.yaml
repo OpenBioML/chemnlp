@@ -11,8 +11,9 @@ targets:
       units:
       type: boolean
       names:
-          - P-glycoprotein inhibition
-          - Pgp inhibition
+          - noun: P-glycoprotein inhibition
+          - noun: Pgp inhibition
+          - verb: shows Pgp inhibition
       uris:
           - http://purl.bioontology.org/ontology/CSP/4000-0278
 benchmarks:
