@@ -60,8 +60,10 @@ nervous system, including the substantia nigra.""",
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "CYP P450 2D6 inhibition",
-                    "CYP 2D6 inhibition",
+                    {"noun": "CYP P450 2D6 inhibition"},
+                    {"noun": "CYP 2D6 inhibition"},
+                    {"verb": "inhibits CYP P450 2D6"},
+                    {"gerund": "inhibiting CYP P450 2D6"},
                 ],
                 "uris": None,
             },

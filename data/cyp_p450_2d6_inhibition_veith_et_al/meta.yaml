@@ -11,8 +11,10 @@ targets:
       units:
       type: boolean
       names:
-          - CYP P450 2D6 inhibition
-          - CYP 2D6 inhibition
+          - noun: CYP P450 2D6 inhibition
+          - noun: CYP 2D6 inhibition
+          - verb: inhibits CYP P450 2D6
+          - gerund: inhibiting CYP P450 2D6
       uris:
 benchmarks:
     - name: TDC
