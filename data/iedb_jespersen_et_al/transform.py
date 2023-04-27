@@ -98,10 +98,10 @@ epitopes and non-epitope amino acids determined from crystal structures.""",
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "categorical",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "epitope",
-                    "amino acids sequence active in antigen binding",
-                    "epitope sequence active in antigen binding",
-                    "epitope sequence active in binding",
+                    {"noun": "epitope"},
+                    {"noun": "amino acids sequence active in the antigen binding"},
+                    {"noun": "epitope sequence active in the antigen binding"},
+                    {"noun": "epitope sequence active in the binding"},
                 ],
                 "uris": [
                     "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C13189",

@@ -10,10 +10,10 @@ targets:
       units:
       type: categorical
       names:
-          - epitope
-          - amino acids sequence active in antigen binding
-          - epitope sequence active in antigen binding
-          - epitope sequence active in binding
+          - noun: epitope
+          - noun: amino acids sequence active in the antigen binding
+          - noun: epitope sequence active in the antigen binding
+          - noun: epitope sequence active in the binding
       uris:
           - http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C13189
 identifiers:
