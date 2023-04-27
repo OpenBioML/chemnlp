@@ -78,9 +78,9 @@ response pathways.""",
                         "adjective": "toxic in the peroxisome proliferator-activated receptor gamma assay"
                     },
                 ],
+                "uris": None,
             },
         ],
-        "uris": None,
         "benchmarks": [
             {
                 "name": "TDC",  # unique benchmark name

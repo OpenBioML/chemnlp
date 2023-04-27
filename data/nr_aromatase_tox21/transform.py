@@ -59,12 +59,12 @@ response pathways.""",
                     {"noun": "NR-Aromatase enzyme toxicity"},
                     {"noun": "Aromatase enzyme toxicity"},
                     {"verb": "is active in the NR-Aromatase enzyme toxicity assay"},
-                    {"activity": "toxic in the NR-Aromatase enzyme assay"},
-                    {"activity": "toxic in the Aromatase enzyme assay"},
+                    {"adjective": "toxic in the NR-Aromatase enzyme assay"},
+                    {"adjective": "toxic in the Aromatase enzyme assay"},
                 ],
+                "uris": None,
             },
         ],
-        "uris": None,
         "benchmarks": [
             {
                 "name": "TDC",  # unique benchmark name

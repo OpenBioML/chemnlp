@@ -10,7 +10,6 @@ targets:
       units:
       type: boolean
       names:
-          - SR-ATAD5 toxicity
           - noun: SR-Luciferase-tagged ATAD5 in human embryonic kidney cells toxicity
           - noun: Luciferase-tagged ATAD5 in human embryonic kidney cells toxicity
           - noun: Luciferase-tagged ATAD5 toxicity
@@ -20,7 +19,7 @@ targets:
           - adjective: toxic in the SR-Luciferase-tagged ATAD5 in human embryonic kidney cells assay
           - adjective: toxic in the Luciferase-tagged ATAD5 in human embryonic kidney cells assay
           - adjective: toxic in the Luciferase-tagged ATAD5 assay
-uris:
+      uris:
 benchmarks:
     - name: TDC
       link: https://tdcommons.ai/

@@ -19,7 +19,7 @@ targets:
           - adjective: toxic in the SR-p53 assay
           - adjective: toxic in the SR-p53 response assay
           - adjective: toxic in the p53 response assay
-uris:
+      uris:
 benchmarks:
     - name: TDC
       link: https://tdcommons.ai/

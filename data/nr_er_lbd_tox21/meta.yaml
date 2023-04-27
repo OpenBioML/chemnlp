@@ -19,7 +19,7 @@ targets:
           - adjective: toxic in the NR-ER-LBD assay
           - adjective: toxic in the NR-estrogen receptor alpha ligand binding domain assay
           - adjective: toxic in the estrogen receptor alpha ligand binding domain assay
-uris:
+      uris:
 benchmarks:
     - name: TDC
       link: https://tdcommons.ai/

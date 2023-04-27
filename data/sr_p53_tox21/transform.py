@@ -66,9 +66,9 @@ response pathways.""",
                     {"adjective": "toxic in the SR-p53 response assay"},
                     {"adjective": "toxic in the p53 response assay"},
                 ],
+                "uris": None,
             },
         ],
-        "uris": None,
         "benchmarks": [
             {
                 "name": "TDC",  # unique benchmark name

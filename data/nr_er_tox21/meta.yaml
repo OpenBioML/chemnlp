@@ -19,7 +19,7 @@ targets:
           - adjective: toxic in the NR-ER assay
           - adjective: toxic in the NR-Estrogen receptor alpha assay
           - adjective: toxic in the estrogen receptor alpha assay
-uris:
+      uris:
 benchmarks:
     - name: TDC
       link: https://tdcommons.ai/

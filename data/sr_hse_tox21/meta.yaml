@@ -19,7 +19,7 @@ targets:
           - adjective: toxic in the SR-HSE assay
           - adjective: toxic in the SR-Heat shock response assay
           - adjective: toxic in the Heat shock response assay
-uris:
+      uris:
 benchmarks:
     - name: TDC
       link: https://tdcommons.ai/

@@ -56,7 +56,6 @@ response pathways.""",
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    f"{target_subfolder} toxicity",
                     {
                         "noun": "SR-Luciferase-tagged ATAD5 in human embryonic kidney cells toxicity"
                     },
@@ -79,9 +78,9 @@ response pathways.""",
                     },
                     {"adjective": "toxic in the Luciferase-tagged ATAD5 assay"},
                 ],
+                "uris": None,
             },
         ],
-        "uris": None,
         "benchmarks": [
             {
                 "name": "TDC",  # unique benchmark name

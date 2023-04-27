@@ -15,7 +15,7 @@ targets:
           - verb: is active in the NR-AR-LBD toxicity assay
           - adjective: toxic in the NR-AR-LBD assay
           - adjective: toxic in the androgen receptor ligand-binding domain assay
-uris:
+      uris:
 benchmarks:
     - name: TDC
       link: https://tdcommons.ai/

@@ -63,9 +63,9 @@ response pathways.""",
                         "adjective": "toxic in the androgen receptor ligand-binding domain assay"
                     },
                 ],
+                "uris": None,
             },
         ],
-        "uris": None,
         "benchmarks": [
             {
                 "name": "TDC",  # unique benchmark name

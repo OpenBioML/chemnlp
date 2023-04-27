@@ -66,9 +66,9 @@ response pathways.""",
                     {"adjective": "toxic in the SR-Heat shock response assay"},
                     {"adjective": "toxic in the Heat shock response assay"},
                 ],
+                "uris": None,
             },
         ],
-        "uris": None,
         "benchmarks": [
             {
                 "name": "TDC",  # unique benchmark name

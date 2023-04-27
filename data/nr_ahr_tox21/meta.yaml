@@ -15,7 +15,7 @@ targets:
           - verb: is active in the aryl hydrocarbon receptor toxicity assay
           - adjective: toxic in the NR-AhR assay
           - adjective: toxic in the aryl hydrocarbon receptor assay
-uris:
+      uris:
 benchmarks:
     - name: TDC
       link: https://tdcommons.ai/

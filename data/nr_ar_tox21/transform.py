@@ -61,9 +61,9 @@ response pathways.""",
                     {"adjective": "toxic in the NR-AR assay"},
                     {"adjective": "toxic in the NR-androgen receptor assay"},
                 ],
+                "uris": None,
             },
         ],
-        "uris": None,
         "benchmarks": [
             {
                 "name": "TDC",  # unique benchmark name

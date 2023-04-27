@@ -74,9 +74,9 @@ response pathways.""",
                         "adjective": "toxic in the Mitochondrial membrane potential assay"
                     },
                 ],
+                "uris": None,
             },
         ],
-        "uris": None,
         "benchmarks": [
             {
                 "name": "TDC",  # unique benchmark name

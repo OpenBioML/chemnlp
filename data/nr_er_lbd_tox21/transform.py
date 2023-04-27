@@ -76,9 +76,9 @@ response pathways.""",
                         "adjective": "toxic in the estrogen receptor alpha ligand binding domain assay"
                     },
                 ],
+                "uris": None,
             },
         ],
-        "uris": None,
         "benchmarks": [
             {
                 "name": "TDC",  # unique benchmark name

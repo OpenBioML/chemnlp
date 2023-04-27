@@ -19,7 +19,7 @@ targets:
           - adjective: toxic in the SR-ARE assay
           - adjective: toxic in the SR-Antioxidant response element assay
           - adjective: toxic in the Antioxidant response element assay
-uris:
+      uris:
 benchmarks:
     - name: TDC
       link: https://tdcommons.ai/

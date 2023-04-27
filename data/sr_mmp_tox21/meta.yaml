@@ -19,7 +19,7 @@ targets:
           - adjective: toxic in the SR-MMP assay
           - adjective: toxic in the SR-Mitochondrial membrane potential assay
           - adjective: toxic in the Mitochondrial membrane potential assay
-uris:
+      uris:
 benchmarks:
     - name: TDC
       link: https://tdcommons.ai/

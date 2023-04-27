@@ -68,9 +68,9 @@ response pathways.""",
                     {"adjective": "toxic in the NR-Estrogen receptor alpha assay"},
                     {"adjective": "toxic in the estrogen receptor alpha assay"},
                 ],
+                "uris": None,
             },
         ],
-        "uris": None,
         "benchmarks": [
             {
                 "name": "TDC",  # unique benchmark name

@@ -70,9 +70,9 @@ response pathways.""",
                     {"adjective": "toxic in the SR-Antioxidant response element assay"},
                     {"adjective": "toxic in the Antioxidant response element assay"},
                 ],
+                "uris": None,
             },
         ],
-        "uris": None,
         "benchmarks": [
             {
                 "name": "TDC",  # unique benchmark name

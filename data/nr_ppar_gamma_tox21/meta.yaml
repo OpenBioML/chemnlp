@@ -19,7 +19,7 @@ targets:
           - adjective: toxic in the NR-PPAR-gamma assay
           - adjective: toxic in the NR-peroxisome proliferator-activated receptor gamma assay
           - adjective: toxic in the peroxisome proliferator-activated receptor gamma assay
-uris:
+      uris:
 benchmarks:
     - name: TDC
       link: https://tdcommons.ai/

@@ -15,7 +15,7 @@ targets:
           - verb: is toxic in a androgen receptor toxicity assay
           - adjective: toxic in the NR-AR assay
           - adjective: toxic in the NR-androgen receptor assay
-uris:
+      uris:
 benchmarks:
     - name: TDC
       link: https://tdcommons.ai/
