@@ -63,10 +63,11 @@ and nonsubstrates from six publications.""",
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "CYP P450 3A4 substrate",
-                    "CYP3A4 substrate",
-                    "substrate for CYP3A4",
-                    "substrate for CYP P450 3A4",
+                    {"noun": "CYP P450 3A4 substrate"},
+                    {"noun": "CYP3A4 substrate"},
+                    {"noun": "substrate for CYP3A4"},
+                    {"noun": "substrate for CYP P450 3A4"},
+                    {"verb": "is metabolized by the CYP P450 3A4"},
                 ],
                 "uris": None,
             },

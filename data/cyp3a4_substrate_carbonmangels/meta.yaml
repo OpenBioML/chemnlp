@@ -12,10 +12,11 @@ targets:
       units:
       type: boolean
       names:
-          - CYP P450 3A4 substrate
-          - CYP3A4 substrate
-          - substrate for CYP3A4
-          - substrate for CYP P450 3A4
+          - noun: CYP P450 3A4 substrate
+          - noun: CYP3A4 substrate
+          - noun: substrate for CYP3A4
+          - noun: substrate for CYP P450 3A4
+          - verb: is metabolized by the CYP P450 3A4
       uris:
 benchmarks:
     - name: TDC
