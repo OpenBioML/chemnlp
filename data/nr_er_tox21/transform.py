@@ -59,11 +59,11 @@ response pathways.""",
                     {"noun": "NR-ER toxicity"},
                     {"noun": "NR-Estrogen receptor alpha toxicity"},
                     {"noun": "estrogen receptor alpha toxicity"},
-                    {"verb": "activity in the NR-ER toxicity assay"},
+                    {"verb": "is active in the NR-ER toxicity assay"},
                     {
-                        "verb": "activity in the NR-Estrogen receptor alpha toxicity assay"
+                        "verb": "is active in the NR-Estrogen receptor alpha toxicity assay"
                     },
-                    {"verb": "activity in the estrogen receptor alpha toxicity assay"},
+                    {"verb": "is active in the estrogen receptor alpha toxicity assay"},
                     {"adjective": "toxic in the NR-ER assay"},
                     {"adjective": "toxic in the NR-Estrogen receptor alpha assay"},
                     {"adjective": "toxic in the estrogen receptor alpha assay"},

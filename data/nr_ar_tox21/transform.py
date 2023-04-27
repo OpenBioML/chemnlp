@@ -57,7 +57,7 @@ response pathways.""",
                 "names": [  # names for the property (to sample from for building the prompts)
                     {"noun": "NR-AR toxicity"},
                     {"noun": "NR-androgen receptor toxicity"},
-                    {"verb": "toxic in a androgen receptor toxicity assay"},
+                    {"verb": "is toxic in a androgen receptor toxicity assay"},
                     {"adjective": "toxic in the NR-AR assay"},
                     {"adjective": "toxic in the NR-androgen receptor assay"},
                 ],

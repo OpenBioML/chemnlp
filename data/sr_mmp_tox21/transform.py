@@ -59,12 +59,12 @@ response pathways.""",
                     {"noun": f"{target_subfolder} toxicity"},
                     {"noun": "SR-Mitochondrial membrane potential toxicity"},
                     {"noun": "Mitochondrial membrane potential toxicity"},
-                    {"verb": f"activity in the {target_subfolder} toxicity assay"},
+                    {"verb": f"is active in the {target_subfolder} toxicity assay"},
                     {
-                        "verb": "activity in the R-Mitochondrial membrane potential toxicity assay"
+                        "verb": "is active in the R-Mitochondrial membrane potential toxicity assay"
                     },
                     {
-                        "verb": "activity in the itochondrial membrane potential toxicity assay"
+                        "verb": "is active in the itochondrial membrane potential toxicity assay"
                     },
                     {"adjective": f"toxic in the {target_subfolder} assay"},
                     {

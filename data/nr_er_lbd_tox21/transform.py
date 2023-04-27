@@ -61,12 +61,12 @@ response pathways.""",
                         "noun": "NR-estrogen receptor alpha ligand binding domain toxicity"
                     },
                     {"noun": "estrogen receptor alpha ligand binding domain toxicity"},
-                    {"verb": "activity in the NR-ER-LBD toxicity assay"},
+                    {"verb": "is active in the NR-ER-LBD toxicity assay"},
                     {
-                        "verb": "activity in the NR-estrogen receptor alpha ligand binding domain assay"
+                        "verb": "is active in the NR-estrogen receptor alpha ligand binding domain assay"
                     },
                     {
-                        "verb": "activity in the estrogen receptor alpha ligand binding domain assay"
+                        "verb": "is active in the estrogen receptor alpha ligand binding domain assay"
                     },
                     {"adjective": "toxic in the NR-ER-LBD assay"},
                     {

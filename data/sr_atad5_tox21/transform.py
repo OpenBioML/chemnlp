@@ -65,12 +65,12 @@ response pathways.""",
                     },
                     {"noun": "Luciferase-tagged ATAD5 toxicity"},
                     {
-                        "verb": "activity in the SR-Luciferase-tagged ATAD5 in human embryonic kidney cells toxicity assay"  # noqa E501
+                        "verb": "shows activity in the SR-Luciferase-tagged ATAD5 in human embryonic kidney cells toxicity assay"  # noqa E501
                     },
                     {
-                        "verb": "activity in the Luciferase-tagged ATAD5 in human embryonic kidney cells toxicity assay"
+                        "verb": "shows activity in the Luciferase-tagged ATAD5 in human embryonic kidney cells toxicity assay"
                     },
-                    {"verb": "activity in the Luciferase-tagged ATAD5 toxicity assay"},
+                    {"verb": "is active in the Luciferase-tagged ATAD5 toxicity assay"},
                     {
                         "adjective": "toxic in the SR-Luciferase-tagged ATAD5 in human embryonic kidney cells assay"
                     },

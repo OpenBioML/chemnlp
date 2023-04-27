@@ -58,7 +58,7 @@ response pathways.""",
                 "names": [  # names for the property (to sample from for building the prompts)
                     {"noun": "NR-Aromatase enzyme toxicity"},
                     {"noun": "Aromatase enzyme toxicity"},
-                    {"verb": "activity in the NR-Aromatase enzyme toxicity assay"},
+                    {"verb": "is active in the NR-Aromatase enzyme toxicity assay"},
                     {"activity": "toxic in the NR-Aromatase enzyme assay"},
                     {"activity": "toxic in the Aromatase enzyme assay"},
                 ],

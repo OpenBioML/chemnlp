@@ -59,7 +59,7 @@ response pathways.""",
                     {"noun": "NR-AhR toxicity"},
                     {"noun": "aryl hydrocarbon receptor toxicity"},
                     {
-                        "verb": "activity in the aryl hydrocarbon receptor toxicity assay"
+                        "verb": "is active in the aryl hydrocarbon receptor toxicity assay"
                     },
                     {"adjective": "toxic in the NR-AhR assay"},
                     {"adjective": "toxic in the aryl hydrocarbon receptor assay"},

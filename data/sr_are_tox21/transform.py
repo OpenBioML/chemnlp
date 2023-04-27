@@ -59,12 +59,12 @@ response pathways.""",
                     {"noun": "SR-ARE toxicity"},
                     {"noun": "SR-Antioxidant response element toxicity"},
                     {"noun": "Antioxidant response element toxicity"},
-                    {"verb": "activity in the SR-ARE toxicity assay"},
+                    {"verb": "shows activity in the SR-ARE toxicity assay"},
                     {
-                        "verb": "activity in the SR-Antioxidant response element toxicity assay"
+                        "verb": "shows activity in the SR-Antioxidant response element toxicity assay"
                     },
                     {
-                        "verb": "activity in the Antioxidant response element toxicity assay"
+                        "verb": "shows activity in the Antioxidant response element toxicity assay"
                     },
                     {"adjective": "toxic in the SR-ARE assay"},
                     {"adjective": "toxic in the SR-Antioxidant response element assay"},
