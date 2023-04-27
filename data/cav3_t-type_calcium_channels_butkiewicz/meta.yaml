@@ -13,9 +13,11 @@ targets:
       units:
       type: boolean
       names:
-          - a inhibitor of cav3 t-type calcium channels activity
-          - inhibiting cav3 t-type calcium channels activity
-          - a t-type calcium channel blocker
+          - noun: an inhibitor of cav3 t-type calcium channels activity
+          - gerund: inhibiting cav3 t-type calcium channels activity
+          - noun: a t-type calcium channel blocker
+          - verb: blocks t-type calcium channels
+          - verb: inhibits cav3 t-type calcium channels
       pubchem_aids:
           - 1053190
           - 489005
@@ -31,6 +33,8 @@ identifiers:
       description: SMILES
 license: CC BY 4.0
 links:
+    - url: https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al
+      description: original dataset
     - url: https://doi.org/10.3390/molecules18010735
       description: corresponding publication
     - url: https://doi.org/10.1093/nar/gky1033
@@ -42,7 +46,6 @@ benchmarks:
       link: https://tdcommons.ai/
       split_column: split
 num_points: 100875
-url: https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al
 bibtex:
     - |-
       @article{Butkiewicz2013,

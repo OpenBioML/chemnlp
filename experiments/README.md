@@ -4,9 +4,6 @@ We currently run our large scale experiments on the Stability AI HPC cluster.
 This subdirectory features a few helpful scripts that can help you get up and
 running on the cluster.
 
-If you believe you need access to the cluster for your work please reach out
-to the core team on Discord.
-
 - [Install Miniconda](scripts/miniconda_install.sh) -
   installs miniconda for your cluster environment.
 
@@ -66,8 +63,8 @@ to the core team on Discord.
    source experiments/scripts/env_creation_hf.sh jack jack
    ```
 
-2. [Training Models](scripts/sbatch_train_hf.sh) -
-   runs a Hugging Face training pipeline
+2. [Single Node Models](scripts/sbatch_train_hf.sh) -
+   runs a Hugging Face training pipeline across devices
 
    - creates a conda environment using the `env_creation_hf.sh` script.
    - runs the Hugging Face `run_tune.py` script with the user configuration
@@ -78,6 +75,22 @@ to the core team on Discord.
 
    # for typical finetuning experiments
    sbatch experiments/scripts/sbatch_train_hf.sh experiments/my-experiment jack 160M_peft.yml
+   ```
+
+   > To interact with WandB services you need to authenticate yourself as per the [Stability HPC guidelines](https://www.notion.so/stabilityai/Stability-HPC-Cluster-User-Guide-226c46436df94d24b682239472e36843) to append a username + password to your .netrc file.
+
+3. [Multi Node Models](scripts/sbatch_train_hf_multinode.sh) -
+   runs a Hugging Face training pipeline across nodes
+
+   - creates a conda environment using the `env_creation_hf.sh` script.
+   - runs the Hugging Face `run_tune.py` script with the user configuration
+
+   ```bash
+   # general case
+   sbatch experiments/scripts/sbatch_train_hf_multinode.sh where/to/store/conda where/to/build/conda/from <training-config-name.yml>
+
+   # for typical finetuning experiments
+   sbatch experiments/scripts/sbatch_train_hf_multinode.sh experiments/my-experiment jack 1B_fine_tune.yml
    ```
 
    > To interact with WandB services you need to authenticate yourself as per the [Stability HPC guidelines](https://www.notion.so/stabilityai/Stability-HPC-Cluster-User-Guide-226c46436df94d24b682239472e36843) to append a username + password to your .netrc file.
