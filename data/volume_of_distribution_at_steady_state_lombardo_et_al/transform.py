@@ -56,8 +56,8 @@ the drug with high lipid solubility, low plasma protein binidng rate.""",
                 "units": "VDss(L/kg)",  # units of the values in this column (leave empty if unitless)
                 "type": "continuous",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "volume of distribution at steady state (VDss)",
-                    "VDss",
+                    {"noun": "volume of distribution at steady state (VDss)"},
+                    {"noun": "VDss"},
                 ],
                 "uris": [
                     "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C85538",

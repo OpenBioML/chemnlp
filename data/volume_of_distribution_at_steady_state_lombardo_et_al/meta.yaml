@@ -11,8 +11,8 @@ targets:
       units: VDss(L/kg)
       type: continuous
       names:
-          - volume of distribution at steady state (VDss)
-          - VDss
+          - noun: volume of distribution at steady state (VDss)
+          - noun: VDss
       uris:
           - http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C85538
 benchmarks:
