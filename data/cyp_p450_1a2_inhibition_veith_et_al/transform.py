@@ -61,8 +61,10 @@ substrates for this enzyme include caffeine, aflatoxin B1, and acetaminophen."""
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "CYP P450 1A2 inhibition",
-                    "CYP 1A2 inhibition",
+                    {"noun": "CYP P450 1A2 inhibition"},
+                    {"noun": "CYP 1A2 inhibition"},
+                    {"adjective": "inhibits CYP P450 1A2"},
+                    {"gerund": "inhibiting CYP P450 1A2"},
                 ],
                 "uris": None,
             },

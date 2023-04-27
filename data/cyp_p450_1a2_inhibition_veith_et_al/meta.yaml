@@ -13,8 +13,10 @@ targets:
       units:
       type: boolean
       names:
-          - CYP P450 1A2 inhibition
-          - CYP 1A2 inhibition
+          - noun: CYP P450 1A2 inhibition
+          - noun: CYP 1A2 inhibition
+          - adjective: inhibits CYP P450 1A2
+          - gerund: inhibiting CYP P450 1A2
       uris:
 benchmarks:
     - name: TDC
