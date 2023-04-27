@@ -2,7 +2,7 @@
 Preparing chemrxiv dataset as per HF guidelines on the Stability AI cluster
 
 Example Usage:
-    python prepare_hf_chemrxiv.py EleutherAI/pythia-160m 768
+    python prepare_hf_chemrxiv.py EleutherAI/pythia-160m 2048 # all Pythia models are 2048
 """
 import argparse
 import json
