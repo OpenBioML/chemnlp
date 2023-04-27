@@ -13,8 +13,8 @@ targets:
       names:
           - noun: CYP P450 2C9 substrate
           - noun: CYP2C9 substrate
-          - adjective: substrate for CYP2C9
-          - adjective: substrate for CYP P450 2C9
+          - noun: substrate for CYP2C9
+          - noun: substrate for CYP P450 2C9
       uris:
 benchmarks:
     - name: TDC
