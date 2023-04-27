@@ -15,6 +15,7 @@ targets:
           - noun: CYP2C9 substrate
           - noun: substrate for CYP2C9
           - noun: substrate for CYP P450 2C9
+          - verb: is metabolized by CYP P450 2C9
       uris:
 benchmarks:
     - name: TDC
