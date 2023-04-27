@@ -15,7 +15,6 @@ targets:
           - adjective: carcinogenic
           - gerund: having the potential to cause cancer
       uris:
-          - http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C347
           - http://purl.bioontology.org/ontology/SNOMEDCT/88376000
 benchmarks:
     - name: TDC
