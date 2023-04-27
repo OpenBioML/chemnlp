@@ -135,12 +135,14 @@ clinical-stage mAb therapeutics.""",
                 "units": "amino acids",  # units of the values in this column (leave empty if unitless)
                 "type": "continuous",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "antibody complementarity-determining regions length",
-                    "antibody complementarity-determining regions (CDR) length",
-                    "antibody CDR length",
-                    "complementarity-determining regions (CDR) length",
-                    "complementarity-determining regions length",
-                    "CDR length",
+                    {"noun": "antibody complementarity-determining regions length"},
+                    {
+                        "noun": "antibody complementarity-determining regions (CDR) length"
+                    },
+                    {"noun": "antibody CDR length"},
+                    {"noun": "complementarity-determining regions (CDR) length"},
+                    {"noun": "complementarity-determining regions length"},
+                    {"noun": "CDR length"},
                 ],
                 "uris": None,
             },

@@ -15,12 +15,12 @@ targets:
       units: amino acids
       type: continuous
       names:
-          - antibody complementarity-determining regions length
-          - antibody complementarity-determining regions (CDR) length
-          - antibody CDR length
-          - complementarity-determining regions (CDR) length
-          - complementarity-determining regions length
-          - CDR length
+          - noun: antibody complementarity-determining regions length
+          - noun: antibody complementarity-determining regions (CDR) length
+          - noun: antibody CDR length
+          - noun: complementarity-determining regions (CDR) length
+          - noun: complementarity-determining regions length
+          - noun: CDR length
       uris:
     - id: PSH
       description: patches of surface hydrophobicity (PSH) score
