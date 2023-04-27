@@ -58,9 +58,10 @@ not soluble.""",
                 "units": "log(mol/L)",  # units of the values in this column (leave empty if unitless)
                 "type": "continuous",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "aqeuous solubility",
-                    "water solubility",
-                    "ability of a drug to dissolve in a water",
+                    {"noun": "aqeuous solubility"},
+                    {"noun": "water solubility"},
+                    {"noun": "ability of a drug to dissolve in a water"},
+                    {"adjective": "dissolves in a water"},
                 ],
                 "uris": [
                     "http://purl.jp/bio/4/id/200906006880450101",

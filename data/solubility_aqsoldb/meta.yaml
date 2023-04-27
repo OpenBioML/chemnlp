@@ -11,9 +11,10 @@ targets:
       units: log(mol/L)
       type: continuous
       names:
-          - aqeuous solubility
-          - water solubility
-          - ability of a drug to dissolve in a water
+          - noun: aqeuous solubility
+          - noun: water solubility
+          - noun: ability of a drug to dissolve in a water
+          - adjective: dissolves in a water
       uris:
           - http://purl.jp/bio/4/id/200906006880450101
           - http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C60821
