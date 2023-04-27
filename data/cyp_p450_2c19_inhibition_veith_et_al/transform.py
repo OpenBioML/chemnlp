@@ -61,8 +61,10 @@ is involved in protein processing and transport.""",
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "CYP P450 2C19 inhibition",
-                    "CYP 2C19 inhibition",
+                    {"noun": "CYP P450 2C19 inhibition"},
+                    {"noun": "CYP 2C19 inhibition"},
+                    {"verb": "inhibits CYP 2C19"},
+                    {"gerund": "inhibiting CYP 2C19"},
                 ],
                 "uris": None,
             },

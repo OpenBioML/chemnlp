@@ -13,8 +13,10 @@ targets:
       units:
       type: boolean
       names:
-          - CYP P450 2C19 inhibition
-          - CYP 2C19 inhibition
+          - noun: CYP P450 2C19 inhibition
+          - noun: CYP 2C19 inhibition
+          - verb: inhibits CYP 2C19
+          - gerund: inhibiting CYP 2C19
       uris:
 benchmarks:
     - name: TDC
