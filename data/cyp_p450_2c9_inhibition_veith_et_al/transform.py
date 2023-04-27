@@ -58,8 +58,10 @@ of various molecules and chemicals within cells. Specifically, the CYP P450
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "CYP P450 2C9 inhibition",
-                    "CYP 2C9 inhibition",
+                    {"noun": "CYP P450 2C9 inhibition"},
+                    {"noun": "CYP 2C9 inhibition"},
+                    {"verb": "inhibits CYP P450 2C9"},
+                    {"gerund": "inhibiting CYP P450 2C9"},
                 ],
                 "uris": None,
             },
