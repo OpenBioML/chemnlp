@@ -1,0 +1,70 @@
+---
+name: sarscov2_3clpro_diamond
+description: |-
+    A large XChem crystallographic fragment screen against SARS-CoV-2
+    main protease at high resolution. From MIT AiCures.
+targets:
+    - id: SARSCoV2_3CLPro_Diamond
+      description: activity against the SARSCoV2 3CL protease (1) or not (0)
+      units:
+      type: boolean
+      names:
+          - noun: activity against SARSCoV2 3CL protease
+          - noun: activity against SARS-CoV-2 3CL protease
+          - adjective: is active against SARSCoV2 3CL protease
+          - adjective: is active against SARS-CoV-2 3CL protease
+      uris:
+benchmarks:
+    - name: TDC
+      link: https://tdcommons.ai/
+      split_column: split
+identifiers:
+    - id: SMILES
+      type: SMILES
+      description: SMILES
+license: CC BY 4.0
+links:
+    - url: https://www.diamond.ac.uk/covid-19/for-scientists/Main-protease-structure-and-XChem.html
+      description: data source
+    - url: https://www.diamond.ac.uk/dam/jcr:9fdc4297-15b6-47e2-8d53-befb0970bf7c/COVID19-summary-20200324.xlsx
+      description: data source
+    - url: http://doi.org/10.1021/jacs.9b02822
+      description: corresponding publication
+    - url: https://doi.org/10.1016/j.jmb.2006.11.073
+      description: corresponding publication
+num_points: 880
+bibtex:
+    - |-
+      @article{Resnick_2019,
+      doi = {10.1021/jacs.9b02822},
+      url = {https://doi.org/10.1021%2Fjacs.9b02822},
+      year = {2019},
+      month = may,
+      publisher = {American Chemical Society (ACS)},
+      volume = {141},
+      number = {22},
+      pages = {8951--8968},
+      author = {Efrat Resnick and Anthony Bradley and Jinrui Gan and Alice Douangamath
+      and Tobias Krojer and Ritika Sethi and Paul P. Geurink and Anthony Aimon and Gabriel Amitai
+      and Dom Bellini and James Bennett and Michael Fairhead and Oleg Fedorov and Ronen Gabizon and Jin Gan
+      and Jingxu Guo and Alexander Plotnikov and Nava Reznik and Gian Filippo Ruda and Laura Diaz-Saez and
+      Verena M. Straub and Tamas Szommer and Srikannathasan Velupillai and Daniel Zaidman and Yanling Zhang
+      and Alun R. Coker and Christopher G. Dowson and Haim M. Barr and Chu Wang and Kilian V.M. Huber
+      and Paul E. Brennan and Huib Ovaa and Frank von Delft and Nir London},
+      title = {Rapid Covalent-Probe Discovery by Electrophile-Fragment Screening},
+      journal = {Journal of the American Chemical Society}
+    - |-
+      @article{Xue_2007,
+      doi = {10.1016/j.jmb.2006.11.073},
+      url = {https://doi.org/10.1016%2Fj.jmb.2006.11.073},
+      year = {2007},
+      month = feb,
+      publisher = {Elsevier BV},
+      volume = {366},
+      number = {3},
+      pages = {965--975},
+      author = {Xiaoyu Xue and Haitao Yang and Wei Shen and Qi Zhao and Jun Li and Kailin Yang and
+      Cheng Chen and Yinghua Jin and Mark Bartlam and Zihe Rao},
+      title = {Production of Authentic {SARS}-{CoV} Mpro with Enhanced Activity: Application as
+      a Novel Tag-cleavage Endopeptidase for Protein Overproduction},
+      journal = {Journal of Molecular Biology}

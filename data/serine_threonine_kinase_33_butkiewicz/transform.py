@@ -52,12 +52,17 @@ compounds.""",
         "targets": [
             {
                 "id": "activity_serine_threonine_kinase33",
-                "description": "whether it is active against serine threonine kinase 33 receptor (1) or not (0).",
+                "description": "whether it is active against the serine threonine kinase 33 receptor (1) or not (0).",
                 "units": None,
                 "type": "boolean",
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "inhibits the activity of the serine/threonine kinase, STK3",
-                    "a serine/threonine kinase, STK3 inhibitor",
+                    {"noun": "a serine/threonine kinase, STK3 inhibitor"},
+                    {
+                        "gerund": "inhibiting the activity of the serine/threonine kinase, STK3"
+                    },
+                    {
+                        "adjective": "active against the serine threonine kinase 33 receptor"
+                    },
                 ],
                 "pubchem_aids": [2661, 2821, 504583],
                 "uris": [],
@@ -80,6 +85,10 @@ compounds.""",
         "license": "CC BY 4.0",  # license under which the original dataset was published
         "links": [  # list of relevant links (original dataset, other uses, etc.)
             {
+                "url": "https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al",
+                "description": "original dataset",
+            },
+            {
                 "url": "https://doi.org/10.3390/molecules18010735",
                 "description": "corresponding publication",
             },
@@ -93,7 +102,6 @@ compounds.""",
             },
         ],
         "num_points": len(df),  # number of datapoints in this dataset
-        "url": "https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al",
         "bibtex": [
             """@article{Butkiewicz2013,
 doi = {10.3390/molecules18010735},

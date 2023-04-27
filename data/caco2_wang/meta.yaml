@@ -12,9 +12,9 @@ targets:
       units: cm/s
       type: continuous
       names:
-          - Caco-2 cell effective permeability
-          - Caco-2 cell permeability
-          - Caco-2 permeability
+          - noun: Caco-2 cell effective permeability
+          - noun: Caco-2 cell permeability
+          - noun: Caco-2 permeability
       pubchem_aids:
           - 678378
       uris:

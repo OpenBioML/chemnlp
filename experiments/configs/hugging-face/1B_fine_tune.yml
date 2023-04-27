@@ -1,0 +1,36 @@
+---
+# Dataset configuration (datasets.load_from_disk arguments)
+data:
+  path: /fsx/proj-chemnlp/data/EleutherAI/pythia-1b/marianna13/chemrxiv
+
+# Model configuration (model.from_pretrained arguments)
+model:
+  base: GPTNeoXForCausalLM
+  name: EleutherAI/pythia-1b
+  revision: main # latest model
+
+# Training strategies (PromptTuningConfig arguments)
+prompt_tuning:
+  enabled: false
+
+# Training configuration (TrainerArguments from HF)
+trainer:
+  output_dir: /fsx/proj-chemnlp/experiments/checkpoints/finetuned/full_1b
+  num_train_epochs: 1
+  learning_rate: 3e-4
+  evaluation_strategy: steps
+  logging_steps: 50
+  eval_steps: 500
+  save_steps: 1000
+  dataloader_num_workers: 4
+  bf16: true
+  fp16: false
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 8
+
+# Logging configuration (WandB init arguments)
+wandb:
+  enabled: true
+  project: LLCheM
+  group: test
+  name: test_1b_fine_tune
