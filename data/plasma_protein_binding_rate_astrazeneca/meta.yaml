@@ -11,10 +11,10 @@ targets:
       units: percentage
       type: continuous
       names:
-          - human plasma protein binding rate (PPBR)
-          - human plasma protein binding rate
-          - PPBR
-          - percentage of a drug bound to plasma proteins in the blood
+          - noun: human plasma protein binding rate (PPBR)
+          - noun: human plasma protein binding rate
+          - noun: PPBR
+          - noun: percentage of a drug bound to plasma proteins in the blood
       uris:
           - http://purl.jp/bio/4/id/201306028362680450
           - http://www.bioassayontology.org/bao#BAO_0010135

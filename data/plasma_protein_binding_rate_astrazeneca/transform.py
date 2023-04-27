@@ -70,10 +70,12 @@ traverse and diffuse to the site of actions.""",
                 "units": "percentage",  # units of the values in this column (leave empty if unitless)
                 "type": "continuous",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "human plasma protein binding rate (PPBR)",
-                    "human plasma protein binding rate",
-                    "PPBR",
-                    "percentage of a drug bound to plasma proteins in the blood",
+                    {"noun": "human plasma protein binding rate (PPBR)"},
+                    {"noun": "human plasma protein binding rate"},
+                    {"noun": "PPBR"},
+                    {
+                        "noun": "percentage of a drug bound to plasma proteins in the blood"
+                    },
                 ],
                 "uris": [
                     "http://purl.jp/bio/4/id/201306028362680450",
