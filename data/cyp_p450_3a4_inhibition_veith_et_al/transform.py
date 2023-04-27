@@ -61,8 +61,10 @@ drugs, so that they can be removed from the body.""",
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "CYP P450 3A4 inhibition",
-                    "CYP 3A4 inhibition",
+                    {"noun": "CYP P450 3A4 inhibition"},
+                    {"noun": "CYP 3A4 inhibition"},
+                    {"verb": "inhibits CYP P450 3A4"},
+                    {"gerund": "inhibiting CYP P450 3A4"},
                 ],
                 "uris": None,
             },

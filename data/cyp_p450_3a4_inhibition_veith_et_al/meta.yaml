@@ -12,8 +12,10 @@ targets:
       units:
       type: boolean
       names:
-          - CYP P450 3A4 inhibition
-          - CYP 3A4 inhibition
+          - noun: CYP P450 3A4 inhibition
+          - noun: CYP 3A4 inhibition
+          - verb: inhibits CYP P450 3A4
+          - gerund: inhibiting CYP P450 3A4
       uris:
 benchmarks:
     - name: TDC
