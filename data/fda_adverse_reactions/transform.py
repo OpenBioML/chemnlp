@@ -20,7 +20,7 @@ META_TEMPLATE = {
             "units": None,  # units of the values in this column (leave empty if unitless)
             "type": "ordinal",  # can be "categorical", "ordinal", "continuous", "string"
             "names": [  # names for the property (to sample from for building the prompts)
-                {"noun": "adverse reaction frequency"},
+                {"noun": "adverse reaction count"},
             ],
             "pubchem_aids": [],
             "uris": [],
