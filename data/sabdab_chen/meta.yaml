@@ -13,9 +13,8 @@ targets:
       units:
       type: boolean
       names:
-          - developability
-          - developability of an antibody
-          - developable antibody
+          - noun: functional antibody candidate to be developed into a manufacturable one
+          - noun: manufacturable and functional antibody candidate
       uris:
 benchmarks:
     - name: TDC

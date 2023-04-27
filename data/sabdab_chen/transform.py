@@ -70,9 +70,10 @@ from BIOVIA's pipelines.""",
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "developability",
-                    "developability of an antibody",
-                    "developable antibody",
+                    {
+                        "noun": "functional antibody candidate to be developed into a manufacturable one"
+                    },
+                    {"noun": "manufacturable and functional antibody candidate"},
                 ],
                 "uris": None,
             },
