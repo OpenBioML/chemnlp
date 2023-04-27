@@ -20,19 +20,19 @@ trainer:
   num_train_epochs: 1
   learning_rate: 3e-4
   evaluation_strategy: steps
-  logging_steps: 5
-  eval_steps: 50
-  save_steps: 200
+  logging_steps: 50
+  eval_steps: 500
+  save_steps: 1000
   dataloader_num_workers: 4
   bf16: true
   fp16: false
-  per_device_train_batch_size: 28
-  per_device_eval_batch_size: 28
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
 
 # Logging configuration (WandB init arguments)
 wandb:
   enabled: true
   project: LLCheM
   group: test
-  name: test_160M_full # full_160M_v1
+  name: test_160M_full_v2 # full_160M_v1
   entity: chemnlp

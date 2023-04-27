@@ -29,8 +29,8 @@ source $CHEMNLP_PATH/experiments/scripts/env_creation_hf.sh $1 $2
 
 # install extras
 cd $CHEMNLP_PATH
-pip install .
+pip install ".[training]"
 
 # trigger run
-torchrun --nnodes 1 --nproc-per-node 4 \
-    experiments/scripts/run_tune.py  experiments/configs/hugging-face/$3
+python -m torch.distributed.launch --use-env --nnodes 1 --nproc-per-node 8 \
+    experiments/scripts/run_tune.py experiments/configs/hugging-face/$3
