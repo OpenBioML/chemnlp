@@ -68,8 +68,10 @@ ChEMBL bioactivity database, and other literature.""",
                     {"noun": "human ether-à-go-go related gene (hERG) blocker"},
                     {"verb": "blocks hERG"},
                     {"verb": "blocks human ether-à-go-go related gene (hERG)"},
-                    {"verb": "active against hERG (<10uM)"},
-                    {"verb": "active against human ether-à-go-go related gene (hERG)"},
+                    {"verb": "is active against hERG (<10uM)"},
+                    {
+                        "verb": "is active against human ether-à-go-go related gene (hERG)"
+                    },
                 ],
                 "uris": [
                     "http://purl.obolibrary.org/obo/MI_2136",
