@@ -65,8 +65,9 @@ for a drug to be delivered to the target.""",
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "human intestinal absorption",
-                    "HIA",
+                    {"noun": "human intestinal absorption"},
+                    {"noun": "HIA"},
+                    {"verb": "absorbed from the human gastrointestinal system"},
                 ],
                 "uris": [
                     "http://purl.bioontology.org/ontology/MESH/D007408",

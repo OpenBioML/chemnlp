@@ -11,8 +11,9 @@ targets:
       units:
       type: boolean
       names:
-          - human intestinal absorption
-          - HIA
+          - noun: human intestinal absorption
+          - noun: HIA
+          - verb: absorbed from the human gastrointestinal system
       uris:
           - http://purl.bioontology.org/ontology/MESH/D007408
 benchmarks:
