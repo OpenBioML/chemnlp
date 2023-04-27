@@ -12,8 +12,8 @@ targets:
       units: mL / (min g)
       type: continuous
       names:
-          - drug clearance
-          - the rate at which the active drug is removed from the body
+          - noun: drug clearance
+          - noun: volume of plasma cleared of a drug over a specified time period
       uris:
           - http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C94618
 benchmarks:

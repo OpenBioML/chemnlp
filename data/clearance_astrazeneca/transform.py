@@ -57,8 +57,10 @@ contains clearance measures from two experiments types, hepatocyte and microsome
                 "units": "mL / (min g)",  # units of the values in this column (leave empty if unitless)
                 "type": "continuous",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "drug clearance",
-                    "the rate at which the active drug is removed from the body",
+                    {"noun": "drug clearance"},
+                    {
+                        "noun": "volume of plasma cleared of a drug over a specified time period"
+                    },
                 ],
                 "uris": [
                     "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C94618",
