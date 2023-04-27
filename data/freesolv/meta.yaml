@@ -7,25 +7,25 @@ targets:
       units: kcal/mol
       type: continuous
       names:
-          - hydration free energy
+          - noun: hydration free energy
     - id: exp_uncertainty
       description: experimental hydration free energy uncertainty
       units: kcal/mol
       type: continuous
       names:
-          - hydration free energy uncertainty
+          - noun: hydration free energy uncertainty
     - id: GAFF
       description: mobley group calculated value
       units: kcal/mol
       type: continuous
       names:
-          - hydration free energy computed using the GAFF force field
+          - noun: hydration free energy computed using the GAFF force field
     - id: calc_uncertainty
       description: mobley group calculated value calculated uncertainty
       units: kcal/mol
       type: continuous
       names:
-          - uncertainty in hydration free energy computed using the GAFF force field
+          - noun: uncertainty in hydration free energy computed using the GAFF force field
 identifiers:
     - id: SMILES
       type: SMILES
