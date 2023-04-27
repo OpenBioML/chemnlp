@@ -54,9 +54,11 @@ This dataset deposited version under CHEMBL assay 1614674.""",
                 "units": "hours",  # units of the values in this column (leave empty if unitless)
                 "type": "continuous",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "drug half life time",
-                    "the duration by which the concentration of the drug in the body is reduced by half",
-                    "half life",
+                    {"noun": "half life"},
+                    {"noun": "drug half life time"},
+                    {
+                        "noun": "the duration by which the concentration of the drug in the body is reduced by half"
+                    },
                 ],
                 "uris": [
                     "http://purl.bioontology.org/ontology/MESH/D006207",
