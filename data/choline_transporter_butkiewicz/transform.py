@@ -61,8 +61,9 @@ re-confirmation screen AID602208.""",
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "a inhibitor of choline transporter activity",
-                    "inhibitor of choline transporter activity",
+                    {"noun": "a inhibitor of choline transporter activity"},
+                    {"noun": "inhibitor of choline transporter activity"},
+                    {"verb": "inhibits choline transporter activity"},
                 ],
                 "pubchem_aids": [488975, 493221, 504840, 588401, 493222, 602208],
             },
@@ -84,6 +85,10 @@ re-confirmation screen AID602208.""",
         "license": "CC BY 4.0",  # license under which the original dataset was published
         "links": [  # list of relevant links (original dataset, other uses, etc.)
             {
+                "url": "https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al",
+                "description": "original dataset",
+            },
+            {
                 "url": "https://doi.org/10.3390/molecules18010735",
                 "description": "corresponding publication",
             },
@@ -97,7 +102,6 @@ re-confirmation screen AID602208.""",
             },
         ],
         "num_points": len(df),  # number of datapoints in this dataset
-        "url": "https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al",
         "bibtex": [
             """@article{Butkiewicz2013,
 doi = {10.3390/molecules18010735},

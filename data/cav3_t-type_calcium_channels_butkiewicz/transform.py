@@ -51,9 +51,11 @@ AID 489005 was performed as counter screen validating active compounds of the pr
                 "units": None,
                 "type": "boolean",
                 "names": [
-                    "a inhibitor of cav3 t-type calcium channels activity",
-                    "inhibiting cav3 t-type calcium channels activity",
-                    "a t-type calcium channel blocker",
+                    {"noun": "an inhibitor of cav3 t-type calcium channels activity"},
+                    {"gerund": "inhibiting cav3 t-type calcium channels activity"},
+                    {"noun": "a t-type calcium channel blocker"},
+                    {"verb": "blocks t-type calcium channels"},
+                    {"verb": "inhibits cav3 t-type calcium channels"},
                 ],
                 "pubchem_aids": [1053190, 489005, 493021, 493022, 493023, 493041],
                 "uris": ["http://purl.obolibrary.org/obo/CHEBI_194338"],
@@ -68,6 +70,10 @@ AID 489005 was performed as counter screen validating active compounds of the pr
         ],
         "license": "CC BY 4.0",  # license under which the original dataset was published
         "links": [  # list of relevant links (original dataset, other uses, etc.)
+            {
+                "url": "https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al",
+                "description": "original dataset",
+            },
             {
                 "url": "https://doi.org/10.3390/molecules18010735",
                 "description": "corresponding publication",
@@ -89,7 +95,6 @@ AID 489005 was performed as counter screen validating active compounds of the pr
             },
         ],
         "num_points": len(df),  # number of datapoints in this dataset
-        "url": "https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al",
         "bibtex": [
             """@article{Butkiewicz2013,
 doi = {10.3390/molecules18010735},
