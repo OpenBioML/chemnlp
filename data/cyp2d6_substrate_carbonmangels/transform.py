@@ -62,10 +62,11 @@ and nonsubstrates from six publications.""",
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "CYP P450 2D6 substrate",
-                    "CYP2D6 substrate",
-                    "substrate for CYP2D6",
-                    "substrate for CYP P450 2D6",
+                    {"noun": "CYP P450 2D6 substrate"},
+                    {"noun": "CYP2D6 substrate"},
+                    {"noun": "substrate for CYP2D6"},
+                    {"noun": "substrate for CYP P450 2D6"},
+                    {"verb": "metabolized by the CYP P450 2D6"},
                 ],
                 "uris": None,
             },
