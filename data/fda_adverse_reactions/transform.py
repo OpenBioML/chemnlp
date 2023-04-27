@@ -20,7 +20,7 @@ META_TEMPLATE = {
             "units": None,  # units of the values in this column (leave empty if unitless)
             "type": "ordinal",  # can be "categorical", "ordinal", "continuous", "string"
             "names": [  # names for the property (to sample from for building the prompts)
-                "adverse reaction frequency",
+                {"noun": "adverse reaction frequency"},
             ],
             "pubchem_aids": [],
             "uris": [],
@@ -31,23 +31,13 @@ META_TEMPLATE = {
             "units": None,  # units of the values in this column (leave empty if unitless)
             "type": "string",  # can be "categorical", "ordinal", "continuous", "string"
             "names": [  # names for the property (to sample from for building the prompts)
-                "event reaction",
+                {"noun": "adverse event reaction"},
             ],
             "pubchem_aids": [],
             "uris": [],
         },
     ],
     "identifiers": [
-        {
-            "id": "chembl_id",  # column name
-            "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "OTHER"
-            "description": "CHEMBL identifier of bioactive molecules with drug-like properties.",
-        },
-        {
-            "id": "compound_id",
-            "type": "OTHER",
-            "description": "This is the PubChem CID to identify a given molecule.",
-        },
         {
             "id": "SMILES",
             "type": "SMILES",
