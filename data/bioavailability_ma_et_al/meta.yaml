@@ -10,8 +10,9 @@ targets:
       units:
       type: boolean
       names:
-          - oral bioavailability
-          - bioavailability
+          - noun: oral bioavailability
+          - noun: bioavailability
+          - adjective: is bioavailable
       uris:
           - http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C70913
 benchmarks:

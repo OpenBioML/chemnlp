@@ -57,8 +57,9 @@ available at the site of action.""",
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "oral bioavailability",
-                    "bioavailability",
+                    {"noun": "oral bioavailability"},
+                    {"noun": "bioavailability"},
+                    {"adjective": "is bioavailable"},
                 ],
                 "uris": [
                     "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C70913",
