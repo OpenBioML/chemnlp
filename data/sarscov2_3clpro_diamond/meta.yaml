@@ -9,8 +9,10 @@ targets:
       units:
       type: boolean
       names:
-          - activity against SARSCoV2 3CL protease
-          - activity against SARS-CoV-2 3CL protease
+          - noun: activity against SARSCoV2 3CL protease
+          - noun: activity against SARS-CoV-2 3CL protease
+          - adjective: is active against SARSCoV2 3CL protease
+          - adjective: is active against SARS-CoV-2 3CL protease
       uris:
 benchmarks:
     - name: TDC
