@@ -15,7 +15,7 @@ targets:
           - noun: CYP2D6 substrate
           - noun: substrate for CYP2D6
           - noun: substrate for CYP P450 2D6
-          - verb: metabolized by the CYP P450 2D6
+          - verb: is metabolized by the CYP P450 2D6
       uris:
 benchmarks:
     - name: TDC
