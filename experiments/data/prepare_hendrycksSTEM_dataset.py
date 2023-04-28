@@ -11,7 +11,7 @@ import os
 import random
 
 import datasets
-import lm_eval
+import lm_eval.tasks
 from transformers import AutoTokenizer
 
 from chemnlp.data.utils import tokenise
@@ -73,6 +73,8 @@ if __name__ == "__main__":
     tokenised_data = dataset.map(
         lambda batch: tokenise(batch, tokenizer, args.max_length, STRING_KEY),
         remove_columns=dataset.column_names,
+        batched=True,
+        batch_size=1,
         num_proc=os.cpu_count(),
         load_from_cache_file=False,
     )
