@@ -13,8 +13,8 @@ targets:
       units:
       type: boolean
       names:
-          - a negative modulator of M1 muscarinic receptors
-          - negatively modulating M1 muscarinic receptors
+          - noun: a negative modulator of M1 muscarinic receptors
+          - gerund: negatively modulating M1 muscarinic receptors
       pubchem_aids:
           - 628
           - 677
@@ -26,6 +26,8 @@ identifiers:
       description: SMILES
 license: CC BY 4.0
 links:
+    - url: https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al
+      description: original dataset
     - url: https://doi.org/10.3390/molecules18010735
       description: corresponding publication
     - url: https://doi.org/10.1093/nar/gky1033
@@ -37,7 +39,6 @@ benchmarks:
       link: https://tdcommons.ai/
       split_column: split
 num_points: 61756
-url: https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al
 bibtex:
     - |-
       @article{Butkiewicz2013,
