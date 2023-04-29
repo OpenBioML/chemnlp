@@ -1,6 +1,6 @@
 import json
-from pathlib import Path
 import subprocess as sp
+from pathlib import Path
 
 compressed_filename = Path("parsed_rhea.json.zip")
 filename = Path("parsed_rhea.json")
