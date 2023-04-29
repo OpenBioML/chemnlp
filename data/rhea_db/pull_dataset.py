@@ -1,0 +1,241 @@
+import json
+import urllib
+import pandas as pd
+from pathlib import Path
+from tqdm.notebook import tqdm
+
+import tempfile
+import subprocess as sp
+import os
+from rdkit import Chem
+from rdkit import RDLogger
+
+from typing import Optional, Union 
+from bs4 import BeautifulSoup
+
+from functools import lru_cache
+
+
+import logging
+
+logger = logging.getLogger(__name__)
+
+# disable nasty rdkit logs
+RDLogger.DisableLog("rdApp.*")
+
+BASE_PATH = Path("Downloads")
+HTML_PATH = BASE_PATH / "rhea_html"
+JSON_PATH = BASE_PATH / "rhea_json"
+
+
+
+## ChEBI ID to molecules
+# This covers many molecules and avoid extra HTTP requests.
+# Seems it still fails sometimes, especially for secondary IDs, fragments, etc
+
+# only contains ChEBI ids with valid InChis. 
+# !wget https://ftp.ebi.ac.uk/pub/databases/chebi/Flat_file_tab_delimited/chebiId_inchi.tsv
+chebi_inchis = pd.read_csv(BASE_PATH / "chebiId_inchi.tsv", sep="\t")
+chebi_inchis["smiles"] = [Chem.MolToSmiles(Chem.MolFromInchi(inchi, sanitize=False)) for inchi in tqdm(chebi_inchis.InChI)]
+
+ID2SMILES = {row["CHEBI_ID"]: row["smiles"] for i,row in chebi_inchis.iterrows()}
+
+
+def download_multiple(
+    urls: Optional[list] = None,
+    route: Union[Path, str] = tempfile.gettempdir(),
+    max_concurrent: int = 5,
+) -> Path:
+    """Downloads multiple files (form list or file).
+    Inputs:
+    * urls: list of URLs to download.
+    * route: str or Path. Path to store the file.
+    * max_concurrent: int. Max number of concurrent downloads in aria2c (default=5, see docs)
+    Outputs: Path of dir where to find the downloaded files 
+    """
+    if isinstance(route, str):
+        route = Path(route)
+   
+
+    if not force_download:
+        # check destin path exists
+        if isinstance(route, str):
+            route = Path(route)
+        route.mkdir(parents=True, exist_ok=True)
+        # save only the ones not present
+        present = set(os.listdir(route))
+        urls = [url for url in urls if url.split("/")[-1] not in present]
+        # early exit since nothing to do
+        if not urls:
+            return route
+
+    # download faster
+    else:
+        # create temp file
+        path = Path(tempfile.gettempdir()) / "urls_to_download.txt"
+        with open(path, "w") as f:
+            urls = "\n".join(urls)
+            f.write(urls)
+
+        logger.info(f"Downloading in batch: {len(urls)} files")
+        if os.system(f"which aria2c") == 0:
+            sp.call(f"aria2c -i {str(path)} -d {route} -j {max_concurrent}", shell=True)
+        else:
+            logger.warning(
+                "For batched downloads, you could get big speedups by installing aria2c"
+            )
+            sp.call(f"wget -i {str(path)} -P {route}", shell=True)
+        logger.info("Downloaded all files")
+
+    return route
+
+
+@lru_cache
+def save_chebiid_smiles(chebi_id: str) -> Chem.Mol: 
+    """ Tries to get a molecule object from a chebi id """
+    smiles = ID2SMILES.get(chebi_id, None)
+    if smiles is None:
+        with urllib.request.urlopen(f"https://www.ebi.ac.uk/chebi/saveStructure.do?sdf=true&chebiId={chebi_id}&imageId=0") as f:
+            molblock = f.read().decode("latin-1")
+        molblock = molblock[1:] if molblock.startswith("\n\n") else molblock
+        mol = Chem.MolFromMolBlock(molblock, sanitize=False, removeHs=False)
+        if mol is not None: 
+            smiles = Chem.MolToSmiles(mol)
+        else: 
+            logger.error(f"ID: {chebi_id} failed mol processing. Trying scrapping")
+            
+            # retrieval from mol failed, try pure scraping
+            try: 
+                with urllib.request.urlopen(f"https://www.ebi.ac.uk/chebi/searchId.do?chebiId={chebi_id}") as f:
+                    html = f.read().decode("latin-1").split("\n")
+                    for i, line in enumerate(html): 
+                        if '<td class="chebiDataHeader" style="width: 150px; height: 15px;">SMILES</td>' in line: 
+                            line = html[i+1].lstrip(" ").lstrip("\t").lstrip(" ").lstrip("\t")
+                            soup = BeautifulSoup(line, 'html.parser')
+                            smiles = soup.text
+                
+            except Exception as e:
+                logger.error(f"Error while scrapping: {e}. Setting smiles to empty for CHEBI:{rhea_id}")
+                smiles = "" 
+        
+    return smiles
+
+def parse_rhea_id(id_: int, filepath: Optional[Union[Path, str]] = None, encoding: str = "latin-1") -> tuple[str, dict[int, str]]: 
+    """ Loads a reaction page from Rhea and parses its reactants and products. 
+    # !wget https://www.rhea-db.org/rhea/57036 -O downloads/57036.txt
+    Inputs: 
+    * id_: int. rhea identifier. 
+    * filepath: Path or str. Path to the Rhea HTML for a given id.  
+    Outputs: equation, {chebi_id: mol_name}
+    """
+    if filepath is not None: 
+        with open(filepath, "r", encoding=encoding) as f: 
+            html = f.read()
+        
+        # bad encoding sometimes
+        if not 'href="http://www.ebi.ac.uk/' in html: 
+            logger.warning(f"Loaded content from filepath is useless. {filepath}")
+            filepath = None
+            
+    if filepath is None: 
+        try: 
+            with urllib.request.urlopen(f"https://www.rhea-db.org/rhea/{id_}") as f:
+                html = f.read().decode(encoding)
+        except urllib.error.HTTPError as e:
+            logger.error(f"Rhea id failed url access: {id_}")
+            return "", {}
+                    
+    lines = html.split("\n")
+    # remove trashy line starts and empty ones
+    # lines = list(map(lambda x: x.lstrip(" ").lstrip("\t").lstrip(" ").lstrip("\t").lstrip(" ").lstrip("\t").lstrip(" "), lines))
+    lines = list(filter(len, lines))
+
+    chebi2mol = {}
+    eq_filled = False
+    for i, line in enumerate(lines):
+        # get chebi id
+        if 'href="http://www.ebi.ac.uk/' in line: 
+            chebi_id = line.split('CHEBI:')[-1].split("<")[0]
+            chebi2mol[int(chebi_id)] = {"mol_name": mol_name}
+        # get mol names
+        if 'onclick="window.attachToolTip(this)" class="molName" data-molid=' in line: 
+            soup = BeautifulSoup(line, 'html.parser')
+            mol_name = soup.a.text
+        
+        # get equation string
+        if '<textarea readonly style="transform:scale(0,0)" id="equationtext">' in line: 
+            if not eq_filled: 
+                soup = BeautifulSoup(line, 'html.parser')
+                eq = soup.text.lstrip(" ").rstip(" ")
+                eq_filled = True 
+                
+    return eq, chebi2mol
+
+
+def parse_rhea_id_with_smiles(rhea_id: int, filepath: Optional[Union[Path, str]] = None,  **kwargs) -> tuple[int, str, dict[int, tuple[str, str]]]: 
+    """ Parses a full Rhea reaction to get the Rhea ID, the reaction 
+        equation and compounds. 
+        Inputs: 
+        * rhea_id: int. id for a reaction
+        * filepath: Path or str. Path to the Rhea HTML for a given id. 
+        Outputs: rhea_id, reaction_equation, {chebi_id: (cpd_name,smiles)} 
+    """
+    try: 
+        eq_, cpds = parse_rhea_id(rhea_id, filepath=filepath, **kwargs)
+    except Exception as e: 
+        raise ValueError(f"ID: {rhea_id} failed scrapping: {e}")
+        
+    new_cpds = {}
+    for id_, cpd in cpds.items(): 
+        # id for a photon, electron
+        if id_ in {30212, 10545}: 
+            smiles = ""
+        else: 
+            smiles = save_chebiid_smiles(id_)
+        new_cpds[id_] = (cpd, smiles)
+    return rhea_id, eq_, new_cpds
+
+
+# # single test
+# id_ = 29283
+# pre_react = parse_rhea_id(id_=id_)
+# full_react = parse_rhea_id_with_smiles(rhea_id=id_)
+
+
+### Prepare full download
+
+all_ids = merged.rhea_id.values.astype(int).tolist() # [:100]
+all_urls = [f"https://www.rhea-db.org/rhea/{id_}" for id_ in all_ids]
+# download_multiple(all_urls, route=HTML_PATH, max_concurrent=32)
+
+
+logger.info(f"Prev length: {len(all_ids)}")
+all_ids = list(filter(lambda x: Path(f"{HTML_PATH}/{x}").is_file(), all_ids))
+logger.info(f"Post length: {len(all_ids)}")
+
+
+step = 2000
+total_tac = time.time()
+for i in range(58000, len(all_ids), step): 
+    tac = time.time()
+    # results = Parallel(n_jobs=-1)(delayed(parse_rhea_id_with_smiles)(id_, ) for id_ in tqdm(all_ids[i:i+step]))
+    # results = list(results)
+    results = [parse_rhea_id_with_smiles(id_, filepath=Path(f"Downloads/rhea_html/{id_}")) for id_ in tqdm(all_ids[i:i+step])]
+    results = [{"rhea_id": x[0], "equation": x[1], "compounds": x[2]} for x in results]
+    tic = time.time()
+    with open(f"Downloads/rhea_json/rhea_{i}_{step+i}.json", "w") as f:
+        json.dump(results, f)
+    logger.info(f"{i} took: {tic - tac:.3f} seconds for {step} queries. So far: {tic - total_tac:.3f}s: {len(all_ids) - i} remaining")
+
+
+### Save to json
+jsons = []
+for json_file in JSON_PATH.iterdir(): 
+    content = json.loads(open(json_file, "r", encoding="latin-1").read())
+    jsons.extend(content)
+
+with open(JSON_PATH / "parsed_rhea.json", "w") as f:
+    for item in jsons:
+        item["equation"] = item["equation"]
+        json.dump(item, f)
+        f.write("\n")
