@@ -6,13 +6,13 @@ description: |-
     of chemical reactions for the UniProt Knowledgebase (UniProtKB) annotation.
     This dataset contains the reactions from Rhea database and their components
     in smiles format and ChEBI IDs.
-    Tasks can be formulated as translation between smiles and english and vice 
+    Tasks can be formulated as translation between smiles and english and vice
     versa, or as a completion of stechiometric coefficients or masked reactants.
 targets:
-    - id: null
-      description: null
-      units: null
-      type: null
+    - id:
+      description:
+      units:
+      type:
 identifiers:
     - id: rhea_id
       type: int
@@ -43,6 +43,3 @@ bibtex:
       doi = {10.1093/nar/gkab1016},
       url = {https://doi.org/10.1093/nar/gkab1016},
       eprint = {https://academic.oup.com/nar/article-pdf/50/D1/D693/42058389/gkab1016\_supplemental\_file.pdf}
-
-
-
