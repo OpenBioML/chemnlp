@@ -29,8 +29,8 @@ JSON_PATH = BASE_PATH / "rhea_json"
 # Seems it still fails sometimes, especially for secondary IDs, fragments, etc
 
 # only contains ChEBI ids with valid InChis.
-# !wget https://ftp.ebi.ac.uk/pub/databases/chebi/Flat_file_tab_delimited/chebiId_inchi.tsv
-chebi_inchis = pd.read_csv(BASE_PATH / "chebiId_inchi.tsv", sep="\t")
+filename = "https://ftp.ebi.ac.uk/pub/databases/chebi/Flat_file_tab_delimited/chebiId_inchi.tsv"
+chebi_inchis = pd.read_csv(filename, sep="\t")
 chebi_inchis["smiles"] = [
     Chem.MolToSmiles(Chem.MolFromInchi(inchi, sanitize=False))
     for inchi in tqdm(chebi_inchis.InChI)
@@ -276,7 +276,7 @@ logger.info(f"Post length: {len(all_ids)}")
 
 step = 2000
 total_tac = time.time()
-for i in range(58000, len(all_ids), step):
+for i in range(0, len(all_ids), step):
     tac = time.time()
     # results = Parallel(n_jobs=-1)(delayed(parse_rhea_id_with_smiles)(id_, ) for id_ in tqdm(all_ids[i:i+step]))
     # results = list(results)
