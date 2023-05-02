@@ -274,20 +274,18 @@ all_ids = list(filter(lambda x: Path(f"{HTML_PATH}/{x}").is_file(), all_ids))
 logger.info(f"Post length: {len(all_ids)}")
 
 
-step = 2000
+glob_res = []
+step = 5000
 total_tac = time.time()
 for i in range(0, len(all_ids), step):
     tac = time.time()
-    # results = Parallel(n_jobs=-1)(delayed(parse_rhea_id_with_smiles)(id_, ) for id_ in tqdm(all_ids[i:i+step]))
-    # results = list(results)
     results = [
         parse_rhea_id_with_smiles(id_, filepath=Path(f"Downloads/rhea_html/{id_}"))
         for id_ in tqdm(all_ids[i : i + step])
     ]
     results = [{"rhea_id": x[0], "equation": x[1], "compounds": x[2]} for x in results]
+    glob_res.extend(results)
     tic = time.time()
-    with open(f"Downloads/rhea_json/rhea_{i}_{step+i}.json", "w") as f:
-        json.dump(results, f)
     tot_time = tic - total_tac
     logger.info(
         f"{i} took: {tic - tac:.3f}s for {step} queries. So far: {tot_time:.3f}s: {len(all_ids) - i} remaining"
@@ -295,13 +293,7 @@ for i in range(0, len(all_ids), step):
 
 
 # Save to json
-jsons = []
-for json_file in JSON_PATH.iterdir():
-    content = json.loads(open(json_file, "r", encoding="latin-1").read())
-    jsons.extend(content)
-
 with open(JSON_PATH / "parsed_rhea.json", "w") as f:
-    for item in jsons:
-        item["equation"] = item["equation"]
+    for item in glob_res:
         json.dump(item, f)
         f.write("\n")
