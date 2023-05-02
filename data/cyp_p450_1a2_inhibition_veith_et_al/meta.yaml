@@ -15,7 +15,7 @@ targets:
       names:
           - noun: CYP P450 1A2 inhibition
           - noun: CYP 1A2 inhibition
-          - adjective: inhibits CYP P450 1A2
+          - verb: inhibits CYP P450 1A2
           - gerund: inhibiting CYP P450 1A2
       uris:
 benchmarks:
