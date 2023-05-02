@@ -12,6 +12,7 @@ from typing import Optional, Union
 import pandas as pd
 from bs4 import BeautifulSoup
 from rdkit import Chem, RDLogger
+from ruamel.yaml import YAML
 from tqdm.notebook import tqdm
 
 logger = logging.getLogger(__name__)
@@ -107,6 +108,9 @@ def download_multiple(
 
     if isinstance(route, str):
         route = Path(route)
+
+    if not route.exists():
+        route.mkdir(parents=True)
 
     # create temp file
     path = route / "urls_to_download.txt"
@@ -266,7 +270,7 @@ merged, compound_name2chebi, compound_chebi2name = parse_rhea_reactions()
 
 all_ids = merged.rhea_id.values.astype(int).tolist()  # [:100]
 all_urls = [f"https://www.rhea-db.org/rhea/{id_}" for id_ in all_ids]
-# download_multiple(all_urls, route=HTML_PATH, max_concurrent=32)
+download_multiple(all_urls, route=HTML_PATH, max_concurrent=32)
 
 
 logger.info(f"Prev length: {len(all_ids)}")
@@ -297,3 +301,11 @@ with open(JSON_PATH / "parsed_rhea.json", "w") as f:
     for item in glob_res:
         json.dump(item, f)
         f.write("\n")
+
+
+# Verify number of datapoints
+yaml = YAML(typ="safe").load(open("meta.yaml").read())
+assert yaml["num_points"] == len(
+    glob_res
+), f"Number of points {len(glob_res)} does not match {yaml['num_points']}"
+logger.info("SUCCESS PARSING RHEA DB DATASET")
