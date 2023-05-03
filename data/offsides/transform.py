@@ -7,7 +7,8 @@ def get_and_transform_data():
     df = pd.read_csv(
         "https://tatonettilab.org/resources/nsides/OFFSIDES.csv.gz",
         compression="gzip",
-        error_bad_lines=False,
+        on_bad_lines="skip",
+        low_memory=False,
     )
 
     # check if fields are the same
@@ -41,13 +42,13 @@ def get_and_transform_data():
     # create meta yaml
     meta = {
         "name": "offsides",
-        "description": (
-            "OffSIDES is a database of individual drug side effect signals mined from the FDA's "
-            "Adverse Event Reporting System. The innovation of OffSIDES is that a propensity score "
-            "matching (PSM) model is used to identify control drugs and produce better PRR estimates. "
-            "In OffSIDES we focus on drug safety signals that are not already established by being "
-            "listed on the structured product label -- hence they are off-label drug side effects."
-        ),
+        "description": """OffSIDES is a database of individual drug side effect
+signals mined from the FDA's. Adverse Event Reporting System. The
+innovation of OffSIDES is that a propensity score matching (PSM) model
+is used to identify control drugs and produce better PRR estimates. In
+OffSIDES we focus on drug safety signals that are not already
+established by being listed on the structured product label - hence
+they are off-label drug side effects.""",
         "targets": [
             {
                 "id": "PRR",
@@ -89,20 +90,18 @@ def get_and_transform_data():
             {"url": "https://nsides.io/", "description": "database website"},
         ],
         "num_points": len(df),
-        "bibtex": """
-        @article{Tatonetti2012,
-        author = {Tatonetti, Nicholas P. and Ye, Peter P. and Daneshjou, Roxana and Altman, Russ B.},
-        title = {Data-driven prediction of drug effects and interactions},
-        journal = {Sci Transl Med},
-        volume = {4},
-        number = {125},
-        pages = {125ra31},
-        year = {2012},
-        doi = {10.1126/scitranslmed.3003377},
-        pmid = {22422992},
-        pmcid = {PMC3382018}
-        }
-        """,
+        "bibtex": """@article{Tatonetti2012,
+author = {Tatonetti, Nicholas P. and Ye, Peter P. and Daneshjou, Roxana and Altman, Russ B.},
+title = {Data-driven prediction of drug effects and interactions},
+journal = {Sci Transl Med},
+volume = {4},
+number = {125},
+pages = {125ra31},
+year = {2012},
+doi = {10.1126/scitranslmed.3003377},
+pmid = {22422992},
+pmcid = {PMC3382018}
+}""",
     }
 
     def str_presenter(dumper, data):
