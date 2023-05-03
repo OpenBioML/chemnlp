@@ -29,6 +29,7 @@ class TrainerConfig(BaseModel):
     evaluation_strategy: str = "steps"
     logging_steps: int = 50
     eval_steps: int = 100
+    save_strategy: str = "steps"
     save_steps: int = 100
     dataloader_num_workers: int = 0
     per_device_train_batch_size: int = 32
