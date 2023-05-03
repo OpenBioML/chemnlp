@@ -33,6 +33,7 @@ identifiers:
           - ChEMBL id
           - ChEMBL identifier number
       description: chembl ids
+      sample: false
 license: CC BY 4.0
 links:
     - url: http://dx.doi.org/10.6019/CHEMBL3301361

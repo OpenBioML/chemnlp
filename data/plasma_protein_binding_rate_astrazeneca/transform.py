@@ -101,6 +101,7 @@ traverse and diffuse to the site of actions.""",
                 "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
                 "names": ["ChEMBL id", "ChEMBL identifier number"],
                 "description": "chembl ids",  # description (optional, except for "Other")
+                "sample": False,
             },
         ],
         "license": "CC BY 4.0",  # license under which the original dataset was published
