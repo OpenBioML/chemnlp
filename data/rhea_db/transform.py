@@ -51,7 +51,7 @@ def parse_rhea_reactions(
         gzipped = Path(str(filename)[:-4] + ".rdf.gz")
         if not gzipped.exists():
             os.system(
-                "wget https://ftp.expasy.org/databases/rhea/rdf/rhea.rdf.gz -O {gzipped}"
+                f"wget https://ftp.expasy.org/databases/rhea/rdf/rhea.rdf.gz -O {gzipped}"
             )
         os.system(f"gunzip {gzipped}")
 
