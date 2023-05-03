@@ -29,6 +29,7 @@ identifiers:
           - ChEMBL database id
           - ChEMBL identifier number
       description: ChEMBL ids
+      sample: false
 license: CC BY 4.0
 links:
     - url: https://doi.org/10.1124/dmd.108.020479

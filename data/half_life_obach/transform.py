@@ -83,6 +83,7 @@ This dataset deposited version under CHEMBL assay 1614674.""",
                 "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
                 "names": ["ChEMBL database id", "ChEMBL identifier number"],
                 "description": "ChEMBL ids",  # description (optional, except for "Other")
+                "sample": False,
             },
         ],
         "license": "CC BY 4.0",  # license under which the original dataset was published
