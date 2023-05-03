@@ -124,7 +124,7 @@ class Target(YamlModel, extra=Extra.forbid):
     """
 
     sample: True
-    """Wether the identifier should be sampled for the text template generation."""
+    """Wether the target should be sampled for the text template generation."""
 
     @validator("uris")
     def uris_resolves(cls, values):
