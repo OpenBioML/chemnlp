@@ -7,7 +7,7 @@ import time
 import urllib
 from functools import lru_cache
 from pathlib import Path
-from typing import Optional, Union
+from typing import Dict, Optional, Tuple, Union
 
 import pandas as pd
 from bs4 import BeautifulSoup
@@ -42,11 +42,19 @@ ID2SMILES = {row["CHEBI_ID"]: row["smiles"] for i, row in chebi_inchis.iterrows(
 
 def parse_rhea_reactions(
     filename: Union[str, Path] = BASE_PATH / "rhea.rdf"
-) -> tuple[pd.DataFrame, dict, dict]:
+) -> Tuple[pd.DataFrame, Dict, Dict]:
     """Parse Rhea reactions from an .rdf file downloaded from
     https://ftp.expasy.org/databases/rhea/rdf/rhea.rdf.gz
     Outputs: pd.DataFrame with columns: rhea_id, equation, num_reacts, num_prods
     """
+    if not filename.exists():
+        gzipped = Path(str(filename)[:-4] + ".rdf.gz")
+        if not gzipped.exists():
+            os.system(
+                "wget https://ftp.expasy.org/databases/rhea/rdf/rhea.rdf.gz -O {gzipped}"
+            )
+        os.system("gunzip {gzipped}")
+
     reacts = {
         "rhea_id": [],
         "equation": [],
@@ -179,7 +187,7 @@ def save_chebiid_smiles(chebi_id: str) -> Chem.Mol:
 
 def parse_rhea_id(
     id_: int, filepath: Optional[Union[Path, str]] = None, encoding: str = "latin-1"
-) -> tuple[str, dict[int, str]]:
+) -> Tuple[str, Dict[int, str]]:
     """Loads a reaction page from Rhea and parses its reactants and products.
     # !wget https://www.rhea-db.org/rhea/57036 -O downloads/57036.txt
     Inputs:
@@ -234,7 +242,7 @@ def parse_rhea_id(
 
 def parse_rhea_id_with_smiles(
     rhea_id: int, filepath: Optional[Union[Path, str]] = None, **kwargs
-) -> tuple[int, str, dict[int, tuple[str, str]]]:
+) -> Tuple[int, str, Dict[int, Tuple[str, str]]]:
     """Parses a full Rhea reaction to get the Rhea ID, the reaction
     equation and compounds.
     Inputs:
