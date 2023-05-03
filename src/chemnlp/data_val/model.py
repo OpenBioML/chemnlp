@@ -33,6 +33,9 @@ class Identifier(YamlModel, extra=Extra.forbid):
     type: IdentifierEnum
     names: Optional[List[str]]
 
+    sample: True
+    """Wether the identifier should be sampled for the text template generation."""
+
     @root_validator
     def if_optional_has_names(cls, values):
         if (values.get("names") is None) and (
@@ -119,6 +122,9 @@ class Target(YamlModel, extra=Extra.forbid):
 
     Make sure that the first assay ID is the primary assay ID.
     """
+
+    sample: True
+    """Wether the identifier should be sampled for the text template generation."""
 
     @validator("uris")
     def uris_resolves(cls, values):
