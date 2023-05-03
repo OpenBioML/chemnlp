@@ -53,7 +53,7 @@ def parse_rhea_reactions(
             os.system(
                 "wget https://ftp.expasy.org/databases/rhea/rdf/rhea.rdf.gz -O {gzipped}"
             )
-        os.system("gunzip {gzipped}")
+        os.system(f"gunzip {gzipped}")
 
     reacts = {
         "rhea_id": [],
