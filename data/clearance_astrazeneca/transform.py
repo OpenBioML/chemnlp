@@ -85,6 +85,7 @@ contains clearance measures from two experiments types, hepatocyte and microsome
                 "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
                 "names": ["ChEMBL id", "ChEMBL identifier number"],
                 "description": "ChEMBL ids",
+                "sample": False,
             },
         ],
         "license": "CC BY 4.0",  # license under which the original dataset was published
