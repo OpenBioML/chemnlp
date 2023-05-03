@@ -1,0 +1,53 @@
+---
+name: plasma_protein_binding_rate_astrazeneca
+description: |-
+    The human plasma protein binding rate (PPBR) is expressed as the percentage
+    of a drug bound to plasma proteins in the blood. This rate strongly affect a drug's
+    efficiency of delivery. The less bound a drug is, the more efficiently it can
+    traverse and diffuse to the site of actions.
+targets:
+    - id: rate_of_PPBR
+      description: percentage of a drug bound to plasma proteins in the blood
+      units: percentage
+      type: continuous
+      names:
+          - noun: human plasma protein binding rate (PPBR)
+          - noun: human plasma protein binding rate
+          - noun: PPBR
+          - noun: percentage of a drug bound to plasma proteins in the blood
+      uris:
+          - http://purl.jp/bio/4/id/201306028362680450
+          - http://www.bioassayontology.org/bao#BAO_0010135
+identifiers:
+    - id: SMILES
+      type: SMILES
+      description: SMILES
+    - id: Species
+      type: Other
+      names:
+          - species
+      description: species in which the measurement was carried out
+    - id: chembl_id
+      type: Other
+      names:
+          - ChEMBL id
+          - ChEMBL identifier number
+      description: chembl ids
+      sample: false
+license: CC BY 4.0
+links:
+    - url: http://dx.doi.org/10.6019/CHEMBL3301361
+      description: corresponding publication
+    - url: https://tdcommons.ai/single_pred_tasks/adme/#ppbr-plasma-protein-binding-rate-astrazeneca
+      description: data source
+num_points: 8070
+bibtex:
+    - |-
+      @techreport{Hersey2015,
+      doi = {10.6019/chembl3301361},
+      url = {https://doi.org/10.6019/chembl3301361},
+      year = {2015},
+      month = feb,
+      publisher = {EMBL-EBI},
+      author = {Anne Hersey},
+      title = {ChEMBL Deposited Data Set - AZ dataset}
