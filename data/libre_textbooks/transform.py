@@ -27,7 +27,7 @@ META_TEMPLATE = {
     "identifiers": [
         {
             "id": "url ",  # column name
-            "type": "OTHER",  # can be "SMILES", "SELFIES", "IUPAC", "OTHER"
+            "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "OTHER"
             "description": "url of the page the content is scraped from",
         },
         {
