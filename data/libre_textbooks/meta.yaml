@@ -5,7 +5,7 @@ targets:
     - id: html
       description: A scraped page from libre textbooks
       units:
-      type: string
+      type: text
       names:
           - natural language article
       pubchem_aids: []
