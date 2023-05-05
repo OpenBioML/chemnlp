@@ -20,9 +20,8 @@ logger = logging.getLogger(__name__)
 # disable nasty rdkit logs
 RDLogger.DisableLog("rdApp.*")
 
-BASE_PATH = Path("Downloads")
-HTML_PATH = BASE_PATH / "rhea_html"
-JSON_PATH = BASE_PATH / "rhea_json"
+HTML_PATH = Path("rhea_html")
+JSON_PATH = Path("rhea_json")
 
 
 # ChEBI ID to molecules
@@ -41,12 +40,15 @@ ID2SMILES = {row["CHEBI_ID"]: row["smiles"] for i, row in chebi_inchis.iterrows(
 
 
 def parse_rhea_reactions(
-    filename: Union[str, Path] = BASE_PATH / "rhea.rdf"
+    filename: Union[str, Path] = "rhea.rdf"
 ) -> Tuple[pd.DataFrame, Dict, Dict]:
     """Parse Rhea reactions from an .rdf file downloaded from
     https://ftp.expasy.org/databases/rhea/rdf/rhea.rdf.gz
     Outputs: pd.DataFrame with columns: rhea_id, equation, num_reacts, num_prods
     """
+    if isinstance(filename, str):
+        filename = Path(filename)
+
     if not filename.exists():
         gzipped = Path(str(filename)[:-4] + ".rdf.gz")
         if not gzipped.exists():
