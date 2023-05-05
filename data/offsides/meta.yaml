@@ -17,6 +17,7 @@ targets:
     - id: PRR_error
       description: Standard error of the PRR estimate
       type: continuous
+      sample: false
       names:
           - Proportional reporting ratio error
     - id: mean_reporting_frequency
