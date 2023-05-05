@@ -60,6 +60,7 @@ they are off-label drug side effects.""",
                 "id": "PRR_error",
                 "description": "Standard error of the PRR estimate",
                 "type": "continuous",
+                "sample": False,
                 "names": ["Proportional reporting ratio error"],
             },
             {
