@@ -40,23 +40,24 @@ def get_and_transform_data():
         "identifier": [
             {
                 "id": "Abbreviation",
-                "description": "Abbreviation of a term",
+                "description": "abbreviation of a term",
                 "type": "categorical",
-                "names": ["Abbreviation"],
+                "names": ["abbreviation"],
             },
         ],
         "targets": [
             {
                 "id": "MeSH_Identifier",
-                "description": "Unique codes for Medical Subject Headings",
+                "description": "unique codes for Medical Subject Headings",
                 "type": "categorical",
-                "names": ["MeSH_Identifier"],
+                "names": ["MeSH identifier"],
+                "sample": False,
             },
             {
                 "id": "Full_Form",
-                "description": "Full form or meaning of the abbreviation",
+                "description": "full form or meaning of the abbreviation",
                 "type": "categorical",
-                "names": ["Full_Form"],
+                "names": ["full form or meaning of the abbreviation"],
             },
         ],
         "license": "CC BY 4.0",
