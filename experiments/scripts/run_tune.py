@@ -62,7 +62,7 @@ def run(config_path: str) -> None:
         )
         model = get_peft_model(model, peft_config)
     total_trainables = sum(
-        [param.numel() for param in model.parameters() if param.requires_grad == True]
+        [param.numel() for param in model.parameters() if param.requires_grad]
     )
     print_zero_rank(
         local_rank,
