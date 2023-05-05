@@ -11,7 +11,7 @@ targets:
       pubchem_aids: []
       uris: []
 identifiers:
-    - id: 'url '
+    - id: url 
       type: string
       description: url of the page the content is scraped from
     - id: text_length
