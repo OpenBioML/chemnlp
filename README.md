@@ -61,7 +61,7 @@ If working on developing the python package:
 pip install -e "chemnlp[dev]"  # to install development dependencies
 ```
 
-When working on the cluster it's important we conserve memory and reduce duplication. Therefore, it is recommended to also pin your Hugging Face cache directory to a shared folder on the cluster by running the following command;
+When working on the cluster it's important we conserve memory and reduce duplication. Therefore, it is recommended to also pin your Hugging Face cache directory to a shared folder on the cluster by running the command below (or adding it to your ~/.bashrc startup script). There is also a helper script at `experiments/scripts/transfer_hf_cache.sh` which will transfer any existing cache from certain folders to the shared directory;
 
 ```bash
 export HF_HOME="/fsx/proj-chemnlp/hf_cache"
