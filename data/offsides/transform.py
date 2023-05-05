@@ -28,8 +28,7 @@ def get_and_transform_data():
 
     assert df.columns.tolist() == expected_columns
 
-    # drop columns
-    # drop A, B, C, D
+    # drop columns A, B, C, D
     df.drop(columns=["A", "B", "C", "D"], inplace=True)
     # remove duplicates
     df.drop_duplicates(inplace=True)
@@ -43,7 +42,7 @@ def get_and_transform_data():
     meta = {
         "name": "offsides",
         "description": """OffSIDES is a database of individual drug side effect
-signals mined from the FDA's. Adverse Event Reporting System. The
+signals mined from the FDA's Adverse Event Reporting System. The
 innovation of OffSIDES is that a propensity score matching (PSM) model
 is used to identify control drugs and produce better PRR estimates. In
 OffSIDES we focus on drug safety signals that are not already
@@ -52,20 +51,20 @@ they are off-label drug side effects.""",
         "targets": [
             {
                 "id": "PRR",
-                "description": "Proportional reporting ratio",
+                "description": "proportional reporting ratio",
                 "type": "continuous",
-                "names": ["Proportional reporting ratio"],
+                "names": ["proportional reporting ratio"],
             },
             {
                 "id": "PRR_error",
-                "description": "Standard error of the PRR estimate",
+                "description": "standard error of the PRR estimate",
                 "type": "continuous",
                 "sample": False,
-                "names": ["Proportional reporting ratio error"],
+                "names": ["standard error of the proportional reporting ratio error"],
             },
             {
                 "id": "mean_reporting_frequency",
-                "description": "Proportion of reports for the drug that report the side effect",
+                "description": "mean reporting frequency for the drug",
                 "type": "continuous",
                 "names": ["mean reporting frequency"],
             },
