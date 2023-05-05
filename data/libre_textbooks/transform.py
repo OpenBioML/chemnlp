@@ -30,11 +30,6 @@ META_TEMPLATE = {
             "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "OTHER"
             "description": "url of the page the content is scraped from",
         },
-        {
-            "id": "text_length",  # text character count
-            "type": "OTHER",  # can be "SMILES", "SELFIES", "IUPAC", "OTHER"
-            "description": "text character count",
-        },
     ],
     "license": "CC BY 4.0",  # license under which the original dataset was published
     "links": [  # list of relevant links (original dataset, other uses, etc.)
