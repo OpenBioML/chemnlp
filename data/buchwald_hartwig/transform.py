@@ -82,61 +82,80 @@ def get_and_transform_data():
 
     # create meta yaml
     meta = {
-        "name": "buchwald_hartwig_doyle",  # unique identifier, we will also use this for directory names
-        "description": """High-throughput experimentation palladium-catalyzed Buchwald Hardwig data set with yields.""",
-        "targets": [
-            {
-                "id": "yield",  # name of the column in a tabular dataset
-                "description": "Reaction yields analyzed by UPLC",  # description of what this column means
-                "units": "%",  # units of the values in this column (leave empty if unitless)
-                "type": "continuous",  # can be "categorical", "ordinal", "continuous"
-                "names": [  # names for the property (to sample from for building the prompts)
-                    "Reaction yield",
-                    "yield",
-                ],
-            },
-        ],
-        "identifiers": [
-            {
-                "id": "reaction_SMILES",  # column name
-                "type": "SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
-                "description": "SMILES",  # description (optional, except for "Other")
-            },
-        ],
-        "license": "MIT license",  # license under which the original dataset was published
-        "links": [  # list of relevant links (original dataset, other uses, etc.)
-            {
-                "url": "https://doi.org/10.1126/science.aar5169",
-                "description": "corresponding publication",
-            },
-            {
-                "url": "https://www.sciencedirect.com/science/article/pii/S2451929420300851",
-                "description": "publication with data in compressed format",
-            },
-            {
-                "url": "https://github.com/rxn4chemistry/rxn_yields/blob/master/rxn_yields/data.py",
-                "description": "preprocessing",
-            },
-            {
-                "url": "https://github.com/reymond-group/drfp/tree/main/data",
-                "description": "dataset",
-            }
-        ],
+    "name": "buchwald_hartwig_doyle",  # unique identifier, we will also use this for directory names
+    "description": """High-throughput experimentation palladium-catalyzed Buchwald Hardwig C-N cross-coupling data set with yields.""",
+    "targets": [
+        {
+            "id": "yield",  # name of the column in a tabular dataset
+            "description": "Reaction yields analyzed by UPLC",  # description of what this column means
+            "units": "%",  # units of the values in this column (leave empty if unitless)
+            "type": "continuous",  # can be "categorical", "ordinal", "continuous"
+            "names": [  # names for the property (to sample from for building the prompts)
+                "Reaction yield",
+                "yield",
+            ],
+        },
+    ],
+    "identifiers": [
+        {
+            "id": "reaction_SMILES",  # column name
+            "type": "RXN-SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
+            "description": "RXN-SMILES",  # description (optional, except for "Other")
+        },
+        {
+            "id": "ligand",  # column name
+            "type": "SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
+            "description": "ligand SMILES",  # description (optional, except for "Other")
+        },
+        {
+            "id": "additive",  # column name
+            "type": "SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
+            "description": "additive SMILES",  # description (optional, except for "Other")
+        },
+        {
+            "id": "base",  # column name
+            "type": "SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
+            "description": "base SMILES",  # description (optional, except for "Other")
+        },
+        {
+            "id": "aryl_halide",  # column name
+            "type": "SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
+            "description": "aryl halide SMILES",  # description (optional, except for "Other")
+        },
+    ],
+    "license": "MIT",  # license under which the original dataset was published
+    "links": [  # list of relevant links (original dataset, other uses, etc.)
+        {
+            "url": "https://doi.org/10.1126/science.aar5169",
+            "description": "corresponding publication",
+        },
+        {
+            "url": "https://www.sciencedirect.com/science/article/pii/S2451929420300851",
+            "description": "publication with data processing",
+        },
+        {
+            "url": "https://github.com/rxn4chemistry/rxn_yields/blob/master/rxn_yields/data.py",
+            "description": "preprocessing",
+        },
+        {
+            "url": "https://github.com/reymond-group/drfp/tree/main/data",
+            "description": "dataset",
+        }
+    ],
         "num_points": len(df),  # number of datapoints in this dataset
-        "url": "https://tdcommons.ai/single_pred_tasks/tox/#acute-toxicity-ld50",
+        "url": "https://doi.org/10.1126/science.aar5169",
         "bibtex": [
             """@article{ahneman2018predicting,
-    title={Predicting reaction performance in C--N cross-coupling using machine learning},
-    author={Ahneman, Derek T and Estrada, Jes{\'u}s G and Lin, Shishi and Dreher, Spencer D and Doyle, Abigail G},
-    journal={Science},
-    volume={360},
-    number={6385},
-    pages={186--190},
-    year={2018},
-    publisher={American Association for the Advancement of Science}
-    }
-    }""",
-        ],
+title={Predicting reaction performance in C--N cross-coupling using machine learning},
+author={Ahneman, Derek T and Estrada, Jes{\'u}s G and Lin, Shishi and Dreher, Spencer D and Doyle, Abigail G},
+journal={Science},
+volume={360},
+number={6385},
+pages={186--190},
+year={2018},
+publisher={American Association for the Advancement of Science},
+}""",
+    ],
     }
 
     def str_presenter(dumper, data):
