@@ -1,0 +1,38 @@
+name: suzuki_miyaura_sach
+description: "High-throughput experimentation palladium-catalyzed Suzuki-Miyaura C-C\
+  \ cross-coupling data set with yields measured by liquid chromatography\u2013mass\
+  \ spectrometry."
+targets:
+- id: Product_Yield_PCT_Area_UV
+  description: Reaction yields analyzed by LCMS
+  units: '%'
+  type: continuous
+  names:
+  - Reaction yield
+  - yield
+identifiers:
+- id: reaction_SMILES
+  type: RXNSMILES
+  description: RXNSMILES
+license: MIT
+links:
+- url: https://doi.org/10.1126/science.aap9112
+  description: corresponding publication
+- url: https://github.com/rxn4chemistry/rxn_yields/blob/master/rxn_yields/data.py
+  description: preprocessing
+- url: https://github.com/reymond-group/drfp/tree/main/data
+  description: dataset
+num_points: 5760
+url: https://doi.org/10.1126/science.aap9112
+bibtex:
+- |-
+  @article{perera2018platform,
+  title={A platform for automated nanomole-scale reaction screening and micromole-scale synthesis in flow},
+  author={Perera, Damith and Tucker, Joseph W and Brahmbhatt, Shalini and Helal, Christopher J and Chong, Ashley and Farrell, William and Richardson, Paul and Sach, Neal W},
+  journal={Science},
+  volume={359},
+  number={6374},
+  pages={429--434},
+  year={2018},
+  publisher={American Association for the Advancement of Science},
+  }
