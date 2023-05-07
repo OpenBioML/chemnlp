@@ -99,28 +99,8 @@ def get_and_transform_data():
     "identifiers": [
         {
             "id": "reaction_SMILES",  # column name
-            "type": "RXN-SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
-            "description": "RXN-SMILES",  # description (optional, except for "Other")
-        },
-        {
-            "id": "ligand",  # column name
-            "type": "SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
-            "description": "ligand SMILES",  # description (optional, except for "Other")
-        },
-        {
-            "id": "additive",  # column name
-            "type": "SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
-            "description": "additive SMILES",  # description (optional, except for "Other")
-        },
-        {
-            "id": "base",  # column name
-            "type": "SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
-            "description": "base SMILES",  # description (optional, except for "Other")
-        },
-        {
-            "id": "aryl_halide",  # column name
-            "type": "SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
-            "description": "aryl halide SMILES",  # description (optional, except for "Other")
+            "type": "RXNSMILES",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
+            "description": "RXNSMILES",  # description (optional, except for "Other")
         },
     ],
     "license": "MIT",  # license under which the original dataset was published

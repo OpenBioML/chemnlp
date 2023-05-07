@@ -11,20 +11,8 @@ targets:
   - yield
 identifiers:
 - id: reaction_SMILES
-  type: RXN-SMILES
-  description: RXN-SMILES
-- id: ligand
-  type: SMILES
-  description: ligand SMILES
-- id: additive
-  type: SMILES
-  description: additive SMILES
-- id: base
-  type: SMILES
-  description: base SMILES
-- id: aryl_halide
-  type: SMILES
-  description: aryl halide SMILES
+  type: RXNSMILES
+  description: RXNSMILES
 license: MIT
 links:
 - url: https://doi.org/10.1126/science.aar5169
