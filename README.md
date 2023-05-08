@@ -44,21 +44,27 @@ See https://openbioml.org, especially [our approach and partners](https://openbi
 
 Create a new conda environment with Python 3.8:
 
-```
+```bash
 conda create -n chemnlp python=3.8
 conda activate chemnlp
 ```
 
 To install the `chemnlp` package (and required dependencies):
 
-```
+```bash
 pip install chemnlp
 ```
 
 If working on developing the python package:
 
-```
+```bash
 pip install -e "chemnlp[dev]"  # to install development dependencies
+```
+
+When working on the cluster it's important we conserve memory and reduce duplication. Therefore, it is recommended to also pin your Hugging Face cache directory to a shared folder on the cluster by running the command below (or adding it to your ~/.bashrc startup script). There is also a helper script at `experiments/scripts/transfer_hf_cache.sh` which will transfer any existing cache from certain folders to the shared directory;
+
+```bash
+export HF_HOME="/fsx/proj-chemnlp/hf_cache"
 ```
 
 If extra dependencies are required (e.g. for dataset creation) but are not needed for the main package please add to the `pyproject.toml` in the `dataset_creation` variable and ensure this is reflected in the `conda.yml` file.
@@ -87,18 +93,19 @@ In order to work on the git submodules (i.e. `gpt-neox`) you will need to ensure
 
 To do this at the same time as cloning ChemNLP:
 
-  ```
-   # using ssh (if you have your ssh key on GitHub)
-  git clone --recurse-submodules git@github.com:OpenBioML/chemnlp.git
+```bash
+ # using ssh (if you have your ssh key on GitHub)
+git clone --recurse-submodules git@github.com:OpenBioML/chemnlp.git
 
-   # using https (if you use personal access token)
-  git clone --recurse-submodules [git@github.com:OpenBioML/chemnlp.git ](https://github.com/OpenBioML/chemnlp.git)
-  ```
-
-  > This will automatically initialize and update each submodule in the repository, including nested submodules if any of the submodules in the repository have submodules themselves.
-
- If you've already cloned ChemNLP and don't have the submodules you can run:
+ # using https (if you use personal access token)
+git clone --recurse-submodules [git@github.com:OpenBioML/chemnlp.git ](https://github.com/OpenBioML/chemnlp.git)
 ```
+
+> This will automatically initialize and update each submodule in the repository, including nested submodules if any of the submodules in the repository have submodules themselves.
+
+If you've already cloned ChemNLP and don't have the submodules you can run:
+
+```bash
 git submodule update --init --recursive
 ```
 
