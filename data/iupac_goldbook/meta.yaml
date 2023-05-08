@@ -27,7 +27,7 @@ targets:
           - definition of a chemistry term
 identifiers:
     - id: term
-      type: OTHER
+      type: Other
       description: chemistry term
       names:
           - term
