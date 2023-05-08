@@ -30,7 +30,7 @@ META_TEMPLATE = {
         },
         {
             "id": "compound_id",
-            "type": "OTHER",
+            "type": "Other",
             "description": "This is the PubChem CID to identify a given molecule.",
         },
     ],
