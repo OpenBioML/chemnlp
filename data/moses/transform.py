@@ -52,8 +52,8 @@ It is processed from the ZINC Clean Leads dataset.""",
         "identifiers": [
             {
                 "id": "SMILES",  # column name
-                "type": "SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "OTHER"
-                "description": "SMILES",  # description (optional, except for "OTHER")
+                "type": "SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
+                "description": "SMILES",  # description (optional, except for "Other")
             },
         ],
         "license": "CC BY 4.0",  # license under which the original dataset was published
