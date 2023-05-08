@@ -54,7 +54,7 @@ class ColumnTypes(YamlStrEnum):
     categorical = "categorical"
     ordinal = "ordinal"
     boolean = "boolean"
-    string = "string"
+    text = "text"
 
 
 class Target(YamlModel):
