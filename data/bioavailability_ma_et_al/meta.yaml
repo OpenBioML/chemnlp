@@ -1,0 +1,54 @@
+---
+name: bioavailability_ma_et_al
+description: |-
+    Oral bioavailability is defined as the rate and extent to which the
+    active ingredient or active moiety is absorbed from a drug product and becomes
+    available at the site of action.
+targets:
+    - id: bioavailable
+      description: whether it is bioavailable (1) or not (0)
+      units:
+      type: boolean
+      names:
+          - noun: oral bioavailability
+          - noun: bioavailability
+          - adjective: is bioavailable
+      uris:
+          - http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C70913
+benchmarks:
+    - name: TDC
+      link: https://tdcommons.ai/
+      split_column: split
+identifiers:
+    - id: SMILES
+      type: SMILES
+      description: SMILES
+    - id: compound_name
+      type: Other
+      names:
+          - compound name
+          - drug name
+          - generic drug name
+      description: drug name
+license: CC BY 4.0
+links:
+    - url: https://doi.org/10.1016/j.jpba.2008.03.023
+      description: corresponding publication
+    - url: https://tdcommons.ai/single_pred_tasks/adme/#bioavailability-ma-et-al
+      description: data source
+num_points: 640
+bibtex:
+    - |-
+      @article{Ma2008,
+      doi = {10.1016/j.jpba.2008.03.023},
+      url = {https://doi.org/10.1016/j.jpba.2008.03.023},
+      year = {2008},
+      month = aug,
+      publisher = {Elsevier BV},
+      volume = {47},
+      number = {4-5},
+      author = {Chang-Ying Ma and Sheng-Yong Yang and Hui Zhang
+      and Ming-Li Xiang and Qi Huang and Yu-Quan Wei},
+      title = {Prediction models of human plasma protein binding rate and
+      oral bioavailability derived by using GA-CG-SVM method},
+      journal = {Journal of Pharmaceutical and Biomedical Analysis}

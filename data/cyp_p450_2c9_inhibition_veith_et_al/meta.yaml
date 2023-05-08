@@ -1,0 +1,49 @@
+---
+name: cyp_p450_2c9_inhibition_veith_et_al
+description: |-
+    The CYP P450 genes are involved in the formation and breakdown (metabolism)
+    of various molecules and chemicals within cells. Specifically, the CYP P450
+    2C9 plays a major role in the oxidation of both xenobiotic and endogenous compounds.
+targets:
+    - id: CYP2C9_inhibition
+      description: ability of the drug to inhibit CYP P450 2C9 (1) or not (0)
+      units:
+      type: boolean
+      names:
+          - noun: CYP P450 2C9 inhibition
+          - noun: CYP 2C9 inhibition
+          - verb: inhibits CYP P450 2C9
+          - gerund: inhibiting CYP P450 2C9
+      uris:
+benchmarks:
+    - name: TDC
+      link: https://tdcommons.ai/
+      split_column: split
+identifiers:
+    - id: SMILES
+      type: SMILES
+      description: SMILES
+license: CC BY 4.0
+links:
+    - url: https://doi.org/10.1038/nbt.1581
+      description: corresponding publication
+    - url: https://tdcommons.ai/single_pred_tasks/adme/#cyp-p450-2c9-inhibition-veith-et-al
+      description: data source
+num_points: 12092
+bibtex:
+    - |-
+      @article{Veith2009,
+      doi = {10.1038/nbt.1581},
+      url = {https://doi.org/10.1038/nbt.1581},
+      year = {2009},
+      month = oct,
+      publisher = {Springer Science and Business Media LLC},
+      volume = {27},
+      number = {11},
+      pages = {1050--1055},
+      author = {Henrike Veith and Noel Southall and Ruili Huang and Tim James
+      and Darren Fayne and Natalia Artemenko and Min Shen and James Inglese
+      and Christopher P Austin and David G Lloyd and Douglas S Auld},
+      title = {Comprehensive characterization of cytochrome P450 isozyme selectivity
+      across chemical libraries},
+      journal = {Nature Biotechnology}

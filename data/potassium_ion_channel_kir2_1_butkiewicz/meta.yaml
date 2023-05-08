@@ -14,9 +14,10 @@ targets:
       units:
       type: boolean
       names:
-          - is blocking potassium ion channel activity
-          - blocks potassium ion channel activity
-          - inhibts the I  nward-Rectifying Potassium Ion Channel Kir2.1
+          - verb: is blocking potassium ion channel activity
+          - verb: blocks potassium ion channel activity
+          - verb: inhibts the Inward-Rectifying Potassium Ion Channel Kir2.1
+          - noun: blocker of potassium ion channel activity
       pubchem_aids:
           - 1672
           - 2032
@@ -37,6 +38,8 @@ benchmarks:
       split_column: split
 license: CC BY 4.0
 links:
+    - url: https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al
+      description: original dataset
     - url: https://doi.org/10.3390/molecules18010735
       description: corresponding publication
     - url: https://doi.org/10.1093/nar/gky1033
@@ -44,7 +47,6 @@ links:
     - url: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5962024/
       description: corresponding publication
 num_points: 301493
-url: https://tdcommons.ai/single_pred_tasks/hts/#butkiewicz-et-al
 bibtex:
     - |-
       @article{Butkiewicz2013,

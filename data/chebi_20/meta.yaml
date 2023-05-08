@@ -7,7 +7,7 @@ targets:
       units:
       type: string
       names:
-          - natural language description
+          - noun: natural language description
       pubchem_aids: []
       uris: []
 identifiers:

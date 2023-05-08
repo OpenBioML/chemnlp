@@ -1,0 +1,32 @@
+---
+name: fda_adverse_reactions
+description: A dataset of adverse reaction statistics for drugs and reaction events.
+targets:
+    - id: count
+      description: A count of how many reaction events occurred for this chembl id.
+      units:
+      type: ordinal
+      names:
+          - noun: adverse reaction frequency
+      pubchem_aids: []
+      uris: []
+    - id: event
+      description: The type of event that occurred for this molecule interaction.
+      units:
+      type: string
+      names:
+          - noun: adverse event reaction
+      pubchem_aids: []
+      uris: []
+identifiers:
+    - id: SMILES
+      type: SMILES
+      description: This is the SMILES identifier for a given molecule.
+license: CC BY-SA 3.0
+links:
+    - name: Dataset
+      url: https://platform.opentargets.org/downloads
+      description: The website which we download the dataset from during the transformation script.
+benchmarks: []
+num_points: 94910
+bibtex: []
