@@ -15,7 +15,7 @@ identifiers:
       type: SMILES
       description: SMILES
     - id: compound_id
-      type: OTHER
+      type: Other
       description: This is the PubChem CID to identify a given molecule.
 license: CC BY 4.0
 links:
