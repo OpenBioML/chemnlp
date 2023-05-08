@@ -12,7 +12,7 @@ META_TEMPLATE = {
     "targets": [
         {
             "id": "description",  # name of the column in a tabular dataset
-            "description": "A natural language description of the molecule SMILE",
+            "description": "a natural language description of the molecule SMILE",
             "units": None,  # units of the values in this column (leave empty if unitless)
             "type": "text",  # can be "categorical", "ordinal", "continuous", "text"
             "names": [  # names for the property (to sample from for building the prompts)

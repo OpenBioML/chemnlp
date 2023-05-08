@@ -3,7 +3,7 @@ name: chebi_20
 description: A dataset of pairs of natural language descriptions and SMILEs.
 targets:
     - id: description
-      description: A natural language description of the molecule SMILE
+      description: a natural language description of the molecule SMILE
       units:
       type: text
       names:
