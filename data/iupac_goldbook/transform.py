@@ -84,7 +84,7 @@ spanning the whole range of chemistry.""",
         "identifiers": [
             {
                 "id": "term",  # column name
-                "type": "OTHER",  # can be "SMILES", "SELFIES", "IUPAC", "OTHER"
+                "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "OTHER"
                 "description": "chemistry term",  # description (optional, except for "OTHER")
                 "names": [
                     "term",
