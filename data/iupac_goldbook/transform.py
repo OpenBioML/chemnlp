@@ -74,7 +74,7 @@ spanning the whole range of chemistry.""",
                 "id": "definition",  # name of the column in a tabular dataset
                 "description": "definition of a chemistry term",  # description of what this column means
                 "units": None,  # units of the values in this column (leave empty if unitless)
-                "type": "text",  # can be "categorical", "ordinal", "continuous", "text"
+                "type": "string",  # can be "categorical", "ordinal", "continuous", "string"
                 "names": [  # names for the property (to sample from for building the prompts)
                     "definition",
                     "definition of a chemistry term",
