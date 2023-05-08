@@ -294,7 +294,7 @@ total_tac = time.time()
 for i in range(0, len(all_ids), step):
     tac = time.time()
     results = [
-        parse_rhea_id_with_smiles(id_, filepath=Path(f"Downloads/rhea_html/{id_}"))
+        parse_rhea_id_with_smiles(id_, filepath=Path(f"{HTML_PATH}/{id_}"))
         for id_ in tqdm(all_ids[i : i + step])
     ]
     results = [{"rhea_id": x[0], "equation": x[1], "compounds": x[2]} for x in results]
