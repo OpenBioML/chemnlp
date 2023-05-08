@@ -5,7 +5,7 @@ targets:
     - id: description
       description: a natural language description of the molecule SMILE
       units:
-      type: text
+      type: string
       names:
           - natural language description
       pubchem_aids: []

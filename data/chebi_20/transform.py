@@ -14,7 +14,7 @@ META_TEMPLATE = {
             "id": "description",  # name of the column in a tabular dataset
             "description": "a natural language description of the molecule SMILE",
             "units": None,  # units of the values in this column (leave empty if unitless)
-            "type": "text",  # can be "categorical", "ordinal", "continuous", "text"
+            "type": "string",  # can be "categorical", "ordinal", "continuous", "string"
             "names": [  # names for the property (to sample from for building the prompts)
                 "natural language description",
             ],
