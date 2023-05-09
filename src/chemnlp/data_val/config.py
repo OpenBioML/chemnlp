@@ -58,3 +58,9 @@ class TrainPipelineConfig(BaseModel):
     prompt_tuning: PromptTune
     trainer: TrainerConfig
     wandb: WandbConfig
+
+
+class DataMixingConfig(BaseModel):
+    data_paths: list
+    data_proportions: list
+    save_path: str
