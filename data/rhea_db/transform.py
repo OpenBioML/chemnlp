@@ -13,22 +13,34 @@ import pandas as pd
 from bs4 import BeautifulSoup
 from rdkit import Chem, RDLogger
 from ruamel.yaml import YAML
-from tqdm.notebook import tqdm
+from tqdm.auto import tqdm
 
-logger = logging.getLogger(__name__)
-
-# disable nasty rdkit logs
+# disable nasty rdkit logs and setup logger
 RDLogger.DisableLog("rdApp.*")
+
+# Create a formatter and add it to the console handler
+formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+handler = logging.StreamHandler()
+handler.setFormatter(formatter)
+
+# Add the console handler to the logger
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+logger.addHandler(handler)
+
 
 HTML_PATH = Path("rhea_html")
 JSON_PATH = Path("rhea_json")
 
+HTML_PATH.mkdir(exist_ok=True, parents=True)
+JSON_PATH.mkdir(exist_ok=True, parents=True)
 
 # ChEBI ID to molecules
 # This covers many molecules and avoid extra HTTP requests.
 # Seems it still fails sometimes, especially for secondary IDs, fragments, etc
 
 # only contains ChEBI ids with valid InChis.
+logger.info("Grabbing reactant data")
 filename = "https://ftp.ebi.ac.uk/pub/databases/chebi/Flat_file_tab_delimited/chebiId_inchi.tsv"
 chebi_inchis = pd.read_csv(filename, sep="\t")
 chebi_inchis["smiles"] = [
@@ -37,6 +49,7 @@ chebi_inchis["smiles"] = [
 ]
 
 ID2SMILES = {row["CHEBI_ID"]: row["smiles"] for i, row in chebi_inchis.iterrows()}
+logger.info("Reactant data loaded")
 
 
 def parse_rhea_reactions(
@@ -122,13 +135,18 @@ def download_multiple(
     if not route.exists():
         route.mkdir(parents=True)
 
+    # filter urls to download
+    logger.info(f"{len(urls)} files for download. discard existing already")
+    urls = [url for url in tqdm(urls) if not (route / url.split("/")[-1]).exists()]
+
+    logger.info(f"Downloading in batch: {len(urls)} files")
+
     # create temp file
     path = route / "urls_to_download.txt"
     with open(path, "w") as f:
         urls = "\n".join(urls)
         f.write(urls)
 
-    logger.info(f"Downloading in batch: {len(urls)} files")
     if os.system("which aria2c") == 0:
         sp.call(f"aria2c -i {str(path)} -d {route} -j {max_concurrent}", shell=True)
     else:
@@ -220,7 +238,7 @@ def parse_rhea_id(
     lines = list(filter(len, lines))
 
     chebi2mol = {}
-    eq_filled = False
+    eq, eq_filled = "", False
     for line in lines:
         # get mol names
         if 'onclick="window.attachToolTip(this)" class="molName" data-molid=' in line:
@@ -236,7 +254,7 @@ def parse_rhea_id(
         if '<textarea readonly style="transform:scale(0,0)" id="equationtext">' in line:
             if not eq_filled:
                 soup = BeautifulSoup(line, "html.parser")
-                eq = soup.text.lstrip(" ").rstip(" ")
+                eq = soup.text.lstrip(" ").rstrip(" ")
                 eq_filled = True
 
     return eq, chebi2mol
@@ -273,21 +291,24 @@ def parse_rhea_id_with_smiles(
 # pre_react = parse_rhea_id(id_=id_)
 # full_react = parse_rhea_id_with_smiles(rhea_id=id_)
 
-
+logger.info("Parsing all rhea reactions")
 merged, compound_name2chebi, compound_chebi2name = parse_rhea_reactions()
+logger.info("All rhea reactions parsed")
 
 # Prepare full download
-
+logger.info("Pulling reactions from Rhea URL. Parallel download")
 all_ids = merged.rhea_id.values.astype(int).tolist()  # [:100]
 all_urls = [f"https://www.rhea-db.org/rhea/{id_}" for id_ in all_ids]
 download_multiple(all_urls, route=HTML_PATH, max_concurrent=32)
+logger.info("Parallel download finished.")
 
 
 logger.info(f"Prev length: {len(all_ids)}")
 all_ids = list(filter(lambda x: Path(f"{HTML_PATH}/{x}").is_file(), all_ids))
-logger.info(f"Post length: {len(all_ids)}")
+logger.info(f"Post length (after checking for correct download): {len(all_ids)}")
 
 
+logger.info("Matching reactions to ligands")
 glob_res = []
 step = 5000
 total_tac = time.time()
@@ -307,6 +328,7 @@ for i in range(0, len(all_ids), step):
 
 
 # Save to json
+logger.info("Saving data to json")
 with open(JSON_PATH / "parsed_rhea.json", "w") as f:
     for item in glob_res:
         json.dump(item, f)
@@ -314,7 +336,8 @@ with open(JSON_PATH / "parsed_rhea.json", "w") as f:
 
 
 # Verify number of datapoints
-yaml = YAML(typ="safe").load(open("meta.yaml").read())
+logger.info("Verifying data pulled.")
+yaml = YAML(typ="safe").load(open(Path(__file__).parent / "meta.yaml").read())
 assert yaml["num_points"] == len(
     glob_res
 ), f"Number of points {len(glob_res)} does not match {yaml['num_points']}"
