@@ -4,7 +4,7 @@ description: NLM-Chem is a new resource for chemical entity recognition in PubMe
 identifier:
     - id: Abbreviation
       description: abbreviation of a term
-      type: categorical
+      type: string
       names:
           - abbreviation
 targets:
