@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import List, Optional
 
 from pydantic import BaseModel, validator
 
@@ -61,6 +61,7 @@ class TrainPipelineConfig(BaseModel):
 
 
 class DataMixingConfig(BaseModel):
-    data_paths: list
-    data_proportions: list
+    data_paths: List[str]
+    data_proportions: List[float]
     save_path: str
+    stopping_strategy: str

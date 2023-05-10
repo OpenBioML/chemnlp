@@ -20,7 +20,7 @@ def run(config_path: str) -> None:
         ],
         probabilities=config.data_proportions,
         seed=RANDOM_SEED,
-        stopping_strategy="first_exhausted",
+        stopping_strategy=config.stopping_strategy,
     )
 
     mixed_data.save_to_disk(config.save_path)
@@ -29,7 +29,7 @@ def run(config_path: str) -> None:
         "random_state": RANDOM_SEED,
         "component_datasets": config.data_paths,
         "component_proportions": config.data_proportions,
-        "interleave_stopping_strategy": "first_exhausted",
+        "interleave_stopping_strategy": config.stopping_strategy,
         "dataset_size": len(mixed_data),
     }
 
