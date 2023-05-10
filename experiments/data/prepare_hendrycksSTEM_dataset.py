@@ -29,27 +29,29 @@ TASKS = [
 
 STRING_KEY = "TEXT"
 OUT_DIR = "/fsx/proj-chemnlp/data"
-NAME = "hendrycks_STEM"
+NAME = "hendrycks_STEM_train"
 
 
-def make_test_dataset(tasks):
+def make_train_dataset(tasks):
     task_dict = lm_eval.tasks.get_task_dict(tasks)
     task_dict_items = [
-        (name, task) for name, task in task_dict.items() if task.has_test_docs()
+        (name, task) for name, task in task_dict.items() if task.has_validation_docs()
     ]
 
     docs = []
-    for _, task in task_dict_items:
-        task_doc_func = task.test_docs
+    task_sizes = {}
+    for task_name, task in task_dict_items:
+        task_doc_func = task.validation_docs
 
         task_docs = list(task_doc_func())
+        task_sizes[task_name] = len(task_docs)
         rnd = random.Random()
         rnd.seed(42)
         rnd.shuffle(task_docs)
         for doc in task_docs:
             docs.append(doc["query"] + doc["choices"][doc["gold"]])
 
-    return datasets.Dataset.from_dict({STRING_KEY: docs})
+    return datasets.Dataset.from_dict({STRING_KEY: docs}), task_sizes
 
 
 if __name__ == "__main__":
@@ -67,7 +69,7 @@ if __name__ == "__main__":
     if not tokenizer.pad_token:
         tokenizer.add_special_tokens({"pad_token": "<|padding|>"})
 
-    dataset = make_test_dataset(TASKS)
+    dataset, task_sizes = make_train_dataset(TASKS)
     words_per_sample = [len(x[STRING_KEY].split(" ")) for x in dataset]
 
     tokenised_data = dataset.map(
@@ -89,6 +91,7 @@ if __name__ == "__main__":
         "total_tokens_in_billions": round(
             args.max_length * tokenised_data.num_rows / 1e9, 4
         ),
+        "samples_per_task": task_sizes,
     }
     print(summary_stats)
 
