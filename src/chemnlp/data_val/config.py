@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import List, Optional
 
 from pydantic import BaseModel, validator
 
@@ -58,3 +58,10 @@ class TrainPipelineConfig(BaseModel):
     prompt_tuning: PromptTune
     trainer: TrainerConfig
     wandb: WandbConfig
+
+
+class DataMixingConfig(BaseModel):
+    data_paths: List[str]
+    data_proportions: List[float]
+    save_path: str
+    stopping_strategy: str
