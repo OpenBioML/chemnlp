@@ -25,13 +25,19 @@ FILE_PATH = pathlib.Path(__file__).parent.resolve()
 CONFIG_DIR = FILE_PATH.parent / "configs"
 
 
+def print_zero_rank(rank, x):
+    """Print a statement only if the zero rank process"""
+    if rank in [0, -1]:
+        print(x)
+
+
 def run(config_path: str) -> None:
     """Perform a training run for a given YAML defined configuration"""
     raw_config = load_config(config_path)
     config = TrainPipelineConfig(**raw_config)
-    local_rank = os.environ.get("LOCAL_RANK", -1)
-    global_rank = os.environ.get("RANK", -1)
-    print(config)
+    local_rank = int(os.environ.get("LOCAL_RANK", -1))
+    global_rank = int(os.environ.get("RANK", -1))
+    print_zero_rank(local_rank, config)
 
     tokenizer = AutoTokenizer.from_pretrained(
         pretrained_model_name_or_path=config.model.name,
@@ -55,9 +61,13 @@ def run(config_path: str) -> None:
             tokenizer_name_or_path=config.model.name,
         )
         model = get_peft_model(model, peft_config)
-        model.print_trainable_parameters()
-    else:
-        print(f"Total Parameters: {model.num_parameters()}")
+    total_trainables = sum(
+        [param.numel() for param in model.parameters() if param.requires_grad]
+    )
+    print_zero_rank(
+        local_rank,
+        f"Total Parameters: {model.num_parameters()} Trainable Parameters: {total_trainables}",
+    )
 
     dataset = datasets.load_from_disk(config.data.path)
     split_dataset = dataset.train_test_split(test_size=0.025)
@@ -71,7 +81,7 @@ def run(config_path: str) -> None:
         if config.trainer.deepspeed_config
         else None,
     )
-    print(training_args)
+    print_zero_rank(local_rank, training_args)
 
     if config.wandb.enabled:
         config.wandb.name += f"_global_{global_rank}_local_{local_rank}_rank"
