@@ -9,6 +9,67 @@ import yaml
 from tqdm import tqdm
 
 
+def get_text_from_json_data(data):
+    # sort sentences
+    data["body_text"].sort(key=lambda e: e["startOffset"])
+
+    # get text data from json dict
+    data_text = {}
+
+    data_text["title"] = data["metadata"]["title"]
+
+    if "subjareas" in data["metadata"]:
+        data_text["subject_classification"] = [
+            e for i, e in enumerate(data["metadata"]["subjareas"])
+        ]
+        data_text["subject_classification"] = [
+            e + "," for e in data_text["subject_classification"][:-1]
+        ] + [data_text["subject_classification"][-1]]
+
+    if "asjc" in data["metadata"]:
+        data_text["all_science_journal_classification"] = [
+            e for i, e in enumerate(data["metadata"]["asjc"])
+        ]
+        data_text["all_science_journal_classification"] = [
+            e + "," for e in data_text["all_science_journal_classification"][:-1]
+        ] + [data_text["all_science_journal_classification"][-1]]
+
+    if "keywords" in data["metadata"]:
+        data_text["keywords"] = [
+            f"{e}," for i, e in enumerate(data["metadata"]["keywords"])
+        ]
+
+    data_text["abstract"] = data["abstract"]
+
+    if "author_highlights" in data:
+        # sort author highlights
+        data["author_highlights"].sort(key=lambda e: e["startOffset"])
+        data_text["author_highlights"] = [
+            f"{i+1}.) {e['sentence']}\n"
+            for i, e in enumerate(data["author_highlights"])
+        ]
+        data_text["author_highlights"] = "".join(data_text["author_highlights"])
+
+    for e in data["body_text"]:
+        if e["title"] in data_text:
+            data_text[e["title"]].append(e["sentence"])
+        else:
+            data_text[e["title"]] = []
+            data_text[e["title"]].append(e["sentence"])
+
+    # create text
+    text = ""
+
+    for key in data_text:
+        text += f"\n\n{key.replace('_',' ').title()}\n"
+        if isinstance(data_text[key], str):
+            text += data_text[key]
+        else:
+            text += " ".join(data_text[key])
+
+    return text
+
+
 def get_and_transform_data():
     # get raw data
     fn_zip_original = Path("elsevier_oa_cc-by_corpus_v3.zip")
@@ -44,7 +105,7 @@ def get_and_transform_data():
         with open(filename) as f:
             data_json_raw = json.load(f)
         if "abstract" in data_json_raw:
-            dict_json["text"] = data_json_raw["abstract"]
+            dict_json["text"] = get_text_from_json_data(data_json_raw)
         else:
             continue
         data_json.append(dict_json)
