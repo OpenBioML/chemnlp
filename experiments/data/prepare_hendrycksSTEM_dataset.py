@@ -2,7 +2,7 @@
 Convert hendrycks eval dataset into a training dataset as a sanity check"
 
 Example Usage:
-    python prepare_lmeval_dataset.py EleutherAI/pythia-1b 2048 validation
+    python prepare_hendrycksSTEM_dataset.py EleutherAI/pythia-1b 2048 validation
 """
 
 import argparse
