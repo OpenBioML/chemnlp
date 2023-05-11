@@ -32,26 +32,22 @@ OUT_DIR = "/fsx/proj-chemnlp/data"
 NAME = "hendrycks_STEM"
 
 
-def make_train_dataset(tasks, data_split):
+def make_dataset(tasks, data_split):
     task_dict = lm_eval.tasks.get_task_dict(tasks)
 
     docs = []
     task_sizes = {}
     for task_name, task in task_dict.items():
-        if (data_split == "train") and (task.has_training_docs):
-            task_doc_func = task.training_docs
-
-        elif (data_split == "validation") and (task.has_validation_docs):
-            task_doc_func = task.validation_docs
-
-        elif (data_split == "test") and (task.has_test_docs):
-            task_doc_func = task.test_docs
-
+        task_condition = f"has_{data_split}_docs"
+        task_func = f"{data_split}_docs"
+        if getattr(task, task_condition):
+            task_doc_func = getattr(task, task_func)
         else:
-            raise ValueError("task must have train, validation or test split")
+            raise ValueError("task must have training, validation or test split")
 
         task_docs = list(task_doc_func())
         task_sizes[task_name] = len(task_docs)
+
         rnd = random.Random()
         rnd.seed(42)
         rnd.shuffle(task_docs)
@@ -82,7 +78,7 @@ if __name__ == "__main__":
     if not tokenizer.pad_token:
         tokenizer.add_special_tokens({"pad_token": "<|padding|>"})
 
-    dataset, task_sizes = make_train_dataset(
+    dataset, task_sizes = make_dataset(
         tasks=TASKS,
         data_split=args.data_split,
     )
