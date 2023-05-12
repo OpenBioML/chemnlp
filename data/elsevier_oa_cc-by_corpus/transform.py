@@ -57,17 +57,17 @@ def get_text_from_json_data(data):
             data_text[e["title"]] = []
             data_text[e["title"]].append(e["sentence"])
 
-    # create text
-    text = ""
+    # create full_text
+    full_text = ""
 
     for key in data_text:
-        text += f"\n\n{key.replace('_',' ').title()}\n"
+        full_text += f"\n\n{key.replace('_',' ').title()}\n"
         if isinstance(data_text[key], str):
-            text += data_text[key]
+            full_text += data_text[key]
         else:
-            text += " ".join(data_text[key])
+            full_text += " ".join(data_text[key])
 
-    return text
+    return data_text, full_text
 
 
 def get_and_transform_data():
@@ -81,8 +81,11 @@ def get_and_transform_data():
             f.write(data.content)
         del data
 
-        with open(fn_zip_original, "rb", buffering=0) as f:
-            sha256_hash = hashlib.file_digest(f, "sha256").hexdigest()
+        hash_func = hashlib.new("sha256")
+        with open(fn_zip_original, "rb") as f:
+            for chunk in iter(lambda: f.read(4096), b""):
+                hash_func.update(chunk)
+        sha256_hash = hash_func.hexdigest()
         sha256_hash_orig = (
             "380ee2737cc341ab15d4de1481d2c2f809de8dfefdf639c158c479249a085e6a"
         )
@@ -98,21 +101,33 @@ def get_and_transform_data():
         ZipFile(fn_dir_original / "json.zip").extractall(fn_dir_original)
 
     # load json data
-    data_json = []
+    data_json_clean    = []
+    data_json_separate = []
     for filename in tqdm(glob.glob(str(fn_dir_original / "json/*.json"))):
-        dict_json = {}
-        dict_json["filename"] = filename.split("elsevier_oa_cc-by_corpus_v3/json/")[-1]
+        dict_json_clean    = {}
+        dict_json_separate = {}
+        dict_json_clean["filename"]    = filename.split("elsevier_oa_cc-by_corpus_v3/json/")[-1]
+        dict_json_separate["filename"] = filename.split("elsevier_oa_cc-by_corpus_v3/json/")[-1]
         with open(filename) as f:
             data_json_raw = json.load(f)
         if "abstract" in data_json_raw:
-            dict_json["text"] = get_text_from_json_data(data_json_raw)
+            data_text, dict_json_clean["text"] = get_text_from_json_data(data_json_raw)
+            dict_json_separate = {**dict_json_separate, **data_text}
         else:
             continue
-        data_json.append(dict_json)
+        data_json_clean.append(dict_json_clean)
+        data_json_separate.append(dict_json_separate)
+
+    assert len(data_json_clean) == len(data_json_separate)
 
     # save data as jsonl
     with open("data_clean.jsonl", "w") as file_out:
-        for element in data_json:
+        for element in data_json_clean:
+            json.dump(element, file_out)
+            file_out.write("\n")
+
+    with open("data_separate.jsonl", "w") as file_out:
+        for element in data_json_separate:
             json.dump(element, file_out)
             file_out.write("\n")
 
@@ -135,7 +150,7 @@ be applied and tested across domains.""",
                 "description": "original dataset link",
             },
         ],
-        "num_points": len(data_json),  # number of datapoints in this dataset
+        "num_points": len(data_json_clean),  # number of datapoints in this dataset
         "bibtex": [
             """@article{DBLP:journals/corr/abs-2008-00774,
 author       = {Daniel Kershaw and Rob Koeling},
