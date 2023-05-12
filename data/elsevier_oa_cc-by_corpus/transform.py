@@ -45,7 +45,7 @@ def get_text_from_json_data(data):
         # sort author highlights
         data["author_highlights"].sort(key=lambda e: e["startOffset"])
         data_text["author_highlights"] = [
-            f"{i+1}.) {e['sentence']}\n"
+            f"{i+1}. {e['sentence']}\n"
             for i, e in enumerate(data["author_highlights"])
         ]
         data_text["author_highlights"] = "".join(data_text["author_highlights"])
@@ -61,7 +61,7 @@ def get_text_from_json_data(data):
     full_text = ""
 
     for key in data_text:
-        full_text += f"\n\n{key.replace('_',' ').title()}\n"
+        full_text += f"\n\n# {key.replace('_',' ').title()}\n"
         if isinstance(data_text[key], str):
             full_text += data_text[key]
         else:
