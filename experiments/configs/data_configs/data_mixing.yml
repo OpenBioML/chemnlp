@@ -1,0 +1,4 @@
+data_paths: ["/fsx/proj-chemnlp/data/EleutherAI/pythia-1b/hendrycks_STEM", "/fsx/proj-chemnlp/data/EleutherAI/pythia-1b/marianna13/chemrxiv"]
+data_proportions: [0.8, 0.2]
+save_path: "/fsx/proj-chemnlp/data/EleutherAI/pythia-1b/80hendrycks_20chemrxiv"
+stopping_strategy: "first_exhausted"

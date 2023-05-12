@@ -2,7 +2,7 @@
 Convert hendrycks eval dataset into a training dataset as a sanity check"
 
 Example Usage:
-    python prepare_lmeval_dataset.py EleutherAI/pythia-1b 2048 # all Pythia models are 2048
+    python prepare_hendrycksSTEM_dataset.py EleutherAI/pythia-1b 2048 validation
 """
 
 import argparse
@@ -32,24 +32,29 @@ OUT_DIR = "/fsx/proj-chemnlp/data"
 NAME = "hendrycks_STEM"
 
 
-def make_test_dataset(tasks):
+def make_dataset(tasks, data_split):
     task_dict = lm_eval.tasks.get_task_dict(tasks)
-    task_dict_items = [
-        (name, task) for name, task in task_dict.items() if task.has_test_docs()
-    ]
 
     docs = []
-    for _, task in task_dict_items:
-        task_doc_func = task.test_docs
+    task_sizes = {}
+    for task_name, task in task_dict.items():
+        task_condition = f"has_{data_split}_docs"
+        task_func = f"{data_split}_docs"
+        if getattr(task, task_condition):
+            task_doc_func = getattr(task, task_func)
+        else:
+            raise ValueError("task must have training, validation or test split")
 
         task_docs = list(task_doc_func())
+        task_sizes[task_name] = len(task_docs)
+
         rnd = random.Random()
         rnd.seed(42)
         rnd.shuffle(task_docs)
         for doc in task_docs:
             docs.append(doc["query"] + doc["choices"][doc["gold"]])
 
-    return datasets.Dataset.from_dict({STRING_KEY: docs})
+    return datasets.Dataset.from_dict({STRING_KEY: docs}), task_sizes
 
 
 if __name__ == "__main__":
@@ -58,6 +63,12 @@ if __name__ == "__main__":
     parser.add_argument(
         "max_length", help="Maximum context length of the model.", type=int
     )
+    parser.add_argument(
+        "data_split",
+        help="train, validation or test split of dataset to collect",
+        type=str,
+    )
+
     args = parser.parse_args()
 
     tokenizer = AutoTokenizer.from_pretrained(
@@ -67,7 +78,10 @@ if __name__ == "__main__":
     if not tokenizer.pad_token:
         tokenizer.add_special_tokens({"pad_token": "<|padding|>"})
 
-    dataset = make_test_dataset(TASKS)
+    dataset, task_sizes = make_dataset(
+        tasks=TASKS,
+        data_split=args.data_split,
+    )
     words_per_sample = [len(x[STRING_KEY].split(" ")) for x in dataset]
 
     tokenised_data = dataset.map(
@@ -89,10 +103,12 @@ if __name__ == "__main__":
         "total_tokens_in_billions": round(
             args.max_length * tokenised_data.num_rows / 1e9, 4
         ),
+        "samples_per_task": task_sizes,
+        "data_split_collected": args.data_split,
     }
     print(summary_stats)
 
-    save_path = f"{OUT_DIR}/{args.model_name}/{NAME}"
+    save_path = f"{OUT_DIR}/{args.model_name}/{NAME}_{args.data_split}"
     tokenised_data.save_to_disk(save_path)
     with open(f"{save_path}/summary_statistics.json", "w") as f:
         f.write(json.dumps(summary_stats))

@@ -19,20 +19,20 @@ trainer:
   num_train_epochs: 1
   learning_rate: 3e-4
   evaluation_strategy: steps
-  logging_steps: 50
-  eval_steps: 500
-  save_steps: 1000
+  logging_steps: 10
+  eval_steps: 50
+  save_steps: 500
   dataloader_num_workers: 4
   bf16: true
   fp16: false
-  per_device_train_batch_size: 1
+  per_device_train_batch_size: 8
   per_device_eval_batch_size: 1
   gradient_checkpointing: True
-  deepspeed_config: deepspeed_offload_S3.json
+  deepspeed_config: deepspeed_S2.json
 
 # Logging configuration (WandB init arguments)
 wandb:
   enabled: true
   project: LLCheM
-  group: test
-  name: test_3B_fine_tune
+  group: 3B_deepspeed
+  name: 3B_fine_tune
