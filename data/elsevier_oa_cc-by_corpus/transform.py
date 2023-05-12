@@ -45,8 +45,7 @@ def get_text_from_json_data(data):
         # sort author highlights
         data["author_highlights"].sort(key=lambda e: e["startOffset"])
         data_text["author_highlights"] = [
-            f"{i+1}. {e['sentence']}\n"
-            for i, e in enumerate(data["author_highlights"])
+            f"{i+1}. {e['sentence']}\n" for i, e in enumerate(data["author_highlights"])
         ]
         data_text["author_highlights"] = "".join(data_text["author_highlights"])
 
@@ -101,13 +100,17 @@ def get_and_transform_data():
         ZipFile(fn_dir_original / "json.zip").extractall(fn_dir_original)
 
     # load json data
-    data_json_clean    = []
+    data_json_clean = []
     data_json_separate = []
     for filename in tqdm(glob.glob(str(fn_dir_original / "json/*.json"))):
-        dict_json_clean    = {}
+        dict_json_clean = {}
         dict_json_separate = {}
-        dict_json_clean["filename"]    = filename.split("elsevier_oa_cc-by_corpus_v3/json/")[-1]
-        dict_json_separate["filename"] = filename.split("elsevier_oa_cc-by_corpus_v3/json/")[-1]
+        dict_json_clean["filename"] = filename.split(
+            "elsevier_oa_cc-by_corpus_v3/json/"
+        )[-1]
+        dict_json_separate["filename"] = filename.split(
+            "elsevier_oa_cc-by_corpus_v3/json/"
+        )[-1]
         with open(filename) as f:
             data_json_raw = json.load(f)
         if "abstract" in data_json_raw:
