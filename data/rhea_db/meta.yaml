@@ -23,7 +23,6 @@ identifiers:
       description: reaction equation
     - id: compounds
       type: dict
-      description: json mapping [chebi_id; [name, smiles]]
 license: CC BY 4.0
 links:
     - url: https://www.rhea-db.org/help/publications
