@@ -15,7 +15,7 @@ source $CONDA_BASE/etc/profile.d/conda.sh
 
 # Create Python environment through conda
 if [ -d "${CONDA_ENV_PATH}" ]
-then 
+then
     # if already exists activate
     echo "Found ${CONDA_ENV_PATH} in the directory, activating it!"
     conda activate ${CONDA_ENV_PATH}
