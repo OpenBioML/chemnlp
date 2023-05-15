@@ -17,6 +17,7 @@ identifiers:
     - id: rhea_id
       type: int
       description: Rhea reaction ID
+      sample: false
     - id: equation
       type: string
       description: reaction equation
