@@ -33,6 +33,9 @@ class Identifier(YamlModel, extra=Extra.forbid):
     type: IdentifierEnum
     names: Optional[List[str]]
 
+    sample: bool = True
+    """Wether the identifier should be sampled for the text template generation."""
+
     @root_validator
     def if_optional_has_names(cls, values):
         if (values.get("names") is None) and (
@@ -119,6 +122,9 @@ class Target(YamlModel, extra=Extra.forbid):
 
     Make sure that the first assay ID is the primary assay ID.
     """
+
+    sample: bool = True
+    """Wether the target should be sampled for the text template generation."""
 
     @validator("uris")
     def uris_resolves(cls, values):
@@ -207,6 +213,12 @@ class Dataset(YamlModel, extra=Extra.forbid):
                     print(
                         f"Link {link.url} does not resolve (403) since forbidden, please check manually"
                     )
+                elif response.status_code == 429:
+                    print(
+                        f"Link {link.url} does not resolve (429) since too many requests, please check manually"
+                    )
                 elif response.status_code != 200:
                     if not (("acs" in response.text) or ("sage" in response.text)):
-                        raise ValueError(f"Link {link.url} does not resolve")
+                        raise ValueError(
+                            f"Link {link.url} does not resolve because {response.text} {response.status_code}"
+                        )

@@ -44,8 +44,8 @@ TDC uses a 250,000 sampled version from the original Mol-VAE paper.""",
         "identifiers": [
             {
                 "id": "SMILES",  # column name
-                "type": "SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "OTHER"
-                "description": "SMILES",  # description (optional, except for "OTHER")
+                "type": "SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
+                "description": "SMILES",  # description (optional, except for "Other")
             },
         ],
         # license under which the original dataset was published

@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import List, Optional
 
 from pydantic import BaseModel, validator
 
@@ -29,6 +29,7 @@ class TrainerConfig(BaseModel):
     evaluation_strategy: str = "steps"
     logging_steps: int = 50
     eval_steps: int = 100
+    save_strategy: str = "steps"
     save_steps: int = 100
     dataloader_num_workers: int = 0
     per_device_train_batch_size: int = 32
@@ -57,3 +58,10 @@ class TrainPipelineConfig(BaseModel):
     prompt_tuning: PromptTune
     trainer: TrainerConfig
     wandb: WandbConfig
+
+
+class DataMixingConfig(BaseModel):
+    data_paths: List[str]
+    data_proportions: List[float]
+    save_path: str
+    stopping_strategy: str

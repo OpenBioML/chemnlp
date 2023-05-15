@@ -58,8 +58,8 @@ def get_and_transform_data():
         "identifiers": [
             {
                 "id": "SMILES",  # column name
-                "type": "SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "OTHER"
-                "description": "SMILES",  # description (optional, except for "OTHER")
+                "type": "SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
+                "description": "SMILES",  # description (optional, except for "Other")
             },
         ],
         "license": "CC BY-SA 3.0",  # license under which the original dataset was published
