@@ -20,8 +20,13 @@ class IdentifierEnum(YamlStrEnum):
     # the other one (rxnsmilesWAdd) also includes solvents etc.
     rxnsmiles = "RXNSMILES"
     rxnsmilesWAdd = "RXNSMILESWAdd"
-
-
+    # For XYZ files, the strings in this column refer to absolute filenames 
+    xyz = 'XYZ'
+    # For CIF files, the strings in this column refer to absolute filenames
+    cif = 'CIF'
+    # For PDB files, the strings in this column refer to absolute filenames
+    pdb = 'PDB'
+    
 class Identifier(YamlModel, extra=Extra.forbid):
     """Identifier information."""
 
