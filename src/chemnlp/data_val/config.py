@@ -1,6 +1,7 @@
-from typing import List, Optional
+from typing import List, Optional, Union
 
 from pydantic import BaseModel, validator
+from transformers.trainer_utils import SchedulerType
 
 
 class Data(BaseModel):
@@ -24,6 +25,9 @@ class TrainerConfig(BaseModel):
     output_dir: str
     num_train_epochs: float = 1.0
     learning_rate: float = 3e-4
+    lr_scheduler_type: Union[str, SchedulerType] = "constant"
+    warmup_ratio: float = 0.0
+    warmup_steps: int = 0
     bf16: bool = False
     fp16: bool = False
     evaluation_strategy: str = "steps"
