@@ -8,6 +8,7 @@ export CONDA_ENV_PATH=/fsx/proj-chemnlp/$1/conda/env/chemnlp-hf
 export PYTHON_VER=3.8
 CUDA_VERSION=11.7
 CONDA_BASE=$(conda info --base)
+CHEMNLP_PATH=/fsx/proj-chemnlp/$2/chemnlp
 
 ## ensure we can use activate syntax in slurm scripts
 source $CONDA_BASE/etc/profile.d/conda.sh
@@ -30,3 +31,6 @@ else
 
     ## install core requirements
     conda install -y pytorch torchvision torchaudio pytorch-cuda=${CUDA_VERSION} -c pytorch -c nvidia --verbose
+    cd $CHEMNLP_PATH
+    pip install ".[training]"
+fi
