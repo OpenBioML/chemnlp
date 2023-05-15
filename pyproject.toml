@@ -16,7 +16,7 @@ dependencies = [
         "pydantic",
         "pytdc>=0.3.9",
         "transformers",
-        "wandb",
+        "wandb"
 ]
 
 dynamic = ["version"]
@@ -35,6 +35,8 @@ dev = [
 
 dataset_creation = [
         "PyTDC",
+        "rdkit-pypi",
+        "ruamel.yaml",
 ]
 
 training = [
