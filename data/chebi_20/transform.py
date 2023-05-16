@@ -12,7 +12,7 @@ META_TEMPLATE = {
     "targets": [
         {
             "id": "description",  # name of the column in a tabular dataset
-            "description": "A natural language description of the molecule SMILE",
+            "description": "a natural language description of the molecule SMILE",
             "units": None,  # units of the values in this column (leave empty if unitless)
             "type": "string",  # can be "categorical", "ordinal", "continuous", "string"
             "names": [  # names for the property (to sample from for building the prompts)
@@ -27,6 +27,12 @@ META_TEMPLATE = {
             "id": "SMILES",  # column name
             "type": "SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
             "description": "SMILES",  # description (optional, except for "Other")
+        },
+        {
+            "id": "compound_id",
+            "type": "Other",
+            "sample": False,
+            "description": "This is the PubChem CID to identify a given molecule.",
         },
     ],
     "license": "CC BY 4.0",  # license under which the original dataset was published

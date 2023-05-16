@@ -3,7 +3,7 @@ name: chebi_20
 description: A dataset of pairs of natural language descriptions and SMILEs.
 targets:
     - id: description
-      description: A natural language description of the molecule SMILE
+      description: a natural language description of the molecule SMILE
       units:
       type: string
       names:
@@ -14,6 +14,10 @@ identifiers:
     - id: SMILES
       type: SMILES
       description: SMILES
+    - id: compound_id
+      type: Other
+      sample: false
+      description: This is the PubChem CID to identify a given molecule.
 license: CC BY 4.0
 links:
     - name: Research Paper
