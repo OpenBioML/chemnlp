@@ -20,6 +20,7 @@ class IdentifierEnum(YamlStrEnum):
     # the other one (rxnsmilesWAdd) also includes solvents etc.
     rxnsmiles = "RXNSMILES"
     rxnsmilesWAdd = "RXNSMILESWAdd"
+    composition = "Composition"
 
 
 class Identifier(YamlModel, extra=Extra.forbid):
