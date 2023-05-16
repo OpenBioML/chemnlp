@@ -14,7 +14,6 @@ targets:
       sample: false
       names:
           - MeSH identifier
-      sample: false
     - id: Full_Form
       description: full form or meaning of the abbreviation
       type: text
