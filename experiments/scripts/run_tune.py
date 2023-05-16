@@ -4,20 +4,18 @@ A Python script for finetuning language models.
     Usage: python run_tune.py <path-to-config-yml>
 """
 import argparse
+import json
 import os
 import pathlib
+from typing import Dict, Optional
 
 import datasets
 import transformers
-import wandb
 from peft import PromptTuningConfig, PromptTuningInit, TaskType, get_peft_model
-from transformers import (
-    AutoTokenizer,
-    DataCollatorForLanguageModeling,
-    Trainer,
-    TrainingArguments,
-)
+from transformers import (AutoTokenizer, DataCollatorForLanguageModeling,
+                          Trainer, TrainingArguments)
 
+import wandb
 from chemnlp.data_val.config import TrainPipelineConfig
 from chemnlp.utils import load_config
 
@@ -31,10 +29,13 @@ def print_zero_rank(rank, x):
         print(x)
 
 
-def run(config_path: str) -> None:
+def run(config_path: str, config_overrides: Optional[Dict] = None) -> None:
     """Perform a training run for a given YAML defined configuration"""
     raw_config = load_config(config_path)
     config = TrainPipelineConfig(**raw_config)
+    if config_overrides:
+        config = config.update(config_overrides)
+
     local_rank = int(os.environ.get("LOCAL_RANK", -1))
     global_rank = int(os.environ.get("RANK", -1))
     print_zero_rank(local_rank, config)
@@ -102,5 +103,7 @@ def run(config_path: str) -> None:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("config_path", help="The full path to the YAML config file.")
+    parser.add_argument("config_overrides", help="Any overriding parameters as a JSON.")
     args = parser.parse_args()
-    run(args.config_path)
+    parsed_json_overrides = json.loads(args.config_overrides)
+    run(args.config_path, parsed_json_overrides)
