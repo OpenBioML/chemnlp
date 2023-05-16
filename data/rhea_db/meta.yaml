@@ -8,11 +8,6 @@ description: |-
     in smiles format and ChEBI IDs.
     Tasks can be formulated as translation between smiles and english and vice
     versa, or as a completion of stechiometric coefficients or masked reactants.
-targets:
-    - id:
-      description:
-      units:
-      type:
 identifiers:
     - id: rhea_id
       type: int
