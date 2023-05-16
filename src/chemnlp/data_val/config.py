@@ -1,4 +1,4 @@
-from typing import List, Optional, Union
+from typing import Dict, List, Optional, Union
 
 from pydantic import BaseModel, validator
 from transformers.trainer_utils import SchedulerType
@@ -62,6 +62,15 @@ class TrainPipelineConfig(BaseModel):
     prompt_tuning: PromptTune
     trainer: TrainerConfig
     wandb: WandbConfig
+
+
+class HFDatasetConfig(BaseModel):
+    model_name: str
+    context_length: int
+    dataset_name: str
+    dataset_args: Dict
+    out_dir: str
+    string_key: str = "TEXT"
 
 
 class DataMixingConfig(BaseModel):
