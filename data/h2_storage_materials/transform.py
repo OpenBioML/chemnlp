@@ -83,7 +83,7 @@ def get_and_transform_data():
                 "units": "wt%",  # units of the values in this column (leave empty if unitless)
                 "type": "continuous",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "theoretical hydrogen storage weight density",
+                    {"noun": "theoretical hydrogen storage weight density"},
                 ],
             },
             {
@@ -92,16 +92,7 @@ def get_and_transform_data():
                 "units": "wt%",  # units of the values in this column (leave empty if unitless)
                 "type": "continuous",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "experimental hydrogen storage capacity",
-                ],
-            },
-            {
-                "id": "synthetic_information",  # name of the column in a tabular dataset
-                "description": "brief description of synthetic procedure",  # description of what this column means
-                "units": None,  # units of the values in this column (leave empty if unitless)
-                "type": "string",  # can be "categorical", "ordinal", "continuous"
-                "names": [  # names for the property (to sample from for building the prompts)
-                    "synthetic procedure",
+                    {"noun": "experimental hydrogen storage capacity"}
                 ],
             },
         ],
@@ -113,11 +104,18 @@ def get_and_transform_data():
             },
             {
                 "id": "chemical_formula",
-                "type": "formula",
-                "description": "chemical formulas",
+                "type": "Other",
+                "names": ["chemical formula"],
+                "description": "chemical formula",
+            },
+            {
+                "id": "synthetic_information",  # name of the column in a tabular dataset
+                "names": ["synthesis procedure summary"],
+                "description": "brief description of synthetic procedure",  # description of what this column means
+                "type": "Other",  # can be "categorical", "ordinal", "continuous"
             },
         ],
-        "license": "No License Provided",  # license under which the original dataset was published
+        "license": "File",  # license under which the original dataset was published
         "links": [  # list of relevant links (original dataset, other uses, etc.)
             {
                 "url": (
@@ -138,9 +136,9 @@ def get_and_transform_data():
         "num_points": len(df),  # number of datapoints in this dataset
         "bibtex": [
             """@online{hymarcReversibleHydrides,
-            title={Hydrogen Storage Materials Database Reversible Hydrides},
-            author={HyMARC},
-            year={2019}""",
+title={Hydrogen Storage Materials Database Reversible Hydrides},
+author={HyMARC},
+year={2019}""",
         ],
     }
 
