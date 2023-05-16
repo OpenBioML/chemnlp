@@ -2,7 +2,7 @@ import hashlib
 import tarfile
 from io import BytesIO
 from pathlib import Path
-from typing import Union, Optional
+from typing import Optional, Union
 
 import requests
 import yaml
@@ -18,7 +18,7 @@ def load_config(path: Union[str, Path]):
             print(exc)
 
 
-def extract_tarball(url, output_dir, md5: Optional[str] =None):
+def extract_tarball(url, output_dir, md5: Optional[str] = None):
     # Download the tarball from the URL
     response = requests.get(url)
     if response.status_code != 200:

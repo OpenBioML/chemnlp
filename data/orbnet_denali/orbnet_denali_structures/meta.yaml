@@ -3,12 +3,12 @@ name: orbnet_denali_structures
 description: |-
     Structures (including conformers, protomers, ...) of structures.
     Has been used for training of OrbNet Denali.
-labels: 
-  - id: charge
-    type: ordinal
-    description: integer charge of the molecule
-    names:
-      noun: charge
+labels:
+    - id: charge
+      type: ordinal
+      description: integer charge of the molecule
+      names:
+          noun: charge
 identifiers:
     - id: SMILES
       type: SMILES
