@@ -66,6 +66,18 @@ class TrainPipelineConfig(BaseModel):
     trainer: TrainerConfig
     wandb: WandbConfig
 
+    def update(
+        self, config_changes: Dict[str, Dict[str, Any]]
+    ) -> "TrainPipelineConfig":
+        """Update training configuration"""
+        for config_key, config_changes in config_changes.items():
+            # top level config classes
+            config_attr = getattr(self, config_key)
+            for param_key, param_value in config_changes.items():
+                # second level configuration parameters
+                setattr(config_attr, param_key, param_value)
+        return self
+
 
 class DataMixingConfig(BaseModel):
     data_paths: List[str]
