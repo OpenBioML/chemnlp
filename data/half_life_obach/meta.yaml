@@ -1,0 +1,54 @@
+---
+name: half_life_obach
+description: |-
+    Half life of a drug is the duration for the concentration of the drug
+    in the body to be reduced by half. It measures the duration of actions of a drug.
+    This dataset deposited version under CHEMBL assay 1614674.
+targets:
+    - id: half_life_duration
+      description: the time it takes for the plasma concentration of a drug in the body to be reduced by half
+      units: hours
+      type: continuous
+      names:
+          - noun: half life
+          - noun: drug half life time
+          - noun: the duration by which the concentration of the drug in the body is reduced by half
+      uris:
+          - http://purl.bioontology.org/ontology/MESH/D006207
+benchmarks:
+    - name: TDC
+      link: https://tdcommons.ai/
+      split_column: split
+identifiers:
+    - id: SMILES
+      type: SMILES
+      description: SMILES
+    - id: chembl_id
+      type: Other
+      names:
+          - ChEMBL database id
+          - ChEMBL identifier number
+      description: ChEMBL ids
+      sample: false
+license: CC BY 4.0
+links:
+    - url: https://doi.org/10.1124/dmd.108.020479
+      description: corresponding publication
+    - url: https://tdcommons.ai/single_pred_tasks/adme/#half-life-obach-et-al
+      description: data source
+num_points: 667
+bibtex:
+    - |-
+      @article{Obach2008,
+      doi = {10.1124/dmd.108.020479},
+      url = {https://doi.org/10.1124/dmd.108.020479},
+      year = {2008},
+      month = apr,
+      publisher = {American Society for Pharmacology and Experimental Therapeutics (ASPET)},
+      volume = {36},
+      number = {7},
+      pages = {1385--1405},
+      author = {R. Scott Obach and Franco Lombardo and Nigel J. Waters},
+      title = {Trend Analysis of a Database of Intravenous Pharmacokinetic
+      Parameters in Humans for 670 Drug Compounds},
+      journal = {Drug Metabolism and Disposition}

@@ -1,0 +1,12 @@
+[submodule "gpt-neox"]
+	path = gpt-neox
+	url = git@github.com:OpenBioML/gpt-neox.git
+	branch = main
+[submodule "lm-eval2"]
+	path = lm-eval2
+	url = git@github.com:OpenBioML/lm-eval2.git
+	branch = main
+[submodule "lm-eval1"]
+	path = lm-evaluation-harness
+	url = git@github.com:OpenBioML/lm-evaluation-harness.git
+	branch = master

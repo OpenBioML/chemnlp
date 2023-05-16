@@ -5,15 +5,15 @@ from tdc.single_pred import Tox
 
 def get_and_transform_data():
     # get raw data
-    data = Tox(name="LD50_Zhu")
-    fn_data_original = "data_original.csv"
-    data.get_data().to_csv(fn_data_original, index=False)
+    splits = Tox(name="LD50_Zhu").get_split()
+    df_train = splits["train"]
+    df_valid = splits["valid"]
+    df_test = splits["test"]
+    df_train["split"] = "train"
+    df_valid["split"] = "valid"
+    df_test["split"] = "test"
 
-    # create dataframe
-    df = pd.read_csv(
-        fn_data_original,
-        delimiter=",",
-    )  # not necessary but ensure we can load the saved data
+    df = pd.concat([df_train, df_valid, df_test], axis=0)
 
     # check if fields are the same
     fields_orig = df.columns.tolist()
@@ -21,6 +21,7 @@ def get_and_transform_data():
         "Drug_ID",
         "Drug",
         "Y",
+        "split",
     ]
 
     # overwrite column names = fields
@@ -28,6 +29,7 @@ def get_and_transform_data():
         "compound_name",
         "SMILES",
         "acute_toxicity",
+        "split",
     ]
     df.columns = fields_clean
 
@@ -45,20 +47,20 @@ def get_and_transform_data():
     # create meta yaml
     meta = {
         "name": "ld50_zhu",  # unique identifier, we will also use this for directory names
-        "description": """Acute toxicity LD50 measures the most conservative dose that can lead to lethal adverse effects. The higher the dose, the more lethal of a drug.""",
+        "description": """Acute toxicity LD50 measures
+the most conservative dose that can lead to lethal adverse effects.
+The higher the dose, the more lethal of a drug.""",
         "targets": [
             {
                 "id": "acute_toxicity",  # name of the column in a tabular dataset
                 "description": "Acute Toxicity LD50.",  # description of what this column means
-                "units": "ld50",  # units of the values in this column (leave empty if unitless)
+                "units": "log(1/(mol/kg))",  # units of the values in this column (leave empty if unitless)
                 "type": "continuous",  # can be "categorical", "ordinal", "continuous"
-                "names": [  # names for the property (to sample from for building the prompts)
-                    "Acute Toxicity LD50",
-                    "ld50",
-                    "conservative dose that can lead to lethal adverse effects.",
-                    "Rat Acute Toxicity by Oral Exposure",
-                    "Toxicity",
+                "names": [
+                    {"noun": "acute toxicity rat LD50"},
+                    {"noun": "rat LD50"},
                 ],
+                "uris": ["http://www.bioassayontology.org/bao#BAO_0002117"],
             },
         ],
         "identifiers": [
@@ -69,7 +71,7 @@ def get_and_transform_data():
             },
             {
                 "id": "compound_name",
-                "type": "Synonyms",
+                "type": "Other",
                 "description": "compound name",
                 "names": [
                     "compound",
@@ -85,27 +87,36 @@ def get_and_transform_data():
                 "description": "corresponding publication",
             },
         ],
+        "benchmarks": [
+            {
+                "name": "TDC",
+                "link": "https://tdcommons.ai/",
+                "split_column": "split",
+            }
+        ],
         "num_points": len(df),  # number of datapoints in this dataset
-        "url": "https://tdcommons.ai/single_pred_tasks/tox/#acute-toxicity-ld50",
         "bibtex": [
             """@article{Zhu2009,
-              doi = {10.1021/tx900189p},
-              url = {https://doi.org/10.1021/tx900189p},
-              year = {2009},
-              month = oct,
-              publisher = {American Chemical Society ({ACS})},
-              volume = {22},
-              number = {12},
-              pages = {1913--1921},
-              author = {Hao Zhu and Todd M. Martin and Lin Ye and Alexander Sedykh and Douglas M. Young and Alexander Tropsha},
-              title = {Quantitative Structure-Activity Relationship Modeling of Rat Acute Toxicity by Oral Exposure},
-              journal = {Chemical Research in Toxicology}}""",
+doi = {10.1021/tx900189p},
+url = {https://doi.org/10.1021/tx900189p},
+year = {2009},
+month = oct,
+publisher = {American Chemical Society ({ACS})},
+volume = {22},
+number = {12},
+pages = {1913--1921},
+author = {Hao Zhu and Todd M. Martin and Lin Ye and Alexander
+Sedykh and Douglas M. Young and Alexander Tropsha},
+title = {Quantitative Structure-Activity Relationship Modeling
+of Rat Acute Toxicity by Oral Exposure},
+journal = {Chemical Research in Toxicology}}""",
         ],
     }
 
     def str_presenter(dumper, data):
         """configures yaml for dumping multiline strings
-        Ref: https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data
+        Ref:
+        https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data
         """
         if data.count("\n") > 0:  # check for multiline string
             return dumper.represent_scalar("tag:yaml.org,2002:str", data, style="|")

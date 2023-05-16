@@ -1,0 +1,53 @@
+---
+name: ames_mutagenicity
+description: |-
+    Mutagenicity means the ability of a drug to induce genetic alterations.
+    Drugs that can cause damage to the DNA can result in cell death or other severe
+    adverse effects. Nowadays, the most widely used assay for testing the mutagenicity
+    of compounds is the Ames experiment which was invented by a professor named
+    Ames. The Ames test is a short term bacterial reverse mutation assay detecting
+    a large number of compounds which can induce genetic damage and frameshift mutations.
+    The dataset is aggregated from four papers.
+targets:
+    - id: mutagenic
+      description: whether it is mutagenic (1) or not mutagenic (0)
+      units:
+      type: boolean
+      names:
+          - noun: mutagenicity
+          - noun: Ames mutagenicity
+          - adjective: mutagenic
+          - adjective: Ames mutagenic
+          - verb: has the ability to induce genetic alterations
+          - gerund: having the potential to cause mutations
+          - gerund: having the potential to induce genetic alterations
+benchmarks:
+    - name: TDC
+      link: https://tdcommons.ai/
+      split_column: split
+identifiers:
+    - id: SMILES
+      type: SMILES
+      description: SMILES
+license: CC BY 4.0
+links:
+    - url: https://doi.org/10.1021/ci300400a
+      description: corresponding publication
+    - url: https://tdcommons.ai/single_pred_tasks/tox/#ames-mutagenicity
+      description: Data source
+num_points: 7278
+bibtex:
+    - |-
+      @article{Xu2012,
+      doi = {10.1021/ci300400a},
+      url = {https://doi.org/10.1021/ci300400a},
+      year = {2012},
+      month = oct,
+      publisher = {American Chemical Society (ACS)},
+      volume = {52},
+      number = {11},
+      pages = {2840--2847},
+      author = {Congying Xu and Feixiong Cheng and Lei Chen and
+      Zheng Du and Weihua Li and Guixia Liu and Philip W. Lee and Yun Tang},
+      title = {In silico Prediction of Chemical Ames Mutagenicity},
+      journal = {Journal of Chemical Information and Modeling}

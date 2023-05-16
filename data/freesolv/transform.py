@@ -66,7 +66,7 @@ def get_and_transform_data():
                 "units": "kcal/mol",  # units of the values in this column (leave empty if unitless)
                 "type": "continuous",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "hydration free energy",
+                    {"noun": "hydration free energy"},
                 ],
             },
             {
@@ -75,7 +75,7 @@ def get_and_transform_data():
                 "units": "kcal/mol",
                 "type": "continuous",
                 "names": [
-                    "hydration free energy uncertainty",
+                    {"noun": "hydration free energy uncertainty"},
                 ],
             },
             {
@@ -84,8 +84,9 @@ def get_and_transform_data():
                 "units": "kcal/mol",  # units of the values in this column (leave empty if unitless)
                 "type": "continuous",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "GAFF",
-                    "mobley group calculated value",
+                    {
+                        "noun": "hydration free energy computed using the GAFF force field"
+                    },
                 ],
             },
             {
@@ -94,16 +95,17 @@ def get_and_transform_data():
                 "units": "kcal/mol",
                 "type": "continuous",
                 "names": [
-                    "GAFF uncertainty",
-                    "mobley group calculated value uncertainty",
+                    {
+                        "noun": "uncertainty in hydration free energy computed using the GAFF force field"
+                    },
                 ],
             },
         ],
         "identifiers": [
             {
                 "id": "SMILES",  # column name
-                "type": "SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "OTHER"
-                "description": "SMILES",  # description (optional, except for "OTHER")
+                "type": "SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
+                "description": "SMILES",  # description (optional, except for "Other")
             },
             {
                 "id": "iupac_name",
@@ -125,9 +127,9 @@ def get_and_transform_data():
         "num_points": len(df),  # number of datapoints in this dataset
         "bibtex": [
             """@article{mobley2013experimental,
-            title={Experimental and calculated small molecule hydration free energies},
-            author={Mobley, David L},
-            year={2013}""",
+title={Experimental and calculated small molecule hydration free energies},
+author={Mobley, David L},
+year={2013}""",
         ],
     }
     fn_meta = "meta.yaml"

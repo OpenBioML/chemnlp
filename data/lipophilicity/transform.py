@@ -42,19 +42,24 @@ def get_and_transform_data():
             {
                 "id": "exp",  # name of the column in a tabular dataset
                 "description": "experimental results of octanol/water distribution coefficient (logD at pH 7.4)",
-                "units": "logD",  # units of the values in this column (leave empty if unitless)
+                "units": None,
                 "type": "continuous",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "octanol/water distribution coefficient (logD at pH 7.4)",
-                    "octanol/water distribution coefficient",
+                    {"noun": "octanol/water distribution coefficient (logD at pH 7.4)"},
+                    {"noun": "logD at pH 7.4"},
+                    {"noun": "octanol/water distribution coefficient"},
+                ],
+                "uris": [
+                    "http://www.bioassayontology.org/bao#BAO_0002129",
+                    "http://purl.obolibrary.org/obo/MI_2107",
                 ],
             },
         ],
         "identifiers": [
             {
                 "id": "SMILES",  # column name
-                "type": "SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "OTHER"
-                "description": "SMILES",  # description (optional, except for "OTHER")
+                "type": "SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
+                "description": "SMILES",  # description (optional, except for "Other")
             },
         ],
         "license": "CC BY-SA 3.0",  # license under which the original dataset was published
@@ -87,11 +92,11 @@ def get_and_transform_data():
         "num_points": len(df),  # number of datapoints in this dataset
         "bibtex": [
             """@techreport{hersey2015chembl,
-            title={ChEMBL Deposited Data Set-AZ dataset},
-            author={Hersey, Anne},
-            year={2015},
-            institution={Technical Report, Technical report, EMBL-EBI, 2015. https://www. ebi. ac. uk}
-            }"""
+title={ChEMBL Deposited Data Set-AZ dataset},
+author={Hersey, Anne},
+year={2015},
+institution={Technical Report, Technical report, EMBL-EBI, 2015. https://www. ebi. ac. uk}
+}""",
         ],
     }
 

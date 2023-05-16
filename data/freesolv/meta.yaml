@@ -7,27 +7,25 @@ targets:
       units: kcal/mol
       type: continuous
       names:
-          - hydration free energy
+          - noun: hydration free energy
     - id: exp_uncertainty
       description: experimental hydration free energy uncertainty
       units: kcal/mol
       type: continuous
       names:
-          - hydration free energy uncertainty
+          - noun: hydration free energy uncertainty
     - id: GAFF
       description: mobley group calculated value
       units: kcal/mol
       type: continuous
       names:
-          - GAFF
-          - mobley group calculated value
+          - noun: hydration free energy computed using the GAFF force field
     - id: calc_uncertainty
       description: mobley group calculated value calculated uncertainty
       units: kcal/mol
       type: continuous
       names:
-          - GAFF uncertainty
-          - mobley group calculated value uncertainty
+          - noun: uncertainty in hydration free energy computed using the GAFF force field
 identifiers:
     - id: SMILES
       type: SMILES
@@ -42,7 +40,5 @@ links:
     - url: https://escholarship.org/uc/item/6sd403pz
       description: repository with data
 num_points: 642
-url: https://github.com/MobleyLab/FreeSolv
 bibtex:
-    - "@article{mobley2013experimental,\n            title={Experimental and calculated small molecule hydration free energies},\n            author={Mobley,\
-      \ David L},\n            year={2013}"
+    - "@article{mobley2013experimental,\ntitle={Experimental and calculated small molecule hydration free energies},\nauthor={Mobley, David L},\nyear={2013}"

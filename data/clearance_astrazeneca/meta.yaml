@@ -1,0 +1,67 @@
+---
+name: clearance_astrazeneca
+description: |-
+    Drug clearance is defined as the volume of plasma cleared of a drug
+    over a specified time period and it measures the rate at which the active drug
+    is removed from the body. This is a dataset curated from ChEMBL database containing
+    experimental results on intrinsic clearance, deposited from AstraZeneca. It
+    contains clearance measures from two experiments types, hepatocyte and microsomes.
+targets:
+    - id: drug_clearance
+      description: the volume of plasma cleared of a drug over a specified time period
+      units: mL / (min g)
+      type: continuous
+      names:
+          - noun: drug clearance
+          - noun: volume of plasma cleared of a drug over a specified time period
+      uris:
+          - http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C94618
+benchmarks:
+    - name: TDC
+      link: https://tdcommons.ai/
+      split_column: split
+identifiers:
+    - id: SMILES
+      type: SMILES
+      description: SMILES
+    - id: chembl_id
+      type: Other
+      names:
+          - ChEMBL id
+          - ChEMBL identifier number
+      description: ChEMBL ids
+      sample: false
+license: CC BY 4.0
+links:
+    - url: http://dx.doi.org/10.6019/CHEMBL3301361
+      description: corresponding publication
+    - url: https://doi.org/10.1016/j.ejmech.2012.06.043
+      description: corresponding publication
+    - url: https://tdcommons.ai/single_pred_tasks/adme/#clearance-astrazeneca
+      description: data source
+num_points: 1213
+bibtex:
+    - |-
+      @techreport{Hersey2015,
+      doi = {10.6019/chembl3301361},
+      url = {https://doi.org/10.6019/chembl3301361},
+      year = {2015},
+      month = feb,
+      publisher = {{EMBL}-{EBI}},
+      author = {Anne Hersey},
+      title = {{ChEMBL} Deposited Data Set - {AZ dataset}}
+    - |-
+      @article{Di2012,
+      doi = {10.1016/j.ejmech.2012.06.043},
+      url = {https://doi.org/10.1016/j.ejmech.2012.06.043},
+      year = {2012},
+      month = nov,
+      publisher = {Elsevier BV},
+      volume = {57},
+      pages = {441--448},
+      author = {Li Di and Christopher Keefer and Dennis O. Scott and Timothy J. Strelevitz
+      and George Chang and Yi-An Bi and Yurong Lai and Jonathon Duckworth and
+      Katherine Fenner and Matthew D. Troutman and R. Scott Obach},
+      title = {Mechanistic insights from comparing intrinsic clearance values between
+      human liver microsomes and hepatocytes to guide drug design},
+      journal = {European Journal of Medicinal Chemistry}

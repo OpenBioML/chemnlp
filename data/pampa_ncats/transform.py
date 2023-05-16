@@ -5,30 +5,22 @@ from tdc.single_pred import ADME
 
 def get_and_transform_data():
     # get raw data
-    data = ADME(name="PAMPA_NCATS")
-    fn_data_original = "data_original.csv"
-    data.get_data().to_csv(fn_data_original, index=False)
+    splits = ADME(name="PAMPA_NCATS").get_split()
+    df_train = splits["train"]
+    df_valid = splits["valid"]
+    df_test = splits["test"]
+    df_train["split"] = "train"
+    df_valid["split"] = "valid"
+    df_test["split"] = "test"
 
-    # create dataframe
-    df = pd.read_csv(
-        fn_data_original,
-        delimiter=",",
-    )  # not necessary but ensure we can load the saved data
+    df = pd.concat([df_train, df_valid, df_test], axis=0)
 
     # check if fields are the same
     fields_orig = df.columns.tolist()
-    assert fields_orig == [
-        "Drug_ID",
-        "Drug",
-        "Y",
-    ]
+    assert fields_orig == ["Drug_ID", "Drug", "Y", "split"]
 
     # overwrite column names = fields
-    fields_clean = [
-        "compound_id",
-        "SMILES",
-        "permeability",
-    ]
+    fields_clean = ["compound_id", "SMILES", "permeability", "split"]
     df.columns = fields_clean
 
     # data cleaning
@@ -43,22 +35,26 @@ def get_and_transform_data():
     meta = {
         "name": "pampa_ncats",  # unique identifier, we will also use this for directory names
         "description": """PAMPA (parallel artificial membrane permeability assay) is a commonly
-        employed assay to evaluate drug permeability across the cellular membrane. PAMPA is a
-        non-cell-based, low-cost and high-throughput alternative to cellular models. Although
-        PAMPA does not model active and efflux transporters, it still provides permeability values
-        that are useful for absorption prediction because the majority of drugs are absorbed by
-        passive diffusion through the membrane.""",
+employed assay to evaluate drug permeability across the cellular membrane.
+PAMPA is a non-cell-based, low-cost and high-throughput alternative to cellular models.
+Although PAMPA does not model active and efflux transporters, it still provides permeability values
+that are useful for absorption prediction because the majority of drugs are absorbed
+by passive diffusion through the membrane.""",
         "targets": [
             {
                 "id": "permeability",  # name of the column in a tabular dataset
                 "description": "Binary permeability in PAMPA assay.",  # description of what this column means
-                "units": "Bool",  # units of the values in this column (leave empty if unitless)
-                "type": "categorical",  # can be "categorical", "ordinal", "continuous"
+                "units": None,
+                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "binary permeability in PAMPA assay",
-                    "permeability in PAMPA assay",
-                    "PAMPA permeability",
+                    {"verb": "is permeable in the PAMPA assay"},
+                    {
+                        "verb": "shows permeability in parallel artificial membrane permeability assay (PAMPA) assay"
+                    },
+                    {"gerund": "permeating in the PAMPA assay"},
                 ],
+                "pubchem_aids": [1508612],
+                "uris": ["http://purl.bioontology.org/ontology/MESH/D002463"],
             },
         ],
         "identifiers": [
@@ -79,25 +75,33 @@ def get_and_transform_data():
                 "description": "corresponding publication",
             },
         ],
+        "benchmarks": [
+            {
+                "name": "TDC",
+                "link": "https://tdcommons.ai/",
+                "split_column": "split",
+            }
+        ],
         "num_points": len(df),  # number of datapoints in this dataset
         "bibtex": [
             """@article{siramshetty2021validating,
-    title={Validating ADME QSAR Models Using Marketed Drugs},
-    author={Siramshetty, Vishal and Williams, Jordan and Nguyen, DHac-Trung and Neyra, Jorge and Southall,
-    Noel and Math'e, Ewy and Xu, Xin and Shah, Pranav},
-    journal={SLAS DISCOVERY: Advancing the Science of Drug Discovery},
-    volume={26},
-    number={10},
-    pages={1326--1336},
-    year={2021},
-    publisher={SAGE Publications Sage CA: Los Angeles, CA}
-    }""",
+title={Validating ADME QSAR Models Using Marketed Drugs},
+author={Siramshetty, Vishal and Williams, Jordan and Nguyen, DHac-Trung and Neyra, Jorge and Southall,
+Noel and Math'e, Ewy and Xu, Xin and Shah, Pranav},
+journal={SLAS DISCOVERY: Advancing the Science of Drug Discovery},
+volume={26},
+number={10},
+pages={1326--1336},
+year={2021},
+publisher={SAGE Publications Sage CA: Los Angeles, CA}
+}""",
         ],
     }
 
     def str_presenter(dumper, data):
         """configures yaml for dumping multiline strings
-        Ref: https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data
+        Ref:
+        https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data
         """
         if data.count("\n") > 0:  # check for multiline string
             return dumper.represent_scalar("tag:yaml.org,2002:str", data, style="|")
