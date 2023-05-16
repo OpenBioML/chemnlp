@@ -64,6 +64,7 @@ class ColumnTypes(YamlStrEnum):
     ordinal = "ordinal"
     boolean = "boolean"
     string = "string"
+    text = "text"
 
 
 class Name(YamlModel, extra=Extra.forbid):
@@ -87,7 +88,8 @@ class Target(YamlModel, extra=Extra.forbid):
     """The units of the field. None if unitless."""
 
     type: ColumnTypes
-    """The type of the field. Can be one of `continuous`, `categorical`, `ordinal`, `boolean`."""
+    """The type of the field. Can be one of `continuous`,
+    `categorical`, `ordinal`, `boolean`, `string`, `text`."""
 
     names: List[Name]
     """A list of names describing the field.
