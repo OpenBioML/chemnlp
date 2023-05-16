@@ -55,6 +55,7 @@ class ColumnTypes(YamlStrEnum):
     ordinal = "ordinal"
     boolean = "boolean"
     string = "string"
+    text = "text"
 
 
 class Target(YamlModel):
@@ -69,7 +70,8 @@ class Target(YamlModel):
     """The units of the field. None if unitless."""
 
     type: ColumnTypes
-    """The type of the field. Can be one of `continuous`, `categorical`, `ordinal`, `boolean`."""
+    """The type of the field. Can be one of `continuous`,
+    `categorical`, `ordinal`, `boolean`, `string`, `text`."""
 
     names: List[str]
     """A list of names describing the field.
