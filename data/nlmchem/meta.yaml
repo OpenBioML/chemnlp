@@ -11,6 +11,7 @@ targets:
     - id: MeSH_Identifier
       description: unique codes for Medical Subject Headings
       type: categorical
+      sample: false
       names:
           - MeSH identifier
       sample: false
