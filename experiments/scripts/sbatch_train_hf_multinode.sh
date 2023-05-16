@@ -20,7 +20,7 @@ set -ex # allow for exiting based on non-0 codes
 export TOKENIZERS_PARALLELISM=false
 export WANDB_BASE_URL="https://stability.wandb.io"
 export NCCL_DEBUG=INFO
-overrides=${4:-{}}
+overrides=${4:-'{}'}
 
 # set workdir
 CHEMNLP_PATH=/fsx/proj-chemnlp/$2/chemnlp
