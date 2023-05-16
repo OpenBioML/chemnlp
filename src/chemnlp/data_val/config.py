@@ -1,7 +1,10 @@
-from typing import List, Optional, Union
+import itertools
+from typing import Any, Dict, List, Optional, Union
 
 from pydantic import BaseModel, validator
 from transformers.trainer_utils import SchedulerType
+
+DictofLists = Dict[str, List]
 
 
 class Data(BaseModel):
@@ -69,3 +72,23 @@ class DataMixingConfig(BaseModel):
     data_proportions: List[float]
     save_path: str
     stopping_strategy: str
+
+
+class GridSearch(BaseModel):
+    """Grid search options for TrainPipelineConfig elements"""
+
+    data: Optional[DictofLists] = {}
+    model: Optional[DictofLists] = {}
+    prompt_tuning: Optional[DictofLists] = {}
+    trainer: Optional[DictofLists] = {}
+    wandb: Optional[DictofLists] = {}
+
+
+def _get_all_combinations(d: Dict):
+    """Generate all possible hyperparameter combinations"""
+    keys, values = d.keys(), d.values()
+    values_choices = (
+        _get_all_combinations(v) if isinstance(v, dict) else v for v in values
+    )
+    for comb in itertools.product(*values_choices):
+        yield dict(zip(keys, comb))
