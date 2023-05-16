@@ -74,7 +74,7 @@ running on the cluster.
    sbatch experiments/scripts/sbatch_train_hf.sh where/to/store/conda where/to/build/conda/from <training-config-name.yml>
 
    # for typical finetuning experiments
-   sbatch experiments/scripts/sbatch_train_hf.sh experiments/my-experiment jack 160M_peft.yml
+   sbatch experiments/scripts/sbatch_train_hf.sh experiments/my-experiment jack 1B_fine_tune.yml
    ```
 
    > To interact with WandB services you need to authenticate yourself as per the [Stability HPC guidelines](https://www.notion.so/stabilityai/Stability-HPC-Cluster-User-Guide-226c46436df94d24b682239472e36843) to append a username + password to your .netrc file.
@@ -94,3 +94,13 @@ running on the cluster.
    ```
 
    > To interact with WandB services you need to authenticate yourself as per the [Stability HPC guidelines](https://www.notion.so/stabilityai/Stability-HPC-Cluster-User-Guide-226c46436df94d24b682239472e36843) to append a username + password to your .netrc file.
+
+4. [Grid Search][scripts/run_grid_search.py] -
+   runs a grid search across training pipeline configuration options
+
+   - Update the upper-case parameters at the top of the script
+   - The script runs an exhaustive set of experiments across all permutations
+
+   ```bash
+   python experiments/scripts/run_grid_search.py
+   ```
