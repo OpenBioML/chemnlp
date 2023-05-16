@@ -14,24 +14,44 @@ def run(config_path: str) -> None:
     raw_config = load_config(config_path)
     config = DataMixingConfig(**raw_config)
 
-    mixed_data = datasets.interleave_datasets(
-        datasets=[
-            datasets.load_from_disk(data_path) for data_path in config.data_paths
-        ],
-        probabilities=config.data_proportions,
-        seed=RANDOM_SEED,
-        stopping_strategy=config.stopping_strategy,
-    )
+    if len(config.data_paths) != len(config.num_tokens):
+        raise ValueError("Must specify num_token for each data_path")
+
+    dataset_slices = []
+    for path, num_token in zip(config.data_paths, config.num_tokens):
+        print(path)
+        dataset = datasets.load_from_disk(path)
+        num_rows = int(num_token / config.context_length)
+
+        if num_rows > len(dataset):
+            raise ValueError(
+                f"Dataset at {path} is smaller than requested number of tokens"
+            )
+
+        elif num_rows == len(dataset):
+            dataset_slices.append(dataset)
+
+        else:
+            dataset_slices.append(
+                dataset.train_test_split(train_size=num_rows)["train"]
+            )
+
+    mixed_data = datasets.concatenate_datasets(dataset_slices)
+    mixed_data = mixed_data.shuffle(seed=RANDOM_SEED)
 
     mixed_data.save_to_disk(config.save_path)
 
     summary_stats = {
         "random_state": RANDOM_SEED,
         "component_datasets": config.data_paths,
-        "component_proportions": config.data_proportions,
-        "interleave_stopping_strategy": config.stopping_strategy,
-        "dataset_size": len(mixed_data),
+        "component_num_tokens": config.num_tokens,
+        "context_length": config.context_length,
+        "dataset_size_samples": len(mixed_data),
+        "dataset_size_tokens_Billions": (len(mixed_data) * config.context_length)
+        // 1e9,
     }
+
+    print(summary_stats)
 
     with open(f"{config.save_path}/summary_statistics.json", "w") as f:
         f.write(json.dumps(summary_stats))
