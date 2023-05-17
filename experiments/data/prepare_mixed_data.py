@@ -15,17 +15,17 @@ def run(config_path: str) -> None:
     config = DataMixingConfig(**raw_config)
 
     if len(config.data_paths) != len(config.num_tokens):
-        raise ValueError("Must specify num_token for each data_path")
+        raise ValueError("Must specify an equal number of num_tokens and data_paths")
 
     dataset_slices = []
     for path, num_token in zip(config.data_paths, config.num_tokens):
-        print(path)
         dataset = datasets.load_from_disk(path)
         num_rows = int(num_token / config.context_length)
 
         if num_rows > len(dataset):
             raise ValueError(
-                f"Dataset at {path} is smaller than requested number of tokens"
+                f"Data at {path} is smaller than the requested {num_token} tokens, \
+                 only {len(dataset)*config.context_length} tokens found."
             )
 
         elif num_rows == len(dataset):
@@ -47,7 +47,7 @@ def run(config_path: str) -> None:
         "component_num_tokens": config.num_tokens,
         "context_length": config.context_length,
         "dataset_size_samples": len(mixed_data),
-        "dataset_size_tokens_Billions": (len(mixed_data) * config.context_length)
+        "dataset_size_tokens_billions": (len(mixed_data) * config.context_length)
         // 1e9,
     }
 
