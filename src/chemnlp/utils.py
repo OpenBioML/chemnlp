@@ -1,5 +1,5 @@
-from pathlib import Path
 import itertools
+from pathlib import Path
 from typing import Dict, Union
 
 import yaml
@@ -11,6 +11,7 @@ def load_config(path: Union[str, Path]):
             return yaml.safe_load(stream)
         except yaml.YAMLError as exc:
             print(exc)
+
 
 def _get_all_combinations(d: Dict):
     """Generate all possible hyperparameter combinations"""
