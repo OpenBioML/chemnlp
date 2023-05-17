@@ -44,4 +44,4 @@ srun python -m torch.distributed.launch --use-env --nnodes 4 --nproc_per_node 8 
 --rdzv_id $RANDOM \
 --rdzv_backend c10d \
 --rdzv_endpoint $head_node_ip:29500 \
-experiments/scripts/run_tune.py  experiments/configs/hugging-face/$3 $overrides
+experiments/scripts/run_tune.py  experiments/configs/hugging-face/$3 --config_overrides $overrides

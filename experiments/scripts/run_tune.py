@@ -115,7 +115,7 @@ def run(config_path: str, config_overrides: Optional[Dict] = None) -> None:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("config_path", help="The full path to the YAML config file.")
-    parser.add_argument("config_overrides", help="Any overriding parameters as a JSON.")
+    parser.add_argument("--config_overrides", required=False, default={}, help="Any overriding parameters as a JSON.")
     args = parser.parse_args()
     parsed_json_overrides = json.loads(args.config_overrides)
     run(args.config_path, parsed_json_overrides)
