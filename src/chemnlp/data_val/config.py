@@ -87,6 +87,16 @@ class LMEvalDataConfig(BaseModel):
     save_name: str
 
 
+class HFDatasetConfig(BaseModel):
+    model_name: str
+    context_length: int
+    dataset_name: str
+    dataset_args: Dict
+    out_dir: str
+    string_key: str = "TEXT"
+    batch_size: Optional[int] = 1000
+
+
 class DataMixingConfig(BaseModel):
     data_paths: List[str]
     data_proportions: List[float]
