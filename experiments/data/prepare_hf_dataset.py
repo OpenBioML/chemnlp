@@ -36,6 +36,7 @@ def run(config_path: str):
             batch, tokenizer, config.context_length, config.string_key
         ),
         batched=True,
+        batch_size=config.batch_size,
         remove_columns=dataset.column_names,
         num_proc=os.cpu_count(),
         load_from_cache_file=False,
