@@ -78,6 +78,15 @@ class TrainPipelineConfig(BaseModel):
         return self
 
 
+class LMEvalDataConfig(BaseModel):
+    model_name: str
+    context_length: int
+    tasks: List[str]
+    data_split: str
+    out_dir: str
+    save_name: str
+
+
 class DataMixingConfig(BaseModel):
     data_paths: List[str]
     data_proportions: List[float]
