@@ -4,8 +4,10 @@ A Python script for finetuning language models.
     Usage: python run_tune.py <path-to-config-yml>
 """
 import argparse
+import json
 import os
 import pathlib
+from typing import Dict, Optional
 
 import datasets
 import transformers
@@ -31,10 +33,13 @@ def print_zero_rank(rank, x):
         print(x)
 
 
-def run(config_path: str) -> None:
+def run(config_path: str, config_overrides: Optional[Dict] = None) -> None:
     """Perform a training run for a given YAML defined configuration"""
     raw_config = load_config(config_path)
     config = TrainPipelineConfig(**raw_config)
+    if config_overrides:
+        config = config.update(config_overrides)
+
     local_rank = int(os.environ.get("LOCAL_RANK", -1))
     global_rank = int(os.environ.get("RANK", -1))
     print_zero_rank(local_rank, config)
@@ -98,9 +103,24 @@ def run(config_path: str) -> None:
     trainer.train()
     trainer.save_model(config.trainer.output_dir + "/checkpoint-final")
 
+    if config_overrides:
+        # only save down successful grid search runs
+        config_dir = pathlib.Path(config.trainer.output_dir).parent.absolute()
+        with open(f"{config_dir}/{config.wandb.name}_overrides.json") as fp:
+            # record as chkpt: config
+            recorded_config = {config.trainer.output_dir: config_overrides}
+            json.dump(recorded_config, fp)
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("config_path", help="The full path to the YAML config file.")
+    parser.add_argument(
+        "--config_overrides",
+        required=False,
+        default={},
+        help="Any overriding parameters as a JSON.",
+    )
     args = parser.parse_args()
-    run(args.config_path)
+    parsed_json_overrides = json.loads(args.config_overrides)
+    run(args.config_path, parsed_json_overrides)

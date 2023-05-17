@@ -1,7 +1,9 @@
-from typing import List, Optional, Union
+from typing import Any, Dict, List, Optional, Union
 
 from pydantic import BaseModel, validator
 from transformers.trainer_utils import SchedulerType
+
+DictofLists = Dict[str, List]
 
 
 class Data(BaseModel):
@@ -63,9 +65,50 @@ class TrainPipelineConfig(BaseModel):
     trainer: TrainerConfig
     wandb: WandbConfig
 
+    def update(
+        self, config_changes: Dict[str, Dict[str, Any]]
+    ) -> "TrainPipelineConfig":
+        """Update training configuration"""
+        for config_key, parameter_changes in config_changes.items():
+            # top level config classes
+            config_attr = getattr(self, config_key)
+            for param_key, param_value in parameter_changes.items():
+                # second level configuration parameters
+                setattr(config_attr, param_key, param_value)
+        return self
+
+
+class LMEvalDataConfig(BaseModel):
+    model_name: str
+    context_length: int
+    tasks: List[str]
+    data_split: str
+    out_dir: str
+    save_name: str
+
+
+class HFDatasetConfig(BaseModel):
+    model_name: str
+    context_length: int
+    dataset_name: str
+    dataset_args: Dict
+    out_dir: str
+    string_key: str = "TEXT"
+    batch_size: Optional[int] = 1000
+
 
 class DataMixingConfig(BaseModel):
     data_paths: List[str]
     num_tokens: List[int]
     context_length: int
     save_path: str
+
+
+class GridSearch(BaseModel):
+    """Grid search options for TrainPipelineConfig elements"""
+
+    data: Optional[DictofLists] = {}
+    model: Optional[DictofLists] = {}
+    prompt_tuning: Optional[DictofLists] = {}
+    trainer: Optional[DictofLists] = {}
+    wandb: Optional[DictofLists] = {}

@@ -37,6 +37,7 @@ dataset_creation = [
         "PyTDC",
         "rdkit-pypi",
         "ruamel.yaml",
+        "modin[all]"
 ]
 
 training = [
