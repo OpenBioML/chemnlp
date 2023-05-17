@@ -1,7 +1,9 @@
-from typing import List, Optional, Union
+from typing import Any, Dict, List, Optional, Union
 
 from pydantic import BaseModel, validator
 from transformers.trainer_utils import SchedulerType
+
+DictofLists = Dict[str, List]
 
 
 class Data(BaseModel):
@@ -63,6 +65,18 @@ class TrainPipelineConfig(BaseModel):
     trainer: TrainerConfig
     wandb: WandbConfig
 
+    def update(
+        self, config_changes: Dict[str, Dict[str, Any]]
+    ) -> "TrainPipelineConfig":
+        """Update training configuration"""
+        for config_key, parameter_changes in config_changes.items():
+            # top level config classes
+            config_attr = getattr(self, config_key)
+            for param_key, param_value in parameter_changes.items():
+                # second level configuration parameters
+                setattr(config_attr, param_key, param_value)
+        return self
+
 
 class LMEvalDataConfig(BaseModel):
     model_name: str
@@ -78,3 +92,13 @@ class DataMixingConfig(BaseModel):
     data_proportions: List[float]
     save_path: str
     stopping_strategy: str
+
+
+class GridSearch(BaseModel):
+    """Grid search options for TrainPipelineConfig elements"""
+
+    data: Optional[DictofLists] = {}
+    model: Optional[DictofLists] = {}
+    prompt_tuning: Optional[DictofLists] = {}
+    trainer: Optional[DictofLists] = {}
+    wandb: Optional[DictofLists] = {}
