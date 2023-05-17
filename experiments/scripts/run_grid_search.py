@@ -1,7 +1,8 @@
 import json
 import subprocess
 
-from chemnlp.data_val.config import GridSearch, _get_all_combinations
+from chemnlp.data_val.config import GridSearch
+from chemnlp.utils import _get_all_combinations
 
 # User-defined parameters
 MULTINODE_RUNS = False
