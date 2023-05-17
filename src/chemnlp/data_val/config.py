@@ -99,9 +99,9 @@ class HFDatasetConfig(BaseModel):
 
 class DataMixingConfig(BaseModel):
     data_paths: List[str]
-    data_proportions: List[float]
+    num_tokens: List[int]
+    context_length: int
     save_path: str
-    stopping_strategy: str
 
 
 class GridSearch(BaseModel):
