@@ -1,0 +1,7 @@
+model_name: 'EleutherAI/pythia-1b'
+context_length: 2048
+dataset_name: 'EleutherAI/pile'
+dataset_args: {'name': 'pubmed', 'split': 'train'}
+batch_size: 1
+out_dir: '/fsx/proj-chemnlp/data'
+string_key: 'text'
