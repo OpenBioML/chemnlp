@@ -3,13 +3,15 @@ import itertools
 import tarfile
 from io import BytesIO
 from pathlib import Path
-from typing import Dict, Optional, Union
-
+from typing import Dict, List, Optional, Union
+import psutil
 import requests
 import yaml
 from rdkit import Chem
 from rdkit.Chem import rdDetermineBonds
 
+M_USED = "Memory Used"
+M_UTIL = "Memory Utilisation"
 
 def load_config(path: Union[str, Path]):
     with open(path, "r") as stream:
@@ -70,6 +72,34 @@ def compute_md5_of_response(response) -> str:
 
     return md5_hash.hexdigest()
 
+def add_average_metrics(
+    metrics: Dict[str, float], metric_names: List[str], device: str
+) -> Dict:
+    """Add in averaged metrics for the device"""
+    for metric in metric_names:
+        all_metric_vals = [val for k, val in metrics.items() if metric in k]
+        metrics[f"{device} Avg. {metric}"] = sum(all_metric_vals) / len(
+            all_metric_vals
+        )
+    return metrics
+
+
+def collect_cpu_memory() -> Dict:
+    return {f"CPU {M_USED}": psutil.virtual_memory().percent}
+
+def collect_gpu_memory() -> Dict:
+    import nvidia_smi
+    nvidia_smi.nvmlInit()
+    gpu_metrics = {}
+    for _id in range(nvidia_smi.nvmlDeviceGetCount()):
+        handle = nvidia_smi.nvmlDeviceGetHandleByIndex(_id)
+        mem_usage = nvidia_smi.nvmlDeviceGetMemoryInfo(handle)
+        gpu_metrics[f"GPU {_id} {M_USED}"] = int(
+            100 * float(mem_usage.used) / float(mem_usage.total)
+        )
+    nvidia_smi.nvmlShutdown()
+    add_average_metrics(gpu_metrics, [M_USED], "GPU")
+    return gpu_metrics
 
 def get_local_ip_address() -> str:
     import socket
