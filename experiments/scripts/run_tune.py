@@ -99,7 +99,7 @@ def run(config_path: str, config_overrides: Optional[Dict] = None) -> None:
 
     # custom logging at start of training
     wandb.log({"Node IP Address": get_local_ip_address()})
-    wandb.log({"CPU": collect_cpu_memory(), "GPU": collect_gpu_memory()})
+    wandb.log({"CPU_start": collect_cpu_memory(), "GPU_start": collect_gpu_memory()})
 
     # train
     trainer = Trainer(
@@ -114,7 +114,7 @@ def run(config_path: str, config_overrides: Optional[Dict] = None) -> None:
     trainer.save_model(config.trainer.output_dir + "/checkpoint-final")
 
     # custom logging at end of training
-    wandb.log({"CPU": collect_cpu_memory(), "GPU": collect_gpu_memory()})
+    wandb.log({"CPU_end": collect_cpu_memory(), "GPU_end": collect_gpu_memory()})
 
     if config_overrides:
         # only save down successful grid search runs
