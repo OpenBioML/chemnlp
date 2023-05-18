@@ -21,10 +21,16 @@ from transformers import (
 )
 
 from chemnlp.data_val.config import TrainPipelineConfig
-from chemnlp.utils import load_config, collect_gpu_memory, collect_cpu_memory, get_local_ip_address
+from chemnlp.utils import (
+    collect_cpu_memory,
+    collect_gpu_memory,
+    get_local_ip_address,
+    load_config,
+)
 
 FILE_PATH = pathlib.Path(__file__).parent.resolve()
 CONFIG_DIR = FILE_PATH.parent / "configs"
+
 
 def print_zero_rank(rank, x):
     """Print a statement only if the zero rank process"""
