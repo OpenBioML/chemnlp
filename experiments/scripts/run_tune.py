@@ -106,7 +106,7 @@ def run(config_path: str, config_overrides: Optional[Dict] = None) -> None:
     if config_overrides:
         # only save down successful grid search runs
         config_dir = pathlib.Path(config.trainer.output_dir).parent.absolute()
-        with open(f"{config_dir}/{config.wandb.name}_overrides.json") as fp:
+        with open(f"{config_dir}/{config.wandb.name}_overrides.json", "a+") as fp:
             # record as chkpt: config
             recorded_config = {config.trainer.output_dir: config_overrides}
             json.dump(recorded_config, fp)
