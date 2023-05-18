@@ -69,3 +69,9 @@ def compute_md5_of_response(response) -> str:
         md5_hash.update(block)
 
     return md5_hash.hexdigest()
+
+
+def get_local_ip_address() -> str:
+    import socket
+    hostname = socket.getfqdn()
+    return socket.gethostbyname_ex(hostname)[0]
