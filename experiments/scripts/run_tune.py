@@ -103,7 +103,7 @@ def run(config_path: str, config_overrides: Optional[Dict] = None) -> None:
     trainer.train()
     trainer.save_model(config.trainer.output_dir + "/checkpoint-final")
 
-    if config_overrides:
+    if config_overrides and local_rank in [0, -1]:
         # only save down successful grid search runs
         config_dir = pathlib.Path(config.trainer.output_dir).parent.absolute()
         with open(f"{config_dir}/{config.wandb.name}_overrides.json", "a+") as fp:
