@@ -41,7 +41,8 @@ dataset_creation = [
 ]
 
 training = [
-        "deepspeed>=0.8.2" # https://github.com/microsoft/DeepSpeed/pull/2863
+        "deepspeed>=0.8.2", # https://github.com/microsoft/DeepSpeed/pull/2863
+        "nvidia-ml-py3"
 ]
 
 [tool.setuptools_scm]

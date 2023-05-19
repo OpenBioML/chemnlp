@@ -21,7 +21,12 @@ from transformers import (
 )
 
 from chemnlp.data_val.config import TrainPipelineConfig
-from chemnlp.utils import load_config
+from chemnlp.utils import (
+    collect_cpu_memory,
+    collect_gpu_memory,
+    get_local_ip_address,
+    load_config,
+)
 
 FILE_PATH = pathlib.Path(__file__).parent.resolve()
 CONFIG_DIR = FILE_PATH.parent / "configs"
@@ -92,6 +97,11 @@ def run(config_path: str, config_overrides: Optional[Dict] = None) -> None:
         config.wandb.name += f"_global_{global_rank}_local_{local_rank}_rank"
         wandb.init(**config.wandb.dict(exclude={"enabled"}), config=config.dict())
 
+    # custom logging at start of training
+    wandb.log({"Node IP Address": get_local_ip_address()})
+    wandb.log({"CPU_start": collect_cpu_memory(), "GPU_start": collect_gpu_memory()})
+
+    # train
     trainer = Trainer(
         model=model,
         args=training_args,
@@ -102,7 +112,10 @@ def run(config_path: str, config_overrides: Optional[Dict] = None) -> None:
     )
     trainer.train()
     trainer.save_model(config.trainer.output_dir + "/checkpoint-final")
-
+    
+    # custom logging at end of training
+    wandb.log({"CPU_end": collect_cpu_memory(), "GPU_end": collect_gpu_memory()})
+    
     if config_overrides and local_rank in [0, -1]:
         # only save down successful grid search runs
         config_dir = pathlib.Path(config.trainer.output_dir).parent.absolute()
