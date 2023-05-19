@@ -112,10 +112,10 @@ def run(config_path: str, config_overrides: Optional[Dict] = None) -> None:
     )
     trainer.train()
     trainer.save_model(config.trainer.output_dir + "/checkpoint-final")
-    
+
     # custom logging at end of training
     wandb.log({"CPU_end": collect_cpu_memory(), "GPU_end": collect_gpu_memory()})
-    
+
     if config_overrides and local_rank in [0, -1]:
         # only save down successful grid search runs
         config_dir = pathlib.Path(config.trainer.output_dir).parent.absolute()
