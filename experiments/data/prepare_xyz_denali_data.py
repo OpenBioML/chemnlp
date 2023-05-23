@@ -1,19 +1,22 @@
-from typing import Dict, List
-import re
-import json
 import glob
-from tqdm import tqdm
+import json
+import re
+from typing import Dict, List
+
 import joblib
+from tqdm import tqdm
 
 FLOATS = r"\b\d+\.\d+\b"
 N_DIGITS = 2
 DATA_DIR = "/fsx/proj-chemnlp/data/OrbNet_Denali_Training_Data/xyz_files"
 OUT_DIR = "/fsx/proj-chemnlp/data/cleaned_orbnet_xyz"
 
+
 def round_to_n(match: str) -> str:
     """Rounds a number to N_DIGIT places"""
     num = float(match.group(0))
     return f"{round(num, N_DIGITS)}"
+
 
 def process_xyz_file(fpath: str) -> Dict:
     """
@@ -39,15 +42,13 @@ def process_xyz_file(fpath: str) -> Dict:
     "C 6.39 2.84 -1.46 O 6.12 1.57 -0.86 P 5.14 1.10 0.31 ..."
     """
     with open(fpath, "r") as f:
-        var = f.read() # read in text file
-        lines = var.split('\n') # split on newline
-        xyz_s = " ".join(lines[2:]) # removed first two items
-        xyz_onespace = " ".join(xyz_s.split()) # make uniform spacing
-        rounded_xyz = re.sub(FLOATS, round_to_n, xyz_onespace) # round numbers
-        return {
-                'text': rounded_xyz,
-                'num_atoms': int(len(rounded_xyz)/ 4)
-            }
+        var = f.read()  # read in text file
+        lines = var.split("\n")  # split on newline
+        xyz_s = " ".join(lines[2:])  # removed first two items
+        xyz_onespace = " ".join(xyz_s.split())  # make uniform spacing
+        rounded_xyz = re.sub(FLOATS, round_to_n, xyz_onespace)  # round numbers
+        return {"text": rounded_xyz, "num_atoms": int(len(rounded_xyz) / 4)}
+
 
 def save_jsonlines(out_dir: str, data_json_clean: List[Dict]):
     """Saves down to jsonlines format"""
@@ -57,16 +58,18 @@ def save_jsonlines(out_dir: str, data_json_clean: List[Dict]):
             json.dump(element, file_out)
             file_out.write("\n")
 
+
 def get_xyz_files(base_dir: str) -> List[str]:
     """Gets all matches to .xyz extension"""
     return glob.iglob(f"{base_dir}/**/*.xyz", recursive=True)
 
+
 if __name__ == "__main__":
     examples = get_xyz_files(DATA_DIR)
-    print('Retrieved generator of all xyz files, processing now ...')
+    print("Retrieved generator of all xyz files, processing now ...")
     data_json_clean = joblib.Parallel(n_jobs=joblib.cpu_count())(
         [joblib.delayed(process_xyz_file)(fpath) for fpath in tqdm(examples)]
     )
-    print(f'Processed all {len(data_json_clean)} xyz files')
+    print(f"Processed all {len(data_json_clean)} xyz files")
     save_jsonlines(OUT_DIR, data_json_clean)
-    print(f'Saved processed files to {OUT_DIR}')
+    print(f"Saved processed files to {OUT_DIR}")
