@@ -33,4 +33,5 @@ else
     conda install -y pytorch torchvision torchaudio pytorch-cuda=${CUDA_VERSION} -c pytorch -c nvidia --verbose
     cd $CHEMNLP_PATH
     pip install ".[training]"
+    pip install -e lm-evaluation-harness
 fi
