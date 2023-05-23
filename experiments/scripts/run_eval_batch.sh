@@ -24,12 +24,13 @@ set -ex # allow for exiting based on non-0 codes
 CHEMNLP_PATH=/fsx/proj-chemnlp/$1/chemnlp
 
 # create environment
-source $CHEMNLP_PATH/experiments/scripts/env_creation_eval.sh $1 $2
+source $CHEMNLP_PATH/experiments/scripts/env_creation_hf.sh $1 $2
 
-cd $CHEMNLP_PATH/experiments/scripts
-python eval_create_batch_configs.py $3 $4
+# create experiment config for each model
+python $CHEMNLP_PATH/experiments/scripts/eval_create_batch_configs.py $3 $4
 
+# evaluate each model
 for entry in $4/*/
 do
-  python $CHEMNLP_PATH/lm-evaluation-harness/main_eval.py "$entry"checkpoint-final
+  python $CHEMNLP_PATH/lm-evaluation-harness/main_eval.py "$entry"eval_config.yml
 done
