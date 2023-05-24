@@ -134,7 +134,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--config_overrides",
         required=False,
-        default={},
+        default="{}",
         help="Any overriding parameters as a JSON.",
     )
     args = parser.parse_args()
