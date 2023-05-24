@@ -7,7 +7,6 @@ import yaml
 DATASET_URL = (
     "https://huggingface.co/datasets/adamoyoung/mona/resolve/main/data/mona_df.json"
 )
-TMP_DIR_PATH = "./data/mona/tmp"
 META_YAML_PATH = "./data/mona/meta.yaml"
 META_TEMPLATE = {
     "name": "mona",
@@ -188,8 +187,20 @@ def get_raw_data(raw_dataset: str = DATASET_URL) -> pd.DataFrame:
 def create_meta_yaml(num_points: int):
     """Create meta configuration file for the dataset"""
     META_TEMPLATE["num_points"] = num_points
-    with open(META_YAML_PATH, "w+") as f:
-        yaml.dump(META_TEMPLATE, f, sort_keys=False)
+
+    def str_presenter(dumper, data):
+        """configures yaml for dumping multiline strings
+        Ref:
+        https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data
+        """
+        if data.count("\n") > 0:  # check for multiline string
+            return dumper.represent_scalar("tag:yaml.org,2002:str", data, style="|")
+        return dumper.represent_scalar("tag:yaml.org,2002:str", data)
+
+    yaml.add_representer(str, str_presenter)
+    yaml.representer.SafeRepresenter.add_representer(str, str_presenter)
+    with open(META_YAML_PATH, "w") as f:
+        yaml.dump(META_TEMPLATE, f, sort_keys=False, default_flow_style=False)
     print(f"Finished processing {META_TEMPLATE['name']} dataset!")
 
 
