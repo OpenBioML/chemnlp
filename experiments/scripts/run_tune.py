@@ -84,7 +84,7 @@ def run(config_path: str, config_overrides: Optional[Dict] = None) -> None:
     data_collator = DataCollatorForLanguageModeling(tokenizer, mlm=False)
 
     training_args = TrainingArguments(
-        **config.trainer.dict(exclude={"enabled", "deepspeed_config"}),
+        **config.trainer.dict(exclude={"deepspeed_config", "determinism"}),
         report_to="wandb" if config.wandb.enabled else "none",
         local_rank=local_rank,
         deepspeed=CONFIG_DIR / f"deepspeed/{config.trainer.deepspeed_config}"
