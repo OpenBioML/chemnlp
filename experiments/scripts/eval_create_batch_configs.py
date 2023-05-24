@@ -25,9 +25,10 @@ def run(
         ] = f"pretrained={root_models_path}/{model_name}/{CHECKPOINT_DIR}"
         raw_config["wandb_run_name"] = model_name
 
-        new_config = open(f"{root_models_path}/{model_name}/eval_config.yml", "w")
-        yaml.dump(raw_config, new_config)
-        new_config.close()
+        with open(
+            f"{root_models_path}/{model_name}/eval_config.yml", "w"
+        ) as new_config:
+            yaml.dump(raw_config, new_config)
 
 
 if __name__ == "__main__":
