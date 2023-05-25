@@ -84,7 +84,7 @@ def run(config_path: str, config_overrides: Optional[Dict] = None) -> None:
     data_collator = DataCollatorForLanguageModeling(tokenizer, mlm=False)
 
     training_args = TrainingArguments(
-        **config.trainer.dict(exclude={"enabled", "deepspeed_config"}),
+        **config.trainer.dict(exclude={"deepspeed_config"}),
         report_to="wandb" if config.wandb.enabled else "none",
         local_rank=local_rank,
         deepspeed=CONFIG_DIR / f"deepspeed/{config.trainer.deepspeed_config}"
@@ -97,9 +97,11 @@ def run(config_path: str, config_overrides: Optional[Dict] = None) -> None:
         config.wandb.name += f"_global_{global_rank}_local_{local_rank}_rank"
         wandb.init(**config.wandb.dict(exclude={"enabled"}), config=config.dict())
 
-    # custom logging at start of training
-    wandb.log({"Node IP Address": get_local_ip_address()})
-    wandb.log({"CPU_start": collect_cpu_memory(), "GPU_start": collect_gpu_memory()})
+        # custom logging at start of training
+        wandb.log({"Node IP Address": get_local_ip_address()})
+        wandb.log(
+            {"CPU_start": collect_cpu_memory(), "GPU_start": collect_gpu_memory()}
+        )
 
     # train
     trainer = Trainer(
@@ -113,8 +115,9 @@ def run(config_path: str, config_overrides: Optional[Dict] = None) -> None:
     trainer.train()
     trainer.save_model(config.trainer.output_dir + "/checkpoint-final")
 
-    # custom logging at end of training
-    wandb.log({"CPU_end": collect_cpu_memory(), "GPU_end": collect_gpu_memory()})
+    if config.wandb.enabled:
+        # custom logging at end of training
+        wandb.log({"CPU_end": collect_cpu_memory(), "GPU_end": collect_gpu_memory()})
 
     if config_overrides and local_rank in [0, -1]:
         # only save down successful grid search runs
@@ -131,7 +134,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--config_overrides",
         required=False,
-        default={},
+        default="{}",
         help="Any overriding parameters as a JSON.",
     )
     args = parser.parse_args()

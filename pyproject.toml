@@ -42,7 +42,8 @@ dataset_creation = [
 
 training = [
         "deepspeed>=0.8.2", # https://github.com/microsoft/DeepSpeed/pull/2863
-        "nvidia-ml-py3"
+        "nvidia-ml-py3",
+        "protobuf<3.20"
 ]
 
 [tool.setuptools_scm]
