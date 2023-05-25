@@ -8,6 +8,13 @@ DictofLists = Dict[str, List]
 
 class Data(BaseModel):
     path: str
+    validation_size: float = 0.05
+
+    @validator("validation_size")
+    def small_positive_validation_size(cls, v):
+        if v < 0 or v > 1:
+            raise ValueError("Specify a positive validation split size (0,1)")
+        return v
 
 
 class Model(BaseModel):

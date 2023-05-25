@@ -80,7 +80,7 @@ def run(config_path: str, config_overrides: Optional[Dict] = None) -> None:
     )
 
     dataset = datasets.load_from_disk(config.data.path)
-    split_dataset = dataset.train_test_split(test_size=0.025)
+    split_dataset = dataset.train_test_split(test_size=config.data.validation_size)
     data_collator = DataCollatorForLanguageModeling(tokenizer, mlm=False)
 
     training_args = TrainingArguments(
