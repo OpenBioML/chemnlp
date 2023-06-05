@@ -30,5 +30,6 @@ python $CHEMNLP_PATH/experiments/scripts/eval_create_batch_configs.py $3 $4
 # evaluate each model
 for entry in $4/*/
 do
-  python $CHEMNLP_PATH/lm-evaluation-harness/main_eval.py "$entry"eval_config.yml
+  sbatch $CHEMNLP_PATH/experiments/scripts/run_eval.sh $1 $2 "$entry"eval_config.yml
+  sleep 1
 done
