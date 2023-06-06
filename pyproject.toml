@@ -43,7 +43,9 @@ dataset_creation = [
 training = [
         "deepspeed>=0.8.2", # https://github.com/microsoft/DeepSpeed/pull/2863
         "nvidia-ml-py3",
-        "protobuf<3.20"
+        "protobuf<3.20",
+        "s3fs",
+        "boto3<=1.26.90", # https://github.com/boto/boto3/issues/3648
 ]
 
 [tool.setuptools_scm]
