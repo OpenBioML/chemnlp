@@ -3,8 +3,8 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=12
-#SBATCH --output=/fsx/proj-chemnlp/experiments/logs/testing_%j.out
-#SBATCH --error=/fsx/proj-chemnlp/experiments/logs/testing_%j.err
+#SBATCH --output=/fsx/proj-chemnlp/experiments/logs/batch_eval_%j.out
+#SBATCH --error=/fsx/proj-chemnlp/experiments/logs/batch_eval_%j.err
 #SBATCH --open-mode=append
 #SBATCH --account=topchem
 #SBATCH --partition=g40
@@ -30,6 +30,5 @@ python $CHEMNLP_PATH/experiments/scripts/eval_create_batch_configs.py $3 $4
 # evaluate each model
 for entry in $4/*/
 do
-  sbatch $CHEMNLP_PATH/experiments/scripts/run_eval.sh $1 $2 "$entry"eval_config.yml
-  sleep 1
+  python $CHEMNLP_PATH/lm-evaluation-harness/main_eval.py "$entry"eval_config.yml
 done

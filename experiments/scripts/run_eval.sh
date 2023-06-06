@@ -3,8 +3,8 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=12
-#SBATCH --output=/fsx/proj-chemnlp/experiments/logs/testing_%j.out
-#SBATCH --error=/fsx/proj-chemnlp/experiments/logs/testing_%j.err
+#SBATCH --output=/fsx/proj-chemnlp/experiments/logs/eval_%j.out
+#SBATCH --error=/fsx/proj-chemnlp/experiments/logs/eval_%j.err
 #SBATCH --open-mode=append
 #SBATCH --account=topchem
 #SBATCH --partition=g40
