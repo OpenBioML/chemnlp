@@ -24,5 +24,8 @@ TARGET_DIR=s3://$2/$SUBDIR
 echo "Copying from $1 to ${TARGET_DIR}"
 
 # sync only transfers new files from the source directory
-cd $PARENT_DIR && tar -cvf $CHILD_FILE.tar $CHILD_FILE
+if [ ! -f "$1.tar" ]; then
+    cd $PARENT_DIR && tar -cvf $CHILD_FILE.tar $CHILD_FILE
+fi
+
 aws s3 cp $1.tar $TARGET_DIR.tar
