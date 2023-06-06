@@ -1,10 +1,10 @@
 #! /bin/bash
-#SBATCH --job-name="llchem-transfer"
+#SBATCH --job-name="llchem-transfer-batch"
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=12
-#SBATCH --output=/fsx/proj-chemnlp/experiments/logs/transfer_%j.out
-#SBATCH --error=/fsx/proj-chemnlp/experiments/logs/transfer_%j.err
+#SBATCH --output=/fsx/proj-chemnlp/experiments/logs/transfer_batch_%j.out
+#SBATCH --error=/fsx/proj-chemnlp/experiments/logs/transfer_batch_%j.err
 #SBATCH --open-mode=append
 #SBATCH --account=topchem
 #SBATCH --partition=g40
@@ -26,6 +26,7 @@ all_checkpoints=( $(find $1 -name "checkpoint-*" -type d) )
 echo "Saving checkpoints to region: $EC2_REGION"
 for chkpt in ${all_checkpoints[@]}
 do
-    sbatch $CHEMNLP_PATH/experiments/scripts/transfer_checkpoint_to_s3.sh $chkpt $2
+    echo $CHEMNLP_PATH/experiments/scripts/transfer_checkpoint_to_s3.sh $chkpt $2
+    # sbatch $CHEMNLP_PATH/experiments/scripts/transfer_checkpoint_to_s3.sh $chkpt $2
     sleep 1
 done
