@@ -1,0 +1,5 @@
+model_name: "EleutherAI/pythia-1b"
+context_length: 2048
+data_split: "train"
+out_dir: "/fsx/proj-chemnlp/data"
+save_name: "coconut_smiles"
