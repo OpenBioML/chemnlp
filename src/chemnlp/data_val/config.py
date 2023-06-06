@@ -7,7 +7,7 @@ DictofLists = Dict[str, List]
 
 
 class Data(BaseModel):
-    path: str
+    path: str  # can be local or S3 directory
     validation_size: float = 0.05
 
     @validator("validation_size")
