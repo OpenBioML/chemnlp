@@ -30,11 +30,11 @@ from chemnlp.utils import (
 
 FILE_PATH = pathlib.Path(__file__).parent.resolve()
 CONFIG_DIR = FILE_PATH.parent / "configs"
-
+ZERO_RANK = [0, -1]
 
 def print_zero_rank(rank, x):
     """Print a statement only if the zero rank process"""
-    if rank in [0, -1]:
+    if rank in ZERO_RANK:
         print(x)
 
 
@@ -121,7 +121,7 @@ def run(config_path: str, config_overrides: Optional[Dict] = None) -> None:
         # custom logging at end of training
         wandb.log({"CPU_end": collect_cpu_memory(), "GPU_end": collect_gpu_memory()})
 
-    if config_overrides and local_rank in [0, -1]:
+    if config_overrides and local_rank in ZERO_RANK and global_rank in ZERO_RANK:
         # only save down successful grid search runs
         config_dir = pathlib.Path(config.trainer.output_dir).parent.absolute()
         with open(f"{config_dir}/{config.wandb.name}_overrides.json", "a+") as fp:
