@@ -14,12 +14,10 @@
 ### The first arg ($1) is a full path to a checkpoint folder (i.e. <....>/checkpoint-1000)
 ### The second arg ($2) is the S3 bucket to copy to (i.e. llchem-models)
 
-CHECKPOINT_DIR=/fsx/proj-chemnlp/experiments/checkpoints
-SUBDIR=${"$1"#"$CHECKPOINT_DIR"}  # get diff
-
+cutat=checkpoints
+TARGET_DIR=$(echo $1 | awk -F $cutat '{print $2}')
 PARENT_DIR="$(dirname "$1")"
 CHILD_FILE="$(basename "$1")"
-TARGET_DIR=s3://$2/$SUBDIR
 
 echo "Copying from $1 to ${TARGET_DIR}"
 
@@ -28,12 +26,4 @@ if [ ! -f "$1.tar" ]; then
     cd $PARENT_DIR && tar -cvf $CHILD_FILE.tar $CHILD_FILE
 fi
 
-echo $CHECKPOINT_DIR
-echo $1
-echo $SUBDIR
-echo $TARGET_DIR
-
-echo $PARENT_DIR
-echo $CHILD_FILE
-
-# aws s3 cp $1.tar $TARGET_DIR.tar
+aws s3 cp $1.tar $TARGET_DIR.tar
