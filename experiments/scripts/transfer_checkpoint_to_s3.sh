@@ -15,11 +15,10 @@
 ### The second arg ($2) is the S3 bucket to copy to (i.e. llchem-models)
 
 cutat=checkpoints/
-TARGET_DIR=$(echo $1 | awk -F $cutat '{print $2}')
+TARGET_DIR=$(echo $1 | awk -F $cutat '{print $2}') # turns /a/b/checkpoints/c/d/ -> c/d/
 PARENT_DIR="$(dirname "$1")"
 CHILD_FILE="$(basename "$1")"
 
-# sync only transfers new files from the source directory
 if [ ! -f "$1.tar" ]; then
     cd $PARENT_DIR && tar -cvf $CHILD_FILE.tar $CHILD_FILE
 fi
