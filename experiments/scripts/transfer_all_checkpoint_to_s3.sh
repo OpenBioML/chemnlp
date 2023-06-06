@@ -26,7 +26,6 @@ all_checkpoints=( $(find $1 -name "checkpoint-*" -type d) )
 echo "Saving checkpoints to region: $EC2_REGION"
 for chkpt in ${all_checkpoints[@]}
 do
-    echo $CHEMNLP_PATH/experiments/scripts/transfer_checkpoint_to_s3.sh $chkpt $2
-    # sbatch $CHEMNLP_PATH/experiments/scripts/transfer_checkpoint_to_s3.sh $chkpt $2
+    sbatch $CHEMNLP_PATH/experiments/scripts/transfer_checkpoint_to_s3.sh $chkpt $2
     sleep 1
 done
