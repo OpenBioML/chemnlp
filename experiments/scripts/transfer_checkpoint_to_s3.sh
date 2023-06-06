@@ -14,7 +14,7 @@
 ### The first arg ($1) is a full path to a checkpoint folder (i.e. <....>/checkpoint-1000)
 ### The second arg ($2) is the S3 bucket to copy to (i.e. llchem-models)
 
-cutat=checkpoints
+cutat=checkpoints/
 TARGET_DIR=$(echo $1 | awk -F $cutat '{print $2}')
 PARENT_DIR="$(dirname "$1")"
 CHILD_FILE="$(basename "$1")"
@@ -24,4 +24,4 @@ if [ ! -f "$1.tar" ]; then
     cd $PARENT_DIR && tar -cvf $CHILD_FILE.tar $CHILD_FILE
 fi
 
-aws s3 cp $1.tar s3://$TARGET_DIR.tar
+aws s3 cp $1.tar s3://$2/$TARGET_DIR.tar
