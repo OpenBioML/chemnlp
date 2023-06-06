@@ -19,11 +19,9 @@ TARGET_DIR=$(echo $1 | awk -F $cutat '{print $2}')
 PARENT_DIR="$(dirname "$1")"
 CHILD_FILE="$(basename "$1")"
 
-echo "Copying from $1 to ${TARGET_DIR}"
-
 # sync only transfers new files from the source directory
 if [ ! -f "$1.tar" ]; then
     cd $PARENT_DIR && tar -cvf $CHILD_FILE.tar $CHILD_FILE
 fi
 
-aws s3 cp $1.tar $TARGET_DIR.tar
+aws s3 cp $1.tar s3://$TARGET_DIR.tar
