@@ -22,34 +22,30 @@ RDLogger.DisableLog("rdApp.*")
 
 
 DATASET_PATH = "OpenBioML/coconut_molecules"
-VALID_STRING = "The following is a valid molecule: "
-INVALID_STRING = "The following is not a valid molecule: "
+VALID_PREFIX = "The following is a valid molecule:"
+INVALID_PREFIX = "The following is not a valid molecule:"
 DATA_TYPE = "text"
+EOS_TOKEN = "\n\n"
 SEED = 1234
 
 
-def process_valid_smiles(dataset, config):
-    dataset_size = len(dataset[config.data_split])
-    processed_data = []
-    for i in range(dataset_size):
-        smile = dataset[config.data_split][DATA_TYPE][i]
-        is_valid = Chem.MolFromSmiles(smile)
-        if is_valid is not None:
-            processed_data.append(f"{VALID_STRING}{smile}. ")
-    return processed_data
+def process_docs(docs):
+    valid = map(_get_smile_string, docs)
+    invalid = map(_process_invalid_smile, docs)
+    mixed_data = list(valid) + list(invalid)
+    random.seed(seed=SEED)
+    return random.choice(mixed_data, len(mixed_data)).tolist()
 
 
-def process_invalid_smiles(dataset, config):
-    dataset_size = len(dataset[config.data_split])
-    processed_data = []
-    for i in range(dataset_size):
-        smile = dataset[config.data_split][DATA_TYPE][i]
-        slice_size = random.randint(1, len(smile))
-        invalid_smile = smile[:slice_size]
-        is_valid = Chem.MolFromSmiles(invalid_smile)
-        if is_valid is None:
-            processed_data.append(f"{INVALID_STRING}{invalid_smile}. ")
-    return processed_data
+def _process_invalid_smile(doc):
+    invalid_smile = doc[: random.randint(1, len(doc))]
+    return _get_smile_string(invalid_smile)
+
+
+def _get_smile_string(doc):
+    is_valid = Chem.MolFromSmiles(doc)
+    prefix = INVALID_PREFIX if is_valid is None else VALID_PREFIX
+    return f"{prefix} {doc}{EOS_TOKEN}"
 
 
 def concatenate_samples_without_splitting(dataset, tokenizer, max_length):
@@ -59,7 +55,7 @@ def concatenate_samples_without_splitting(dataset, tokenizer, max_length):
     tok_articles = [tokenizer(x)["input_ids"] for x in dataset]
     tok_articles = [sample for sample in tok_articles if len(sample) <= max_length]
     tok_articles = list(itertools.chain.from_iterable(tok_articles))
-    eos_token = tok_articles[-1]
+    eos_token = tokenizer.encode(EOS_TOKEN)[0]
 
     concatenated_articles = []
     p0, p1, last_eos = 0, 1, 0
@@ -84,7 +80,6 @@ def concatenate_samples_without_splitting(dataset, tokenizer, max_length):
 
     # collect final batch
     concatenated_articles.append(tok_articles[p0:])
-
     return concatenated_articles
 
 
@@ -118,12 +113,8 @@ def run(config):
         cache_dir=None,
         download_mode=None,
     )
-    valid_smiles = process_valid_smiles(dataset, config)
-    invalid_smiles = process_invalid_smiles(dataset, config)
-
-    mixed_data = valid_smiles + invalid_smiles
-    mixed_data = random.choice(mixed_data, len(mixed_data)).tolist()
-
+    dataset = dataset[config.data_split][DATA_TYPE]
+    mixed_data = process_docs(dataset)
     tokenizer = AutoTokenizer.from_pretrained(
         pretrained_model_name_or_path=config.model_name,
         model_max_length=config.context_length,
