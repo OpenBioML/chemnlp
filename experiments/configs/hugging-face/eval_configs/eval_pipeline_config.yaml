@@ -6,3 +6,4 @@ wandb_log: true
 wandb_project: LLCheM
 wandb_group: evaluation
 wandb_run_name: 1B_fullfinetune_STEM
+wandb_entity: chemnlp
