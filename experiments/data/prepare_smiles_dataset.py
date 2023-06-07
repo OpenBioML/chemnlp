@@ -61,11 +61,11 @@ def concatenate_samples_without_splitting(dataset, tokenizer, max_length):
     p0, p1, last_eos = 0, 1, 0
     while p1 < len(tok_articles):
         if tok_articles[p1] == eos_token:
-            if (p1 - p0) < max_length:
+            if (p1 - p0 + 1) < max_length:
                 # keep track of most recent eos index, continue exploring
                 last_eos = p1
 
-            elif (p1 - p0) == max_length:
+            elif (p1 - p0 + 1) == max_length:
                 # collect whole pointer window
                 concatenated_articles.append(tok_articles[p0 : p1 + 1])
                 last_eos = p1
