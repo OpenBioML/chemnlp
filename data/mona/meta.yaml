@@ -13,7 +13,7 @@ targets:
       units:
       names:
           - normalized entropy
-      description: The normalized entroqpy of the spectrum (ratio of spectral entropy to maximum possible entropy for a spectrum with the same number of
+      description: The normalized entropy of the spectrum (ratio of spectral entropy to maximum possible entropy for a spectrum with the same number of
           peaks)
 identifiers:
     - id: smiles

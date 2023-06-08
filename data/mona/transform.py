@@ -7,7 +7,7 @@ import yaml
 DATASET_URL = (
     "https://huggingface.co/datasets/adamoyoung/mona/resolve/main/data/mona_df.json"
 )
-META_YAML_PATH = "./data/mona/meta.yaml"
+META_YAML_PATH = __file__.replace("transform.py","meta.yaml")
 META_TEMPLATE = {
     "name": "mona",
     "description": "MassBank of North America, public repository of mass spectra for small molecules",
@@ -19,15 +19,15 @@ META_TEMPLATE = {
             "type": "continuous",
             "units": "nats",
             "names": ["spectral entropy"],
-            "description": "The entropy of the spectrum",
+            "description": "The entropy of the spectrum.",
         },
         {
             "id": "normalized_entropy",
             "type": "continuous",
             "units": None,
             "names": ["normalized entropy"],
-            "description": "The normalized entroqpy of the spectrum (ratio of spectral entropy to maximum possible "
-            + "entropy for a spectrum with the same number of peaks)",
+            "description": "The normalized entropy of the spectrum (ratio of spectral entropy to maximum possible "
+            + "entropy for a spectrum with the same number of peaks).",
         },
     ],
     "identifiers": [
