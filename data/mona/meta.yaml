@@ -47,10 +47,10 @@ fields:
           text: Raw mass spectrum represented as a set of (m/z location, intensity) pairs
         - name: spectral_entropy
           column: spectral_entropy
-          text: The entropy of the spectrum
+          text: The entropy of the spectrum.
         - name: normalized_entropy
           column: normalized_entropy
-          text: The normalized entropy of the spectrum (ratio of spectral entropy to maximum possible entropy for a spectrum with the same number of peaks)
+          text: The normalized entropy of the spectrum (ratio of spectral entropy to maximum possible entropy for a spectrum with the same number of peaks).
     metadata:
         - name: id
           column: id
