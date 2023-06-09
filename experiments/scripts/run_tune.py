@@ -42,7 +42,7 @@ def should_restart(output_dir: str, restart_checkpoint: Union[str, bool]) -> Uni
     if isinstance(restart_checkpoint, str):
         # if specific checkpoint provided
         if os.path.isfile(restart_checkpoint):
-            return True
+            return restart_checkpoint
         else:
             raise ValueError(f'checkpoint cannot be found at {restart_checkpoint}')
 
