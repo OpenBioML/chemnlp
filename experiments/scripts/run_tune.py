@@ -7,7 +7,7 @@ import argparse
 import json
 import os
 import pathlib
-from typing import Dict, Optional
+from typing import Dict, Optional, Union
 
 import datasets
 import transformers
@@ -31,6 +31,32 @@ from chemnlp.utils import (
 FILE_PATH = pathlib.Path(__file__).parent.resolve()
 CONFIG_DIR = FILE_PATH.parent / "configs"
 ZERO_RANK = [0, -1]
+
+def should_restart(output_dir: str, restart_checkpoint: Union[str, bool]) -> Union[str, bool]:
+    """
+    The default behaviour causes an automatic restart from the most recent checkpoint.
+    However, you can also specify
+        - specific checkpoint folders
+        - a value of False to not load a checkpoint
+    """
+    if isinstance(restart_checkpoint, str):
+        # if specific checkpoint provided
+        if os.path.isfile(restart_checkpoint):
+            return True
+        else:
+            raise ValueError(f'checkpoint cannot be found at {restart_checkpoint}')
+
+    elif isinstance(restart_checkpoint, bool) and restart_checkpoint:
+        # if we want to restart
+        if os.path.isdir(output_dir):
+            # if exists 
+            checkpoint_folders = [f for f in os.listdir(output_dir) if 'checkpoint' in f]
+            if checkpoint_folders:
+                # if has any checkpoint-X folder
+                return  True
+
+    # default to False if no checkpoints exist or none chosen
+    return False
 
 def print_zero_rank(rank, x):
     """Print a statement only if the zero rank process"""
@@ -86,7 +112,7 @@ def run(config_path: str, config_overrides: Optional[Dict] = None) -> None:
     data_collator = DataCollatorForLanguageModeling(tokenizer, mlm=False)
 
     training_args = TrainingArguments(
-        **config.trainer.dict(exclude={"deepspeed_config"}),
+        **config.trainer.dict(exclude={"deepspeed_config", "restart_checkpoint"}),
         report_to="wandb" if config.wandb.enabled else "none",
         local_rank=local_rank,
         deepspeed=CONFIG_DIR / f"deepspeed/{config.trainer.deepspeed_config}"
@@ -105,7 +131,7 @@ def run(config_path: str, config_overrides: Optional[Dict] = None) -> None:
             {"CPU_start": collect_cpu_memory(), "GPU_start": collect_gpu_memory()}
         )
 
-    # train
+    # start train or auto-restart
     trainer = Trainer(
         model=model,
         args=training_args,
@@ -114,7 +140,7 @@ def run(config_path: str, config_overrides: Optional[Dict] = None) -> None:
         tokenizer=tokenizer,
         data_collator=data_collator,
     )
-    trainer.train()
+    trainer.train(resume_from_checkpoint=should_restart(training_args.output_dir, config.trainer.restart_checkpoint))
     trainer.save_model(config.trainer.output_dir + "/checkpoint-final")
 
     if config.wandb.enabled:
