@@ -7,7 +7,8 @@ import yaml
 DATASET_URL = (
     "https://huggingface.co/datasets/adamoyoung/mona/resolve/main/data/mona_df.json"
 )
-META_YAML_PATH = __file__.replace("transform.py","meta.yaml")
+META_YAML_PATH = __file__.replace("transform.py", "meta.yaml")
+DF_CSV_PATH = __file__.replace("transform.py", "data_clean.csv")
 META_TEMPLATE = {
     "name": "mona",
     "description": "MassBank of North America, public repository of mass spectra for small molecules",
@@ -209,3 +210,4 @@ if __name__ == "__main__":
     raw_df = get_raw_data()
     num_samples += len(raw_df)
     create_meta_yaml(num_samples)
+    raw_df.to_csv(DF_CSV_PATH, index=False)
