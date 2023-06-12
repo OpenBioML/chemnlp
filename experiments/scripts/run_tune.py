@@ -32,6 +32,7 @@ FILE_PATH = pathlib.Path(__file__).parent.resolve()
 CONFIG_DIR = FILE_PATH.parent / "configs"
 ZERO_RANK = [0, -1]
 
+
 def print_zero_rank(rank, x):
     """Print a statement only if the zero rank process"""
     if rank in ZERO_RANK:
