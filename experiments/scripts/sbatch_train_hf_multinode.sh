@@ -1,5 +1,5 @@
 #! /bin/bash
-#SBATCH --job-name="llchem-singlenode"
+#SBATCH --job-name="llchem-multinode"
 #SBATCH --nodes=4
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=12
@@ -27,10 +27,6 @@ CHEMNLP_PATH=/fsx/proj-chemnlp/$2/chemnlp
 
 # create environment
 source $CHEMNLP_PATH/experiments/scripts/env_creation_hf.sh $1 $2
-
-# install extras
-cd $CHEMNLP_PATH
-pip install ".[training]"
 
 # Get multinode information
 nodes=( $( scontrol show hostnames $SLURM_JOB_NODELIST ) )
