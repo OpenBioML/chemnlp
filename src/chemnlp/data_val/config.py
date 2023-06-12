@@ -90,10 +90,10 @@ class TrainPipelineConfig(BaseModel):
 class LMEvalDataConfig(BaseModel):
     model_name: str
     context_length: int
-    tasks: List[str]
     data_split: str
     out_dir: str
     save_name: str
+    tasks: Optional[List[str]] = None
 
 
 class HFDatasetConfig(BaseModel):
