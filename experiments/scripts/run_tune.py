@@ -49,7 +49,7 @@ def should_restart(
         else:
             raise ValueError(f"checkpoint cannot be found at {restart_checkpoint}")
 
-    elif isinstance(restart_checkpoint, bool) and restart_checkpoint:
+    elif restart_checkpoint:
         # if we want to restart
         if os.path.isdir(output_dir):
             # if exists
