@@ -33,7 +33,6 @@ def process_docs(docs):
     valid = map(_get_smile_string, docs)
     invalid = map(_process_invalid_smile, docs)
     mixed_data = list(valid) + list(invalid)
-    random.seed(seed=SEED)
     return random.choice(mixed_data, len(mixed_data)).tolist()
 
 
