@@ -1,0 +1,46 @@
+---
+name: orbnet_denali_structures
+description: |-
+    Structures (including conformers, protomers, ...) of structures.
+    Has been used for training of OrbNet Denali.
+labels:
+    - id: charge
+      type: ordinal
+      description: integer charge of the molecule
+      names:
+          noun: charge
+identifiers:
+    - id: SMILES
+      type: SMILES
+      description: SMILES
+    - id: path
+      type: XYZ
+      description: XYZ file
+license: CC BY 4.0
+links:
+    - url: https://arxiv.org/abs/2107.00299
+      description: corresponding publication
+    - url: https://figshare.com/ndownloader/files/28672287
+      description: structure download
+      md5: edd35e95a018836d5f174a3431a751df
+    - url: https://figshare.com/ndownloader/files/28672248
+      description: label download
+      md5: bc9b612f75373d1d191ce7493eebfd62
+    - url: https://figshare.com/articles/dataset/OrbNet_Denali_Training_Data/14883867?file=28672248
+      description: data source
+num_points: 2344594
+bibtex:
+    - |-
+      @article{Broccatelli2011,
+      doi = {10.1021/jm101421d},
+      url = {https://doi.org/10.1021/jm101421d},
+      year = {2011},
+      month = feb,
+      publisher = {American Chemical Society (ACS)},
+      volume = {54},
+      number = {6},
+      author = {Fabio Broccatelli and Emanuele Carosati and Annalisa Neri and
+      Maria Frosini and Laura Goracci and Tudor I. Oprea and Gabriele Cruciani},
+      title = {A Novel Approach for Predicting P-Glycoprotein (ABCB1) Inhibition
+      Using Molecular Interaction Fields},
+      journal = {Journal of Medicinal Chemistry}

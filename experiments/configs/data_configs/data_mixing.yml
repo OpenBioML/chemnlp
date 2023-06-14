@@ -1,0 +1,4 @@
+data_paths: ["/fsx/proj-chemnlp/data/EleutherAI/pythia-1b/hendrycks_STEM", "/fsx/proj-chemnlp/data/EleutherAI/pythia-1b/marianna13/chemrxiv"]
+num_tokens: [2826240, 28262400]
+context_length: 2048
+save_path: "/fsx/proj-chemnlp/data/EleutherAI/pythia-1b/2826240hendrycks_28262400chemrxiv"

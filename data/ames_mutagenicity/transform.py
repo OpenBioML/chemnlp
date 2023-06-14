@@ -78,12 +78,8 @@ The dataset is aggregated from four papers.""",
                     {"gerund": "having the potential to cause mutations"},
                     {"gerund": "having the potential to induce genetic alterations"},
                 ],
-                "uris": [
-                    "http://purl.enanomapper.org/onto/ENM_0000042",
-                ],
-                "pubchem_aids": [
-                    "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C16235",
-                ],
+                "uris": [],
+                "pubchem_aids": [],
             },
         ],
         "benchmarks": [

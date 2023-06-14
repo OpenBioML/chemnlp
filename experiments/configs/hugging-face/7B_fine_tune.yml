@@ -6,7 +6,7 @@ data:
 # Model configuration (model.from_pretrained arguments)
 model:
   base: GPTNeoXForCausalLM
-  name: EleutherAI/pythia-2.8b
+  name: EleutherAI/pythia-6.9b
   revision: main # latest model
 
 # Training strategies (PromptTuningConfig arguments)
@@ -15,7 +15,7 @@ prompt_tuning:
 
 # Training configuration (TrainerArguments from HF)
 trainer:
-  output_dir: /fsx/proj-chemnlp/experiments/checkpoints/finetuned/full_3b
+  output_dir: /fsx/proj-chemnlp/experiments/checkpoints/finetuned/full_7b_test
   num_train_epochs: 1
   learning_rate: 3e-4
   evaluation_strategy: steps
@@ -25,14 +25,14 @@ trainer:
   dataloader_num_workers: 4
   bf16: true
   fp16: false
-  per_device_train_batch_size: 8
+  per_device_train_batch_size: 10
   per_device_eval_batch_size: 1
   gradient_checkpointing: True
-  deepspeed_config: deepspeed_S2.json
+  deepspeed_config: deepspeed_offload_S3.json
 
 # Logging configuration (WandB init arguments)
 wandb:
   enabled: true
   project: LLCheM
-  group: 3B_deepspeed
-  name: 3B_fine_tune
+  group: 7B_deepspeed
+  name: 7B_fine_tune_test
