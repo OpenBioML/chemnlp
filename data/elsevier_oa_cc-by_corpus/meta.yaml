@@ -1,9 +1,9 @@
 ---
 name: elsevier_oa_cc-by_corpus
-description: "This is a corpus of 40k (40,001) open access (OA)\nCC-BY articles from across Elsevier’s journals represent the first\ncross-discipline research
-    of data at this scale to support NLP and ML\nresearch.\nThis dataset was released to support the development of ML and NLP models\ntargeting science
-    articles from across all research domains. While the release\nbuilds on other datasets designed for specific domains and tasks, it will allow\nfor similar
-    datasets to be derived or for the development of models which can\nbe applied and tested across domains."
+description: "This is a corpus of 40k (40,001) open access (OA)\nCC-BY articles from across Elsevier’s journals represent the first\ncross-discipline research\
+    \ of data at this scale to support NLP and ML\nresearch.\nThis dataset was released to support the development of ML and NLP models\ntargeting science\
+    \ articles from across all research domains. While the release\nbuilds on other datasets designed for specific domains and tasks, it will allow\nfor\
+    \ similar datasets to be derived or for the development of models which can\nbe applied and tested across domains."
 license: CC BY 4.0
 links:
     - url: https://elsevier.digitalcommonsdata.com/datasets/zm33cdndxs/3
