@@ -51,6 +51,7 @@ class TrainerConfig(BaseModel):
     deepspeed_config: Optional[str] = None
     torch_compile: bool = False
     restart_checkpoint: Union[bool, str] = True
+    gradient_accumulation_steps: int = 1
 
     @validator("learning_rate")
     def small_positive_learning_rate(cls, v):
