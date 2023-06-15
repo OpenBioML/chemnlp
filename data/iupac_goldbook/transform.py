@@ -87,8 +87,8 @@ spanning the whole range of chemistry.""",
                 "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "OTHER"
                 "description": "chemistry term",  # description (optional, except for "OTHER")
                 "names": [
-                    {"noun": "term"},
-                    {"noun": "chemistry term"},
+                    "term",
+                    "chemistry term",
                 ],
             },
         ],

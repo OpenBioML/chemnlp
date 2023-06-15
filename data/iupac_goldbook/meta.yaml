@@ -30,8 +30,8 @@ identifiers:
       type: Other
       description: chemistry term
       names:
-          - noun: term
-          - noun: chemistry term
+          - term
+          - chemistry term
 license: CC BY-NC-ND 4.0
 links:
     - url: https://goldbook.iupac.org
