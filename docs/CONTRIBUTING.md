@@ -139,7 +139,7 @@ In the templates you can use `#` to either fill in the value of a particular ent
 If there are multiple values for one field, we will sample combinations.
 If you want to suggest sampling from different prompt prefixes, you can do so by specifying a template fields and different `text`.
 
-In case you run into issues (or think you don't have enough compute or storage, please let us know). Also, in some cases `csv` might not be the best format. If you think that `csv` is not suitable for your dataset, let us know.
+In case you run into issues (or think you don't have enough compute or storage), please let us know. Also, in some cases `csv` might not be the best format. If you think that `csv` is not suitable for your dataset, let us know.
 
 For now, you do not need to upload the transformed datasets anywhere.
 We will collect the URLs of the raw data in `meta.yaml` and the code to produce curated data in `transform.py` and then run in this on dedicated infrastructure.

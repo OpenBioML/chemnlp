@@ -20,6 +20,12 @@ class IdentifierEnum(YamlStrEnum):
     # the other one (rxnsmilesWAdd) also includes solvents etc.
     rxnsmiles = "RXNSMILES"
     rxnsmilesWAdd = "RXNSMILESWAdd"
+    # For XYZ files, the strings in this column refer to absolute filenames
+    xyz = "XYZ"
+    # For CIF files, the strings in this column refer to absolute filenames
+    cif = "CIF"
+    # For PDB files, the strings in this column refer to absolute filenames
+    pdb = "PDB"
 
 
 class Identifier(YamlModel, extra=Extra.forbid):
@@ -33,7 +39,7 @@ class Identifier(YamlModel, extra=Extra.forbid):
     type: IdentifierEnum
     names: Optional[List[str]]
 
-    sample: True
+    sample: bool = True
     """Wether the identifier should be sampled for the text template generation."""
 
     @root_validator
@@ -58,6 +64,7 @@ class ColumnTypes(YamlStrEnum):
     ordinal = "ordinal"
     boolean = "boolean"
     string = "string"
+    text = "text"
 
 
 class Name(YamlModel, extra=Extra.forbid):
@@ -81,7 +88,8 @@ class Target(YamlModel, extra=Extra.forbid):
     """The units of the field. None if unitless."""
 
     type: ColumnTypes
-    """The type of the field. Can be one of `continuous`, `categorical`, `ordinal`, `boolean`."""
+    """The type of the field. Can be one of `continuous`,
+    `categorical`, `ordinal`, `boolean`, `string`, `text`."""
 
     names: List[Name]
     """A list of names describing the field.
@@ -123,7 +131,7 @@ class Target(YamlModel, extra=Extra.forbid):
     Make sure that the first assay ID is the primary assay ID.
     """
 
-    sample: True
+    sample: bool = True
     """Wether the target should be sampled for the text template generation."""
 
     @validator("uris")
@@ -170,6 +178,7 @@ class Link(YamlModel):
 
     url: str
     description: str
+    md5: Optional[str]
 
 
 class Benchmark(YamlModel, extra=Extra.forbid):
@@ -213,6 +222,12 @@ class Dataset(YamlModel, extra=Extra.forbid):
                     print(
                         f"Link {link.url} does not resolve (403) since forbidden, please check manually"
                     )
+                elif response.status_code == 429:
+                    print(
+                        f"Link {link.url} does not resolve (429) since too many requests, please check manually"
+                    )
                 elif response.status_code != 200:
                     if not (("acs" in response.text) or ("sage" in response.text)):
-                        raise ValueError(f"Link {link.url} does not resolve")
+                        raise ValueError(
+                            f"Link {link.url} does not resolve because {response.text} {response.status_code}"
+                        )
