@@ -50,7 +50,7 @@ class TrainerConfig(BaseModel):
     gradient_checkpointing: bool = False
     deepspeed_config: Optional[str] = None
     torch_compile: bool = False
-    restart_checkpoint: Union[str, bool] = True
+    restart_checkpoint: Union[bool, str] = True
 
     @validator("learning_rate")
     def small_positive_learning_rate(cls, v):
