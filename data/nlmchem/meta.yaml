@@ -4,21 +4,21 @@ description: NLM-Chem is a new resource for chemical entity recognition in PubMe
 identifier:
     - id: Abbreviation
       description: abbreviation of a term
-      type: string
+      type: Other
       names:
           - abbreviation
 targets:
     - id: MeSH_Identifier
       description: unique codes for Medical Subject Headings
       type: categorical
-      sample: false
       names:
-          - MeSH identifier
+          - noun: MeSH identifier
+      sample: false
     - id: Full_Form
       description: full form or meaning of the abbreviation
-      type: text
+      type: categorical
       names:
-          - full form or meaning of the abbreviation
+          - noun: full form or meaning of the abbreviation
 license: CC BY 4.0
 links:
     - url: https://ftp.ncbi.nlm.nih.gov/pub/lu/NLMChem/
