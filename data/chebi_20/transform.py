@@ -31,6 +31,9 @@ META_TEMPLATE = {
         {
             "id": "compound_id",
             "type": "Other",
+            "names": [
+                {"noun": "compound id"},
+            ],
             "sample": False,
             "description": "This is the PubChem CID to identify a given molecule.",
         },
