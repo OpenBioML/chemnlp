@@ -19,14 +19,14 @@ META_TEMPLATE = {
             "id": "spectral_entropy",
             "type": "continuous",
             "units": "nats",
-            "names": ["spectral entropy"],
+            "names": [{"noun": "spectral entropy"}],
             "description": "The entropy of the spectrum.",
         },
         {
             "id": "normalized_entropy",
             "type": "continuous",
             "units": None,
-            "names": ["normalized entropy"],
+            "names": [{"noun": "normalized entropy"}],
             "description": "The normalized entropy of the spectrum (ratio of spectral entropy to maximum possible "
             + "entropy for a spectrum with the same number of peaks).",
         },
@@ -35,7 +35,7 @@ META_TEMPLATE = {
         {"id": "smiles", "type": "SMILES", "description": "SMILES"},
         {"id": "inchi", "type": "InChI", "description": "InChI"},
         {"id": "inchikey", "type": "InChIKey", "description": "InChIKey"},
-        {"id": "id", "type": "OTHER", "description": "MassBank ID", "sample": "False"},
+        {"id": "id", "type": "Other", "description": "MassBank ID", "sample": "False"},
     ],
     "templates": [
         {
@@ -51,110 +51,121 @@ META_TEMPLATE = {
         },
     ],
     "fields": {
-        "exp_values": [
-            {
-                "name": "spectrum",
-                "column": "spectrum",
-                "text": "Raw mass spectrum represented as a set of (m/z location, intensity) pairs",
-            },
-            {
-                "name": "spectral_entropy",
-                "column": "spectral_entropy",
-                "text": "The entropy of the spectrum",
-            },
-            {
-                "name": "normalized_entropy",
-                "column": "normalized_entropy",
-                "text": "The normalized entropy of the spectrum (ratio of spectral entropy to maximum possible "
-                + "entropy for a spectrum with the same number of peaks)",
-            },
-        ],
-        "metadata": [
-            {"name": "id", "column": "id", "text": "MassBank ID"},
-            {
-                "name": "score",
-                "column": "score",
-                "text": "Quality score of the spectrum (1-5, 1 being low and 5 being high)",
-            },
-            {
-                "name": "library",
-                "column": "library",
-                "text": "Library the spectrum was obtained from",
-            },
-            {
-                "name": "molecular_formula",
-                "column": "molecular_formula",
-                "text": "Molecular formula",
-            },
-            {"name": "accession", "column": "accession", "text": "Accession number"},
-            {"name": "date", "column": "date", "text": "Date of upload"},
-            {"name": "license", "column": "license", "text": "License"},
-            {
-                "name": "instrument",
-                "column": "instrument",
-                "text": "Specific model of mass spectrometer",
-            },
-            {
-                "name": "instrument_type",
-                "column": "instrument_type",
-                "text": "General type of mass spectrometer",
-            },
-            {
-                "name": "ms_level",
-                "column": "ms_level",
-                "text": "MS level for MSn data (MS1-MS5, can also be composite)",
-            },
-            {
-                "name": "ionization_mode",
-                "column": "ionization_mode",
-                "text": "Ionization mode (positive or negative)",
-            },
-            {
-                "name": "precursor_m/z",
-                "column": "precursor_m/z",
-                "text": "The mass to charge ratio (m/z) of the precursor ion",
-            },
-            {
-                "name": "precursor_type",
-                "column": "precursor_type",
-                "text": "The precursor adduct",
-            },
-            {
-                "name": "mass_accuracy",
-                "column": "mass_accuracy",
-                "text": "The mass accuracy of the spectrum",
-            },
-            {
-                "name": "mass_error",
-                "column": "mass_error",
-                "text": "The mass error of the spectrum",
-            },
-            {
-                "name": "collision_energy",
-                "column": "collision_energy",
-                "text": "The collision energy of the spectrum (depending on the fragmentation_mode, can be normalized)",
-            },
-            {
-                "name": "fragmentation_mode",
-                "column": "fragmentation_mode",
-                "text": "The fragmentation mode of the spectrum (i.e. HCD, CID)",
-            },
-            {
-                "name": "derivatization_type",
-                "column": "derivatization_type",
-                "text": "Chemical derivatization used (for gas chromatrography spectra)",
-            },
-            {
-                "name": "ionization_energy",
-                "column": "ionization_energy",
-                "text": "The ionization energy (for electron ionization spectra)",
-            },
-        ],
-        "molecule": [
-            {"name": "inchi", "column": "inchi", "text": "InChI"},
-            {"name": "inchikey", "column": "inchikey", "text": "InChIKey"},
-            {"name": "smiles", "column": "smiles", "text": "SMILES"},
-        ],
+        "exp_values": {
+            "values": [
+                {
+                    "name": "spectrum",
+                    "column": "spectrum",
+                    "text": "Raw mass spectrum represented as a set of (m/z location, intensity) pairs",
+                },
+                {
+                    "name": "spectral_entropy",
+                    "column": "spectral_entropy",
+                    "text": "The entropy of the spectrum",
+                },
+                {
+                    "name": "normalized_entropy",
+                    "column": "normalized_entropy",
+                    "text": "The normalized entropy of the spectrum (ratio of spectral entropy to maximum possible "
+                    + "entropy for a spectrum with the same number of peaks)",
+                },
+            ],
+        },
+        "metadata": {
+            "values": [
+                {"name": "id", "column": "id", "text": "MassBank ID"},
+                {
+                    "name": "score",
+                    "column": "score",
+                    "text": "Quality score of the spectrum (1-5, 1 being low and 5 being high)",
+                },
+                {
+                    "name": "library",
+                    "column": "library",
+                    "text": "Library the spectrum was obtained from",
+                },
+                {
+                    "name": "molecular_formula",
+                    "column": "molecular_formula",
+                    "text": "Molecular formula",
+                },
+                {
+                    "name": "accession",
+                    "column": "accession",
+                    "text": "Accession number",
+                },
+                {"name": "date", "column": "date", "text": "Date of upload"},
+                {"name": "license", "column": "license", "text": "License"},
+                {
+                    "name": "instrument",
+                    "column": "instrument",
+                    "text": "Specific model of mass spectrometer",
+                },
+                {
+                    "name": "instrument_type",
+                    "column": "instrument_type",
+                    "text": "General type of mass spectrometer",
+                },
+                {
+                    "name": "ms_level",
+                    "column": "ms_level",
+                    "text": "MS level for MSn data (MS1-MS5, can also be composite)",
+                },
+                {
+                    "name": "ionization_mode",
+                    "column": "ionization_mode",
+                    "text": "Ionization mode (positive or negative)",
+                },
+                {
+                    "name": "precursor_m/z",
+                    "column": "precursor_m/z",
+                    "text": "The mass to charge ratio (m/z) of the precursor ion",
+                },
+                {
+                    "name": "precursor_type",
+                    "column": "precursor_type",
+                    "text": "The precursor adduct",
+                },
+                {
+                    "name": "mass_accuracy",
+                    "column": "mass_accuracy",
+                    "text": "The mass accuracy of the spectrum",
+                },
+                {
+                    "name": "mass_error",
+                    "column": "mass_error",
+                    "text": "The mass error of the spectrum",
+                },
+                {
+                    "name": "collision_energy",
+                    "column": "collision_energy",
+                    "text": "The collision energy of the spectrum "
+                    + "(depending on the fragmentation_mode, can be normalized)",
+                },
+                {
+                    "name": "fragmentation_mode",
+                    "column": "fragmentation_mode",
+                    "text": "The fragmentation mode of the spectrum (i.e. HCD, CID)",
+                },
+                {
+                    "name": "derivatization_type",
+                    "column": "derivatization_type",
+                    "text": "Chemical derivatization used (for gas chromatrography spectra)",
+                },
+                {
+                    "name": "ionization_energy",
+                    "column": "ionization_energy",
+                    "text": "The ionization energy (for electron ionization spectra)",
+                },
+            ],
+        },
+        "molecule": {
+            "values": [
+                {"name": "inchi", "column": "inchi", "text": "InChI"},
+                {"name": "inchikey", "column": "inchikey", "text": "InChIKey"},
+                {"name": "smiles", "column": "smiles", "text": "SMILES"},
+            ],
+        },
     },
     "license": "CC BY 4.0",
     "links": [
