@@ -76,8 +76,8 @@ spanning the whole range of chemistry.""",
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "string",  # can be "categorical", "ordinal", "continuous", "string"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "definition",
-                    "definition of a chemistry term",
+                    {"noun": "definition"},
+                    {"noun": "definition of a chemistry term"},
                 ],
             },
         ],
@@ -87,8 +87,8 @@ spanning the whole range of chemistry.""",
                 "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "OTHER"
                 "description": "chemistry term",  # description (optional, except for "OTHER")
                 "names": [
-                    "term",
-                    "chemistry term",
+                    {"noun": "term"},
+                    {"noun": "chemistry term"},
                 ],
             },
         ],
