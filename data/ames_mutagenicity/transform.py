@@ -68,7 +68,7 @@ The dataset is aggregated from four papers.""",
                 "id": "mutagenic",  # name of the column in a tabular dataset
                 "description": "whether it is mutagenic (1) or not mutagenic (0)",
                 "units": None,  # units of the values in this column (leave empty if unitless)
-                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
+                "type": "boolean",  
                 "names": [  # names for the property (to sample from for building the prompts)
                     {"noun": "mutagenicity"},
                     {"noun": "Ames mutagenicity"},
@@ -92,7 +92,7 @@ The dataset is aggregated from four papers.""",
         "identifiers": [
             {
                 "id": "SMILES",  # column name
-                "type": "SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
+                "type": "SMILES", 
                 "description": "SMILES",  # description (optional, except for "Other")
             },
         ],

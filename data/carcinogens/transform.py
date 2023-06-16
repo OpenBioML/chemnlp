@@ -87,7 +87,7 @@ the genome or to the disruption of cellular metabolic processes.""",
         "identifiers": [
             {
                 "id": "SMILES",  # column name
-                "type": "SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
+                "type": "SMILES", 
                 "description": "SMILES",  # description (optional, except for "Other")
             },
         ],

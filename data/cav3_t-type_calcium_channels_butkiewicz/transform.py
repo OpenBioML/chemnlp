@@ -64,7 +64,7 @@ AID 489005 was performed as counter screen validating active compounds of the pr
         "identifiers": [
             {
                 "id": "SMILES",  # column name
-                "type": "SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
+                "type": "SMILES", 
                 "description": "SMILES",  # description (optional, except for "Other")
             },
         ],

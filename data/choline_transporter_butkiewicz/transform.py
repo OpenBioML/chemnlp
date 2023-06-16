@@ -59,7 +59,7 @@ re-confirmation screen AID602208.""",
                 "id": "activity_choline_transporter",  # name of the column in a tabular dataset
                 "description": "inhibition of choline transporter receptor (1) or not (0).",
                 "units": None,  # units of the values in this column (leave empty if unitless)
-                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
+                "type": "boolean",  
                 "names": [  # names for the property (to sample from for building the prompts)
                     {"noun": "a inhibitor of choline transporter activity"},
                     {"noun": "inhibitor of choline transporter activity"},
@@ -78,7 +78,7 @@ re-confirmation screen AID602208.""",
         "identifiers": [
             {
                 "id": "SMILES",  # column name
-                "type": "SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
+                "type": "SMILES",  
                 "description": "SMILES",  # description (optional, except for "Other")
             },
         ],
