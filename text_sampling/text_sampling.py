@@ -64,7 +64,7 @@ def get_random_text_identifiers_and_targets(meta):
     rnd_texts = {}
     for e in meta["identifiers"] + meta["targets"]:
         rnd_texts[e["id"]] = {}
-        if "names" in e:  # if target
+        if "names" in e:
             rnd_texts[e["id"]]["names"] = {}
             name_types = set([list(x.keys())[0] for x in e["names"]])
             for name in name_types:
