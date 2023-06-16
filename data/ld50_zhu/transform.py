@@ -55,7 +55,7 @@ The higher the dose, the more lethal of a drug.""",
                 "id": "acute_toxicity",  # name of the column in a tabular dataset
                 "description": "Acute Toxicity LD50.",  # description of what this column means
                 "units": "log(1/(mol/kg))",  # units of the values in this column (leave empty if unitless)
-                "type": "continuous",  # can be "categorical", "ordinal", "continuous"
+                "type": "continuous",
                 "names": [
                     {"noun": "acute toxicity rat LD50"},
                     {"noun": "rat LD50"},

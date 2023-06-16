@@ -60,7 +60,7 @@ and nonsubstrates from six publications.""",
                 "id": f"{'_'.join(target_subfolder.split('_')[:2])}",  # name of the column in a tabular dataset
                 "description": "drugs that are metabolized by the CYP P450 2D6 (1) or not (0)",
                 "units": None,  # units of the values in this column (leave empty if unitless)
-                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
+                "type": "boolean",
                 "names": [  # names for the property (to sample from for building the prompts)
                     {"noun": "CYP P450 2D6 substrate"},
                     {"noun": "CYP2D6 substrate"},

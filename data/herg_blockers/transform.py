@@ -66,7 +66,7 @@ related attritions in the later development stages.""",
                 "id": "hERG_blocker",  # name of the column in a tabular dataset
                 "description": "whether it blocks hERG (1) or not (0)",  # description of what this column means
                 "units": None,  # units of the values in this column (leave empty if unitless)
-                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
+                "type": "boolean",
                 "names": [  # names for the property (to sample from for building the prompts)
                     {"noun": "hERG blocker"},
                     {"noun": "hERG active compound"},

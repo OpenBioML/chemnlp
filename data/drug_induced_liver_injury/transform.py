@@ -61,7 +61,7 @@ Research.""",
                 "id": "liver_injury",  # name of the column in a tabular dataset
                 "description": "whether it can cause liver injury (1) or not (0).",
                 "units": None,  # units of the values in this column (leave empty if unitless)
-                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
+                "type": "boolean",
                 "names": [  # names for the property (to sample from for building the prompts)
                     {"noun": "liver injury"},
                     {"noun": "drug induced liver injury"},

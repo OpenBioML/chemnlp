@@ -59,7 +59,7 @@ is involved in protein processing and transport.""",
                 "id": "CYP2C19_inhibition",  # name of the column in a tabular dataset
                 "description": "ability of the drug to inhibit CYP 2C19 (1) or not (0)",
                 "units": None,  # units of the values in this column (leave empty if unitless)
-                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
+                "type": "boolean",
                 "names": [  # names for the property (to sample from for building the prompts)
                     {"noun": "CYP P450 2C19 inhibition"},
                     {"noun": "CYP 2C19 inhibition"},

@@ -45,7 +45,7 @@ by passive diffusion through the membrane.""",
                 "id": "permeability",  # name of the column in a tabular dataset
                 "description": "Binary permeability in PAMPA assay.",  # description of what this column means
                 "units": None,
-                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
+                "type": "boolean",
                 "names": [  # names for the property (to sample from for building the prompts)
                     {"verb": "is permeable in the PAMPA assay"},
                     {

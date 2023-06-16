@@ -60,7 +60,7 @@ ChEMBL bioactivity database, and other literature.""",
                 "id": "herg_blocker",  # name of the column in a tabular dataset
                 "description": "whether it blocks hERG (1, <10uM) or not (0, >=10uM)",
                 "units": None,  # units of the values in this column (leave empty if unitless)
-                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
+                "type": "boolean",
                 "names": [  # names for the property (to sample from for building the prompts)
                     {"noun": "hERG blocker"},
                     {"noun": "hERG active compound"},

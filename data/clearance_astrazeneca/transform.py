@@ -55,7 +55,7 @@ contains clearance measures from two experiments types, hepatocyte and microsome
                 "id": "drug_clearance",  # name of the column in a tabular dataset
                 "description": "the volume of plasma cleared of a drug over a specified time period",
                 "units": "mL / (min g)",  # units of the values in this column (leave empty if unitless)
-                "type": "continuous",  # can be "categorical", "ordinal", "continuous"
+                "type": "continuous",
                 "names": [  # names for the property (to sample from for building the prompts)
                     {"noun": "drug clearance"},
                     {
@@ -77,7 +77,7 @@ contains clearance measures from two experiments types, hepatocyte and microsome
         "identifiers": [
             {
                 "id": "SMILES",  # column name
-                "type": "SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
+                "type": "SMILES",
                 "description": "SMILES",  # description (optional, except for "Other")
             },
             {

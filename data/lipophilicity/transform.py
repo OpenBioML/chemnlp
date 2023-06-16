@@ -43,7 +43,7 @@ def get_and_transform_data():
                 "id": "exp",  # name of the column in a tabular dataset
                 "description": "experimental results of octanol/water distribution coefficient (logD at pH 7.4)",
                 "units": None,
-                "type": "continuous",  # can be "categorical", "ordinal", "continuous"
+                "type": "continuous",
                 "names": [  # names for the property (to sample from for building the prompts)
                     {"noun": "octanol/water distribution coefficient (logD at pH 7.4)"},
                     {"noun": "logD at pH 7.4"},
