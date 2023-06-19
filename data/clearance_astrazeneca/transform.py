@@ -83,7 +83,7 @@ contains clearance measures from two experiments types, hepatocyte and microsome
             {
                 "id": "chembl_id",  # column name
                 "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
-                "names": ["ChEMBL id", "ChEMBL identifier number"],
+                "names": [{"noun": "ChEMBL id"}, {"noun": "ChEMBL identifier number"}],
                 "description": "ChEMBL ids",
                 "sample": False,
             },

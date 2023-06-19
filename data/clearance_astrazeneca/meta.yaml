@@ -27,8 +27,8 @@ identifiers:
     - id: chembl_id
       type: Other
       names:
-          - ChEMBL id
-          - ChEMBL identifier number
+          - noun: ChEMBL id
+          - noun: ChEMBL identifier number
       description: ChEMBL ids
       sample: false
 license: CC BY 4.0

@@ -28,34 +28,6 @@ class IdentifierEnum(YamlStrEnum):
     pdb = "PDB"
 
 
-class Identifier(YamlModel, extra=Extra.forbid):
-    """Identifier information."""
-
-    id: str
-
-    description: Optional[str]
-    """A description of the field"""
-
-    type: IdentifierEnum
-    names: Optional[List[str]]
-
-    sample: bool = True
-    """Wether the identifier should be sampled for the text template generation."""
-
-    @root_validator
-    def if_optional_has_names(cls, values):
-        if (values.get("names") is None) and (
-            values.get("type") == IdentifierEnum.other
-        ):
-            raise ValueError('names must be provided if type is "other"')
-        if (values.get("description") is None) and (
-            values.get("type") == IdentifierEnum.other
-        ):
-            raise ValueError('names must be provided if type is "other"')
-
-        return values
-
-
 class ColumnTypes(YamlStrEnum):
     """Column types."""
 
@@ -76,6 +48,33 @@ class Name(YamlModel, extra=Extra.forbid):
     verb: Optional[str]
 
 
+class Identifier(YamlModel, extra=Extra.forbid):
+    """Identifier information."""
+
+    id: str
+
+    description: Optional[str]
+    """A description of the field"""
+
+    type: IdentifierEnum
+    names: Optional[List[Name]]
+
+    sample: bool = True
+    """Wether the identifier should be sampled for the text template generation."""
+
+    @root_validator
+    def if_optional_has_names(cls, values):
+        if (values.get("names") is None) and (
+            values.get("type") == IdentifierEnum.other
+        ):
+            raise ValueError('names must be provided if type is "other"')
+        if (values.get("description") is None) and (
+            values.get("type") == IdentifierEnum.other
+        ):
+            raise ValueError('names must be provided if type is "other"')
+
+        return values
+    
 class Target(YamlModel, extra=Extra.forbid):
     """Target information."""
 
