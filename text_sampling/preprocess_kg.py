@@ -6,6 +6,63 @@ import pandas as pd
 import yaml
 
 templates = {
+    "compound_chebi_chebi": [
+        """The {node1_type#} {node1_name#} {rel1_type#} {node2_name#} and {rel2_type#} {node3_name#}.""",  # noqa E501
+    ],
+    "compound_protein_compound": [
+        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#} and {rel2_type#} the {node3_type#} {node3_name#}.""",  # noqa E501
+        """The {node2_type#} {node2_name#} is targeted by the drugs {node1_name#} and {node3_name#}.""",
+        """User: Can you give me an example for a {node1_type#} that {rel1_type#} the {node2_type#} {node2_name#}?
+Assistant: Yes, The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#}.
+User: Can you tell me another {node1_type#} that {rel1_type#} the {node2_type#} {node2_name#}?
+Assistant: Of course, the {node1_type#} {node1_name#} {rel1_type#} the {node3_type#} {node3_name#}.""",  # noqa E501
+    ],
+    "compound_protein_disease": [
+        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#} which {rel2_type#} the {node3_type#} {node3_name#}.""",  # noqa E501
+        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#}. The {node2_type#} {node2_name#} {rel2_type#} the {node3_type#} {node3_name#}.""",  # noqa E501
+        """User: Give me an example for a protein that is targeted by the {node1_type#} {node1_name#}?
+Assistant: Sure, the {node2_type#} {node2_name#} is targeted by the {node1_type#} {node1_name#}.
+User: Can you tell me which disease the {node2_type#} {node2_name#} {rel2_type#}?
+Assistant: The {node2_type#} {node2_name#} {rel2_type#} the {node3_name#} {node3_type#}.""",  # noqa E501
+    ],
+    "compound_protein_domain": [
+        """{node1_name#} {rel1_type#} the {node2_type#} {node2_name#} which {rel2_type#} a {node3_name#}.""",  # noqa E501
+        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#} which {rel2_type#} a {node3_name#}.""",  # noqa E501
+        """User: Can you give me an example for a protein that binds the {node1_type#} {node1_name#}?
+Assistant: Yes, the {node1_type#} {node1_name#} {rel1_type#} for example the {node2_type#} {node2_name#}.
+User: Can you tell me a domain of the {node2_type#} {node2_name#}?
+Assistant: The {node2_type#} {node2_name#} {rel2_type#} a {node3_name#}.""",  # noqa E501
+    ],
+    "compound_protein_ec_number": [
+        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#} and {rel2_type#} the {node3_name#}.""",  # noqa E501
+        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#}. Furthermore, the {node1_type#} {node1_name#} {rel2_type#} the {node3_name#}.""",  # noqa E501
+        """User: Can you give me an example for a protein that binds the {node1_type#} {node1_name#}?
+Assistant: Of course, the {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#}.
+User: Can you tell me which enzyme the {node2_type#} {node2_name#} {rel2_type#}?
+Assistant: The {node2_type#} {node2_name#} {rel2_type#} a {node3_name#}.""",  # noqa E501
+    ],
+    "compound_protein_go_term": [
+        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#} which {rel2_type#} the {node3_name#}.""",  # noqa E501
+        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#}. The {node2_type#} {node2_name#} {rel2_type#} the {node3_name#}.""",  # noqa E501
+    ],
+    "compound_protein_hpo": [
+        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#} and {rel2_type#} {node3_name#}.""",  # noqa E501
+        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#}. The {node2_type#} {node2_name#} {rel2_type#} {node3_name#}.""",  # noqa E501
+        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#}. The {node2_type#} {node2_name#} {rel2_type#} the human phenotype represented by {node3_name#}.""",  # noqa E501
+        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#}. The {node2_type#} {rel2_type#} the {node3_name#}.""",  # noqa E501
+    ],
+    "compound_protein_pathway": [
+        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#} which {rel2_type#} the {node3_name#}.""",  # noqa E501
+        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#}. The {node2_type#} {node2_name#} {rel2_type#} the {node3_name#}.""",  # noqa E501
+    ],
+    "compound_protein_protein": [
+        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#} which {rel2_type#} the {node3_type#} {node3_name#}.""",  # noqa E501
+        """The {node2_type#} {node2_name#} is targeted by {node1_name#}. The {node2_type#} {node2_name#} {rel2_type#} {node3_name#}.""",  # noqa E501
+        """User: Can you give me an example for a protein that binds the {node1_type#} {node1_name#}?
+Assistant: The {node1_type#} {node1_name#} {rel1_type#} for example the {node2_type#} {node2_name#}.
+User: Can you tell me a {node3_type#} that {rel2_type#} {node2_type#} {node2_name#}?
+Assistant: Yes, the {node2_type#} {node2_name#} {rel2_type#} {node3_name#}.""",  # noqa E501
+    ],
     "drug_chebi_chebi": [
         """The {node1_type#} {node1_name#} {rel1_type#} {node2_name#} and {rel2_type#} {node3_name#}.""",  # noqa E501
     ],
@@ -232,10 +289,7 @@ def preprocess_kg_data(path_data_dir):
     yaml.add_representer(str, str_presenter)
     yaml.representer.SafeRepresenter.add_representer(str, str_presenter)
 
-    # create_yamls(dirs, templates)
-    create_yamls(
-        dirs[9:], templates
-    )  # REMOVE THIS AFTER THE TEMPLATES ARE THERE FOR THE COMPOUNDS
+    create_yamls(dirs, templates)
 
 
 if __name__ == "__main__":
