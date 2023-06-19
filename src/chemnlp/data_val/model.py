@@ -66,13 +66,8 @@ class Identifier(YamlModel, extra=Extra.forbid):
     def if_optional_has_names(cls, values):
         if (values.get("names") is None) and (
             values.get("type") == IdentifierEnum.other
-        ):
-            raise ValueError('names must be provided if type is "other"')
-        if (values.get("description") is None) and (
-            values.get("type") == IdentifierEnum.other
-        ):
-            raise ValueError('names must be provided if type is "other"')
-
+        ) and (values.get("sample")):
+            raise ValueError('names must be provided if type is "other" and value is sampled')
         return values
     
 class Target(YamlModel, extra=Extra.forbid):

@@ -81,9 +81,9 @@ the drug with high lipid solubility, low plasma protein binidng rate.""",
                 "id": "compound_name",  # column name
                 "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
                 "names": [
-                    "compound name",
-                    "drug name",
-                    "generic drug name",
+                    {"noun": "compound name"},
+                    {"noun": "drug name"},
+                    {"noun": "generic drug name"},
                 ],
                 "description": "mix of drug name and ids",  # description (optional, except for "Other")
             },
