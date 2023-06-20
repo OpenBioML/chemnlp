@@ -296,6 +296,5 @@ def preprocess_kg_data(path_data_dir):
 
 
 if __name__ == "__main__":
-    path_data_dir = "kg_sampling/paths_of_length_2_v2/"  # UPDATE THIS
-    # path_data_dir = __file__.replace("text_sampling/preprocess_kg.py", "data_kg/")
+    path_data_dir = __file__.replace("text_sampling/preprocess_kg.py", "kg/")
     preprocess_kg_data(path_data_dir)

@@ -298,7 +298,9 @@ class TemplateSampler:
 
 
 if __name__ == "__main__":
-    for path in glob.glob(__file__.replace("text_sampling/text_sampling.py", "data/*")):
+    path_base = __file__.replace("text_sampling/text_sampling.py", "data/")
+    path_data_dir = glob.glob(path_base + "tabular/*") + glob.glob(path_base + "kg/*")
+    for path in path_data_dir:
         path_meta = path + "/meta.yaml"
         path_data = path + "/data_clean.csv"
         if os.path.isfile(path_meta) and os.path.isfile(path_data):
