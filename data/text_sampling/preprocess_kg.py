@@ -150,7 +150,7 @@ Assistant: Yes, the {node2_type#} {node2_name#} {rel2_type#} {node3_name#}.""", 
 # create meta yaml
 meta_template = {
     "name": None,
-    "description": "Knowledgegraph data samples with path of length 2.",
+    "description": "Knowledgegraph data samples.",
     "targets": None,
     "identifiers": None,
     "license": "VERIFY WITH AUTHORS",
