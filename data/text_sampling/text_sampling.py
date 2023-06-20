@@ -286,9 +286,10 @@ class TemplateSampler:
             print_data["rows"].append(rows_split)
             print_data["path"].append(output_path)
 
-        print_data["split"].append("total")
-        print_data["rows"].append(len(self.df))
-        print_data["path"].append("")
+        if len(self.df.split.unique()) > 1:
+            print_data["split"].append("total")
+            print_data["rows"].append(len(self.df))
+            print_data["path"].append("")
         return pd.DataFrame(print_data)
 
     def apply_and_export(self, template_idx=None):
