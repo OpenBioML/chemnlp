@@ -6,8 +6,20 @@ import pandas as pd
 import yaml
 
 templates = {
+    "chebi_chebi": [
+        # todo: needs to be checked in detail
+    ],
+    "compound_chebi": [
+        """The {node1_type#} SMILES {node1_smiles#} {rel1_type#} {node2_name#}.""",
+    ],
     "compound_chebi_chebi": [
         """The {node1_type#} SMILES {node1_smiles#} {rel1_type#} {node2_name#} and {rel2_type#} {node3_name#}.""",  # noqa E501
+    ],
+    "compound_protein": [
+        """The {node1_type#} SMILES {node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#}.""",
+        """The {node2_type#} {node2_protein_names#} is targeted by the drugs SMILES {node1_smiles#}.""",
+        """User: Can you give me an example for a {node1_type#} SMILES that {rel1_type#} the {node2_type#} {node2_protein_names#}?
+Assistant: Yes, The {node1_type#} SMILES {node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#}.""",  # noqa E501
     ],
     "compound_protein_compound": [
         """The {node1_type#} SMILES {node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#} and {rel2_type#} the {node3_type#} {node3_name#}.""",  # noqa E501
@@ -65,11 +77,19 @@ Assistant: The {node1_type#} {node1_smiles#} {rel1_type#} for example the {node2
 User: Can you tell me a {node3_type#} that {rel2_type#} {node2_type#} {node2_protein_names#}?
 Assistant: Yes, the {node2_type#} {node2_protein_names#} {rel2_type#} {node3_protein_names#}.""",  # noqa E501
     ],
+    "drug_chebi": [
+        """The {node1_type#} {node1_name#|node1_smiles#} {rel1_type#} {node2_name#}.""",
+    ],
     "drug_chebi_chebi": [
         """The {node1_type#} {node1_name#|node1_smiles#} {rel1_type#} {node2_name#} and {rel2_type#} {node3_name#}.""",  # noqa E501
     ],
     "drug_disease_pathway": [
         """The {node1_type#} {node1_name#|node1_smiles#} is indicated for the {node2_name#} {node2_type#} and {rel2_type#} the {node3_name#} {node3_type#}.""",  # noqa E501
+    ],
+    "drug_protein": [
+        """The {node1_type#} {node1_name#|node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#}.""",
+        """User: Give me an example for a protein that is targeted by the {node1_type#} {node1_name#|node1_smiles#}?
+Assistant: Sure, the {node2_type#} {node2_protein_names#} is targeted by the {node1_type#} {node1_name#|node1_smiles#}.""",  # noqa E501
     ],
     "drug_protein_disease": [
         """The {node1_type#} {node1_name#|node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#} which {rel2_type#} the {node3_type#} {node3_name#}.""",  # noqa E501
