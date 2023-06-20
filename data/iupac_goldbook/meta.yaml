@@ -21,17 +21,17 @@ targets:
     - id: definition
       description: definition of a chemistry term
       units:
-      type: text
+      type: string
       names:
-          - definition
-          - definition of a chemistry term
+          - noun: definition
+          - noun: definition of a chemistry term
 identifiers:
     - id: term
       type: Other
       description: chemistry term
       names:
-          - term
-          - chemistry term
+          - noun: term
+          - noun: chemistry term
 license: CC BY-NC-ND 4.0
 links:
     - url: https://goldbook.iupac.org

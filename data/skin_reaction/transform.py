@@ -65,7 +65,7 @@ Committee on the Validation of Alternative Methods) report on the rLLNA.""",
                 "id": "skin_reaction",  # name of the column in a tabular dataset
                 "description": "whether it can cause skin reaction (1) or not (0).",
                 "units": None,  # units of the values in this column (leave empty if unitless)
-                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
+                "type": "boolean",
                 "names": [  # names for the property (to sample from for building the prompts)
                     {"noun": "skin reaction"},
                     {"noun": "skin sensitization"},
@@ -98,8 +98,8 @@ Committee on the Validation of Alternative Methods) report on the rLLNA.""",
                 "type": "Other",
                 "description": "drug name",
                 "names": [
-                    "compound",
-                    "compound name",
+                    {"noun": "compound"},
+                    {"noun": "compound name"},
                 ],
             },
         ],

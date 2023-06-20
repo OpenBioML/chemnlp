@@ -22,9 +22,9 @@ identifiers:
       type: Other
       description: compound name
       names:
-          - compound
-          - compound name
-          - drug
+          - noun: compound
+          - noun: compound name
+          - noun: drug
 license: CC BY 4.0
 links:
     - url: https://doi.org/10.1021/tx900189p

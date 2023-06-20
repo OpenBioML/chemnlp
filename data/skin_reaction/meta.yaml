@@ -32,8 +32,8 @@ identifiers:
       type: Other
       description: drug name
       names:
-          - compound
-          - compound name
+          - noun: compound
+          - noun: compound name
 license: CC BY 4.0
 links:
     - url: https://doi.org/10.1016/j.taap.2014.12.014

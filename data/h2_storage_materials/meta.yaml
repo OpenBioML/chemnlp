@@ -21,19 +21,18 @@ identifiers:
     - id: chemical_formula
       type: Other
       names:
-          - chemical formula
+          - noun: chemical formula
       description: chemical formula
     - id: synthetic_information
       names:
-          - synthesis procedure summary
+          - noun: synthesis procedure summary
       description: brief description of synthetic procedure
       type: Other
 license: File
 links:
     - url: https://datahub.hymarc.org/dataset/hydrogen-storage-materials-db/resource/4ef1c494-366e-43a3-bed4-a3985de5c374
       description: website with source data
-    - url: 
-          https://datahub.hymarc.org/dataset/ad580d95-e7e2-4ef4-a7f6-3b2f91a96eba/resource/4ef1c494-366e-43a3-bed4-a3985de5c374/download/hydstormatdb-reversible_hydrides.csv
+    - url: https://datahub.hymarc.org/dataset/ad580d95-e7e2-4ef4-a7f6-3b2f91a96eba/resource/4ef1c494-366e-43a3-bed4-a3985de5c374/download/hydstormatdb-reversible_hydrides.csv
       description: original_dataset
 num_points: 30
 bibtex:

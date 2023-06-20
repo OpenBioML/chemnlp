@@ -1,8 +1,8 @@
 ---
 name: herg_blockers
-description: "Human ether-à-go-go related gene (hERG) is crucial for the coordination\nof the heart's beating. Thus, if a drug blocks the hERG, it could
-    lead to severe\nadverse effects. Therefore, reliable prediction of hERG liability in the early\nstages of drug design is quite important to reduce the
-    risk of cardiotoxicity\nrelated attritions in the later development stages."
+description: "Human ether-à-go-go related gene (hERG) is crucial for the coordination\nof the heart's beating. Thus, if a drug blocks the hERG, it could\
+    \ lead to severe\nadverse effects. Therefore, reliable prediction of hERG liability in the early\nstages of drug design is quite important to reduce\
+    \ the risk of cardiotoxicity\nrelated attritions in the later development stages."
 targets:
     - id: hERG_blocker
       description: whether it blocks hERG (1) or not (0)
@@ -31,9 +31,9 @@ identifiers:
       type: Other
       description: compound name
       names:
-          - compound
-          - compound name
-          - drug
+          - noun: compound
+          - noun: compound name
+          - noun: drug
 license: CC BY 4.0
 links:
     - url: https://doi.org/10.1021/acs.molpharmaceut.6b00471

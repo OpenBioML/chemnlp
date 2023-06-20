@@ -54,7 +54,7 @@ response pathways.""",
                 "id": f"toxicity_{target_subfolder}",  # name of the column in a tabular dataset
                 "description": "whether it shows activity in the NR-ER toxicity assay (1) or not (0)",
                 "units": None,  # units of the values in this column (leave empty if unitless)
-                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
+                "type": "boolean",
                 "names": [  # names for the property (to sample from for building the prompts)
                     {"noun": "NR-ER toxicity"},
                     {"noun": "NR-Estrogen receptor alpha toxicity"},
