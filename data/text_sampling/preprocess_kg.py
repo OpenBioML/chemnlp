@@ -237,6 +237,7 @@ def create_yamls(dirs):
         fn_meta = path + "meta.yaml"
         with open(fn_meta, "w") as f:
             yaml.dump(meta_copy, f, sort_keys=False)
+        print(dataset_name)
 
 
 def format_kg_df(df):
@@ -302,7 +303,7 @@ def preprocess_kg_data(path_data_dir):
             continue
         dir_new = fn.split("/")[-1].split(".csv")[0].lower()
         path_new = path_data_dir + dir_new
-        print(fn, path_new)
+        print(path_new)
         os.makedirs(path_new, exist_ok=True)
         path_data_original = path_new + "/data_original.csv"
         shutil.copyfile(fn, path_data_original)
