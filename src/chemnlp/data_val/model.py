@@ -1,4 +1,4 @@
-from typing import Dict, List, Optional
+from typing import List, Optional
 
 import pubchempy as pcp
 import requests
@@ -155,23 +155,6 @@ class Target(YamlModel, extra=Extra.forbid):
                     raise ValueError(f"PubChem assay ID {aid} does not resolve")
 
 
-class Template(YamlModel, extra=Extra.forbid):
-    prompt: str
-    completion: str
-
-
-class TemplateFieldValue(YamlModel, extra=Extra.forbid):
-    """Template field information."""
-
-    name: str
-    column: Optional[str]
-    text: Optional[str]
-
-
-class TemplateField(YamlModel, extra=Extra.forbid):
-    values: List[TemplateFieldValue]
-
-
 class Link(YamlModel):
     """Link information."""
 
@@ -201,8 +184,7 @@ class Dataset(YamlModel, extra=Extra.forbid):
     license: str
     num_points: int
     bibtex: List[str]
-    templates: Optional[List[Template]]
-    fields: Optional[Dict[str, TemplateField]]
+    templates: Optional[List]
     links: List[Link]
 
     benchmarks: Optional[List[Benchmark]]
