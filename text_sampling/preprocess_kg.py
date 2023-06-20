@@ -7,121 +7,123 @@ import yaml
 
 templates = {
     "compound_chebi_chebi": [
-        """The {node1_type#} {node1_name#} {rel1_type#} {node2_name#} and {rel2_type#} {node3_name#}.""",  # noqa E501
+        """The {node1_type#} SMILES {node1_smiles#} {rel1_type#} {node2_name#} and {rel2_type#} {node3_name#}.""",  # noqa E501
     ],
     "compound_protein_compound": [
-        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#} and {rel2_type#} the {node3_type#} {node3_name#}.""",  # noqa E501
-        """The {node2_type#} {node2_name#} is targeted by the drugs {node1_name#} and {node3_name#}.""",
-        """User: Can you give me an example for a {node1_type#} that {rel1_type#} the {node2_type#} {node2_name#}?
-Assistant: Yes, The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#}.
-User: Can you tell me another {node1_type#} that {rel1_type#} the {node2_type#} {node2_name#}?
-Assistant: Of course, the {node1_type#} {node1_name#} {rel1_type#} the {node3_type#} {node3_name#}.""",  # noqa E501
+        """The {node1_type#} SMILES {node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#} and {rel2_type#} the {node3_type#} {node3_name#}.""",  # noqa E501
+        """The {node2_type#} {node2_protein_names#} is targeted by the drugs SMILES {node1_smiles#} and {node3_name#}.""",  # noqa E501
+        """User: Can you give me an example for a {node1_type#} SMILES that {rel1_type#} the {node2_type#} {node2_protein_names#}?
+Assistant: Yes, The {node1_type#} SMILES {node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#}.
+User: Can you tell me another {node1_type#} SMILES that {rel1_type#} the {node2_type#} {node2_protein_names#}?
+Assistant: Of course, the {node1_type#} SMILES {node1_smiles#} {rel1_type#} the {node3_type#} SMILES {node3_smiles#}.""",  # noqa E501
     ],
     "compound_protein_disease": [
-        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#} which {rel2_type#} the {node3_type#} {node3_name#}.""",  # noqa E501
-        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#}. The {node2_type#} {node2_name#} {rel2_type#} the {node3_type#} {node3_name#}.""",  # noqa E501
-        """User: Give me an example for a protein that is targeted by the {node1_type#} {node1_name#}?
-Assistant: Sure, the {node2_type#} {node2_name#} is targeted by the {node1_type#} {node1_name#}.
-User: Can you tell me which disease the {node2_type#} {node2_name#} {rel2_type#}?
-Assistant: The {node2_type#} {node2_name#} {rel2_type#} the {node3_name#} {node3_type#}.""",  # noqa E501
+        """The {node1_type#} {node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#} which {rel2_type#} the {node3_type#} {node3_name#}.""",  # noqa E501
+        """The {node1_type#} {node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#}. The {node2_type#} {node2_protein_names#} {rel2_type#} the {node3_type#} {node3_name#}.""",  # noqa E501
+        """User: Give me an example for a protein that is targeted by the {node1_type#} {node1_smiles#}?
+Assistant: Sure, the {node2_type#} {node2_protein_names#} is targeted by the {node1_type#} {node1_smiles#}.
+User: Can you tell me which disease the {node2_type#} {node2_protein_names#} {rel2_type#}?
+Assistant: The {node2_type#} {node2_protein_names#} {rel2_type#} the {node3_name#} {node3_type#}.""",  # noqa E501
     ],
     "compound_protein_domain": [
-        """{node1_name#} {rel1_type#} the {node2_type#} {node2_name#} which {rel2_type#} a {node3_name#}.""",  # noqa E501
-        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#} which {rel2_type#} a {node3_name#}.""",  # noqa E501
-        """User: Can you give me an example for a protein that binds the {node1_type#} {node1_name#}?
-Assistant: Yes, the {node1_type#} {node1_name#} {rel1_type#} for example the {node2_type#} {node2_name#}.
-User: Can you tell me a domain of the {node2_type#} {node2_name#}?
-Assistant: The {node2_type#} {node2_name#} {rel2_type#} a {node3_name#}.""",  # noqa E501
+        """{node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#} which {rel2_type#} a {node3_name#}.""",  # noqa E501
+        """The {node1_type#} {node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#} which {rel2_type#} a {node3_name#}.""",  # noqa E501
+        """User: Can you give me an example for a protein that binds the {node1_type#} {node1_smiles#}?
+Assistant: Yes, the {node1_type#} {node1_smiles#} {rel1_type#} for example the {node2_type#} {node2_protein_names#}.
+User: Can you tell me a domain of the {node2_type#} {node2_protein_names#}?
+Assistant: The {node2_type#} {node2_protein_names#} {rel2_type#} a {node3_name#}.""",  # noqa E501
     ],
     "compound_protein_ec_number": [
-        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#} and {rel2_type#} the {node3_name#}.""",  # noqa E501
-        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#}. Furthermore, the {node1_type#} {node1_name#} {rel2_type#} the {node3_name#}.""",  # noqa E501
-        """User: Can you give me an example for a protein that binds the {node1_type#} {node1_name#}?
-Assistant: Of course, the {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#}.
-User: Can you tell me which enzyme the {node2_type#} {node2_name#} {rel2_type#}?
-Assistant: The {node2_type#} {node2_name#} {rel2_type#} a {node3_name#}.""",  # noqa E501
+        """The {node1_type#} {node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#} and {rel2_type#} the {node3_name#} (EC {node3_id#}).""",  # noqa E501
+        """The {node1_type#} {node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#}. Furthermore, the {node1_type#} {node1_smiles#} {rel2_type#} the {node3_name#} (EC {node3_id#}).""",  # noqa E501
+        """User: Can you give me an example for a protein that binds the {node1_type#} {node1_smiles#}?
+Assistant: Of course, the {node1_type#} {node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#}.
+User: Can you tell me which enzyme the {node2_type#} {node2_protein_names#} {rel2_type#}?
+Assistant: The {node2_type#} {node2_protein_names#} {rel2_type#} a {node3_name#} (EC {node3_id#}).""",  # noqa E501
     ],
+    # todo: There are some entries that have the EC number under node3_name and node3_id
+    # and this is not handled yet properly.
     "compound_protein_go_term": [
-        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#} which {rel2_type#} the {node3_name#}.""",  # noqa E501
-        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#}. The {node2_type#} {node2_name#} {rel2_type#} the {node3_name#}.""",  # noqa E501
+        """The {node1_type#} {node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#} which {rel2_type#} the {node3_name#}.""",  # noqa E501
+        """The {node1_type#} {node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#}. The {node2_type#} {node2_protein_names#} {rel2_type#} the {node3_name#}.""",  # noqa E501
     ],
     "compound_protein_hpo": [
-        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#} and {rel2_type#} {node3_name#}.""",  # noqa E501
-        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#}. The {node2_type#} {node2_name#} {rel2_type#} {node3_name#}.""",  # noqa E501
-        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#}. The {node2_type#} {node2_name#} {rel2_type#} the human phenotype represented by {node3_name#}.""",  # noqa E501
-        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#}. The {node2_type#} {rel2_type#} the {node3_name#}.""",  # noqa E501
+        """The {node1_type#} {node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#} and {rel2_type#} {node3_name#}.""",  # noqa E501
+        """The {node1_type#} {node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#}. The {node2_type#} {node2_protein_names#} {rel2_type#} {node3_name#}.""",  # noqa E501
+        """The {node1_type#} {node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#}. The {node2_type#} {node2_protein_names#} {rel2_type#} the human phenotype represented by {node3_name#}.""",  # noqa E501
+        """The {node1_type#} {node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#}. The {node2_type#} {rel2_type#} the {node3_name#}.""",  # noqa E501
     ],
     "compound_protein_pathway": [
-        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#} which {rel2_type#} the {node3_name#}.""",  # noqa E501
-        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#}. The {node2_type#} {node2_name#} {rel2_type#} the {node3_name#}.""",  # noqa E501
+        """The {node1_type#} {node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#} which {rel2_type#} the {node3_name#}.""",  # noqa E501
+        """The {node1_type#} {node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#}. The {node2_type#} {node2_protein_names#} {rel2_type#} the {node3_name#}.""",  # noqa E501
     ],
     "compound_protein_protein": [
-        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#} which {rel2_type#} the {node3_type#} {node3_name#}.""",  # noqa E501
-        """The {node2_type#} {node2_name#} is targeted by {node1_name#}. The {node2_type#} {node2_name#} {rel2_type#} {node3_name#}.""",  # noqa E501
-        """User: Can you give me an example for a protein that binds the {node1_type#} {node1_name#}?
-Assistant: The {node1_type#} {node1_name#} {rel1_type#} for example the {node2_type#} {node2_name#}.
-User: Can you tell me a {node3_type#} that {rel2_type#} {node2_type#} {node2_name#}?
-Assistant: Yes, the {node2_type#} {node2_name#} {rel2_type#} {node3_name#}.""",  # noqa E501
+        """The {node1_type#} {node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#} which {rel2_type#} the {node3_type#} {node3_protein_names#}.""",  # noqa E501
+        """The {node2_type#} {node2_protein_names#} is targeted by {node1_smiles#}. The {node2_type#} {node2_protein_names#} {rel2_type#} {node3_protein_names#}.""",  # noqa E501
+        """User: Can you give me an example for a protein that binds the {node1_type#} {node1_smiles#}?
+Assistant: The {node1_type#} {node1_smiles#} {rel1_type#} for example the {node2_type#} {node2_protein_names#}.
+User: Can you tell me a {node3_type#} that {rel2_type#} {node2_type#} {node2_protein_names#}?
+Assistant: Yes, the {node2_type#} {node2_protein_names#} {rel2_type#} {node3_protein_names#}.""",  # noqa E501
     ],
     "drug_chebi_chebi": [
-        """The {node1_type#} {node1_name#} {rel1_type#} {node2_name#} and {rel2_type#} {node3_name#}.""",  # noqa E501
+        """The {node1_type#} {node1_name#|node1_smiles#} {rel1_type#} {node2_name#} and {rel2_type#} {node3_name#}.""",  # noqa E501
     ],
     "drug_disease_pathway": [
-        """The {node1_type#} {node1_name#} is indicated for the {node2_name#} {node2_type#} and {rel2_type#} the {node3_name#} {node3_type#}.""",  # noqa E501
+        """The {node1_type#} {node1_name#|node1_smiles#} is indicated for the {node2_name#} {node2_type#} and {rel2_type#} the {node3_name#} {node3_type#}.""",  # noqa E501
     ],
     "drug_protein_disease": [
-        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#} which {rel2_type#} the {node3_type#} {node3_name#}.""",  # noqa E501
-        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#}. The {node2_type#} {node2_name#} {rel2_type#} the {node3_type#} {node3_name#}.""",  # noqa E501
-        """User: Give me an example for a protein that is targeted by the {node1_type#} {node1_name#}?
-Assistant: Sure, the {node2_type#} {node2_name#} is targeted by the {node1_type#} {node1_name#}.
-User: Can you tell me which disease the {node2_type#} {node2_name#} {rel2_type#}?
-Assistant: The {node2_type#} {node2_name#} {rel2_type#} the {node3_name#} {node3_type#}.""",  # noqa E501
+        """The {node1_type#} {node1_name#|node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#} which {rel2_type#} the {node3_type#} {node3_name#}.""",  # noqa E501
+        """The {node1_type#} {node1_name#|node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#}. The {node2_type#} {node2_protein_names#} {rel2_type#} the {node3_type#} {node3_name#}.""",  # noqa E501
+        """User: Give me an example for a protein that is targeted by the {node1_type#} {node1_name#|node1_smiles#}?
+Assistant: Sure, the {node2_type#} {node2_protein_names#} is targeted by the {node1_type#} {node1_name#|node1_smiles#}.
+User: Can you tell me which disease the {node2_type#} {node2_protein_names#} {rel2_type#}?
+Assistant: The {node2_type#} {node2_protein_names#} {rel2_type#} the {node3_name#} {node3_type#}.""",  # noqa E501
     ],
     "drug_protein_domain": [
-        """{node1_name#} {rel1_type#} the {node2_type#} {node2_name#} which {rel2_type#} a {node3_name#}.""",  # noqa E501
-        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#} which {rel2_type#} a {node3_name#}.""",  # noqa E501
-        """User: Can you give me an example for a protein that binds the {node1_type#} {node1_name#}?
-Assistant: Yes, the {node1_type#} {node1_name#} {rel1_type#} for example the {node2_type#} {node2_name#}.
-User: Can you tell me a domain of the {node2_type#} {node2_name#}?
-Assistant: The {node2_type#} {node2_name#} {rel2_type#} a {node3_name#}.""",  # noqa E501
+        """{node1_name#|node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#} which {rel2_type#} a {node3_name#}.""",  # noqa E501
+        """The {node1_type#} {node1_name#|node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#} which {rel2_type#} a {node3_name#}.""",  # noqa E501
+        """User: Can you give me an example for a protein that binds the {node1_type#} {node1_name#|node1_smiles#}?
+Assistant: Yes, the {node1_type#} {node1_name#|node1_smiles#} {rel1_type#} for example the {node2_type#} {node2_protein_names#}.
+User: Can you tell me a domain of the {node2_type#} {node2_protein_names#}?
+Assistant: The {node2_type#} {node2_protein_names#} {rel2_type#} a {node3_name#}.""",  # noqa E501
     ],
     "drug_protein_drug": [
-        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#} and {rel2_type#} the {node3_type#} {node3_name#}.""",  # noqa E501
-        """The {node2_type#} {node2_name#} is targeted by the drugs {node1_name#} and {node3_name#}.""",
-        """User: Can you give me an example for a {node1_type#} that {rel1_type#} the {node2_type#} {node2_name#}?
-Assistant: Yes, The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#}.
-User: Can you tell me another {node1_type#} that {rel1_type#} the {node2_type#} {node2_name#}?
-Assistant: Of course, the {node1_type#} {node1_name#} {rel1_type#} the {node3_type#} {node3_name#}.""",  # noqa E501
+        """The {node1_type#} {node1_name#|node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#} and {rel2_type#} the {node3_type#} {node3_name#|node3_smiles#}.""",  # noqa E501
+        """The {node2_type#} {node2_protein_names#} is targeted by the drugs {node1_name#|node1_smiles#} and {node3_name#|node3_smiles#}.""",  # noqa E501
+        """User: Can you give me an example for a {node1_type#} that {rel1_type#} the {node2_type#} {node2_protein_names#}?
+Assistant: Yes, The {node1_type#} {node1_name#|node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#}.
+User: Can you tell me another {node1_type#} that {rel1_type#} the {node2_type#} {node2_protein_names#}?
+Assistant: Of course, the {node1_type#} {node1_name#|node1_smiles#} {rel1_type#} the {node3_type#} {node3_name#|node3_smiles#}.""",  # noqa E501
     ],
     "drug_protein_ec_number": [
-        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#} and {rel2_type#} the {node3_name#}.""",  # noqa E501
-        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#}. Furthermore, the {node1_type#} {node1_name#} {rel2_type#} the {node3_name#}.""",  # noqa E501
-        """User: Can you give me an example for a protein that binds the {node1_type#} {node1_name#}?
-Assistant: Of course, the {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#}.
+        """The {node1_type#} {node1_name#|node1_smiles#} {rel1_type#} the {node2_type#} {node2_name#} and {rel2_type#} the {node3_name#} (EC {node3_id#}).""",  # noqa E501
+        """The {node1_type#} {node1_name#|node1_smiles#} {rel1_type#} the {node2_type#} {node2_name#}. Furthermore, the {node1_type#} {node1_name#|node1_smiles#} {rel2_type#} the {node3_name#} (EC {node3_id#}).""",  # noqa E501
+        """User: Can you give me an example for a protein that binds the {node1_type#} {node1_name#|node1_smiles#}?
+Assistant: Of course, the {node1_type#} {node1_name#|node1_smiles#} {rel1_type#} the {node2_type#} {node2_name#}.
 User: Can you tell me which enzyme the {node2_type#} {node2_name#} {rel2_type#}?
-Assistant: The {node2_type#} {node2_name#} {rel2_type#} a {node3_name#}.""",  # noqa E501
+Assistant: The {node2_type#} {node2_name#} {rel2_type#} a {node3_name#} (EC {node3_id#}).""",  # noqa E501
     ],
     "drug_protein_go_term": [
-        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#} which {rel2_type#} the {node3_name#}.""",  # noqa E501
-        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#}. The {node2_type#} {node2_name#} {rel2_type#} the {node3_name#}.""",  # noqa E501
+        """The {node1_type#} {node1_name#|node1_smiles#} {rel1_type#} the {node2_type#} {node2_name#} which {rel2_type#} the {node3_name#}.""",  # noqa E501
+        """The {node1_type#} {node1_name#|node1_smiles#} {rel1_type#} the {node2_type#} {node2_name#}. The {node2_type#} {node2_name#} {rel2_type#} the {node3_name#}.""",  # noqa E501
     ],
     "drug_protein_hpo": [
-        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#} and {rel2_type#} {node3_name#}.""",  # noqa E501
-        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#}. The {node2_type#} {node2_name#} {rel2_type#} {node3_name#}.""",  # noqa E501
-        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#}. The {node2_type#} {node2_name#} {rel2_type#} the human phenotype represented by {node3_name#}.""",  # noqa E501
-        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#}. The {node2_type#} {rel2_type#} the {node3_name#}.""",  # noqa E501
+        """The {node1_type#} {node1_name#|node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#} and {rel2_type#} {node3_name#}.""",  # noqa E501
+        """The {node1_type#} {node1_name#|node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#}. The {node2_type#} {node2_protein_names#} {rel2_type#} {node3_name#}.""",  # noqa E501
+        """The {node1_type#} {node1_name#|node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#}. The {node2_type#} {node2_protein_names#} {rel2_type#} the human phenotype represented by {node3_name#}.""",  # noqa E501
+        """The {node1_type#} {node1_name#|node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#}. The {node2_type#} {rel2_type#} the {node3_name#}.""",  # noqa E501
     ],
     "drug_protein_pathway": [
-        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#} which {rel2_type#} the {node3_name#}.""",  # noqa E501
-        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#}. The {node2_type#} {node2_name#} {rel2_type#} the {node3_name#}.""",  # noqa E501
+        """The {node1_type#} {node1_name#|node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#} which {rel2_type#} the {node3_protein_names#}.""",  # noqa E501
+        """The {node1_type#} {node1_name#|node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#}. The {node2_type#} {node2_protein_names#} {rel2_type#} the {node3_protein_names#}.""",  # noqa E501
     ],
     "drug_protein_protein": [
-        """The {node1_type#} {node1_name#} {rel1_type#} the {node2_type#} {node2_name#} which {rel2_type#} the {node3_type#} {node3_name#}.""",  # noqa E501
-        """The {node2_type#} {node2_name#} is targeted by {node1_name#}. The {node2_type#} {node2_name#} {rel2_type#} {node3_name#}.""",  # noqa E501
-        """User: Can you give me an example for a protein that binds the {node1_type#} {node1_name#}?
-Assistant: The {node1_type#} {node1_name#} {rel1_type#} for example the {node2_type#} {node2_name#}.
-User: Can you tell me a {node3_type#} that {rel2_type#} {node2_type#} {node2_name#}?
-Assistant: Yes, the {node2_type#} {node2_name#} {rel2_type#} {node3_name#}.""",  # noqa E501
+        """The {node1_type#} {node1_name#|node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#} which {rel2_type#} the {node3_type#} {node3_protein_names#}.""",  # noqa E501
+        """The {node2_type#} {node2_protein_names#} is targeted by {node1_name#|node1_smiles#}. The {node2_type#} {node2_protein_names#} {rel2_type#} {node3_protein_names#}.""",  # noqa E501
+        """User: Can you give me an example for a protein that binds the {node1_type#} {node1_name#|node1_smiles#}?
+Assistant: The {node1_type#} {node1_name#|node1_smiles#} {rel1_type#} for example the {node2_type#} {node2_protein_names#}.
+User: Can you tell me a {node3_type#} that {rel2_type#} {node2_type#} {node2_protein_names#}?
+Assistant: Yes, the {node2_type#} {node2_name#} {rel2_type#} {node3_protein_names#}.""",  # noqa E501
     ],
 }
 
@@ -226,7 +228,8 @@ def format_kg_df(df):
         df.node3_type = df.node3_type.apply(lambda x: x.lower())
 
     # for drug_protein_drug
-    df.rel2_type.replace({"targets": "which is also targeted by"}, inplace=True)
+    if "rel2_type" in df.columns:
+        df.rel2_type.replace({"targets": "which is also targeted by"}, inplace=True)
 
     if "node3_type" in df.columns:
         if df.node3_type.unique().tolist() == ["Domain"]:
