@@ -32,12 +32,10 @@ META_TEMPLATE = {
             "id": "compound_id",
             "type": "Other",
             "names": [
-                "compound id",
+                {"noun": "compound id"},
             ],
             "sample": False,
-            "description": {
-                "noun": "This is the PubChem CID to identify a given molecule."
-            },
+            "description": "This is the PubChem CID to identify a given molecule.",
         },
     ],
     "license": "CC BY 4.0",  # license under which the original dataset was published
