@@ -2,12 +2,6 @@
 name: drug_protein_domain
 description: Knowledgegraph data samples.
 targets:
-    - id: 'Unnamed: 0'
-      description: 'Unnamed: 0'
-      type: Other
-      units: 'Unnamed: 0'
-      names:
-          - noun: 'Unnamed: 0'
     - id: node2_type
       description: node2_type
       type: Other
