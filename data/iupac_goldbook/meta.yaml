@@ -21,7 +21,7 @@ targets:
     - id: definition
       description: definition of a chemistry term
       units:
-      type: text
+      type: string
       names:
           - noun: definition
           - noun: definition of a chemistry term

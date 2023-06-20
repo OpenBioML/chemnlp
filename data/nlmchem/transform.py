@@ -41,7 +41,7 @@ def get_and_transform_data():
             {
                 "id": "Abbreviation",
                 "description": "abbreviation of a term",
-                "type": "categorical",
+                "type": "Other",
                 "names": [{"noun": "abbreviation"}],
             },
             {

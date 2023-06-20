@@ -56,7 +56,7 @@ not soluble.""",
                 "id": "aqeuous_solubility",  # name of the column in a tabular dataset
                 "description": "aqueous solubility",  # description of what this column means
                 "units": "log(mol/L)",  # units of the values in this column (leave empty if unitless)
-                "type": "continuous",  # can be "categorical", "ordinal", "continuous"
+                "type": "continuous",
                 "names": [  # names for the property (to sample from for building the prompts)
                     {"noun": "aqeuous solubility"},
                     {"noun": "water solubility"},
