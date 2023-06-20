@@ -56,7 +56,7 @@ central nervous system.""",
                 "id": "penetrate_BBB",  # name of the column in a tabular dataset
                 "description": "The ability of a drug to penetrate the blood brain barrier (1) or not (0)",
                 "units": None,  # units of the values in this column (leave empty if unitless)
-                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
+                "type": "boolean",
                 "names": [  # names for the property (to sample from for building the prompts)
                     {"noun": "blood brain barrier penetration"},
                     {"noun": "ADME blood-brain barrier penetration"},
@@ -76,12 +76,12 @@ central nervous system.""",
         "identifiers": [
             {
                 "id": "SMILES",  # column name
-                "type": "SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
+                "type": "SMILES",
                 "description": "SMILES",  # description (optional, except for "Other")
             },
             {
                 "id": "compound_name",  # column name
-                "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
+                "type": "Other",
                 "names": [
                     "compound name",
                     "drug name",

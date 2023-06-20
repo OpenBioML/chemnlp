@@ -64,7 +64,7 @@ def get_and_transform_data():
                 "id": "exp_value",  # name of the column in a tabular dataset
                 "description": "experimental hydration free energy value",  # description of what this column means
                 "units": "kcal/mol",  # units of the values in this column (leave empty if unitless)
-                "type": "continuous",  # can be "categorical", "ordinal", "continuous"
+                "type": "continuous",
                 "names": [  # names for the property (to sample from for building the prompts)
                     {"noun": "hydration free energy"},
                 ],
@@ -82,7 +82,7 @@ def get_and_transform_data():
                 "id": "GAFF",  # name of the column in a tabular dataset
                 "description": "mobley group calculated value",  # description of what this column means
                 "units": "kcal/mol",  # units of the values in this column (leave empty if unitless)
-                "type": "continuous",  # can be "categorical", "ordinal", "continuous"
+                "type": "continuous",
                 "names": [  # names for the property (to sample from for building the prompts)
                     {
                         "noun": "hydration free energy computed using the GAFF force field"
