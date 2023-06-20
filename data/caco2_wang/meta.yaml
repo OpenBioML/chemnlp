@@ -32,8 +32,8 @@ identifiers:
       type: Other
       description: compound name
       names:
-          - compound
-          - compound name
+          - noun: compound
+          - noun: compound name
 license: CC BY 4.0
 links:
     - url: https://tdcommons.ai/single_pred_tasks/adme/#caco-2-cell-effective-permeability-wang-et-al

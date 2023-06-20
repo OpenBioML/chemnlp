@@ -37,15 +37,13 @@ def get_and_transform_data():
         "description": (
             "NLM-Chem is a new resource for chemical entity recognition in PubMed full text literature."
         ),
-        "identifier": [
+        "identifiers": [
             {
                 "id": "Abbreviation",
                 "description": "abbreviation of a term",
                 "type": "Other",
-                "names": ["abbreviation"],
+                "names": [{"noun": "abbreviation"}],
             },
-        ],
-        "targets": [
             {
                 "id": "MeSH_Identifier",
                 "description": "unique codes for Medical Subject Headings",
@@ -53,6 +51,8 @@ def get_and_transform_data():
                 "names": [{"noun": "MeSH identifier"}],
                 "sample": False,
             },
+        ],
+        "targets": [
             {
                 "id": "Full_Form",
                 "description": "full form or meaning of the abbreviation",

@@ -93,13 +93,13 @@ traverse and diffuse to the site of actions.""",
             {
                 "id": "Species",  # column name
                 "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
-                "names": ["species"],
+                "names": [{"noun": "species"}],
                 "description": "species in which the measurement was carried out",
             },
             {
                 "id": "chembl_id",  # column name
                 "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
-                "names": ["ChEMBL id", "ChEMBL identifier number"],
+                "names": [{"noun": "ChEMBL id"}, {"noun": "ChEMBL identifier number"}],
                 "description": "chembl ids",  # description (optional, except for "Other")
                 "sample": False,
             },

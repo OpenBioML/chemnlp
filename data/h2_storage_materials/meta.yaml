@@ -21,11 +21,11 @@ identifiers:
     - id: chemical_formula
       type: Other
       names:
-          - chemical formula
+          - noun: chemical formula
       description: chemical formula
     - id: synthetic_information
       names:
-          - synthesis procedure summary
+          - noun: synthesis procedure summary
       description: brief description of synthetic procedure
       type: Other
 license: File

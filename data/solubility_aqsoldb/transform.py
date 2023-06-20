@@ -86,9 +86,9 @@ not soluble.""",
                 "id": "compound_name",  # column name
                 "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
                 "names": [
-                    "compound name",
-                    "drug name",
-                    "generic drug name",
+                    {"noun": "compound name"},
+                    {"noun": "drug name"},
+                    {"noun": "generic drug name"},
                 ],
                 "description": "compound name",  # description (optional, except for "Other")
             },

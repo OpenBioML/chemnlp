@@ -6,14 +6,14 @@ identifiers:
       description: abbreviation of a term
       type: Other
       names:
-          - abbreviation
-targets:
+          - noun: abbreviation
     - id: MeSH_Identifier
       description: unique codes for Medical Subject Headings
-      type: categorical
+      type: Other
+      sample: false
       names:
           - noun: MeSH identifier
-      sample: false
+targets:
     - id: Full_Form
       description: full form or meaning of the abbreviation
       type: categorical
