@@ -54,12 +54,9 @@ def run(config_path: str):
     }
     print(summary_stats)
 
-    save_path = (
-        f"{config.out_dir}/{config.model_name}/hf_{config.dataset_name.split('/')[-1]}"
-    )
-    tokenised_data.save_to_disk(save_path)
+    tokenised_data.save_to_disk(config.save_path)
 
-    with open(f"{save_path}/summary_statistics.json", "w") as f:
+    with open(f"{config.save_path}/summary_statistics.json", "w") as f:
         f.write(json.dumps(summary_stats))
 
 

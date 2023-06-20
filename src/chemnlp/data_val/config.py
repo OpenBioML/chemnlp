@@ -105,6 +105,7 @@ class HFDatasetConfig(BaseModel):
     out_dir: str
     string_key: str = "TEXT"
     batch_size: Optional[int] = 1000
+    save_path: str
 
 
 class DataMixingConfig(BaseModel):
