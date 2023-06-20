@@ -135,9 +135,9 @@ class TemplateSampler:
                 assert i in cols, f"target or identifier {i} not in columns {cols}!"
 
         check_targets_and_identifiers(self.meta, df)
-        assert not df.duplicated().sum()
+        # assert not df.duplicated().sum()
+        df.drop_duplicates(inplace=True)
         if "split" not in df.columns:
-            print("No split column found. Export set to full!")
             df["split"] = "full"
         self.df = df
 
