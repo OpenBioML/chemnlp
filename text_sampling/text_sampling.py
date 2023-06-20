@@ -114,9 +114,6 @@ class TemplateSampler:
         column_datafield_sampler=None,
         benchmarking_templates=False,
     ):
-        # TODOS:
-        # lookup table handling, e.g., 3d files for molecules, must come from yaml?!
-
         # paths
         self.path_data_dir = path_data_dir
         self.path_data_meta = self.path_data_dir + "/meta.yaml"
