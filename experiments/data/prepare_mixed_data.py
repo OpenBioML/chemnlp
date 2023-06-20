@@ -1,5 +1,6 @@
 import argparse
 import json
+import os
 
 import datasets
 
@@ -39,7 +40,10 @@ def run(config_path: str) -> None:
     mixed_data = datasets.concatenate_datasets(dataset_slices)
     mixed_data = mixed_data.shuffle(seed=RANDOM_SEED)
 
-    mixed_data.save_to_disk(config.save_path)
+    mixed_data.save_to_disk(
+        config.save_path,
+        num_proc=os.cpu_count(),
+    )
 
     summary_stats = {
         "random_state": RANDOM_SEED,
