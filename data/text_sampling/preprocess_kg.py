@@ -187,13 +187,14 @@ recode = {
 }
 
 
-def create_yamls(dirs, templates):
-    for path, key in zip(dirs, templates):
+def create_yamls(dirs):
+    for path in dirs:
         df = pd.read_csv(path + "data_original.csv", nrows=0)  # only get columns
         cols = df.columns.tolist()
 
+        dataset_name = path.split("/")[-2]
         meta_copy = meta_template.copy()
-        meta_copy["name"] = key
+        meta_copy["name"] = dataset_name
         meta_copy["num_points"] = len(df)
         meta_copy["identifiers"] = [
             {"id": c, "description": c, "type": "Other"} for c in cols if "1" in c
@@ -209,7 +210,7 @@ def create_yamls(dirs, templates):
             for c in cols
             if "1" not in c
         ]
-        meta_copy["templates"] = templates[key]
+        meta_copy["templates"] = templates[dataset_name]
 
         fn_meta = path + "meta.yaml"
         with open(fn_meta, "w") as f:
@@ -292,7 +293,7 @@ def preprocess_kg_data(path_data_dir):
     yaml.add_representer(str, str_presenter)
     yaml.representer.SafeRepresenter.add_representer(str, str_presenter)
 
-    create_yamls(dirs, templates)
+    create_yamls(dirs)
 
 
 if __name__ == "__main__":
