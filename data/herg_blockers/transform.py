@@ -102,7 +102,7 @@ related attritions in the later development stages.""",
                 "names": [
                     {"noun": "compound"},
                     {"noun": "compound name"},
-                   {"noun":  "drug"},
+                    {"noun": "drug"},
                 ],
             },
         ],

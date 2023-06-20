@@ -23,8 +23,8 @@ targets:
       units:
       type: text
       names:
-          - definition
-          - definition of a chemistry term
+          - noun: definition
+          - noun: definition of a chemistry term
 identifiers:
     - id: term
       type: Other

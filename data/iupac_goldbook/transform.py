@@ -76,8 +76,8 @@ spanning the whole range of chemistry.""",
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "string",  # can be "categorical", "ordinal", "continuous", "string"
                 "names": [  # names for the property (to sample from for building the prompts)
-                    "definition",
-                    "definition of a chemistry term",
+                    {"noun": "definition"},
+                    {"noun": "definition of a chemistry term"},
                 ],
             },
         ],

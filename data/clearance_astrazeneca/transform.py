@@ -63,7 +63,7 @@ contains clearance measures from two experiments types, hepatocyte and microsome
                     },
                 ],
                 "uris": [
-                    "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C94618",
+                    "http://purl.bioontology.org/ontology/MEDDRA/10077254",
                 ],
             },
         ],

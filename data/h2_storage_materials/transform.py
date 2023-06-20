@@ -105,12 +105,12 @@ def get_and_transform_data():
             {
                 "id": "chemical_formula",
                 "type": "Other",
-                "names": ["chemical formula"],
+                "names": [{"noun": "chemical formula"}],
                 "description": "chemical formula",
             },
             {
                 "id": "synthetic_information",  # name of the column in a tabular dataset
-                "names": ["synthesis procedure summary"],
+                "names": [{"noun": "synthesis procedure summary"}],
                 "description": "brief description of synthetic procedure",  # description of what this column means
                 "type": "Other",  # can be "categorical", "ordinal", "continuous"
             },

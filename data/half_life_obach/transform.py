@@ -81,7 +81,10 @@ This dataset deposited version under CHEMBL assay 1614674.""",
             {
                 "id": "chembl_id",  # column name
                 "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
-                "names": [{"noun": "ChEMBL database id"}, {"noun": "ChEMBL identifier number"}],
+                "names": [
+                    {"noun": "ChEMBL database id"},
+                    {"noun": "ChEMBL identifier number"},
+                ],
                 "description": "ChEMBL ids",  # description (optional, except for "Other")
                 "sample": False,
             },

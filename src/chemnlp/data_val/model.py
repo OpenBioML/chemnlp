@@ -64,12 +64,17 @@ class Identifier(YamlModel, extra=Extra.forbid):
 
     @root_validator
     def if_optional_has_names(cls, values):
-        if (values.get("names") is None) and (
-            values.get("type") == IdentifierEnum.other
-        ) and (values.get("sample")):
-            raise ValueError('names must be provided if type is "other" and value is sampled')
+        if (
+            (values.get("names") is None)
+            and (values.get("type") == IdentifierEnum.other)
+            and (values.get("sample"))
+        ):
+            raise ValueError(
+                'names must be provided if type is "other" and value is sampled'
+            )
         return values
-    
+
+
 class Target(YamlModel, extra=Extra.forbid):
     """Target information."""
 
@@ -206,22 +211,3 @@ class Dataset(YamlModel, extra=Extra.forbid):
     def num_points_must_be_positive(cls, v):
         if v < 0:
             raise ValueError("num_points must be positive")
-
-    @validator("links")
-    def links_must_resolve(cls, v):
-        if v is not None:
-            for link in v:
-                response = requests.get(link.url)
-                if response.status_code == 403:
-                    print(
-                        f"Link {link.url} does not resolve (403) since forbidden, please check manually"
-                    )
-                elif response.status_code == 429:
-                    print(
-                        f"Link {link.url} does not resolve (429) since too many requests, please check manually"
-                    )
-                elif response.status_code != 200:
-                    if not (("acs" in response.text) or ("sage" in response.text)):
-                        raise ValueError(
-                            f"Link {link.url} does not resolve because {response.text} {response.status_code}"
-                        )
