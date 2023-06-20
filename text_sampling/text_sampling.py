@@ -191,8 +191,15 @@ class TemplateSampler:
             out = unwrap_list_length_1(self.column_datafield_sampler(choices))
         elif "#" in var:  # use only data from column
             out = sample[var.replace("#", "")]
-            # if *_protein_names is nan sample from *_name
+            # if *_smiles is nan sample from *_name
             if (
+                not isinstance(out, str)
+                and math.isnan(out)
+                and var.find("_smiles") != -1
+            ):
+                out = sample[var.replace("_smiles", "_name").replace("#", "")]
+            # if *_protein_names is nan sample from *_name
+            elif (
                 not isinstance(out, str)
                 and math.isnan(out)
                 and var.find("_protein_names") != -1
