@@ -114,16 +114,16 @@ Assistant: The {node2_type#} {node2_name#} {rel2_type#} a {node3_name#} (EC {nod
         """The {node1_type#} {node1_name#|node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#}. The {node2_type#} {rel2_type#} the {node3_name#}.""",  # noqa E501
     ],
     "drug_protein_pathway": [
-        """The {node1_type#} {node1_name#|node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#} which {rel2_type#} the {node3_protein_names#}.""",  # noqa E501
-        """The {node1_type#} {node1_name#|node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#}. The {node2_type#} {node2_protein_names#} {rel2_type#} the {node3_protein_names#}.""",  # noqa E501
+        """The {node1_type#} {node1_name#|node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#} which {rel2_type#} the {node3_name#}.""",  # noqa E501
+        """The {node1_type#} {node1_name#|node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#}. The {node2_type#} {node2_protein_names#} {rel2_type#} the {node3_name#}.""",  # noqa E501
     ],
     "drug_protein_protein": [
-        """The {node1_type#} {node1_name#|node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#} which {rel2_type#} the {node3_type#} {node3_protein_names#}.""",  # noqa E501
-        """The {node2_type#} {node2_protein_names#} is targeted by {node1_name#|node1_smiles#}. The {node2_type#} {node2_protein_names#} {rel2_type#} {node3_protein_names#}.""",  # noqa E501
+        """The {node1_type#} {node1_name#|node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#} which {rel2_type#} the {node3_type#} {node3_name#}.""",  # noqa E501
+        """The {node2_type#} {node2_protein_names#} is targeted by {node1_name#|node1_smiles#}. The {node2_type#} {node2_protein_names#} {rel2_type#} {node3_name#}.""",  # noqa E501
         """User: Can you give me an example for a protein that binds the {node1_type#} {node1_name#|node1_smiles#}?
 Assistant: The {node1_type#} {node1_name#|node1_smiles#} {rel1_type#} for example the {node2_type#} {node2_protein_names#}.
 User: Can you tell me a {node3_type#} that {rel2_type#} {node2_type#} {node2_protein_names#}?
-Assistant: Yes, the {node2_type#} {node2_name#} {rel2_type#} {node3_protein_names#}.""",  # noqa E501
+Assistant: Yes, the {node2_type#} {node2_name#} {rel2_type#} {node3_name#}.""",  # noqa E501
     ],
 }
 
