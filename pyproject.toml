@@ -48,7 +48,11 @@ training = [
         "boto3<=1.26.90", # https://github.com/boto/boto3/issues/3648
 ]
 
-tokenisation = ["apache_beam", "mwparserfromhell"]
+tokenisation = [
+        "zstandard",
+        "apache_beam", 
+        "mwparserfromhell"
+]
 
 [tool.setuptools_scm]
 version_scheme = "post-release"
