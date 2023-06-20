@@ -17,7 +17,8 @@ identifiers:
     - id: compound_id
       type: Other
       sample: false
-      description: This is the PubChem CID to identify a given molecule.
+      description:
+          noun: This is the PubChem CID to identify a given molecule.
 license: CC BY 4.0
 links:
     - name: Research Paper
