@@ -1,4 +1,5 @@
 import glob
+import math
 import os.path
 import random
 import re
@@ -6,6 +7,15 @@ from functools import partial
 
 import pandas as pd
 import yaml
+
+
+def unwrap_list_length_1(sample):
+    """Unwraps lists of length 1."""
+    if isinstance(sample, list):
+        assert len(sample) == 1
+        return sample[0]
+    else:
+        raise NotImplementedError()
 
 
 class RandomVariable:
@@ -18,12 +28,7 @@ class RandomVariable:
         return f"RandomVariable: {self.name}, {self.data}, {self.sampler}"
 
     def __call__(self):
-        sample = self.sampler(self.data)
-        if isinstance(sample, list):  # unwrap list
-            assert len(sample) == 1
-            return sample[0]
-        else:
-            return sample
+        return unwrap_list_length_1(self.sampler(self.data))
 
 
 def load_yaml(path):
@@ -103,7 +108,11 @@ def get_target_from_string(meta, string):
 
 class TemplateSampler:
     def __init__(
-        self, path_data_dir, template_sampler=None, benchmarking_templates=False
+        self,
+        path_data_dir,
+        template_sampler=None,
+        column_datafield_sampler=None,
+        benchmarking_templates=False,
     ):
         # TODOS:
         # lookup table handling, e.g., 3d files for molecules, must come from yaml?!
@@ -154,20 +163,48 @@ class TemplateSampler:
         )
         self.rnd_texts = get_random_text_identifiers_and_targets(self.meta)
 
+        # column_datafield_sampler
+        self.column_datafield_sampler = (
+            partial(random.sample, k=1)
+            if column_datafield_sampler is None
+            else column_datafield_sampler
+        )
+
     def __repr__(self):
         return f"TemplateSampler: {self.path_data_dir}"
 
     def _get_target_from_row(self, sample, var):
-        if ("#" in var) and ("&" in var):
+        # sampling based on columns and their definiton in the text template
+        if ("#" in var) and ("&" in var):  # recoding information in var
             column, choices = var.split("#")
             choices = choices.split("&")
             choice = choices[sample[column]]
             if choice == "NULL":
-                return ""
+                out = ""
             else:
-                return choices[sample[column]]
-        elif "#" in var:
-            return sample[var.replace("#", "")]
+                out = choices[sample[column]]
+        elif ("#" in var) and ("|" in var):  # use data from multiple columns
+            columns = var.split("|")
+            columns = [var.replace("#", "") for var in columns]
+            choices = sample[columns].tolist()
+            choices = [c for c in choices if (isinstance(c, str) or not math.isnan(c))]
+            out = unwrap_list_length_1(self.column_datafield_sampler(choices))
+        elif "#" in var:  # use only data from column
+            out = sample[var.replace("#", "")]
+            # if *_protein_names is nan sample from *_name
+            if (
+                not isinstance(out, str)
+                and math.isnan(out)
+                and var.find("_protein_names") != -1
+            ):
+                out = sample[var.replace("_protein_names", "_name").replace("#", "")]
+
+        # sampling based on row data and their definiton in the row
+        if "|" in out:  # datafield sampling of multiple options
+            choices = out.split("|")
+            choices = [c for c in choices if (isinstance(c, str) or not math.isnan(c))]
+            out = unwrap_list_length_1(self.column_datafield_sampler(choices))
+        return out
 
     def get_sample_dict(self, sample, template):
         input_variables = get_input_variables_from_template(template)
