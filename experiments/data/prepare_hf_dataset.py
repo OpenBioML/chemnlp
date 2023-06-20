@@ -29,7 +29,9 @@ def run(config_path: str):
     if not tokenizer.pad_token:
         tokenizer.add_special_tokens({"pad_token": "<|padding|>"})
 
-    dataset = datasets.load_dataset(config.dataset_name, **config.dataset_args, num_proc=os.cpu_count())
+    dataset = datasets.load_dataset(
+        config.dataset_name, **config.dataset_args, num_proc=os.cpu_count()
+    )
 
     tokenised_data = dataset.map(
         lambda batch: tokenise(
