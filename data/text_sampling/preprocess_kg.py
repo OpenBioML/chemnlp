@@ -209,7 +209,9 @@ recode = {
 
 def create_yamls(dirs):
     for path in dirs:
-        df = pd.read_csv(path + "data_original.csv", nrows=0)  # only get columns
+        df = pd.read_csv(
+            path + "data_clean.csv", index_col=False, nrows=0
+        )  # only get columns
         cols = df.columns.tolist()
 
         dataset_name = path.split("/")[-2]
@@ -277,6 +279,8 @@ def format_kg_df(df):
                 inplace=True,
             )
 
+    df.drop("Unnamed: 0", axis=1, inplace=True)
+
     return df
 
 
@@ -302,7 +306,7 @@ def preprocess_kg_data(path_data_dir):
         os.makedirs(path_new, exist_ok=True)
         path_data_original = path_new + "/data_original.csv"
         shutil.copyfile(fn, path_data_original)
-        df = pd.read_csv(path_data_original)
+        df = pd.read_csv(path_data_original, index_col=False)
         df = format_kg_df(df)
         path_data_clean = path_data_original.replace("_original.csv", "_clean.csv")
         df.to_csv(path_data_clean, index=False)
