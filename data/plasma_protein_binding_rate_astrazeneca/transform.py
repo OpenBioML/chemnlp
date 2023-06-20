@@ -68,7 +68,7 @@ traverse and diffuse to the site of actions.""",
                 "id": "rate_of_PPBR",  # name of the column in a tabular dataset
                 "description": "percentage of a drug bound to plasma proteins in the blood",
                 "units": "percentage",  # units of the values in this column (leave empty if unitless)
-                "type": "continuous",  # can be "categorical", "ordinal", "continuous"
+                "type": "continuous",
                 "names": [  # names for the property (to sample from for building the prompts)
                     {"noun": "human plasma protein binding rate (PPBR)"},
                     {"noun": "human plasma protein binding rate"},

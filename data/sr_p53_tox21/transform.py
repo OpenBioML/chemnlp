@@ -54,7 +54,7 @@ response pathways.""",
                 "id": f"toxicity_{target_subfolder}",  # name of the column in a tabular dataset
                 "description": f"whether it shows activitiy in the {target_subfolder} assay (1) or not (0)",
                 "units": None,  # units of the values in this column (leave empty if unitless)
-                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
+                "type": "boolean",
                 "names": [  # names for the property (to sample from for building the prompts)
                     {"noun": f"{target_subfolder} toxicity"},
                     {"noun": "SR-p53 response toxicity"},

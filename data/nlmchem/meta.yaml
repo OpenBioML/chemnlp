@@ -16,7 +16,7 @@ identifiers:
 targets:
     - id: Full_Form
       description: full form or meaning of the abbreviation
-      type: text
+      type: categorical
       names:
           - noun: full form or meaning of the abbreviation
 license: CC BY 4.0

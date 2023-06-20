@@ -18,7 +18,7 @@ META_TEMPLATE = {
             "id": "count",  # name of the column in a tabular dataset
             "description": "A count of how many reaction events occurred for this chembl id.",
             "units": None,  # units of the values in this column (leave empty if unitless)
-            "type": "ordinal",  # can be "categorical", "ordinal", "continuous", "string"
+            "type": "ordinal",
             "names": [  # names for the property (to sample from for building the prompts)
                 {"noun": "adverse reaction count"},
             ],
