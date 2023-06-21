@@ -4,22 +4,26 @@ import os.path
 import random
 import re
 from functools import partial
+from typing import Callable, List
 
 import pandas as pd
 import yaml
 
 
-def unwrap_list_length_1(sample):
-    """Unwraps lists of length 1."""
-    if isinstance(sample, list):
-        assert len(sample) == 1
-        return sample[0]
+def unwrap_list_length_1(list_input: list):
+    """Unwraps lists of length 1 and returns the first = single element."""
+    if isinstance(list_input, list):
+        assert len(list_input) == 1
+        return list_input[0]
     else:
         raise NotImplementedError()
 
 
 class RandomVariable:
-    def __init__(self, name, data, sampler=None):
+    """Simple random variable class that takes in a name, data, and a sampler.
+    The sampler needs to return a single element."""
+
+    def __init__(self, name: str, data: list, sampler: Callable = None):
         self.name = name
         self.data = data
         self.sampler = partial(random.sample, k=1) if sampler is None else sampler
@@ -27,11 +31,13 @@ class RandomVariable:
     def __repr__(self):
         return f"RandomVariable: {self.name}, {self.data}, {self.sampler}"
 
-    def __call__(self):
+    def __call__(self) -> str:
+        """Carries out sampling and returns a single element."""
         return unwrap_list_length_1(self.sampler(self.data))
 
 
-def load_yaml(path):
+def load_yaml(path: str) -> dict:
+    """Load yaml file from path."""
     with open(path, "r") as stream:
         try:
             data = yaml.safe_load(stream)
@@ -40,24 +46,32 @@ def load_yaml(path):
     return data
 
 
-def get_input_variables_from_template(template: str):
+def get_input_variables_from_template(template: str) -> List[str]:
+    """Gets all strings that are between curly brackets that are used downstream as input variables."""
     return [x for x in re.findall(r"\{([^}]+)\}", template)]
 
 
 class PromptTemplate:
-    def __init__(self, template, input_variables=None):
+    """Simple prompt template class that takes a string text template as input.
+    The input_variables can be defined but if not they are derived from the text template (= default use case).
+    """
+
+    def __init__(self, template: str, input_variables: List[str] = None):
         self.template = template
         if input_variables is None:
             self.input_variables = self.get_input_variables()
 
-    def get_input_variables(self):
+    def get_input_variables(self) -> List[str]:
+        """Gets all variable strings from the text template that are between curly brackets
+        that are used as input_variables."""
         return get_input_variables_from_template(self.template)
 
     def __repr__(self):
         return f"PromptTemplate: {self.template}"
 
-    def insert(self, data):
-        # check that we got the data for the input_variables, more doesn't matter
+    def insert(self, data: dict) -> str:
+        """Inserts the data and checks before if we got all the data for the present input_variables.
+        More input_variables in data doesn't matter."""
         assert all(x in data.keys() for x in self.input_variables)
         template = self.template
         for k in data:
@@ -65,7 +79,9 @@ class PromptTemplate:
         return template
 
 
-def get_random_text_identifiers_and_targets(meta):
+def get_random_text_identifiers_and_targets(meta: dict) -> dict:
+    """Gets random variables as RandomVariable objects from the identifiers and targets
+    in the meta dict derived from the meta.yaml."""
     rnd_texts = {}
     for e in meta["identifiers"] + meta["targets"]:
         rnd_texts[e["id"]] = {}
@@ -86,10 +102,12 @@ def get_random_text_identifiers_and_targets(meta):
     return rnd_texts
 
 
-def get_target_from_string(meta, string):
+def get_target_from_string(meta: dict, string: str) -> str:
+    """Gets a target string from the meta dict based on the variable string.
+    (A variable string is what is between the curly brackets in the text template.)"""
     keys = string.split("__")
 
-    def get_with_nested_keys(d, keys):
+    def get_with_nested_keys(d: dict, keys: list) -> str:
         t = d.copy()
         for k in keys:
             t = t[k]
@@ -107,12 +125,15 @@ def get_target_from_string(meta, string):
 
 
 class TemplateSampler:
+    """The template sampler uses the data_clean.csv and meta.yaml from a data directory and
+    manages the the insertion of the sampled data into the text templates."""
+
     def __init__(
         self,
-        path_data_dir,
-        template_sampler=None,
-        column_datafield_sampler=None,
-        benchmarking_templates=False,
+        path_data_dir: str,
+        template_sampler: Callable = None,
+        column_datafield_sampler: Callable = None,
+        benchmarking_templates: List[str] = False,
     ):
         # paths
         self.path_data_dir = path_data_dir
@@ -125,7 +146,7 @@ class TemplateSampler:
         # dataframe from csv
         df = pd.read_csv(self.path_data_csv)
 
-        def check_targets_and_identifiers(meta, df):
+        def check_targets_and_identifiers(meta: dict, df: pd.DataFrame):
             all_identifiers = [x["id"] for x in meta["identifiers"]] + [
                 x["id"] for x in meta["targets"]
             ]
@@ -170,7 +191,8 @@ class TemplateSampler:
     def __repr__(self):
         return f"TemplateSampler: {self.path_data_dir}"
 
-    def _get_target_from_row(self, sample, var):
+    def _get_target_from_row(self, sample: pd.Series, var: str) -> str:
+        """Get target string from sample row and variable string."""
         # sampling based on columns and their definiton in the text template
         if ("#" in var) and ("&" in var):  # recoding information in var
             column, choices = var.split("#")
@@ -210,7 +232,8 @@ class TemplateSampler:
             out = unwrap_list_length_1(self.column_datafield_sampler(choices))
         return out
 
-    def get_sample_dict(self, sample, template):
+    def get_sample_dict(self, sample: pd.Series, template: str):
+        """Get sample dict from sample row and template string."""
         input_variables = get_input_variables_from_template(template)
         sample_dict = {
             var: self._get_target_from_row(sample, var)
@@ -220,28 +243,36 @@ class TemplateSampler:
         }
         return sample_dict
 
-    def get_prompt_template_from_template_idx(self, template_idx=None):
+    def get_prompt_template_from_template_idx(self, template_idx: int = None) -> str:
+        """Get prompt template from template index."""
         if template_idx is None:
             prompt_template = self.rnd_prompt_templates()
         else:
             prompt_template = self.prompt_templates[template_idx]
         return prompt_template
 
-    def sample(self, sample, template_idx=None):
+    def sample(self, sample: pd.Series, template_idx: int = None):
+        """Sample text template by data from the sample row.
+        The text template can be specified by the template index."""
         prompt_template = self.get_prompt_template_from_template_idx(template_idx)
         sample_dict = self.get_sample_dict(sample, prompt_template.template)
         return prompt_template.insert(sample_dict)
 
-    def __getitem__(self, sample_idx, template_idx=None):
+    def __getitem__(self, sample_idx: int, template_idx: int = None):
+        """Get item from data with sample and template index.
+        A random template will be ised if no template index is handed over."""
         sample = self.df.iloc[sample_idx]
         return self.sample(sample, template_idx)
 
-    def apply_sampling(self, template_idx=None):
+    def apply_sampling(self, template_idx: int = None):
+        """Applies the sampling to the entire data frame."""
         self.df["sample"] = self.df.apply(
             lambda sample: self.sample(sample, template_idx), axis=1
         )
 
     def export(self):
+        """Exports the sampled data as separate jsonl files based on the split and benchmarking templates."""
+        assert "sample" in self.df.columns, "Run apply_sampling before running export."
         print_data = {
             "split": [],
             "rows": [],
@@ -292,7 +323,8 @@ class TemplateSampler:
             print_data["path"].append("")
         return pd.DataFrame(print_data)
 
-    def apply_and_export(self, template_idx=None):
+    def apply_sampling_and_export(self, template_idx: int = None):
+        """Applies the sampling and exports the data."""
         self.apply_sampling(template_idx)
         df_results = self.export()
         print(df_results.to_string())
@@ -308,8 +340,10 @@ if __name__ == "__main__":
             meta = load_yaml(path_meta)
             if "templates" in meta:
                 print(f"Running sampling for: {path}")
-                TemplateSampler(path, benchmarking_templates=False).apply_and_export()
+                TemplateSampler(
+                    path, benchmarking_templates=False
+                ).apply_sampling_and_export()
                 if any(["<EOI>" in t for t in meta["templates"]]):
                     TemplateSampler(
                         path, benchmarking_templates=True
-                    ).apply_and_export()
+                    ).apply_sampling_and_export()
