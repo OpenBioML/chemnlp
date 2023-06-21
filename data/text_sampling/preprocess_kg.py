@@ -7,7 +7,7 @@ import yaml
 
 templates = {
     "chebi_chebi": [
-        # todo: needs to be checked in detail
+        """The {node1_name#} {rel1_type#} {node2_name#}.""",
     ],
     "compound_chebi": [
         """The {node1_type#} SMILES {node1_smiles#} {rel1_type#} {node2_name#}.""",
