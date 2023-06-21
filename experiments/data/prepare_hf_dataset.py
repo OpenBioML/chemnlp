@@ -1,5 +1,6 @@
 """
 Preparing chemrxiv dataset as per HF guidelines on the Stability AI cluster
+Make sure to install optional dependencies; pip install chemnlp[tokenisation]
 
 Example Usage:
     python prepare_hf_dataset.py full_path/config.yml
