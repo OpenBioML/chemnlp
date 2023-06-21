@@ -108,36 +108,38 @@ bibtex: # citation(s) for this dataset in BibTeX format
 Please do not simply copy/paste generic descriptions but try to give a concise and specific description for the dataset you are adding.
 
 For the typical material-property datasets, we will later use the `identifier` and `property` columns to create and fill prompt templates.
-In case your dataset isn't a simple tabular dataset with chemical compounds and properties, please also add the following additional fields for the templates:
 
+### Text templates
 
-```yaml
-templates:
-  - prompt: "Please answer the following chemistry question.\nDerive for the molecule with the <molecule#text> <molecule#value> the <expt_value#text>."
-    completion: "<exp_value.value>"
-  - prompt: "Please answer the following question.\nPredict the <expt_value#text> for <molecule#value>."
-    completion: "<exp_value#value>"
-fields:
-  exp_value:
-    values:
-      - name: lab_value
-        column: lab_value
-        text: adsorption energy
-  molecule:
-    values:
-      - name: smiles
-        column: smiles
-        text:
-      - name: inchi
-        column: inchi
-        text: InChI
+With the text template setup for the sampling you can:
+* use all the data from the `meta.yaml` file,
+* recode categorical data, and
+* merge fields.
+
+#### Example text template 1 (mainly used for tabular data)
+`The molecule with the {SMILES__description} representation of {SMILES#} exhibits {mutagenic#no &NULL}{mutagenic__names__adjective} properties.`
+* `SMILES__description` gets you the text from the description field of the SMILES identifier. The `__` dunder (double underscore) is used to indicate the levels in the `meta.yaml` file.
+* `SMILES#` gets you the data of the sampled SMILES row. The `#` is used to get the corresponding data.
+* `mutagenic#no &NULL` gets you the data with `#` and recodes it. The recoding options are separated with a `&`. In this example the binary variable `mutagenic` that can be `0` or `1` gets recoded to `no ` and `NULL`. `NULL` is a "reserved word" an indicates [no value](https://en.wikipedia.org/wiki/Null_(SQL)). Thus, the `no ` gets added in front of the `mutagenic__names__adjective` if `mutagenic# == 0`.
+* `mutagenic__names__adjective` gets you from the `id` `mutagenic` the adjective names.
+
+#### Example text template 2 (mainly used for KG data)
+`The {node1_type#} {node1_name#|node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#} which {rel2_type#} the {node3_type#} {node3_name#}.`
+* `node1_name#|node1_smiles#` chains together two columns with `|` so they are jointly sampled for this position. In this case we sample from the name or the SMILES representation.
+* A similar setup can be used in a single column: For `node2_protein_names` the column row can include several protein names also separated by a `|`, e.g., `Pyruvate dehydrogenase E1 component subunit beta, mitochondrial|PDHE1-B` which then samples from `Pyruvate dehydrogenase E1 component subunit beta, mitochondrial` or `PDHE1-B`.
+
+#### Benchmarking text templates
+There are two versions of text templates, i.e., one without the end-of-input token `<EOI>` and those with:
 ```
+The {SMILES__description} {SMILES#} is {mutagenic#no &NULL}{mutagenic__names__adjective}.
+Is the {SMILES__description} {SMILES#} {mutagenic__names__adjective}:<EOI>{mutagenic# yes& no}
+```
+The `<EOI>` token indicates the splitting position for the benchmarking export, i.e., everything before it will be written to the `input` field and everything afterwards to the `output` field. Without `<EOI>` everything will be in the `text` field.
+In the current setup, you can switch with the `benchmarking_templates` flag of the [`TemplateSampler` class](https://github.com/OpenBioML/chemnlp/blob/text_sampling/text_sampling/text_sampling.py#L104) between text templates with and without `<EOI>`.
 
-With this approach you can specify different fields, where each field maps to one of many columns in a dataframe.
-In the templates you can use `#` to either fill in the value of a particular entry or the `.text`, that you specify in the yaml.
+The filename scheme uses the split information for the export, i.e., `train.jsonl`, `test.jsonl`, etc., and if no split information is available this column will be set to `full` and exported to `full.jsonl`. With `<EOI>` the filename ends with `_benchmark.jsonl` instead of `.jsonl`.
 
-If there are multiple values for one field, we will sample combinations.
-If you want to suggest sampling from different prompt prefixes, you can do so by specifying a template fields and different `text`.
+Have a look at the [`meta.yaml` file](https://github.com/OpenBioML/chemnlp/blob/text_sampling/data/ames_mutagenicity/meta.yaml) to see the corresponding structure there.
 
 In case you run into issues (or think you don't have enough compute or storage), please let us know. Also, in some cases `csv` might not be the best format. If you think that `csv` is not suitable for your dataset, let us know.
 
