@@ -7,7 +7,7 @@
 #SBATCH --error=/fsx/proj-chemnlp/experiments/logs/eval_%j.err
 #SBATCH --open-mode=append
 #SBATCH --account=topchem
-#SBATCH --partition=g40
+#SBATCH --partition=g40x
 #SBATCH --exclusive
 
 ### This script runs lm_eval2 experiments

@@ -7,7 +7,7 @@
 #SBATCH --error=/fsx/proj-chemnlp/experiments/logs/transfer_batch_%j.err
 #SBATCH --open-mode=append
 #SBATCH --account=topchem
-#SBATCH --partition=g40
+#SBATCH --partition=g40x
 #SBATCH --exclusive
 
 ## This script recursively copies a directory to S3 storage
