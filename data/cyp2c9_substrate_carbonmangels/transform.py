@@ -60,7 +60,7 @@ and nonsubstrates from six publications.""",
                 "id": f"{'_'.join(target_subfolder.split('_')[:2])}",  # name of the column in a tabular dataset
                 "description": "drugs that are metabolized by CYP P450 2C9 (1) or not (0)",
                 "units": None,  # units of the values in this column (leave empty if unitless)
-                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
+                "type": "boolean",
                 "names": [  # names for the property (to sample from for building the prompts)
                     {"noun": "CYP P450 2C9 substrate"},
                     {"noun": "CYP2C9 substrate"},
@@ -88,9 +88,9 @@ and nonsubstrates from six publications.""",
                 "id": "compound_name",  # column name
                 "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
                 "names": [
-                    "compound name",
-                    "drug name",
-                    "generic drug name",
+                    {"noun": "compound name"},
+                    {"noun": "drug name"},
+                    {"noun": "generic drug name"},
                 ],
                 "description": "drug name",  # description (optional, except for "Other")
             },

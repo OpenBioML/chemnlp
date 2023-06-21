@@ -54,7 +54,7 @@ the drug with high lipid solubility, low plasma protein binidng rate.""",
                 "id": "VDss_Lombardo",  # name of the column in a tabular dataset
                 "description": "volume of distribution at steady state (VDss)",
                 "units": "VDss(L/kg)",  # units of the values in this column (leave empty if unitless)
-                "type": "continuous",  # can be "categorical", "ordinal", "continuous"
+                "type": "continuous",
                 "names": [  # names for the property (to sample from for building the prompts)
                     {"noun": "volume of distribution at steady state (VDss)"},
                     {"noun": "VDss"},
@@ -81,9 +81,9 @@ the drug with high lipid solubility, low plasma protein binidng rate.""",
                 "id": "compound_name",  # column name
                 "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
                 "names": [
-                    "compound name",
-                    "drug name",
-                    "generic drug name",
+                    {"noun": "compound name"},
+                    {"noun": "drug name"},
+                    {"noun": "generic drug name"},
                 ],
                 "description": "mix of drug name and ids",  # description (optional, except for "Other")
             },

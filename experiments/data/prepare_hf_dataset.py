@@ -29,7 +29,9 @@ def run(config_path: str):
     if not tokenizer.pad_token:
         tokenizer.add_special_tokens({"pad_token": "<|padding|>"})
 
-    dataset = datasets.load_dataset(config.dataset_name, **config.dataset_args)
+    dataset = datasets.load_dataset(
+        config.dataset_name, **config.dataset_args, num_proc=os.cpu_count()
+    )
 
     tokenised_data = dataset.map(
         lambda batch: tokenise(
@@ -54,7 +56,7 @@ def run(config_path: str):
     }
     print(summary_stats)
 
-    tokenised_data.save_to_disk(config.save_path)
+    tokenised_data.save_to_disk(config.save_path, num_proc=os.cpu_count())
 
     with open(f"{config.save_path}/summary_statistics.json", "w") as f:
         f.write(json.dumps(summary_stats))

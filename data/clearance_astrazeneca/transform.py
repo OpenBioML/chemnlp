@@ -55,7 +55,7 @@ contains clearance measures from two experiments types, hepatocyte and microsome
                 "id": "drug_clearance",  # name of the column in a tabular dataset
                 "description": "the volume of plasma cleared of a drug over a specified time period",
                 "units": "mL / (min g)",  # units of the values in this column (leave empty if unitless)
-                "type": "continuous",  # can be "categorical", "ordinal", "continuous"
+                "type": "continuous",
                 "names": [  # names for the property (to sample from for building the prompts)
                     {"noun": "drug clearance"},
                     {
@@ -63,7 +63,7 @@ contains clearance measures from two experiments types, hepatocyte and microsome
                     },
                 ],
                 "uris": [
-                    "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C94618",
+                    "http://purl.bioontology.org/ontology/MEDDRA/10077254",
                 ],
             },
         ],
@@ -77,13 +77,13 @@ contains clearance measures from two experiments types, hepatocyte and microsome
         "identifiers": [
             {
                 "id": "SMILES",  # column name
-                "type": "SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
+                "type": "SMILES",
                 "description": "SMILES",  # description (optional, except for "Other")
             },
             {
                 "id": "chembl_id",  # column name
                 "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
-                "names": ["ChEMBL id", "ChEMBL identifier number"],
+                "names": [{"noun": "ChEMBL id"}, {"noun": "ChEMBL identifier number"}],
                 "description": "ChEMBL ids",
                 "sample": False,
             },

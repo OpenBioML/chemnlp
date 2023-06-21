@@ -56,7 +56,7 @@ of various molecules and chemicals within cells. Specifically, the CYP P450
                 "id": f"{target_subfolder.split('_')[0]}_inhibition",  # name of the column in a tabular dataset
                 "description": "ability of the drug to inhibit CYP P450 2C9 (1) or not (0)",
                 "units": None,  # units of the values in this column (leave empty if unitless)
-                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
+                "type": "boolean",
                 "names": [  # names for the property (to sample from for building the prompts)
                     {"noun": "CYP P450 2C9 inhibition"},
                     {"noun": "CYP 2C9 inhibition"},

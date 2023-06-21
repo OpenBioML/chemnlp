@@ -63,7 +63,7 @@ for a drug to be delivered to the target.""",
                 "id": f"absorption_{target_subfolder}",  # name of the column in a tabular dataset
                 "description": "whether it is absorbed from the human gastrointestinal system (1) or not (0)",
                 "units": None,  # units of the values in this column (leave empty if unitless)
-                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
+                "type": "boolean",
                 "names": [  # names for the property (to sample from for building the prompts)
                     {"noun": "human intestinal absorption"},
                     {"noun": "HIA"},
@@ -91,9 +91,9 @@ for a drug to be delivered to the target.""",
                 "id": "compound_name",  # column name
                 "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
                 "names": [
-                    "compound name",
-                    "drug name",
-                    "generic drug name",
+                    {"noun": "compound name"},
+                    {"noun": "drug name"},
+                    {"noun": "generic drug name"},
                 ],
                 "description": "drug name",  # description (optional, except for "Other")
             },

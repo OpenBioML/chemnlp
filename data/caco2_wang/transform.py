@@ -57,7 +57,7 @@ through the human intestinal tissue.""",
                 "id": "permeability",  # name of the column in a tabular dataset
                 "description": "Caco-2 cell effective permeability.",  # description of what this column means
                 "units": "cm/s",
-                "type": "continuous",  # can be "categorical", "ordinal", "continuous"
+                "type": "continuous",
                 "names": [  # names for the property (to sample from for building the prompts)
                     {"noun": "Caco-2 cell effective permeability"},
                     {"noun": "Caco-2 cell permeability"},
@@ -80,7 +80,7 @@ through the human intestinal tissue.""",
         "identifiers": [
             {
                 "id": "SMILES",  # column name
-                "type": "SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
+                "type": "SMILES",
                 "description": "SMILES",  # description (optional, except for "Other")
             },
             {
@@ -88,8 +88,8 @@ through the human intestinal tissue.""",
                 "type": "Other",
                 "description": "compound name",
                 "names": [
-                    "compound",
-                    "compound name",
+                    {"noun": "compound"},
+                    {"noun": "compound name"},
                 ],
             },
         ],

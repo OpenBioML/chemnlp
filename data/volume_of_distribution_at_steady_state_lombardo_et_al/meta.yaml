@@ -26,9 +26,9 @@ identifiers:
     - id: compound_name
       type: Other
       names:
-          - compound name
-          - drug name
-          - generic drug name
+          - noun: compound name
+          - noun: drug name
+          - noun: generic drug name
       description: mix of drug name and ids
 license: CC BY 4.0
 links:

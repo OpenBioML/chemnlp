@@ -25,13 +25,13 @@ identifiers:
     - id: Species
       type: Other
       names:
-          - species
+          - noun: species
       description: species in which the measurement was carried out
     - id: chembl_id
       type: Other
       names:
-          - ChEMBL id
-          - ChEMBL identifier number
+          - noun: ChEMBL id
+          - noun: ChEMBL identifier number
       description: chembl ids
       sample: false
 license: CC BY 4.0
