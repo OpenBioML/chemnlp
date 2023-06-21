@@ -22,6 +22,7 @@ cd /fsx/proj-chemnlp/$2/chemnlp
 
 # create environment
 source experiments/scripts/env_creation_hf.sh $1 $2
+pip install ".[tokenisation]"
 
 # trigger run
 python experiments/data/prepare_hf_dataset.py $3
