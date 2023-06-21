@@ -46,6 +46,7 @@ training = [
         "protobuf<3.20",
         "s3fs",
         "boto3<=1.26.90", # https://github.com/boto/boto3/issues/3648
+        "transformers<4.30", # https://github.com/huggingface/transformers/issues/24359
 ]
 
 [tool.setuptools_scm]
