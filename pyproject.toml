@@ -49,5 +49,11 @@ training = [
         "transformers<4.30", # https://github.com/huggingface/transformers/issues/24359
 ]
 
+tokenisation = [
+        "zstandard",
+        "apache_beam", 
+        "mwparserfromhell"
+]
+
 [tool.setuptools_scm]
 version_scheme = "post-release"
