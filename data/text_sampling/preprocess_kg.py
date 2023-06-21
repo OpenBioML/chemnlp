@@ -207,7 +207,9 @@ recode = {
 }
 
 
-def create_yamls(dirs):
+def create_yamls(dirs: list):
+    """Creates meta.yamls based on the data_clean.csv files
+    and the text templates from the template dict."""
     for path in dirs:
         df = pd.read_csv(
             path + "data_clean.csv", index_col=False, nrows=0
@@ -240,7 +242,8 @@ def create_yamls(dirs):
         print(dataset_name)
 
 
-def format_kg_df(df):
+def format_kg_df(df: pd.DataFrame) -> pd.DataFrame:
+    """Formats a pandas dataframe."""
     df.drop_duplicates(inplace=True)
 
     # recode based on lookup dict
@@ -285,7 +288,7 @@ def format_kg_df(df):
     return df
 
 
-def str_presenter(dumper, data):
+def str_presenter(dumper, data: str):
     """configures yaml for dumping multiline strings
     Ref: https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data
     """
@@ -294,7 +297,9 @@ def str_presenter(dumper, data):
     return dumper.represent_scalar("tag:yaml.org,2002:str", data)
 
 
-def preprocess_kg_data(path_data_dir):
+def preprocess_kg_data(path_data_dir: str):
+    """Preprocesses the raw knowledge graph data and save
+    the data_original.csv, data_clean.csv, and meta.yaml."""
     # create separate dirs, move csv files there, and save cleaned data
     fns_data_raw = sorted(glob.glob(path_data_dir + "*csv"))
 
