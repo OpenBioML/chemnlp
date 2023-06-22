@@ -123,10 +123,49 @@ With the text template setup for the sampling you can:
 * `mutagenic#no &NULL` gets you the data with `#` and recodes it. The recoding options are separated with a `&`. In this example the binary variable `mutagenic` that can be `0` or `1` gets recoded to `no ` and `NULL`. `NULL` is a "reserved word" an indicates [no value](https://en.wikipedia.org/wiki/Null_(SQL)). Thus, the `no ` gets added in front of the `mutagenic__names__adjective` if `mutagenic# == 0`.
 * `mutagenic__names__adjective` gets you from the `id` `mutagenic` the adjective names.
 
-#### Example text template 2 (mainly used for KG data)
+#### Example text template 2 (mainly used for KG data)`
 `The {node1_type#} {node1_name#|node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#} which {rel2_type#} the {node3_type#} {node3_name#}.`
 * `node1_name#|node1_smiles#` chains together two columns with `|` so they are jointly sampled for this position. In this case we sample from the name or the SMILES representation.
 * A similar setup can be used in a single column: For `node2_protein_names` the column row can include several protein names also separated by a `|`, e.g., `Pyruvate dehydrogenase E1 component subunit beta, mitochondrial|PDHE1-B` which then samples from `Pyruvate dehydrogenase E1 component subunit beta, mitochondrial` or `PDHE1-B`.
+
+#### Example text template 3 for multiple choice setups
+Multiple choice setups are also supported. For this we need three components:
+* `%multiple_choice_enum%2%aA1` can be used to list the multiple choice enumerations, i.e., `1, 2, or 3`, `A or B`, etc., The second `%` starts the multiple choice number sequence. Single integers and a range consisting of two integers separated by a `-` are supported to set the lower and higher number, e.g., `2-5` will sample a value between those values including the boundaries for the answer options. The third `%` is used to subselect multiple choice enumerations, i.e., `a` for lower case alphabetical enumerations, `A` for upper case alphabetical, and `1` for numerical enumerations.
+* `mutagenic%` is used to list the multiple choice enumerations with the corresponding possible answer options after the multiple choice enumerations, and
+* `%multiple_choice_result` is used to get the multiple choice enumeration of the answer, i.e., `1`, `c`.
+Please pay attention to the `%` symbol and its position as this is used to parse the different control elements from the text template.
+The sampling procedure incorporates a range of different multiple choice enumerations that are sampled randomly:
+* numerical (`1, 2, 3, ...`) and alphabetical (`a, b, c, ...` or `A, B, C, ...`) enumerations combined with
+* different suffixes, i.e., ` ` (no suffix), `.`, `.)`, `)`, and `:`, to create a range of different multiple choice enumerations.
+If only the choices `0` or `1` are available they will be recoded with `False` and `True`.
+##### Standard template
+```
+Task: Please answer the multiple choice question below with {%multiple_choice_enum%2%aA1}.
+Question: Is the molecule with the {SMILES__description} representation of {SMILES#} {mutagenic__names__adjective}?
+Options:
+{mutagenic%}
+Answer: {%multiple_choice_result}
+```
+Example:
+```
+Task: Please answer the multiple choice question below with A or B.
+Question: Is the molecule with the SMILES representation of CC(C)NCC(O)c1ccc2ccccc2c1 Ames mutagenic?
+Options:
+A) False
+B) True
+Answer: A"
+```
+
+##### Template for benchmarking
+```
+Task: Please answer the multiple choice question below with {%multiple_choice_enum%2%aA1}.
+Question: Is the molecule with the {SMILES__description} representation of {SMILES#} {mutagenic__names__adjective}?
+Options:
+{mutagenic%}
+Answer:<EOI> {%multiple_choice_result}
+```
+The benchmarking setup exports additional fields for the benchmarking setup, see the example below:
+`{"input":"Task: Please answer the multiple choice question below with 1 or 2.\nQuestion: Is the molecule with the SMILES representation of BrCBr Ames mutagenic?\nOptions:\n1.) False\n2.) True\nAnswer:","output":" 2","output_choices":["1","2"],"correct_output_index":"1"}`
 
 #### Benchmarking text templates
 There are two versions of text templates, i.e., one without the end-of-input token `<EOI>` and those with:
