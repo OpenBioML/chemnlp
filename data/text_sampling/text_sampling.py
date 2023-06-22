@@ -3,6 +3,7 @@ import math
 import os.path
 import random
 import re
+import string
 from functools import partial
 from typing import Callable, List
 
@@ -75,6 +76,8 @@ class PromptTemplate:
         assert all(x in data.keys() for x in self.input_variables)
         template = self.template
         for k in data:
+            if k not in self.input_variables:
+                continue
             template = template.replace("{" + k + "}", data[k])
         return template
 
@@ -133,7 +136,8 @@ class TemplateSampler:
         path_data_dir: str,
         template_sampler: Callable = None,
         column_datafield_sampler: Callable = None,
-        benchmarking_templates: List[str] = False,
+        benchmarking_templates: bool = False,
+        multiple_choice_benchmarking_templates: bool = False,
     ):
         # paths
         self.path_data_dir = path_data_dir
@@ -164,14 +168,21 @@ class TemplateSampler:
 
         # text templates
         self.benchmarking_templates = benchmarking_templates
+        self.multiple_choice_benchmarking_templates = (
+            multiple_choice_benchmarking_templates
+        )
         if self.benchmarking_templates:
-            self.templates = [
-                t for t in self.meta["templates"] if t.find("<EOI>") != -1
-            ]
+            templates = [t for t in self.meta["templates"] if t.find("<EOI>") != -1]
+
+            if self.multiple_choice_benchmarking_templates:
+                templates = [t for t in templates if t.find("%multiple_choice_") != -1]
+            else:
+                templates = [t for t in templates if t.find("%multiple_choice_") == -1]
         else:
-            self.templates = [
-                t for t in self.meta["templates"] if t.find("<EOI>") == -1
-            ]
+            templates = [t for t in self.meta["templates"] if t.find("<EOI>") == -1]
+
+        self.templates = templates
+        print(self.templates)
         assert self.templates is not None
         self.prompt_templates = [PromptTemplate(t) for t in self.templates]
 
@@ -225,6 +236,9 @@ class TemplateSampler:
             ):
                 out = sample[var.replace("_protein_names", "_name").replace("#", "")]
 
+        if not (isinstance(out, str)):
+            out = str(out)
+
         # sampling based on row data and their definiton in the row
         if "|" in out:  # datafield sampling of multiple options
             choices = out.split("|")
@@ -235,12 +249,136 @@ class TemplateSampler:
     def get_sample_dict(self, sample: pd.Series, template: str):
         """Get sample dict from sample row and template string."""
         input_variables = get_input_variables_from_template(template)
-        sample_dict = {
-            var: self._get_target_from_row(sample, var)
-            if "#" in var
-            else get_target_from_string(self.meta, var)()
-            for var in input_variables
-        }
+        sample_dict = {}
+
+        # multiple choice template setup
+        if any([x.find("%") != -1 for x in input_variables]):
+            # get multiple_choice_enum
+            multiple_choice_enum_idx = [
+                i
+                for i, x in enumerate(input_variables)
+                if x.startswith("%multiple_choice_enum")
+            ]
+            assert len(multiple_choice_enum_idx) == 1
+            multiple_choice_enum_idx = multiple_choice_enum_idx[0]  # unpack list
+            multiple_choice_enum = input_variables[multiple_choice_enum_idx]
+
+            # get multiple_choice_var
+            multiple_choice_var_idx = [
+                i for i, x in enumerate(input_variables) if x.endswith("%")
+            ]
+            assert len(multiple_choice_var_idx) == 1
+            multiple_choice_var_idx = multiple_choice_var_idx[0]  # unpack list
+            multiple_choice_var = input_variables[multiple_choice_var_idx]
+
+            # TODO: Move function out of the class!!!
+            def get_symbols_from_multiple_choice_enum(
+                multiple_choice_enum: str,
+            ) -> List[str]:
+                """Create from the multiple_choice_enum variable a string of the symbols
+                that are used as multiple choice enumeration symbols.
+
+                Example:
+                %multiple_choice_enum%3-5%aA1
+
+                %multiple_choice_enum ... id
+                %3-5 ... multiple choice count
+                %aA1 ... symbol definition
+                """
+
+                multiple_choice_enum_split = multiple_choice_enum[1:].split("%")
+                assert (
+                    len(multiple_choice_enum_split) == 3
+                ), "Wrong multiple_choice_enum field setup."
+                _, choice_count, symbol = multiple_choice_enum_split
+
+                # get the choice_count
+                if len(choice_count) >= 3:
+                    assert (
+                        "-" in choice_count
+                    ), "The choice count needs to consist of two integers separated by a `-`."
+                    min_, max_ = [int(x) for x in choice_count.split("-")]
+                    assert isinstance(min_, int) and isinstance(
+                        max_, int
+                    ), "The choice count needs to consist of two integers."
+                    choice_count_sampled = random.randint(min_, max_)
+                elif len(choice_count) == 1:
+                    choice_count_sampled = int(choice_count)
+                else:
+                    raise NotImplementedError()
+
+                # get the symbols
+                assert any(
+                    [x in symbol for x in "aA1"]
+                ), "Allowed symbols are `a` (lower case letters), `A` (upper case letters), and/or `1` (integers)."
+                symbol_sampled = random.sample(symbol, k=1)[0]
+                if symbol_sampled == "a":
+                    symbols = list(string.ascii_lowercase[:choice_count_sampled])
+                elif symbol_sampled == "A":
+                    symbols = list(string.ascii_uppercase[:choice_count_sampled])
+                elif symbol_sampled == "1":
+                    symbols = [str(x + 1) for x in range(choice_count_sampled)]
+
+                return symbols
+
+            symbols = get_symbols_from_multiple_choice_enum(multiple_choice_enum)
+
+            # remove multiple choice control sequences from input_variables if present
+            input_variables.remove(multiple_choice_enum)
+            input_variables.remove(multiple_choice_var)
+            input_variables.remove("%multiple_choice_result")
+
+            # get all and correct choices incl. index
+            correct_choice = self._get_target_from_row(
+                sample, multiple_choice_var.replace("%", "#")
+            )
+            all_choices = sorted(
+                [
+                    str(x)
+                    for x in self.df[multiple_choice_var.replace("%", "")]
+                    .unique()
+                    .tolist()
+                ]
+            )
+            if all_choices == ["0", "1"]:
+                all_choices = ["False", "True"]
+                correct_choice = all_choices[int(correct_choice)]
+            multiple_choices = random.sample(all_choices, k=len(symbols))
+            if correct_choice not in multiple_choices:
+                multiple_choices = random.shuffle(
+                    multiple_choices[:-1] + [correct_choice]
+                )
+            correct_choice_idx = multiple_choices.index(correct_choice)
+
+            sample_dict[multiple_choice_enum] = (
+                "".join(
+                    [
+                        f"{x} " if len(multiple_choices) == 2 else f"{x}, "
+                        for x, y in zip(symbols[:-1], multiple_choices)
+                    ]
+                )
+                + f"or {symbols[-1]}"
+            )
+            rnd_symbol_suffix = random.sample(["", ".", ".)", ")", ":"], k=1)[0]
+            sample_dict[multiple_choice_var] = "\n".join(
+                [
+                    f"{x}{rnd_symbol_suffix} {y}"
+                    for x, y in zip(symbols, multiple_choices)
+                ]
+            )
+            sample_dict["%multiple_choice_result"] = symbols[correct_choice_idx]
+
+            # for benchmarking export
+            sample_dict["%multiple_choice_symbols"] = symbols
+            sample_dict["%multiple_choice_result_idx"] = correct_choice_idx
+
+        # create sample dict
+        for var in input_variables:
+            if "#" in var:
+                sample_dict[var] = self._get_target_from_row(sample, var)
+            else:
+                sample_dict[var] = get_target_from_string(self.meta, var)()
+
         return sample_dict
 
     def get_prompt_template_from_template_idx(self, template_idx: int = None) -> str:
@@ -256,7 +394,19 @@ class TemplateSampler:
         The text template can be specified by the template index."""
         prompt_template = self.get_prompt_template_from_template_idx(template_idx)
         sample_dict = self.get_sample_dict(sample, prompt_template.template)
-        return prompt_template.insert(sample_dict)
+        template = prompt_template.insert(sample_dict)
+
+        if (
+            self.benchmarking_templates
+            and self.multiple_choice_benchmarking_templates
+            and (any([k.startswith("%") for k in sample_dict]))
+        ):
+            # for multiple choice templates we need to keep track of the options and the correct answer
+            # by appending them with special tokens to the end of the template.
+            template += "<MC>" + "|".join(sample_dict["%multiple_choice_symbols"])
+            template += "<MC>" + str(sample_dict["%multiple_choice_result_idx"])
+
+        return template
 
     def __getitem__(self, sample_idx: int, template_idx: int = None):
         """Get item from data with sample and template index.
@@ -295,6 +445,13 @@ class TemplateSampler:
                     axis=1,
                     inplace=True,
                 )
+                if self.multiple_choice_benchmarking_templates:
+                    df_out[
+                        ["output", "output_choices", "correct_output_index"]
+                    ] = df_out["output"].str.split(pat="<MC>", n=2, expand=True)
+                    df_out["output_choices"] = df_out["output_choices"].apply(
+                        lambda x: x.split("|")
+                    )
             else:
                 df_out.drop(
                     [x for x in df_out.columns.tolist() if x != "sample"],
@@ -305,9 +462,15 @@ class TemplateSampler:
 
             # save
             if self.benchmarking_templates:
-                output_path = self.path_data_dir + f"/{split}_benchmark.jsonl"
+                if self.multiple_choice_benchmarking_templates:
+                    output_path = (
+                        self.path_data_dir + f"/{split}_benchmark_multiple_choice.jsonl"
+                    )
+                else:
+                    output_path = self.path_data_dir + f"/{split}_benchmark.jsonl"
             else:
                 output_path = self.path_data_dir + f"/{split}.jsonl"
+
             with open(output_path, "w") as f:
                 f.write(df_out.to_json(orient="records", lines=True, force_ascii=False))
 
@@ -341,9 +504,19 @@ if __name__ == "__main__":
             if "templates" in meta:
                 print(f"Running sampling for: {path}")
                 TemplateSampler(
-                    path, benchmarking_templates=False
+                    path,
+                    benchmarking_templates=False,
+                    multiple_choice_benchmarking_templates=False,
                 ).apply_sampling_and_export()
                 if any(["<EOI>" in t for t in meta["templates"]]):
                     TemplateSampler(
-                        path, benchmarking_templates=True
+                        path,
+                        benchmarking_templates=True,
+                        multiple_choice_benchmarking_templates=False,
                     ).apply_sampling_and_export()
+                    if any(["%multiple_choice_" in t for t in meta["templates"]]):
+                        TemplateSampler(
+                            path,
+                            benchmarking_templates=True,
+                            multiple_choice_benchmarking_templates=True,
+                        ).apply_sampling_and_export()

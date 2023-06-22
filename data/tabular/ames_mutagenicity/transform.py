@@ -130,6 +130,16 @@ journal = {Journal of Chemical Information and Modeling}""",
             "The {SMILES__description} {SMILES#} is {mutagenic#no &NULL}{mutagenic__names__adjective}.",
             "The molecule {SMILES#} is {mutagenic__names__adjective}.",  # not all variables need to be used
             "Is the {SMILES__description} {SMILES#} {mutagenic__names__adjective}:<EOI>{mutagenic# yes& no}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
+            """Task: Please answer the multiple choice question below with {%multiple_choice_enum%2%aA1}.
+Question: Is the molecule with the {SMILES__description} representation of {SMILES#} {mutagenic__names__adjective}?
+Options:
+{mutagenic%}
+Answer: {%multiple_choice_result}""",
+            """Task: Please answer the multiple choice question below with {%multiple_choice_enum%2%aA1}.
+Question: Is the molecule with the {SMILES__description} representation of {SMILES#} {mutagenic__names__adjective}?
+Options:
+{mutagenic%}
+Answer:<EOI> {%multiple_choice_result}""",
         ],
     }
 
