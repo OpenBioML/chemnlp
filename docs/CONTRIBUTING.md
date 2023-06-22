@@ -128,7 +128,7 @@ With the text template setup for the sampling you can:
 * `node1_name#|node1_smiles#` chains together two columns with `|` so they are jointly sampled for this position. In this case we sample from the name or the SMILES representation.
 * A similar setup can be used in a single column: For `node2_protein_names` the column row can include several protein names also separated by a `|`, e.g., `Pyruvate dehydrogenase E1 component subunit beta, mitochondrial|PDHE1-B` which then samples from `Pyruvate dehydrogenase E1 component subunit beta, mitochondrial` or `PDHE1-B`.
 
-#### Example text template 3 for multiple choice setups
+#### Example text templates 3 for multiple choice setups
 Multiple choice setups are also supported. For this we need three components:
 * `%multiple_choice_enum%2%aA1` can be used to list the multiple choice enumerations, i.e., `1, 2, or 3`, `A or B`, etc., The second `%` starts the multiple choice number sequence. Single integers and a range consisting of two integers separated by a `-` are supported to set the lower and higher number, e.g., `2-5` will sample a value between those values including the boundaries for the answer options. The third `%` is used to subselect multiple choice enumerations, i.e., `a` for lower case alphabetical enumerations, `A` for upper case alphabetical, and `1` for numerical enumerations.
 * `mutagenic%` is used to list the multiple choice enumerations with the corresponding possible answer options after the multiple choice enumerations, and
@@ -146,7 +146,7 @@ Options:
 {mutagenic%}
 Answer: {%multiple_choice_result}
 ```
-Example:
+Example output:
 ```
 Task: Please answer the multiple choice question below with A or B.
 Question: Is the molecule with the SMILES representation of CC(C)NCC(O)c1ccc2ccccc2c1 Ames mutagenic?
@@ -166,6 +166,7 @@ Answer:<EOI> {%multiple_choice_result}
 ```
 The benchmarking setup exports additional fields for the benchmarking setup, see the example below:
 `{"input":"Task: Please answer the multiple choice question below with 1 or 2.\nQuestion: Is the molecule with the SMILES representation of BrCBr Ames mutagenic?\nOptions:\n1.) False\n2.) True\nAnswer:","output":" 2","output_choices":["1","2"],"correct_output_index":"1"}`
+Please have a look at the following section below about the general benchmarking template setup.
 
 #### Benchmarking text templates
 There are two versions of text templates, i.e., one without the end-of-input token `<EOI>` and those with:
