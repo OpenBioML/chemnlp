@@ -345,9 +345,8 @@ class TemplateSampler:
                 correct_choice = all_choices[int(correct_choice)]
             multiple_choices = random.sample(all_choices, k=len(symbols))
             if correct_choice not in multiple_choices:
-                multiple_choices = random.shuffle(
-                    multiple_choices[:-1] + [correct_choice]
-                )
+                multiple_choices = multiple_choices[:-1] + [correct_choice]
+                random.shuffle(multiple_choices)
             correct_choice_idx = multiple_choices.index(correct_choice)
 
             sample_dict[multiple_choice_enum] = (
