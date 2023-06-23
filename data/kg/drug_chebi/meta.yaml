@@ -36,10 +36,10 @@ identifiers:
     - id: rel1_type
       description: rel1_type
       type: Other
-license: VERIFY WITH AUTHORS
+license: CC BY 4.0
 links:
     - url: https://crossbar.kansil.org
-      description: original knowledge graph link
+      description: original knowledge graph web GUI link
 num_points: 0
 bibtex:
     - "@article{10.1093/nar/gkab543,\nauthor = {Doğan, Tunca and Atas, Heval and Joshi, Vishal and Atakan, Ahmet and Rifaioglu, Ahmet Sureyya and Nalbat,\

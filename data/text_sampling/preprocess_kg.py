@@ -153,12 +153,12 @@ meta_template = {
     "description": "Knowledgegraph data samples.",
     "targets": None,
     "identifiers": None,
-    "license": "VERIFY WITH AUTHORS",
+    "license": "CC BY 4.0",
     "links": [
         {
             "url": "https://crossbar.kansil.org",
-            "description": "original knowledge graph link",
-        }
+            "description": "original knowledge graph web GUI link",
+        },
     ],
     "num_points": None,
     "bibtex": [
