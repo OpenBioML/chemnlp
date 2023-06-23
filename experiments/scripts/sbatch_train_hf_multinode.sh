@@ -20,6 +20,7 @@ set -ex # allow for exiting based on non-0 codes
 export TOKENIZERS_PARALLELISM=false
 export WANDB_BASE_URL="https://stability.wandb.io"
 export NCCL_DEBUG=INFO
+export NCCL_ASYNC_ERROR_HANDLING=1
 overrides=${4:-'{}'}
 
 # set workdir
