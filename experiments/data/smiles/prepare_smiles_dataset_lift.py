@@ -24,6 +24,9 @@ RDLogger.DisableLog("rdApp.*")
 DATASET_PATH = "OpenBioML/coconut_molecules"
 VALID_PREFIX = "The following is a valid molecule:"
 INVALID_PREFIX = "The following is not a valid molecule:"
+LIFT_Q = "Question: Is the following a valid molecule:"
+VALID_LIFT_A = "Yes"
+INVALID_LIFT_A = "No"
 DATA_TYPE = "text"
 EOS_TOKEN = "\n\n"
 SEED = 1234
@@ -31,8 +34,9 @@ SEED = 1234
 
 def process_docs(docs):
     valid = map(_get_smile_string, docs)
-    invalid = map(_process_invalid_smile, docs)
+    invalid = map(_process_invalid_smile, docs) 
     mixed_data = list(valid) + list(invalid)
+    mixed_data = [string for pair in mixed_data for string in pair]
     return random.choice(mixed_data, len(mixed_data)).tolist()
 
 
@@ -43,8 +47,12 @@ def _process_invalid_smile(doc):
 
 def _get_smile_string(doc):
     is_valid = Chem.MolFromSmiles(doc)
+    lift_answer = INVALID_LIFT_A if is_valid is None else VALID_LIFT_A
     prefix = INVALID_PREFIX if is_valid is None else VALID_PREFIX
-    return f"{prefix} {doc}{EOS_TOKEN}"
+    return (
+        f"{prefix} {doc}{EOS_TOKEN}",
+        f"{LIFT_Q} {doc}? Answer: {lift_answer}{EOS_TOKEN}"
+    )
 
 
 def concatenate_samples_without_splitting(dataset, tokenizer, max_length):
@@ -142,8 +150,8 @@ def run(config):
 
     save_path = f"{config.out_dir}/{config.save_name}_{config.data_split}"
     processed_data.save_to_disk(save_path)
-    with open(f"{save_path}/summary_statistics.json", "w") as f:
-        f.write(json.dumps(summary_stats))
+    # with open(f"{save_path}/summary_statistics.json", "w") as f:
+    #     f.write(json.dumps(summary_stats))
 
 
 if __name__ == "__main__":
