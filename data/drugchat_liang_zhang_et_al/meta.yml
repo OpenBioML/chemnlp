@@ -1,0 +1,34 @@
+---
+name: drugchat_liang_zhang_et_al
+description: |-
+  Instruction tuning dataset used for the LLM component of DrugChat. 
+  10,834 compounds (3,8962  from ChEMBL and 6,942 from  PubChem) containing 
+  descriptive drug information were collected. 143,517 questions were generated
+  using the molecules' classification, properties and descriptions from ChEBI, LOTUS & YMDB.
+targets:
+  - id: Answer
+    description: answer to the question about the SMILES
+    type: string
+identifiers:
+  - id: SMILES
+    type: SMILES
+    description: SMILES
+  - id: Question
+    type: string
+    description: Question about SMILES
+license: CC BY 4.0
+links:
+  - url: https://www.techrxiv.org/articles/preprint/DrugChat_Towards_Enabling_ChatGPT-Like_Capabilities_on_Drug_Molecule_Graphs/22945922
+    description: corresponding publication
+  - url: https://github.com/UCSD-AI4H/drugchat
+    description: rep & data source
+num_points: 143,517
+bibtex:
+  - |-
+    @article{Liang2023,
+    author = "Youwei Liang and Ruiyi Zhang and Li Zhang and Pengtao Xie",
+    title = "{DrugChat: Towards Enabling ChatGPT-Like Capabilities on Drug Molecule Graphs}",
+    year = "2023",
+    month = "5",
+    url = "https://www.techrxiv.org/articles/preprint/DrugChat_Towards_Enabling_ChatGPT-Like_Capabilities_on_Drug_Molecule_Graphs/22945922",
+    doi = "10.36227/techrxiv.22945922.v1"}
