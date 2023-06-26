@@ -502,7 +502,10 @@ class TemplateSampler:
 
 if __name__ == "__main__":
     path_base = __file__.replace("text_sampling/text_sampling.py", "")
-    path_data_dir = glob.glob(path_base + "tabular/*") + glob.glob(path_base + "kg/*")
+    path_data_dir = (
+        sorted(glob.glob(path_base + "tabular/*"))
+        + sorted(glob.glob(path_base + "kg/*[!.csv]"))[:2]
+    )
     for path in path_data_dir:
         path_meta = path + "/meta.yaml"
         path_data = path + "/data_clean.csv"
