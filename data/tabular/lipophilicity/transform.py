@@ -1,3 +1,4 @@
+# flake8: noqa E501
 import pandas as pd
 import requests
 import yaml
@@ -58,7 +59,7 @@ def get_and_transform_data():
         "identifiers": [
             {
                 "id": "SMILES",  # column name
-                "type": "SMILES",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
+                "type": "SMILES",
                 "description": "SMILES",  # description (optional, except for "Other")
             },
         ],
@@ -97,6 +98,22 @@ author={Hersey, Anne},
 year={2015},
 institution={Technical Report, Technical report, EMBL-EBI, 2015. https://www. ebi. ac. uk}
 }""",
+        ],
+        "templates": [
+            """Task: Please answer the multiple choice question below with {%multiple_choice_enum%3-6%aA1}.
+Question: What ist {exp__names__noun} of the {SMILES__description} {SMILES#}?
+Options:
+{exp%}
+Answer: {%multiple_choice_result}""",  # noqa: E501
+            """Question: Please estimate the {exp__names__noun} of {SMILES#} by picking one choice of {%multiple_choice_enum%3-6%aA1}.
+Options:
+{exp%}
+Answer: {%multiple_choice_result}""",
+            """Task: Please answer the multiple choice question below with {%multiple_choice_enum%3-6%aA1}.
+Question: What ist {exp__names__noun} of the {SMILES__description} {SMILES#}?
+Options:
+{exp%}
+Answer:<EOI> {%multiple_choice_result}""",  # noqa: E501
         ],
     }
 
