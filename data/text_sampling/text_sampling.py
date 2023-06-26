@@ -538,9 +538,6 @@ if __name__ == "__main__":
                 print("Add standard text templates for tabular data!")
 
                 # if no SMILES identifier we continue
-                print(
-                    [identifier["id"] == "SMILES" for identifier in meta["identifiers"]]
-                )
                 if not (
                     any(
                         [
@@ -549,12 +546,17 @@ if __name__ == "__main__":
                         ]
                     )
                 ):
+                    print(
+                        "No SMILES identifier in the meta.yaml. Please define custom text templates."
+                    )
                     continue
 
                 # if more than one target we continue
                 # Note: More than one target needs custom text templates defined in the meta.yaml file.
-                print(len(meta["targets"]))
                 if len(meta["targets"]) > 1:
+                    print(
+                        "More than one target in the meta.yaml. Please define custom text templates."
+                    )
                     continue
 
                 # replace TARGET with target id
