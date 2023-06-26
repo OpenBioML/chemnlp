@@ -105,7 +105,7 @@ institution={Technical Report, Technical report, EMBL-EBI, 2015. https://www. eb
 Question: What ist {exp__names__noun} of the {SMILES__description} {SMILES#}?
 Options:
 {exp%}
-Answer: {%multiple_choice_result}""",  # noqa: E501
+Answer: {%multiple_choice_result}""",
             """Question: Please estimate the {exp__names__noun} of {SMILES#} by picking one choice of {%multiple_choice_enum%3-6%aA1}.
 Options:
 {exp%}
@@ -114,7 +114,7 @@ Answer: {%multiple_choice_result}""",
 Question: What ist {exp__names__noun} of the {SMILES__description} {SMILES#}?
 Options:
 {exp%}
-Answer:<EOI> {%multiple_choice_result}""",  # noqa: E501
+Answer:<EOI> {%multiple_choice_result}""",
         ],
     }
 
