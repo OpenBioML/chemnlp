@@ -134,6 +134,7 @@ class TemplateSampler:
     def __init__(
         self,
         path_data_dir: str,
+        additional_templates: list = None,
         template_sampler: Callable = None,
         column_datafield_sampler: Callable = None,
         benchmarking_templates: bool = False,
@@ -171,19 +172,26 @@ class TemplateSampler:
         self.multiple_choice_benchmarking_templates = (
             multiple_choice_benchmarking_templates
         )
+
+        templates = self.meta.get("templates", [])
+        if additional_templates:
+            self.additional_templates = additional_templates
+            templates += additional_templates
+
         if self.benchmarking_templates:
-            templates = [t for t in self.meta["templates"] if t.find("<EOI>") != -1]
+            templates = [t for t in templates if t.find("<EOI>") != -1]
 
             if self.multiple_choice_benchmarking_templates:
                 templates = [t for t in templates if t.find("%multiple_choice_") != -1]
             else:
                 templates = [t for t in templates if t.find("%multiple_choice_") == -1]
         else:
-            templates = [t for t in self.meta["templates"] if t.find("<EOI>") == -1]
+            templates = [t for t in templates if t.find("<EOI>") == -1]
 
         self.templates = templates
         print(self.templates)
         assert self.templates is not None
+        assert self.templates is not []
         self.prompt_templates = [PromptTemplate(t) for t in self.templates]
 
         # create random variables for prompts and texts
