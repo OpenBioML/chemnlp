@@ -10,6 +10,20 @@ from typing import Callable, List
 import pandas as pd
 import yaml
 
+standard_tabular_text_templates = [
+    "The molecule with the {SMILES__description} representation of {SMILES#} has a {TARGET__names__noun} of {TARGET#}.",  # noqa: E501
+    "Based on the {SMILES__description} representation {SMILES#}, the molecule has a {TARGET__names__noun} of {TARGET#}.",  # noqa: E501
+    "The {SMILES__description} {SMILES#} represents a molecule that has a {TARGET__names__noun} of {TARGET#}.",  # noqa: E501
+    "The {SMILES__description} {SMILES#} has a {TARGET__names__noun} of {TARGET#}.",
+    "The molecule {SMILES#} has a {TARGET__names__noun} of {TARGET#}.",
+    "The {TARGET__names__noun} of the {SMILES__description} {SMILES#} is: <EOI>{TARGET#}",  # noqa: E501
+]
+
+
+exclude_from_standard_tabular_text_templates = [
+    "ames_mutagenicity",
+]
+
 
 def unwrap_list_length_1(list_input: list):
     """Unwraps lists of length 1 and returns the first = single element."""
@@ -509,23 +523,69 @@ if __name__ == "__main__":
         path_meta = path + "/meta.yaml"
         path_data = path + "/data_clean.csv"
         if os.path.isfile(path_meta) and os.path.isfile(path_data):
-            meta = load_yaml(path_meta)
+            meta = load_yaml(path_meta)  # load yaml for downstream export logic
+
+            # add standard text templates for tabular data
+            additional_templates = None
+            if (path.find("/tabular/") != -1) and not (
+                any(
+                    [
+                        path.find(x) != -1
+                        for x in exclude_from_standard_tabular_text_templates
+                    ]
+                )
+            ):
+                print("Add standard text templates for tabular data!")
+
+                # if no SMILES identifier we continue
+                print(
+                    [identifier["id"] == "SMILES" for identifier in meta["identifiers"]]
+                )
+                if not (
+                    any(
+                        [
+                            identifier["id"] == "SMILES"
+                            for identifier in meta["identifiers"]
+                        ]
+                    )
+                ):
+                    continue
+
+                # if more than one target we continue
+                # Note: More than one target needs custom text templates defined in the meta.yaml file.
+                print(len(meta["targets"]))
+                if len(meta["targets"]) > 1:
+                    continue
+
+                # replace TARGET with target id
+                additional_templates = [
+                    template.replace("TARGET", meta["targets"][0]["id"])
+                    for template in standard_tabular_text_templates
+                ]
+                if "templates" in meta:
+                    meta["templates"] += additional_templates
+                else:
+                    meta["templates"] = additional_templates
+
             if "templates" in meta:
                 print(f"Running sampling for: {path}")
                 TemplateSampler(
                     path,
+                    additional_templates=additional_templates,
                     benchmarking_templates=False,
                     multiple_choice_benchmarking_templates=False,
                 ).apply_sampling_and_export()
                 if any(["<EOI>" in t for t in meta["templates"]]):
                     TemplateSampler(
                         path,
+                        additional_templates=additional_templates,
                         benchmarking_templates=True,
                         multiple_choice_benchmarking_templates=False,
                     ).apply_sampling_and_export()
                     if any(["%multiple_choice_" in t for t in meta["templates"]]):
                         TemplateSampler(
                             path,
+                            additional_templates=additional_templates,
                             benchmarking_templates=True,
                             multiple_choice_benchmarking_templates=True,
                         ).apply_sampling_and_export()
