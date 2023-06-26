@@ -203,7 +203,7 @@ class TemplateSampler:
             templates = [t for t in templates if t.find("<EOI>") == -1]
 
         self.templates = templates
-        print(self.templates)
+        print(f"\n### templates\n{self.templates}")
         assert self.templates is not None
         assert self.templates is not []
         self.prompt_templates = [PromptTemplate(t) for t in self.templates]
@@ -511,7 +511,7 @@ class TemplateSampler:
         """Applies the sampling and exports the data."""
         self.apply_sampling(template_idx)
         df_results = self.export()
-        print(df_results.to_string())
+        print(f"\n### results\n{df_results.to_string()}")
 
 
 if __name__ == "__main__":
@@ -520,6 +520,7 @@ if __name__ == "__main__":
         glob.glob(path_base + "kg/*[!.csv]")
     )
     for path in path_data_dir:
+        print(f"\n###### {path}")
         path_meta = path + "/meta.yaml"
         path_data = path + "/data_clean.csv"
         if os.path.isfile(path_meta) and os.path.isfile(path_data):
