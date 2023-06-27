@@ -1,0 +1,94 @@
+name: papyrus_protein_targets
+description: Papyrus is an aggregated dataset of small molecule bioactivities. File
+  contains data about proteins (e.g. sequence, organism,classification).
+targets:
+- id: Organism
+  description: Organism of the protein
+  units: ''
+  type: text
+  names:
+  - noun: The organism that the protein extracted from
+  - noun: For which organism protein related to
+  - noun: living that the protein extract from
+  uris:
+  - http://purl.bioontology.org/ontology/CCON
+- id: organism_common_name
+  description: common name of the organism that protein extract from.
+  units: ''
+  type: text
+  names:
+  - noun: common name of the organism that the protein extracted from
+  - noun: common name of the organism for which protein related to
+  - noun: common name of the living that the protein extracted from
+  uris:
+  - http://purl.bioontology.org/ontology/CCON
+- id: Classification
+  description: Protein classification as given by ChEMBL(version 29). Levels are separated
+    by '->'. Multiple classifications are separated by a semilcolon ';'
+  units: ''
+  type: text
+  names:
+  - noun: Protein classification
+  - noun: protein classification by levels
+  - noun: Levels for which protein classify
+- id: seq_length
+  description: Length of the protein sequence
+  units: ''
+  type: continuous
+  names:
+  - noun: Protein sequence length
+  - noun: Length for protein string
+- id: Sequence
+  description: Protein sequence including mutations
+  units: ''
+  type: string
+  names:
+  - noun: Protein sequence character
+  - noun: FASTQ of the protein
+  - noun: protein string
+  uris:
+  - http://purl.bioontology.org/ontology/MESH/D009154
+identifiers:
+- id: target_id
+  type: Other
+  names:
+  - noun: protein identifier wtih mutation
+  - noun: target id plus mutation
+  - noun: protein target combined with mutation
+  description: A unique Papyrus protein identifier. It results from the concatenation
+    of accessions and mutations(e.g. P47747_WT or P10721_V559D_T670I)
+- id: target_id_without_mutation
+  type: Other
+  names:
+  - noun: protein identifier
+  - noun: target id
+  - noun: protein target
+  description: A unique protein identifier
+- id: UniProtID
+  type: Other
+  names:
+  - noun: UniProt identifier
+  - noun: UniProtID
+  description: The UniProt identifier of the sequence
+license: CC BY-SA 4.0
+links:
+- url: https://doi.org/10.1186/s13321-022-00672-x
+  description: corresponding publication
+- url: https://doi.org/10.4121/16896406.v3
+  description: data source
+- url: https://data.4tu.nl/articles/_/16896406/3
+  description: data source
+num_points: 7058
+bibtex:
+- |-
+  @article{B_quignon_2023,
+            doi = {10.1186/s13321-022-00672-x},
+            url = {https://doi.org/10.1186%2Fs13321-022-00672-x},
+            year = {2023},
+            month = jan,
+            publisher = {Springer Science and Business Media LLC},
+            volume = {15},
+            number = {1},
+            author = {O. J. M. Bequignon and B. J. Bongers and W. Jespers and A. P. IJzerman and B. van der Water and G. J. P. van Westen},
+            title = {Papyrus: a large-scale curated dataset aimed at bioactivity predictions},
+            journal = {Journal of Cheminformatics}
