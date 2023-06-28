@@ -102,7 +102,7 @@ institution={Technical Report, Technical report, EMBL-EBI, 2015. https://www. eb
         ],
         "templates": [
             """Task: Please answer the multiple choice question below with {%multiple_choice_enum%3-6%aA1}.
-Question: What ist {exp__names__noun} of the {SMILES__description} {SMILES#}?
+Question: What is the {exp__names__noun} of the {SMILES__description} {SMILES#}?
 Options:
 {exp%}
 Answer: {%multiple_choice_result}""",
@@ -111,7 +111,7 @@ Options:
 {exp%}
 Answer: {%multiple_choice_result}""",
             """Task: Please answer the multiple choice question below with {%multiple_choice_enum%3-6%aA1}.
-Question: What ist {exp__names__noun} of the {SMILES__description} {SMILES#}?
+Question: What is the {exp__names__noun} of the {SMILES__description} {SMILES#}?
 Options:
 {exp%}
 Answer:<EOI> {%multiple_choice_result}""",
