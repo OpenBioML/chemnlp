@@ -156,11 +156,13 @@ class TemplateSampler:
     def __init__(
         self,
         path_data_dir: str,
+        rnd_symbols: list,  # = ["", ".", ".)", ")", ":", "()", "[]"],
         additional_templates: list = None,
         template_sampler: Callable = None,
         column_datafield_sampler: Callable = None,
         benchmarking_templates: bool = False,
         multiple_choice_benchmarking_templates: bool = False,
+        multiple_choice_benchmarking_format: int = 0,
     ):
         # paths
         self.path_data_dir = path_data_dir
@@ -191,9 +193,11 @@ class TemplateSampler:
 
         # text templates
         self.benchmarking_templates = benchmarking_templates
+        self.rnd_symbols = rnd_symbols
         self.multiple_choice_benchmarking_templates = (
             multiple_choice_benchmarking_templates
         )
+        self.multiple_choice_benchmarking_format = multiple_choice_benchmarking_format
 
         templates = self.meta.get("templates", [])
         if additional_templates:
@@ -388,8 +392,18 @@ class TemplateSampler:
                 )
                 + f"or {symbols[-1]}"
             )
-            rnd_symbols = ["", ".", ".)", ")", ":", "()", "[]"]
-            rnd_symbol = random.sample(rnd_symbols, k=1)[0]
+            if self.multiple_choice_benchmarking_templates:
+                if len(self.rnd_symbols) > 1:
+                    rnd_symbol = self.rnd_symbols[
+                        self.multiple_choice_benchmarking_format
+                    ]
+                elif len(self.rnd_symbols) == 1:
+                    rnd_symbol = self.rnd_symbols[0]
+                else:
+                    raise NotImplementedError()
+            else:
+                rnd_symbol = random.sample(self.rnd_symbols, k=1)[0]
+
             if rnd_symbol in ["()", "[]"]:
                 rnd_symbol_prefix, rnd_symbol_suffix = rnd_symbol
             else:
@@ -402,7 +416,23 @@ class TemplateSampler:
                     for x, y in zip(symbols, multiple_choices)
                 ]
             )
-            sample_dict["%multiple_choice_result"] = symbols[correct_choice_idx]
+            # sample multiple_choice_result setup by randomly putting the result parts together
+            if self.multiple_choice_benchmarking_templates:
+                multiple_choice_result = f"{rnd_symbol_prefix}{symbols[correct_choice_idx]}{rnd_symbol_suffix} {correct_choice}"  # noqa: E501
+            else:
+                # if random.random() > 0.5:  # uncomment to include setup w/o symbols
+                multiple_choice_result = symbols[correct_choice_idx]
+                if random.random() > 0.5:
+                    multiple_choice_result = (
+                        rnd_symbol_prefix + multiple_choice_result + rnd_symbol_suffix
+                    )
+                if random.random() > 0.5:
+                    if len(multiple_choice_result) > 0:
+                        multiple_choice_result += f" {correct_choice}"
+                # else:  # uncomment to include setup w/o symbols
+                #    multiple_choice_result = correct_choice
+
+            sample_dict["%multiple_choice_result"] = multiple_choice_result
 
             # for benchmarking export
             sample_dict["%multiple_choice_symbols"] = symbols
@@ -500,7 +530,8 @@ class TemplateSampler:
             if self.benchmarking_templates:
                 if self.multiple_choice_benchmarking_templates:
                     output_path = (
-                        self.path_data_dir + f"/{split}_benchmark_multiple_choice.jsonl"
+                        self.path_data_dir
+                        + f"/{split}_benchmark_multiple_choice_format-{self.multiple_choice_benchmarking_format}.jsonl"
                     )
                 else:
                     output_path = self.path_data_dir + f"/{split}_benchmark.jsonl"
@@ -601,9 +632,14 @@ if __name__ == "__main__":
                         multiple_choice_benchmarking_templates=False,
                     ).apply_sampling_and_export()
                     if any(["%multiple_choice_" in t for t in meta["templates"]]):
-                        TemplateSampler(
-                            path,
-                            additional_templates=additional_templates,
-                            benchmarking_templates=True,
-                            multiple_choice_benchmarking_templates=True,
-                        ).apply_sampling_and_export()
+                        rnd_symbols = ["", ".", ".)", ")", ":", "()", "[]"]
+                        for i, s in enumerate(rnd_symbols):
+                            print(i, s)
+                            TemplateSampler(
+                                path,
+                                rnd_symbols=[s],
+                                additional_templates=additional_templates,
+                                benchmarking_templates=True,
+                                multiple_choice_benchmarking_templates=True,
+                                multiple_choice_benchmarking_format=i,
+                            ).apply_sampling_and_export()
