@@ -388,10 +388,17 @@ class TemplateSampler:
                 )
                 + f"or {symbols[-1]}"
             )
-            rnd_symbol_suffix = random.sample(["", ".", ".)", ")", ":"], k=1)[0]
+            rnd_symbols = ["", ".", ".)", ")", ":", "()", "[]"]
+            rnd_symbol = random.sample(rnd_symbols, k=1)[0]
+            if rnd_symbol in ["()", "[]"]:
+                rnd_symbol_prefix, rnd_symbol_suffix = rnd_symbol
+            else:
+                rnd_symbol_prefix = ""
+                rnd_symbol_suffix = rnd_symbol
+
             sample_dict[multiple_choice_var] = "\n".join(
                 [
-                    f"{x}{rnd_symbol_suffix} {y}"
+                    f"{rnd_symbol_prefix}{x}{rnd_symbol_suffix} {y}"
                     for x, y in zip(symbols, multiple_choices)
                 ]
             )
