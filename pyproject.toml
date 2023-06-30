@@ -16,7 +16,7 @@ dependencies = [
         "pydantic",
         "pytdc>=0.3.9",
         "transformers",
-        "wandb"
+        "wandb==0.10.28"
 ]
 
 dynamic = ["version"]
