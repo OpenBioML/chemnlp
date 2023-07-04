@@ -48,7 +48,7 @@ def _get_invalid_smile_string(doc):
     invalid_smile = doc[: random.randint(1, len(doc))]
     is_valid = Chem.MolFromSmiles(invalid_smile)
     if is_valid is None:
-        return f"{LIFT_Q} {doc}? Answer: {INVALID_LIFT_A}{EOS_TOKEN}"
+        return f"{LIFT_Q} {invalid_smile}? Answer: {INVALID_LIFT_A}{EOS_TOKEN}"
 
 
 def _get_valid_smile_string(doc):
