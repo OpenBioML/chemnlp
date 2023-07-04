@@ -33,6 +33,80 @@ exclude_from_standard_tabular_text_templates = [
 ]
 
 
+# todo: the str_presenter function is used a couple of times in the repo and the duplication should be removed
+def str_presenter(dumper, data):
+    """configures yaml for dumping multiline strings
+    Ref: https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data
+    """
+    if data.count("\n") > 0:  # check for multiline string
+        return dumper.represent_scalar("tag:yaml.org,2002:str", data, style="|")
+    return dumper.represent_scalar("tag:yaml.org,2002:str", data)
+
+
+lm_eval_yaml_template_loglikelihood = {
+    "group": [
+        "loglikelihood",
+    ],
+    "task": None,
+    "dataset_path": None,
+    "dataset_name": None,
+    "output_type": "loglikelihood",
+    "test_split": "test",
+    "template_aliases": "",
+    "doc_to_text": "{{input}}",
+    "doc_to_target": "{{output}}",
+    # "should_decontaminate": True,
+    # "doc_to_decontamination_query": "{{text}}",
+    "metric_list": [
+        {
+            "metric": "perplexity",
+            "aggregation": "perplexity",
+            "higher_is_better": False,
+        },
+        {
+            "metric": "acc",
+            "aggregation": "mean",
+            "higher_is_better": True,
+        },
+    ],
+}
+
+lm_eval_yaml_template_multiple_choice = {
+    "group": [
+        "multiple_choice",
+    ],
+    "task": None,
+    "dataset_path": None,
+    "dataset_name": None,
+    "output_type": "multiple_choice",
+    "test_split": "test",
+    "template_aliases": "{% set gold = correct_output_index %}",
+    "doc_to_text": "{{input}}",
+    "doc_to_target": "{{output}}",
+    "gold_alias": "{{gold}}",
+    # "should_decontaminate": True,
+    # "doc_to_decontamination_query": "{{text}}",
+    "metric_list": [
+        {
+            "metric": "acc",
+            "aggregation": "mean",
+            "higher_is_better": True,
+        },
+        {
+            "metric": "acc_norm",
+            "aggregation": "mean",
+            "higher_is_better": True,
+        },
+        # todo: check acc_mutual_info because it breaks
+        # {
+        #     "metric": "acc_mutual_info",
+        #     "aggregation": "mean",
+        #     "higher_is_better": True,
+        # },
+    ],
+}
+
+
 def unwrap_list_length_1(list_input: list):
     """Unwraps lists of length 1 and returns the first = single element."""
     if isinstance(list_input, list):
@@ -156,6 +230,7 @@ class TemplateSampler:
     def __init__(
         self,
         path_data_dir: str,
+        path_lm_eval_data_dir: str,
         multiple_choice_rnd_symbols: list,  # = ["", ".", ".)", ")", ":", "()", "[]"],
         additional_templates: list = None,
         template_sampler: Callable = None,
@@ -168,6 +243,7 @@ class TemplateSampler:
         self.path_data_dir = path_data_dir
         self.path_data_meta = self.path_data_dir + "/meta.yaml"
         self.path_data_csv = self.path_data_dir + "/data_clean.csv"
+        self.path_lm_eval_data_dir = path_lm_eval_data_dir
 
         # meta from yaml
         self.meta = load_yaml(self.path_data_meta)
@@ -188,7 +264,7 @@ class TemplateSampler:
         # assert not df.duplicated().sum()
         df.drop_duplicates(inplace=True)
         if "split" not in df.columns:
-            df["split"] = "full"
+            df["split"] = "train"
         self.df = df
 
         # text templates
@@ -513,9 +589,9 @@ class TemplateSampler:
                 )
                 if self.multiple_choice_benchmarking_templates:
                     df_out[
-                        ["output", "output_choices", "correct_output_index"]
+                        ["output", "answer_choices", "correct_output_index"]
                     ] = df_out["output"].str.split(pat="<MC>", n=2, expand=True)
-                    df_out["output_choices"] = df_out["output_choices"].apply(
+                    df_out["answer_choices"] = df_out["answer_choices"].apply(
                         lambda x: x.split("|")
                     )
             else:
@@ -528,15 +604,65 @@ class TemplateSampler:
 
             # save
             if self.benchmarking_templates:
+                # for lm eval harness we need to create yaml config files
+                yaml.add_representer(str, str_presenter)
+                yaml.representer.SafeRepresenter.add_representer(
+                    str, str_presenter
+                )  # to use with safe_dum
+
                 if self.multiple_choice_benchmarking_templates:
-                    output_path = (
-                        self.path_data_dir
-                        + f"/{split}_benchmark_multiple_choice_format-{self.multiple_choice_benchmarking_format}.jsonl"
+                    output_path_dir = (
+                        self.path_lm_eval_data_dir
+                        + f"/{self.path_data_dir.split('/')[-1]}_benchmark_multiple_choice_format-{self.multiple_choice_benchmarking_format}/"  # noqa: E501
                     )
+                    os.makedirs(output_path_dir, exist_ok=True)
+                    output_path = output_path_dir + f"{split}.jsonl"
+
+                    lm_eval_yaml_template_multiple_choice[
+                        "task"
+                    ] = self.path_data_dir.split("/")[-1]
+                    lm_eval_yaml_template_multiple_choice[
+                        "dataset_path"
+                    ] = output_path_dir
+                    lm_eval_yaml_template_multiple_choice[
+                        "dataset_name"
+                    ] = self.path_data_dir.split("/")[-1]
+
+                    fn_lm_eval_yaml = output_path_dir + "/config.yaml"
+                    with open(fn_lm_eval_yaml, "w") as f:
+                        yaml.dump(
+                            lm_eval_yaml_template_multiple_choice, f, sort_keys=False
+                        )
                 else:
-                    output_path = self.path_data_dir + f"/{split}_benchmark.jsonl"
+                    output_path_dir = (
+                        self.path_lm_eval_data_dir
+                        + f"/{self.path_data_dir.split('/')[-1]}_benchmark/"
+                    )
+                    os.makedirs(output_path_dir, exist_ok=True)
+                    output_path = output_path_dir + f"{split}.jsonl"
+
+                    lm_eval_yaml_template_loglikelihood[
+                        "task"
+                    ] = self.path_data_dir.split("/")[-1]
+                    lm_eval_yaml_template_loglikelihood[
+                        "dataset_path"
+                    ] = output_path_dir
+                    lm_eval_yaml_template_loglikelihood[
+                        "dataset_name"
+                    ] = self.path_data_dir.split("/")[-1]
+
+                    fn_lm_eval_yaml = output_path_dir + "/config.yaml"
+                    with open(fn_lm_eval_yaml, "w") as f:
+                        yaml.dump(
+                            lm_eval_yaml_template_loglikelihood, f, sort_keys=False
+                        )
             else:
-                output_path = self.path_data_dir + f"/{split}.jsonl"
+                output_path_dir = (
+                    self.path_lm_eval_data_dir
+                    + f"/{self.path_data_dir.split('/')[-1]}/"
+                )
+                os.makedirs(output_path_dir, exist_ok=True)
+                output_path = output_path_dir + f"{split}.jsonl"
 
             with open(output_path, "w") as f:
                 f.write(df_out.to_json(orient="records", lines=True, force_ascii=False))
@@ -565,6 +691,8 @@ if __name__ == "__main__":
     path_data_dir = sorted(glob.glob(path_base + "tabular/*")) + sorted(
         glob.glob(path_base + "kg/*[!.csv]")
     )
+    path_lm_eval_data_dir = path_base + "text_sampling/export"
+
     for path in path_data_dir:
         print(f"\n###### {path}")
         path_meta = path + "/meta.yaml"
@@ -621,6 +749,7 @@ if __name__ == "__main__":
                 print(f"Running sampling for: {path}")
                 TemplateSampler(
                     path,
+                    path_lm_eval_data_dir,
                     multiple_choice_rnd_symbols=multiple_choice_rnd_symbols,
                     additional_templates=additional_templates,
                     benchmarking_templates=False,
@@ -629,6 +758,7 @@ if __name__ == "__main__":
                 if any(["<EOI>" in t for t in meta["templates"]]):
                     TemplateSampler(
                         path,
+                        path_lm_eval_data_dir,
                         multiple_choice_rnd_symbols=multiple_choice_rnd_symbols,
                         additional_templates=additional_templates,
                         benchmarking_templates=True,
@@ -636,9 +766,9 @@ if __name__ == "__main__":
                     ).apply_sampling_and_export()
                     if any(["%multiple_choice_" in t for t in meta["templates"]]):
                         for i, s in enumerate(multiple_choice_rnd_symbols):
-                            print(i, s)
                             TemplateSampler(
                                 path,
+                                path_lm_eval_data_dir,
                                 multiple_choice_rnd_symbols=[s],
                                 additional_templates=additional_templates,
                                 benchmarking_templates=True,
