@@ -1,16 +1,20 @@
 # run from chemnlp
+# TODO: consider parallelising hendrycks tasks too
 import json
 import subprocess
-from lm_eval import config
 
+from lm_eval import config
 
 EVAL_SCRIPT = "experiments/scripts/run_eval.sh"
 CONDA_ENV = "beth"
 CHEMNLP_FOLDER = "beth"
-DEFAULT_EVAL_CONFIG = f"/fsx/proj-chemnlp/{CHEMNLP_FOLDER}/chemnlp/experiments/configs/hugging-face/eval_configs/eval_pipeline_config.yaml"
+DEFAULT_EVAL_CONFIG = (
+    f"/fsx/proj-chemnlp/{CHEMNLP_FOLDER}"
+    "/chemnlp/experiments/configs/hugging-face/eval_configs/eval_pipeline_config.yaml"
+)
 
-OPEN_LLM_TASKS = ["arc_challenge" , "hellaswag", "truthfulqa_mc", "HENDRYCKS"]
-OPEN_LLM_NSHOTS = [25 , 10, 0, 5]
+OPEN_LLM_TASKS = ["arc_challenge", "hellaswag", "truthfulqa_mc", "HENDRYCKS"]
+OPEN_LLM_NSHOTS = [25, 10, 0, 5]
 
 HENDRYCKS_PREFIX = "hendrycksTest-"
 HENDRYCKS_SUBJECTS = [
@@ -75,19 +79,20 @@ HENDRYCKS_SUBJECTS = [
 
 
 if __name__ == "__main__":
-
     raw_config = config.load_config(DEFAULT_EVAL_CONFIG)
     args = config.EvalPipelineConfig(**raw_config)
     for task, n_shot in zip(OPEN_LLM_TASKS, OPEN_LLM_NSHOTS):
-        wandb_run_name =  f'{args.wandb_run_name}_{task}'
-        
+        wandb_run_name = f"{args.wandb_run_name}_{task}"
+
         if task == "HENDRYCKS":
-            task = ','.join([HENDRYCKS_PREFIX+subject for subject in HENDRYCKS_SUBJECTS])
+            task = ",".join(
+                [HENDRYCKS_PREFIX + subject for subject in HENDRYCKS_SUBJECTS]
+            )
 
         overriding_params = {
-            'tasks': task,
-            'num_fewshot': n_shot,
-            'wandb_run_name': wandb_run_name,
+            "tasks": task,
+            "num_fewshot": n_shot,
+            "wandb_run_name": wandb_run_name,
         }
         overriding_json = f"'{json.dumps(overriding_params)}'".replace(" ", "")
         cmd = f"sbatch {EVAL_SCRIPT} {CHEMNLP_FOLDER} {CONDA_ENV} {DEFAULT_EVAL_CONFIG} {overriding_json}"
