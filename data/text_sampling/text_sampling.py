@@ -29,6 +29,7 @@ standard_tabular_text_templates = [
 
 exclude_from_standard_tabular_text_templates = [
     "ames_mutagenicity",
+    "bioavailability_ma_et_al",
     "chembl_v29",
     "clintox",  # KeyError: 'noun' --> Needs a noun in the definition.
     "flashpoint",  # KeyError: 'description'
