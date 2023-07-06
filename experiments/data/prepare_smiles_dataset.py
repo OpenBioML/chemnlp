@@ -34,7 +34,7 @@ SEED = 1234
 
 def process_docs(docs):
     valid = map(_get_smile_string, docs)
-    invalid = map(_process_invalid_smile, docs) 
+    invalid = map(_process_invalid_smile, docs)
     mixed_data = list(valid) + list(invalid)
     mixed_data = [string for pair in mixed_data for string in pair]
     return random.choice(mixed_data, len(mixed_data)).tolist()
@@ -51,7 +51,7 @@ def _get_smile_string(doc):
     prefix = INVALID_PREFIX if is_valid is None else VALID_PREFIX
     return (
         f"{prefix} {doc}{EOS_TOKEN}",
-        f"{LIFT_Q} {doc}? Answer: {lift_answer}{EOS_TOKEN}"
+        f"{LIFT_Q} {doc}? Answer: {lift_answer}{EOS_TOKEN}",
     )
 
 
@@ -146,12 +146,17 @@ def run(config):
         "total_tokens_in_billions": round(total_tokens / 1e9, 4),
         "data_split_collected": config.data_split,
     }
-    print(summary_stats)
 
     save_path = f"{config.out_dir}/{config.save_name}_{config.data_split}"
     processed_data.save_to_disk(save_path)
-    # with open(f"{save_path}/summary_statistics.json", "w") as f:
-    #     f.write(json.dumps(summary_stats))
+
+    print(summary_stats)
+    if "s3" in save_path:
+        # yet to be implemented
+        pass
+    else:
+        with open(f"{save_path}/summary_statistics.json", "w") as f:
+            f.write(json.dumps(summary_stats))
 
 
 if __name__ == "__main__":
