@@ -118,11 +118,11 @@ oral bioavailability derived by using GA-CG-SVM method},
 journal = {Journal of Pharmaceutical and Biomedical Analysis}""",
         ],
         "templates": [
-            "The molecule with the {SMILES__description} representation of {SMILES#} exhibits {bioavailable#no &NULL}{bioavailable__names__adjective} properties.",  # noqa: E501
-            "Based on the {SMILES__description} representation {SMILES#}, the molecule has {bioavailable#no &NULL}{bioavailable__names__adjective} characteristics.",  # noqa: E501
+            "The molecule with the {SMILES__description} representation of {SMILES#} is {bioavailable#not &NULL}{bioavailable__names__adjective}.",  # noqa: E501
+            "Based on the {SMILES__description} representation {SMILES#}, the molecule is {bioavailable#not &NULL}{bioavailable__names__adjective}.",  # noqa: E501
             "The {SMILES__description} {SMILES#} represents a molecule that is {bioavailable#not &NULL}identified as {bioavailable__names__adjective}.",  # noqa: E501
-            "The {SMILES__description} {SMILES#} is {bioavailable#no &NULL}{bioavailable__names__adjective}.",
-            "The molecule {SMILES#} is {bioavailable__names__adjective}.",  # not all variables need to be used
+            "The {SMILES__description} {SMILES#} is {bioavailable#not &NULL}{bioavailable__names__adjective}.",
+            "The molecule {SMILES#} is {bioavailable__names__adjective}.",
             "Is the {SMILES__description} {SMILES#} {bioavailable__names__adjective}:<EOI> {bioavailable#yes&no}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
             """Task: Please answer the multiple choice question below with {%multiple_choice_enum%2%aA1}.
 Question: Is the molecule with the {SMILES__description} representation of {SMILES#} {bioavailable__names__adjective}?
