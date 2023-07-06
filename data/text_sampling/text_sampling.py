@@ -12,11 +12,18 @@ import yaml
 
 standard_tabular_text_templates = [
     "The molecule with the {SMILES__description} representation of {SMILES#} has a {TARGET__names__noun} of {TARGET#}.",  # noqa: E501
+    "The molecule {SMILES#} has a {TARGET__names__noun} of {TARGET#}.",
     "Based on the {SMILES__description} representation {SMILES#}, the molecule has a {TARGET__names__noun} of {TARGET#}.",  # noqa: E501
+    "Based on the representation {SMILES#}, the molecule has a {TARGET__names__noun} of {TARGET#}.",  # noqa: E501
     "The {SMILES__description} {SMILES#} represents a molecule that has a {TARGET__names__noun} of {TARGET#}.",  # noqa: E501
+    "The {SMILES__description} {SMILES#} represents a molecule with a {TARGET__names__noun} of {TARGET#}.",  # noqa: E501
+    "{SMILES#} represents a molecule that has a {TARGET__names__noun} of {TARGET#}.",  # noqa: E501
+    "{SMILES#} represents a molecule with a {TARGET__names__noun} of {TARGET#}.",  # noqa: E501
     "The {SMILES__description} {SMILES#} has a {TARGET__names__noun} of {TARGET#}.",
     "The molecule {SMILES#} has a {TARGET__names__noun} of {TARGET#}.",
-    "The {TARGET__names__noun} of the {SMILES__description} {SMILES#} is: <EOI>{TARGET#}",  # noqa: E501
+    "{SMILES#} has a {TARGET__names__noun} of {TARGET#}.",
+    "The {TARGET__names__noun} of the {SMILES__description} {SMILES#} is:<EOI> {TARGET#}",  # noqa: E501
+    "The {TARGET__names__noun} of the {SMILES__description} {SMILES#} is<EOI> {TARGET#}.",  # noqa: E501
 ]
 
 
