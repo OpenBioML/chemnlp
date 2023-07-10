@@ -148,11 +148,11 @@ journal = {Chemical Science}""",
             "The molecule {SMILES#} is {penetrate_BBB__names__adjective}.",
             # Instruction tuning text templates
             """Task: Please classify a molecule based on the description.
-Description: Is the molecule {penetrate_BBB__names__adjective}?
+Description: A molecule that is {penetrate_BBB__names__adjective}.
 Molecule {SMILES__description}: {SMILES#}
 Result: {penetrate_BBB#False&True}""",
             """Task: Please classify a molecule based on the description.
-Description: Is the molecule {penetrate_BBB__names__adjective}?
+Description: A molecule that is {penetrate_BBB__names__adjective}.
 Molecule {SMILES__description}: {SMILES#}
 Result: This molecule is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}""",
             """Task: Please create a molecule {SMILES__description} based on the description.
