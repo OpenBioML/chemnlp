@@ -1,7 +1,7 @@
 ---
 name: herg_karim_et_al
-description: "A integrated Ether-à-go-go-related gene (hERG) dataset consisting\nof molecular structures labelled as hERG (<10uM) and non-hERG (>=10uM)
-    blockers in\nthe form of SMILES strings was obtained from the DeepHIT, the BindingDB database,\nChEMBL bioactivity database, and other literature."
+description: "A integrated Ether-à-go-go-related gene (hERG) dataset consisting\nof molecular structures labelled as hERG (<10uM) and non-hERG (>=10uM)\
+    \ blockers in\nthe form of SMILES strings was obtained from the DeepHIT, the BindingDB database,\nChEMBL bioactivity database, and other literature."
 targets:
     - id: herg_blocker
       description: whether it blocks hERG (1, <10uM) or not (0, >=10uM)

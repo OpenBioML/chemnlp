@@ -3,5 +3,5 @@ context_length: 2048
 dataset_name: 'EleutherAI/pile'
 dataset_args: {'name': 'pubmed', 'split': 'train'}
 batch_size: 1
-out_dir: '/fsx/proj-chemnlp/data'
 string_key: 'text'
+save_path: '/fsx/proj-chemnlp/data/example_tokenised'

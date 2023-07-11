@@ -64,7 +64,7 @@ over 40,000 compounds.""",
                 "id": "activity_HIV",  # name of the column in a tabular dataset
                 "description": "whether it is active against HIV virus (1) or not (0).",
                 "units": None,  # units of the values in this column (leave empty if unitless)
-                "type": "boolean",  # can be "categorical", "ordinal", "continuous"
+                "type": "boolean",
                 "names": [  # names for the property (to sample from for building the prompts)
                     {"noun": "activity against the human immunodeficiency virus"},
                     {"noun": "activity against HIV"},

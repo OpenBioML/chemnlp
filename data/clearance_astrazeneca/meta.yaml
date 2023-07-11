@@ -15,7 +15,7 @@ targets:
           - noun: drug clearance
           - noun: volume of plasma cleared of a drug over a specified time period
       uris:
-          - http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C94618
+          - http://purl.bioontology.org/ontology/MEDDRA/10077254
 benchmarks:
     - name: TDC
       link: https://tdcommons.ai/
@@ -27,8 +27,8 @@ identifiers:
     - id: chembl_id
       type: Other
       names:
-          - ChEMBL id
-          - ChEMBL identifier number
+          - noun: ChEMBL id
+          - noun: ChEMBL identifier number
       description: ChEMBL ids
       sample: false
 license: CC BY 4.0

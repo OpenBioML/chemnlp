@@ -68,7 +68,7 @@ traverse and diffuse to the site of actions.""",
                 "id": "rate_of_PPBR",  # name of the column in a tabular dataset
                 "description": "percentage of a drug bound to plasma proteins in the blood",
                 "units": "percentage",  # units of the values in this column (leave empty if unitless)
-                "type": "continuous",  # can be "categorical", "ordinal", "continuous"
+                "type": "continuous",
                 "names": [  # names for the property (to sample from for building the prompts)
                     {"noun": "human plasma protein binding rate (PPBR)"},
                     {"noun": "human plasma protein binding rate"},
@@ -93,13 +93,13 @@ traverse and diffuse to the site of actions.""",
             {
                 "id": "Species",  # column name
                 "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
-                "names": ["species"],
+                "names": [{"noun": "species"}],
                 "description": "species in which the measurement was carried out",
             },
             {
                 "id": "chembl_id",  # column name
                 "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "Other"
-                "names": ["ChEMBL id", "ChEMBL identifier number"],
+                "names": [{"noun": "ChEMBL id"}, {"noun": "ChEMBL identifier number"}],
                 "description": "chembl ids",  # description (optional, except for "Other")
                 "sample": False,
             },

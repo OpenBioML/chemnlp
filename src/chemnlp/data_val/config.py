@@ -50,7 +50,9 @@ class TrainerConfig(BaseModel):
     gradient_checkpointing: bool = False
     deepspeed_config: Optional[str] = None
     torch_compile: bool = False
-    restart_checkpoint: Union[str, bool] = True
+    restart_checkpoint: Union[bool, str] = True
+    gradient_accumulation_steps: int = 1
+    save_total_limit: Optional[int] = None
 
     @validator("learning_rate")
     def small_positive_learning_rate(cls, v):
@@ -101,9 +103,9 @@ class HFDatasetConfig(BaseModel):
     context_length: int
     dataset_name: str
     dataset_args: Dict
-    out_dir: str
     string_key: str = "TEXT"
     batch_size: Optional[int] = 1000
+    save_path: str
 
 
 class DataMixingConfig(BaseModel):

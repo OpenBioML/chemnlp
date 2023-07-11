@@ -81,7 +81,7 @@ def get_and_transform_data():
                 "id": "h_weight_density_theory",  # name of the column in a tabular dataset
                 "description": "theoretical hydrogen storage capacity",  # description of what this column means
                 "units": "wt%",  # units of the values in this column (leave empty if unitless)
-                "type": "continuous",  # can be "categorical", "ordinal", "continuous"
+                "type": "continuous",
                 "names": [  # names for the property (to sample from for building the prompts)
                     {"noun": "theoretical hydrogen storage weight density"},
                 ],
@@ -90,7 +90,7 @@ def get_and_transform_data():
                 "id": "h_weight_density_experiment",  # name of the column in a tabular dataset
                 "description": "experimental hydrogen storage capacity",  # description of what this column means
                 "units": "wt%",  # units of the values in this column (leave empty if unitless)
-                "type": "continuous",  # can be "categorical", "ordinal", "continuous"
+                "type": "continuous",
                 "names": [  # names for the property (to sample from for building the prompts)
                     {"noun": "experimental hydrogen storage capacity"}
                 ],
@@ -105,14 +105,14 @@ def get_and_transform_data():
             {
                 "id": "chemical_formula",
                 "type": "Other",
-                "names": ["chemical formula"],
+                "names": [{"noun": "chemical formula"}],
                 "description": "chemical formula",
             },
             {
                 "id": "synthetic_information",  # name of the column in a tabular dataset
-                "names": ["synthesis procedure summary"],
+                "names": [{"noun": "synthesis procedure summary"}],
                 "description": "brief description of synthetic procedure",  # description of what this column means
-                "type": "Other",  # can be "categorical", "ordinal", "continuous"
+                "type": "Other",
             },
         ],
         "license": "File",  # license under which the original dataset was published

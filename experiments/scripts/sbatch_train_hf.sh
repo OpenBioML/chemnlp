@@ -7,7 +7,7 @@
 #SBATCH --error=/fsx/proj-chemnlp/experiments/logs/training_%j.err
 #SBATCH --open-mode=append
 #SBATCH --account=topchem
-#SBATCH --partition=g40
+#SBATCH --partition=g40x
 #SBATCH --exclusive
 
 ### This script runs a GPT-NeoX experiments
@@ -29,5 +29,5 @@ source $CHEMNLP_PATH/experiments/scripts/env_creation_hf.sh $1 $2
 
 # trigger run
 cd $CHEMNLP_PATH
-python -m torch.distributed.launch --use-env --nnodes 1 --nproc-per-node 8 \
+torchrun --standalone --nnodes 1 --nproc-per-node 8 \
     experiments/scripts/run_tune.py experiments/configs/hugging-face/$3 --config_overrides $overrides

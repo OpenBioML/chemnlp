@@ -7,7 +7,7 @@
 #SBATCH --error=/fsx/proj-chemnlp/experiments/logs/training_%j.err
 #SBATCH --open-mode=append
 #SBATCH --account=topchem
-#SBATCH --partition=g40
+#SBATCH --partition=g40x
 #SBATCH --exclusive
 
 ### This script runs a GPT-NeoX experiments
@@ -20,6 +20,8 @@ set -ex # allow for exiting based on non-0 codes
 export TOKENIZERS_PARALLELISM=false
 export WANDB_BASE_URL="https://stability.wandb.io"
 export NCCL_DEBUG=INFO
+export NCCL_ASYNC_ERROR_HANDLING=1
+export LOGLEVEL=INFO
 overrides=${4:-'{}'}
 
 # set workdir
@@ -36,7 +38,7 @@ head_node_ip=$(srun --nodes=1 --ntasks=1 -w "$head_node" hostname --ip-address)
 echo Node IP: $head_node_ip
 
 # Run script
-srun python -m torch.distributed.launch --use-env --nnodes 4 --nproc_per_node 8 \
+srun torchrun --nnodes $SLURM_NNODES --nproc_per_node 8 \
 --rdzv_id $RANDOM \
 --rdzv_backend c10d \
 --rdzv_endpoint $head_node_ip:29500 \
