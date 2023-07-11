@@ -23,6 +23,8 @@ CHEMNLP_PATH=/fsx/proj-chemnlp/$1/chemnlp
 # create environment
 source $CHEMNLP_PATH/experiments/scripts/env_creation_hf.sh $1 $2
 
+export TOKENIZERS_PARALLELISM=false
+
 # trigger run
 cd $CHEMNLP_PATH/lm-evaluation-harness
 python main_eval.py $3
