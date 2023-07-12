@@ -138,8 +138,8 @@ title = {MoleculeNet: a benchmark for molecular machine learning},
 journal = {Chemical Science}""",
         ],
         "templates": [
-            "The molecule with the {SMILES__description} representation of {SMILES#} is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.",  # noqa: E501
-            "Based on the {SMILES__description} representation {SMILES#}, the molecule is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.",  # noqa: E501
+            "The molecule with the {SMILES__description} of {SMILES#} is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.",  # noqa: E501
+            "Based on the {SMILES__description} {SMILES#}, the molecule is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.",  # noqa: E501
             "The {SMILES__description} {SMILES#} represents a molecule that is {penetrate_BBB#not &NULL}identified as {penetrate_BBB__names__adjective}.",  # noqa: E501
             "The molecule represented with the {SMILES__description} {SMILES#} is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.",  # noqa: E501
             "{SMILES#} represents a molecule that is {penetrate_BBB#not &NULL}identified as {penetrate_BBB__names__adjective}.",  # noqa: E501
@@ -163,9 +163,9 @@ Result: {SMILES#}""",
 Assistant: {penetrate_BBB#No&Yes}, this molecule is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.""",  # noqa: E501
             """User: Is the molecule with the {SMILES__description} {SMILES#} {penetrate_BBB__names__adjective}?
 Assistant: {penetrate_BBB#No&Yes}, it is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.""",  # noqa: E501
-            """User: Can you give me the {SMILES__description} representation of a molecule that is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}?
+            """User: Can you give me the {SMILES__description} of a molecule that is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}?
 Assistant: Yes, here you go: {SMILES#}""",  # noqa: E501
-            """User: I'm looking for the {SMILES__description} representation of a molecule that is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}?
+            """User: I'm looking for the {SMILES__description} of a molecule that is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}?
 Assistant: This is a molecule that is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}: {SMILES#}""",  # noqa: E501
             """User: I want to create a molecule {SMILES__description}.
 Assistant: This sounds very exciting! Should I consider any constraints during generation?
@@ -178,7 +178,7 @@ Assistant: Got it, this {SMILES__description} is {penetrate_BBB#not &NULL}{penet
             # Benchmarking text templates
             "Is the {SMILES__description} {SMILES#} {penetrate_BBB__names__adjective}:<EOI> {penetrate_BBB#yes&no}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
             """Task: Please answer the multiple choice question below with {%multiple_choice_enum%2%aA1}.
-Question: Is the molecule with the {SMILES__description} representation of {SMILES#} {penetrate_BBB__names__adjective}?
+Question: Is the molecule with the {SMILES__description} of {SMILES#} {penetrate_BBB__names__adjective}?
 Options:
 {penetrate_BBB%}
 Answer: {%multiple_choice_result}""",
