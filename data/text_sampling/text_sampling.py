@@ -146,12 +146,12 @@ class PromptTemplate:
     def __init__(self, template: str, input_variables: List[str] = None):
         self.template = template
         if input_variables is None:
-            self.input_variables = self.get_input_variables()
+            self.set_input_variables()
 
-    def get_input_variables(self) -> List[str]:
+    def set_input_variables(self):
         """Gets all variable strings from the text template that are between curly brackets
         that are used as input_variables."""
-        return get_input_variables_from_template(self.template)
+        self.input_variables = get_input_variables_from_template(self.template)
 
     def __repr__(self):
         return f"PromptTemplate: {self.template}"
@@ -251,6 +251,52 @@ class TemplateSampler:
                 assert i in cols, f"target or identifier {i} not in columns {cols}!"
 
         check_targets_and_identifiers(self.meta, df)
+
+        additional_targets = {
+            "selfies": {
+                "id": "selfies",
+                "type": "seflies",
+                "description": "SELFIES",
+            },
+            "deepsmiles": {
+                "id": "deepsmiles",
+                "type": "deepsmiles",
+                "description": "DeepSMILES",
+            },
+            "canonical": {
+                "id": "canonical",
+                "type": "canonical",
+                "description": "canonical form",
+            },
+            "inchi": {
+                "id": "inchi",
+                "type": "inchi",
+                "description": "InChI",
+            },
+            "tucan": {
+                "id": "tucan",
+                "type": "tucan",
+                "description": "TUCAN",
+            },
+            "iupac_name": {
+                "id": "iupac_name",
+                "type": "iupac_name",
+                "description": "IUPAC",
+            },
+        }
+        self.additional_targets = []
+        for col in [
+            "selfies",
+            "deepsmiles",
+            "canonical",
+            "inchi",
+            "tucan",
+            "iupac_name",
+        ]:
+            if col in df.columns:
+                self.additional_targets.append(col)
+                self.meta["targets"].append(additional_targets[col])
+
         # assert not df.duplicated().sum()
         df.drop_duplicates(inplace=True)
         if "split" not in df.columns:
@@ -524,7 +570,24 @@ class TemplateSampler:
     def sample(self, sample: pd.Series, template_idx: int = None):
         """Sample text template by data from the sample row.
         The text template can be specified by the template index."""
+
         prompt_template = self.get_prompt_template_from_template_idx(template_idx)
+
+        # if there are additional_targets we replace the SMILES randomly
+        if len(self.additional_targets) > 0:
+            # get additional targets that are not NaN for this sample
+            non_nan_targets = (
+                sample[["SMILES"] + self.additional_targets].dropna().keys().tolist()
+            )
+            new_target = random.sample(non_nan_targets, k=1)[0]
+            if (
+                new_target != "SMILES"
+            ):  # if it is not SMILES we replace the corresponding parts in the prompt template
+                # recreate prompt template object with replaced template to not change the original templates
+                prompt_template = PromptTemplate(
+                    prompt_template.template.replace("{SMILES", "{" + new_target)
+                )
+
         sample_dict = self.get_sample_dict(sample, prompt_template.template)
         template = prompt_template.insert(sample_dict)
 
