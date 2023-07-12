@@ -146,12 +146,12 @@ class PromptTemplate:
     def __init__(self, template: str, input_variables: List[str] = None):
         self.template = template
         if input_variables is None:
-            self.set_input_variables()
+            self.input_variables = self.get_input_variables()
 
-    def set_input_variables(self):
+    def get_input_variables(self) -> List[str]:
         """Gets all variable strings from the text template that are between curly brackets
         that are used as input_variables."""
-        self.input_variables = get_input_variables_from_template(self.template)
+        return get_input_variables_from_template(self.template)
 
     def __repr__(self):
         return f"PromptTemplate: {self.template}"
