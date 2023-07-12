@@ -25,4 +25,4 @@ source $CHEMNLP_PATH/experiments/scripts/env_creation_hf.sh $1 $2
 
 # trigger run
 cd $CHEMNLP_PATH/lm-evaluation-harness
-python main_eval.py $3
+torchrun --standalone --nnodes 1 --nproc-per-node 8 main_eval.py $3
