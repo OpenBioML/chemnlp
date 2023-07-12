@@ -101,10 +101,10 @@ templates:
       User: Is the molecule with the {SMILES__description} {SMILES#} {penetrate_BBB__names__adjective}?
       Assistant: {penetrate_BBB#No&Yes}, it is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.
     - |-
-      User: Can you give me the SMILES representation of a molecule that is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}?
+      User: Can you give me the {SMILES__description} representation of a molecule that is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}?
       Assistant: Yes, here you go: {SMILES#}
     - |-
-      User: I'm looking for the SMILES representation of a molecule that is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}?
+      User: I'm looking for the {SMILES__description} representation of a molecule that is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}?
       Assistant: This is a molecule that is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}: {SMILES#}
     - |-
       User: I want to create a molecule {SMILES__description}.
