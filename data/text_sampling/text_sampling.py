@@ -9,6 +9,7 @@ from typing import Callable, List
 
 import pandas as pd
 import yaml
+from utils import load_yaml, str_presenter
 
 standard_tabular_text_templates = [
     "The molecule with the {SMILES__description} representation of {SMILES#} has a {TARGET__names__noun} of {TARGET#}.",  # noqa: E501
@@ -40,16 +41,6 @@ exclude_from_standard_tabular_text_templates = [
     "sarscov2_3clpro_diamond",  # AssertionError: target or identifier SARSCoV2_3CLPro_Diamond not in columns...
     "zinc",  # KeyError: 'targets'
 ]
-
-
-# todo: the str_presenter function is used a couple of times in the repo and the duplication should be removed
-def str_presenter(dumper, data):
-    """configures yaml for dumping multiline strings
-    Ref: https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data
-    """
-    if data.count("\n") > 0:  # check for multiline string
-        return dumper.represent_scalar("tag:yaml.org,2002:str", data, style="|")
-    return dumper.represent_scalar("tag:yaml.org,2002:str", data)
 
 
 lm_eval_yaml_template_loglikelihood = {
@@ -140,16 +131,6 @@ class RandomVariable:
     def __call__(self) -> str:
         """Carries out sampling and returns a single element."""
         return unwrap_list_length_1(self.sampler(self.data))
-
-
-def load_yaml(path: str) -> dict:
-    """Load yaml file from path."""
-    with open(path, "r") as stream:
-        try:
-            data = yaml.safe_load(stream)
-        except yaml.YAMLError as exc:
-            print(exc)
-    return data
 
 
 def get_input_variables_from_template(template: str) -> List[str]:
