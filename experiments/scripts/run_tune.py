@@ -151,7 +151,8 @@ def run(config_path: str, config_overrides: Optional[Dict] = None) -> None:
             training_args.output_dir, config.trainer.restart_checkpoint
         )
     )
-    trainer.save_model(config.trainer.output_dir + "/checkpoint-final")
+    if config.trainer.save_strategy == "steps":
+        trainer.save_model(config.trainer.output_dir + "/checkpoint-final")
 
     if config.wandb.enabled:
         # custom logging at end of training
