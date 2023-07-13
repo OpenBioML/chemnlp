@@ -41,7 +41,7 @@ dataset_creation = [
         "selfies",
         "deepsmiles",
         "pubchempy",
-        "tucan@git+https://github.com/TUCAN-nest/TUCAN.git"  # the current version has bugs due to the type checking, maybe this is due to our python version?
+        #"tucan@git+https://github.com/TUCAN-nest/TUCAN.git"  # the current version has bugs due to the type checking, maybe this is due to our python version?
 ]
 
 training = [
