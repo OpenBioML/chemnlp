@@ -135,9 +135,6 @@ if __name__ == "__main__":
     path_data_dir = sorted(glob.glob(path_base + "tabular/*"))
 
     for path in path_data_dir:
-        if path.find("blood_brain_barrier_martins_et_al") == -1:
-            continue
-
         print(f"\n###### {path}")
 
         path_meta = path + "/meta.yaml"
