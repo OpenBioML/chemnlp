@@ -1,5 +1,6 @@
 import glob
 import multiprocessing as mp
+import random
 import time
 
 import deepsmiles
@@ -162,6 +163,11 @@ if __name__ == "__main__":
             parsed = pool.map(line_reps_from_smiles, df.SMILES.tolist())
         end = time.time()
         print(f"processing time: {(end - start)/60:.2f} min")
+        print("Random parsing examples:")
+        for sample in random.sample(parsed, k=5):
+            for key, value in sample.items():
+                print(f"{key:<12}{value}")
+            print()
 
         data = {
             "selfies": [],
