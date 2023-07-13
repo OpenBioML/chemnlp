@@ -9,9 +9,11 @@ import pubchempy as pcp
 import requests
 import selfies
 from rdkit import Chem
-from tucan.canonicalization import canonicalize_molecule
-from tucan.io import graph_from_molfile_text
-from tucan.serialization import serialize_molecule
+
+# tucan needs very likely python 3.10
+# from tucan.canonicalization import canonicalize_molecule
+# from tucan.io import graph_from_molfile_text
+# from tucan.serialization import serialize_molecule
 from utils import load_yaml
 
 
@@ -69,16 +71,16 @@ def smiles_to_inchi(smiles: str) -> str:
     return Chem.MolToInchi(mol)
 
 
-def smiles_to_tucan(smiles: str) -> str:
-    """
-    Takes a SMILES and return the Tucan encoding.
-    For this, create a molfile as StringIO, read it with graph_from_file,
-    canonicalize it and serialize it.
-    """
-    molfile = Chem.MolToMolBlock(Chem.MolFromSmiles(smiles), forceV3000=True)
-    mol = graph_from_molfile_text(molfile)
-    mol = canonicalize_molecule(mol)
-    return serialize_molecule(mol)
+# def smiles_to_tucan(smiles: str) -> str:
+#    """
+#    Takes a SMILES and return the Tucan encoding.
+#    For this, create a molfile as StringIO, read it with graph_from_file,
+#    canonicalize it and serialize it.
+#    """
+#    molfile = Chem.MolToMolBlock(Chem.MolFromSmiles(smiles), forceV3000=True)
+#    mol = graph_from_molfile_text(molfile)
+#    mol = canonicalize_molecule(mol)
+#    return serialize_molecule(mol)
 
 
 CACTUS = "https://cactus.nci.nih.gov/chemical/structure/{0}/{1}"
@@ -124,7 +126,7 @@ def line_reps_from_smiles(smiles: str) -> dict:
         "deepsmiles": _try_except_none(smiles_to_deepsmiles, smiles),
         "canonical": _try_except_none(smiles_to_canoncial, smiles),
         "inchi": _try_except_none(smiles_to_inchi, smiles),
-        "tucan": _try_except_none(smiles_to_tucan, smiles),
+        # "tucan": _try_except_none(smiles_to_tucan, smiles),
         "iupac_name": _try_except_none(smiles_to_iupac_name, smiles),
     }
     return representations
@@ -171,7 +173,7 @@ if __name__ == "__main__":
             "deepsmiles": [],
             "canonical": [],
             "inchi": [],
-            "tucan": [],
+            # "tucan": [],
             "iupac_name": [],
         }
 
