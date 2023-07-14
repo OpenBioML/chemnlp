@@ -536,11 +536,13 @@ class TemplateSampler:
             else:
                 # uncomment to include setup w/o symbols
                 # if random.random() > 0.5:
-                multiple_choice_result = symbols[correct_choice_idx]
-                if random.random() > 0.5:
-                    multiple_choice_result = (
-                        rnd_symbol_prefix + multiple_choice_result + rnd_symbol_suffix
-                    )
+
+                # uncomment to include setup w/ symbols
+                # multiple_choice_result = symbols[correct_choice_idx]
+                # if random.random() > 0.5:
+                #    multiple_choice_result = (
+                #        rnd_symbol_prefix + multiple_choice_result + rnd_symbol_suffix
+                #    )
 
                 # uncomment to include correct_choice
                 # if random.random() > 0.5:
@@ -549,7 +551,7 @@ class TemplateSampler:
 
                 # uncomment to include setup w/o symbols
                 # else:
-                #    multiple_choice_result = correct_choice
+                multiple_choice_result = correct_choice
 
             sample_dict["%multiple_choice_result"] = multiple_choice_result
 

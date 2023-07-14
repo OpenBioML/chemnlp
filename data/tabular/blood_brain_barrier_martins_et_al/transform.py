@@ -150,6 +150,7 @@ journal = {Chemical Science}""",
             """Task: Please classify a molecule based on the description.
 Description: A molecule that is {penetrate_BBB__names__adjective}.
 Molecule {SMILES__description}: {SMILES#}
+Constraint: Even if you are uncertain, you must pick either "True" or "False" without using any other words.
 Result: {penetrate_BBB#False&True}""",
             """Task: Please classify a molecule based on the description.
 Description: A molecule that is {penetrate_BBB__names__adjective}.
@@ -177,6 +178,12 @@ User: Yes, the molecule should {penetrate_BBB#not &NULL}be {penetrate_BBB__names
 Assistant: Got it, this {SMILES__description} is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}: {SMILES#}""",  # noqa: E501
             # Benchmarking text templates
             "Is the {SMILES__description} {SMILES#} {penetrate_BBB__names__adjective}:<EOI> {penetrate_BBB#yes&no}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
+            # todo: check if we go for multiple choice only and remove the benchmarking template above and below
+            """Task: Please classify a molecule based on the description.
+Description: A molecule that is {penetrate_BBB__names__adjective}.
+Molecule {SMILES__description}: {SMILES#}
+Constraint: Even if you are uncertain, you must pick either "True" or "False" without using any other words.
+Result:<EOI> {penetrate_BBB#False&True}""",
             """Task: Please answer the multiple choice question.
 Question: Is the molecule with the {SMILES__description} of {SMILES#} {penetrate_BBB__names__adjective}?
 Constraint: Even if you are uncertain, you must pick either {%multiple_choice_enum%2%aA1} without using any other words.
