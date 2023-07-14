@@ -155,7 +155,7 @@ Result: {penetrate_BBB#False&True}""",
             """Task: Please classify a molecule based on the description.
 Description: A molecule that is {penetrate_BBB__names__adjective}.
 Molecule {SMILES__description}: {SMILES#}
-Constraint: Use a full sentence to answer the question.
+Constraint: Answer the question in a complete sentence.
 Result: This molecule is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.""",
             """Task: Please create a molecule {SMILES__description} based on the description.
 Description: A molecule that is {penetrate_BBB__names__adjective}.
