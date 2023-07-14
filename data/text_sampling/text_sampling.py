@@ -530,18 +530,25 @@ class TemplateSampler:
             )
             # sample multiple_choice_result setup by randomly putting the result parts together
             if self.multiple_choice_benchmarking_templates:
-                multiple_choice_result = f"{rnd_symbol_prefix}{symbols[correct_choice_idx]}{rnd_symbol_suffix} {correct_choice}"  # noqa: E501
+                multiple_choice_result = f"{rnd_symbol_prefix}{symbols[correct_choice_idx]}{rnd_symbol_suffix}"
+                # uncomment below to append correct_choice to the answer after the correct choice symbol
+                # multiple_choice_result = f"{rnd_symbol_prefix}{symbols[correct_choice_idx]}{rnd_symbol_suffix} {correct_choice}"  # noqa: E501
             else:
-                # if random.random() > 0.5:  # uncomment to include setup w/o symbols
+                # uncomment to include setup w/o symbols
+                # if random.random() > 0.5:
                 multiple_choice_result = symbols[correct_choice_idx]
                 if random.random() > 0.5:
                     multiple_choice_result = (
                         rnd_symbol_prefix + multiple_choice_result + rnd_symbol_suffix
                     )
-                if random.random() > 0.5:
-                    if len(multiple_choice_result) > 0:
-                        multiple_choice_result += f" {correct_choice}"
-                # else:  # uncomment to include setup w/o symbols
+
+                # uncomment to include correct_choice
+                # if random.random() > 0.5:
+                #    if len(multiple_choice_result) > 0:
+                #        multiple_choice_result += f" {correct_choice}"
+
+                # uncomment to include setup w/o symbols
+                # else:
                 #    multiple_choice_result = correct_choice
 
             sample_dict["%multiple_choice_result"] = multiple_choice_result
