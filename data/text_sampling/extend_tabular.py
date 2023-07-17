@@ -1,5 +1,6 @@
 import glob
 import multiprocessing as mp
+import os
 import random
 import time
 
@@ -141,18 +142,33 @@ if __name__ == "__main__":
 
         path_meta = path + "/meta.yaml"
         path_data = path + "/data_clean.csv"
+        # check if files are there
+        if not os.path.isfile(path_meta):
+            print("No meta.yaml file in the dataset directory.")
+            continue
+        if not os.path.isfile(path_data):
+            print("No data_clean.csv file in the dataset directory.")
+            continue
 
+        # check if SMILES column is there
+        df = pd.read_csv(path_data, index_col=False, nrows=0)  # only get columns
+        cols = df.columns.tolist()
+        if "SMILES" not in cols:
+            print("No SMILES identifier in the data_clean.csv.")
+            continue
+
+        # check if SMILES identifier is in the meta.yaml file
         meta = load_yaml(path_meta)
-        df = pd.read_csv(path_data)
-
-        # if no SMILES identifier we continue
         if not (
             any([identifier["id"] == "SMILES" for identifier in meta["identifiers"]])
         ):
+            # if no SMILES identifier in the meta.yaml we continue
             print(
                 "No SMILES identifier in the meta.yaml. Please define custom text templates."
             )
             continue
+
+        df = pd.read_csv(path_data)
 
         parsed = []
         n_proc = mp.cpu_count() - 1 or 1
