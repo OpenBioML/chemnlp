@@ -138,6 +138,9 @@ if __name__ == "__main__":
     path_data_dir = sorted(glob.glob(path_base + "tabular/*"))
 
     for path in path_data_dir:
+        if not os.path.isdir(path):
+            continue
+
         print(f"\n###### {path}")
 
         path_meta = path + "/meta.yaml"
