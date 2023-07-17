@@ -11,6 +11,8 @@ import pandas as pd
 import yaml
 from utils import load_yaml, str_presenter
 
+DEFAULT_SIGNIFICANT_DIGITS = 3
+
 standard_tabular_text_templates = [
     "The molecule with the {SMILES__description} representation of {SMILES#} has a {TARGET__names__noun} of {TARGET#}.",  # noqa: E501
     "The molecule {SMILES#} has a {TARGET__names__noun} of {TARGET#}.",
@@ -367,14 +369,14 @@ class TemplateSampler:
             out = unwrap_list_length_1(self.column_datafield_sampler(choices))
         elif "#" in var:  # use only data from column
             out = sample[var.replace("#", "")]
-            # if *_smiles is nan sample from *_name
+            # for KG: if *_smiles is nan sample from *_name
             if (
                 not isinstance(out, str)
                 and math.isnan(out)
                 and var.find("_smiles") != -1
             ):
                 out = sample[var.replace("_smiles", "_name").replace("#", "")]
-            # if *_protein_names is nan sample from *_name
+            # for KG: if *_protein_names is nan sample from *_name
             elif (
                 not isinstance(out, str)
                 and math.isnan(out)
@@ -382,7 +384,19 @@ class TemplateSampler:
             ):
                 out = sample[var.replace("_protein_names", "_name").replace("#", "")]
 
-        if not (isinstance(out, str)):
+        var_dict = [
+            x
+            for x in meta["identifiers"] + meta["targets"]
+            if x["id"] == var.replace("#", "")
+        ][0]
+        data_type = var_dict["type"]
+        if data_type == "continuous":
+            assert isinstance(out, float)
+            significant_digits = var_dict.get(
+                "significant_digits", DEFAULT_SIGNIFICANT_DIGITS
+            )
+            out = str(f"{round(out, significant_digits):.{significant_digits}f}")
+        else:
             out = str(out)
 
         # sampling based on row data and their definiton in the row

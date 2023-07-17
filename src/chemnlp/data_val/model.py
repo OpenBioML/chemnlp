@@ -133,6 +133,9 @@ class Target(YamlModel, extra=Extra.forbid):
     sample: bool = True
     """Wether the target should be sampled for the text template generation."""
 
+    significant_digits: Optional[int]
+    """Significant digits to round float values."""
+
     @validator("uris")
     def uris_resolves(cls, values):
         if values is not None:
