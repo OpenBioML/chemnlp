@@ -1,5 +1,5 @@
 # run from chemnlp
-# TODO: consider parallelising hendrycks tasks too
+# tasks with n_shot recorded in open_llm_leaderboard and gpt-4 technical report
 import json
 import subprocess
 
@@ -14,8 +14,15 @@ DEFAULT_EVAL_CONFIG = (
 )
 DEFAULT_EVAL_EXPORT_PATH = "/fsx/proj-chemnlp/experiments/eval_tables"
 
-OPEN_LLM_TASKS = ["arc_challenge", "hellaswag", "truthfulqa_mc", "HENDRYCKS"]
-OPEN_LLM_NSHOTS = [25, 10, 0, 5]
+TASKS = {
+    "arc_challenge": 25,
+    "hellaswag": 10,
+    "truthfulqa_mc": 0,
+    "HENDRYCKS": 5,
+    "winogrande": 5,
+    "drop": 3,
+    "gsm8k": 5,
+}
 
 HENDRYCKS_PREFIX = "hendrycksTest-"
 HENDRYCKS_SUBJECTS = [
@@ -82,7 +89,7 @@ HENDRYCKS_SUBJECTS = [
 if __name__ == "__main__":
     raw_config = config.load_config(DEFAULT_EVAL_CONFIG)
     args = config.EvalPipelineConfig(**raw_config)
-    for task, n_shot in zip(OPEN_LLM_TASKS, OPEN_LLM_NSHOTS):
+    for task, n_shot in TASKS.items():
         wandb_run_name = f"{args.wandb_run_name}_{task}"
 
         if task == "HENDRYCKS":
