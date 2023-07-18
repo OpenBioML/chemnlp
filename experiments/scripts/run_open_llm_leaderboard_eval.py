@@ -10,8 +10,9 @@ CONDA_ENV = "beth"
 CHEMNLP_FOLDER = "beth"
 DEFAULT_EVAL_CONFIG = (
     f"/fsx/proj-chemnlp/{CHEMNLP_FOLDER}"
-    "/chemnlp/experiments/configs/hugging-face/eval_configs/eval_pipeline_config.yaml"
+    "/fsx/proj-chemnlp/beth/chemnlp/experiments/configs/eval_configs/default_eval_config.yaml"
 )
+DEFAULT_EVAL_EXPORT_PATH = "/fsx/proj-chemnlp/experiments/eval_tables"
 
 OPEN_LLM_TASKS = ["arc_challenge", "hellaswag", "truthfulqa_mc", "HENDRYCKS"]
 OPEN_LLM_NSHOTS = [25, 10, 0, 5]
@@ -93,6 +94,7 @@ if __name__ == "__main__":
             "tasks": task,
             "num_fewshot": n_shot,
             "wandb_run_name": wandb_run_name,
+            "export_table_dir": DEFAULT_EVAL_EXPORT_PATH,
         }
         overriding_json = f"'{json.dumps(overriding_params)}'".replace(" ", "")
         cmd = f"sbatch {EVAL_SCRIPT} {CHEMNLP_FOLDER} {CONDA_ENV} {DEFAULT_EVAL_CONFIG} {overriding_json}"
