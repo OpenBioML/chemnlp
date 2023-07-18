@@ -33,20 +33,20 @@ SEED = 1234
 
 
 def process_docs(docs):
-    valid = map(_get_smile_string, docs)
-    invalid = map(_process_invalid_smile, docs)
+    valid = map(_get_smiles_string, docs)
+    invalid = map(_process_invalid_smiles, docs)
     mixed_data = list(valid) + list(invalid)
     mixed_data = [string for pair in mixed_data for string in pair]
     return random.choice(mixed_data, len(mixed_data)).tolist()
 
 
-def _process_invalid_smile(doc):
-    invalid_smile = doc[: random.randint(1, len(doc))]
-    return _get_smile_string(invalid_smile)
+def _process_invalid_smiles(doc):
+    invalid_smiles = doc[: random.randint(1, len(doc))]
+    return _get_smiles_string(invalid_smiles)
 
 
-def _get_smile_string(doc):
-    is_valid = Chem.MolFromSmiles(doc)
+def _get_smiles_string(doc):
+    is_valid = Chem.MolFromsmiles(doc)
     lift_answer = INVALID_LIFT_A if is_valid is None else VALID_LIFT_A
     prefix = INVALID_PREFIX if is_valid is None else VALID_PREFIX
     return (
