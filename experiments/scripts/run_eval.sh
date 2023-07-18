@@ -16,7 +16,7 @@
 ### The third arg ($3) is the name of the eval config.yaml file
 
 set -ex # allow for exiting based on non-0 codes
-
+overrides=${4:-'{}'}
 # set workdir
 CHEMNLP_PATH=/fsx/proj-chemnlp/$1/chemnlp
 
@@ -25,4 +25,4 @@ source $CHEMNLP_PATH/experiments/scripts/env_creation_hf.sh $1 $2
 
 # trigger run
 cd $CHEMNLP_PATH/lm-evaluation-harness
-python main_eval.py $3
+python main_eval.py $3 --config_overrides $overrides
