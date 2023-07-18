@@ -2,7 +2,7 @@ model: hf-causal
 model_args: "pretrained=/fsx/proj-chemnlp/experiments/checkpoints/finetuned/full_1b/checkpoint-final"
 # model_args: "pretrained=EleutherAI/pythia-1b"
 tasks: "hendrycksTest-college_biology,hendrycksTest-college_chemistry,hendrycksTest-college_mathematics,hendrycksTest-college_physics,hendrycksTest-high_school_mathematics,hendrycksTest-high_school_biology,hendrycksTest-high_school_chemistry,hendrycksTest-high_school_physics"
-batch_size: 8
+batch_size: 12
 device: 'cuda:0'
 wandb_log: true
 wandb_project: LLCheM
