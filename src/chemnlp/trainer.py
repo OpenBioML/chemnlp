@@ -20,6 +20,7 @@ class LLcheMTrainer(Trainer):
         """
         Rewritten over from transformers 4.30.2
         * custom sampler
+        * custom optional dataloader shuffling
         * all other kwargs get passed as normal
         """
         super().__init__(**kwargs)
