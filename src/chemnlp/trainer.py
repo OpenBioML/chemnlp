@@ -11,7 +11,12 @@ from transformers.utils import is_datasets_available
 
 
 class LLcheMTrainer(Trainer):
-    def __init__(self, sampler: Optional[sampler.Sampler] = None, shuffle_dataloader: Optional[bool] = True, **kwargs):
+    def __init__(
+        self,
+        sampler: Optional[sampler.Sampler] = None,
+        shuffle_dataloader: Optional[bool] = True,
+        **kwargs,
+    ):
         """
         Rewritten over from transformers 4.30.2
         * custom sampler
@@ -56,7 +61,7 @@ class LLcheMTrainer(Trainer):
                 collate_fn=data_collator,
                 num_workers=self.args.dataloader_num_workers,
                 pin_memory=self.args.dataloader_pin_memory,
-                shuffle=self.shuffle_dataloader
+                shuffle=self.shuffle_dataloader,
             )
 
         # NOTE change from original code
@@ -71,5 +76,5 @@ class LLcheMTrainer(Trainer):
             num_workers=self.args.dataloader_num_workers,
             pin_memory=self.args.dataloader_pin_memory,
             worker_init_fn=seed_worker,
-            shuffle=self.shuffle_dataloader
+            shuffle=self.shuffle_dataloader,
         )
