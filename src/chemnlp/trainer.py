@@ -1,19 +1,17 @@
 """A custom trainer for modifying data sampling behaviour"""
 from typing import Optional
-import torch
+
 import datasets
+import torch
 from torch.utils.data import DataLoader, sampler
 from transformers import Trainer
 from transformers.trainer_pt_utils import IterableDatasetShard
 from transformers.trainer_utils import seed_worker
 from transformers.utils import is_datasets_available
 
+
 class LLcheMTrainer(Trainer):
-    def __init__(
-        self,
-        sampler: Optional[sampler.Sampler] = None,
-        **kwargs
-    ):
+    def __init__(self, sampler: Optional[sampler.Sampler] = None, **kwargs):
         """
         Rewritten over from transformers 4.30.2
         * custom sampler
@@ -33,9 +31,13 @@ class LLcheMTrainer(Trainer):
         train_dataset = self.train_dataset
         data_collator = self.data_collator
         if is_datasets_available() and isinstance(train_dataset, datasets.Dataset):
-            train_dataset = self._remove_unused_columns(train_dataset, description="training")
+            train_dataset = self._remove_unused_columns(
+                train_dataset, description="training"
+            )
         else:
-            data_collator = self._get_collator_with_removed_columns(data_collator, description="training")
+            data_collator = self._get_collator_with_removed_columns(
+                data_collator, description="training"
+            )
 
         if isinstance(train_dataset, torch.utils.data.IterableDataset):
             if self.args.world_size > 1:
@@ -68,4 +70,3 @@ class LLcheMTrainer(Trainer):
             pin_memory=self.args.dataloader_pin_memory,
             worker_init_fn=seed_worker,
         )
-    
