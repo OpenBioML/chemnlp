@@ -58,7 +58,7 @@ def tokenise(
 
 
 def get_tokenised_data_minimum_padding(
-    dataset: list,
+    dataset: List,
     tokenizer: PreTrainedTokenizer,
     max_length: int,
     eos_string: str,
@@ -78,7 +78,7 @@ def get_tokenised_data_minimum_padding(
 
 
 def _concatenate_samples_without_splitting(
-    dataset: list,
+    dataset: List,
     tokenizer: PreTrainedTokenizer,
     max_length: int,
     eos_string: str,
@@ -118,7 +118,7 @@ def _concatenate_samples_without_splitting(
 
 
 def _pad_batched_data(
-    dataset: list,
+    dataset: List,
     tokenizer: PreTrainedTokenizer,
     max_length: int,
 ):
