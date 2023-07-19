@@ -354,13 +354,13 @@ class TemplateSampler:
         """Get target string from sample row and variable string."""
         # sampling based on columns and their definiton in the text template
         if ("#" in var) and ("&" in var):  # recoding information in var
-            column, choices = var.split("#")
+            var, choices = var.split("#")
             choices = choices.split("&")
-            choice = choices[sample[column]]
+            choice = choices[sample[var]]
             if choice == "NULL":
                 out = ""
             else:
-                out = choices[sample[column]]
+                out = choices[sample[var]]
         elif ("#" in var) and ("|" in var):  # use data from multiple columns
             columns = var.split("|")
             columns = [var.replace("#", "") for var in columns]
