@@ -10,7 +10,7 @@ CONDA_ENV = "beth"
 CHEMNLP_FOLDER = "beth"
 DEFAULT_EVAL_CONFIG = (
     f"/fsx/proj-chemnlp/{CHEMNLP_FOLDER}"
-    "/fsx/proj-chemnlp/beth/chemnlp/experiments/configs/eval_configs/default_eval_config.yaml"
+    "/chemnlp/experiments/configs/eval_configs/default_eval_config.yaml"
 )
 DEFAULT_EVAL_EXPORT_PATH = "/fsx/proj-chemnlp/experiments/eval_tables"
 
