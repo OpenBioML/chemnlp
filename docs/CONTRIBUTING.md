@@ -41,11 +41,11 @@ With "implementing" we mean the following:
   - `meta.yaml` describing the dataset in the form that `transform.py` produces. We will use this later to construct the prompts.
     > If your dataset has multiple natural splits (i.e. train, test, validation) you can create a <split>\_meta.yaml for each.
   - `transform.py` Python code that transforms the original dataset (linked in `meta.yaml`) into a tabular form that can be consumed by the loader.
+    In most cases the data will bes stored in a tabular format and should be named `data_clean.csv`.
     For tabular datasets that will mostly involve: Removing/merging duplicated entries, renaming columns, dropping unused columns.
     Try to keep the output your `transform.py` uses as lean as possible (i.e. no columns that will not be used).
     In some cases, you might envision that extra columns might be useful. If this is the case, please add them (e.g., indicating some grouping, etc.)
     Even though some examples create the `meta.yaml` in `transform.py` there is no need to do so. You can also do it by hand.
-    In most cases the data will bes stored in a tabular format and should be named `data_clean.csv`.
 
 
     In the `transform.py` please try to download the data from an official resource.
