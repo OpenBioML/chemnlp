@@ -16,7 +16,6 @@ from peft import PromptTuningConfig, PromptTuningInit, TaskType, get_peft_model
 from transformers import (
     AutoTokenizer,
     DataCollatorForLanguageModeling,
-    Trainer,
     TrainingArguments,
 )
 
@@ -27,6 +26,7 @@ from chemnlp.utils import (
     get_local_ip_address,
     load_config,
 )
+from chemnlp.trainer import LLcheMTrainer
 
 FILE_PATH = pathlib.Path(__file__).parent.resolve()
 CONFIG_DIR = FILE_PATH.parent / "configs"
@@ -138,7 +138,7 @@ def run(config_path: str, config_overrides: Optional[Dict] = None) -> None:
         )
 
     # start train or auto-restart
-    trainer = Trainer(
+    trainer = LLcheMTrainer(
         model=model,
         args=training_args,
         train_dataset=split_dataset["train"],
