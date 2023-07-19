@@ -6,7 +6,6 @@ Example Usage:
 """
 
 import argparse
-import itertools
 import json
 
 import datasets
@@ -14,7 +13,7 @@ from numpy import random
 from rdkit import Chem, RDLogger
 from transformers import AutoTokenizer
 
-from chemnlp.data.utils import pad_sequence
+from chemnlp.data.utils import get_tokenised_data_minimum_padding
 from chemnlp.data_val.config import LMEvalDataConfig
 from chemnlp.utils import load_config
 
@@ -33,82 +32,26 @@ SEED = 1234
 
 
 def process_docs(docs):
-    valid = map(_get_smile_string, docs)
-    invalid = map(_process_invalid_smile, docs)
+    valid = map(_get_smiles_string, docs)
+    invalid = map(_process_invalid_smiles, docs)
     mixed_data = list(valid) + list(invalid)
     mixed_data = [string for pair in mixed_data for string in pair]
     return random.choice(mixed_data, len(mixed_data)).tolist()
 
 
-def _process_invalid_smile(doc):
-    invalid_smile = doc[: random.randint(1, len(doc))]
-    return _get_smile_string(invalid_smile)
+def _process_invalid_smiles(doc):
+    invalid_smiles = doc[: random.randint(1, len(doc))]
+    return _get_smiles_string(invalid_smiles)
 
 
-def _get_smile_string(doc):
-    is_valid = Chem.MolFromSmiles(doc)
+def _get_smiles_string(doc):
+    is_valid = Chem.MolFromsmiles(doc)
     lift_answer = INVALID_LIFT_A if is_valid is None else VALID_LIFT_A
     prefix = INVALID_PREFIX if is_valid is None else VALID_PREFIX
     return (
         f"{prefix} {doc}{EOS_TOKEN}",
         f"{LIFT_Q} {doc}? Answer: {lift_answer}{EOS_TOKEN}",
     )
-
-
-def concatenate_samples_without_splitting(dataset, tokenizer, max_length):
-    """concatenate samples into batches upto max_length without
-    splitting any of the individual samples between batches"""
-
-    tok_articles = [tokenizer(x)["input_ids"] for x in dataset]
-    tok_articles = [sample for sample in tok_articles if len(sample) <= max_length]
-    tok_articles = list(itertools.chain.from_iterable(tok_articles))
-    eos_token = tokenizer.encode(EOS_TOKEN)[0]
-
-    concatenated_articles = []
-    p0, p1, last_eos = 0, 1, 0
-    while p1 < len(tok_articles):
-        if tok_articles[p1] == eos_token:
-            if (p1 - p0 + 1) < max_length:
-                # keep track of most recent eos index, continue exploring
-                last_eos = p1
-
-            elif (p1 - p0 + 1) == max_length:
-                # collect whole pointer window
-                concatenated_articles.append(tok_articles[p0 : p1 + 1])
-                last_eos = p1
-                p0 = p1 + 1
-                p1 = p0
-            else:
-                # max_length exceeded, collect only up to last eos
-                concatenated_articles.append(tok_articles[p0 : last_eos + 1])
-                p0 = last_eos + 1
-                p1 = p0
-        p1 += 1
-
-    # collect final batch
-    concatenated_articles.append(tok_articles[p0:])
-    return concatenated_articles
-
-
-def pad_batched_data(dataset, tokenizer, max_length):
-    padded_sequences_all = []
-    attention_masks_all = []
-
-    for article in dataset:
-        if len(article) < max_length:
-            article, attention_masks = pad_sequence(
-                article, max_length, tokenizer.pad_token_id
-            )
-        else:
-            attention_masks = [1] * max_length
-        padded_sequences_all.append(article)
-        attention_masks_all.append(attention_masks)
-
-    return {
-        "input_ids": padded_sequences_all,
-        "token_type_ids": [[0] * max_length] * len(padded_sequences_all),
-        "attention_mask": attention_masks_all,
-    }
 
 
 def run(config):
@@ -129,21 +72,22 @@ def run(config):
     if not tokenizer.pad_token:
         tokenizer.add_special_tokens({"pad_token": "<|padding|>"})
 
-    batched_data = concatenate_samples_without_splitting(
-        mixed_data, tokenizer, config.context_length
+    processed_data = get_tokenised_data_minimum_padding(
+        dataset=mixed_data,
+        tokenizer=tokenizer,
+        max_length=config.context_length,
+        eos_string=EOS_TOKEN,
     )
-    total_tokens = sum([len(batch) for batch in batched_data])
-    processed_data = pad_batched_data(batched_data, tokenizer, config.context_length)
     processed_data = datasets.Dataset.from_dict(processed_data)
 
     summary_stats = {
         "model_name": config.model_name,
         "total_samples": processed_data.num_rows,
         "max_context_length": config.context_length,
+        "total_tokens": config.context_length * processed_data.num_rows,
         "total_padded_tokens_in_billions": round(
             config.context_length * processed_data.num_rows / 1e9, 4
         ),
-        "total_tokens_in_billions": round(total_tokens / 1e9, 4),
         "data_split_collected": config.data_split,
     }
 
