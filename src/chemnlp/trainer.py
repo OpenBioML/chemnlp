@@ -55,7 +55,8 @@ class LLcheMTrainer(Trainer):
                 pin_memory=self.args.dataloader_pin_memory,
             )
 
-        train_sampler = self._get_train_sampler()
+        # NOTE change from original code
+        train_sampler = self.sampler if self.sampler else self._get_train_sampler()
 
         return DataLoader(
             train_dataset,
