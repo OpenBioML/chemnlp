@@ -26,6 +26,7 @@ from chemnlp.utils import (
     collect_gpu_memory,
     get_local_ip_address,
     load_config,
+    load_and_split
 )
 
 FILE_PATH = pathlib.Path(__file__).parent.resolve()
@@ -111,10 +112,7 @@ def run(config_path: str, config_overrides: Optional[Dict] = None) -> None:
         f"Total Parameters: {model.num_parameters()} Trainable Parameters: {total_trainables}",
     )
 
-    dataset = datasets.load_from_disk(config.data.path)
-    split_dataset = dataset.train_test_split(
-        test_size=config.data.validation_size, shuffle=False
-    )
+    split_dataset = load_and_split(config.data.path, config.data.validation_size)
     data_collator = DataCollatorForLanguageModeling(tokenizer, mlm=False)
 
     training_args = TrainingArguments(
