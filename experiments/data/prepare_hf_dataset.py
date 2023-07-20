@@ -37,7 +37,7 @@ def run(config_path: str):
         lambda x: isinstance(x[config.string_key], str), num_proc=os.cpu_count()
     )
     print(
-        f"Removed {dataset.num_rows-filtered_ds.num_rows} samples due as not str type."
+        f"Removed {dataset.num_rows-filtered_ds.num_rows} samples as not of type str."
     )
 
     tokenised_data = filtered_ds.map(
