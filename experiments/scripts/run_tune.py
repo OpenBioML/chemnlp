@@ -119,14 +119,16 @@ def run(config_path: str, config_overrides: Optional[Dict] = None) -> None:
 
         # collect all datasets
         data_sources = {source: load_and_split(source, val_size) for source, val_size in zip(config.data.path, validation_sizes)}
-        
+        train_ds = [d['train'] for d in data_sources.values()]
         if config.data.interleave_probs:
             # interleaving with specific probabilities and stopping criterion
             assert config.data.interleave_probs and config.data.sampling_criterion, "both interleaving probabilities and strategy must be set"
-            raise ValueError('INTERLEAVING IS NOT SUPPORTED YET')
+            assert len(config.data.interleave_probs) == len(config.data.path), "you must specify an equal number of datasets and probabilities"
+            train_dataset = datasets.interleave_datasets(train_ds, probabilities=config.data.interleave_probs, stopping_strategy=config.data.sampling_criterion)
         else:
             # do full random concatenation of training data
-            train_dataset = datasets.concatenate_datasets([d['train'] for d in data_sources.values()])
+            train_dataset = datasets.concatenate_datasets(train_ds)
+        # NOTE validation set is independent of the mixing strategy
         val_dataset = datasets.concatenate_datasets([d['test'] for d in data_sources.values()])
 
     else:
