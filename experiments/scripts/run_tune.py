@@ -25,8 +25,8 @@ from chemnlp.utils import (
     collect_cpu_memory,
     collect_gpu_memory,
     get_local_ip_address,
+    load_and_split,
     load_config,
-    load_and_split
 )
 
 FILE_PATH = pathlib.Path(__file__).parent.resolve()
@@ -114,27 +114,48 @@ def run(config_path: str, config_overrides: Optional[Dict] = None) -> None:
 
     if isinstance(config.data.path, list):
         # set validation size per dataset or constant
-        validation_sizes = [config.data.validation_size]*len(config.data.path) if isinstance(config.data.validation_size, float) else config.data.validation_size
-        assert len(config.data.path) == len(validation_sizes), "you must specify an equal number of datasets and validation sizes"
+        validation_sizes = (
+            [config.data.validation_size] * len(config.data.path)
+            if isinstance(config.data.validation_size, float)
+            else config.data.validation_size
+        )
+        assert len(config.data.path) == len(
+            validation_sizes
+        ), "you must specify an equal number of datasets and validation sizes"
 
         # collect all datasets
-        data_sources = {source: load_and_split(source, val_size) for source, val_size in zip(config.data.path, validation_sizes)}
-        train_ds = [d['train'] for d in data_sources.values()]
+        data_sources = {
+            source: load_and_split(source, val_size)
+            for source, val_size in zip(config.data.path, validation_sizes)
+        }
+        train_ds = [d["train"] for d in data_sources.values()]
         if config.data.interleave_probs:
             # interleaving with specific probabilities and stopping criterion
-            assert config.data.interleave_probs and config.data.sampling_criterion, "both interleaving probabilities and strategy must be set"
-            assert len(config.data.interleave_probs) == len(config.data.path), "you must specify an equal number of datasets and probabilities"
-            train_dataset = datasets.interleave_datasets(train_ds, probabilities=config.data.interleave_probs, stopping_strategy=config.data.sampling_criterion)
+            assert (
+                config.data.interleave_probs and config.data.sampling_criterion
+            ), "both interleaving probabilities and strategy must be set"
+            assert len(config.data.interleave_probs) == len(
+                config.data.path
+            ), "you must specify an equal number of datasets and probabilities"
+            train_dataset = datasets.interleave_datasets(
+                train_ds,
+                probabilities=config.data.interleave_probs,
+                stopping_strategy=config.data.sampling_criterion,
+            )
         else:
             # do full random concatenation of training data
             train_dataset = datasets.concatenate_datasets(train_ds)
         # NOTE validation set is independent of the mixing strategy
-        val_dataset = datasets.concatenate_datasets([d['test'] for d in data_sources.values()])
+        val_dataset = datasets.concatenate_datasets(
+            [d["test"] for d in data_sources.values()]
+        )
 
     else:
         # load single dataset
-        train_dataset, val_dataset = load_and_split(config.data.path, config.data.validation_size)
-    
+        train_dataset, val_dataset = load_and_split(
+            config.data.path, config.data.validation_size
+        )
+
     data_collator = DataCollatorForLanguageModeling(tokenizer, mlm=False)
     training_args = TrainingArguments(
         **config.trainer.dict(exclude={"deepspeed_config", "restart_checkpoint"}),
