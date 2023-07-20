@@ -33,9 +33,13 @@ def run(config_path: str):
     dataset = datasets.load_dataset(
         config.dataset_name, **config.dataset_args, num_proc=os.cpu_count()
     )
-    filtered_ds = dataset.filter(lambda x: isinstance(x[config.string_key], str), num_proc=os.cpu_count())
-    print(f"Removed {dataset.num_rows-filtered_ds.num_rows} samples due as not str type.")
-    
+    filtered_ds = dataset.filter(
+        lambda x: isinstance(x[config.string_key], str), num_proc=os.cpu_count()
+    )
+    print(
+        f"Removed {dataset.num_rows-filtered_ds.num_rows} samples due as not str type."
+    )
+
     tokenised_data = filtered_ds.map(
         lambda batch: tokenise(
             batch, tokenizer, config.context_length, config.string_key
@@ -46,7 +50,7 @@ def run(config_path: str):
         num_proc=os.cpu_count(),
         load_from_cache_file=False,
     )
-    
+
     summary_stats = {
         "model_name": config.model_name,
         "dataset_name": config.dataset_name,
