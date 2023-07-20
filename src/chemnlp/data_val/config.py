@@ -7,8 +7,10 @@ DictofLists = Dict[str, List]
 
 
 class Data(BaseModel):
-    path: str  # can be local or S3 directory
-    validation_size: float = 0.05
+    path: Union[List[str], str]  # can be local or S3 directory
+    validation_size: Union[List[float], float] = 0.05
+    interleave_probs: Optional[List[float]] = None
+    sampling_criterion: Optional[str] = None
 
     @validator("validation_size")
     def small_positive_validation_size(cls, v):
