@@ -16,11 +16,11 @@ from peft import PromptTuningConfig, PromptTuningInit, TaskType, get_peft_model
 from transformers import (
     AutoTokenizer,
     DataCollatorForLanguageModeling,
-    Trainer,
     TrainingArguments,
 )
 
 from chemnlp.data_val.config import TrainPipelineConfig
+from chemnlp.trainer import LLcheMTrainer
 from chemnlp.utils import (
     collect_cpu_memory,
     collect_gpu_memory,
@@ -138,7 +138,7 @@ def run(config_path: str, config_overrides: Optional[Dict] = None) -> None:
         )
 
     # start train or auto-restart
-    trainer = Trainer(
+    trainer = LLcheMTrainer(
         model=model,
         args=training_args,
         train_dataset=split_dataset["train"],
