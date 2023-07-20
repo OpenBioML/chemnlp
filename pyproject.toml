@@ -51,7 +51,8 @@ training = [
 tokenisation = [
         "zstandard",
         "apache_beam",
-        "mwparserfromhell"
+        "mwparserfromhell",
+        "jsonlines"
 ]
 
 [tool.setuptools_scm]
