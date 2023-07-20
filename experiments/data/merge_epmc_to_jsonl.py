@@ -1,16 +1,17 @@
 """
-This file is specifically for taking a nested folder of jsonlines files 
+This file is specifically for taking a nested folder of jsonlines files
 and merging them into one complete jsonlines file.
 
-e.g. 
+e.g.
 <dir>/2022_05_27/file1.jsonl
 <dir>/2022_05_25/file2.jsonl
 ...
 """
-from typing import List
-import os
-import jsonlines
 import multiprocessing
+import os
+from typing import List
+
+import jsonlines
 from tqdm import tqdm
 
 # NOTE hardcoded paths
