@@ -139,6 +139,7 @@ The sampling procedure incorporates a range of different multiple choice enumera
 * numerical (`1, 2, 3, ...`) and alphabetical (`a, b, c, ...` or `A, B, C, ...`) enumerations combined with
 * different suffixes, i.e., ` ` (no suffix), `.`, `.)`, `)`, and `:`, to create a range of different multiple choice enumerations.
 If only the choices `0` or `1` are available they will be recoded with `False` and `True`.
+
 ##### Standard template
 ```
 Task: Please answer the multiple choice question below with {%multiple_choice_enum%2%aA1}.
@@ -168,6 +169,32 @@ Answer:<EOI> {%multiple_choice_result}
 The benchmarking setup exports additional fields for the benchmarking setup, see the example below:
 `{"input":"Task: Please answer the multiple choice question below with 1 or 2.\nQuestion: Is the molecule with the SMILES representation of BrCBr Ames mutagenic?\nOptions:\n1.) False\n2.) True\nAnswer:","output":" 2","output_choices":["1","2"],"correct_output_index":"1"}`
 Please have a look at the following section below about the general benchmarking template setup.
+
+#### Example text templates 4 for flexible multiple choice setups
+More flexible multiple choice setups are also supported. The standard multiple choice setup from "Example text templates 3 for multiple choice setups" is intended for features of molecules as those are deduplicated during the sampling process. In contrast, this flexible multiple choice setup also lets you use the molecule identifiers, e.g., SMILES, in the multiple choice options.
+
+For this we only need to add one component to the previously outlined multiple choice format:
+* In order to let the model predict which `SMILES` has or has not the boolean variable `penetrate_BBB` we simply add `SMILES%penetrate_BBB%` as an enumeration placeholder for the possible options. With that the list of the multiple choice enumerations shows the SMILES data. Note that the `penetrate_BBB#not &NULL` is needed because the sampling is based on the individual row and depending on if `penetrate_BBB` is `True` or `False` we look for a different label because in the code we compare the sampled options to the `penetrate_BBB` value of the row.
+
+```
+Task: Please answer the multiple choice question.
+Question: Which molecules are {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}?
+Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any other words.
+Options:
+{SMILES%penetrate_BBB%}
+Answer: {%multiple_choice_result}
+```
+
+```
+Task: Please answer the multiple choice question.
+Question: Which molecules are not penetrating the blood brain barrier?
+Constraint: You must select none, one or more options from A, B, or C without using any other words.
+Options:
+A. Cc1ccsc1C(=CCCN1CCC[C@@H](C(=O)O)C1)c1sccc1C
+B. CC(=O)N1CCN(c2ccc(OC[C@H]3CO[C@](Cn4ccnc4)(c4ccc(Cl)cc4Cl)O3)cc2)CC1
+C. CCCC(C)C1(CC)C(=O)NC(=S)NC1=O
+Answer: B, C
+```
 
 #### Benchmarking text templates
 There are two versions of text templates, i.e., one without the end-of-input token `<EOI>` and those with:
