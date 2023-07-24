@@ -1,4 +1,4 @@
-from datasets import load_dataset, concatenate_datasets
+from datasets import concatenate_datasets, load_dataset
 
 PUBCHEM_DATASET = "alxfgh/PubChem_Drug_Instruction_Tuning"
 CHEMBL_DATASET = "alxfgh/ChEMBL_Drug_Instruction_Tuning"
@@ -48,4 +48,4 @@ if __name__ == "__main__":
     )
 
     # Save the combined dataset as a CSV file
-    all_datasets.to_csv("drugchat_intruct_tuning.csv")
+    all_datasets.to_csv("data_clean.csv")
