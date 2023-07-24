@@ -192,7 +192,7 @@ Options:
 {penetrate_BBB%}
 Answer: {%multiple_choice_result}""",
             """Task: Please answer the multiple choice question.
-Question: Which molecules are {penetrate_BBB__names__adjective}?
+Question: Which molecules are {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}?
 Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any other words.
 Options:
 {SMILES%penetrate_BBB%}
@@ -204,7 +204,7 @@ Options:
 {penetrate_BBB%}
 Answer:<EOI> {%multiple_choice_result}""",
             """Task: Please answer the multiple choice question.
-Question: Which molecules are {penetrate_BBB__names__adjective}?
+Question: Which molecules are {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}?
 Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any other words.
 Options:
 {SMILES%penetrate_BBB%}
