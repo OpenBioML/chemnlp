@@ -215,6 +215,56 @@ def get_target_from_string(meta: dict, string: str) -> str:
         raise NotImplementedError()
 
 
+def get_symbols_from_multiple_choice_enum(
+    multiple_choice_enum: str,
+) -> List[str]:
+    """Create from the multiple_choice_enum variable a string of the symbols
+    that are used as multiple choice enumeration symbols.
+
+    Example:
+    %multiple_choice_enum%3-5%aA1
+
+    %multiple_choice_enum ... id
+    %3-5 ... multiple choice count
+    %aA1 ... symbol definition
+    """
+
+    multiple_choice_enum_split = multiple_choice_enum[1:].split("%")
+    assert (
+        len(multiple_choice_enum_split) == 3
+    ), "Wrong multiple_choice_enum field setup."
+    _, choice_count, symbol = multiple_choice_enum_split
+
+    # get the choice_count
+    if len(choice_count) >= 3:
+        assert (
+            "-" in choice_count
+        ), "The choice count needs to consist of two integers separated by a `-`."
+        min_, max_ = [int(x) for x in choice_count.split("-")]
+        assert isinstance(min_, int) and isinstance(
+            max_, int
+        ), "The choice count needs to consist of two integers."
+        choice_count_sampled = random.randint(min_, max_)
+    elif len(choice_count) == 1:
+        choice_count_sampled = int(choice_count)
+    else:
+        raise NotImplementedError()
+
+    # get the symbols
+    assert any(
+        [x in symbol for x in "aA1"]
+    ), "Allowed symbols are `a` (lower case letters), `A` (upper case letters), and/or `1` (integers)."
+    symbol_sampled = random.sample(symbol, k=1)[0]
+    if symbol_sampled == "a":
+        symbols = list(string.ascii_lowercase[:choice_count_sampled])
+    elif symbol_sampled == "A":
+        symbols = list(string.ascii_uppercase[:choice_count_sampled])
+    elif symbol_sampled == "1":
+        symbols = [str(x + 1) for x in range(choice_count_sampled)]
+
+    return symbols
+
+
 class TemplateSampler:
     """The template sampler uses the data_clean.csv and meta.yaml from a data directory and
     manages the the insertion of the sampled data into the text templates."""
@@ -429,91 +479,88 @@ class TemplateSampler:
             ]
             assert len(multiple_choice_var_idx) == 1
             multiple_choice_var_idx = multiple_choice_var_idx[0]  # unpack list
-            multiple_choice_var = input_variables[multiple_choice_var_idx]
-
-            # TODO: Move function out of the class!!!
-            def get_symbols_from_multiple_choice_enum(
-                multiple_choice_enum: str,
-            ) -> List[str]:
-                """Create from the multiple_choice_enum variable a string of the symbols
-                that are used as multiple choice enumeration symbols.
-
-                Example:
-                %multiple_choice_enum%3-5%aA1
-
-                %multiple_choice_enum ... id
-                %3-5 ... multiple choice count
-                %aA1 ... symbol definition
-                """
-
-                multiple_choice_enum_split = multiple_choice_enum[1:].split("%")
-                assert (
-                    len(multiple_choice_enum_split) == 3
-                ), "Wrong multiple_choice_enum field setup."
-                _, choice_count, symbol = multiple_choice_enum_split
-
-                # get the choice_count
-                if len(choice_count) >= 3:
-                    assert (
-                        "-" in choice_count
-                    ), "The choice count needs to consist of two integers separated by a `-`."
-                    min_, max_ = [int(x) for x in choice_count.split("-")]
-                    assert isinstance(min_, int) and isinstance(
-                        max_, int
-                    ), "The choice count needs to consist of two integers."
-                    choice_count_sampled = random.randint(min_, max_)
-                elif len(choice_count) == 1:
-                    choice_count_sampled = int(choice_count)
-                else:
-                    raise NotImplementedError()
-
-                # get the symbols
-                assert any(
-                    [x in symbol for x in "aA1"]
-                ), "Allowed symbols are `a` (lower case letters), `A` (upper case letters), and/or `1` (integers)."
-                symbol_sampled = random.sample(symbol, k=1)[0]
-                if symbol_sampled == "a":
-                    symbols = list(string.ascii_lowercase[:choice_count_sampled])
-                elif symbol_sampled == "A":
-                    symbols = list(string.ascii_uppercase[:choice_count_sampled])
-                elif symbol_sampled == "1":
-                    symbols = [str(x + 1) for x in range(choice_count_sampled)]
-
-                return symbols
+            multiple_choice_input = input_variables[multiple_choice_var_idx]
+            if multiple_choice_input.count("%") > 1:
+                (
+                    multiple_choice_var,
+                    multiple_choice_indicator,
+                    _,
+                ) = multiple_choice_input.split("%")
+            else:
+                (
+                    multiple_choice_var,
+                    multiple_choice_indicator,
+                ) = multiple_choice_input.split("%")
+                # multiple_choice_indicator is here a empty string
 
             symbols = get_symbols_from_multiple_choice_enum(multiple_choice_enum)
 
             # remove multiple choice control sequences from input_variables if present
             input_variables.remove(multiple_choice_enum)
-            input_variables.remove(multiple_choice_var)
+            if multiple_choice_indicator == "":
+                input_variables.remove(multiple_choice_var + "%")
+            else:
+                input_variables.remove(
+                    multiple_choice_var + "%" + multiple_choice_indicator + "%"
+                )
             input_variables.remove("%multiple_choice_result")
 
             # get all and correct choices incl. index
             correct_choice = self._get_target_from_row(
-                sample, multiple_choice_var.replace("%", "#")
+                sample, multiple_choice_var + "#"
             )
-            all_choices = sorted(
-                [
-                    str(x)
-                    for x in self.df[multiple_choice_var.replace("%", "")]
-                    .unique()
-                    .tolist()
+
+            if multiple_choice_indicator == "":
+                # standard sampling w/o paired data
+                all_choices = sorted(
+                    [str(x) for x in self.df[multiple_choice_var].unique().tolist()]
+                )
+                if all_choices == ["0", "1"]:
+                    all_choices = ["False", "True"]
+                    correct_choice = all_choices[int(correct_choice)]
+                multiple_choices = random.sample(all_choices, k=len(symbols))
+                if correct_choice not in multiple_choices:
+                    multiple_choices = multiple_choices[:-1] + [correct_choice]
+                    random.shuffle(multiple_choices)
+                correct_choice_idx = multiple_choices.index(correct_choice)
+            else:
+                # standard sampling w/ paired data and potentially multiple correct answers
+                correct_choice_indicator = self._get_target_from_row(
+                    sample, multiple_choice_indicator + "#"
+                )
+                df_sample = self.df.sample(len(symbols) - 1)[
+                    [multiple_choice_var, multiple_choice_indicator]
                 ]
-            )
-            if all_choices == ["0", "1"]:
-                all_choices = ["False", "True"]
-                correct_choice = all_choices[int(correct_choice)]
-            multiple_choices = random.sample(all_choices, k=len(symbols))
-            if correct_choice not in multiple_choices:
-                multiple_choices = multiple_choices[:-1] + [correct_choice]
-                random.shuffle(multiple_choices)
-            correct_choice_idx = multiple_choices.index(correct_choice)
+                multiple_choices = df_sample[multiple_choice_var].astype(str).tolist()
+                multiple_choices_indicators = (
+                    df_sample[multiple_choice_indicator].astype(str).tolist()
+                )
+                del df_sample
+
+                multiple_choices += [correct_choice]
+                multiple_choices_indicators += [correct_choice_indicator]
+                multiple_choices_combined = list(
+                    zip(multiple_choices, multiple_choices_indicators)
+                )  # create list of tuples to keep track of indicators
+                random.shuffle(multiple_choices_combined)
+                multiple_choices, multiple_choices_indicators = list(
+                    zip(*multiple_choices_combined)
+                )  # split choices and corresponding indicators tuples again
+                # multiple_choices = multiple_choices_indicators  # uncomment to debug
+                correct_choice_idx = [
+                    i
+                    for i, (choice, indicator) in enumerate(
+                        zip(multiple_choices, multiple_choices_indicators)
+                    )
+                    if indicator == correct_choice_indicator
+                ]
+                correct_choice = [multiple_choices[i] for i in correct_choice_idx]
 
             sample_dict[multiple_choice_enum] = (
                 "".join(
                     [
                         f"{x} " if len(multiple_choices) == 2 else f"{x}, "
-                        for x, y in zip(symbols[:-1], multiple_choices)
+                        for x in symbols[:-1]
                     ]
                 )
                 + f"or {symbols[-1]}"
@@ -536,36 +583,52 @@ class TemplateSampler:
                 rnd_symbol_prefix = ""
                 rnd_symbol_suffix = rnd_symbol
 
-            sample_dict[multiple_choice_var] = "\n".join(
+            multiple_choice_var_data = "\n".join(
                 [
                     f"{rnd_symbol_prefix}{x}{rnd_symbol_suffix} {y}"
                     for x, y in zip(symbols, multiple_choices)
                 ]
             )
-            # sample multiple_choice_result setup by randomly putting the result parts together
-            if self.multiple_choice_benchmarking_templates:
-                multiple_choice_result = f"{rnd_symbol_prefix}{symbols[correct_choice_idx]}{rnd_symbol_suffix}"
-                # uncomment below to append correct_choice to the answer after the correct choice symbol
-                # multiple_choice_result = f"{rnd_symbol_prefix}{symbols[correct_choice_idx]}{rnd_symbol_suffix} {correct_choice}"  # noqa: E501
+            if multiple_choice_indicator == "":
+                sample_dict[multiple_choice_var + "%"] = multiple_choice_var_data
             else:
-                # uncomment to include setup w/o symbols
-                # if random.random() > 0.5:
+                sample_dict[
+                    multiple_choice_var + "%" + multiple_choice_indicator + "%"
+                ] = multiple_choice_var_data
 
-                # uncomment to include setup w/ symbols
-                # multiple_choice_result = symbols[correct_choice_idx]
-                # if random.random() > 0.5:
-                #    multiple_choice_result = (
-                #        rnd_symbol_prefix + multiple_choice_result + rnd_symbol_suffix
-                #    )
+            # sample multiple_choice_result setup by randomly putting the result parts together
+            # if self.multiple_choice_benchmarking_templates:
+            # uncomment below to append correct_choice_idx with the symbols prefix and suffix
+            # multiple_choice_result = f"{rnd_symbol_prefix}{symbols[correct_choice_idx]}{rnd_symbol_suffix}"
+            # uncomment below to append correct_choice to the answer after the correct choice symbol
+            # multiple_choice_result = f"{rnd_symbol_prefix}{symbols[correct_choice_idx]}{rnd_symbol_suffix} {correct_choice}"  # noqa: E501
+            # else:
+            # uncomment to include setup w/o symbols
+            # if random.random() > 0.5:
 
-                # uncomment to include correct_choice
-                # if random.random() > 0.5:
-                #    if len(multiple_choice_result) > 0:
-                #        multiple_choice_result += f" {correct_choice}"
+            # uncomment to include setup w/ symbols
+            # multiple_choice_result = symbols[correct_choice_idx]
+            # if random.random() > 0.5:
+            #    multiple_choice_result = (
+            #        rnd_symbol_prefix + multiple_choice_result + rnd_symbol_suffix
+            #    )
 
-                # uncomment to include setup w/o symbols
-                # else:
-                multiple_choice_result = correct_choice
+            # uncomment to include correct_choice
+            # if random.random() > 0.5:
+            #    if len(multiple_choice_result) > 0:
+            #        multiple_choice_result += f" {correct_choice}"
+
+            # uncomment to include setup w/o symbols
+            # else:
+            # multiple_choice_result = correct_choice
+
+            if isinstance(correct_choice_idx, list):
+                # correct_choice = "".join([str(x) for x in correct_choice])  # to get the full answer
+                correct_choice = ", ".join([symbols[i] for i in correct_choice_idx])
+                # correct_choice_idx = ", ".join([str(i) for i in correct_choice_idx])  # cast to str and join
+            else:
+                correct_choice = symbols[correct_choice_idx]
+            multiple_choice_result = correct_choice
 
             sample_dict["%multiple_choice_result"] = multiple_choice_result
 
@@ -622,7 +685,12 @@ class TemplateSampler:
             # for multiple choice templates we need to keep track of the options and the correct answer
             # by appending them with special tokens to the end of the template.
             template += "<MC>" + "|".join(sample_dict["%multiple_choice_symbols"])
-            template += "<MC>" + str(sample_dict["%multiple_choice_result_idx"])
+            if isinstance(sample_dict["%multiple_choice_result_idx"], list):
+                template += "<MC>" + "|".join(
+                    [str(x) for x in sample_dict["%multiple_choice_result_idx"]]
+                )
+            else:
+                template += "<MC>" + str(sample_dict["%multiple_choice_result_idx"])
 
         return template
 
@@ -670,6 +738,9 @@ class TemplateSampler:
                     df_out["answer_choices"] = df_out["answer_choices"].apply(
                         lambda x: x.split("|")
                     )
+                    df_out["correct_output_index"] = df_out[
+                        "correct_output_index"
+                    ].apply(lambda x: x.split("|"))
             else:
                 df_out.drop(
                     [x for x in df_out.columns.tolist() if x != "sample"],
