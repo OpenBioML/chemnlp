@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Literal, Optional, Union
 
 from pydantic import BaseModel, validator
 from transformers.trainer_utils import SchedulerType
@@ -10,7 +10,9 @@ class Data(BaseModel):
     path: Union[List[str], str]  # can be local or S3 directory
     validation_size: Union[List[float], float] = 0.05
     interleave_probs: Optional[List[float]] = None
-    sampling_criterion: Optional[str] = None
+    sampling_criterion: Optional[
+        Literal["first_exhausted", "all_exhausted"]
+    ] = None  # as of v2.10.1
 
     @validator("validation_size")
     def small_positive_validation_sizes(cls, vs):
