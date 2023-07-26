@@ -10,7 +10,7 @@ description: |-
     The data contains sequences of only L- and canonical amino acids.
     Each measurement is treated independently, so sequences can appear multiple times.
     This experimental dataset contains noise, and in some observations (40%), an identical sequence appears in both negative and positive class.
-    As an example, sequence "RVKRVWPLVIRTVIAGYNLYRAIKKK" is found to be both hemolytic and non-hemolytic in two different lab experiments (i.e. two different training examples). 
+    As an example, sequence "RVKRVWPLVIRTVIAGYNLYRAIKKK" is found to be both hemolytic and non-hemolytic in two different lab experiments (i.e. two different training examples).
 targets:
     - id: hemolytic
       description: The ability of a peptide sequence to lyse red blood cells.
@@ -24,19 +24,19 @@ targets:
           - adjective: hemolytic
       uris:
 benchmarks:
-    - name: 
-      link: 
+    - name:
+      link:
       split_column: split
 identifiers:
     - id: sequence
-      type: sequence
-      description: sequence
-    - id: compound_name
       type: Other
+      description: sequence
       names:
           - noun: compound name
           - noun: peptide name
           - noun: peptide sequence
+    - id: compound_name
+      type: Other
       description: compound name
 license: CC BY 4.0
 links:
