@@ -29,5 +29,5 @@ source $CHEMNLP_PATH/experiments/scripts/env_creation_hf.sh $1 $2
 
 # trigger run
 cd $CHEMNLP_PATH
-python -m torch.distributed.launch --use-env --nnodes 1 --nproc-per-node 8 \
+torchrun --standalone --nnodes 1 --nproc-per-node 8 \
     experiments/scripts/run_tune.py experiments/configs/hugging-face/$3 --config_overrides $overrides

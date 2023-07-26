@@ -16,7 +16,7 @@ dependencies = [
         "pydantic",
         "pytdc>=0.3.9",
         "transformers",
-        "wandb"
+        "wandb==0.10.28"
 ]
 
 dynamic = ["version"]
@@ -46,13 +46,13 @@ training = [
         "protobuf<3.20",
         "s3fs",
         "boto3<=1.26.90", # https://github.com/boto/boto3/issues/3648
-        "transformers<4.30", # https://github.com/huggingface/transformers/issues/24359
 ]
 
 tokenisation = [
         "zstandard",
         "apache_beam",
-        "mwparserfromhell"
+        "mwparserfromhell",
+        "jsonlines"
 ]
 
 [tool.setuptools_scm]

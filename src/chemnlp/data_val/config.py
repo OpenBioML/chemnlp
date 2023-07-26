@@ -52,6 +52,7 @@ class TrainerConfig(BaseModel):
     torch_compile: bool = False
     restart_checkpoint: Union[bool, str] = True
     gradient_accumulation_steps: int = 1
+    save_total_limit: Optional[int] = None
 
     @validator("learning_rate")
     def small_positive_learning_rate(cls, v):
