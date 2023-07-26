@@ -33,21 +33,28 @@ def run(config_path: str):
     dataset = datasets.load_dataset(
         config.dataset_name, **config.dataset_args, num_proc=os.cpu_count()
     )
+    filtered_ds = dataset.filter(
+        lambda x: isinstance(x[config.string_key], str), num_proc=os.cpu_count()
+    )
+    print(
+        f"Removed {dataset.num_rows-filtered_ds.num_rows} samples as not of type str."
+    )
 
-    tokenised_data = dataset.map(
+    tokenised_data = filtered_ds.map(
         lambda batch: tokenise(
             batch, tokenizer, config.context_length, config.string_key
         ),
         batched=True,
         batch_size=config.batch_size,
-        remove_columns=dataset.column_names,
+        remove_columns=filtered_ds.column_names,
         num_proc=os.cpu_count(),
         load_from_cache_file=False,
     )
+
     summary_stats = {
         "model_name": config.model_name,
         "dataset_name": config.dataset_name,
-        "total_samples": dataset.num_rows,
+        "total_samples": filtered_ds.num_rows,
         "dataset_args": config.dataset_args,
         "max_context_length": config.context_length,
         "total_tokens_in_billions": round(
