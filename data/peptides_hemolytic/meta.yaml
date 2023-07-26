@@ -1,0 +1,143 @@
+---
+name: peptides_hemolytic
+description: |-
+    Hemolysis is referred to the disruption of erythrocyte membranes that decrease the life span of red blood cells and causes the release of Hemoglobin.
+    It is critical to identify non-hemolytic antimicrobial peptides as a non-toxic and safe measure against bacterial infections.
+    However, distinguishing between hemolytic and non-hemolytic peptides is a challenge, since they primarily exert their activity at the charged surface of the bacterial plasma membrane.
+    In this work, the hemolysis classifier is trained using data from the Database of Antimicrobial Activity and Structure of Peptides (DBAASP v3).
+    Hemolytic activity is defined by extrapolating a measurement assuming dose response curves to the point at which 50\% of red blood cells are lysed.
+    Activities below 100 mu g/ml, are considered hemolytic.
+    The data contains sequences of only L- and canonical amino acids.
+    Each measurement is treated independently, so sequences can appear multiple times.
+    This experimental dataset contains noise, and in some observations (40%), an identical sequence appears in both negative and positive class.
+    As an example, sequence "RVKRVWPLVIRTVIAGYNLYRAIKKK" is found to be both hemolytic and non-hemolytic in two different lab experiments (i.e. two different training examples). 
+targets:
+    - id: hemolytic
+      description: The ability of a peptide sequence to lyse red blood cells.
+      units:
+      type: boolean
+      names:
+          - noun: hemolytic activity
+          - noun: hemolysis
+          - verb: kill red blood cells
+          - verb: lyse red blood cells
+          - adjective: hemolytic
+      uris:
+benchmarks:
+    - name: 
+      link: 
+      split_column: split
+identifiers:
+    - id: sequence
+      type: sequence
+      description: sequence
+    - id: compound_name
+      type: Other
+      names:
+          - noun: compound name
+          - noun: peptide name
+          - noun: peptide sequence
+      description: compound name
+license: CC BY 4.0
+links:
+    - url: https://doi.org/10.1021/acs.jcim.2c01317
+      description: corresponding publication
+    - url: https://doi.org/10.1093/nar/gkaa991
+      description: data source
+num_points: 6541
+bibtex:
+    - |-
+      @article{Martins2012,
+      doi = {10.1021/ci300124c},
+      url = {https://doi.org/10.1021/ci300124c},
+      year = {2012},
+      month = jun,
+      publisher = {American Chemical Society (ACS)},
+      volume = {52},
+      number = {6},
+      pages = {1686--1697},
+      author = {Ines Filipa Martins and Ana L. Teixeira and Luis Pinheiro
+      and Andre O. Falcao},
+      title = {A Bayesian Approach to in Silico Blood-Brain Barrier Penetration Modeling},
+      journal = {Journal of Chemical Information and Modeling}
+    - |-
+      @article{Wu2018,
+      doi = {10.1039/c7sc02664a},
+      url = {https://doi.org/10.1039/c7sc02664a},
+      year = {2018},
+      publisher = {Royal Society of Chemistry (RSC)},
+      volume = {9},
+      number = {2},
+      pages = {513--530},
+      author = {Zhenqin Wu and Bharath Ramsundar and Evan~N. Feinberg and Joseph
+      Gomes and Caleb Geniesse and Aneesh S. Pappu and Karl Leswing and Vijay Pande},
+      title = {MoleculeNet: a benchmark for molecular machine learning},
+      journal = {Chemical Science}
+templates:
+    - The molecule with the {sequence__description} of {sequence#} is {hemolytic#not &NULL}{hemolytic__names__adjective}.
+    - Based on the {sequence__description} {sequence#}, the molecule is {hemolytic#not &NULL}{hemolytic__names__adjective}.
+    - The {sequence__description} {sequence#} represents a molecule that is {hemolytic#not &NULL}identified as {hemolytic}.
+    - The molecule represented with the {sequence__description} {sequence#} is {hemolytic#not &NULL}{hemolytic__names__adjective}.
+    - '{sequence#} represents a molecule that is {hemolytic#not &NULL}identified as {hemolytic__names__adjective}.'
+    - '{sequence#} represents a molecule that is {hemolytic#not &NULL}{hemolytic__names__adjective}.'
+    - '{sequence#} is {hemolytic#not &NULL}{hemolytic__names__adjective}.'
+    - The molecule {sequence#} is {hemolytic__names__adjective}.
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {hemolytic__names__adjective}.
+      Molecule {sequence__description}: {sequence#}
+      Constraint: Even if you are uncertain, you must pick either "True" or "False" without using any other words.
+      Result: {hemolytic#False&True}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {hemolytic__names__adjective}.
+      Molecule {sequence__description}: {sequence#}
+      Constraint: Answer the question in a complete sentence.
+      Result: This molecule is {hemolytic#not &NULL}{hemolytic__names__adjective}.
+    - |-
+      Task: Please create a molecule {sequence__description} based on the description.
+      Description: A molecule that is {hemolytic__names__adjective}.
+      Result: {sequence#}
+    - |-
+      User: Can you tell me if the molecule with the {sequence__description} {sequence#} is {hemolytic__names__adjective}?
+      Assistant: {hemolytic#No&Yes}, this molecule is {hemolytic#not &NULL}{hemolytic__names__adjective}.
+    - |-
+      User: Is the molecule with the {sequence__description} {sequence#} {hemolytic__names__adjective}?
+      Assistant: {hemolytic#No&Yes}, it is {hemolytic#not &NULL}{hemolytic__names__adjective}.
+    - |-
+      User: Can you give me the {sequence__description} of a molecule that is {hemolytic#not &NULL}{hemolytic__names__adjective}?
+      Assistant: Yes, here you go: {sequence#}
+    - |-
+      User: I'm looking for the {sequence__description} of a molecule that is {hemolytic#not &NULL}{hemolytic__names__adjective}?
+      Assistant: This is a molecule that is {hemolytic#not &NULL}{hemolytic__names__adjective}: {sequence#}
+    - |-
+      User: I want to create a molecule {sequence__description}.
+      Assistant: This sounds very exciting! Should I consider any constraints during generation?
+      User: Yes, please. The molecule should {hemolytic#not &NULL}{hemolytic__names__adjective}.
+      Assistant: Ok, this {sequence__description} is {hemolytic#not &NULL}{hemolytic__names__adjective}: {sequence#}
+    - |-
+      User: I want to create a molecule {sequence__description}.
+      Assistant: This sounds very exciting! Should it be a special molecule?
+      User: Yes, the molecule should {hemolytic#not &NULL}be {hemolytic__names__adjective}.
+      Assistant: Got it, this {sequence__description} is {hemolytic#not &NULL}{hemolytic__names__adjective}: {sequence#}
+    - Is the {sequence__description} {sequence#} {hemolytic__names__adjective}:<EOI> {hemolytic#yes&no}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {hemolytic__names__adjective}.
+      Molecule {sequence__description}: {sequence#}
+      Constraint: Even if you are uncertain, you must pick either "True" or "False" without using any other words.
+      Result:<EOI> {hemolytic#False&True}
+    - |-
+      Task: Please answer the multiple choice question.
+      Question: Is the molecule with the {sequence__description} of {sequence#} {hemolytic__names__adjective}?
+      Constraint: Even if you are uncertain, you must pick either {%multiple_choice_enum%2%aA1} without using any other words.
+      Options:
+      {hemolytic%}
+      Answer: {%multiple_choice_result}
+    - |-
+      Task: Please answer the multiple choice question.
+      Question: Is the molecule with the {sequence__description} of {sequence#} {hemolytic__names__adjective}?
+      Constraint: Even if you are uncertain, you must pick either {%multiple_choice_enum%2%aA1} without using any other words.
+      Options:
+      {hemolytic%}
+      Answer:<EOI> {%multiple_choice_result}
