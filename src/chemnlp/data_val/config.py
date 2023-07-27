@@ -15,15 +15,16 @@ class Data(BaseModel):
     ] = None  # as of v2.10.1
 
     @validator("validation_size")
-    def small_positive_validation_sizes(cls, vs):
-        if isinstance(vs, float):
-            vs = [vs]
-        for v in vs:
+    def small_positive_validation_sizes(cls, value_orig):
+        value_to_validate = value_orig
+        if isinstance(value_to_validate, float):
+            value_to_validate = [value_to_validate]
+        for v in value_to_validate:
             if v < 0 or v > 1:
                 raise ValueError(
                     "Always specify a positive validation split size (0,1)"
                 )
-        return vs
+        return value_orig
 
 
 class Model(BaseModel):
