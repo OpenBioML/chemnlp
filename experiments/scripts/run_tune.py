@@ -178,7 +178,7 @@ def run(config_path: str, config_overrides: Optional[Dict] = None) -> None:
         wandb.init(**config.wandb.dict(exclude={"enabled"}), config=config.dict())
 
         # custom logging at start of training
-        wandb.log({"Node IP Address": get_local_ip_address()})
+        wandb.log({"Node IP Address": ip_add})
         wandb.log(
             {"CPU_start": collect_cpu_memory(), "GPU_start": collect_gpu_memory()}
         )
