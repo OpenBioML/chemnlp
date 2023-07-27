@@ -5,6 +5,7 @@ from io import BytesIO
 from pathlib import Path
 from typing import Dict, List, Optional, Union
 
+import datasets
 import psutil
 import requests
 import yaml
@@ -110,3 +111,11 @@ def get_local_ip_address() -> str:
 
     hostname = socket.getfqdn()
     return socket.gethostbyname_ex(hostname)[0]
+
+
+def load_and_split(
+    source: str, test_size: float, shuffle: bool = False
+) -> datasets.arrow_dataset.Dataset:
+    """Loads and splits a HF dataset into train/test"""
+    dataset = datasets.load_from_disk(source)
+    return dataset.train_test_split(test_size=test_size, shuffle=shuffle)

@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Literal, Optional, Union
 
 from pydantic import BaseModel, validator
 from transformers.trainer_utils import SchedulerType
@@ -7,14 +7,23 @@ DictofLists = Dict[str, List]
 
 
 class Data(BaseModel):
-    path: str  # can be local or S3 directory
-    validation_size: float = 0.05
+    path: Union[List[str], str]  # can be local or S3 directory
+    validation_size: Union[List[float], float] = 0.05
+    interleave_probs: Optional[List[float]] = None
+    sampling_criterion: Optional[
+        Literal["first_exhausted", "all_exhausted"]
+    ] = None  # as of v2.10.1
 
     @validator("validation_size")
-    def small_positive_validation_size(cls, v):
-        if v < 0 or v > 1:
-            raise ValueError("Specify a positive validation split size (0,1)")
-        return v
+    def small_positive_validation_sizes(cls, vs):
+        if isinstance(vs, float):
+            vs = [vs]
+        for v in vs:
+            if v < 0 or v > 1:
+                raise ValueError(
+                    "Always specify a positive validation split size (0,1)"
+                )
+        return vs
 
 
 class Model(BaseModel):
