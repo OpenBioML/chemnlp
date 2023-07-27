@@ -159,9 +159,8 @@ def run(config_path: str, config_overrides: Optional[Dict] = None) -> None:
 
     else:
         # load single dataset
-        train_dataset, val_dataset = load_and_split(
-            config.data.path, config.data.validation_size
-        )
+        loaded_dataset = load_and_split(config.data.path, config.data.validation_size)
+        train_dataset, val_dataset = loaded_dataset["train"], loaded_dataset["test"]
 
     data_collator = DataCollatorForLanguageModeling(tokenizer, mlm=False)
     training_args = TrainingArguments(
