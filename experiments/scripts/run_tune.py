@@ -10,6 +10,7 @@ import pathlib
 from typing import Dict, Optional, Union
 
 import datasets
+import torch
 import transformers
 import wandb
 from peft import PromptTuningConfig, PromptTuningInit, TaskType, get_peft_model
@@ -80,7 +81,13 @@ def run(config_path: str, config_overrides: Optional[Dict] = None) -> None:
 
     local_rank = int(os.environ.get("LOCAL_RANK", -1))
     global_rank = int(os.environ.get("RANK", -1))
+    ip_add = get_local_ip_address()
+    num_devices = torch.cuda.device_count()
+    visible_devices = os.environ.get("CUDA_VISIBLE_DEVICES")
     print_zero_rank(local_rank, config)
+    print(
+        f"IP: {ip_add} Local: {local_rank} Global: {global_rank}, # GPUs:{num_devices} CUDA_VISIBLE:{visible_devices}"
+    )
 
     tokenizer = AutoTokenizer.from_pretrained(
         pretrained_model_name_or_path=config.model.name,
