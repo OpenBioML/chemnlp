@@ -161,6 +161,10 @@ def run(config_path: str, config_overrides: Optional[Dict] = None) -> None:
         # load single dataset
         loaded_dataset = load_and_split(config.data.path, config.data.validation_size)
         train_dataset, val_dataset = loaded_dataset["train"], loaded_dataset["test"]
+    print_zero_rank(
+        local_rank,
+        f"{train_dataset.num_rows} / {val_dataset.num_rows} samples for training / validation",
+    )
 
     data_collator = DataCollatorForLanguageModeling(tokenizer, mlm=False)
     training_args = TrainingArguments(
