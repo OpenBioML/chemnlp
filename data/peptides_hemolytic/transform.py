@@ -56,7 +56,11 @@ def get_and_transform_data():
     unique_pos = list(set(pos_seq))
     unique_neg = list(set(neg_seq))
 
-    seq_dict = {"Positive": unique_pos, "Negative": unique_neg}
+    seq_dict = {
+        "sequence": unique_pos + unique_neg,
+        "hemolytic": [True for _ in range(len(unique_pos))]
+        + [False for _ in range(len(unique_neg))],
+    }
     df = pd.DataFrame.from_dict(seq_dict, orient="index").transpose()
     df.to_csv("clean_data.csv", index=False)
 
@@ -103,14 +107,6 @@ def get_and_transform_data():
                 "id": "sequence",  # column name
                 "type": "Other",
                 "description": "sequence",  # description (optional, except for "Other")
-            },
-            {
-                "id": "compound_name",  # column name
-                "type": "Other",
-                "names": [
-                    {"noun": "compound name"},
-                ],
-                "description": "compound name",  # description (optional, except for "Other")
             },
         ],
         "license": "CC BY 4.0",  # license under which the original dataset was published
