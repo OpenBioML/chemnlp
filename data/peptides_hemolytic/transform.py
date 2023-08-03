@@ -1,7 +1,65 @@
+import urllib
+
+import numpy as np
+import pandas as pd
 import yaml
 
 
+def decoder(seq_vector):
+    alphabet = [
+        "A",
+        "R",
+        "N",
+        "D",
+        "C",
+        "Q",
+        "E",
+        "G",
+        "H",
+        "I",
+        "L",
+        "K",
+        "M",
+        "F",
+        "P",
+        "S",
+        "T",
+        "W",
+        "Y",
+        "V",
+    ]
+    seq = []
+    for _, index in enumerate(seq_vector.astype("int")):
+        if index == 0:
+            break
+        seq.append(alphabet[index - 1])
+    seq = "".join(seq)
+    return seq
+
+
 def get_and_transform_data():
+    urllib.request.urlretrieve(
+        "https://github.com/ur-whitelab/peptide-dashboard/raw/master/ml/data/hemo-positive.npz",
+        "positive.npz",
+    )
+    urllib.request.urlretrieve(
+        "https://github.com/ur-whitelab/peptide-dashboard/raw/master/ml/data/hemo-negative.npz",
+        "negative.npz",
+    )
+    with np.load("positive.npz") as r:
+        pos_data = r[list(r.keys())[0]]
+    with np.load("negative.npz") as r:
+        neg_data = r[list(r.keys())[0]]
+
+    pos_seq = [decoder(s) for s in pos_data]
+    neg_seq = [decoder(s) for s in neg_data]
+    unique_pos = list(set(pos_seq))
+    unique_neg = list(set(neg_seq))
+
+    seq_dict = {"Positive": unique_pos, "Negative": unique_neg}
+    df = pd.DataFrame.from_dict(seq_dict, orient="index").transpose()
+    df.to_csv("clean_data.csv", index=False)
+
     # create meta yaml
     meta = {
         "name": "peptides_hemolytic",  # unique identifier, we will also use this for directory names
