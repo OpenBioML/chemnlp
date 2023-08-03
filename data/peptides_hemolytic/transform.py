@@ -88,7 +88,7 @@ def get_and_transform_data():
         "targets": [
             {
                 "id": "hemolytic",  # name of the column in a tabular dataset
-                "description": "The ability of a peptide sequence to lyse red blood cells. (1) or not (0)",
+                "description": "The ability of a peptide sequence to lyse red blood cells (1) or not (0).",
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "boolean",
                 "names": [  # names for the property (to sample from for building the prompts)
@@ -117,7 +117,7 @@ def get_and_transform_data():
             },
             {
                 "url": "https://doi.org/10.1093/nar/gkaa991",
-                "description": "data srouce",
+                "description": "data source",
             },
         ],
         "num_points": 6541,  # number of datapoints in this dataset
