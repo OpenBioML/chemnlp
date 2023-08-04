@@ -86,7 +86,7 @@ def run(config_path: str, config_overrides: Optional[Dict] = None) -> None:
     visible_devices = os.environ.get("CUDA_VISIBLE_DEVICES")
     print_zero_rank(local_rank, config)
     print(
-        f"IP: {ip_add} Local: {local_rank} Global: {global_rank}, # GPUs:{num_devices} CUDA_VISIBLE:{visible_devices}"
+        f"IP: {ip_add} Local: {local_rank} Global: {global_rank}, # GPUs: {num_devices} CUDA_VISIBLE: {visible_devices}"
     )
 
     tokenizer = AutoTokenizer.from_pretrained(
