@@ -33,6 +33,7 @@ if __name__ == "__main__":
         if set(cols).issubset(df.columns):
             df = pd.read_csv(path, low_memory=False)
             df_append = df[cols].copy()
+            del df
             df_append.to_csv(path_processed_smiles, mode="a", header=False, index=False)
             print("Added processed SMILES to extend_tabular_processed.csv file.")
         else:
