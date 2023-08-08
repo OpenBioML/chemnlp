@@ -3,6 +3,7 @@ import multiprocessing as mp
 import os
 import random
 import time
+from functools import partial
 
 import deepsmiles
 import pandas as pd
@@ -116,26 +117,48 @@ def _try_except_none(func, *args, **kwargs):
         return None
 
 
-def line_reps_from_smiles(smiles: str) -> dict:
+def line_reps_from_smiles(
+    smiles: str, unique_smiles_processed: list = None, df_processed: pd.DataFrame = None
+) -> dict:
     """
     Takes a SMILES and returns a dictionary with the different representations.
     Use None if some representation cannot be computed.
     """
-    representations = {
-        "smiles": smiles,
-        "selfies": _try_except_none(smiles_to_selfies, smiles),
-        "deepsmiles": _try_except_none(smiles_to_deepsmiles, smiles),
-        "canonical": _try_except_none(smiles_to_canoncial, smiles),
-        "inchi": _try_except_none(smiles_to_inchi, smiles),
-        # "tucan": _try_except_none(smiles_to_tucan, smiles),
-        "iupac_name": _try_except_none(smiles_to_iupac_name, smiles),
-    }
+
+    if smiles in unique_smiles_processed:
+        representations = df_processed[df_processed.SMILES == smiles].to_dict(
+            orient="records"
+        )[0]
+    else:
+        representations = {
+            "smiles": smiles,
+            "selfies": _try_except_none(smiles_to_selfies, smiles),
+            "deepsmiles": _try_except_none(smiles_to_deepsmiles, smiles),
+            "canonical": _try_except_none(smiles_to_canoncial, smiles),
+            "inchi": _try_except_none(smiles_to_inchi, smiles),
+            # "tucan": _try_except_none(smiles_to_tucan, smiles),
+            "iupac_name": _try_except_none(smiles_to_iupac_name, smiles),
+        }
     return representations
 
 
 if __name__ == "__main__":
     path_base = __file__.replace("text_sampling/extend_tabular.py", "")
     path_data_dir = sorted(glob.glob(path_base + "tabular/*"))
+    path_processed_smiles = __file__.replace(
+        "extend_tabular.py", "extend_tabular_processed.csv"
+    )
+
+    if os.path.isfile(path_processed_smiles):
+        df_processed = pd.read_csv(path_processed_smiles)
+        unique_smiles_processed = df_processed.SMILES.unique().tolist()
+        process_func = partial(
+            line_reps_from_smiles,
+            df_processed=df_processed,
+            unique_smiles_processed=unique_smiles_processed,
+        )
+    else:
+        process_func = line_reps_from_smiles
 
     for path in path_data_dir:
         if not os.path.isdir(path):
