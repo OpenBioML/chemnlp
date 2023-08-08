@@ -35,6 +35,8 @@ if __name__ == "__main__":
             df_append = df[cols].copy()
             df_append.to_csv(path_processed_smiles, mode="a", header=False, index=False)
             print("Added processed SMILES to extend_tabular_processed.csv file.")
+        else:
+            print("No processed columns in the extend_tabular_processed.csv file.")
 
     # deduplicate processed entries
     df_processed = pd.read_csv(path_processed_smiles)
