@@ -31,7 +31,7 @@ if __name__ == "__main__":
         # check cols are there
         df = pd.read_csv(path, index_col=False, nrows=0)  # only get columns
         if set(cols).issubset(df.columns):
-            df = pd.read_csv(path)
+            df = pd.read_csv(path, low_memory=False)
             df_append = df[cols].copy()
             df_append.to_csv(path_processed_smiles, mode="a", header=False, index=False)
             print("Added processed SMILES to extend_tabular_processed.csv file.")
