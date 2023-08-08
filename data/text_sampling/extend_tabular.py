@@ -118,7 +118,10 @@ def _try_except_none(func, *args, **kwargs):
 
 
 def line_reps_from_smiles(
-    smiles: str, unique_smiles_processed: list = None, df_processed: pd.DataFrame = None
+    smiles: str,
+    unique_smiles_processed: list = None,
+    df_processed: pd.DataFrame = None,
+    path_processed_smiles: str = None,
 ) -> dict:
     """
     Takes a SMILES and returns a dictionary with the different representations.
@@ -126,10 +129,12 @@ def line_reps_from_smiles(
     """
 
     if smiles in unique_smiles_processed:
+        print("SMILES was already previously processed.")
         representations = df_processed[df_processed.SMILES == smiles].to_dict(
             orient="records"
         )[0]
     else:
+        print("Process SMILES.")
         representations = {
             "smiles": smiles,
             "selfies": _try_except_none(smiles_to_selfies, smiles),
@@ -139,15 +144,19 @@ def line_reps_from_smiles(
             # "tucan": _try_except_none(smiles_to_tucan, smiles),
             "iupac_name": _try_except_none(smiles_to_iupac_name, smiles),
         }
+
+        # Note: This needs proper filelocking to work.
+        # if path_processed_smiles:
+        #    pd.DataFrame(representations, index=[0]).to_csv(path_processed_smiles, mode="a", header=False, index=False)
+        #    print("Added processed SMILES to extend_tabular_processed.csv file.")
+
     return representations
 
 
 if __name__ == "__main__":
     path_base = __file__.replace("text_sampling/extend_tabular.py", "")
     path_data_dir = sorted(glob.glob(path_base + "tabular/*"))
-    path_processed_smiles = __file__.replace(
-        "extend_tabular.py", "extend_tabular_processed.csv"
-    )
+    path_processed_smiles = path_base + "text_sampling/extend_tabular_processed.csv"
 
     if os.path.isfile(path_processed_smiles):
         df_processed = pd.read_csv(path_processed_smiles)
@@ -156,7 +165,9 @@ if __name__ == "__main__":
             line_reps_from_smiles,
             df_processed=df_processed,
             unique_smiles_processed=unique_smiles_processed,
+            path_processed_smiles=path_processed_smiles,
         )
+        print("Using preprocessed SMILES.")
     else:
         process_func = line_reps_from_smiles
 
@@ -196,12 +207,26 @@ if __name__ == "__main__":
 
         df = pd.read_csv(path_data)
 
+        # if {
+        #    "SMILES",
+        #    "selfies",
+        #    "deepsmiles",
+        #    "canonical",
+        #    "inchi",
+        #    "iupac_name",
+        #    }.issubset(df.columns):
+        #    # if they colums are already there we don't need to do anything.
+        #    print(
+        #        "Extended data is already in the data_clean.csv file."
+        #    )
+        #    continue
+
         parsed = []
         n_proc = mp.cpu_count() - 1 or 1
         print(f"{n_proc=}")
         start = time.time()
         with mp.Pool(processes=n_proc) as pool:
-            parsed = pool.map(line_reps_from_smiles, df.SMILES.tolist())
+            parsed = pool.map(process_func, df.SMILES.tolist())
         end = time.time()
         print(f"processing time: {(end - start)/60:.2f} min")
         print("Random parsing examples:")
