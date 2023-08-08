@@ -17,6 +17,7 @@ def get_and_transform_data():
         df_test["split"] = "test"
         df = pd.concat([df_train, df_valid, df_test], axis=0)
         df["dataset"] = dataset_name
+        df = df.rename(columns={"smiles": "SMILES"})
         return df
 
     # get raw data
@@ -25,7 +26,7 @@ def get_and_transform_data():
     # check if fields are the same
     fields_orig = df.columns.tolist()
     assert fields_orig == [
-        "smiles",
+        "SMILES",
         "split",
         "dataset",
     ]
