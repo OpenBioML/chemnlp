@@ -47,6 +47,7 @@ by passive diffusion through the membrane.""",
                 "units": None,
                 "type": "boolean",
                 "names": [  # names for the property (to sample from for building the prompts)
+                    {"noun": "permeability"},
                     {"verb": "is permeable in the PAMPA assay"},
                     {
                         "verb": "shows permeability in parallel artificial membrane permeability assay (PAMPA) assay"
