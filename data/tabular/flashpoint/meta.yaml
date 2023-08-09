@@ -19,6 +19,7 @@ targets:
 identifiers:
     - id: SMILES
       type: SMILES
+      description: SMILES
 license: CC BY 4.0
 num_points: 9878 # downloaded dataset has 14696 datapoints, but there are duplicate smiles
 links:
