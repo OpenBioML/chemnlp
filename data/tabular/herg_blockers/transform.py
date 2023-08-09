@@ -63,7 +63,7 @@ stages of drug design is quite important to reduce the risk of cardiotoxicity
 related attritions in the later development stages.""",
         "targets": [
             {
-                "id": "hERG_blocker",  # name of the column in a tabular dataset
+                "id": "herg_blocker",  # name of the column in a tabular dataset
                 "description": "whether it blocks hERG (1) or not (0)",  # description of what this column means
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "boolean",

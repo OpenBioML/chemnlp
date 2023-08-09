@@ -4,7 +4,7 @@ description: "Human ether-à-go-go related gene (hERG) is crucial for the coordi
     \ lead to severe\nadverse effects. Therefore, reliable prediction of hERG liability in the early\nstages of drug design is quite important to reduce\
     \ the risk of cardiotoxicity\nrelated attritions in the later development stages."
 targets:
-    - id: hERG_blocker
+    - id: herg_blocker
       description: whether it blocks hERG (1) or not (0)
       units:
       type: boolean
