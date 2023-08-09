@@ -47,7 +47,7 @@ def get_and_transform_data():
 main protease at high resolution. From MIT AiCures.""",
         "targets": [
             {
-                "id": "SARSCoV2_3CLPro_Diamond",  # name of the column in a tabular dataset
+                "id": "activity_SARSCoV2_3CLPro",  # name of the column in a tabular dataset
                 "description": "activity against the SARSCoV2 3CL protease (1) or not (0)",
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "boolean",

@@ -4,7 +4,7 @@ description: |-
     A large XChem crystallographic fragment screen against SARS-CoV-2
     main protease at high resolution. From MIT AiCures.
 targets:
-    - id: SARSCoV2_3CLPro_Diamond
+    - id: activity_SARSCoV2_3CLPro
       description: activity against the SARSCoV2 3CL protease (1) or not (0)
       units:
       type: boolean
