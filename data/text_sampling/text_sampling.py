@@ -34,14 +34,9 @@ exclude_from_standard_tabular_text_templates = [
     "ames_mutagenicity",  # because it is boolean target data
     "bioavailability_ma_et_al",  # because it is boolean target data
     "blood_brain_barrier_martins_et_al",  # because it is boolean target data
-    "chembl_v29",
-    "clintox",  # KeyError: 'noun' --> Needs a noun in the definition.
-    "flashpoint",  # KeyError: 'description'
-    "herg_blockers",  # AssertionError: target or identifier hERG_blocker not in columns...
-    "moses",  # KeyError: 'targets'
-    "pampa_ncats",  # KeyError: 'noun'
-    "sarscov2_3clpro_diamond",  # AssertionError: target or identifier SARSCoV2_3CLPro_Diamond not in columns...
-    "zinc",  # KeyError: 'targets'
+    "chembl_v29",  # text only, no SMILES
+    "moses",  # SMILES only, has no target
+    "zinc",  # SMILES only, has no target
 ]
 
 
