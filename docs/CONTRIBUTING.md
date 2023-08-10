@@ -45,7 +45,7 @@ With "implementing" we mean the following:
     Try to keep the output your `transform.py` uses as lean as possible (i.e. no columns that will not be used).
     In some cases, you might envision that extra columns might be useful. If this is the case, please add them (e.g., indicating some grouping, etc.)
     Even though some examples create the `meta.yaml` in `transform.py` there is no need to do so. You can also do it by hand.
-    In most cases the data will bes stored in a tabular format and should be named `data_clean.csv`.
+    In most cases the data will be stored in a tabular format and should be named `data_clean.csv`.
 
 
     In the `transform.py` please try to download the data from an official resource.
