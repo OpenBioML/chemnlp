@@ -431,7 +431,7 @@ class TemplateSampler:
 
         var_dict = [
             x
-            for x in meta["identifiers"] + meta["targets"]
+            for x in self.meta["identifiers"] + self.meta["targets"]
             if x["id"] == var.replace("#", "")
         ][0]
         data_type = var_dict["type"]
