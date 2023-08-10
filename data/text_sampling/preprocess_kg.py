@@ -17,13 +17,13 @@ templates = {
     ],
     "compound_protein": [
         """The {node1_type#} SMILES {node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#}.""",
-        """The {node2_type#} {node2_protein_names#} is targeted by the drugs SMILES {node1_smiles#}.""",
+        """The {node2_type#} {node2_protein_names#} is targeted by the drug with the SMILES {node1_smiles#}.""",
         """User: Can you give me an example for a {node1_type#} SMILES that {rel1_type#} the {node2_type#} {node2_protein_names#}?
 Assistant: Yes, The {node1_type#} SMILES {node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#}.""",  # noqa E501
     ],
     "compound_protein_compound": [
         """The {node1_type#} SMILES {node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#} and {rel2_type#} the {node3_type#} {node3_name#}.""",  # noqa E501
-        """The {node2_type#} {node2_protein_names#} is targeted by the drugs SMILES {node1_smiles#} and {node3_name#}.""",  # noqa E501
+        """The {node2_type#} {node2_protein_names#} is targeted by the drug with the SMILES {node1_smiles#} and {node3_name#}.""",  # noqa E501
         """User: Can you give me an example for a {node1_type#} SMILES that {rel1_type#} the {node2_type#} {node2_protein_names#}?
 Assistant: Yes, The {node1_type#} SMILES {node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#}.
 User: Can you tell me another {node1_type#} SMILES that {rel1_type#} the {node2_type#} {node2_protein_names#}?
