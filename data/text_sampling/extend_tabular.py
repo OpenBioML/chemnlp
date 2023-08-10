@@ -46,7 +46,7 @@ def smiles_to_selfies(smiles: str) -> str:
     Takes a SMILES and return the selfies encoding.
     """
 
-    return [selfies.encoder(smiles)]
+    return selfies.encoder(smiles)
 
 
 def smiles_to_deepsmiles(smiles: str) -> str:
