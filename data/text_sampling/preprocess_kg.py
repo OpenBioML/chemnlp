@@ -212,8 +212,9 @@ def create_yamls(dirs: list):
     and the text templates from the template dict."""
     for path in dirs:
         df = pd.read_csv(
-            path + "data_clean.csv", index_col=False, nrows=0
-        )  # only get columns
+            path + "data_clean.csv",
+            index_col=False,
+        )
         cols = df.columns.tolist()
 
         dataset_name = path.split("/")[-2]
