@@ -16,5 +16,5 @@ def load_yaml(path: str) -> dict:
         try:
             data = yaml.safe_load(stream)
         except yaml.YAMLError as exc:
-            print(exc)
+            raise Exception(exc)
     return data
