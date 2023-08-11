@@ -18,27 +18,27 @@ from rdkit import Chem
 # from tucan.serialization import serialize_molecule
 from utils import load_yaml
 
-
-def augment_smiles(smiles: str, int_aug: int = 50, deduplicate: bool = True) -> str:
-    """
-    Takes a SMILES (not necessarily canonical) and returns `int_aug` random variations of this SMILES.
-    """
-
-    mol = Chem.MolFromSmiles(smiles)
-
-    if mol is None:
-        return None
-    else:
-        if int_aug > 0:
-            augmented = [
-                Chem.MolToSmiles(mol, canonical=False, doRandom=True)
-                for _ in range(int_aug)
-            ]
-            if deduplicate:
-                augmented = list(set(augmented))
-            return augmented
-        else:
-            raise ValueError("int_aug must be greater than zero.")
+# not used yet
+# def augment_smiles(smiles: str, int_aug: int = 50, deduplicate: bool = True) -> str:
+#    """
+#    Takes a SMILES (not necessarily canonical) and returns `int_aug` random variations of this SMILES.
+#    """
+#
+#    mol = Chem.MolFromSmiles(smiles)
+#
+#    if mol is None:
+#        return None
+#    else:
+#        if int_aug > 0:
+#            augmented = [
+#                Chem.MolToSmiles(mol, canonical=False, doRandom=True)
+#                for _ in range(int_aug)
+#            ]
+#            if deduplicate:
+#                augmented = list(set(augmented))
+#            return augmented
+#        else:
+#            raise ValueError("int_aug must be greater than zero.")
 
 
 def smiles_to_selfies(smiles: str) -> str:
