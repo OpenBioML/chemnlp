@@ -78,8 +78,6 @@ The dataset is aggregated from four papers.""",
                     {"gerund": "having the potential to cause mutations"},
                     {"gerund": "having the potential to induce genetic alterations"},
                 ],
-                "uris": [],
-                "pubchem_aids": [],
             },
         ],
         "benchmarks": [

@@ -21,8 +21,6 @@ targets:
           - verb: has the ability to induce genetic alterations
           - gerund: having the potential to cause mutations
           - gerund: having the potential to induce genetic alterations
-      uris: []
-      pubchem_aids: []
 benchmarks:
     - name: TDC
       link: https://tdcommons.ai/
