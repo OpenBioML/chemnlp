@@ -118,14 +118,18 @@ With our text template setup for the sampling you can:
 * chain together multiple data fields from the tabular and meta data.
 
 #### Example text template 1 (mainly used for tabular data)
-```The molecule with the {SMILES__description} representation of {SMILES#} exhibits {mutagenic#no &NULL}{mutagenic__names__adjective} properties.```
+```
+The molecule with the {SMILES__description} representation of {SMILES#} exhibits {mutagenic#no &NULL}{mutagenic__names__adjective} properties.
+```
 * `SMILES__description` gets you the text from the description field of the SMILES identifier. The `__` dunder (double underscore) is used to indicate the levels in the `meta.yaml` file.
 * `SMILES#` gets you the data of the sampled SMILES entry (= row from the tabular data). The `#` is used to get the corresponding data.
 * `mutagenic#no &NULL` gets you the data with `#` and recodes it. The recoding options are separated with a `&`. In this example the binary variable `mutagenic` that can be `0` or `1` gets recoded to `no ` and `NULL`. `NULL` is a "reserved word" an indicates [no value](https://en.wikipedia.org/wiki/Null_(SQL)). Thus, the `no ` gets added in front of the `mutagenic__names__adjective` if `mutagenic# == 0`.
 * `mutagenic__names__adjective` gets from the `mutagenic` target the adjective names.
 
 #### Example text template 2 (mainly used for KG data)`
-```The {node1_type#} {node1_name#|node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#} which {rel2_type#} the {node3_type#} {node3_name#}.```
+```
+The {node1_type#} {node1_name#|node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#} which {rel2_type#} the {node3_type#} {node3_name#}.
+```
 * `node1_name#|node1_smiles#` chains together two data fields from the tabular data with `|` so they are jointly sampled for this position. This means that we sample in this case from the name and the SMILES representation.
 * A similar setup can be used in a single data entry (= row from the tabular data) of the tabular data: For `node2_protein_names` the field can include several protein names separated by a `|`, e.g., `Pyruvate dehydrogenase E1 component subunit beta, mitochondrial|PDHE1-B` which then samples from `Pyruvate dehydrogenase E1 component subunit beta, mitochondrial` or `PDHE1-B`.
 
