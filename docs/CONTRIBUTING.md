@@ -112,26 +112,26 @@ For the typical material-property datasets, we will later use the `identifier` a
 
 ### Text templates
 
-With the text template setup for the sampling you can:
+With our text template setup for the sampling you can:
 * use all the data from the `meta.yaml` file,
 * recode categorical data, and
-* merge fields.
+* chain together multiple data fields from the tabular and meta data.
 
 #### Example text template 1 (mainly used for tabular data)
-`The molecule with the {SMILES__description} representation of {SMILES#} exhibits {mutagenic#no &NULL}{mutagenic__names__adjective} properties.`
+```The molecule with the {SMILES__description} representation of {SMILES#} exhibits {mutagenic#no &NULL}{mutagenic__names__adjective} properties.```
 * `SMILES__description` gets you the text from the description field of the SMILES identifier. The `__` dunder (double underscore) is used to indicate the levels in the `meta.yaml` file.
-* `SMILES#` gets you the data of the sampled SMILES row. The `#` is used to get the corresponding data.
+* `SMILES#` gets you the data of the sampled SMILES entry (= row from the tabular data). The `#` is used to get the corresponding data.
 * `mutagenic#no &NULL` gets you the data with `#` and recodes it. The recoding options are separated with a `&`. In this example the binary variable `mutagenic` that can be `0` or `1` gets recoded to `no ` and `NULL`. `NULL` is a "reserved word" an indicates [no value](https://en.wikipedia.org/wiki/Null_(SQL)). Thus, the `no ` gets added in front of the `mutagenic__names__adjective` if `mutagenic# == 0`.
-* `mutagenic__names__adjective` gets you from the `id` `mutagenic` the adjective names.
+* `mutagenic__names__adjective` gets from the `mutagenic` target the adjective names.
 
 #### Example text template 2 (mainly used for KG data)`
-`The {node1_type#} {node1_name#|node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#} which {rel2_type#} the {node3_type#} {node3_name#}.`
-* `node1_name#|node1_smiles#` chains together two columns with `|` so they are jointly sampled for this position. In this case we sample from the name or the SMILES representation.
-* A similar setup can be used in a single column: For `node2_protein_names` the column row can include several protein names also separated by a `|`, e.g., `Pyruvate dehydrogenase E1 component subunit beta, mitochondrial|PDHE1-B` which then samples from `Pyruvate dehydrogenase E1 component subunit beta, mitochondrial` or `PDHE1-B`.
+```The {node1_type#} {node1_name#|node1_smiles#} {rel1_type#} the {node2_type#} {node2_protein_names#} which {rel2_type#} the {node3_type#} {node3_name#}.```
+* `node1_name#|node1_smiles#` chains together two data fields from the tabular data with `|` so they are jointly sampled for this position. This means that we sample in this case from the name and the SMILES representation.
+* A similar setup can be used in a single data entry (= row from the tabular data) of the tabular data: For `node2_protein_names` the field can include several protein names separated by a `|`, e.g., `Pyruvate dehydrogenase E1 component subunit beta, mitochondrial|PDHE1-B` which then samples from `Pyruvate dehydrogenase E1 component subunit beta, mitochondrial` or `PDHE1-B`.
 
 #### Example text templates 3 for multiple choice setups
 Multiple choice setups are also supported. For this we need three components:
-* `%multiple_choice_enum%2%aA1` can be used to list the multiple choice enumerations, i.e., `1, 2, or 3`, `A or B`, etc., The second `%` starts the multiple choice number sequence. Single integers and a range consisting of two integers separated by a `-` are supported to set the lower and higher number, e.g., `2-5` will sample a value between those values including the boundaries for the answer options. The third `%` is used to subselect multiple choice enumerations, i.e., `a` for lower case alphabetical enumerations, `A` for upper case alphabetical, and `1` for numerical enumerations.
+* `%multiple_choice_enum%2%aA1` can be used to list the multiple choice enumerations, i.e., `1, 2, or 3`, `A or B`, etc., The second `%` starts the multiple choice number sequence. Single integers and a range consisting of two integers separated by a `-` are supported to set the lower and higher number, e.g., `2-5` will sample a value between 2 and 5, including the boundaries, for the answer options. The third `%` is used to subselect multiple choice enumerations, i.e., `a` for lower case alphabetical enumerations, `A` for upper case alphabetical, and `1` for numerical enumerations.
 * `mutagenic%` is used to list the multiple choice enumerations with the corresponding possible answer options after the multiple choice enumerations, and
 * `%multiple_choice_result` is used to get the multiple choice enumeration of the answer, i.e., `1`, `c`.
 Please pay attention to the `%` symbol and its position as this is used to parse the different control elements from the text template.
@@ -174,7 +174,7 @@ Please have a look at the following section below about the general benchmarking
 More flexible multiple choice setups are also supported. The standard multiple choice setup from "Example text templates 3 for multiple choice setups" is intended for features of molecules as those are deduplicated during the sampling process. In contrast, this flexible multiple choice setup also lets you use the molecule identifiers, e.g., SMILES, in the multiple choice options.
 
 For this we only need to add one component to the previously outlined multiple choice format:
-* In order to let the model predict which `SMILES` has or has not the boolean variable `penetrate_BBB` we simply add `SMILES%penetrate_BBB%` as an enumeration placeholder for the possible options. With that the list of the multiple choice enumerations shows the SMILES data. Note that the `penetrate_BBB#not &NULL` is needed because the sampling is based on the individual row and depending on if `penetrate_BBB` is `True` or `False` we look for a different label because in the code we compare the sampled options to the `penetrate_BBB` value of the row.
+* In order to let the model predict which `SMILES` has or has not the boolean variable `penetrate_BBB` we simply add `SMILES%penetrate_BBB%` as an enumeration placeholder for the possible options. With that the list of the multiple choice enumerations shows the SMILES data. Note that the `penetrate_BBB#not &NULL` is needed because the sampling is based on the individual sample (= row from the tabular data) and depending on if `penetrate_BBB` is `True` or `False` we look for a different result label because in the code we compare the sampled options to the `penetrate_BBB` value of the specific sample (= entry from the specific row from the tabular data).
 
 ```
 Task: Please answer the multiple choice question.
@@ -197,7 +197,7 @@ Answer: B, C
 ```
 
 #### Benchmarking text templates
-There are two versions of text templates, i.e., one without the end-of-input token `<EOI>` and those with:
+There are two versions of text templates, i.e., text templates with and without the end-of-input token `<EOI>`:
 ```
 The {SMILES__description} {SMILES#} is {mutagenic#no &NULL}{mutagenic__names__adjective}.
 Is the {SMILES__description} {SMILES#} {mutagenic__names__adjective}:<EOI>{mutagenic# yes& no}
@@ -205,14 +205,14 @@ Is the {SMILES__description} {SMILES#} {mutagenic__names__adjective}:<EOI>{mutag
 The `<EOI>` token indicates the splitting position for the benchmarking export, i.e., everything before it will be written to the `input` field and everything afterwards to the `output` field. Without `<EOI>` everything will be in the `text` field.
 In the current setup, you can switch with the `benchmarking_templates` flag of the [`TemplateSampler` class](https://github.com/OpenBioML/chemnlp/blob/text_sampling/text_sampling/text_sampling.py#L104) between text templates with and without `<EOI>`.
 
-The filename scheme uses the split information for the export, i.e., `train.jsonl`, `test.jsonl`, etc., and if no split information is available this column will be set to `full` and exported to `full.jsonl`. With `<EOI>` the filename ends with `_benchmark.jsonl` instead of `.jsonl`.
+The filename scheme uses the split information for the export, i.e., `train.jsonl`, `test.jsonl`, etc., and if no split information is available this will be set to `full` and exported to `full.jsonl`. With `<EOI>` the filename ends with `_benchmark.jsonl` instead of `.jsonl`.
 
 Have a look at the [`meta.yaml` file](https://github.com/OpenBioML/chemnlp/blob/text_sampling/data/ames_mutagenicity/meta.yaml) to see the corresponding structure there.
 
 In case you run into issues (or think you don't have enough compute or storage), please let us know. Also, in some cases `csv` might not be the best format. If you think that `csv` is not suitable for your dataset, let us know.
 
 For now, you do not need to upload the transformed datasets anywhere.
-We will collect the URLs of the raw data in `meta.yaml` and the code to produce curated data in `transform.py` and then run in this on dedicated infrastructure.
+We will collect the URLs of the raw data in the `meta.yaml` files and the code to produce the curated data in `transform.py` and then run in this on dedicated infrastructure.
 
 ### How will the datasets be used?
 
