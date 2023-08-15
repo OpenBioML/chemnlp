@@ -1,5 +1,6 @@
+import itertools
 import math
-from typing import Iterator, Optional
+from typing import Iterator, List, Optional
 
 import torch.distributed as dist
 from torch.utils.data import Dataset, sampler
@@ -58,15 +59,15 @@ class SlidingWindowSampler(sampler.Sampler):
             self.num_samples = math.ceil(len(self.dataset) / self.num_replicas)  # type: ignore[arg-type]
         self.total_size = self.num_samples * self.num_replicas * self.num_repeats
 
-    def _generate_windowed_indices(self):
+    def _generate_windowed_indices(self) -> List[int]:
         # sliding window concatenation of size self.num_repeats
-        indices = list(range(len(self.dataset)))
+        indices = list(range(self.num_samples))
         sliding_windows = [
-            indices[i : i + self.num_repeats] for i in range(0, len(indices))
+            indices[i : i + self.num_repeats] for i in range(0, self.num_samples)
         ]
-        return [e for nestlist in sliding_windows for e in nestlist]
+        return list(itertools.chain.from_iterable(sliding_windows))
 
-    def _handle_uneven_lengths(self, indices):
+    def _handle_uneven_lengths(self, indices: List[int]) -> List[int]:
         # add extra samples to make it evenly divisible
         padding_size = self.total_size - len(indices)
         if padding_size <= len(indices):
