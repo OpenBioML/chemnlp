@@ -1,30 +1,37 @@
-from typing import Iterator, Optional
-import torch.distributed as dist
-from torch.utils.data import sampler, Dataset
 import math
+from typing import Iterator, Optional
+
+import torch.distributed as dist
+from torch.utils.data import Dataset, sampler
 
 
-class ChronologicalRepeatSampler(sampler.Sampler):
+class SlidingWindowSampler(sampler.Sampler):
     """
     Sampler that restricts data loading to a subset of the dataset
         * given the incoming sorted, tokenised data
-        * assume we want to sample chronologically
-        * and repeat the data indices N times
+        * assume we want to sample in this current order
+        * and repeat each data indices N times
 
                                 dataset
     | 0  1  2  3 | 4  5  6  7 | 8  9  10  11 | 12  13  14  15 |
     |            |            |              |                |
-         gpu 1        gpu 2         gpu 3          gpu 4 
-    
+         gpu 1        gpu 2         gpu 3          gpu 4
+
         * move the sliding window at varying pace
 
     | 1  2  3  4 | 5  6  7  8 | 9  10  11  12 | 13  14  15  16 |
     |            |            |               |                |
-         gpu 1        gpu 2         gpu 3          gpu 4 
+         gpu 1        gpu 2         gpu 3          gpu 4
     """
 
-    def __init__(self, dataset: Dataset, num_repeats: int, num_replicas: Optional[int] = None,
-                 rank: Optional[int] = None,  drop_last: bool = False) -> None:
+    def __init__(
+        self,
+        dataset: Dataset,
+        num_repeats: int,
+        num_replicas: Optional[int] = None,
+        rank: Optional[int] = None,
+        drop_last: bool = False,
+    ) -> None:
         if num_replicas is None:
             if not dist.is_available():
                 raise RuntimeError("Requires distributed package to be available")
@@ -35,7 +42,8 @@ class ChronologicalRepeatSampler(sampler.Sampler):
             rank = dist.get_rank()
         if rank >= num_replicas or rank < 0:
             raise ValueError(
-                f"Invalid rank {rank}, rank should be in the interval [0, {num_replicas - 1}]")
+                f"Invalid rank {rank}, rank should be in the interval [0, {num_replicas - 1}]"
+            )
         self.dataset = dataset
         self.num_repeats = num_repeats
         self.num_replicas = num_replicas
@@ -53,7 +61,9 @@ class ChronologicalRepeatSampler(sampler.Sampler):
     def _generate_windowed_indices(self):
         # sliding window concatenation of size self.num_repeats
         indices = list(range(len(self.dataset)))
-        sliding_windows = [indices[i:i+self.num_repeats] for i in range(0, len(indices))]
+        sliding_windows = [
+            indices[i : i + self.num_repeats] for i in range(0, len(indices))
+        ]
         return [e for nestlist in sliding_windows for e in nestlist]
 
     def _handle_uneven_lengths(self, indices):
@@ -62,20 +72,20 @@ class ChronologicalRepeatSampler(sampler.Sampler):
         if padding_size <= len(indices):
             indices += indices[:padding_size]
         else:
-            indices += (indices * math.ceil(padding_size / len(indices)))[:padding_size]        
+            indices += (indices * math.ceil(padding_size / len(indices)))[:padding_size]
         return indices
 
     def __iter__(self) -> Iterator:
         indices = self._generate_windowed_indices()
-        
+
         if not self.drop_last:
-             indices = self._handle_uneven_lengths(indices)
+            indices = self._handle_uneven_lengths(indices)
         else:
-            indices = indices[:self.total_size]
+            indices = indices[: self.total_size]
         assert len(indices) == self.total_size
 
         # subsample
-        sub_indices = indices[self.rank:self.total_size:self.num_replicas]
+        sub_indices = indices[self.rank : self.total_size : self.num_replicas]
         assert len(sub_indices) == self.num_samples * self.num_repeats
 
         return iter(sub_indices)
@@ -85,4 +95,3 @@ class ChronologicalRepeatSampler(sampler.Sampler):
 
     def set_epoch(self, epoch: int) -> None:
         self.epoch = epoch
-    
