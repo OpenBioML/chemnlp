@@ -3,6 +3,8 @@ from typing import Any, Dict, List, Literal, Optional, Union
 from pydantic import BaseModel, validator
 from transformers.trainer_utils import SchedulerType
 
+import chemnlp.sampler as chem_samplers
+
 DictofLists = Dict[str, List]
 
 
@@ -63,12 +65,17 @@ class TrainerConfig(BaseModel):
     restart_checkpoint: Union[bool, str] = True
     gradient_accumulation_steps: int = 1
     save_total_limit: Optional[int] = None
+    train_sampler_name: Optional[str] = None
 
     @validator("learning_rate")
     def small_positive_learning_rate(cls, v):
         if v < 0 or v > 1:
             raise ValueError("Specify a positive learning rate <= 1")
         return v
+
+    @validator("train_sampler_name")
+    def assign_sampler_cls(cls, v):
+        cls.train_sampler_cls = getattr(chem_samplers, v)
 
 
 class WandbConfig(BaseModel):
