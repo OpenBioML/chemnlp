@@ -28,8 +28,8 @@ class SlidingWindowSampler(sampler.Sampler):
         self,
         dataset: Dataset,
         num_repeats: int,
-        num_replicas: Optional[int] = None,
-        rank: Optional[int] = None,
+        num_replicas: Optional[int] = None,  # world size
+        rank: Optional[int] = None,  # local rank
         drop_last: bool = False,
     ) -> None:
         if num_replicas is None:
