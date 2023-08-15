@@ -71,7 +71,8 @@ class SlidingWindowSampler(sampler.Sampler):
     def _handle_uneven_lengths(self, indices: List[int]) -> List[int]:
         # add extra samples to make it evenly divisible
         padding_size = self.total_size - len(indices)
-        indices += random.sample(indices, k=padding_size)
+        if 0 < padding_size:
+            indices += random.sample(indices, k=padding_size)
         return indices
 
     def __iter__(self) -> Iterator:
