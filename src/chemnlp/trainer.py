@@ -13,16 +13,16 @@ from transformers.utils import is_datasets_available
 class LLcheMTrainer(Trainer):
     def __init__(
         self,
-        sampler: Optional[sampler.Sampler] = None,
+        train_sampler: Optional[sampler.Sampler] = None,
         **kwargs,
     ):
         """
         Rewritten over from transformers 4.30.2
-        * custom sampler
+        * custom sampler for training
         * all other kwargs get passed as normal
         """
         super().__init__(**kwargs)
-        self.sampler = sampler
+        self.train_sampler = train_sampler
 
     def get_train_dataloader(self) -> DataLoader:
         """
@@ -62,7 +62,9 @@ class LLcheMTrainer(Trainer):
             )
 
         # NOTE change from original code
-        train_sampler = self.sampler if self.sampler else self._get_train_sampler()
+        train_sampler = (
+            self.train_sampler if self.train_sampler else self._get_train_sampler()
+        )
 
         return DataLoader(
             train_dataset,
