@@ -313,7 +313,7 @@ class TemplateSampler:
             "canonical": {
                 "id": "canonical",
                 "type": "canonical",
-                "description": "canonical form",
+                "description": "canonical SMILES",
             },
             "inchi": {
                 "id": "inchi",
