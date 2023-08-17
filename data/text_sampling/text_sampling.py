@@ -328,7 +328,7 @@ class TemplateSampler:
             "iupac_name": {
                 "id": "iupac_name",
                 "type": "iupac_name",
-                "description": "IUPAC",
+                "description": "IUPAC name",
             },
         }
         self.additional_targets = []
