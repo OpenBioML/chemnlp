@@ -1,4 +1,4 @@
-from typing import Dict, List, Optional
+from typing import List, Optional
 
 import pubchempy as pcp
 import requests
@@ -133,6 +133,9 @@ class Target(YamlModel, extra=Extra.forbid):
     sample: bool = True
     """Wether the target should be sampled for the text template generation."""
 
+    significant_digits: Optional[int]
+    """Significant digits to round float values."""
+
     @validator("uris")
     def uris_resolves(cls, values):
         if values is not None:
@@ -153,23 +156,6 @@ class Target(YamlModel, extra=Extra.forbid):
                 assays = pcp.get_assays(aid)
                 if len(assays) == 0:
                     raise ValueError(f"PubChem assay ID {aid} does not resolve")
-
-
-class Template(YamlModel, extra=Extra.forbid):
-    prompt: str
-    completion: str
-
-
-class TemplateFieldValue(YamlModel, extra=Extra.forbid):
-    """Template field information."""
-
-    name: str
-    column: Optional[str]
-    text: Optional[str]
-
-
-class TemplateField(YamlModel, extra=Extra.forbid):
-    values: List[TemplateFieldValue]
 
 
 class Link(YamlModel):
@@ -201,8 +187,7 @@ class Dataset(YamlModel, extra=Extra.forbid):
     license: str
     num_points: int
     bibtex: List[str]
-    templates: Optional[List[Template]]
-    fields: Optional[Dict[str, TemplateField]]
+    templates: Optional[List]
     links: List[Link]
 
     benchmarks: Optional[List[Benchmark]]
