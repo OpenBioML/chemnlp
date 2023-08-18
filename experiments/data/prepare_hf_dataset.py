@@ -30,17 +30,14 @@ def run(config_path: str):
     if not tokenizer.pad_token:
         tokenizer.add_special_tokens({"pad_token": "<|padding|>"})
 
-    dataset = datasets.load_dataset(
-        config.dataset_name, **config.dataset_args, num_proc=os.cpu_count()
-    )
-    filtered_ds = dataset.filter(
-        lambda x: isinstance(x[config.string_key], str), num_proc=os.cpu_count()
-    )
-    print(
-        f"Removed {dataset.num_rows-filtered_ds.num_rows} samples as not of type str."
-    )
+    if config.from_disk:
+        dataset = datasets.load_from_disk(config.dataset_name, **config.dataset_args)
+    else:
+        dataset = datasets.load_dataset(
+            config.dataset_name, **config.dataset_args, num_proc=os.cpu_count()
+        )
 
-    tokenised_data = filtered_ds.map(
+    tokenised_data = dataset.map(
         lambda batch: tokenise(
             batch,
             tokenizer,
@@ -50,7 +47,7 @@ def run(config_path: str):
         ),
         batched=True,
         batch_size=config.batch_size,
-        remove_columns=filtered_ds.column_names,
+        remove_columns=dataset.column_names,
         num_proc=os.cpu_count(),
         load_from_cache_file=False,
     )
@@ -58,7 +55,7 @@ def run(config_path: str):
     summary_stats = {
         "model_name": config.model_name,
         "dataset_name": config.dataset_name,
-        "total_samples": filtered_ds.num_rows,
+        "total_samples": dataset.num_rows,
         "dataset_args": config.dataset_args,
         "max_context_length": config.context_length,
         "total_tokens_in_billions": round(
