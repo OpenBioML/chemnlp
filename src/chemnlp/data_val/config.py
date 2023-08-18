@@ -116,6 +116,7 @@ class HFDatasetConfig(BaseModel):
     string_key: str = "TEXT"
     batch_size: Optional[int] = 1000
     save_path: str
+    keep_columns: Optional[List[str]] = None
 
 
 class DataMixingConfig(BaseModel):
