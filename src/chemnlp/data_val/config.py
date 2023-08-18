@@ -117,6 +117,7 @@ class HFDatasetConfig(BaseModel):
     batch_size: Optional[int] = 1000
     save_path: str
     from_disk: bool = False
+    keep_columns: Optional[List[str]] = None
 
 
 class DataMixingConfig(BaseModel):

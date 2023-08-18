@@ -39,7 +39,11 @@ def run(config_path: str):
 
     tokenised_data = dataset.map(
         lambda batch: tokenise(
-            batch, tokenizer, config.context_length, config.string_key
+            batch,
+            tokenizer,
+            config.context_length,
+            config.string_key,
+            config.keep_columns,
         ),
         batched=True,
         batch_size=config.batch_size,
