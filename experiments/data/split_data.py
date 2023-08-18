@@ -18,7 +18,8 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
     name = "papers" if "papers" in args.data_path else "abstracts"
-    print("loadinggg")
+
+    print("loadinggg ...")
     ds = datasets.load_dataset(
         "json",
         **{"data_files": {"train": args.data_path}, "split": "train"},
@@ -26,19 +27,19 @@ if __name__ == "__main__":
         keep_in_memory=True,
     )
 
-    print("filteringgg")
+    print("filtering ...")
     ds = ds.filter(
         lambda x: isinstance(x["sentences"], str) and x["pubDate"] is not None,
         num_proc=os.cpu_count(),
     )
 
-    print("sortinggg")
+    print("sorting ...")
     index_keys = [(i, x) for i, x in enumerate(ds["pubDate"])]
     sorted_rows = sorted(index_keys, key=lambda x: x[1])
     sorted_indicies = [x[0] for x in sorted_rows]
     sorted_ds = ds.select(sorted_indicies)
 
-    print("making splits")
+    print("making splits ...")
     train_and_future_val_test = sorted_ds.train_test_split(
         test_size=args.val_test_splits_size, shuffle=False
     )
@@ -52,7 +53,7 @@ if __name__ == "__main__":
         test_size=0.50
     )
 
-    print("saving splits")
+    print("saving splits ...")
     train_and_random_val_test["train"].save_to_disk(
         f"{OUT_DIR}/train_{name}_v1", num_proc=os.cpu_count()
     )
