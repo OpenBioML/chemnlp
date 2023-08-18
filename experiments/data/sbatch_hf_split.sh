@@ -20,7 +20,7 @@ set -ex # allow for exiting based on non-0 codes
 cd /fsx/proj-chemnlp/$2/chemnlp
 
 # create environment
-pip install datasets 
+pip install datasets
 
 # trigger run
 python experiments/data/split_data.py $3 $4
