@@ -1,6 +1,6 @@
 import itertools
 import random
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 from datasets import concatenate_datasets
 from datasets.formatting.formatting import LazyBatch
@@ -43,18 +43,37 @@ def pad_sequence(sequence, max_len, pad_token_id):
 
 
 def tokenise(
-    batch: LazyBatch, tokenizer: PreTrainedTokenizer, max_length: int, string_key: str
+    batch: LazyBatch,
+    tokenizer: PreTrainedTokenizer,
+    max_length: int,
+    string_key: str,
+    keep_columns: Optional[List[str]] = None,
 ) -> Dict[str, List]:
     """Tokenise a batch of data using sample chunking"""
     tok_articles = [tokenizer(x)["input_ids"] for x in batch[string_key]]
-    tok_articles = list(itertools.chain.from_iterable(tok_articles))
-    tok_articles = list(chunks(tok_articles, max_length))
-
-    return _pad_batched_data(
-        dataset=tok_articles,
+    flattened_tokens = list(itertools.chain.from_iterable(tok_articles))
+    chunked_tokens = list(chunks(flattened_tokens, max_length))
+    padded_sample_tokens = _pad_batched_data(
+        dataset=chunked_tokens,
         tokenizer=tokenizer,
         max_length=max_length,
     )
+
+    if keep_columns:
+        # augment with token-level metadata
+        sample_metadata = [
+            {meta: batch[meta][i] or "" for meta in keep_columns}
+            for i, _ in enumerate(batch[string_key])
+        ]
+        tok_metadata = [
+            [sample_meta] * len(x)
+            for sample_meta, x in zip(sample_metadata, tok_articles)
+        ]
+        tok_metadata = list(itertools.chain.from_iterable(tok_metadata))
+        tok_metadata = list(chunks(tok_metadata, max_length))
+        padded_sample_tokens["metadata"] = tok_metadata
+
+    return padded_sample_tokens
 
 
 def get_tokenised_data_minimum_padding(
