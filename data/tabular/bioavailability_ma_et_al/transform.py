@@ -119,11 +119,11 @@ oral bioavailability derived by using GA-CG-SVM method},
 journal = {Journal of Pharmaceutical and Biomedical Analysis}""",
         ],
         "templates": [
-            "The molecule with the {SMILES__description} representation {SMILES#} is {bioavailable#not &NULL}{bioavailable__names__adjective}.",  # noqa: E501
-            "Based on the {SMILES__description} representation {SMILES#}, the molecule is {bioavailable#not &NULL}{bioavailable__names__adjective}.",  # noqa: E501
-            "The {SMILES__description} {SMILES#} represents a molecule that is {bioavailable#not &NULL}identified as {bioavailable__names__adjective}.",  # noqa: E501
-            "The {SMILES__description} {SMILES#} is {bioavailable#not &NULL}{bioavailable__names__adjective}.",
-            "The molecule {SMILES#} is {bioavailable#not &NULL}{bioavailable__names__adjective}.",
+            "The molecule with the {SMILES__description} representation {SMILES#} has a {bioavailable#low&high} {bioavailable__names__noun}.",  # noqa: E501
+            "Based on the {SMILES__description} representation {SMILES#}, the molecule has a {bioavailable#low&high} {bioavailable__names__noun}.",  # noqa: E501
+            "The {SMILES__description} {SMILES#} represents a molecule that has a {bioavailable#low&high} {bioavailable__names__noun}.",  # noqa: E501
+            "The {SMILES__description} {SMILES#} has a {bioavailable#low&high} {bioavailable__names__noun}.",
+            "The molecule {SMILES#} has a {bioavailable#low&high} {bioavailable__names__noun}.",
             "Is the {SMILES__description} {SMILES#} {bioavailable__names__adjective}? <EOI> {bioavailable#yes&no}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
             """Task: Please answer the multiple choice question below with {%multiple_choice_enum%2%aA1}.
 Question: Is the molecule with the {SMILES__description} representation {SMILES#} {bioavailable__names__adjective}?
