@@ -58,8 +58,7 @@ available at the site of action.""",
                 "type": "boolean",
                 "names": [  # names for the property (to sample from for building the prompts)
                     {"noun": "oral bioavailability"},
-                    {"noun": "bioavailability"},
-                    {"adjective": "bioavailable"},
+                    {"adjective": "orally bioavailable"},
                 ],
                 "uris": [
                     "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C70913",
@@ -99,6 +98,8 @@ available at the site of action.""",
             {
                 "url": "https://tdcommons.ai/single_pred_tasks/adme/#bioavailability-ma-et-al",
                 "description": "data source",
+                # note: this is not the original data, it is their modified version
+                # original larger dataset: http://modem.ucsd.edu/adme/databases/databases_bioavailability.htm
             },
         ],
         "num_points": len(df),  # number of datapoints in this dataset
@@ -118,19 +119,19 @@ oral bioavailability derived by using GA-CG-SVM method},
 journal = {Journal of Pharmaceutical and Biomedical Analysis}""",
         ],
         "templates": [
-            "The molecule with the {SMILES__description} representation of {SMILES#} is {bioavailable#not &NULL}{bioavailable__names__adjective}.",  # noqa: E501
-            "Based on the {SMILES__description} representation {SMILES#}, the molecule is {bioavailable#not &NULL}{bioavailable__names__adjective}.",  # noqa: E501
-            "The {SMILES__description} {SMILES#} represents a molecule that is {bioavailable#not &NULL}identified as {bioavailable__names__adjective}.",  # noqa: E501
-            "The {SMILES__description} {SMILES#} is {bioavailable#not &NULL}{bioavailable__names__adjective}.",
-            "The molecule {SMILES#} is {bioavailable__names__adjective}.",
-            "Is the {SMILES__description} {SMILES#} {bioavailable__names__adjective}:<EOI> {bioavailable#yes&no}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
+            "The molecule with the {SMILES__description} representation {SMILES#} has a {bioavailable#low&high} {bioavailable__names__noun}.",  # noqa: E501
+            "Based on the {SMILES__description} representation {SMILES#}, the molecule has a {bioavailable#low&high} {bioavailable__names__noun}.",  # noqa: E501
+            "The {SMILES__description} {SMILES#} represents a molecule that has a {bioavailable#low&high} {bioavailable__names__noun}.",  # noqa: E501
+            "The {SMILES__description} {SMILES#} has a {bioavailable#low&high} {bioavailable__names__noun}.",
+            "The molecule {SMILES#} has a {bioavailable#low&high} {bioavailable__names__noun}.",
+            "Is the {SMILES__description} {SMILES#} {bioavailable__names__adjective}? <EOI> {bioavailable#yes&no}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
             """Task: Please answer the multiple choice question below with {%multiple_choice_enum%2%aA1}.
-Question: Is the molecule with the {SMILES__description} representation of {SMILES#} {bioavailable__names__adjective}?
+Question: Is the molecule with the {SMILES__description} representation {SMILES#} {bioavailable__names__adjective}?
 Options:
 {bioavailable%}
 Answer: {%multiple_choice_result}""",
             """Task: Please answer the multiple choice question below with {%multiple_choice_enum%2%aA1}.
-Question: Is the molecule with the {SMILES__description} representation of {SMILES#} {bioavailable__names__adjective}?
+Question: Is the molecule with the {SMILES__description} representation {SMILES#} {bioavailable__names__adjective}?
 Options:
 {bioavailable%}
 Answer:<EOI> {%multiple_choice_result}""",
