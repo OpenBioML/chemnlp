@@ -1,5 +1,4 @@
 import pandas as pd
-import wget
 
 def transform_data():
 
@@ -9,8 +8,8 @@ def transform_data():
     clean_data = original_data.drop("sl_num", axis=1)
     assert not clean_data.duplicated().sum()
 
-    clean_columns = ["Name", 
-                     "SMILES", 
+    clean_columns = ["compound_name", 
+                     "PSMILES", 
                      "Tg_exp", 
                      "Tg_calc", 
                      "Tg_calc_std", 
@@ -25,10 +24,11 @@ def transform_data():
     clean_data.columns = clean_columns
  
  
-    clean_data["SMILES"] = clean_data["SMILES"].str.replace("[Ce]", "[*]", regex=False)
-    clean_data["SMILES"] = clean_data["SMILES"].str.replace("[Th]", "[*]", regex=False)
+    clean_data["PSMILES"] = clean_data["PSMILES"].str.replace("[Ce]", "[*]", regex=False)
+    clean_data["PSMILES"] = clean_data["PSMILES"].str.replace("[Th]", "[*]", regex=False)
 
-    
-    clean_data.to_excel("HT_MD_Polymers_clean.xlsx")
+    clean_data.to_csv("HT_MD_Polymers_clean.csv")
 
-transform_data()
+
+if __name__ == '__main__':
+    transform_data()
