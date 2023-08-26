@@ -1,11 +1,10 @@
 import pandas as pd
 
 def transform_data():
-
-
-    original_data = pd.read_excel("HT_MD_polymer_properties.xlsx")
     
+    original_data = pd.read_csv("HT_MD_polymer_properties.csv")
     clean_data = original_data.drop("sl_num", axis=1)
+    
     assert not clean_data.duplicated().sum()
 
     clean_columns = ["compound_name", 
