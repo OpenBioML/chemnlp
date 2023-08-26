@@ -1,5 +1,5 @@
 ---
-name: polymer_Tg_data
+name: polymer_data
 description: |-
     This paper outlines a MD simulation workflow based on GPU MD simulation and the
     refined optimized potentials for liquid simulation (OPLS) OPLS3e force field to
@@ -7,70 +7,67 @@ description: |-
     reported experimental values.
 targets:
     - id: Tg_exp
-      description: experimental glass transition T
+      description: experimental glass transition temperature
       units: K
       type: float
       names:
-          - noun: glass transition temperature - exp 
+          - noun: experimental glass transition temperature 
       uris:
     - id: Tg_calc
       description: calculated glass transition T
       units: K
       type: float
       names:
-          - noun: glass transition temperature - calc 
-      uris:
+          - noun: computed glass transition temperature
     - id: Tg_calc_std
-      description: calculated std glass transition T 
+      description: computed standard deviation for glass transition temperature Tg
+      sampled: False
       units: K
       type: float
       names:
-          - noun: calculated std glass transition temperature 
-      uris:        
+          - noun: computed standard deviation for glass transition temperature 
     - id: rho_300K_exp
       description: experiment density at 300K 
-      units: g/cc
+      units: g/cm^3
       type: float
       names:
-          - noun: exp density 300K
+          - noun: experimental density 300K
     - id: rho_300K_calc
-      description: calculated density at 300K 
-      units: g/cc
+      description: computed density at 300K 
+      units: g/cm^3
       type: float
       names:
-          - noun: calc density 300K
+          - names: computed polymer density at 300K
     - id: glass_CTE_calc
-      description: calculated glass coef of thermal expansion (CTE) at 300K 
+      description: computed glass coef of thermal expansion (CTE) at 300K 
       units: K
       type: float
       names:
-          - noun: calc density 300K
+          - noun: computed glass coefficient of thermal expansion at 300K
     - id: glass_CTE_calc_std
-      description: std - calculated glass coef of thermal expansion (CTE) at 300K 
+      description: computed standard deviation of glass coefficient of thermal expansion (CTE) at 300K 
+      sampled: False
       units: K
       type: float
       names:
-          - noun: calc density 300K
+          - noun: computed standard deviation of glass CTE
     - id: rubber_CTE_calc
-      description: 
+      description: computed rubber CTE at 300K 
       units: K
       type: float
       names:
-          - noun: calc density 300K
+          - noun: computed rubber coefficient of thermal expansion (CTE) at 300K 
     - id: rubber_CTE_calc_std
-      description: std - calculated glass coef of thermal expansion (CTE) at 300K 
+      description: computed standard deviation of rubber CTE at 300K 
+      sampled: False
       units: K
       type: float
       names:
-          - noun: calc density 300K
-benchmarks:
-    - name: 
-      link: 
-      split_column: 
+          - computed standard deviation of rubber coefficient of thermal expansion (CTE) at 300K 
 identifiers:
-    - id: SMILES
-      type: SMILES
-      description: SMILES
+    - id: PSMILES
+      type: PSMILES
+      description: PSMILES
     - id: compound_name
       type: Other
       names:
@@ -80,7 +77,8 @@ license: CC BY 4.0
 links:
     - url: https://pubs.acs.org/doi/10.1021/acsapm.0c00524#
       description: corresponding publication
-    - url: https://pubs.acs.org/doi/suppl/10.1021/acsapm.0c00524/suppl_file/ap0c00524_si_001.xlsx
+    - url: 
+        - https://raw.githubusercontent.com/AdrianM0/chemnlp/main/data/tabular/bicerano_dataset/HT_MD_polymer_properties.csv
       description: data source
 num_points: 315
 bibtex:
@@ -95,5 +93,3 @@ bibtex:
       pages = {620-630},
       year = {2021},
       doi = {10.1021/acsapm.0c00524}}
-
-
