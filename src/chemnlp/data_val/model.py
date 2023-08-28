@@ -10,6 +10,7 @@ class IdentifierEnum(YamlStrEnum):
     """Identifier types."""
 
     smiles = "SMILES"
+    psmiles = "PSMILES"
     selfies = "SELFIES"
     iupac = "IUPAC"
     inchi = "InChI"
