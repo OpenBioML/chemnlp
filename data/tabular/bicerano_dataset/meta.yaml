@@ -20,7 +20,7 @@ targets:
       names:
           - noun: computed glass transition temperature
     - id: Tg_calc_std
-      description: computed standard deviation for glass transition temperature Tg
+      description: computed standard deviation for Tg
       sampled: false
       units: K
       type: float
@@ -37,7 +37,7 @@ targets:
       units: g/cm^3
       type: float
       names:
-          - names: computed polymer density at 300K
+          - noun: computed polymer density at 300K
     - id: glass_CTE_calc
       description: computed glass coef of thermal expansion (CTE) at 300K
       units: K
@@ -63,7 +63,7 @@ targets:
       units: K
       type: float
       names:
-          - computed standard deviation of rubber coefficient of thermal expansion (CTE) at 300K
+          - noun: computed standard deviation of rubber coefficient of thermal expansion (CTE) at 300K
 identifiers:
     - id: PSMILES
       type: PSMILES
@@ -93,3 +93,17 @@ bibtex:
       pages = {620-630},
       year = {2021},
       doi = {10.1021/acsapm.0c00524}}
+templates:
+    - The molecule with the {PSMILES__description} of {PSMILES#} has an experimental glass transition temperature of {Tg_exp#} K.
+    - The molecule with the {PSMILES__description} of {PSMILES#} has a computed glass transition temperature of {Tg_calc#} K.
+    - The molecule with the {PSMILES__description} of {PSMILES#} has a standard deviation of computed transition temperature of {Tg_calc_std#} K.
+    - The molecule with the {PSMILES__description} of {PSMILES#} has an experimental density at 300 K of {rho_300K_exp#} K.
+    - The molecule with the {PSMILES__description} of {PSMILES#} has a computed density at 300 K of {rho_300K_calc#} K.
+    - The molecule with the {PSMILES__description} of {PSMILES#} has a computed glass coefficient of thermal expansion (CTE) at 300K of {glass_CTE_calc#}
+      K.
+    - The molecule with the {PSMILES__description} of {PSMILES#} has a standard deviation of the computed glass coefficient of thermal expansion (CTE) at
+      300K of {glass_CTE_calc_std#} K.
+    - The molecule with the {PSMILES__description} of {PSMILES#} has a computed rubber coefficient of thermal expansion (CTE) at 300K of {rubber_CTE_calc#}
+      K.
+    - The molecule with the {PSMILES__description} of {PSMILES#} has a standard deviation of the computed rubber coefficient of thermal expansion (CTE)
+      at 300K of {rubber_CTE_calc_std#} K.
