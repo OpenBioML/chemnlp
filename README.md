@@ -32,6 +32,14 @@ ChemNLP is an open-source project - your involvement is warmly welcome! If you'r
 - Looking for ideas? See our [task board](https://github.com/orgs/OpenBioML/projects/5/views/1) to see what we may need help with.
 - Have an idea? Create an [issue](https://github.com/OpenBioML/chemnlp/issues)!
 
+
+Over the past months ChemNLP has received many contributions and a lot of feedback. We appreciate all contributions from community to make ChemNLP thrive.
+
+<a href="https://github.com/openbioml/chemnlp/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=openbioml/chemnlp" />
+</a>
+
+
 # Note on the "ChemNLP" name
 
 Our OpenBioML ChemNLP project is not affiliated to the [ChemNLP library from NIST](https://arxiv.org/abs/2209.08203) and we use "ChemNLP" as a general term to highlight our project focus. The datasets and models we create through our project will have a unique and recognizable name when we release them.
