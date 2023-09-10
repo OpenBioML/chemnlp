@@ -1,4 +1,5 @@
 import pandas as pd
+from canonicalize_psmiles.canonicalize import canonicalize
 
 
 def transform_data():
@@ -29,6 +30,14 @@ def transform_data():
     )
     clean_data["PSMILES"] = clean_data["PSMILES"].str.replace(
         "[Th]", "[*]", regex=False
+    )
+
+    clean_data["PSMILES"] = clean_data["PSMILES"].str.replace(
+        "[[*]]", "[*]", regex=False
+    )
+
+    clean_data["PSMILES"] = clean_data["PSMILES"].apply(
+        lambda smiles: canonicalize(smiles)
     )
 
     clean_data.to_csv("HT_MD_Polymers_clean.csv")
