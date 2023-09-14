@@ -145,6 +145,45 @@ Assistant: The {node1_type#} {node1_name#|node1_smiles#} {rel1_type#} for exampl
 User: Can you tell me a {node3_type#} that {rel2_type#} {node2_type#} {node2_protein_names#}?
 Assistant: Yes, the {node2_type#} {node2_name#} {rel2_type#} {node3_name#}.""",  # noqa E501
     ],
+    "chembl33_preprocessed_filtered_bioactivity_dataset_w_fullprotnames_smiles": [
+        "The molecule with the {SMILES__description} representation of {SMILES#} shows a bioaffinity for the protein of {protein_name#} with a {standard_type#} of {standard_value#} {standard_units#}.",  # noqa E501
+        "The molecule with the {SMILES__description} representation of {SMILES#} shows a affinity for the {protein_name#} with a {standard_type#} of {standard_value#} {standard_units#}.",  # noqa E501
+        "The molecule with the {SMILES__description} representation of {SMILES#} shows a bioaffinity for the {protein_name#} ({standard_type#} of {standard_value#} {standard_units#}).",  # noqa E501
+        # Instruction tuning text templates
+        """Task: Please derive the bioaffinity of the molecule to a protein.
+Protein name: {protein_name#}
+Molecule {SMILES__description}: {SMILES#}
+Constraint: The resulting {standard_type#} value should be in {standard_units#}. Even if you are uncertain, you must derive a {standard_type#} value without using any other words.
+Result: {standard_value#} {standard_units#}""",  # noqa E501
+        """Task: Please create a molecule {SMILES__description} that has a affinity to the protein {protein_name#} with a {standard_type#} of {standard_value#} {standard_units#}.
+Result: {SMILES#}""",  # noqa E501
+        """Task: Please create a molecule {SMILES__description} that has a bioaffinity to the protein {protein_name#}.
+Constraint: The bioaffinity of the molecule to the protein should have a {standard_type#} of {standard_value#} {standard_units#}.
+Result: {SMILES#}""",  # noqa E501
+        # Conversational text templates
+        """User: Can you give me an example of a protein that has a bioaffinity to the {SMILES__description} {SMILES#}?
+Assistant: The protein {protein_name#} has for example an affinity to the {SMILES__description} {SMILES#}.
+User: Can you estimate the {standard_type#}?
+Assistant: Yes, the {standard_type#} has a value of {standard_value#} {standard_units#}.""",  # noqa E501
+        """User: Can you give me an example of a protein that has an affinity to the {SMILES__description} {SMILES#}?
+Assistant: The protein {protein_name#} has for example an affinity to the {SMILES__description} {SMILES#}.
+User: Can you estimate the {standard_type#}?
+Assistant: Yes, the {standard_type#} has a value of {standard_value#} {standard_units#}.
+User: Can you give more information on the assay?
+Assistant: Yes, there you go:
+{description#}""",  # noqa E501
+        # Benchmarking text templates
+        """Task: Please derive the bioaffinity of the molecule to a protein.
+Protein name: {protein_name#}
+Molecule {SMILES__description}: {SMILES#}
+Constraint: The resulting {standard_type#} value should be in {standard_value#}. Even if you are uncertain, you must derive a {standard_type#} value without using any other words.
+Result: {standard_value#} {standard_units#}""",  # noqa E501
+        """Task: Please create a molecule {SMILES__description} that has a affinity to the protein {protein_name#} with a {standard_type#} of {standard_value#} {standard_units#}.
+Result:<EOI> {SMILES#}""",  # noqa E501
+        """Task: Please create a molecule {SMILES__description} that has a bioaffinity to the protein {protein_name#}.
+Constraint: The bioaffinity of the molecule to the protein should have a {standard_type#} of {standard_value#} {standard_units#}.
+Result:<EOI> {SMILES#}""",  # noqa E501
+    ],
 }
 
 # create meta yaml
@@ -221,20 +260,38 @@ def create_yamls(dirs: list):
         meta_copy = meta_template.copy()
         meta_copy["name"] = dataset_name
         meta_copy["num_points"] = len(df)
-        meta_copy["identifiers"] = [
-            {"id": c, "description": c, "type": "Other"} for c in cols if "1" in c
-        ]
-        meta_copy["targets"] = [
-            {
-                "id": c,
-                "description": c,
-                "type": "Other",
-                "units": c,
-                "names": [{"noun": c}],
-            }
-            for c in cols
-            if "1" not in c
-        ]
+        if "SMILES" in cols:
+            # for KG assay data
+            meta_copy["identifiers"] = [
+                {"id": "SMILES", "description": "SMILES", "type": "SMILES"}
+            ]
+            meta_copy["targets"] = [
+                {
+                    "id": c,
+                    "description": c,
+                    "type": "Other",
+                    "units": c,
+                    "names": [{"noun": c}],
+                }
+                for c in cols
+                if c != "SMILES"
+            ]
+        else:
+            # for KG walks data
+            meta_copy["identifiers"] = [
+                {"id": c, "description": c, "type": "Other"} for c in cols if "1" in c
+            ]
+            meta_copy["targets"] = [
+                {
+                    "id": c,
+                    "description": c,
+                    "type": "Other",
+                    "units": c,
+                    "names": [{"noun": c}],
+                }
+                for c in cols
+                if "1" not in c
+            ]
         meta_copy["templates"] = templates[dataset_name]
 
         fn_meta = path + "meta.yaml"
@@ -250,8 +307,47 @@ def format_kg_df(df: pd.DataFrame) -> pd.DataFrame:
     # recode based on lookup dict
     df.replace(recode, inplace=True)
 
+    # check if KG assay export
+    if "Assay_CHEMBL_ID" in df.columns:
+        # remove entries with None values in specific columns used in the templates
+        df.dropna(subset=["Protein Name"], inplace=True)
+        df.dropna(subset=["standard_type"], inplace=True)
+        df.dropna(subset=["standard_value"], inplace=True)
+        df.dropna(subset=["standard_units"], inplace=True)
+        df.dropna(subset=["description"], inplace=True)
+
+        # drop columns we don't use in the templates
+        df.drop(
+            columns=[
+                "Target_CHEMBL_ID",
+                "Compound_CHEMBL_ID",
+                "Assay_CHEMBL_ID",
+                "assay_type",
+                "Assay Taxonomy",
+                "TD Tax ID",
+                # 'confidence_score',
+                "target_type",
+                "src_compound_id",
+                "src_assay_id",
+                "src_id",
+                "src_description",
+                "standard_relation",
+                "activity_comment",
+                "year",
+            ],
+            inplace=True,
+        )
+
+        df.columns = [
+            c.lower().replace(" ", "_") if c != "SMILES" else "SMILES"
+            for c in df.columns
+        ]
+        return df
+
     # relations to lower caser
-    df.node2_type = df.node2_type.apply(lambda x: x.lower())
+    if "node2_type" in df.columns:
+        df.node2_type = df.node2_type.apply(lambda x: x.lower())
+
     if "node3_type" in df.columns:
         df.node3_type = df.node3_type.apply(lambda x: x.lower())
 
@@ -277,7 +373,7 @@ def format_kg_df(df: pd.DataFrame) -> pd.DataFrame:
             df.node3_type.unique().tolist() == ["chebi"]
         ):
             df.drop(
-                labels=df[
+                columns=df[
                     df.node1_name.apply(lambda x: x.lower())
                     == df.node2_name.apply(lambda x: x.lower())
                 ].index.tolist(),
@@ -302,20 +398,36 @@ def preprocess_kg_data(path_data_dir: str):
     """Preprocesses the raw knowledge graph data and save
     the data_original.csv, data_clean.csv, and meta.yaml."""
     # create separate dirs, move csv files there, and save cleaned data
-    fns_data_raw = sorted(glob.glob(path_data_dir + "*csv"))
+    fns_data_raw = sorted(glob.glob(path_data_dir + "*.csv"))  # KG walks data
+    fns_data_raw += sorted(glob.glob(path_data_dir + "*.tsv"))  # KG assay data
 
     for fn in fns_data_raw:
         if fn.endswith("_mappings.csv") or fn.endswith("_full.csv"):
             continue
-        dir_new = fn.split("/")[-1].split(".csv")[0].lower()
+        dir_new = (
+            fn.split("/")[-1]
+            .split(".csv" if fn.endswith(".csv") else ".tsv")[0]
+            .lower()
+        )
         path_new = path_data_dir + dir_new
         print(path_new)
         os.makedirs(path_new, exist_ok=True)
-        path_data_original = path_new + "/data_original.csv"
+        path_data_original = (
+            path_new + "/data_original" + (".csv" if fn.endswith(".csv") else ".tsv")
+        )
         shutil.copyfile(fn, path_data_original)
-        df = pd.read_csv(path_data_original, index_col=False)
+        df = pd.read_csv(
+            path_data_original,
+            low_memory=False,
+            index_col=False,
+            sep="," if fn.endswith(".csv") else "\t",
+        )
         df = format_kg_df(df)
-        path_data_clean = path_data_original.replace("_original.csv", "_clean.csv")
+        path_data_clean = (
+            path_data_original
+            if fn.endswith(".csv")
+            else path_data_original.replace(".tsv", ".csv")
+        ).replace("_original.csv", "_clean.csv")
         df.to_csv(path_data_clean, index=False)
 
     # set up yamls
