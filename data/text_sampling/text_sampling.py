@@ -397,8 +397,15 @@ class TemplateSampler:
 
     def _get_target_from_row(self, sample: pd.Series, var: str) -> str:
         """Get target string from sample row and variable string."""
+        # sampling based on multiple text strings separated by a |, no variable for row sampling!
+        if ("#" in var) and ("!" in var) and ("|" in var):  # sampling from
+            var = var.replace("#", "")
+            var = var.replace("!", "")
+            choices = var.split("|")
+            out = unwrap_list_length_1(self.column_datafield_sampler(choices))
+            return out
         # sampling based on columns and their definiton in the text template
-        if ("#" in var) and ("&" in var):  # recoding information in var
+        elif ("#" in var) and ("&" in var):  # recoding information in var
             var, choices = var.split("#")
             choices = choices.split("&")
             choice = choices[sample[var]]
@@ -407,8 +414,8 @@ class TemplateSampler:
             else:
                 out = choices[sample[var]]
         elif ("#" in var) and ("|" in var):  # use data from multiple columns
+            var = var.replace("#", "")
             columns = var.split("|")
-            columns = [var.replace("#", "") for var in columns]
             choices = sample[columns].tolist()
             choices = [c for c in choices if (isinstance(c, str) or not math.isnan(c))]
             out = unwrap_list_length_1(self.column_datafield_sampler(choices))
