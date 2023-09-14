@@ -148,23 +148,23 @@ Assistant: Yes, the {node2_type#} {node2_name#} {rel2_type#} {node3_name#}.""", 
     "chembl33_preprocessed_filtered_bioactivity_dataset_w_fullprotnames_smiles": [
         "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} shows a {#bioaffinity|affinity!} for {#the protein |!}{protein_name#} with a {standard_type#} {#value |!}of {standard_value#} {standard_units#}.",  # noqa E501
         # Instruction tuning text templates
-        """Task: Please derive {#the bioaffinity|the affinity!} of a molecule to a protein.
+        """Task: Please {#derive|estimate!} {#the bioaffinity|the affinity!} of a {#molecule to a protein|protein to a molecule!}.
 Protein{# name|!}: {protein_name#}
 {#Molecule |!}{SMILES__description}: {SMILES#}
-Constraints: The resulting {standard_type#} {#value |!}should be in {standard_units#}. Even if you are {#uncertain|are not sure!}, you must {#derive|come up with!} a {standard_type#} {#value |!}without using any {#other|additional!} words.
+Constraint{#s|!}: The resulting {standard_type#} {#value |!}should be in {standard_units#}. Even if you are {#uncertain|are not sure!}, you must {#derive|estimate|come up with!} a {standard_type#} {#value |!}without using any {#other|additional!} words.
 Result: {standard_value#} {standard_units#}""",  # noqa E501
-        """Task: Please create a molecule {SMILES__description} that has a {#bioaffinity|affinity!} to {#the protein |!}{protein_name#} with a {standard_type#} {#value |!}of {standard_value#} {standard_units#}.
+        """Task: Please create {#a molecule |!}{SMILES__description} that has a {#bioaffinity|affinity!} to {#the protein |!}{protein_name#} with a {standard_type#} {#value |!}of {standard_value#} {standard_units#}.
 Result: {SMILES#}""",  # noqa E501
         # Conversational text templates
-        """User: Can you give me an example of a protein that has a bioaffinity to the {SMILES__description} {SMILES#}?
-Assistant: The protein {protein_name#} has for example an affinity to the {SMILES__description} {SMILES#}.
-User: Can you estimate the {standard_type#}?
-Assistant: Yes, the {standard_type#} has a value of {standard_value#} {standard_units#}.""",  # noqa E501
-        """User: Can you give me {#one|an!} example of a protein that has an {#bioaffinity|affinity!} to the {SMILES__description} {SMILES#}?
-Assistant: {#The protein |!}{protein_name#} has for example an {#bioaffinity|affinity!} to the {SMILES__description} {SMILES#}.
-User: Can you estimate the {standard_type#} {#of this molecule|of this molecule for me|for me!}?
+        """User: Can you give me {#one|an!} example of a protein that has a {#bioaffinity|affinity!} to the {SMILES__description} {SMILES#}?
+Assistant: {#The protein |!}{protein_name#} has for example a {#bioaffinity|affinity!} to the {SMILES__description} {SMILES#}.
+User: Can you {#derive|estimate!} the {standard_type#} {#of this molecule|of this molecule for me|for me!}?
+Assistant: {#Yes|Of course|Sure!}, the {standard_type#} {#value |!}is {standard_value#} {standard_units#}.""",  # noqa E501
+        """User: Can you give me {#one|an!} example of a protein that has a {#bioaffinity|affinity!} to the {SMILES__description} {SMILES#}?
+Assistant: {#The protein |!}{protein_name#} has for example a {#bioaffinity|affinity!} to the {SMILES__description} {SMILES#}.
+User: Can you {#derive|estimate!} the {standard_type#} {#of this molecule|of this molecule for me|for me!}?
 Assistant: {#Yes|Of course|Sure!}, the {standard_type#} {#value |!}is {standard_value#} {standard_units#}.
-User: Can you give more {#information|details!} {#on|about!} the assay{# used| used for this estimation!}?
+User: Can you give {#me|!} {#additional|more!} {#information|details!} {#on|about!} the assay{# used| used for this estimation!}?
 Assistant: {#Yes|Of course|Sure!}, here you go:
 {description#}""",  # noqa E501
         # Benchmarking text templates
