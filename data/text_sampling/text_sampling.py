@@ -14,19 +14,21 @@ from utils import load_yaml, str_presenter
 DEFAULT_SIGNIFICANT_DIGITS = 3
 
 standard_tabular_text_templates = [
-    "The molecule with the {SMILES__description} representation of {SMILES#} has a {TARGET__names__noun} of {TARGET#}.",  # noqa: E501
-    "The molecule {SMILES#} has a {TARGET__names__noun} of {TARGET#}.",
-    "Based on the {SMILES__description} representation {SMILES#}, the molecule has a {TARGET__names__noun} of {TARGET#}.",  # noqa: E501
-    "Based on the representation {SMILES#}, the molecule has a {TARGET__names__noun} of {TARGET#}.",  # noqa: E501
-    "The {SMILES__description} {SMILES#} represents a molecule that has a {TARGET__names__noun} of {TARGET#}.",  # noqa: E501
-    "The {SMILES__description} {SMILES#} represents a molecule with a {TARGET__names__noun} of {TARGET#}.",  # noqa: E501
-    "{SMILES#} represents a molecule that has a {TARGET__names__noun} of {TARGET#}.",  # noqa: E501
-    "{SMILES#} represents a molecule with a {TARGET__names__noun} of {TARGET#}.",  # noqa: E501
+    "The {#molecule with the |!}{SMILES__description} {#representation of |!}{SMILES#} has a {TARGET__names__noun} of {TARGET#}.",  # noqa: E501
+    "The {#molecule |!}{SMILES#} has a {TARGET__names__noun} of {TARGET#}.",
+    "Based on the {SMILES__description} {#representation of |!}{SMILES#}, the molecule has a {TARGET__names__noun} of {TARGET#}.",  # noqa: E501
+    "Based on the {#representation of |!}{SMILES#}, the molecule has a {TARGET__names__noun} of {TARGET#}.",  # noqa: E501
+    "The {SMILES__description} {SMILES#} {#represents|is representing!} a molecule {#that has a|with a!} {TARGET__names__noun} of {TARGET#}.",  # noqa: E501
+    "The {#molecule |!}{SMILES#} {#represents|is representing!} a molecule {#that has a|with a!} {TARGET__names__noun} of {TARGET#}.",  # noqa: E501
+    "{SMILES#} {#represents|is representing!} a molecule {#that has a|with a!} {TARGET__names__noun} of {TARGET#}.",  # noqa: E501
     "The {SMILES__description} {SMILES#} has a {TARGET__names__noun} of {TARGET#}.",
-    "The molecule {SMILES#} has a {TARGET__names__noun} of {TARGET#}.",
     "{SMILES#} has a {TARGET__names__noun} of {TARGET#}.",
+    "The {TARGET__names__noun} of the {#molecule with the |!}{SMILES__description} {SMILES#} is:<EOI> {TARGET#}",  # noqa: E501
+    "The {TARGET__names__noun} of the {#molecule with the |!}{SMILES__description} {SMILES#} is<EOI> {TARGET#}.",  # noqa: E501
     "The {TARGET__names__noun} of the {SMILES__description} {SMILES#} is:<EOI> {TARGET#}",  # noqa: E501
     "The {TARGET__names__noun} of the {SMILES__description} {SMILES#} is<EOI> {TARGET#}.",  # noqa: E501
+    "The {TARGET__names__noun} of the {#molecule |!}{SMILES#} is:<EOI> {TARGET#}",  # noqa: E501
+    "The {TARGET__names__noun} of the {#molecule |!}{SMILES#} is<EOI> {TARGET#}.",  # noqa: E501
 ]
 
 
