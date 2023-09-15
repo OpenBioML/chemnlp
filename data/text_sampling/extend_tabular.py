@@ -129,12 +129,12 @@ def line_reps_from_smiles(
     """
 
     if smiles in unique_smiles_processed:
-        print("SMILES was already previously processed.")
+        # print("SMILES was already previously processed.")
         representations = df_processed[df_processed.SMILES == smiles].to_dict(
             orient="records"
         )[0]
     else:
-        print("Process SMILES.")
+        # print("Process SMILES.")
         representations = {
             "smiles": smiles,
             "selfies": _try_except_none(smiles_to_selfies, smiles),
@@ -159,7 +159,7 @@ if __name__ == "__main__":
     path_processed_smiles = path_base + "text_sampling/extend_tabular_processed.csv"
 
     if os.path.isfile(path_processed_smiles):
-        df_processed = pd.read_csv(path_processed_smiles)
+        df_processed = pd.read_csv(path_processed_smiles, low_memory=False)
         unique_smiles_processed = df_processed.SMILES.unique().tolist()
         process_func = partial(
             line_reps_from_smiles,
