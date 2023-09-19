@@ -57,7 +57,7 @@ templates:
     - Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule has {mutagenic#no &NULL}{mutagenic__names__adjective} {#properties|characteristics|features!}.
     - The {SMILES__description} {SMILES#} {#represents|is from!} a molecule that is {mutagenic#not &NULL}identified as {mutagenic__names__adjective}.
     - The {SMILES__description} {SMILES#} is {mutagenic#no &NULL}{mutagenic__names__adjective}.
-    - The {#molecule |!}{SMILES#} is {mutagenic__names__adjective}.
+    - The {#molecule |!}{SMILES__description} {SMILES#} is {mutagenic__names__adjective}.
     - |-
       Task: Please classify a molecule based on the description.
       Description: A molecule that is {mutagenic__names__adjective}.
@@ -97,6 +97,12 @@ templates:
       User: Yes, the molecule should {mutagenic#not &NULL}be {mutagenic__names__adjective}.
       Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {mutagenic#not &NULL}{mutagenic__names__adjective}: {SMILES#}
     - Is the {SMILES__description} {SMILES#} {mutagenic__names__adjective}:<EOI> {mutagenic#yes&no}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {mutagenic__names__adjective}.
+      {#Molecule |!}{SMILES__description}: {SMILES#}
+      Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
+      Result:<EOI> {mutagenic#False&True}
     - |-
       Task: Please answer the multiple choice question.
       Question: Is the {#molecule with the |!}{SMILES__description} {#representation of |!}{SMILES#} {mutagenic__names__adjective}?
