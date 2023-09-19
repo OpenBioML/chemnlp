@@ -122,7 +122,7 @@ title = {In silico Prediction of Chemical Ames Mutagenicity},
 journal = {Journal of Chemical Information and Modeling}""",
         ],
         "templates": [
-            "The {#molecule with the |!}{SMILES__description} {#representation of |!}{SMILES#} {#shows|exhibits|displays!} {mutagenic#no &NULL}{mutagenic__names__adjective} properties.",  # noqa: E501
+            "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} {#shows|exhibits|displays!} {mutagenic#no &NULL}{mutagenic__names__adjective} properties.",  # noqa: E501
             "Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule has {mutagenic#no &NULL}{mutagenic__names__adjective} {#properties|characteristics|features!}.",  # noqa: E501
             "The {SMILES__description} {SMILES#} {#represents|is from!} a molecule that is {mutagenic#not &NULL}identified as {mutagenic__names__adjective}.",  # noqa: E501
             "The {SMILES__description} {SMILES#} is {mutagenic#no &NULL}{mutagenic__names__adjective}.",
@@ -142,9 +142,9 @@ Result: This molecule is {mutagenic#not &NULL}{mutagenic__names__adjective}.""",
 Description: A molecule that is {mutagenic__names__adjective}.
 Result: {SMILES#}""",  # noqa: E501
             # Conversational text templates
-            """User: Can you {#tell me|derive|estimate!} if the {#molecule with the |!}{SMILES__description} {SMILES#} is {mutagenic__names__adjective}?
+            """User: Can you {#tell me|derive|estimate!} if the molecule with the {SMILES__description} {SMILES#} is {mutagenic__names__adjective}?
 Assistant: {mutagenic#No&Yes}, this molecule is {mutagenic#not &NULL}{mutagenic__names__adjective}.""",  # noqa: E501
-            """User: Is the {#molecule with the |!}{SMILES__description} {SMILES#} {mutagenic__names__adjective}?
+            """User: Is the molecule with the {SMILES__description} {SMILES#} {mutagenic__names__adjective}?
 Assistant: {mutagenic#No&Yes}, it is {mutagenic#not &NULL}{mutagenic__names__adjective}.""",  # noqa: E501
             """User: Can you {#give me|create|generate!} the {SMILES__description} of a molecule that is {mutagenic#not &NULL}{mutagenic__names__adjective}?
 Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}""",  # noqa: E501
@@ -166,13 +166,13 @@ Description: A molecule that is {mutagenic__names__adjective}.
 Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
 Result:<EOI> {mutagenic#False&True}""",  # noqa: E501
             """Task: Please answer the multiple choice question.
-Question: Is the {#molecule with the |!}{SMILES__description} {#representation of |!}{SMILES#} {mutagenic__names__adjective}?
+Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} {mutagenic__names__adjective}?
 Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
 Options:
 {mutagenic%}
 Answer: {%multiple_choice_result}""",  # noqa: E501
             """Task: Please answer the multiple choice question.
-Question: Is the {#molecule with the |!}{SMILES__description} {#representation of |!}{SMILES#} {mutagenic__names__adjective}?
+Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} {mutagenic__names__adjective}?
 Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
 Options:
 {mutagenic%}
