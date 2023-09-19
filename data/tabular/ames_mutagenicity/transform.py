@@ -160,6 +160,11 @@ User: Yes, the molecule should {mutagenic#not &NULL}be {mutagenic__names__adject
 Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {mutagenic#not &NULL}{mutagenic__names__adjective}: {SMILES#}""",  # noqa: E501
             # Benchmarking text templates
             "Is the {SMILES__description} {SMILES#} {mutagenic__names__adjective}:<EOI> {mutagenic#yes&no}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
+            """Task: Please classify a molecule based on the description.
+Description: A molecule that is {mutagenic__names__adjective}.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
+Result:<EOI> {mutagenic#False&True}""",  # noqa: E501
             """Task: Please answer the multiple choice question.
 Question: Is the {#molecule with the |!}{SMILES__description} {#representation of |!}{SMILES#} {mutagenic__names__adjective}?
 Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
