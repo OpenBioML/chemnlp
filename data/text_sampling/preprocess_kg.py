@@ -32,8 +32,8 @@ Result:<EOI> {SMILES#}""",  # noqa E501
 Assistant: {#Yes|Of course|Yes, of course|Sure!}, the {node1_type#} {SMILES__description} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#}.""",  # noqa E501
     ],
     "compound_protein_compound": [
-        """The {node1_type#} {SMILES__description} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#} and {rel2_type#} the {node3_type#} {node3_name#}.""",  # noqa E501
-        """The {node2_type#} {node2_protein_names#} is targeted by the drug with the {SMILES__description} {SMILES#} and {node3_name#}.""",  # noqa E501
+        """The {node1_type#} {SMILES__description} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#} and {rel2_type#} the {node3_type#} {node3_smiles#}.""",  # noqa E501
+        """The {node2_type#} {node2_protein_names#} is targeted by the compound with the {SMILES__description} {SMILES#} and {node3_smiles#}.""",  # noqa E501
         """User: Can you {#give me|come up with!} {#one|an!} example for a {node1_type#} {SMILES__description} that {rel1_type#} the {node2_type#} {node2_protein_names#}?
 Assistant: {#Yes|Of course|Yes, of course|Sure!}, the {node1_type#} {SMILES__description} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#}.
 User: Can you {#tell|create|generate!} another {node1_type#} {SMILES__description} that {rel1_type#} the {node2_type#} {node2_protein_names#}?
@@ -417,14 +417,14 @@ def format_kg_df(df: pd.DataFrame) -> pd.DataFrame:  # noqa: C901
     df.drop("Unnamed: 0", axis=1, inplace=True)
 
     # for compound_protein_compound
-    if "node2_name" in df.columns:
-        df["node2_name"] = df["node2_name"].apply(
-            lambda x: pd.NA if str(x).startswith("CHEMBL") else x
-        )
-    if "node3_name" in df.columns:
-        df["node3_name"] = df["node3_name"].apply(
-            lambda x: pd.NA if str(x).startswith("CHEMBL") else x
-        )
+    # if "node2_name" in df.columns:
+    #    df["node2_name"] = df["node2_name"].apply(
+    #        lambda x: pd.NA if str(x).startswith("CHEMBL") else x
+    #    )
+    # if "node3_name" in df.columns:
+    #    df["node3_name"] = df["node3_name"].apply(
+    #        lambda x: pd.NA if str(x).startswith("CHEMBL") else x
+    #    )
 
     # for compound_protein_disease
     if "node3_name" in df.columns:
