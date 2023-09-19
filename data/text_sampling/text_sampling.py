@@ -721,7 +721,7 @@ class TemplateSampler:
             lambda sample: self.sample(sample, template_idx), axis=1
         )
 
-    def export(self):
+    def export(self, fn_suffix: str = None):
         """Exports the sampled data as separate jsonl files based on the split and benchmarking templates."""
         assert "sample" in self.df.columns, "Run apply_sampling before running export."
         print_data = {
@@ -824,7 +824,10 @@ class TemplateSampler:
                     + f"/{self.path_data_dir.split('/')[-1]}/"
                 )
                 os.makedirs(output_path_dir, exist_ok=True)
-                output_path = output_path_dir + f"{split}.jsonl"
+                if fn_suffix is not None:
+                    output_path = output_path_dir + f"{split}_{fn_suffix}.jsonl"
+                else:
+                    output_path = output_path_dir + f"{split}.jsonl"
 
             with open(output_path, "w") as f:
                 f.write(df_out.to_json(orient="records", lines=True, force_ascii=False))
@@ -841,10 +844,12 @@ class TemplateSampler:
             print_data["path"].append("")
         return pd.DataFrame(print_data)
 
-    def apply_sampling_and_export(self, template_idx: int = None):
+    def apply_sampling_and_export(
+        self, template_idx: int = None, fn_suffix: str = None
+    ):
         """Applies the sampling and exports the data."""
-        self.apply_sampling(template_idx)
-        df_results = self.export()
+        self.apply_sampling(template_idx=template_idx)
+        df_results = self.export(fn_suffix=fn_suffix)
         print(f"\n### results\n{df_results.to_string()}")
 
 
@@ -910,14 +915,33 @@ if __name__ == "__main__":
             if "templates" in meta:
                 multiple_choice_rnd_symbols = ["", ".", ".)", ")", ":", "()", "[]"]
                 print(f"Running sampling for: {path}")
-                TemplateSampler(
+                # uncomment to randomly sample from all templates and save the output to a single file
+                # TemplateSampler(
+                #    path,
+                #    path_lm_eval_data_dir,
+                #    multiple_choice_rnd_symbols=multiple_choice_rnd_symbols,
+                #    additional_templates=additional_templates,
+                #    benchmarking_templates=False,
+                #    multiple_choice_benchmarking_templates=False,
+                # ).apply_sampling_and_export()
+
+                tempsamp = TemplateSampler(
                     path,
                     path_lm_eval_data_dir,
                     multiple_choice_rnd_symbols=multiple_choice_rnd_symbols,
                     additional_templates=additional_templates,
                     benchmarking_templates=False,
                     multiple_choice_benchmarking_templates=False,
-                ).apply_sampling_and_export()
+                )
+                for i, template in enumerate(
+                    [t for t in meta["templates"] if "<EOI>" not in t]
+                ):
+                    print(f"\nRunning sampling for template {i}:\n{template}")
+                    tempsamp.apply_sampling_and_export(
+                        template_idx=i,
+                        fn_suffix=i,
+                    )
+
                 if any(["<EOI>" in t for t in meta["templates"]]):
                     TemplateSampler(
                         path,
