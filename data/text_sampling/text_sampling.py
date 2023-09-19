@@ -400,7 +400,7 @@ class TemplateSampler:
     def _get_target_from_row(self, sample: pd.Series, var: str) -> str:
         """Get target string from sample row and variable string."""
         # sampling based on multiple text strings separated by a |, no variable for row sampling!
-        if ("#" in var) and ("!" in var) and ("|" in var):  # sampling from
+        if ("#" in var) and ("!" in var) and ("|" in var):
             choices = var.replace("#", "")
             choices = choices.replace("!", "")
             choices = choices.split("|")
@@ -515,9 +515,21 @@ class TemplateSampler:
 
             if multiple_choice_indicator == "":
                 # standard sampling w/o paired data
-                all_choices = sorted(
-                    [str(x) for x in self.df[multiple_choice_var].unique().tolist()]
-                )
+                cutoff_full_unique = 100
+                if len(self.df[multiple_choice_var].unique()) < cutoff_full_unique:
+                    all_choices = sorted(
+                        [str(x) for x in self.df[multiple_choice_var].unique()]
+                    )
+                else:
+                    all_choices = sorted(
+                        [
+                            str(x)
+                            for x in self.df[multiple_choice_var]
+                            .sample(cutoff_full_unique)
+                            .unique()
+                        ]
+                    )
+
                 if all_choices == ["0", "1"]:
                     all_choices = ["False", "True"]
                     correct_choice = all_choices[int(correct_choice)]
