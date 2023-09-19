@@ -418,9 +418,8 @@ class TemplateSampler:
         elif ("#" in var) and ("|" in var):  # use data from multiple columns
             var = var.replace("#", "")
             columns = var.split("|")
-            choices = sample[columns].tolist()
-            choices = [c for c in choices if (isinstance(c, str) or not math.isnan(c))]
-            out = unwrap_list_length_1(self.column_datafield_sampler(choices))
+            var = unwrap_list_length_1(self.column_datafield_sampler(columns))
+            out = sample[var]
         elif "#" in var:  # use only data from column
             out = sample[var.replace("#", "")]
             # for KG: if *_smiles is nan sample from *_name
