@@ -14,21 +14,46 @@ from utils import load_yaml, str_presenter
 DEFAULT_SIGNIFICANT_DIGITS = 3
 
 standard_tabular_text_templates = [
-    "The {#molecule with the |!}{SMILES__description} {#representation of |!}{SMILES#} has a {TARGET__names__noun} of {TARGET#}.",  # noqa: E501
-    "The {#molecule |!}{SMILES#} has a {TARGET__names__noun} of {TARGET#}.",
-    "Based on the {SMILES__description} {#representation of |!}{SMILES#}, the molecule has a {TARGET__names__noun} of {TARGET#}.",  # noqa: E501
-    "Based on the {#representation of |!}{SMILES#}, the molecule has a {TARGET__names__noun} of {TARGET#}.",  # noqa: E501
-    "The {SMILES__description} {SMILES#} {#represents|is representing!} a molecule {#that has a|with a!} {TARGET__names__noun} of {TARGET#}.",  # noqa: E501
-    "The {#molecule |!}{SMILES#} {#represents|is representing!} a molecule {#that has a|with a!} {TARGET__names__noun} of {TARGET#}.",  # noqa: E501
-    "{SMILES#} {#represents|is representing!} a molecule {#that has a|with a!} {TARGET__names__noun} of {TARGET#}.",  # noqa: E501
-    "The {SMILES__description} {SMILES#} has a {TARGET__names__noun} of {TARGET#}.",
-    "{SMILES#} has a {TARGET__names__noun} of {TARGET#}.",
-    "The {TARGET__names__noun} of the {#molecule with the |!}{SMILES__description} {SMILES#} is:<EOI> {TARGET#}",  # noqa: E501
-    "The {TARGET__names__noun} of the {#molecule with the |!}{SMILES__description} {SMILES#} is<EOI> {TARGET#}.",  # noqa: E501
-    "The {TARGET__names__noun} of the {SMILES__description} {SMILES#} is:<EOI> {TARGET#}",  # noqa: E501
-    "The {TARGET__names__noun} of the {SMILES__description} {SMILES#} is<EOI> {TARGET#}.",  # noqa: E501
-    "The {TARGET__names__noun} of the {#molecule |!}{SMILES#} is:<EOI> {TARGET#}",  # noqa: E501
-    "The {TARGET__names__noun} of the {#molecule |!}{SMILES#} is<EOI> {TARGET#}.",  # noqa: E501
+    "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} has a {TARGET__names__noun} of {TARGET#} {TARGET__units}.",  # noqa: E501
+    "Based on the {SMILES__description} {#representation of |!}{SMILES#}, the molecule has a {TARGET__names__noun} of {TARGET#} {TARGET__units}.",  # noqa: E501
+    "The {SMILES__description} {SMILES#} {#represents|is representing!} a molecule {#that has a|with a!} {TARGET__names__noun} of {TARGET#} {TARGET__units}.",  # noqa: E501
+    "The molecule with the {SMILES__description} {SMILES#} has a {TARGET__names__noun} of {TARGET#} {TARGET__units}.",
+    # Instruction tuning text templates
+    """Task: Please predict a molecule feature based on the description.
+Description: Predict the {TARGET__names__noun} in {TARGET__units}.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Even if you are {#uncertain|not sure!}, you must answer with a numeric value in {TARGET__units} units without using any {#other|additional!} words.
+Result: {TARGET#} {TARGET__units}""",  # noqa: E501
+    """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+Description: A molecule that has {TARGET__names__noun} of {TARGET#} {TARGET__units}.
+Result: {SMILES#}""",  # noqa: E501
+    # Conversational text templates
+    """User: Can you {#tell me|derive|estimate!} the {TARGET__names__noun} in {TARGET__units} of the molecule with the {SMILES__description} {SMILES#}?
+Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, this molecule has a {TARGET__names__noun} of {TARGET#} {TARGET__units}.""",  # noqa: E501
+    """User: Can you {#give me|create|generate!} the {SMILES__description} of a molecule that has a {TARGET__names__noun} of {TARGET#} {TARGET__units}?
+Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}""",  # noqa: E501
+    """User: I'm {#searching|looking!} for the {SMILES__description} of a molecule that has a {TARGET__names__noun} of {TARGET#} {TARGET__units}.
+Assistant: This is a molecule that has a {TARGET__names__noun} of {TARGET#} {TARGET__units}: {SMILES#}""",  # noqa: E501
+    """User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
+User: Yes, please. The molecule should have a {TARGET__names__noun} of {TARGET#} {TARGET__units}.
+Assistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} represents a molecule that has a {TARGET__names__noun} of {TARGET#} {TARGET__units}: {SMILES#}""",  # noqa: E501
+    """User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
+User: Yes, the molecule should have a {TARGET__names__noun} of {TARGET#} {TARGET__units}.
+Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} represents a molecule that has a {TARGET__names__noun} of {TARGET#} {TARGET__units}: {SMILES#}""",  # noqa: E501
+    # Benchmarking text templates
+    "The {TARGET__names__noun} of the molecule with the {SMILES__description} {SMILES#} is:<EOI> {TARGET#} {TARGET__units}",  # noqa: E501
+    "The {TARGET__names__noun} of the {SMILES__description} {SMILES#} is:<EOI> {TARGET#} {TARGET__units}",  # noqa: E501
+    "The {TARGET__names__noun} of the molecule {SMILES__description} {SMILES#} is:<EOI> {TARGET#} {TARGET__units}",  # noqa: E501
+    """Task: Please predict a molecule feature based on the description.
+Description: Predict the {TARGET__names__noun} in {TARGET__units} of a molecule.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Even if you are {#uncertain|not sure!}, you must answer with a numeric value in {TARGET__units} units without using any {#other|additional!} words.
+Result:<EOI> {TARGET#} {TARGET__units}""",  # noqa: E501
+    """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+Description: A molecule that has {TARGET__names__noun} of {TARGET#} {TARGET__units}.
+Result:<EOI> {SMILES#}""",  # noqa: E501
 ]
 
 
@@ -282,7 +307,7 @@ class TemplateSampler:
         column_datafield_sampler: Callable = None,
         benchmarking_templates: bool = False,
         multiple_choice_benchmarking_templates: bool = False,
-        multiple_choice_benchmarking_format: int = 0,
+        multiple_choice_benchmarking_format: int = None,
     ):
         # paths
         self.path_data_dir = path_data_dir
@@ -586,7 +611,10 @@ class TemplateSampler:
                 )
                 + f"or {symbols[-1]}"
             )
-            if self.multiple_choice_benchmarking_templates:
+            if (
+                self.multiple_choice_benchmarking_templates
+                and self.multiple_choice_benchmarking_format
+            ):
                 if len(self.multiple_choice_rnd_symbols) > 1:
                     rnd_symbol = self.multiple_choice_rnd_symbols[
                         self.multiple_choice_benchmarking_format
@@ -779,10 +807,17 @@ class TemplateSampler:
                 )  # to use with safe_dum
 
                 if self.multiple_choice_benchmarking_templates:
-                    output_path_dir = (
-                        self.path_lm_eval_data_dir
-                        + f"/{self.path_data_dir.split('/')[-1]}_benchmark_multiple_choice_format-{self.multiple_choice_benchmarking_format}/"  # noqa: E501
-                    )
+                    if self.multiple_choice_benchmarking_format:
+                        output_path_dir = (
+                            self.path_lm_eval_data_dir
+                            + f"/{self.path_data_dir.split('/')[-1]}_benchmark_multiple_choice_format-{self.multiple_choice_benchmarking_format}/"  # noqa: E501
+                        )
+                    else:
+                        output_path_dir = (
+                            self.path_lm_eval_data_dir
+                            + f"/{self.path_data_dir.split('/')[-1]}_benchmark_multiple_choice_format/"  # noqa: E501
+                        )
+
                     os.makedirs(output_path_dir, exist_ok=True)
                     output_path = output_path_dir + f"{split}.jsonl"
 
