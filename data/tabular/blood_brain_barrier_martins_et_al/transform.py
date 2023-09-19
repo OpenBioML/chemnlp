@@ -138,7 +138,7 @@ title = {MoleculeNet: a benchmark for molecular machine learning},
 journal = {Chemical Science}""",
         ],
         "templates": [
-            "The {#molecule with the |!}{SMILES__description} {SMILES#} is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.",  # noqa: E501
+            "The molecule with the {SMILES__description} {SMILES#} is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.",  # noqa: E501
             "Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.",  # noqa: E501
             "The {SMILES__description} {SMILES#} {#represents|is from!} a molecule that is {penetrate_BBB#not &NULL}identified as {penetrate_BBB__names__adjective}.",  # noqa: E501
             "The molecule represented with the {SMILES__description} {SMILES#} is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.",  # noqa: E501
@@ -161,9 +161,9 @@ Result: This molecule is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjecti
 Description: A molecule that is {penetrate_BBB__names__adjective}.
 Result: {SMILES#}""",  # noqa: E501
             # Conversational text templates
-            """User: Can you {#tell me|derive|estimate!} if the {#molecule with the |!}{SMILES__description} {SMILES#} is {penetrate_BBB__names__adjective}?
+            """User: Can you {#tell me|derive|estimate!} if the molecule with the {SMILES__description} {SMILES#} is {penetrate_BBB__names__adjective}?
 Assistant: {penetrate_BBB#No&Yes}, this molecule is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.""",  # noqa: E501
-            """User: Is the {#molecule with the |!}{SMILES__description} {SMILES#} {penetrate_BBB__names__adjective}?
+            """User: Is the molecule with the {SMILES__description} {SMILES#} {penetrate_BBB__names__adjective}?
 Assistant: {penetrate_BBB#No&Yes}, it is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.""",  # noqa: E501
             """User: Can you {#give me|create|generate!} the {SMILES__description} of a molecule that is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}?
 Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}""",  # noqa: E501
