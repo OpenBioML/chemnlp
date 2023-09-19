@@ -401,9 +401,9 @@ class TemplateSampler:
         """Get target string from sample row and variable string."""
         # sampling based on multiple text strings separated by a |, no variable for row sampling!
         if ("#" in var) and ("!" in var) and ("|" in var):  # sampling from
-            var = var.replace("#", "")
-            var = var.replace("!", "")
-            choices = var.split("|")
+            choices = var.replace("#", "")
+            choices = choices.replace("!", "")
+            choices = choices.split("|")
             out = unwrap_list_length_1(self.column_datafield_sampler(choices))
             return out
         # sampling based on columns and their definiton in the text template
