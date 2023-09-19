@@ -126,7 +126,7 @@ journal = {Journal of Chemical Information and Modeling}""",
             "Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule has {mutagenic#no &NULL}{mutagenic__names__adjective} {#properties|characteristics|features!}.",  # noqa: E501
             "The {SMILES__description} {SMILES#} {#represents|is from!} a molecule that is {mutagenic#not &NULL}identified as {mutagenic__names__adjective}.",  # noqa: E501
             "The {SMILES__description} {SMILES#} is {mutagenic#no &NULL}{mutagenic__names__adjective}.",
-            "The {#molecule |!}{SMILES#} is {mutagenic__names__adjective}.",  # not all variables need to be used
+            "The {#molecule |!}{SMILES__description} {SMILES#} is {mutagenic__names__adjective}.",  # noqa: E501 not all variables need to be used
             # Instruction tuning text templates
             """Task: Please classify a molecule based on the description.
 Description: A molecule that is {mutagenic__names__adjective}.
