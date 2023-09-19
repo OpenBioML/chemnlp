@@ -928,13 +928,22 @@ if __name__ == "__main__":
                         multiple_choice_benchmarking_templates=False,
                     ).apply_sampling_and_export()
                     if any(["%multiple_choice_" in t for t in meta["templates"]]):
-                        for i, s in enumerate(multiple_choice_rnd_symbols):
-                            TemplateSampler(
-                                path,
-                                path_lm_eval_data_dir,
-                                multiple_choice_rnd_symbols=[s],
-                                additional_templates=additional_templates,
-                                benchmarking_templates=True,
-                                multiple_choice_benchmarking_templates=True,
-                                multiple_choice_benchmarking_format=i,
-                            ).apply_sampling_and_export()
+                        TemplateSampler(
+                            path,
+                            path_lm_eval_data_dir,
+                            multiple_choice_rnd_symbols=multiple_choice_rnd_symbols,
+                            additional_templates=additional_templates,
+                            benchmarking_templates=True,
+                            multiple_choice_benchmarking_templates=True,
+                        ).apply_sampling_and_export()
+
+                        # for i, s in enumerate(multiple_choice_rnd_symbols):
+                        #    TemplateSampler(
+                        #        path,
+                        #        path_lm_eval_data_dir,
+                        #        multiple_choice_rnd_symbols=[s],
+                        #        additional_templates=additional_templates,
+                        #        benchmarking_templates=True,
+                        #        multiple_choice_benchmarking_templates=True,
+                        #        multiple_choice_benchmarking_format=i,
+                        #    ).apply_sampling_and_export()
