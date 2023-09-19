@@ -157,6 +157,14 @@ User: Yes, the molecule should have a {bioavailable#low&high} {bioavailable__nam
 Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} has a {bioavailable#low&high} {bioavailable__names__noun}: {SMILES#}""",  # noqa: E501
             # Benchmarking text templates
             "Is the {SMILES__description} {SMILES#} {bioavailable__names__adjective}?<EOI> {bioavailable#yes&no}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
+            """Task: Please classify a molecule based on the description.
+Description: Predict if the molecule has a low or high {bioavailable__names__noun}?
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either "low" or "high" without using any {#other|additional!} words.
+Result:<EOI> {bioavailable#low&high}""",  # noqa: E501
+            """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+Description: A molecule that has a {bioavailable#low&high} {bioavailable__names__noun}.
+Result:<EOI> {SMILES#}""",  # noqa: E501
             """Task: Please answer the multiple choice question.
 Question: Has the molecule with the {SMILES__description} {#representation of |!}{SMILES#} a high {bioavailable__names__noun}?
 Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
