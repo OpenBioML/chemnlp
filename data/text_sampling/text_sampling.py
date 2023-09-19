@@ -182,9 +182,15 @@ def get_random_text_identifiers_and_targets(meta: dict) -> dict:
                     [x[name] for x in e["names"] if name in x],
                 )
                 rnd_texts[e["id"]]["names"][name] = rnd_text
-        else:
+
+        if "description" in e:
             rnd_texts[e["id"]]["description"] = partial(
                 lambda x: x, e["description"]
+            )  # to wrap value in function = deterministic, no sampling
+
+        if "units" in e:
+            rnd_texts[e["id"]]["units"] = partial(
+                lambda x: x, e["units"]
             )  # to wrap value in function = deterministic, no sampling
 
     return rnd_texts
