@@ -119,11 +119,11 @@ oral bioavailability derived by using GA-CG-SVM method},
 journal = {Journal of Pharmaceutical and Biomedical Analysis}""",
         ],
         "templates": [
-            "The {#molecule with the |!}{SMILES__description} {#representation of |!}{SMILES#} has a {bioavailable#low&high} {bioavailable__names__noun}.",  # noqa: E501
+            "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} has a {bioavailable#low&high} {bioavailable__names__noun}.",  # noqa: E501
             "Based on the {SMILES__description} {#representation of |!}{SMILES#}, the molecule has a {bioavailable#low&high} {bioavailable__names__noun}.",  # noqa: E501
             "The {SMILES__description} {SMILES#} {#represents|is from!} a molecule that has a {bioavailable#low&high} {bioavailable__names__noun}.",  # noqa: E501
             "The {SMILES__description} {SMILES#} has a {bioavailable#low&high} {bioavailable__names__noun}.",
-            "The {#molecule with the |!}{SMILES__description} {SMILES#} has a {bioavailable#low&high} {bioavailable__names__noun}.",  # noqa: E501
+            "The molecule with the {SMILES__description} {SMILES#} has a {bioavailable#low&high} {bioavailable__names__noun}.",  # noqa: E501
             # Instruction tuning text templates
             """Task: Please classify a molecule based on the description.
 Description: Predict if the molecule has a low or high {bioavailable__names__noun}?
@@ -139,9 +139,9 @@ Result: This molecule has a {bioavailable#low&high} {bioavailable__names__noun}.
 Description: A molecule that has a {bioavailable#low&high} {bioavailable__names__noun}.
 Result: {SMILES#}""",  # noqa: E501
             # Conversational text templates
-            """User: Can you {#tell me|derive|estimate!} if the {#molecule with the |!}{SMILES__description} {SMILES#} has a low or high {bioavailable__names__noun}?
+            """User: Can you {#tell me|derive|estimate!} if the molecule with the {SMILES__description} {SMILES#} has a low or high {bioavailable__names__noun}?
 Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, this molecule has a {bioavailable#low&high} {bioavailable__names__noun}.""",  # noqa: E501
-            """User: Has this {#molecule with the |!}{SMILES__description} {SMILES#} a low or high {bioavailable__names__noun}?
+            """User: Has the molecule with the {SMILES__description} {SMILES#} a low or high {bioavailable__names__noun}?
 Assistant: It has a {bioavailable#low&high} {bioavailable__names__noun}.""",  # noqa: E501
             """User: Can you {#give me|create|generate!} the {SMILES__description} of a molecule that has a {bioavailable#low&high} {bioavailable__names__noun}?
 Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}""",  # noqa: E501
@@ -158,13 +158,13 @@ Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} has a {bioavaila
             # Benchmarking text templates
             "Is the {SMILES__description} {SMILES#} {bioavailable__names__adjective}?<EOI> {bioavailable#yes&no}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
             """Task: Please answer the multiple choice question.
-Question: Has the {#molecule with the |!}{SMILES__description} {#representation of |!}{SMILES#} a high {bioavailable__names__noun}?
+Question: Has the molecule with the {SMILES__description} {#representation of |!}{SMILES#} a high {bioavailable__names__noun}?
 Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
 Options:
 {bioavailable%}
 Answer: {%multiple_choice_result}""",  # noqa: E501
             """Task: Please answer the multiple choice question.
-Question: Has the {#molecule with the |!}{SMILES__description} {#representation of |!}{SMILES#} a high {bioavailable__names__noun}?
+Question: Has the molecule with the {SMILES__description} {#representation of |!}{SMILES#} a high {bioavailable__names__noun}?
 Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
 Options:
 {bioavailable%}
