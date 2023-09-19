@@ -138,43 +138,43 @@ title = {MoleculeNet: a benchmark for molecular machine learning},
 journal = {Chemical Science}""",
         ],
         "templates": [
-            "The molecule with the {SMILES__description} of {SMILES#} is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.",  # noqa: E501
-            "Based on the {SMILES__description} {SMILES#}, the molecule is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.",  # noqa: E501
-            "The {SMILES__description} {SMILES#} represents a molecule that is {penetrate_BBB#not &NULL}identified as {penetrate_BBB__names__adjective}.",  # noqa: E501
+            "The {#molecule with the |!}{SMILES__description} {SMILES#} is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.",  # noqa: E501
+            "Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.",  # noqa: E501
+            "The {SMILES__description} {SMILES#} {#represents|is from!} a molecule that is {penetrate_BBB#not &NULL}identified as {penetrate_BBB__names__adjective}.",  # noqa: E501
             "The molecule represented with the {SMILES__description} {SMILES#} is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.",  # noqa: E501
             "{SMILES#} represents a molecule that is {penetrate_BBB#not &NULL}identified as {penetrate_BBB__names__adjective}.",  # noqa: E501
             "{SMILES#} represents a molecule that is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.",  # noqa: E501
             "{SMILES#} is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.",
-            "The molecule {SMILES#} is {penetrate_BBB__names__adjective}.",
+            "The {#molecule |!}{SMILES__description} {SMILES#} is {penetrate_BBB__names__adjective}.",
             # Instruction tuning text templates
             """Task: Please classify a molecule based on the description.
 Description: A molecule that is {penetrate_BBB__names__adjective}.
-Molecule {SMILES__description}: {SMILES#}
-Constraint: Even if you are uncertain, you must pick either "True" or "False" without using any other words.
-Result: {penetrate_BBB#False&True}""",
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
+Result: {penetrate_BBB#False&True}""",  # noqa: E501
             """Task: Please classify a molecule based on the description.
 Description: A molecule that is {penetrate_BBB__names__adjective}.
-Molecule {SMILES__description}: {SMILES#}
-Constraint: Answer the question in a complete sentence.
-Result: This molecule is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.""",
-            """Task: Please create a molecule {SMILES__description} based on the description.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Answer the question in a {#full|complete!} sentence.
+Result: This molecule is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.""",  # noqa: E501
+            """Task: Please {#give me|create|generate!} a molecule {SMILES__description} based on the {#text |!}description{# below|!}.
 Description: A molecule that is {penetrate_BBB__names__adjective}.
-Result: {SMILES#}""",
+Result: {SMILES#}""",  # noqa: E501
             # Conversational text templates
-            """User: Can you tell me if the molecule with the {SMILES__description} {SMILES#} is {penetrate_BBB__names__adjective}?
+            """User: Can you {#tell me|derive|estimate!} if the {#molecule with the |!}{SMILES__description} {SMILES#} is {penetrate_BBB__names__adjective}?
 Assistant: {penetrate_BBB#No&Yes}, this molecule is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.""",  # noqa: E501
-            """User: Is the molecule with the {SMILES__description} {SMILES#} {penetrate_BBB__names__adjective}?
+            """User: Is the {#molecule with the |!}{SMILES__description} {SMILES#} {penetrate_BBB__names__adjective}?
 Assistant: {penetrate_BBB#No&Yes}, it is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.""",  # noqa: E501
-            """User: Can you give me the {SMILES__description} of a molecule that is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}?
-Assistant: Yes, here you go: {SMILES#}""",  # noqa: E501
-            """User: I'm looking for the {SMILES__description} of a molecule that is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}?
+            """User: Can you {#give me|create|generate!} the {SMILES__description} of a molecule that is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}?
+Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}""",  # noqa: E501
+            """User: I'm {#searching|looking!} for the {SMILES__description} of a molecule that is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}?
 Assistant: This is a molecule that is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}: {SMILES#}""",  # noqa: E501
-            """User: I want to create a molecule {SMILES__description}.
-Assistant: This sounds very exciting! Should I consider any constraints during generation?
+            """User: I want to {#come up with|create|generate!} a molecule {SMILES__description}.
+Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
 User: Yes, please. The molecule should {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.
-Assistant: Ok, this {SMILES__description} is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}: {SMILES#}""",  # noqa: E501
-            """User: I want to create a molecule {SMILES__description}.
-Assistant: This sounds very exciting! Should it be a special molecule?
+Assistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}: {SMILES#}""",  # noqa: E501
+            """User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
 User: Yes, the molecule should {penetrate_BBB#not &NULL}be {penetrate_BBB__names__adjective}.
 Assistant: Got it, this {SMILES__description} is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}: {SMILES#}""",  # noqa: E501
             # Benchmarking text templates
@@ -182,30 +182,30 @@ Assistant: Got it, this {SMILES__description} is {penetrate_BBB#not &NULL}{penet
             # todo: check if we go for multiple choice only and remove the benchmarking template above and below
             """Task: Please classify a molecule based on the description.
 Description: A molecule that is {penetrate_BBB__names__adjective}.
-Molecule {SMILES__description}: {SMILES#}
-Constraint: Even if you are uncertain, you must pick either "True" or "False" without using any other words.
-Result:<EOI> {penetrate_BBB#False&True}""",
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
+Result:<EOI> {penetrate_BBB#False&True}""",  # noqa: E501
             """Task: Please answer the multiple choice question.
 Question: Is the molecule with the {SMILES__description} of {SMILES#} {penetrate_BBB__names__adjective}?
-Constraint: Even if you are uncertain, you must pick either {%multiple_choice_enum%2%aA1} without using any other words.
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
 Options:
 {penetrate_BBB%}
-Answer: {%multiple_choice_result}""",
+Answer: {%multiple_choice_result}""",  # noqa: E501
             """Task: Please answer the multiple choice question.
 Question: Which molecules are {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}?
-Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any other words.
+Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
 Options:
 {SMILES%penetrate_BBB%}
 Answer: {%multiple_choice_result}""",  # noqa: E501
             """Task: Please answer the multiple choice question.
 Question: Is the molecule with the {SMILES__description} of {SMILES#} {penetrate_BBB__names__adjective}?
-Constraint: Even if you are uncertain, you must pick either {%multiple_choice_enum%2%aA1} without using any other words.
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
 Options:
 {penetrate_BBB%}
-Answer:<EOI> {%multiple_choice_result}""",
+Answer:<EOI> {%multiple_choice_result}""",  # noqa: E501
             """Task: Please answer the multiple choice question.
 Question: Which molecules are {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}?
-Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any other words.
+Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
 Options:
 {SMILES%penetrate_BBB%}
 Answer:<EOI> {%multiple_choice_result}""",  # noqa: E501
