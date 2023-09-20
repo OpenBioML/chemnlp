@@ -1,4 +1,5 @@
 import datasets
+import pandas as pd
 import yaml
 
 SPLITS = ["train", "test", "validation"]
@@ -130,10 +131,20 @@ def create_meta_yaml(num_points: int):
 
 if __name__ == "__main__":
     num_samples = 0
+    dfs = []
     for split in SPLITS:
         hf_data = get_dataset(split)
         hf_data_clean = clean_dataset(hf_data)
         num_samples += hf_data_clean.num_rows
+        df_tmp = hf_data_clean.to_pandas()
+        df_tmp["split"] = split if split != "validation" else "valid"
+        # TODO: Split information is not used in the YAML file, better use the split defined by all other files.
+        dfs.append(df_tmp)
+
+    # save to csv
+    df = pd.concat(dfs)
+    fn_data_csv = "data_clean.csv"
+    df.to_csv(fn_data_csv, index=False)
 
     yaml.add_representer(str, str_presenter)
     yaml.representer.SafeRepresenter.add_representer(str, str_presenter)
