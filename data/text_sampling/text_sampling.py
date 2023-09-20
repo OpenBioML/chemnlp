@@ -62,6 +62,9 @@ exclude_from_standard_tabular_text_templates = [
     "bioavailability_ma_et_al",  # because it is boolean target data
     "blood_brain_barrier_martins_et_al",  # because it is boolean target data
     "carcinogens",  # because it is boolean target data
+    "cav3_t-type_calcium_channels_butkiewicz",  # because it is boolean target data
+    "chebi_20",  # target is text description
+    "choline_transporter_butkiewicz",  # because it is boolean target data
     "chembl_v29",  # text only, no SMILES
     "moses",  # SMILES only, has no target
     "zinc",  # SMILES only, has no target
