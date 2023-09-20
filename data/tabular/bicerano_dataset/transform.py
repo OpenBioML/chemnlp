@@ -32,7 +32,6 @@ def transform_data():
     clean_data["PSMILES"] = clean_data["PSMILES"].str.replace(
         "[Th]", "[*]", regex=False
     )
-
     clean_data["PSMILES"] = clean_data["PSMILES"].str.replace(
         "[[*]]", "[*]", regex=False
     )
@@ -42,6 +41,7 @@ def transform_data():
     )
 
     clean_data.to_csv("data_clean.csv")
+
 
 
 if __name__ == "__main__":
