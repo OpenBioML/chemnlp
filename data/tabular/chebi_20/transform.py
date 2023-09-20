@@ -30,7 +30,7 @@ META_TEMPLATE = {
             "description": "SMILES",  # description (optional, except for "Other")
         },
         {
-            "id": "compound_id",
+            "id": "CID",
             "type": "Other",
             "names": [
                 {"noun": "compound id"},
@@ -86,6 +86,40 @@ META_TEMPLATE = {
             abstract = "We present MolT5 - a self-supervised learning framework for pretraining models on a vast amount of unlabeled natural language text and molecule strings. MolT5 allows for new, useful, and challenging analogs of traditional vision-language tasks, such as molecule captioning and text-based de novo molecule generation (altogether: translation between molecules and language), which we explore for the first time. Since MolT5 pretrains models on single-modal data, it helps overcome the chemistry domain shortcoming of data scarcity. Furthermore, we consider several metrics, including a new cross-modal embedding-based metric, to evaluate the tasks of molecule captioning and text-based molecule generation. Our results show that MolT5-based models are able to generate outputs, both molecules and captions, which in many cases are high quality.",
             }""",  # noqa
     ],
+    "templates": [
+        "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} can be described {#by|as!}:\n{#description}",  # noqa
+        "Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule can be described {#by|as!}:\n{#description}",  # noqa
+        """Task: Please create a {#text |!}description for a molecule{# based on its representation|!}.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Answer the question with {#full|complete!} sentences.
+Result: {description#}""",  # noqa
+        """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+Description: {description#}
+Result: {SMILES#}""",  # noqa
+        """User: Can you {#give me|create|generate!} the {SMILES__description} of a molecule based in this description:
+{#description}
+Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}""",  # noqa
+        """User: I'm {#searching|looking!} for the {SMILES__description} of a molecule that can be described {#by|as!}:
+{#description}
+Assistant: This is a molecule that fits {#your|this!} description: {SMILES#}""",  # noqa
+        """User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
+User: Yes, please. The molecule can be described {#by|as!}:
+{#description}
+Assistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} fits {#your|this!} description: {SMILES#}""",  # noqa
+        """User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
+User: Yes, the molecule can be described {#by|as!}:
+{#description}
+Assistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} fits {#your|this!} description: {SMILES#}""",  # noqa
+        """Task: Please create a {#text |!}description for a molecule{# based on its representation|!}.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Answer the question with {#full|complete!} sentences.
+Result:<EOI> {description#}""",  # noqa
+        """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+Description: {description#}
+Result:<EOI> {SMILES#}""",  # noqa
+    ],
 }
 
 
@@ -137,8 +171,10 @@ if __name__ == "__main__":
         hf_data_clean = clean_dataset(hf_data)
         num_samples += hf_data_clean.num_rows
         df_tmp = hf_data_clean.to_pandas()
-        df_tmp["split"] = split if split != "validation" else "valid"
-        # TODO: Split information is not used in the YAML file, better use the split defined by all other files.
+        # TODO: Split information is not used here and in the YAML file,
+        # better use the split defined by all other files.
+        # df_tmp["split"] = split if split != "validation" else "valid"
+        df_tmp["split"] = "train"
         dfs.append(df_tmp)
 
     # save to csv
