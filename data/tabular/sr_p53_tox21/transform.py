@@ -19,7 +19,7 @@ def get_and_transform_data():
     df = pd.concat([df_train, df_valid, df_test], axis=0)
 
     fn_data_original = "data_original.csv"
-    df["toxicity_SR-p53"] = df[target_subfolder].astype(int)
+    df["toxicity_SR-p53"] = df[f"toxicity_{target_subfolder}"].astype(int)
     df.to_csv(fn_data_original, index=False)
     del df
 
