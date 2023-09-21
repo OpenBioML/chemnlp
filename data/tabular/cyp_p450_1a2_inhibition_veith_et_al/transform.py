@@ -164,9 +164,9 @@ Description: A molecule that is {CYP1A2_inhibition__names__gerund}.
 {#Molecule |!}{SMILES__description}: {SMILES#}
 Constraint: Answer the question in a {#full|complete!} sentence.
 Result:<EOI> This molecule is {CYP1A2_inhibition#not &NULL}{CYP1A2_inhibition__names__gerund}.""",  # noqa: E501
-            """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
-Description: A molecule that is {CYP1A2_inhibition__names__gerund}.
-Result:<EOI> {SMILES#}""",  # noqa: E501
+            # noqa: E501"""Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+            # Description: A molecule that is {CYP1A2_inhibition__names__gerund}.
+            # Result:<EOI> {SMILES#}""",  # noqa: E501
             """Task: Please answer the multiple choice question.
 Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} {CYP1A2_inhibition__names__gerund}?
 Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
