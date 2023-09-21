@@ -183,9 +183,9 @@ Description: A molecule that is a {CYP2C9_Substrate__names__noun}.
 {#Molecule |!}{SMILES__description}: {SMILES#}
 Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
 Result:<EOI> {CYP2C9_Substrate#False&True}""",  # noqa: E501
-            """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
-Description: A molecule that is {CYP2C9_Substrate__names__verb}.
-Result:<EOI> {SMILES#}""",  # noqa: E501
+            # noqa: E501 """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+            # Description: A molecule that is {CYP2C9_Substrate__names__verb}.
+            # Result:<EOI> {SMILES#}""",  # noqa: E501
             """Task: Please answer the multiple choice question.
 Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} {CYP2C9_Substrate__names__verb}?
 Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
