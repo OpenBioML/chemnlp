@@ -172,6 +172,12 @@ Question: Is the molecule with the {SMILES__description} {#representation of |!}
 Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
 Options:
 {CYP1A2_inhibition%}
+Answer: {%multiple_choice_result}""",  # noqa: E501
+            """Task: Please answer the multiple choice question.
+Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} {CYP1A2_inhibition__names__gerund}?
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
+Options:
+{CYP1A2_inhibition%}
 Answer:<EOI> {%multiple_choice_result}""",  # noqa: E501
             """Task: Please answer the multiple choice question.
 Question: Which molecules are {CYP1A2_inhibition#not &NULL}{CYP1A2_inhibition__names__gerund}?
