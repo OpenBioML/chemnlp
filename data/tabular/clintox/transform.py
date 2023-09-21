@@ -143,9 +143,9 @@ Description: A molecule that is {clinical_toxicity__names__adjective}.
 {#Molecule |!}{SMILES__description}: {SMILES#}
 Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
 Result:<EOI> {clinical_toxicity#False&True}""",  # noqa: E501
-            """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
-Description: A molecule that is {clinical_toxicity__names__adjective}.
-Result:<EOI> {SMILES#}""",  # noqa: E501
+            # noqa: E501 """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+            # Description: A molecule that is {clinical_toxicity__names__adjective}.
+            # Result:<EOI> {SMILES#}""",  # noqa: E501
             """Task: Please answer the multiple choice question.
 Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} {clinical_toxicity__names__adjective}?
 Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
