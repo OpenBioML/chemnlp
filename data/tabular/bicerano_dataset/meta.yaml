@@ -99,18 +99,16 @@ templates:
     - The molecule with the {PSMILES__description} of {PSMILES#} has an experimental density at 300 K of {rho_300K_exp#} g/cc.
     - The molecule with the {PSMILES__description} of {PSMILES#} has a computed density at 300 K of {rho_300K_calc#} g/cc.
     - The molecule with the {PSMILES__description} of {PSMILES#} has a computed glass coefficient of thermal expansion (CTE) at 300K of {glass_CTE_calc#}
-      K.
-    - The molecule with the {PSMILES__description} of {PSMILES#} has a standard deviation of the computed glass coefficient of thermal expansion (CTE) at
-      300K of {glass_CTE_calc_std#} K.
+      1/K.
     - The molecule with the {PSMILES__description} of {PSMILES#} has a computed rubber coefficient of thermal expansion (CTE) at 300K of {rubber_CTE_calc#}
-      K.
-    - The molecule with the {PSMILES__description} of {PSMILES#} has a standard deviation of the computed rubber coefficient of thermal expansion (CTE)
-      at 300K of {rubber_CTE_calc_std#} K.
+      1/K.
     - The molecule with the {compound_name__id} of {compound_name#} has an experimental glass transition temperature of {Tg_exp#} K.
     - The molecule with the {compound_name__id} of {compound_name#} has a computed glass transition temperature of {Tg_calc#} K.
     - The molecule with the {compound_name__id} of {compound_name#} has an experimental density at 300 K of {rho_300K_exp#} g/cc.
     - The molecule with the {compound_name__id} of {compound_name#} has a computed density at 300 K of {rho_300K_calc#} g/cc.
     - The molecule with the {compound_name__id} of {compound_name#} has a computed glass coefficient of thermal expansion (CTE) at 300K of {glass_CTE_calc#}
-      K.
+      1/K.
     - The molecule with the {compound_name__id} of {compound_name#} has a computed rubber coefficient of thermal expansion (CTE) at 300K of {rubber_CTE_calc#}
-      K.
+      1/K.
+    - 'Question: What is a polymer with experimental glass transition temperature of {Tg_exp#} K and experimental density at 300 K of {rho_300K_exp#} g/cc.
+      Answer: A polymer with {PSMILES__description} {PSMILES#}'
