@@ -69,6 +69,7 @@ exclude_from_standard_tabular_text_templates = [
     "clintox",  # because it is boolean target data
     "cyp2c9_substrate_carbonmangels",  # boolean target data
     "cyp2d6_substrate_carbonmangels",  # boolean target data
+    "cyp3a4_substrate_carbonmangels",  # boolean target data
     "moses",  # SMILES only, has no target
     "zinc",  # SMILES only, has no target
 ]
