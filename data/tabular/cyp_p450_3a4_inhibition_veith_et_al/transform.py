@@ -61,10 +61,14 @@ drugs, so that they can be removed from the body.""",
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "boolean",
                 "names": [  # names for the property (to sample from for building the prompts)
-                    {"noun": "CYP P450 3A4 inhibition"},
-                    {"noun": "CYP 3A4 inhibition"},
+                    {"noun": "inhibition of CYP3A4"},
+                    {"noun": "inhibition of CYP P450 3A4"},
+                    {"adjective": "CYP3A4 inhibition"},
+                    {"adjective": "CYP P450 3A4 inhibition"},
                     {"verb": "inhibits CYP P450 3A4"},
+                    {"verb": "inhibits CYP3A4"},
                     {"gerund": "inhibiting CYP P450 3A4"},
+                    {"gerund": "inhibiting CYP3A4"},
                 ],
                 "uris": None,
             },
@@ -111,6 +115,82 @@ and Christopher P Austin and David G Lloyd and Douglas S Auld},
 title = {Comprehensive characterization of cytochrome P450 isozyme selectivity
 across chemical libraries},
 journal = {Nature Biotechnology}""",
+        ],
+        "templates": [
+            "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} {#shows|exhibits|displays!} {CYP3A4_inhibition#no &NULL}{CYP3A4_inhibition__names__noun}.",  # noqa: E501
+            "Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule {#shows|exhibits|displays!} {CYP3A4_inhibition#no &NULL}{CYP3A4_inhibition__names__noun}.",  # noqa: E501
+            "The {SMILES__description} {SMILES#} {#represents|is from!} a molecule that {#shows|exhibits|displays!} {CYP3A4_inhibition#no &NULL}{CYP3A4_inhibition__names__noun}.",  # noqa: E501
+            "The {#molecule |!}{SMILES__description} {SMILES#} is {CYP3A4_inhibition#not &NULL}{CYP3A4_inhibition__names__gerund}.",  # noqa: E501 not all variables need to be used
+            # Instruction tuning text templates
+            """Task: Please classify a molecule based on the description.
+Description: A molecule that is {CYP3A4_inhibition__names__gerund}.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
+Result: {CYP3A4_inhibition#False&True}""",  # noqa: E501
+            """Task: Please classify a molecule based on the description.
+Description: A molecule that is {CYP3A4_inhibition__names__gerund}.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Answer the question in a {#full|complete!} sentence.
+Result: This molecule is {CYP3A4_inhibition#not &NULL}{CYP3A4_inhibition__names__gerund}.""",  # noqa: E501
+            """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+Description: A molecule that is {CYP3A4_inhibition__names__gerund}.
+Result: {SMILES#}""",  # noqa: E501
+            # Conversational text templates
+            """User: Can you {#tell me|derive|estimate!} if the molecule with the {SMILES__description} {SMILES#} is {CYP3A4_inhibition__names__gerund}?
+Assistant: {CYP3A4_inhibition#No&Yes}, this molecule is {CYP3A4_inhibition#not &NULL}{CYP3A4_inhibition__names__gerund}.""",  # noqa: E501
+            """User: Is the molecule with the {SMILES__description} {SMILES#} {CYP3A4_inhibition__names__gerund}?
+Assistant: {CYP3A4_inhibition#No&Yes}, it is {CYP3A4_inhibition#not &NULL}{CYP3A4_inhibition__names__gerund}.""",  # noqa: E501
+            """User: Can you {#give me|create|generate!} the {SMILES__description} of a molecule that is {CYP3A4_inhibition#not &NULL}{CYP3A4_inhibition__names__gerund}?
+Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}""",  # noqa: E501
+            """User: I'm {#searching|looking!} for the {SMILES__description} of a molecule that is {CYP3A4_inhibition#not &NULL}{CYP3A4_inhibition__names__gerund}?
+Assistant: This is a molecule that is {CYP3A4_inhibition#not &NULL}{CYP3A4_inhibition__names__gerund}: {SMILES#}""",  # noqa: E501
+            """User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
+User: Yes, please. The molecule should {CYP3A4_inhibition#not &NULL}be {CYP3A4_inhibition__names__gerund}.
+Assistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} is {CYP3A4_inhibition#not &NULL}{CYP3A4_inhibition__names__gerund}: {SMILES#}""",  # noqa: E501
+            """User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
+User: Yes, the molecule should {CYP3A4_inhibition#not &NULL}be {CYP3A4_inhibition__names__gerund}.
+Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {CYP3A4_inhibition#not &NULL}{CYP3A4_inhibition__names__gerund}: {SMILES#}""",  # noqa: E501
+            # Benchmarking text templates
+            "Is the {SMILES__description} {SMILES#} {CYP3A4_inhibition__names__gerund}:<EOI> {CYP3A4_inhibition#yes&no}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
+            """Task: Please classify a molecule based on the description.
+Description: A molecule that is {CYP3A4_inhibition__names__gerund}.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
+Result:<EOI> {CYP3A4_inhibition#False&True}""",  # noqa: E501
+            """Task: Please classify a molecule based on the description.
+Description: A molecule that is {CYP3A4_inhibition__names__gerund}.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Answer the question in a {#full|complete!} sentence.
+Result:<EOI> This molecule is {CYP3A4_inhibition#not &NULL}{CYP3A4_inhibition__names__gerund}.""",  # noqa: E501
+            # noqa: E501"""Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+            # Description: A molecule that is {CYP3A4_inhibition__names__gerund}.
+            # Result:<EOI> {SMILES#}""",  # noqa: E501
+            """Task: Please answer the multiple choice question.
+Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} {CYP3A4_inhibition__names__gerund}?
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
+Options:
+{CYP3A4_inhibition%}
+Answer: {%multiple_choice_result}""",  # noqa: E501
+            """Task: Please answer the multiple choice question.
+Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} {CYP3A4_inhibition__names__gerund}?
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
+Options:
+{CYP3A4_inhibition%}
+Answer:<EOI> {%multiple_choice_result}""",  # noqa: E501
+            """Task: Please answer the multiple choice question.
+Question: Which molecules are {CYP3A4_inhibition#not &NULL}{CYP3A4_inhibition__names__gerund}?
+Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
+Options:
+{SMILES%CYP3A4_inhibition%}
+Answer: {%multiple_choice_result}""",  # noqa: E501
+            """Task: Please answer the multiple choice question.
+Question: Which molecules are {CYP3A4_inhibition#not &NULL}{CYP3A4_inhibition__names__gerund}?
+Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
+Options:
+{SMILES%CYP3A4_inhibition%}
+Answer:<EOI> {%multiple_choice_result}""",  # noqa: E501
         ],
     }
 
