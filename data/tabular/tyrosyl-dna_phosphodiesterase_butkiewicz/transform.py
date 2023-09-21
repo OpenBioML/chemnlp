@@ -56,11 +56,11 @@ Final set contains all compounds active in the counter screen AID 489007.
                 "type": "boolean",
                 "names": [
                     {"noun": "a tyrosyl-DNA phosphodiesterase 1 (TDP1) inhibitor"},
-                    {"noun": "a tyrosyl-DNA phosphodiesterase 1 inhibitor"},
+                    {"noun": "an inhibitor of tyrosyl-DNA phosphodiesterase 1"},
                     {
-                        "gerund": "inhibiting human tyrosyl-DNA phosphodiesterase 1 (TDP1)"
+                        "gerund": "inhibiting properties of human tyrosyl-DNA phosphodiesterase 1 (TDP1)"
                     },
-                    {"gerund": "inhibiting human tyrosyl-DNA phosphodiesterase 1"},
+                    {"gerund": "inhibiting of human tyrosyl-DNA phosphodiesterase 1"},
                     {
                         "adjective": "active against the tyrosyl-DNA phosphodiesterase receptor 1"
                     },
@@ -146,10 +146,11 @@ author = {Butkiewicz, M. and Wang, Y. and Bryant, S. H.
 and Lowe, E. W. and Weaver, D. C. and Meiler, J.},
 title = {{H}igh-{T}hroughput {S}creening {A}ssay {D}atasets
 from the {P}ub{C}hem {D}atabase}},
-journal = {Chemical Science}}"""],
-
+journal = {Chemical Science}}""",
+        ],
         "templates": [
-            "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} {#shows|exhibits|displays!} {activity_tyrosyl_dna_phosphodiesterase#no &NULL}{activity_tyrosyl_dna_phosphodiesterase__names__noun} properties.",  # noqa: E501
+            "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {activity_tyrosyl_dna_phosphodiesterase#not &NULL}{activity_tyrosyl_dna_phosphodiesterase__names__noun}."
+            "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} {#shows|exhibits|displays!} {activity_tyrosyl_dna_phosphodiesterase#no &NULL}{activity_tyrosyl_dna_phosphodiesterase__names__gerund}.",  # noqa: E501
             "Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule has {activity_tyrosyl_dna_phosphodiesterase#no &NULL}{activity_tyrosyl_dna_phosphodiesterase__names__adjective} {#properties|characteristics|features!}.",  # noqa: E501
             "The {SMILES__description} {SMILES#} {#represents|is from!} a molecule that is {activity_tyrosyl_dna_phosphodiesterase#not &NULL}identified as {activity_tyrosyl_dna_phosphodiesterase__names__adjective}.",  # noqa: E501
             "The {#molecule |!}{SMILES__description} {SMILES#} is {activity_tyrosyl_dna_phosphodiesterase#not &NULL}{activity_tyrosyl_dna_phosphodiesterase__names__adjective}.",  # noqa: E501 not all variables need to be used
@@ -168,7 +169,7 @@ Result: This molecule is {activity_tyrosyl_dna_phosphodiesterase#not &NULL}{acti
 Description: A molecule that is {activity_tyrosyl_dna_phosphodiesterase__names__adjective}.
 Result: {SMILES#}""",  # noqa: E501
             # Conversational text templates
-            """User: Can you {#tell me|derive|estimate!} if the molecule with the {SMILES__description} {SMILES#} is {activity_tyrosyl_dna_phosphodiesterase__names__adjective}?
+            """User: Can you {#tell me|figure out|estimate!} if the molecule with the {SMILES__description} {SMILES#} is {activity_tyrosyl_dna_phosphodiesterase__names__adjective}?
 Assistant: {activity_tyrosyl_dna_phosphodiesterase#No&Yes}, this molecule is {activity_tyrosyl_dna_phosphodiesterase#not &NULL}{activity_tyrosyl_dna_phosphodiesterase__names__adjective}.""",  # noqa: E501
             """User: Is the molecule with the {SMILES__description} {SMILES#} {activity_tyrosyl_dna_phosphodiesterase__names__adjective}?
 Assistant: {activity_tyrosyl_dna_phosphodiesterase#No&Yes}, it is {activity_tyrosyl_dna_phosphodiesterase#not &NULL}{activity_tyrosyl_dna_phosphodiesterase__names__adjective}.""",  # noqa: E501
@@ -177,7 +178,7 @@ Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}
             """User: I'm {#searching|looking!} for the {SMILES__description} of a molecule that is {activity_tyrosyl_dna_phosphodiesterase#not &NULL}{activity_tyrosyl_dna_phosphodiesterase__names__adjective}?
 Assistant: This is a molecule that is {activity_tyrosyl_dna_phosphodiesterase#not &NULL}{activity_tyrosyl_dna_phosphodiesterase__names__adjective}: {SMILES#}""",  # noqa: E501
             """User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
-Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
+Assistant: This sounds {#very exciting. |very interesting. | very curious. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
 User: Yes, please. The molecule should {activity_tyrosyl_dna_phosphodiesterase#not &NULL}be {activity_tyrosyl_dna_phosphodiesterase__names__adjective}.
 Assistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} is {activity_tyrosyl_dna_phosphodiesterase#not &NULL}{activity_tyrosyl_dna_phosphodiesterase__names__adjective}: {SMILES#}""",  # noqa: E501
             """User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
@@ -220,7 +221,7 @@ Options:
 Answer:<EOI> {%multiple_choice_result}""",  # noqa: E501
         ],
     }
-    
+
     def str_presenter(dumper, data):
         """configures yaml for dumping multiline strings
         Ref:
