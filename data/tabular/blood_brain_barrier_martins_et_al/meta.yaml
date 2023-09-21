@@ -79,7 +79,7 @@ templates:
     - '{SMILES#} represents a molecule that is {penetrate_BBB#not &NULL}identified as {penetrate_BBB__names__adjective}.'
     - '{SMILES#} represents a molecule that is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.'
     - '{SMILES#} is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.'
-    - The {#molecule |!}{SMILES__description} {SMILES#} is {penetrate_BBB__names__adjective}.
+    - The {#molecule |!}{SMILES__description} {SMILES#} is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.
     - |-
       Task: Please classify a molecule based on the description.
       Description: A molecule that is {penetrate_BBB__names__adjective}.

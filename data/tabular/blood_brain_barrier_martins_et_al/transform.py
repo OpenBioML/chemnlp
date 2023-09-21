@@ -145,7 +145,7 @@ journal = {Chemical Science}""",
             "{SMILES#} represents a molecule that is {penetrate_BBB#not &NULL}identified as {penetrate_BBB__names__adjective}.",  # noqa: E501
             "{SMILES#} represents a molecule that is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.",  # noqa: E501
             "{SMILES#} is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.",
-            "The {#molecule |!}{SMILES__description} {SMILES#} is {penetrate_BBB__names__adjective}.",
+            "The {#molecule |!}{SMILES__description} {SMILES#} is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.",  # noqa: E501
             # Instruction tuning text templates
             """Task: Please classify a molecule based on the description.
 Description: A molecule that is {penetrate_BBB__names__adjective}.
