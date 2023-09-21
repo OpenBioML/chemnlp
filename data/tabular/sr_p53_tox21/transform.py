@@ -19,6 +19,7 @@ def get_and_transform_data():
     df = pd.concat([df_train, df_valid, df_test], axis=0)
 
     fn_data_original = "data_original.csv"
+    df["toxicity_SR-p53"] = df[target_subfolder].astype(int)
     df.to_csv(fn_data_original, index=False)
     del df
 
@@ -41,6 +42,7 @@ def get_and_transform_data():
 
     # save to csv
     fn_data_csv = "data_clean.csv"
+    df["toxicity_SR-p53"] = df[f"toxicity_{target_subfolder}"].astype(int)
     df.to_csv(fn_data_csv, index=False)
 
     # create meta yaml
@@ -65,6 +67,7 @@ response pathways.""",
                     {"adjective": f"toxic in the {target_subfolder} assay"},
                     {"adjective": "toxic in the SR-p53 response assay"},
                     {"adjective": "toxic in the p53 response assay"},
+                    {"gerund": f"toxic activity in the {target_subfolder} assay"},
                 ],
                 "uris": None,
             },
@@ -113,7 +116,7 @@ and Stress Response Pathways As Mediated by Exposure to Environmental Toxicants 
 journal = {Frontiers in Environmental Science}""",
         ],
         "templates": [
-            "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {toxicity_SR-p53#not &NULL}{toxicity_SR-p53__names__noun}." # noqa: E501
+            "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {toxicity_SR-p53#not &NULL}{toxicity_SR-p53__names__adjective}."  # noqa: E501
             "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} {#shows|exhibits|displays!} {toxicity_SR-p53#no &NULL}{toxicity_SR-p53__names__gerund}.",  # noqa: E501
             "Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule has {toxicity_SR-p53#no &NULL}{toxicity_SR-p53__names__adjective} {#properties|characteristics|features!}.",  # noqa: E501
             "The {SMILES__description} {SMILES#} {#represents|is from!} a molecule that is {toxicity_SR-p53#not &NULL}identified as {toxicity_SR-p53__names__adjective}.",  # noqa: E501
@@ -182,7 +185,7 @@ Question: Which molecules are {toxicity_SR-p53#not &NULL}{toxicity_SR-p53__names
 Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
 Options:
 {SMILES%toxicity_SR-p53%}
-Answer:<EOI> {%multiple_choice_result}""" # noqa: E501,
+Answer:<EOI> {%multiple_choice_result}""",  # noqa: E501,
         ],
     }
 
