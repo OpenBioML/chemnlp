@@ -19,7 +19,7 @@ def get_and_transform_data():
     df = pd.concat([df_train, df_valid, df_test], axis=0)
 
     fn_data_original = "data_original.csv"
-    df["toxicity_SR-p53"] = df[f"toxicity_{target_subfolder}"].astype(int)
+    df["Y"] = df["Y"].astype(int)
     df.to_csv(fn_data_original, index=False)
     del df
 
@@ -42,7 +42,7 @@ def get_and_transform_data():
 
     # save to csv
     fn_data_csv = "data_clean.csv"
-    df["toxicity_SR-p53"] = df[f"toxicity_{target_subfolder}"].astype(int)
+    df["toxicity_SR-p53"] = df["toxicity_SR-p53"].astype(int)
     df.to_csv(fn_data_csv, index=False)
 
     # create meta yaml
@@ -118,7 +118,7 @@ journal = {Frontiers in Environmental Science}""",
         "templates": [
             "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {toxicity_SR-p53#not &NULL}{toxicity_SR-p53__names__adjective}."  # noqa: E501
             "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} {#shows|exhibits|displays!} {toxicity_SR-p53#no &NULL}{toxicity_SR-p53__names__gerund}.",  # noqa: E501
-            "Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule has {toxicity_SR-p53#no &NULL}{toxicity_SR-p53__names__adjective} {#properties|characteristics|features!}.",  # noqa: E501
+            "Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule has {toxicity_SR-p53#no &NULL}{toxicity_SR-p53__names__noun} {#properties|characteristics|features!}.",  # noqa: E501
             "The {SMILES__description} {SMILES#} {#represents|is from!} a molecule that is {toxicity_SR-p53#not &NULL}identified as {toxicity_SR-p53__names__adjective}.",  # noqa: E501
             "The {#molecule |!}{SMILES__description} {SMILES#} is {toxicity_SR-p53#not &NULL}{toxicity_SR-p53__names__adjective}.",  # noqa: E501 not all variables need to be used
             # Instruction tuning text templates
