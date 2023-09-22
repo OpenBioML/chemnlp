@@ -120,7 +120,7 @@ journal = {Frontiers in Environmental Science}""",
         ],
         "templates": [
             "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {toxicity_SR-ARE#not &NULL}{toxicity_SR-ARE__names__adjective}.",  # noqa: E501
-            "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} {#shows|exhibits|displays!} {toxicity_SR-ARE#no &NULL}{toxicity_SR-ARE__names__gerund}.",  # noqa: E501
+            "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {toxicity_SR-ARE#not &NULL}{toxicity_SR-ARE__names__gerund}.",  # noqa: E501
             "Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule has {toxicity_SR-ARE#no &NULL}{toxicity_SR-ARE__names__noun} {#properties|characteristics|features!}.",  # noqa: E501
             "The {SMILES__description} {SMILES#} {#represents|is from!} a molecule that is {toxicity_SR-ARE#not &NULL}identified as {toxicity_SR-ARE__names__adjective}.",  # noqa: E501
             "The {#molecule |!}{SMILES__description} {SMILES#} is {toxicity_SR-ARE#not &NULL}{toxicity_SR-ARE__names__adjective}.",  # noqa: E501 not all variables need to be used
