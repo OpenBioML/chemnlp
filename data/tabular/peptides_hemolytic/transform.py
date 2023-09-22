@@ -62,7 +62,7 @@ def get_and_transform_data():
         + [False for _ in range(len(unique_neg))],
     }
     df = pd.DataFrame.from_dict(seq_dict, orient="index").transpose()
-    df.to_csv("clean_data.csv", index=False)
+    df.to_csv("data_clean.csv", index=False)
 
     # create meta yaml
     meta = {
