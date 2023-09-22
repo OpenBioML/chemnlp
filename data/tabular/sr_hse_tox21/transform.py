@@ -41,6 +41,7 @@ def get_and_transform_data():
 
     # save to csv
     fn_data_csv = "data_clean.csv"
+    df["toxicity_SR-HSE"] = df["toxicity_SR-HSE"].astype(int)
     df.to_csv(fn_data_csv, index=False)
 
     # create meta yaml
@@ -65,6 +66,7 @@ response pathways.""",
                     {"adjective": f"toxic in the {target_subfolder} assay"},
                     {"adjective": "toxic in the SR-Heat shock response assay"},
                     {"adjective": "toxic in the Heat shock response assay"},
+                    {"gerund": f"showing {target_subfolder} toxicity"},
                 ],
                 "uris": None,
             },
@@ -111,6 +113,78 @@ author = {Ruili Huang and Menghang Xia},
 title = {Editorial: Tox21 Challenge to Build Predictive Models of Nuclear Receptor
 and Stress Response Pathways As Mediated by Exposure to Environmental Toxicants and Drugs},
 journal = {Frontiers in Environmental Science}""",
+        ],
+        "templates": [
+            "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {toxicity_SR-HSE#not &NULL}{toxicity_SR-HSE__names__adjective}.",  # noqa: E501
+            "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {toxicity_SR-HSE#not &NULL}{toxicity_SR-HSE__names__gerund}.",  # noqa: E501
+            "Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule has {toxicity_SR-HSE#no &NULL}{toxicity_SR-HSE__names__noun} {#properties|characteristics|features!}.",  # noqa: E501
+            "The {SMILES__description} {SMILES#} {#represents|is from!} a molecule that is {toxicity_SR-HSE#not &NULL}identified as {toxicity_SR-HSE__names__adjective}.",  # noqa: E501
+            "The {#molecule |!}{SMILES__description} {SMILES#} is {toxicity_SR-HSE#not &NULL}{toxicity_SR-HSE__names__adjective}.",  # noqa: E501 not all variables need to be used
+            # Instruction tuning text templates
+            """Task: Please classify a molecule based on the description.
+Description: A molecule that is {toxicity_SR-HSE__names__adjective}.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional|extra!} words.
+Result: {toxicity_SR-HSE#False&True}""",  # noqa: E501
+            """Task: Please classify a molecule based on the description.
+Description: A molecule that is {toxicity_SR-HSE__names__adjective}.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Answer the question in a {#full|complete!} sentence.
+Result: This molecule is {toxicity_SR-HSE#not &NULL}{toxicity_SR-HSE__names__adjective}.""",
+            """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+Description: A molecule that is {toxicity_SR-HSE__names__adjective}.
+Result: {SMILES#}""",  # noqa: E501
+            # Conversational text templates
+            """User: Can you {#tell me|figure out|estimate!} if the molecule with the {SMILES__description} {SMILES#} is {toxicity_SR-HSE__names__adjective}?
+Assistant: {toxicity_SR-HSE#No&Yes}, this molecule is {toxicity_SR-HSE#not &NULL}{toxicity_SR-HSE__names__adjective}.""",  # noqa: E501
+            """User: Is the molecule with the {SMILES__description} {SMILES#} {toxicity_SR-HSE__names__adjective}?
+Assistant: {toxicity_SR-HSE#No&Yes}, it is {toxicity_SR-HSE#not &NULL}{toxicity_SR-HSE__names__adjective}.""",  # noqa: E501
+            """User: Can you {#give me|create|generate!} the {SMILES__description} of a molecule that is {toxicity_SR-HSE#not &NULL}{toxicity_SR-HSE__names__adjective}?
+Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}""",  # noqa: E501
+            """User: I'm {#searching|looking!} for the {SMILES__description} of a molecule that is {toxicity_SR-HSE#not &NULL}{toxicity_SR-HSE__names__adjective}?
+Assistant: This is a molecule that is {toxicity_SR-HSE#not &NULL}{toxicity_SR-HSE__names__adjective}: {SMILES#}""",  # noqa: E501
+            """User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+Assistant: This sounds {#very exciting. |very interesting. | very curious. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
+User: Yes, please. The molecule should {toxicity_SR-HSE#not &NULL}be {toxicity_SR-HSE__names__adjective}.
+Assistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} is {toxicity_SR-HSE#not &NULL}{toxicity_SR-HSE__names__adjective}: {SMILES#}""",  # noqa: E501
+            """User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
+User: Yes, the molecule should {toxicity_SR-HSE#not &NULL}be {toxicity_SR-HSE__names__adjective}.
+Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {toxicity_SR-HSE#not &NULL}{toxicity_SR-HSE__names__adjective}: {SMILES#}""",  # noqa: E501
+            # Benchmarking text templates
+            "Is the {SMILES__description} {SMILES#} {toxicity_SR-HSE__names__adjective}:<EOI> {toxicity_SR-HSE#yes&no}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
+            """Task: Please classify a molecule based on the description.
+Description: A molecule that is {toxicity_SR-HSE__names__adjective}.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
+Result:<EOI> {toxicity_SR-HSE#False&True}""",  # noqa: E501
+            """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+Description: A molecule that is {toxicity_SR-HSE__names__adjective}.
+Result:<EOI> {SMILES#}""",  # noqa: E501
+            """Task: Please answer the multiple choice question.
+Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} {toxicity_SR-HSE__names__adjective}?
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
+Options:
+{toxicity_SR-HSE%}
+Answer: {%multiple_choice_result}""",  # noqa: E501
+            """Task: Please answer the multiple choice question.
+Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} {toxicity_SR-HSE__names__adjective}?
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
+Options:
+{toxicity_SR-HSE%}
+Answer:<EOI> {%multiple_choice_result}""",  # noqa: E501
+            """Task: Please answer the multiple choice question.
+Question: Which molecules are {toxicity_SR-HSE#not &NULL}{toxicity_SR-HSE__names__adjective}?
+Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
+Options:
+{SMILES%toxicity_SR-HSE%}
+Answer: {%multiple_choice_result}""",  # noqa: E501
+            """Task: Please answer the multiple choice question.
+Question: Which molecules are {toxicity_SR-HSE#not &NULL}{toxicity_SR-HSE__names__adjective}?
+Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
+Options:
+{SMILES%toxicity_SR-HSE%}
+Answer:<EOI> {%multiple_choice_result}""",  # noqa: E501,
         ],
     }
 
