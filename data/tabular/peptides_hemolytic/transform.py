@@ -97,6 +97,7 @@ non-hemolytic in two different lab experiments (i.e. two different training exam
                     {"verb": "kill red blood cells"},
                     {"verb": "lyse red blood cells"},
                     {"adjective": "hemolytic"},
+                    {"gerund": "killing red blood cells"},
                 ],
                 "uris": None,
             },
@@ -145,8 +146,80 @@ number = {2},
 pages = {513--530},
 author = {Zhenqin Wu and Bharath Ramsundar and Evan~N. Feinberg and Joseph
 Gomes and Caleb Geniesse and Aneesh S. Pappu and Karl Leswing and Vijay Pande},
-title = {MoleculeNet: a benchmark for molecular machine learning},
+title = {aminoacid sequenceNet: a benchmark for molecular machine learning},
 journal = {Chemical Science}""",
+        ],
+        "templates": [
+            "The sequence of aminoacids {sequence#} {#shows|exhibits|demonstrates!} {hemolytic#no &NULL}{hemolytic__names__adjective} properties.",  # noqa: E501
+            "The aminoacid sequence {sequence#} {#shows|exhibits|displays!} {hemolytic#no &NULL}{hemolytic__names__adjective} properties.",  # noqa: E501
+            "Based on the {sequence__description} {#representation |!}{sequence#}, the aminoacid sequence has {hemolytic#no &NULL}{hemolytic__names__adjective} {#properties|characteristics|features!}.",  # noqa: E501
+            "The {sequence__description} {sequence#} {#represents|is from!} an aminoacid sequence that is {hemolytic#not &NULL}identified as {hemolytic__names__adjective}.",  # noqa: E501
+            "The {#aminoacid sequence |!}{sequence__description} {sequence#} is {hemolytic#not &NULL}{hemolytic__names__adjective}.",  # noqa: E501 not all variables need to be used
+            # Instruction tuning text templates
+            """Task: Please classify a aminoacid sequence based on the description.
+Description: A aminoacid sequence that is {hemolytic__names__adjective}.
+{#aminoacid sequence |!}{sequence__description}: {sequence#}
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
+Result: {hemolytic#False&True}""",  # noqa: E501
+            """Task: Please classify a aminoacid sequence based on the description.
+Description: A aminoacid sequence that is {hemolytic__names__adjective}.
+{#aminoacid sequence |!}{sequence__description}: {sequence#}
+Constraint: Answer the question in a {#full|complete!} sentence.
+Result: This aminoacid sequence is {hemolytic#not &NULL}{hemolytic__names__adjective}.""",
+            """Task: Please {#give me|create|generate!} a {#aminoacid sequence |!}{sequence__description} based on the {#text |!}description{# below|!}.
+Description: A aminoacid sequence that is {hemolytic__names__adjective}.
+Result: {sequence#}""",  # noqa: E501
+            # Conversational text templates
+            """User: Can you {#tell me|derive|estimate!} if the aminoacid sequence with the {sequence__description} {sequence#} is {hemolytic__names__adjective}?
+Assistant: {hemolytic#No&Yes}, this aminoacid sequence is {hemolytic#not &NULL}{hemolytic__names__adjective}.""",  # noqa: E501
+            """User: Is the aminoacid sequence with the {sequence__description} {sequence#} {hemolytic__names__adjective}?
+Assistant: {hemolytic#No&Yes}, it is {hemolytic#not &NULL}{hemolytic__names__adjective}.""",  # noqa: E501
+            """User: Can you {#give me|create|generate!} the {sequence__description} of a aminoacid sequence that is {hemolytic#not &NULL}{hemolytic__names__adjective}?
+Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {sequence#}""",  # noqa: E501
+            """User: I'm {#searching|looking!} for the {sequence__description} of a aminoacid sequence that is {hemolytic#not &NULL}{hemolytic__names__adjective}?
+Assistant: This is a aminoacid sequence that is {hemolytic#not &NULL}{hemolytic__names__adjective}: {sequence#}""",  # noqa: E501
+            """User: I want to {#come up with|create|generate!} a {#aminoacid sequence |!}{sequence__description}.
+Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
+User: Yes, please. The aminoacid sequence should {hemolytic#not &NULL}be {hemolytic__names__adjective}.
+Assistant: {#Ok|Got it!},{# here you go,|!} this {sequence__description} is {hemolytic#not &NULL}{hemolytic__names__adjective}: {sequence#}""",  # noqa: E501
+            """User: I want to {#come up with|create|generate!} a {#aminoacid sequence |!}{sequence__description}.
+Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#aminoacid sequence|one!}?
+User: Yes, the aminoacid sequence should {hemolytic#not &NULL}be {hemolytic__names__adjective}.
+Assistant: {#Understood|Got it|Ok!}, this {sequence__description} is {hemolytic#not &NULL}{hemolytic__names__adjective}: {sequence#}""",  # noqa: E501
+            # Benchmarking text templates
+            "Is the {sequence__description} {sequence#} {hemolytic__names__adjective}:<EOI> {hemolytic#yes&no}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
+            """Task: Please classify a aminoacid sequence based on the description.
+Description: A aminoacid sequence that is {hemolytic__names__adjective}.
+{#aminoacid sequence |!}{sequence__description}: {sequence#}
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
+Result:<EOI> {hemolytic#False&True}""",  # noqa: E501
+            """Task: Please {#give me|create|generate!} a {#aminoacid sequence |!}{sequence__description} based on the {#text |!}description{# below|!}.
+Description: A aminoacid sequence that is {hemolytic__names__adjective}.
+Result:<EOI> {sequence#}""",  # noqa: E501
+            """Task: Please answer the multiple choice question.
+Question: Is the aminoacid sequence with the {sequence__description} {#representation of |!}{sequence#} {hemolytic__names__adjective}?
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
+Options:
+{hemolytic%}
+Answer: {%multiple_choice_result}""",  # noqa: E501
+            """Task: Please answer the multiple choice question.
+Question: Is the aminoacid sequence with the {sequence__description} {#representation of |!}{sequence#} {hemolytic__names__adjective}?
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
+Options:
+{hemolytic%}
+Answer:<EOI> {%multiple_choice_result}""",  # noqa: E501
+            """Task: Please answer the multiple choice question.
+Question: Which aminoacid sequences are {hemolytic#not &NULL}{hemolytic__names__adjective}?
+Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
+Options:
+{sequence%hemolytic%}
+Answer: {%multiple_choice_result}""",  # noqa: E501
+            """Task: Please answer the multiple choice question.
+Question: Which aminoacid sequences are {hemolytic#not &NULL}{hemolytic__names__adjective}?
+Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
+Options:
+{sequence%hemolytic%}
+Answer:<EOI> {%multiple_choice_result}""",  # noqa: E501
         ],
     }
 
