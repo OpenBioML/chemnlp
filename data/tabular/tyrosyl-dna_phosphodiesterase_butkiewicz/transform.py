@@ -149,7 +149,7 @@ from the {P}ub{C}hem {D}atabase}},
 journal = {Chemical Science}}""",
         ],
         "templates": [
-            "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {activity_tyrosyl_dna_phosphodiesterase#not &NULL}{activity_tyrosyl_dna_phosphodiesterase__names__noun}."
+            "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {activity_tyrosyl_dna_phosphodiesterase#not &NULL}{activity_tyrosyl_dna_phosphodiesterase__names__noun}.",  # noqa: E501
             "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} {#shows|exhibits|displays!} {activity_tyrosyl_dna_phosphodiesterase#no &NULL}{activity_tyrosyl_dna_phosphodiesterase__names__gerund}.",  # noqa: E501
             "Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule has {activity_tyrosyl_dna_phosphodiesterase#no &NULL}{activity_tyrosyl_dna_phosphodiesterase__names__adjective} {#properties|characteristics|features!}.",  # noqa: E501
             "The {SMILES__description} {SMILES#} {#represents|is from!} a molecule that is {activity_tyrosyl_dna_phosphodiesterase#not &NULL}identified as {activity_tyrosyl_dna_phosphodiesterase__names__adjective}.",  # noqa: E501
@@ -164,7 +164,7 @@ Result: {activity_tyrosyl_dna_phosphodiesterase#False&True}""",  # noqa: E501
 Description: A molecule that is {activity_tyrosyl_dna_phosphodiesterase__names__adjective}.
 {#Molecule |!}{SMILES__description}: {SMILES#}
 Constraint: Answer the question in a {#full|complete!} sentence.
-Result: This molecule is {activity_tyrosyl_dna_phosphodiesterase#not &NULL}{activity_tyrosyl_dna_phosphodiesterase__names__adjective}.""",
+Result: This molecule is {activity_tyrosyl_dna_phosphodiesterase#not &NULL}{activity_tyrosyl_dna_phosphodiesterase__names__adjective}.""",  # noqa: E501
             """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
 Description: A molecule that is {activity_tyrosyl_dna_phosphodiesterase__names__adjective}.
 Result: {SMILES#}""",  # noqa: E501
