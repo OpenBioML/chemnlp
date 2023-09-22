@@ -78,6 +78,7 @@ exclude_from_standard_tabular_text_templates = [
     "drug_induced_liver_injury",  # boolean target data
     "freesolv",  # more than one target
     "h2_storage_materials",  # more than one target, LOW PRIO: has only 30 samples
+    "herg_blockers",  # more than one target
     "moses",  # SMILES only, has no target
     "zinc",  # SMILES only, has no target
 ]
