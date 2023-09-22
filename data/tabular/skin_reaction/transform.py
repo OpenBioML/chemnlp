@@ -74,6 +74,8 @@ Committee on the Validation of Alternative Methods) report on the rLLNA.""",
                     {"verb": "causes skin reaction"},
                     {"verb": "causes skin sensitization"},
                     {"verb": "causes drug induced skin immune reaction"},
+                    {"adjective": "reactive in contact with the skin"},
+                    {"gerund": "causing skin reaction"},
                 ],
                 "uris": [
                     "http://purl.bioontology.org/ontology/MEDDRA/10040914",
@@ -134,6 +136,78 @@ and Nicole Kleinstreuer and Carolina H. Andrade and Alexander Tropsha},
 title = {Predicting chemically-induced skin reactions. Part I: QSAR models of skin sensitization
 and their application to identify potentially hazardous compounds},
 journal = {Toxicology and Applied Pharmacology}""",
+        ],
+        "templates": [
+            "The {#molecule |!}{SMILES__description} {SMILES#} causes {skin_reaction#no &NULL}reaction with the skin.",  # noqa: E501
+            "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is not {skin_reaction#no &NULL}{skin_reaction__names__adjective}.",  # noqa: E501
+            "Based on the {SMILES__description} {#representation |!}{SMILES#}, there is {skin_reaction#no &NULL}reaction in contact with the skin.",  # noqa: E501
+            "The {SMILES__description} {SMILES#} {#represents|is from!} a molecule that is {skin_reaction#not &NULL}identified as {skin_reaction__names__adjective}.",  # noqa: E501
+            "The {#molecule |!}{SMILES__description} {SMILES#} is {skin_reaction#not &NULL}{skin_reaction__names__adjective}.",  # noqa: E501 not all variables need to be used
+            # Instruction tuning text templates
+            """Task: Please classify a molecule based on the description.
+Description: A molecule that is {skin_reaction__names__adjective}.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
+Result: {skin_reaction#False&True}""",  # noqa: E501
+            """Task: Please classify a molecule based on the description.
+Description: A molecule that is {skin_reaction__names__adjective}.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Answer the question in a {#full|complete|definite!} sentence.
+Result: This molecule is {skin_reaction#not &NULL}{skin_reaction__names__adjective}.""",
+            """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+Description: A molecule that is {skin_reaction__names__adjective}.
+Result: {SMILES#}""",  # noqa: E501
+            # Conversational text templates
+            """User: Can you {#tell me|derive|estimate!} if the molecule with the {SMILES__description} {SMILES#} is {skin_reaction__names__adjective}?
+Assistant: {skin_reaction#No&Yes}, this molecule is {skin_reaction#not &NULL}{skin_reaction__names__adjective}.""",  # noqa: E501
+            """User: Is the molecule with the {SMILES__description} {SMILES#} {skin_reaction__names__adjective}?
+Assistant: {skin_reaction#No&Yes}, it is {skin_reaction#not &NULL}{skin_reaction__names__adjective}.""",  # noqa: E501
+            """User: Can you {#give me|create|generate!} the {SMILES__description} of a molecule that is {skin_reaction#not &NULL}{skin_reaction__names__adjective}?
+Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}""",  # noqa: E501
+            """User: I'm {#searching|looking!} for the {SMILES__description} of a molecule that is {skin_reaction#not &NULL}{skin_reaction__names__adjective}?
+Assistant: This is a molecule that is {skin_reaction#not &NULL}{skin_reaction__names__adjective}: {SMILES#}""",  # noqa: E501
+            """User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
+User: Yes, please. The molecule should {skin_reaction#not &NULL}be {skin_reaction__names__adjective}.
+Assistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} is {skin_reaction#not &NULL}{skin_reaction__names__adjective}: {SMILES#}""",  # noqa: E501
+            """User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
+User: Yes, the molecule should {skin_reaction#not &NULL}be {skin_reaction__names__adjective}.
+Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {skin_reaction#not &NULL}{skin_reaction__names__adjective}: {SMILES#}""",  # noqa: E501
+            # Benchmarking text templates
+            "Is the {SMILES__description} {SMILES#} {skin_reaction__names__adjective}:<EOI> {skin_reaction#yes&no}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
+            """Task: Please classify a molecule based on the description.
+Description: A molecule that is {skin_reaction__names__adjective}.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
+Result:<EOI> {skin_reaction#False&True}""",  # noqa: E501
+            """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+Description: A molecule that is {skin_reaction__names__adjective}.
+Result:<EOI> {SMILES#}""",  # noqa: E501
+            """Task: Please answer the multiple choice question.
+Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} {skin_reaction__names__adjective}?
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
+Options:
+{skin_reaction%}
+Answer: {%multiple_choice_result}""",  # noqa: E501
+            """Task: Please answer the multiple choice question.
+Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} {skin_reaction__names__adjective}?
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
+Options:
+{skin_reaction%}
+Answer:<EOI> {%multiple_choice_result}""",  # noqa: E501
+            """Task: Please answer the multiple choice question.
+Question: Which molecules are {skin_reaction#not &NULL}{skin_reaction__names__adjective}?
+Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
+Options:
+{SMILES%skin_reaction%}
+Answer: {%multiple_choice_result}""",  # noqa: E501
+            """Task: Please answer the multiple choice question.
+Question: Which molecules are {skin_reaction#not &NULL}{skin_reaction__names__adjective}?
+Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
+Options:
+{SMILES%skin_reaction%}
+Answer:<EOI> {%multiple_choice_result}""",  # noqa: E501
         ],
     }
 
