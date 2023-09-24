@@ -102,7 +102,7 @@ journal = {Cell Chemical Biology}}""",
         ],
         "templates": [
             "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} {#shows|exhibits|displays!} {clinical_toxicity#no &NULL}{clinical_toxicity__names__noun}.",  # noqa: E501
-            "Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule has {clinical_toxicity#no &NULL}{clinical_toxicity__names__adjective} {#properties|characteristics|features!}.",  # noqa: E501
+            "Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule has {clinical_toxicity#no &NULL}{clinical_toxicity__names__adjective} {#properties|characteristics|features|traits!}.",  # noqa: E501
             "The {SMILES__description} {SMILES#} {#represents|is from!} a molecule that is {clinical_toxicity#not &NULL}identified as {clinical_toxicity__names__adjective}.",  # noqa: E501
             "The {#molecule |!}{SMILES__description} {SMILES#} is {clinical_toxicity#not &NULL}{clinical_toxicity__names__adjective}.",  # noqa: E501 not all variables need to be used
             # Instruction tuning text templates

@@ -136,8 +136,8 @@ title = {admetSAR: A Comprehensive Source and Free Tool for Assessment of Chemic
 journal = {Journal of Chemical Information and Modeling}""",
         ],
         "templates": [
-            "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} {#shows|exhibits|displays!} {carcinogen#no &NULL}{carcinogen__names__adjective} properties.",  # noqa: E501
-            "Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule has {carcinogen#no &NULL}{carcinogen__names__adjective} {#properties|characteristics|features!}.",  # noqa: E501
+            "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} {#shows|exhibits|displays!} {carcinogen#no &NULL}{carcinogen__names__adjective} {#properties|effects!}.",  # noqa: E501
+            "Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule has {carcinogen#no &NULL}{carcinogen__names__adjective} {#effects|properties|characteristics|features!}.",  # noqa: E501
             "The {SMILES__description} {SMILES#} {#represents|is from!} a molecule that is {carcinogen#not &NULL}identified as {carcinogen__names__adjective}.",  # noqa: E501
             "The {SMILES__description} {SMILES#} is {carcinogen#not &NULL}{carcinogen__names__adjective}.",
             "The {#molecule |!}{SMILES__description} {SMILES#} is {carcinogen#not &NULL}{carcinogen__names__adjective}.",  # noqa: E501 not all variables need to be used
