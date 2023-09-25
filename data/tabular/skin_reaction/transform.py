@@ -71,11 +71,10 @@ Committee on the Validation of Alternative Methods) report on the rLLNA.""",
                     {"noun": "skin sensitization"},
                     {"noun": "agent induced skin reaction"},
                     {"noun": "drug induced skin immune reaction"},
-                    {"verb": "causes skin reaction"},
-                    {"verb": "causes skin sensitization"},
-                    {"verb": "causes drug induced skin immune reaction"},
-                    {"adjective": "reactive in contact with the skin"},
-                    {"gerund": "causing skin reaction"},
+                    {"verb": "cause a skin reaction"},
+                    {"verb": "cause a skin sensitization"},
+                    {"verb": "cause a drug induced skin immune reaction"},
+                    {"gerund": "causing a skin reaction"},
                 ],
                 "uris": [
                     "http://purl.bioontology.org/ontology/MEDDRA/10040914",
@@ -138,11 +137,10 @@ and their application to identify potentially hazardous compounds},
 journal = {Toxicology and Applied Pharmacology}""",
         ],
         "templates": [
-            "The {#molecule |!}{SMILES__description} {SMILES#} causes {skin_reaction#no &NULL}reaction with the skin.",  # noqa: E501
-            "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is not {skin_reaction#no &NULL}{skin_reaction__names__adjective}.",  # noqa: E501
-            "Based on the {SMILES__description} {#representation |!}{SMILES#}, there is {skin_reaction#no &NULL}reaction in contact with the skin.",  # noqa: E501
-            "The {SMILES__description} {SMILES#} {#represents|is from!} a molecule that is {skin_reaction#not &NULL}identified as {skin_reaction__names__adjective}.",  # noqa: E501
-            "The {#molecule |!}{SMILES__description} {SMILES#} is {skin_reaction#not &NULL}{skin_reaction__names__adjective}.",  # noqa: E501 not all variables need to be used
+            "The {#molecule |!}{SMILES__description} {SMILES#} causes {skin_reaction#no &NULL}{skin_reaction__names__noun}.",  # noqa: E501
+            "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {skin_reaction#not &NULL}{skin_reaction__names__gerund}.",  # noqa: E501
+            "Based on the {SMILES__description} {#representation |!}{SMILES#}, there is {skin_reaction#no &NULL}{skin_reaction__names__noun}.",  # noqa: E501
+            "The {#molecule |!}{SMILES__description} {SMILES#} does {skin_reaction#not &NULL}{skin_reaction__names__verb}.",  # noqa: E501 not all variables need to be used
             # Instruction tuning text templates
             """Task: Please classify a molecule based on the description.
 Description: A molecule that is {skin_reaction__names__adjective}.
