@@ -15,7 +15,7 @@ targets:
           - adjective: active against the SARS-CoV-2 3CL protease
           - gerund: targeting the SARSCoV2 3CL protease
           - gerund: acting against the SARSCoV2 3CL protease
-          - gerund: successfully targeting SARSCoV2 3CL protease
+          - gerund: successfully targeting the SARSCoV2 3CL protease
       uris:
 benchmarks:
     - name: TDC
