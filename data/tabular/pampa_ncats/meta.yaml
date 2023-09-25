@@ -13,7 +13,7 @@ targets:
       units:
       type: boolean
       names:
-          - noun: permeability
+          - noun: permeability in the PAMPA assay
           - verb: is permeable in the PAMPA assay
           - verb: shows permeability in parallel artificial membrane permeability assay (PAMPA) assay
           - adjective: permeable in the PAMPA assay
