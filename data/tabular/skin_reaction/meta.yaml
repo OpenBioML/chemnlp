@@ -19,7 +19,7 @@ targets:
           - verb: causes a skin sensitization
           - verb: causes a drug induced skin immune reaction
           - adjective: reactive in contact with the skin
-          - gerund: causing skin reaction
+          - gerund: causing a skin reaction
       uris:
           - http://purl.bioontology.org/ontology/MEDDRA/10040914
 benchmarks:
