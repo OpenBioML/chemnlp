@@ -9,7 +9,7 @@ targets:
       units:
       type: boolean
       names:
-          - noun: activity against SARSCoV2 3CL protease
+          - noun: activity against the SARSCoV2 3CL protease
           - noun: activity against SARS-CoV-2 3CL protease
           - adjective: active against SARSCoV2 3CL protease
           - adjective: active against SARS-CoV-2 3CL protease
