@@ -16,7 +16,7 @@ targets:
           - noun: agent induced skin reaction
           - noun: drug induced skin immune reaction
           - verb: causes a skin reaction
-          - verb: causes skin sensitization
+          - verb: causes a skin sensitization
           - verb: causes drug induced skin immune reaction
           - adjective: reactive in contact with the skin
           - gerund: causing skin reaction
