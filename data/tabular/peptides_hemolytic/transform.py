@@ -97,7 +97,8 @@ non-hemolytic in two different lab experiments (i.e. two different training exam
                     {"verb": "kill red blood cells"},
                     {"verb": "lyse red blood cells"},
                     {"adjective": "hemolytic"},
-                    {"gerund": "killing red blood cells"},
+                    {"gerund": "lysing red blood cells"},
+
                 ],
                 "uris": None,
             },
