@@ -150,7 +150,7 @@ title = {MoleculeNet: a benchmark for molecular machine learning},
 journal = {Chemical Science}""",
         ],
         "templates": [
-            "The sequence of aminoacids {sequence#} {#shows|exhibits|demonstrates!} {hemolytic#no &NULL}{hemolytic__names__adjective} properties.",  # noqa: E501
+            "The sequence of {#aminoacids|AAs!} {sequence#} {#shows|exhibits|demonstrates!} {hemolytic#no &NULL}{hemolytic__names__adjective} properties.",  # noqa: E501
             "The aminoacid sequence {sequence#} {#shows|exhibits|displays!} {hemolytic#no &NULL}{hemolytic__names__adjective} properties.",  # noqa: E501
             "Based on the {sequence__description} {#representation |!}{sequence#}, the aminoacid sequence has {hemolytic#no &NULL}{hemolytic__names__adjective} {#properties|characteristics|features!}.",  # noqa: E501
             "The {sequence__description} {sequence#} {#represents|is from!} an aminoacid sequence that is {hemolytic#not &NULL}identified as {hemolytic__names__adjective}.",  # noqa: E501

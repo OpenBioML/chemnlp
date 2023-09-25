@@ -63,7 +63,7 @@ bibtex:
       title = {MoleculeNet: a benchmark for molecular machine learning},
       journal = {Chemical Science}
 templates:
-    - The sequence of aminoacids {sequence#} {#shows|exhibits|demonstrates!} {hemolytic#no &NULL}{hemolytic__names__adjective} properties.
+    - The sequence of {#aminoacids|AAs!} {sequence#} {#shows|exhibits|demonstrates!} {hemolytic#no &NULL}{hemolytic__names__adjective} properties.
     - The aminoacid sequence {sequence#} {#shows|exhibits|displays!} {hemolytic#no &NULL}{hemolytic__names__adjective} properties.
     - Based on the {sequence__description} {#representation |!}{sequence#}, the aminoacid sequence has {hemolytic#no &NULL}{hemolytic__names__adjective}
       {#properties|characteristics|features!}.
