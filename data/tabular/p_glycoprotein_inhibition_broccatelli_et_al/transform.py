@@ -60,7 +60,10 @@ be used to overcome multidrug resistance.""",
                 "names": [  # names for the property (to sample from for building the prompts)
                     {"noun": "P-glycoprotein inhibition"},
                     {"noun": "Pgp inhibition"},
-                    {"verb": "shows Pgp inhibition"},
+                    {"gerund": "showing P-glycoprotein inhibition"},
+                    {"gerund": "showing Pgp inhibition"},
+                    {"adjective": "Pgp inhibitory"},
+                    {"adjective": "P-glycoprotein inhibitory"},
                 ],
                 "uris": [
                     "http://purl.bioontology.org/ontology/CSP/4000-0278",
@@ -117,6 +120,78 @@ Maria Frosini and Laura Goracci and Tudor I. Oprea and Gabriele Cruciani},
 title = {A Novel Approach for Predicting P-Glycoprotein (ABCB1) Inhibition
 Using Molecular Interaction Fields},
 journal = {Journal of Medicinal Chemistry}""",
+        ],
+        "templates": [
+            "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {Pgp_inhibition#not &NULL}{Pgp_inhibition__names__adjective}.",  # noqa: E501
+            "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {Pgp_inhibition#not &NULL}{Pgp_inhibition__names__gerund}.",  # noqa: E501
+            "Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule has {Pgp_inhibition#no &NULL}{Pgp_inhibition__names__noun} {#properties|characteristics|features!}.",  # noqa: E501
+            "The {SMILES__description} {SMILES#} {#represents|is from!} a molecule that is {Pgp_inhibition#not &NULL}identified as {Pgp_inhibition__names__adjective}.",  # noqa: E501
+            "The {#molecule |!}{SMILES__description} {SMILES#} is {Pgp_inhibition#not &NULL}{Pgp_inhibition__names__adjective}.",  # noqa: E501 not all variables need to be used
+            # Instruction tuning text templates
+            """Task: Please classify a molecule based on the description.
+Description: A molecule that is {Pgp_inhibition__names__adjective}.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional|extra!} words.
+Result: {Pgp_inhibition#False&True}""",  # noqa: E501
+            """Task: Please classify a molecule based on the description.
+Description: A molecule that is {Pgp_inhibition__names__adjective}.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Answer the question in a {#full|complete!} sentence.
+Result: This molecule is {Pgp_inhibition#not &NULL}{Pgp_inhibition__names__adjective}.""",
+            """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+Description: A molecule that is {Pgp_inhibition__names__adjective}.
+Result: {SMILES#}""",  # noqa: E501
+            # Conversational text templates
+            """User: Can you {#tell me|figure out|estimate!} if the molecule with the {SMILES__description} {SMILES#} is {Pgp_inhibition__names__adjective}?
+Assistant: {Pgp_inhibition#No&Yes}, this molecule is {Pgp_inhibition#not &NULL}{Pgp_inhibition__names__adjective}.""",  # noqa: E501
+            """User: Is the molecule with the {SMILES__description} {SMILES#} {Pgp_inhibition__names__adjective}?
+Assistant: {Pgp_inhibition#No&Yes}, it is {Pgp_inhibition#not &NULL}{Pgp_inhibition__names__adjective}.""",  # noqa: E501
+            """User: Can you {#give me|create|generate!} the {SMILES__description} of a molecule that is {Pgp_inhibition#not &NULL}{Pgp_inhibition__names__adjective}?
+Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}""",  # noqa: E501
+            """User: I'm {#searching|looking!} for the {SMILES__description} of a molecule that is {Pgp_inhibition#not &NULL}{Pgp_inhibition__names__adjective}?
+Assistant: This is a molecule that is {Pgp_inhibition#not &NULL}{Pgp_inhibition__names__adjective}: {SMILES#}""",  # noqa: E501
+            """User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+Assistant: This sounds {#very exciting. |very interesting. | very curious. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
+User: Yes, please. The molecule should {Pgp_inhibition#not &NULL}be {Pgp_inhibition__names__adjective}.
+Assistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} is {Pgp_inhibition#not &NULL}{Pgp_inhibition__names__adjective}: {SMILES#}""",  # noqa: E501
+            """User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
+User: Yes, the molecule should {Pgp_inhibition#not &NULL}be {Pgp_inhibition__names__adjective}.
+Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {Pgp_inhibition#not &NULL}{Pgp_inhibition__names__adjective}: {SMILES#}""",  # noqa: E501
+            # Benchmarking text templates
+            "Is the {SMILES__description} {SMILES#} {Pgp_inhibition__names__adjective}:<EOI> {Pgp_inhibition#yes&no}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
+            """Task: Please classify a molecule based on the description.
+Description: A molecule that is {Pgp_inhibition__names__adjective}.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
+Result:<EOI> {Pgp_inhibition#False&True}""",  # noqa: E501
+            """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+Description: A molecule that is {Pgp_inhibition__names__adjective}.
+Result:<EOI> {SMILES#}""",  # noqa: E501
+            """Task: Please answer the multiple choice question.
+Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} {Pgp_inhibition__names__adjective}?
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
+Options:
+{Pgp_inhibition%}
+Answer: {%multiple_choice_result}""",  # noqa: E501
+            """Task: Please answer the multiple choice question.
+Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} {Pgp_inhibition__names__adjective}?
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
+Options:
+{Pgp_inhibition%}
+Answer:<EOI> {%multiple_choice_result}""",  # noqa: E501
+            """Task: Please answer the multiple choice question.
+Question: Which molecules are {Pgp_inhibition#not &NULL}{Pgp_inhibition__names__adjective}?
+Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
+Options:
+{SMILES%Pgp_inhibition%}
+Answer: {%multiple_choice_result}""",  # noqa: E501
+            """Task: Please answer the multiple choice question.
+Question: Which molecules are {Pgp_inhibition#not &NULL}{Pgp_inhibition__names__adjective}?
+Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
+Options:
+{SMILES%Pgp_inhibition%}
+Answer:<EOI> {%multiple_choice_result}""",  # noqa: E501,
         ],
     }
 
