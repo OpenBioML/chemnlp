@@ -20,7 +20,7 @@ targets:
           - verb: kill red blood cells
           - verb: lyse red blood cells
           - adjective: hemolytic
-          - gerund: killing red blood cells
+          - gerund: lysing red blood cells
       uris:
 benchmarks: []
 identifiers:
@@ -60,7 +60,7 @@ bibtex:
       pages = {513--530},
       author = {Zhenqin Wu and Bharath Ramsundar and Evan~N. Feinberg and Joseph
       Gomes and Caleb Geniesse and Aneesh S. Pappu and Karl Leswing and Vijay Pande},
-      title = {aminoacid sequenceNet: a benchmark for molecular machine learning},
+      title = {MoleculeNet: a benchmark for molecular machine learning},
       journal = {Chemical Science}
 templates:
     - The sequence of aminoacids {sequence#} {#shows|exhibits|demonstrates!} {hemolytic#no &NULL}{hemolytic__names__adjective} properties.

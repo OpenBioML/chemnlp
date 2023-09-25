@@ -98,7 +98,6 @@ non-hemolytic in two different lab experiments (i.e. two different training exam
                     {"verb": "lyse red blood cells"},
                     {"adjective": "hemolytic"},
                     {"gerund": "lysing red blood cells"},
-
                 ],
                 "uris": None,
             },
@@ -147,7 +146,7 @@ number = {2},
 pages = {513--530},
 author = {Zhenqin Wu and Bharath Ramsundar and Evan~N. Feinberg and Joseph
 Gomes and Caleb Geniesse and Aneesh S. Pappu and Karl Leswing and Vijay Pande},
-title = {aminoacid sequenceNet: a benchmark for molecular machine learning},
+title = {MoleculeNet: a benchmark for molecular machine learning},
 journal = {Chemical Science}""",
         ],
         "templates": [
