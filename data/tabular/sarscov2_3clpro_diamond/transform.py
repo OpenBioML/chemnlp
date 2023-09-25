@@ -52,7 +52,7 @@ main protease at high resolution. From MIT AiCures.""",
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "boolean",
                 "names": [  # names for the property (to sample from for building the prompts)
-                    {"noun": "activity against SARSCoV2 3CL protease"},
+                    {"noun": "activity against the SARSCoV2 3CL protease"},
                     {"noun": "activity against SARS-CoV-2 3CL protease"},
                     {"adjective": "active against SARSCoV2 3CL protease"},
                     {"adjective": "active against SARS-CoV-2 3CL protease"},
