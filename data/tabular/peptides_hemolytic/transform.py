@@ -94,7 +94,6 @@ non-hemolytic in two different lab experiments (i.e. two different training exam
                 "names": [  # names for the property (to sample from for building the prompts)
                     {"noun": "hemolytic activity"},
                     {"noun": "hemolysis"},
-                    {"verb": "kill red blood cells"},
                     {"verb": "lyse red blood cells"},
                     {"adjective": "hemolytic"},
                     {"gerund": "lysing red blood cells"},

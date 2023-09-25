@@ -17,7 +17,6 @@ targets:
       names:
           - noun: hemolytic activity
           - noun: hemolysis
-          - verb: kill red blood cells
           - verb: lyse red blood cells
           - adjective: hemolytic
           - gerund: lysing red blood cells
