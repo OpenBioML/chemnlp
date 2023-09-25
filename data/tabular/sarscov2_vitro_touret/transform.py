@@ -56,9 +56,9 @@ approved drugs in an infected cell-based assay.""",
                     {"adjective": "active against the Corona virus"},
                     {"adjective": "active against SARSCoV2"},
                     {"adjective": "active against COVID19"},
-                    {"gerund": "positively acting against the Corona virus"},
-                    {"gerund": "positively acting against SARSCoV2"},
-                    {"gerund": "positively acting against COVID19"},
+                    {"gerund": "fighting the Corona virus"},
+                    {"gerund": "fighting against SARSCoV2"},
+                    {"gerund": "fighting against COVID19"},
                 ],
             },
         ],
@@ -105,7 +105,7 @@ journal = {Scientific Reports}""",
         ],
         "templates": [
             "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} {#shows|exhibits|displays!} {activity_SARSCoV2#no &NULL}{activity_SARSCoV2__names__noun}.",  # noqa: E501
-            "Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule is {activity_SARSCoV2#not &NULL}{activity_SARSCoV2__names__gerund}.",  # noqa: E501
+            "Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule is {activity_SARSCoV2#effectively &ineffectevely}{activity_SARSCoV2__names__gerund}.",  # noqa: E501
             "The {SMILES__description} {SMILES#} {#represents|is from!} a molecule that {#shows|exhibits|displays!} {activity_SARSCoV2#no &NULL}{activity_SARSCoV2__names__noun}.",  # noqa: E501
             "The {#molecule |!}{SMILES__description} {SMILES#} is {activity_SARSCoV2#not &NULL}{activity_SARSCoV2__names__gerund}.",  # noqa: E501 not all variables need to be used
             # Instruction tuning text templates
