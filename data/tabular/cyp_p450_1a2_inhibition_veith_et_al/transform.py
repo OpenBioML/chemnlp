@@ -153,7 +153,7 @@ Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should 
 User: Yes, the molecule should {CYP1A2_inhibition#not &NULL}be {CYP1A2_inhibition__names__gerund}.
 Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {CYP1A2_inhibition#not &NULL}{CYP1A2_inhibition__names__gerund}: {SMILES#}""",  # noqa: E501
             # Benchmarking text templates
-            "Is the {SMILES__description} {SMILES#} {CYP1A2_inhibition__names__gerund}:<EOI> {CYP1A2_inhibition#yes&no}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
+            "Is the {SMILES__description} {SMILES#} {CYP1A2_inhibition__names__gerund}:<EOI> {CYP1A2_inhibition#no&yes}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
             """Task: Please classify a molecule based on the description.
 Description: A molecule that is {CYP1A2_inhibition__names__gerund}.
 {#Molecule |!}{SMILES__description}: {SMILES#}
