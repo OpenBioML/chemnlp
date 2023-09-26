@@ -154,7 +154,7 @@ Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should 
 User: Yes, the molecule should {liver_injury#not &NULL}be causing a {liver_injury__names__noun}.
 Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {liver_injury#not &NULL}causing a {liver_injury__names__noun}: {SMILES#}""",  # noqa: E501
             # Benchmarking text templates
-            "Is the {SMILES__description} {SMILES#} causing a {liver_injury__names__noun}:<EOI> {liver_injury#yes&no}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
+            "Is the {SMILES__description} {SMILES#} causing a {liver_injury__names__noun}:<EOI> {liver_injury#no&yes}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
             """Task: Please classify a molecule based on the description.
 Description: A molecule that {#shows|causes!} a {liver_injury__names__noun}.
 {#Molecule |!}{SMILES__description}: {SMILES#}
