@@ -66,8 +66,9 @@ for a drug to be delivered to the target.""",
                 "type": "boolean",
                 "names": [  # names for the property (to sample from for building the prompts)
                     {"noun": "human intestinal absorption"},
+                    {"noun": "human intestinal absorption (HIA)"},
                     {"noun": "HIA"},
-                    {"verb": "absorbed from the human gastrointestinal system"},
+                    {"adjective": "absorbed from the human gastrointestinal system"},
                 ],
                 "uris": [
                     "http://purl.bioontology.org/ontology/MESH/D007408",
@@ -124,6 +125,77 @@ author = {Tingjun Hou and Junmei Wang and Wei Zhang and Xiaojie Xu},
 title = {ADME Evaluation in Drug Discovery. 7. Prediction of Oral Absorption
 by Correlation and Classification},
 journal = {Journal of Chemical Information and Modeling}""",
+        ],
+        "templates": [
+            "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} {#shows|exhibits|displays!} {absorption_HIA_Hou#no &NULL}{absorption_HIA_Hou__names__noun} properties.",  # noqa: E501
+            "Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule has {absorption_HIA_Hou#no &NULL}{absorption_HIA_Hou__names__noun} {#properties|characteristics|features!}.",  # noqa: E501
+            "The {SMILES__description} {SMILES#} {#represents|is from!} a molecule that {#shows|exhibits|displays!} {absorption_HIA_Hou#not &NULL}{absorption_HIA_Hou__names__noun}.",  # noqa: E501
+            "The {#molecule |!}{SMILES__description} {SMILES#} is {absorption_HIA_Hou#not &NULL}{absorption_HIA_Hou__names__adjective}.",  # noqa: E501 not all variables need to be used
+            # Instruction tuning text templates
+            """Task: Please classify a molecule based on the description.
+Description: A molecule that is {absorption_HIA_Hou__names__adjective}.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
+Result: {absorption_HIA_Hou#False&True}""",  # noqa: E501
+            """Task: Please classify a molecule based on the description.
+Description: A molecule that is {absorption_HIA_Hou__names__adjective}.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Answer the question in a {#full|complete!} sentence.
+Result: This molecule is {absorption_HIA_Hou#not &NULL}{absorption_HIA_Hou__names__adjective}.""",
+            """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+Description: A molecule that is {absorption_HIA_Hou__names__adjective}.
+Result: {SMILES#}""",  # noqa: E501
+            # Conversational text templates
+            """User: Can you {#tell me|derive|estimate!} if the molecule with the {SMILES__description} {SMILES#} is {absorption_HIA_Hou__names__adjective}?
+Assistant: {absorption_HIA_Hou#No&Yes}, this molecule is {absorption_HIA_Hou#not &NULL}{absorption_HIA_Hou__names__adjective}.""",  # noqa: E501
+            """User: Is the molecule with the {SMILES__description} {SMILES#} {absorption_HIA_Hou__names__adjective}?
+Assistant: {absorption_HIA_Hou#No&Yes}, it is {absorption_HIA_Hou#not &NULL}{absorption_HIA_Hou__names__adjective}.""",  # noqa: E501
+            """User: Can you {#give me|create|generate!} the {SMILES__description} of a molecule that is {absorption_HIA_Hou#not &NULL}{absorption_HIA_Hou__names__adjective}?
+Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}""",  # noqa: E501
+            """User: I'm {#searching|looking!} for the {SMILES__description} of a molecule that is {absorption_HIA_Hou#not &NULL}{absorption_HIA_Hou__names__adjective}?
+Assistant: This is a molecule that is {absorption_HIA_Hou#not &NULL}{absorption_HIA_Hou__names__adjective}: {SMILES#}""",  # noqa: E501
+            """User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
+User: Yes, please. The molecule should {absorption_HIA_Hou#not &NULL}be {absorption_HIA_Hou__names__adjective}.
+Assistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} is {absorption_HIA_Hou#not &NULL}{absorption_HIA_Hou__names__adjective}: {SMILES#}""",  # noqa: E501
+            """User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
+User: Yes, the molecule should {absorption_HIA_Hou#not &NULL}be {absorption_HIA_Hou__names__adjective}.
+Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {absorption_HIA_Hou#not &NULL}{absorption_HIA_Hou__names__adjective}: {SMILES#}""",  # noqa: E501
+            # Benchmarking text templates
+            "Is the {SMILES__description} {SMILES#} {absorption_HIA_Hou__names__adjective}:<EOI> {absorption_HIA_Hou#no&yes}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
+            """Task: Please classify a molecule based on the description.
+Description: A molecule that is {absorption_HIA_Hou__names__adjective}.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
+Result:<EOI> {absorption_HIA_Hou#False&True}""",  # noqa: E501
+            # noqa: E501 """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+            # Description: A molecule that is {absorption_HIA_Hou__names__adjective}.
+            # Result:<EOI> {SMILES#}""",  # noqa: E501
+            """Task: Please answer the multiple choice question.
+Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} {absorption_HIA_Hou__names__adjective}?
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
+Options:
+{absorption_HIA_Hou%}
+Answer: {%multiple_choice_result}""",  # noqa: E501
+            """Task: Please answer the multiple choice question.
+Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} {absorption_HIA_Hou__names__adjective}?
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
+Options:
+{absorption_HIA_Hou%}
+Answer:<EOI> {%multiple_choice_result}""",  # noqa: E501
+            """Task: Please answer the multiple choice question.
+Question: Which molecules are {absorption_HIA_Hou#not &NULL}{absorption_HIA_Hou__names__adjective}?
+Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
+Options:
+{SMILES%absorption_HIA_Hou%}
+Answer: {%multiple_choice_result}""",  # noqa: E501
+            """Task: Please answer the multiple choice question.
+Question: Which molecules are {absorption_HIA_Hou#not &NULL}{absorption_HIA_Hou__names__adjective}?
+Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
+Options:
+{SMILES%absorption_HIA_Hou%}
+Answer:<EOI> {%multiple_choice_result}""",  # noqa: E501
         ],
     }
 
