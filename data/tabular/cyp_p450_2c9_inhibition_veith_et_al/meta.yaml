@@ -94,7 +94,7 @@ templates:
       Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
       User: Yes, the molecule should {CYP2C9_inhibition#not &NULL}be {CYP2C9_inhibition__names__gerund}.
       Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {CYP2C9_inhibition#not &NULL}{CYP2C9_inhibition__names__gerund}: {SMILES#}
-    - Is the {SMILES__description} {SMILES#} {CYP2C9_inhibition__names__gerund}:<EOI> {CYP2C9_inhibition#yes&no}
+    - Is the {SMILES__description} {SMILES#} {CYP2C9_inhibition__names__gerund}:<EOI> {CYP2C9_inhibition#no&yes}
     - |-
       Task: Please classify a molecule based on the description.
       Description: A molecule that is {CYP2C9_inhibition__names__gerund}.
