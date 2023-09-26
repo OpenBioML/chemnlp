@@ -1022,7 +1022,11 @@ if __name__ == "__main__":
                         multiple_choice_benchmarking_templates=False,
                     )
                     for i, template in enumerate(
-                        [t for t in meta["templates"] if "<EOI>" in t]
+                        [
+                            t
+                            for t in meta["templates"]
+                            if "<EOI>" in t and "%multiple_choice_" not in t
+                        ]
                     ):
                         print(f"\nRunning sampling for template {i}:\n{template}")
                         tempsamp.apply_sampling_and_export(
