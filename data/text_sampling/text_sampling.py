@@ -80,6 +80,7 @@ exclude_from_standard_tabular_text_templates = [
     "h2_storage_materials",  # more than one target, LOW PRIO: has only 30 samples
     "herg_blockers",  # more than one target
     "herg_central_inhib",  # boolean target data
+    "herg_karim_et_al",  # boolean target data
     "moses",  # SMILES only, has no target
     "zinc",  # SMILES only, has no target
 ]
