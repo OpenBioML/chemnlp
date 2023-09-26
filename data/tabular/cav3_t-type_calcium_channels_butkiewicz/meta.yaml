@@ -133,7 +133,7 @@ templates:
       Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
       User: Yes, the molecule should {activity_cav3_t_type_calcium_channels#not &NULL}be {activity_cav3_t_type_calcium_channels__names__gerund}.
       Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {activity_cav3_t_type_calcium_channels#not &NULL}{activity_cav3_t_type_calcium_channels__names__gerund}: {SMILES#}
-    - Is the {SMILES__description} {SMILES#} {activity_cav3_t_type_calcium_channels__names__gerund}:<EOI> {activity_cav3_t_type_calcium_channels#yes&no}
+    - Is the {SMILES__description} {SMILES#} {activity_cav3_t_type_calcium_channels__names__gerund}:<EOI> {activity_cav3_t_type_calcium_channels#no&yes}
     - |-
       Task: Please classify a molecule based on the description.
       Description: A molecule that is {activity_cav3_t_type_calcium_channels__names__gerund}.

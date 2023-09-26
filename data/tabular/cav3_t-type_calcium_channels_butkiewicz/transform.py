@@ -174,7 +174,7 @@ Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should 
 User: Yes, the molecule should {activity_cav3_t_type_calcium_channels#not &NULL}be {activity_cav3_t_type_calcium_channels__names__gerund}.
 Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {activity_cav3_t_type_calcium_channels#not &NULL}{activity_cav3_t_type_calcium_channels__names__gerund}: {SMILES#}""",  # noqa: E501
             # Benchmarking text templates
-            "Is the {SMILES__description} {SMILES#} {activity_cav3_t_type_calcium_channels__names__gerund}:<EOI> {activity_cav3_t_type_calcium_channels#yes&no}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
+            "Is the {SMILES__description} {SMILES#} {activity_cav3_t_type_calcium_channels__names__gerund}:<EOI> {activity_cav3_t_type_calcium_channels#no&yes}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
             """Task: Please classify a molecule based on the description.
 Description: A molecule that is {activity_cav3_t_type_calcium_channels__names__gerund}.
 {#Molecule |!}{SMILES__description}: {SMILES#}
