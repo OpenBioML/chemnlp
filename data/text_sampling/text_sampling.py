@@ -1001,14 +1001,33 @@ if __name__ == "__main__":
                     )
 
                 if any(["<EOI>" in t for t in meta["templates"]]):
-                    TemplateSampler(
+                    # uncomment to randomly sample from all templates and save the output to a single file
+                    # TemplateSampler(
+                    #     path,
+                    #     path_lm_eval_data_dir,
+                    #     multiple_choice_rnd_symbols=multiple_choice_rnd_symbols,
+                    #     additional_templates=additional_templates,
+                    #     benchmarking_templates=True,
+                    #     multiple_choice_benchmarking_templates=False,
+                    # ).apply_sampling_and_export()
+
+                    tempsamp = TemplateSampler(
                         path,
                         path_lm_eval_data_dir,
                         multiple_choice_rnd_symbols=multiple_choice_rnd_symbols,
                         additional_templates=additional_templates,
                         benchmarking_templates=True,
                         multiple_choice_benchmarking_templates=False,
-                    ).apply_sampling_and_export()
+                    )
+                    for i, template in enumerate(
+                        [t for t in meta["templates"] if "<EOI>" in t]
+                    ):
+                        print(f"\nRunning sampling for template {i}:\n{template}")
+                        tempsamp.apply_sampling_and_export(
+                            template_idx=i,
+                            fn_suffix=i,
+                        )
+
                     if any(["%multiple_choice_" in t for t in meta["templates"]]):
                         TemplateSampler(
                             path,
