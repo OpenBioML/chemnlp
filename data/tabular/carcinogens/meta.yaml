@@ -107,7 +107,7 @@ templates:
       Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
       User: Yes, the molecule should {carcinogen#not &NULL}be {carcinogen__names__adjective}.
       Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {carcinogen#not &NULL}{carcinogen__names__adjective}: {SMILES#}
-    - Is the {SMILES__description} {SMILES#} {carcinogen__names__adjective}:<EOI> {carcinogen#yes&no}
+    - Is the {SMILES__description} {SMILES#} {carcinogen__names__adjective}:<EOI> {carcinogen#no&yes}
     - |-
       Task: Please classify a molecule based on the description.
       Description: A molecule that is {carcinogen__names__adjective}.

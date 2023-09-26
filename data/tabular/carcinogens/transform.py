@@ -173,7 +173,7 @@ Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should 
 User: Yes, the molecule should {carcinogen#not &NULL}be {carcinogen__names__adjective}.
 Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {carcinogen#not &NULL}{carcinogen__names__adjective}: {SMILES#}""",  # noqa: E501
             # Benchmarking text templates
-            "Is the {SMILES__description} {SMILES#} {carcinogen__names__adjective}:<EOI> {carcinogen#yes&no}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
+            "Is the {SMILES__description} {SMILES#} {carcinogen__names__adjective}:<EOI> {carcinogen#no&yes}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
             """Task: Please classify a molecule based on the description.
 Description: A molecule that is {carcinogen__names__adjective}.
 {#Molecule |!}{SMILES__description}: {SMILES#}
