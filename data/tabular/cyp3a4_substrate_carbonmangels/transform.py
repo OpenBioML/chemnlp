@@ -179,7 +179,7 @@ Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should 
 User: Yes, the molecule should {CYP3A4_Substrate#not &NULL}be a {CYP3A4_Substrate__names__noun}.
 Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {CYP3A4_Substrate#not &NULL}a {CYP3A4_Substrate__names__noun}: {SMILES#}""",  # noqa: E501
             # Benchmarking text templates
-            "Is the {SMILES__description} {SMILES#} a {CYP3A4_Substrate__names__noun}:<EOI> {CYP3A4_Substrate#yes&no}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
+            "Is the {SMILES__description} {SMILES#} a {CYP3A4_Substrate__names__noun}:<EOI> {CYP3A4_Substrate#no&yes}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
             """Task: Please classify a molecule based on the description.
 Description: A molecule that is a {CYP3A4_Substrate__names__noun}.
 {#Molecule |!}{SMILES__description}: {SMILES#}
