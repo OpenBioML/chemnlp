@@ -92,7 +92,7 @@ templates:
       Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
       User: Yes, the molecule should {clinical_toxicity#not &NULL}be {clinical_toxicity__names__adjective}.
       Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {clinical_toxicity#not &NULL}{clinical_toxicity__names__adjective}: {SMILES#}
-    - Is the {SMILES__description} {SMILES#} {clinical_toxicity__names__adjective}:<EOI> {clinical_toxicity#yes&no}
+    - Is the {SMILES__description} {SMILES#} {clinical_toxicity__names__adjective}:<EOI> {clinical_toxicity#no&yes}
     - |-
       Task: Please classify a molecule based on the description.
       Description: A molecule that is {clinical_toxicity__names__adjective}.
