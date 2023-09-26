@@ -101,7 +101,7 @@ templates:
       Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
       User: Yes, the molecule should {herg_blocker#not &NULL}be a {herg_blocker__names__noun}.
       Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {herg_blocker#not &NULL}a {herg_blocker__names__noun}: {SMILES#}
-    - Is the {SMILES__description} {SMILES#} a {herg_blocker__names__noun}:<EOI> {herg_blocker#yes&no}
+    - Is the {SMILES__description} {SMILES#} a {herg_blocker__names__noun}:<EOI> {herg_blocker#no&yes}
     - |-
       Task: Please classify a molecule based on the description.
       Description: A molecule that is a {herg_blocker__names__noun}.

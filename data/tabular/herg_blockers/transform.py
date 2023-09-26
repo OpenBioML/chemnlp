@@ -179,7 +179,7 @@ Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should 
 User: Yes, the molecule should {herg_blocker#not &NULL}be a {herg_blocker__names__noun}.
 Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {herg_blocker#not &NULL}a {herg_blocker__names__noun}: {SMILES#}""",  # noqa: E501
             # Benchmarking text templates
-            "Is the {SMILES__description} {SMILES#} a {herg_blocker__names__noun}:<EOI> {herg_blocker#yes&no}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
+            "Is the {SMILES__description} {SMILES#} a {herg_blocker__names__noun}:<EOI> {herg_blocker#no&yes}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
             """Task: Please classify a molecule based on the description.
 Description: A molecule that is a {herg_blocker__names__noun}.
 {#Molecule |!}{SMILES__description}: {SMILES#}
