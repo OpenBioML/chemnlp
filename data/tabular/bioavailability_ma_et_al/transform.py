@@ -156,7 +156,7 @@ Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should 
 User: Yes, the molecule should have a {bioavailable#low&high} {bioavailable__names__noun}.
 Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} has a {bioavailable#low&high} {bioavailable__names__noun}: {SMILES#}""",  # noqa: E501
             # Benchmarking text templates
-            "Is the {SMILES__description} {SMILES#} {bioavailable__names__adjective}?<EOI> {bioavailable#yes&no}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
+            "Is the {SMILES__description} {SMILES#} {bioavailable__names__adjective}?<EOI> {bioavailable#no&yes}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
             """Task: Please classify a molecule based on the description.
 Description: Predict if the molecule has a low or high {bioavailable__names__noun}?
 {#Molecule |!}{SMILES__description}: {SMILES#}
