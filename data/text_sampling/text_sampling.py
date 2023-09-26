@@ -860,7 +860,7 @@ class TemplateSampler:
                         + f"/{self.path_data_dir.split('/')[-1]}_benchmark/"
                     )
                     os.makedirs(output_path_dir, exist_ok=True)
-                    output_path = output_path_dir + f"{split}.jsonl"
+                    output_path = output_path_dir + f"{split}_{fn_suffix}.jsonl"
 
                     lm_eval_yaml_template_loglikelihood[
                         "task"
