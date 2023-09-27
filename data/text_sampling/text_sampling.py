@@ -81,6 +81,9 @@ exclude_from_standard_tabular_text_templates = [
     "herg_blockers",  # more than one target
     "herg_central_inhib",  # boolean target data
     "herg_karim_et_al",  # boolean target data
+    "hiv",  # boolean target data
+    "human_intestinal_absorption",  # boolean target data
+    "iupac_goldbook",  # text only, no SMILES
     "moses",  # SMILES only, has no target
     "zinc",  # SMILES only, has no target
 ]
