@@ -25,7 +25,7 @@ Description: Predict the {TARGET__names__noun} in {TARGET__units}.
 Constraint: Even if you are {#uncertain|not sure!}, you must answer with a numeric value in {TARGET__units} without using any {#other|additional!} words.
 Result: {TARGET#} {TARGET__units}""",  # noqa: E501
     """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
-Description: A molecule that has {TARGET__names__noun} of {TARGET#} {TARGET__units}.
+Description: A molecule that has a {TARGET__names__noun} of {TARGET#} {TARGET__units}.
 Result: {SMILES#}""",  # noqa: E501
     # Conversational text templates
     """User: Can you {#tell me|derive|estimate!} the {TARGET__names__noun} in {TARGET__units} of the molecule with the {SMILES__description} {SMILES#}?
@@ -52,7 +52,7 @@ Description: Predict the {TARGET__names__noun} in {TARGET__units} of a molecule.
 Constraint: Even if you are {#uncertain|not sure!}, you must answer with a numeric value in {TARGET__units} without using any {#other|additional!} words.
 Result:<EOI> {TARGET#} {TARGET__units}""",  # noqa: E501
     """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
-Description: A molecule that has {TARGET__names__noun} of {TARGET#} {TARGET__units}.
+Description: A molecule that has a {TARGET__names__noun} of {TARGET#} {TARGET__units}.
 Result:<EOI> {SMILES#}""",  # noqa: E501
 ]
 

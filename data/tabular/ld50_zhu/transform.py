@@ -58,6 +58,8 @@ The higher the dose, the more lethal of a drug.""",
                 "type": "continuous",
                 "names": [
                     {"noun": "acute toxicity rat LD50"},
+                    {"noun": "acute toxicity (LD50 in rats)"},
+                    {"noun": "LD50 in rats"},
                     {"noun": "rat LD50"},
                 ],
                 "uris": ["http://www.bioassayontology.org/bao#BAO_0002117"],
