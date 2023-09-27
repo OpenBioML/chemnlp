@@ -24,6 +24,11 @@ Description: Predict the {TARGET__names__noun} in {TARGET__units}.
 {#Molecule |!}{SMILES__description}: {SMILES#}
 Constraint: Even if you are {#uncertain|not sure!}, you must answer with a numeric value in {TARGET__units} without using any {#other|additional!} words.
 Result: {TARGET#} {TARGET__units}""",  # noqa: E501
+    """Task: Please predict a molecule feature based on the description.
+Description: Predict the {TARGET__names__noun} in {TARGET__units}.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Even if you are {#uncertain|not sure!}, you must answer with a numeric value in {TARGET__units} without the unit and without using any {#other|additional!} words.
+Result: {TARGET#}""",  # noqa: E501
     """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
 Description: A molecule that has a {TARGET__names__noun} of {TARGET#} {TARGET__units}.
 Result: {SMILES#}""",  # noqa: E501
@@ -51,6 +56,11 @@ Description: Predict the {TARGET__names__noun} in {TARGET__units} of a molecule.
 {#Molecule |!}{SMILES__description}: {SMILES#}
 Constraint: Even if you are {#uncertain|not sure!}, you must answer with a numeric value in {TARGET__units} without using any {#other|additional!} words.
 Result:<EOI> {TARGET#} {TARGET__units}""",  # noqa: E501
+    """Task: Please predict a molecule feature based on the description.
+Description: Predict the {TARGET__names__noun} in {TARGET__units} of a molecule.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Even if you are {#uncertain|not sure!}, you must answer with a numeric value in {TARGET__units} without the unit and without using any {#other|additional!} words.
+Result:<EOI> {TARGET#}""",  # noqa: E501
     """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
 Description: A molecule that has a {TARGET__names__noun} of {TARGET#} {TARGET__units}.
 Result:<EOI> {SMILES#}""",  # noqa: E501
