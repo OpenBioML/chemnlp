@@ -99,6 +99,7 @@ exclude_from_standard_tabular_text_templates = [
     "m1_muscarinic_receptor_antagonists_butkiewicz",  # boolean target data
     "mona",  # more than one target
     "moses",  # SMILES only, has no target
+    "nlmchem",  # text only, no SMILES
     "zinc",  # SMILES only, has no target
 ]
 
