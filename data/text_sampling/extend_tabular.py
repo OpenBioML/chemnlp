@@ -156,6 +156,9 @@ def line_reps_from_smiles(
 if __name__ == "__main__":
     path_base = __file__.replace("text_sampling/extend_tabular.py", "")
     path_data_dir = sorted(glob.glob(path_base + "tabular/*"))
+    path_data_dir += sorted(
+        [p for p in glob.glob(path_base + "kg/*") if os.path.isdir(p)]
+    )
     path_processed_smiles = path_base + "text_sampling/extend_tabular_processed.csv"
 
     if os.path.isfile(path_processed_smiles):
