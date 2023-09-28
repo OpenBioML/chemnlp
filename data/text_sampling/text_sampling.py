@@ -95,6 +95,7 @@ exclude_from_standard_tabular_text_templates = [
     "human_intestinal_absorption",  # boolean target data
     "iupac_goldbook",  # text only, no SMILES
     "kcnq2_potassium_channel_butkiewicz",  # boolean target data
+    "m1_muscarinic_receptor_agonists_butkiewicz",  # boolean target data
     "moses",  # SMILES only, has no target
     "zinc",  # SMILES only, has no target
 ]
