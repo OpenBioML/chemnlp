@@ -97,6 +97,7 @@ exclude_from_standard_tabular_text_templates = [
     "kcnq2_potassium_channel_butkiewicz",  # boolean target data
     "m1_muscarinic_receptor_agonists_butkiewicz",  # boolean target data
     "m1_muscarinic_receptor_antagonists_butkiewicz",  # boolean target data
+    "mona",  # more than one target
     "moses",  # SMILES only, has no target
     "zinc",  # SMILES only, has no target
 ]
@@ -354,7 +355,7 @@ class TemplateSampler:
         self.meta = load_yaml(self.path_data_meta)
 
         # dataframe from csv
-        df = pd.read_csv(self.path_data_csv)
+        df = pd.read_csv(self.path_data_csv, low_memory=False)
 
         def check_targets_and_identifiers(meta: dict, df: pd.DataFrame):
             all_identifiers = [x["id"] for x in meta["identifiers"]] + [

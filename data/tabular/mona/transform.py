@@ -1,3 +1,4 @@
+import os
 import urllib
 import urllib.request
 
@@ -7,8 +8,10 @@ import yaml
 DATASET_URL = (
     "https://huggingface.co/datasets/adamoyoung/mona/resolve/main/data/mona_df.json"
 )
+DATASET_RAW = "data_raw.json"
 META_YAML_PATH = __file__.replace("transform.py", "meta.yaml")
 DF_CSV_PATH = __file__.replace("transform.py", "data_clean.csv")
+
 META_TEMPLATE = {
     "name": "mona",
     "description": "MassBank of North America, public repository of mass spectra for small molecules",
@@ -18,7 +21,7 @@ META_TEMPLATE = {
         {
             "id": "spectral_entropy",
             "type": "continuous",
-            "units": "nats",
+            "units": "nat",
             "names": [{"noun": "spectral entropy"}],
             "description": "The entropy of the spectrum.",
         },
@@ -32,141 +35,11 @@ META_TEMPLATE = {
         },
     ],
     "identifiers": [
-        {"id": "smiles", "type": "SMILES", "description": "SMILES"},
+        {"id": "SMILES", "type": "SMILES", "description": "SMILES"},
         {"id": "inchi", "type": "InChI", "description": "InChI"},
         {"id": "inchikey", "type": "InChIKey", "description": "InChIKey"},
         {"id": "id", "type": "Other", "description": "MassBank ID", "sample": "False"},
     ],
-    "templates": [
-        {
-            "prompt": "Please answer the following chemistry question.\n"
-            + "What is the spectral entropy of the following mass spectrum?\n<spectrum#text>",
-            "completion": "<spectral_entropy#value>",
-        },
-        {
-            "prompt": "Please answer the following chemistry question.\n"
-            + "Which of the molecules, <molecule1#text> or <molecule2#text>, is more likely to "
-            + "produce the following mass spectrum?\n<spectrum#text>",
-            "completion": "<molecule1#text>",
-        },
-    ],
-    "fields": {
-        "exp_values": {
-            "values": [
-                {
-                    "name": "spectrum",
-                    "column": "spectrum",
-                    "text": "Raw mass spectrum represented as a set of (m/z location, intensity) pairs",
-                },
-                {
-                    "name": "spectral_entropy",
-                    "column": "spectral_entropy",
-                    "text": "The entropy of the spectrum",
-                },
-                {
-                    "name": "normalized_entropy",
-                    "column": "normalized_entropy",
-                    "text": "The normalized entropy of the spectrum (ratio of spectral entropy to maximum possible "
-                    + "entropy for a spectrum with the same number of peaks)",
-                },
-            ],
-        },
-        "metadata": {
-            "values": [
-                {"name": "id", "column": "id", "text": "MassBank ID"},
-                {
-                    "name": "score",
-                    "column": "score",
-                    "text": "Quality score of the spectrum (1-5, 1 being low and 5 being high)",
-                },
-                {
-                    "name": "library",
-                    "column": "library",
-                    "text": "Library the spectrum was obtained from",
-                },
-                {
-                    "name": "molecular_formula",
-                    "column": "molecular_formula",
-                    "text": "Molecular formula",
-                },
-                {
-                    "name": "accession",
-                    "column": "accession",
-                    "text": "Accession number",
-                },
-                {"name": "date", "column": "date", "text": "Date of upload"},
-                {"name": "license", "column": "license", "text": "License"},
-                {
-                    "name": "instrument",
-                    "column": "instrument",
-                    "text": "Specific model of mass spectrometer",
-                },
-                {
-                    "name": "instrument_type",
-                    "column": "instrument_type",
-                    "text": "General type of mass spectrometer",
-                },
-                {
-                    "name": "ms_level",
-                    "column": "ms_level",
-                    "text": "MS level for MSn data (MS1-MS5, can also be composite)",
-                },
-                {
-                    "name": "ionization_mode",
-                    "column": "ionization_mode",
-                    "text": "Ionization mode (positive or negative)",
-                },
-                {
-                    "name": "precursor_m/z",
-                    "column": "precursor_m/z",
-                    "text": "The mass to charge ratio (m/z) of the precursor ion",
-                },
-                {
-                    "name": "precursor_type",
-                    "column": "precursor_type",
-                    "text": "The precursor adduct",
-                },
-                {
-                    "name": "mass_accuracy",
-                    "column": "mass_accuracy",
-                    "text": "The mass accuracy of the spectrum",
-                },
-                {
-                    "name": "mass_error",
-                    "column": "mass_error",
-                    "text": "The mass error of the spectrum",
-                },
-                {
-                    "name": "collision_energy",
-                    "column": "collision_energy",
-                    "text": "The collision energy of the spectrum "
-                    + "(depending on the fragmentation_mode, can be normalized)",
-                },
-                {
-                    "name": "fragmentation_mode",
-                    "column": "fragmentation_mode",
-                    "text": "The fragmentation mode of the spectrum (i.e. HCD, CID)",
-                },
-                {
-                    "name": "derivatization_type",
-                    "column": "derivatization_type",
-                    "text": "Chemical derivatization used (for gas chromatrography spectra)",
-                },
-                {
-                    "name": "ionization_energy",
-                    "column": "ionization_energy",
-                    "text": "The ionization energy (for electron ionization spectra)",
-                },
-            ],
-        },
-        "molecule": {
-            "values": [
-                {"name": "inchi", "column": "inchi", "text": "InChI"},
-                {"name": "inchikey", "column": "inchikey", "text": "InChIKey"},
-                {"name": "smiles", "column": "smiles", "text": "SMILES"},
-            ],
-        },
-    },
     "license": "CC BY 4.0",
     "links": [
         {
@@ -185,14 +58,86 @@ META_TEMPLATE = {
     "bibtex": [
         # noqa
     ],
+    "templates": [
+        "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} has a {spectral_entropy__names__noun} of {spectral_entropy#} {spectral_entropy__units}.",  # noqa: E501
+        "Based on the {SMILES__description} {#representation of |!}{SMILES#}, the molecule has a {spectral_entropy__names__noun} of {spectral_entropy#} {spectral_entropy__units}.",  # noqa: E501
+        "The {SMILES__description} {SMILES#} {#represents|is representing!} a molecule {#that has a|with a!} {spectral_entropy__names__noun} of {spectral_entropy#} {spectral_entropy__units}.",  # noqa: E501
+        "The molecule with the {SMILES__description} {SMILES#} has a {spectral_entropy__names__noun} of {spectral_entropy#} {spectral_entropy__units}.",  # noqa: E501
+        # Instruction tuning text templates
+        """Task: Please predict a molecule feature based on the description.
+Description: Predict the {spectral_entropy__names__noun} in {spectral_entropy__units}.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Even if you are {#uncertain|not sure!}, you must answer with a numeric value in {spectral_entropy__units} without using any {#other|additional!} words.
+Result: {spectral_entropy#} {spectral_entropy__units}""",  # noqa: E501
+        """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+Description: A molecule that has a {spectral_entropy__names__noun} of {spectral_entropy#} {spectral_entropy__units}.
+Result: {SMILES#}""",  # noqa: E501
+        # Conversational text templates
+        """User: Can you {#tell me|derive|estimate!} the {spectral_entropy__names__noun} in {spectral_entropy__units} of the molecule with the {SMILES__description} {SMILES#}?
+Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, this molecule has a {spectral_entropy__names__noun} of {spectral_entropy#} {spectral_entropy__units}.""",  # noqa: E501
+        """User: Can you {#give me|create|generate!} the {SMILES__description} of a molecule that has a {spectral_entropy__names__noun} of {spectral_entropy#} {spectral_entropy__units}?
+Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}""",  # noqa: E501
+        """User: I'm {#searching|looking!} for the {SMILES__description} of a molecule that has a {spectral_entropy__names__noun} of {spectral_entropy#} {spectral_entropy__units}.
+Assistant: This is a molecule that has a {spectral_entropy__names__noun} of {spectral_entropy#} {spectral_entropy__units}: {SMILES#}""",  # noqa: E501
+        """User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
+User: Yes, please. The molecule should have a {spectral_entropy__names__noun} of {spectral_entropy#} {spectral_entropy__units}.
+Assistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} represents a molecule that has a {spectral_entropy__names__noun} of {spectral_entropy#} {spectral_entropy__units}: {SMILES#}""",  # noqa: E501
+        """User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
+User: Yes, the molecule should have a {spectral_entropy__names__noun} of {spectral_entropy#} {spectral_entropy__units}.
+Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} represents a molecule that has a {spectral_entropy__names__noun} of {spectral_entropy#} {spectral_entropy__units}: {SMILES#}""",  # noqa: E501
+        # Benchmarking text templates
+        "The {spectral_entropy__names__noun} of the molecule with the {SMILES__description} {SMILES#} is:<EOI> {spectral_entropy#} {spectral_entropy__units}",  # noqa: E501
+        "The {spectral_entropy__names__noun} of the {SMILES__description} {SMILES#} is:<EOI> {spectral_entropy#} {spectral_entropy__units}",  # noqa: E501
+        "The {spectral_entropy__names__noun} of the molecule {SMILES__description} {SMILES#} is:<EOI> {spectral_entropy#} {spectral_entropy__units}",  # noqa: E501
+        """Task: Please predict a molecule feature based on the description.
+Description: Predict the {spectral_entropy__names__noun} in {spectral_entropy__units} of a molecule.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Even if you are {#uncertain|not sure!}, you must answer with a numeric value in {spectral_entropy__units} without using any {#other|additional!} words.
+Result:<EOI> {spectral_entropy#} {spectral_entropy__units}""",  # noqa: E501
+        """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+Description: A molecule that has {spectral_entropy__names__noun} of {spectral_entropy#} {spectral_entropy__units}.
+Result:<EOI> {SMILES#}""",  # noqa: E501
+    ],
 }
 
 
 def get_raw_data(raw_dataset: str = DATASET_URL) -> pd.DataFrame:
     """Load the raw dataset into a pandas dataframe"""
-    # use the repo URL directly since it avoid unnecessary huggingface processing
-    df_file = urllib.request.urlretrieve(DATASET_URL)[0]
-    df_raw = pd.read_json(df_file)
+    if not (os.path.isfile(DATASET_RAW)):
+        # use the repo URL directly since it avoid unnecessary huggingface processing
+        urllib.request.urlretrieve(DATASET_URL, DATASET_RAW)
+    else:
+        print("Using already downloaded raw data.")
+    df_raw = pd.read_json(DATASET_RAW)
+    df_raw.columns = [
+        "spectrum",
+        "id",
+        "score",
+        "library",
+        "inchi",
+        "inchikey",
+        "molecular_formula",
+        "SMILES",
+        "accession",
+        "date",
+        "license",
+        "instrument",
+        "instrument_type",
+        "ms_level",
+        "ionization_mode",
+        "spectral_entropy",
+        "normalized_entropy",
+        "precursor_type",
+        "precursor_m/z",
+        "mass_accuracy",
+        "mass_error",
+        "collision_energy",
+        "fragmentation_mode",
+        "derivatization_type",
+        "ionization_energy",
+    ]
     return df_raw
 
 
