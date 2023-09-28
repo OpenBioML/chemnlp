@@ -205,7 +205,7 @@ if __name__ == "__main__":
             )
             continue
 
-        df = pd.read_csv(path_data)
+        df = pd.read_csv(path_data, low_memory=False)
 
         # if {
         #    "SMILES",
