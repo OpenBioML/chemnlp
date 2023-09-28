@@ -461,9 +461,9 @@ def format_kg_df(df: pd.DataFrame) -> pd.DataFrame:  # noqa: C901
         )
 
     # remove NaN rows
-    # print(f"w/  NaNs: {len(df)}")
-    # df.dropna(inplace=True)
-    # print(f"w/o NaNs: {len(df)}")
+    print(f"w/  NaNs: {len(df)}")
+    df.dropna(inplace=True)
+    print(f"w/o NaNs: {len(df)}")
 
     return df
 
