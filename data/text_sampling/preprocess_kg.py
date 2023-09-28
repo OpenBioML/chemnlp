@@ -461,9 +461,9 @@ def format_kg_df(df: pd.DataFrame) -> pd.DataFrame:  # noqa: C901
         )
 
     # remove NaN rows
-    print(f"w/  NaNs: {len(df)}")
-    df.dropna(inplace=True)
-    print(f"w/o NaNs: {len(df)}")
+    #print(f"w/  NaNs: {len(df)}")
+    #df.dropna(inplace=True)
+    #print(f"w/o NaNs: {len(df)}")
 
     return df
 
@@ -487,6 +487,7 @@ def preprocess_kg_data(path_data_dir: str):
     for fn in fns_data_raw:
         if fn.endswith("_mappings.csv") or fn.endswith("_full.csv"):
             continue
+        print(f"\n###### {fn}")
         dir_new = (
             fn.split("/")[-1]
             .split(".csv" if fn.endswith(".csv") else ".tsv")[0]
