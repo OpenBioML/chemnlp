@@ -15,9 +15,7 @@ targets:
           - adjective: active against the Corona virus
           - adjective: active against SARSCoV2
           - adjective: active against COVID19
-          - gerund: fighting the Corona virus
-          - gerund: fighting against SARSCoV2
-          - gerund: fighting against COVID19
+          - gerund: countering the effects of the Corona virus
 benchmarks:
     - name: TDC
       link: https://tdcommons.ai/
