@@ -17,7 +17,7 @@ targets:
           - adjective: toxic in the androgen receptor ligand-binding domain assay
           - gerund: displaying toxicity in the NR-AR ligand binding domain assay
           - gerund: exhibiting toxicity in the NR-androgen-LBD receptor alpha assay
-          - gerund: demostrating toxicity in the NR-estrogen-LBD receptor alpha assay
+          - gerund: demostrating toxicity in the NR-androgen-LBD receptor alpha assay
       uris:
 benchmarks:
     - name: TDC
