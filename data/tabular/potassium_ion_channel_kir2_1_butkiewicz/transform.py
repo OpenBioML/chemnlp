@@ -57,7 +57,7 @@ from the molecules found active in both, AID 2032 and AID 463252""",
                 "units": None,
                 "type": "boolean",
                 "names": [
-                    {"gerund": "blocking of the potassium ion channel activity"},
+                    {"gerund": "blocking the potassium ion channel"},
                     {"noun": "blocker of the potassium ion channel activity"},
                     {
                         "adjective": "effective for the blocking potassium ion channel activity"
