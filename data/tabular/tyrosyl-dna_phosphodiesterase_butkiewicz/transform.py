@@ -60,7 +60,7 @@ Final set contains all compounds active in the counter screen AID 489007.
                     {
                         "gerund": "inhibiting the human tyrosyl-DNA phosphodiesterase 1 (TDP1)"
                     },
-                    {"gerund": "inhibiting of human tyrosyl-DNA phosphodiesterase 1"},
+                    {"gerund": "inhibiting the human tyrosyl-DNA phosphodiesterase 1"},
                     {
                         "adjective": "active against the tyrosyl-DNA phosphodiesterase receptor 1"
                     },
