@@ -17,7 +17,7 @@ targets:
           - adjective: toxic in the aryl hydrocarbon receptor assay
           - gerund: displaying toxicity in the NR-AhR assay
           - gerund: exhibiting toxicity in the NR-AhR assay
-          - gerund: demostrating receptor toxicity in the NR-aryl hydrocarbon assay
+          - gerund: demostrating toxicity in the NR-aryl hydrocarbon receptor assay
       uris:
 benchmarks:
     - name: TDC
