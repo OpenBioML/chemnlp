@@ -49,6 +49,7 @@ compounds excluding an overlap of 155 molecules.""",
                     {"noun": "orexin 1 inhibitor"},
                     {"noun": "a orexin 1 receptor antagonist"},
                     {"gerund": "inhibiting orexin 1 receptor"},
+                    {"adjective": "orexin-1 inhibitory"},
                 ],
                 "pubchem_aids": [485270, 463079, 434989, 504701, 493232, 504699],
                 "uris": ["http://purl.bioontology.org/ontology/SNOMEDCT/838464006"],
@@ -131,6 +132,78 @@ E. W. and Weaver, D. C. and Meiler, J.},
 title = {{H}igh-{T}hroughput {S}creening {A}ssay {D}atasets from
 the {P}ub{C}hem {D}atabase}},
 journal = {Chemical Science}}""",
+        ],
+        "templates": [
+            "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {activity_orexin1#not &NULL}{activity_orexin1__names__adjective}.",  # noqa: E501
+            "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {activity_orexin1#not &NULL}{activity_orexin1__names__gerund}.",  # noqa: E501
+            "Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule has {activity_orexin1#no &NULL}{activity_orexin1__names__noun} {#properties|characteristics|features!}.",  # noqa: E501
+            "The {SMILES__description} {SMILES#} {#represents|is from!} a molecule that is {activity_orexin1#not &NULL}identified as {activity_orexin1__names__adjective}.",  # noqa: E501
+            "The {#molecule |!}{SMILES__description} {SMILES#} is {activity_orexin1#not &NULL}{activity_orexin1__names__adjective}.",  # noqa: E501 not all variables need to be used
+            # Instruction tuning text templates
+            """Task: Please classify a molecule based on the description.
+Description: A molecule that is {activity_orexin1__names__adjective}.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional|extra!} words.
+Result: {activity_orexin1#False&True}""",  # noqa: E501
+            """Task: Please classify a molecule based on the description.
+Description: A molecule that is {activity_orexin1__names__adjective}.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Answer the question in a {#full|complete!} sentence.
+Result: This molecule is {activity_orexin1#not &NULL}{activity_orexin1__names__adjective}.""",
+            """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+Description: A molecule that is {activity_orexin1__names__adjective}.
+Result: {SMILES#}""",  # noqa: E501
+            # Conversational text templates
+            """User: Can you {#tell me|figure out|estimate!} if the molecule with the {SMILES__description} {SMILES#} is {activity_orexin1__names__adjective}?
+Assistant: {activity_orexin1#No&Yes}, this molecule is {activity_orexin1#not &NULL}{activity_orexin1__names__adjective}.""",  # noqa: E501
+            """User: Is the molecule with the {SMILES__description} {SMILES#} {activity_orexin1__names__adjective}?
+Assistant: {activity_orexin1#No&Yes}, it is {activity_orexin1#not &NULL}{activity_orexin1__names__adjective}.""",  # noqa: E501
+            """User: Can you {#give me|create|generate!} the {SMILES__description} of a molecule that is {activity_orexin1#not &NULL}{activity_orexin1__names__adjective}?
+Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}""",  # noqa: E501
+            """User: I'm {#searching|looking!} for the {SMILES__description} of a molecule that is {activity_orexin1#not &NULL}{activity_orexin1__names__adjective}?
+Assistant: This is a molecule that is {activity_orexin1#not &NULL}{activity_orexin1__names__adjective}: {SMILES#}""",  # noqa: E501
+            """User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+Assistant: This sounds {#very exciting. |very interesting. | very curious. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
+User: Yes, please. The molecule should {activity_orexin1#not &NULL}be {activity_orexin1__names__adjective}.
+Assistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} is {activity_orexin1#not &NULL}{activity_orexin1__names__adjective}: {SMILES#}""",  # noqa: E501
+            """User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
+User: Yes, the molecule should {activity_orexin1#not &NULL}be {activity_orexin1__names__adjective}.
+Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {activity_orexin1#not &NULL}{activity_orexin1__names__adjective}: {SMILES#}""",  # noqa: E501
+            # Benchmarking text templates
+            "Is the {SMILES__description} {SMILES#} {activity_orexin1__names__adjective}:<EOI> {activity_orexin1#yes&no}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
+            """Task: Please classify a molecule based on the description.
+Description: A molecule that is {activity_orexin1__names__adjective}.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
+Result:<EOI> {activity_orexin1#False&True}""",  # noqa: E501
+            """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+Description: A molecule that is {activity_orexin1__names__adjective}.
+Result:<EOI> {SMILES#}""",  # noqa: E501
+            """Task: Please answer the multiple choice question.
+Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} {activity_orexin1__names__adjective}?
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
+Options:
+{activity_orexin1%}
+Answer: {%multiple_choice_result}""",  # noqa: E501
+            """Task: Please answer the multiple choice question.
+Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} {activity_orexin1__names__adjective}?
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
+Options:
+{activity_orexin1%}
+Answer:<EOI> {%multiple_choice_result}""",  # noqa: E501
+            """Task: Please answer the multiple choice question.
+Question: Which molecules are {activity_orexin1#not &NULL}{activity_orexin1__names__adjective}?
+Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
+Options:
+{SMILES%activity_orexin1%}
+Answer: {%multiple_choice_result}""",  # noqa: E501
+            """Task: Please answer the multiple choice question.
+Question: Which molecules are {activity_orexin1#not &NULL}{activity_orexin1__names__adjective}?
+Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional|extra!} words.
+Options:
+{SMILES%activity_orexin1%}
+Answer:<EOI> {%multiple_choice_result}""",  # noqa: E501,
         ],
     }
 

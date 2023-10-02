@@ -52,10 +52,13 @@ main protease at high resolution. From MIT AiCures.""",
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "boolean",
                 "names": [  # names for the property (to sample from for building the prompts)
-                    {"noun": "activity against SARSCoV2 3CL protease"},
-                    {"noun": "activity against SARS-CoV-2 3CL protease"},
-                    {"adjective": "is active against SARSCoV2 3CL protease"},
-                    {"adjective": "is active against SARS-CoV-2 3CL protease"},
+                    {"noun": "activity against the SARSCoV2 3CL protease"},
+                    {"noun": "activity against the SARS-CoV-2 3CL protease"},
+                    {"adjective": "active against the SARSCoV2 3CL protease"},
+                    {"adjective": "active against the SARS-CoV-2 3CL protease"},
+                    {"gerund": "targeting the SARSCoV2 3CL protease"},
+                    {"gerund": "acting against the SARSCoV2 3CL protease"},
+                    {"gerund": "successfully targeting the SARSCoV2 3CL protease"},
                 ],
                 "uris": None,
             },
@@ -127,6 +130,76 @@ Cheng Chen and Yinghua Jin and Mark Bartlam and Zihe Rao},
 title = {Production of Authentic {SARS}-{CoV} Mpro with Enhanced Activity: Application as
 a Novel Tag-cleavage Endopeptidase for Protein Overproduction},
 journal = {Journal of Molecular Biology}""",
+        ],
+        "templates": [
+            "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} {#shows|exhibits|displays!} {activity_SARSCoV2_3CLPro#no &NULL}{activity_SARSCoV2_3CLPro__names__noun}.",  # noqa: E501
+            "Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule is {activity_SARSCoV2_3CLPro#not &NULL}{activity_SARSCoV2_3CLPro__names__gerund}.",  # noqa: E501
+            "The {SMILES__description} {SMILES#} {#represents|is from!} a molecule that {#shows|exhibits|displays!} {activity_SARSCoV2_3CLPro#no &NULL}{activity_SARSCoV2_3CLPro__names__noun}.",  # noqa: E501
+            "The {#molecule |!}{SMILES__description} {SMILES#} is {activity_SARSCoV2_3CLPro#not &NULL}{activity_SARSCoV2_3CLPro__names__gerund}.",  # noqa: E501 not all variables need to be used
+            # Instruction tuning text templates
+            """Task: Please classify a molecule based on the description.
+Description: A molecule that is {activity_SARSCoV2_3CLPro__names__gerund}.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional|extra|!} words.
+Result: {activity_SARSCoV2_3CLPro#False&True}""",  # noqa: E501
+            """Task: Please classify a molecule based on the description.
+Description: A molecule that is {activity_SARSCoV2_3CLPro__names__gerund}.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Answer the question in a {#full|complete!} sentence.
+Result: This molecule is {activity_SARSCoV2_3CLPro#not &NULL}{activity_SARSCoV2_3CLPro__names__gerund}.""",  # noqa: E501
+            """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+Description: A molecule that is {activity_SARSCoV2_3CLPro__names__gerund}.
+Result: {SMILES#}""",  # noqa: E501
+            # Conversational text templates
+            """User: Can you {#tell me|derive|estimate!} if the molecule with the {SMILES__description} {SMILES#} is {activity_SARSCoV2_3CLPro__names__gerund}?
+Assistant: {activity_SARSCoV2_3CLPro#No&Yes}, this molecule is {activity_SARSCoV2_3CLPro#not &NULL}{activity_SARSCoV2_3CLPro__names__gerund}.""",  # noqa: E501
+            """User: Is the molecule with the {SMILES__description} {SMILES#} {activity_SARSCoV2_3CLPro__names__gerund}?
+Assistant: {activity_SARSCoV2_3CLPro#No&Yes}, it is {activity_SARSCoV2_3CLPro#not &NULL}{activity_SARSCoV2_3CLPro__names__gerund}.""",  # noqa: E501
+            """User: Can you {#give me|create|generate!} the {SMILES__description} of a molecule that is {activity_SARSCoV2_3CLPro#not &NULL}{activity_SARSCoV2_3CLPro__names__gerund}?
+Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}""",  # noqa: E501
+            """User: I'm {#searching|looking!} for the {SMILES__description} of a molecule that is {activity_SARSCoV2_3CLPro#not &NULL}{activity_SARSCoV2_3CLPro__names__gerund}?
+Assistant: This is a molecule that is {activity_SARSCoV2_3CLPro#not &NULL}{activity_SARSCoV2_3CLPro__names__gerund}: {SMILES#}""",  # noqa: E501
+            """User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
+User: Yes, please. The molecule should {activity_SARSCoV2_3CLPro#not &NULL}be {activity_SARSCoV2_3CLPro__names__gerund}.
+Assistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} is {activity_SARSCoV2_3CLPro#not &NULL}{activity_SARSCoV2_3CLPro__names__gerund}: {SMILES#}""",  # noqa: E501
+            """User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
+User: Yes, the molecule should {activity_SARSCoV2_3CLPro#not &NULL}be {activity_SARSCoV2_3CLPro__names__gerund}.
+Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {activity_SARSCoV2_3CLPro#not &NULL}{activity_SARSCoV2_3CLPro__names__gerund}: {SMILES#}""",  # noqa: E501
+            # Benchmarking text templates
+            "Is the {SMILES__description} {SMILES#} {activity_SARSCoV2_3CLPro__names__gerund}:<EOI> {activity_SARSCoV2_3CLPro#yes&no}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
+            """Task: Please classify a molecule based on the description.
+Description: A molecule that is {activity_SARSCoV2_3CLPro__names__gerund}.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
+Result:<EOI> {activity_SARSCoV2_3CLPro#False&True}""",  # noqa: E501
+            """Task: Please classify a molecule based on the description.
+Description: A molecule that is {activity_SARSCoV2_3CLPro__names__gerund}.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Answer the question in a {#full|complete!} sentence.
+Result:<EOI> This molecule is {activity_SARSCoV2_3CLPro#not &NULL}{activity_SARSCoV2_3CLPro__names__gerund}.""",  # noqa: E501
+            """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+Description: A molecule that is {activity_SARSCoV2_3CLPro__names__gerund}.
+Result:<EOI> {SMILES#}""",  # noqa: E501
+            """Task: Please answer the multiple choice question.
+Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} {activity_SARSCoV2_3CLPro__names__gerund}?
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
+Options:
+{activity_SARSCoV2_3CLPro%}
+Answer:<EOI> {%multiple_choice_result}""",  # noqa: E501
+            """Task: Please answer the multiple choice question.
+Question: Which molecules are {activity_SARSCoV2_3CLPro#not &NULL}{activity_SARSCoV2_3CLPro__names__gerund}?
+Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
+Options:
+{SMILES%activity_SARSCoV2_3CLPro%}
+Answer: {%multiple_choice_result}""",  # noqa: E501
+            """Task: Please answer the multiple choice question.
+Question: Which molecules are {activity_SARSCoV2_3CLPro#not &NULL}{activity_SARSCoV2_3CLPro__names__gerund}?
+Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
+Options:
+{SMILES%activity_SARSCoV2_3CLPro%}
+Answer:<EOI> {%multiple_choice_result}""",  # noqa: E501
         ],
     }
 
