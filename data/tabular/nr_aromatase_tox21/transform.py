@@ -65,7 +65,7 @@ response pathways.""",
                     {"gerund": "displaying toxicity in the NR-Aromatase assay"},
                     {"gerund": "exhibiting toxicity in the NR-Aromatase enzyme assay"},
                     {
-                        "gerund": "demostrating toxicity in the NR-aromatase enzyme assay"
+                        "gerund": "demonstrating toxicity in the NR-aromatase enzyme assay"
                     },
                 ],
                 "uris": None,
