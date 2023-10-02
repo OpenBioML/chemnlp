@@ -124,7 +124,7 @@ journal = {Journal of Chemical Information and Modeling}""",
         "templates": [
             "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} {#shows|exhibits|displays!} {mutagenic#no &NULL}{mutagenic__names__adjective} properties.",  # noqa: E501
             "Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule has {mutagenic#no &NULL}{mutagenic__names__adjective} {#properties|characteristics|features!}.",  # noqa: E501
-            "The {SMILES__description} {SMILES#} {#represents|is from!} a molecule that is {mutagenic#not &NULL}identified as {mutagenic__names__adjective}.",  # noqa: E501
+            "The {SMILES__description} {SMILES#} represents a molecule that is {mutagenic#not &NULL}identified as {mutagenic__names__adjective}.",  # noqa: E501
             "The {#molecule |!}{SMILES__description} {SMILES#} is {mutagenic#not &NULL}{mutagenic__names__adjective}.",  # noqa: E501 not all variables need to be used
             # Instruction tuning text templates
             """Task: Please classify a molecule based on the description.

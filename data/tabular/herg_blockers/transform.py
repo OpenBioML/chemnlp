@@ -145,7 +145,7 @@ journal = {Molecular Pharmaceutics}""",
         "templates": [
             "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {herg_blocker#not &NULL}a {herg_blocker__names__noun}.",  # noqa: E501
             "Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule is {herg_blocker#not &NULL}a {herg_blocker__names__noun}.",  # noqa: E501
-            "The {SMILES__description} {SMILES#} {#represents|is from!} a molecule that is {herg_blocker#not &NULL}a {herg_blocker__names__noun}.",  # noqa: E501
+            "The {SMILES__description} {SMILES#} represents a molecule that is {herg_blocker#not &NULL}a {herg_blocker__names__noun}.",  # noqa: E501
             "The {#molecule |!}{SMILES__description} {SMILES#} is {herg_blocker#not &NULL}a {herg_blocker__names__noun}.",  # noqa: E501 not all variables need to be used
             # Instruction tuning text templates
             """Task: Please classify a molecule based on the description.

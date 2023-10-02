@@ -126,7 +126,7 @@ journal = {ASSAY and Drug Development Technologies}""",
             # herg_inhib__names__noun
             "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {herg_inhib#not &NULL}a {herg_inhib__names__noun}.",  # noqa: E501
             "Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule is {herg_inhib#not &NULL}a {herg_inhib__names__noun}.",  # noqa: E501
-            "The {SMILES__description} {SMILES#} {#represents|is from!} a molecule that is {herg_inhib#not &NULL}a {herg_inhib__names__noun}.",  # noqa: E501
+            "The {SMILES__description} {SMILES#} represents a molecule that is {herg_inhib#not &NULL}a {herg_inhib__names__noun}.",  # noqa: E501
             "The {#molecule |!}{SMILES__description} {SMILES#} is {herg_inhib#not &NULL}a {herg_inhib__names__noun}.",  # noqa: E501 not all variables need to be used
             # Instruction tuning text templates
             """Task: Please classify a molecule based on the description.

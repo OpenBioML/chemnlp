@@ -129,7 +129,7 @@ journal = {Journal of Chemical Information and Modeling}""",
         "templates": [
             "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} {#shows|exhibits|displays!} {absorption_HIA_Hou#no &NULL}{absorption_HIA_Hou__names__noun} properties.",  # noqa: E501
             "Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule has {absorption_HIA_Hou#no &NULL}{absorption_HIA_Hou__names__noun} {#properties|characteristics|features!}.",  # noqa: E501
-            "The {SMILES__description} {SMILES#} {#represents|is from!} a molecule that {#shows|exhibits|displays!} {absorption_HIA_Hou#not &NULL}{absorption_HIA_Hou__names__noun}.",  # noqa: E501
+            "The {SMILES__description} {SMILES#} represents a molecule that {#shows|exhibits|displays!} {absorption_HIA_Hou#not &NULL}{absorption_HIA_Hou__names__noun}.",  # noqa: E501
             "The {#molecule |!}{SMILES__description} {SMILES#} is {absorption_HIA_Hou#not &NULL}{absorption_HIA_Hou__names__adjective}.",  # noqa: E501 not all variables need to be used
             # Instruction tuning text templates
             """Task: Please classify a molecule based on the description.

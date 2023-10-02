@@ -140,7 +140,7 @@ journal = {Chemical Science}""",
         "templates": [
             "The molecule with the {SMILES__description} {SMILES#} is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.",  # noqa: E501
             "Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.",  # noqa: E501
-            "The {SMILES__description} {SMILES#} {#represents|is from!} a molecule that is {penetrate_BBB#not &NULL}identified as {penetrate_BBB__names__adjective}.",  # noqa: E501
+            "The {SMILES__description} {SMILES#} represents a molecule that is {penetrate_BBB#not &NULL}identified as {penetrate_BBB__names__adjective}.",  # noqa: E501
             "The molecule represented with the {SMILES__description} {SMILES#} is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.",  # noqa: E501
             "{SMILES#} represents a molecule that is {penetrate_BBB#not &NULL}identified as {penetrate_BBB__names__adjective}.",  # noqa: E501
             "{SMILES#} represents a molecule that is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.",  # noqa: E501

@@ -146,7 +146,7 @@ journal = {Chemical Science}}""",
         "templates": [
             "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} {#shows|exhibits|displays!} {m1_muscarinic_agonist#no &NULL}{m1_muscarinic_agonist__names__noun}.",  # noqa: E501
             "Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule {#shows|exhibits|displays!} {m1_muscarinic_agonist#no &NULL}{m1_muscarinic_agonist__names__noun}.",  # noqa: E501
-            "The {SMILES__description} {SMILES#} {#represents|is from!} a molecule that {#shows|exhibits|displays!} {m1_muscarinic_agonist#no &NULL}{m1_muscarinic_agonist__names__noun}.",  # noqa: E501
+            "The {SMILES__description} {SMILES#} represents a molecule that {#shows|exhibits|displays!} {m1_muscarinic_agonist#no &NULL}{m1_muscarinic_agonist__names__noun}.",  # noqa: E501
             "The {#molecule |!}{SMILES__description} {SMILES#} is {m1_muscarinic_agonist#not &NULL}{m1_muscarinic_agonist__names__gerund}.",  # noqa: E501 not all variables need to be used
             # Instruction tuning text templates
             """Task: Please classify a molecule based on the description.

@@ -121,7 +121,7 @@ journal = {Journal of Pharmaceutical and Biomedical Analysis}""",
         "templates": [
             "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} has a {bioavailable#low&high} {bioavailable__names__noun}.",  # noqa: E501
             "Based on the {SMILES__description} {#representation of |!}{SMILES#}, the molecule has a {bioavailable#low&high} {bioavailable__names__noun}.",  # noqa: E501
-            "The {SMILES__description} {SMILES#} {#represents|is from!} a molecule that has a {bioavailable#low&high} {bioavailable__names__noun}.",  # noqa: E501
+            "The {SMILES__description} {SMILES#} represents a molecule that has a {bioavailable#low&high} {bioavailable__names__noun}.",  # noqa: E501
             "The {SMILES__description} {SMILES#} has a {bioavailable#low&high} {bioavailable__names__noun}.",
             "The molecule with the {SMILES__description} {SMILES#} has a {bioavailable#low&high} {bioavailable__names__noun}.",  # noqa: E501
             # Instruction tuning text templates

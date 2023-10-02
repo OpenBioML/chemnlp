@@ -121,7 +121,7 @@ journal = {Journal of Cheminformatics}""",
         "templates": [
             "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {herg_blocker#not a hERG blocker (>= 10uM)&a hERG blocker (<10uM)}.",  # noqa: E501
             "Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule is {herg_blocker#not a human ether-à-go-go related gene (hERG) blocker (>= 10uM)&a human ether-à-go-go related gene (hERG) blocker (<10uM)}.",  # noqa: E501
-            "The {SMILES__description} {SMILES#} {#represents|is from!} a molecule that is {herg_blocker#not a hERG blocker (>= 10uM)&a hERG blocker (<10uM)}.",  # noqa: E501
+            "The {SMILES__description} {SMILES#} represents a molecule that is {herg_blocker#not a hERG blocker (>= 10uM)&a hERG blocker (<10uM)}.",  # noqa: E501
             "The {#molecule |!}{SMILES__description} {SMILES#} is {herg_blocker#not a human ether-à-go-go related gene (hERG) blocker (>= 10uM)&a human ether-à-go-go related gene (hERG) blocker (<10uM)}.",  # noqa: E501
             # Instruction tuning text templates
             """Task: Please classify a molecule based on the description.

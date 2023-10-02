@@ -145,7 +145,7 @@ journal = {Journal of Chemical Information and Modeling}""",
         "templates": [
             "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {CYP3A4_Substrate#not &NULL}a {CYP3A4_Substrate__names__noun}.",  # noqa: E501
             "Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule is {CYP3A4_Substrate#not &NULL}{CYP3A4_Substrate__names__verb}.",  # noqa: E501
-            "The {SMILES__description} {SMILES#} {#represents|is from!} a molecule that is {CYP3A4_Substrate#not &NULL}identified as a {CYP3A4_Substrate__names__noun}.",  # noqa: E501
+            "The {SMILES__description} {SMILES#} represents a molecule that is {CYP3A4_Substrate#not &NULL}identified as a {CYP3A4_Substrate__names__noun}.",  # noqa: E501
             "The {#molecule |!}{SMILES__description} {SMILES#} is {CYP3A4_Substrate#not &NULL}{CYP3A4_Substrate__names__verb}.",  # noqa: E501 not all variables need to be used
             # Instruction tuning text templates
             """Task: Please classify a molecule based on the description.

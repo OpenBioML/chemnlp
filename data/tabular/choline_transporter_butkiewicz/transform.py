@@ -150,7 +150,7 @@ journal = {Chemical Science}}""",
         "templates": [
             "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} {#shows|exhibits|displays!} {activity_choline_transporter#no &NULL}{activity_choline_transporter__names__noun}.",  # noqa: E501
             "Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule {#shows|exhibits|displays!} {activity_choline_transporter#no &NULL}{activity_choline_transporter__names__noun}.",  # noqa: E501
-            "The {SMILES__description} {SMILES#} {#represents|is from!} a molecule that {#shows|exhibits|displays!} {activity_choline_transporter#no &NULL}{activity_choline_transporter__names__noun}.",  # noqa: E501
+            "The {SMILES__description} {SMILES#} represents a molecule that {#shows|exhibits|displays!} {activity_choline_transporter#no &NULL}{activity_choline_transporter__names__noun}.",  # noqa: E501
             "The {#molecule |!}{SMILES__description} {SMILES#} is {activity_choline_transporter#not &NULL}{activity_choline_transporter__names__gerund}.",  # noqa: E501 not all variables need to be used
             # Instruction tuning text templates
             """Task: Please classify a molecule based on the description.
