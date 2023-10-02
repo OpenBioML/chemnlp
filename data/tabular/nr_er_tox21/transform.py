@@ -74,7 +74,7 @@ response pathways.""",
                         "gerund": "exhibiting toxicity in the NR-Estrogen receptor alpha assay"
                     },
                     {
-                        "gerund": "demostrating toxicity in the NR-estrogen receptor alpha assay"
+                        "gerund": "demonstrating toxicity in the NR-estrogen receptor alpha assay"
                     },
                 ],
                 "uris": None,
