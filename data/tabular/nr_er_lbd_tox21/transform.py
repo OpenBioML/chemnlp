@@ -41,7 +41,7 @@ def get_and_transform_data():
 
     # save to csv
     fn_data_csv = "data_clean.csv"
-    df["toxicity_NR-ER-LBD"] = df[f"toxicity_{target_subfolder}"].astype(int)
+    df["toxicity_NR-ER-LBD"] = df[f"toxicity_NR-ER-LBD"].astype(int)
     df.to_csv(fn_data_csv, index=False)
 
     # create meta yaml
