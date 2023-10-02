@@ -70,7 +70,7 @@ response pathways.""",
                         "gerund": "exhibiting toxicity in the NR-androgen-LBD receptor alpha assay"
                     },
                     {
-                        "gerund": "demostrating toxicity in the NR-androgen-LBD receptor alpha assay"
+                        "gerund": "demonstrating toxicity in the NR-androgen-LBD receptor alpha assay"
                     },
                 ],
                 "uris": None,
