@@ -67,7 +67,7 @@ response pathways.""",
                     {"gerund": "displaying toxicity in the NR-AhR assay"},
                     {"gerund": "exhibiting toxicity in the NR-AhR assay"},
                     {
-                        "gerund": "demostrating toxicity in the NR-aryl hydrocarbon receptor assay"
+                        "gerund": "demonstrating toxicity in the NR-aryl hydrocarbon receptor assay"
                     },
                 ],
                 "uris": None,
