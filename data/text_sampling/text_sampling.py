@@ -87,7 +87,7 @@ exclude_from_standard_tabular_text_templates = [
     "cyp_p450_3a4_inhibition_veith_et_al",  # boolean target data
     "drug_induced_liver_injury",  # boolean target data
     "freesolv",  # more than one target
-    "h2_storage_materials",  # more than one target, LOW PRIO: has only 30 samples
+    # "h2_storage_materials",  # only IUPAC identifier, more than one target, LOW PRIO: has only 30 samples
     "herg_blockers",  # more than one target
     "herg_central_inhib",  # boolean target data
     "herg_karim_et_al",  # boolean target data
@@ -940,6 +940,13 @@ if __name__ == "__main__":
     path_lm_eval_data_dir = path_base + "text_sampling/export"
 
     for path in path_data_dir:
+        # subselect one path
+        # if path.find("data/kg/") == -1: continue
+        # if path.find("chembl33") != -1: continue
+        # if path.find("data/kg/drug_protein_pathway_disease") == -1: continue
+        # if path.find("data/kg/compound_protein_compound_3") == -1: continue
+        # if path.find("data/kg/compound_chebi") == -1: continue
+        # if path.find("data/tabular/h2_storage_materials") == -1: continue
         print(f"\n###### {path}")
         path_meta = path + "/meta.yaml"
         path_data = path + "/data_clean.csv"

@@ -23,6 +23,10 @@ if __name__ == "__main__":
         print("Created empty extend_tabular_processed.csv file.")
 
     for path in path_data_dir:
+        # subselect one path
+        # if path.find("data/kg/compound_chebi/data_clean.csv") == -1: continue
+        # if path.find("data/kg/compound_protein_compound/data_clean.csv") == -1: continue
+        # if path.find("data/tabular/h2_storage_materials") == -1: continue
         print(f"\n###### {path}")
 
         if not os.path.isfile(path):

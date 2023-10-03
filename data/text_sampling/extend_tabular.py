@@ -175,6 +175,9 @@ if __name__ == "__main__":
         process_func = line_reps_from_smiles
 
     for path in path_data_dir:
+        # subselect one path
+        # if path.find("data/kg/compound_protein_compound") == -1: continue
+        # if path.find("data/tabular/h2_storage_materials") == -1: continue
         if not os.path.isdir(path):
             continue
 
