@@ -186,7 +186,7 @@ Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should 
 User: Yes, the aminoacid sequence should {hemolytic#not &NULL}be {hemolytic__names__adjective}.
 Assistant: {#Understood|Got it|Ok!}, this {sequence__description} is {hemolytic#not &NULL}{hemolytic__names__adjective}: {sequence#}""",  # noqa: E501
             # Benchmarking text templates
-            "Is the {sequence__description} {sequence#} {hemolytic__names__adjective}:<EOI> {hemolytic#yes&no}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
+            "Is the {sequence__description} {sequence#} {hemolytic__names__adjective}:<EOI> {hemolytic#no&yes}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
             """Task: Please classify a aminoacid sequence based on the description.
 Description: A aminoacid sequence that is {hemolytic__names__adjective}.
 {#aminoacid sequence |!}{sequence__description}: {sequence#}

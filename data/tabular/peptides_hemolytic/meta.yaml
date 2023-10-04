@@ -106,7 +106,7 @@ templates:
       Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#aminoacid sequence|one!}?
       User: Yes, the aminoacid sequence should {hemolytic#not &NULL}be {hemolytic__names__adjective}.
       Assistant: {#Understood|Got it|Ok!}, this {sequence__description} is {hemolytic#not &NULL}{hemolytic__names__adjective}: {sequence#}
-    - Is the {sequence__description} {sequence#} {hemolytic__names__adjective}:<EOI> {hemolytic#yes&no}
+    - Is the {sequence__description} {sequence#} {hemolytic__names__adjective}:<EOI> {hemolytic#no&yes}
     - |-
       Task: Please classify a aminoacid sequence based on the description.
       Description: A aminoacid sequence that is {hemolytic__names__adjective}.
