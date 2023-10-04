@@ -183,7 +183,7 @@ Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should 
 User: Yes, the molecule should {activity_serine_threonine_kinase33#not &NULL}be {activity_serine_threonine_kinase33__names__gerund}.
 Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {activity_serine_threonine_kinase33#not &NULL}{activity_serine_threonine_kinase33__names__gerund}: {SMILES#}""",  # noqa: E501
             # Benchmarking text templates
-            "Is the {SMILES__description} {SMILES#} {activity_serine_threonine_kinase33__names__gerund}:<EOI> {activity_serine_threonine_kinase33#yes&no}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
+            "Is the {SMILES__description} {SMILES#} {activity_serine_threonine_kinase33__names__gerund}:<EOI> {activity_serine_threonine_kinase33#no&yes}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
             """Task: Please classify a molecule based on the description.
 Description: A molecule that is {activity_serine_threonine_kinase33__names__gerund}.
 {#Molecule |!}{SMILES__description}: {SMILES#}

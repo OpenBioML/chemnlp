@@ -130,7 +130,7 @@ templates:
       Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
       User: Yes, the molecule should {activity_serine_threonine_kinase33#not &NULL}be {activity_serine_threonine_kinase33__names__gerund}.
       Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {activity_serine_threonine_kinase33#not &NULL}{activity_serine_threonine_kinase33__names__gerund}: {SMILES#}
-    - Is the {SMILES__description} {SMILES#} {activity_serine_threonine_kinase33__names__gerund}:<EOI> {activity_serine_threonine_kinase33#yes&no}
+    - Is the {SMILES__description} {SMILES#} {activity_serine_threonine_kinase33__names__gerund}:<EOI> {activity_serine_threonine_kinase33#no&yes}
     - |-
       Task: Please classify a molecule based on the description.
       Description: A molecule that is {activity_serine_threonine_kinase33__names__gerund}.
