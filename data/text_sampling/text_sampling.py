@@ -14,19 +14,56 @@ from utils import load_yaml, str_presenter
 DEFAULT_SIGNIFICANT_DIGITS = 3
 
 standard_tabular_text_templates = [
-    "The molecule with the {SMILES__description} representation of {SMILES#} has a {TARGET__names__noun} of {TARGET#}.",  # noqa: E501
-    "The molecule {SMILES#} has a {TARGET__names__noun} of {TARGET#}.",
-    "Based on the {SMILES__description} representation {SMILES#}, the molecule has a {TARGET__names__noun} of {TARGET#}.",  # noqa: E501
-    "Based on the representation {SMILES#}, the molecule has a {TARGET__names__noun} of {TARGET#}.",  # noqa: E501
-    "The {SMILES__description} {SMILES#} represents a molecule that has a {TARGET__names__noun} of {TARGET#}.",  # noqa: E501
-    "The {SMILES__description} {SMILES#} represents a molecule with a {TARGET__names__noun} of {TARGET#}.",  # noqa: E501
-    "{SMILES#} represents a molecule that has a {TARGET__names__noun} of {TARGET#}.",  # noqa: E501
-    "{SMILES#} represents a molecule with a {TARGET__names__noun} of {TARGET#}.",  # noqa: E501
-    "The {SMILES__description} {SMILES#} has a {TARGET__names__noun} of {TARGET#}.",
-    "The molecule {SMILES#} has a {TARGET__names__noun} of {TARGET#}.",
-    "{SMILES#} has a {TARGET__names__noun} of {TARGET#}.",
-    "The {TARGET__names__noun} of the {SMILES__description} {SMILES#} is:<EOI> {TARGET#}",  # noqa: E501
-    "The {TARGET__names__noun} of the {SMILES__description} {SMILES#} is<EOI> {TARGET#}.",  # noqa: E501
+    "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} has a {TARGET__names__noun} of {TARGET#} {TARGET__units}.",  # noqa: E501
+    "Based on the {SMILES__description} {#representation of |!}{SMILES#}, the molecule has a {TARGET__names__noun} of {TARGET#} {TARGET__units}.",  # noqa: E501
+    "The {SMILES__description} {SMILES#} {#represents|is representing!} a molecule {#that has a|with a!} {TARGET__names__noun} of {TARGET#} {TARGET__units}.",  # noqa: E501
+    "The molecule with the {SMILES__description} {SMILES#} has a {TARGET__names__noun} of {TARGET#} {TARGET__units}.",
+    # Instruction tuning text templates
+    """Task: Please predict a molecule feature based on the description.
+Description: Predict the {TARGET__names__noun} in {TARGET__units}.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Even if you are {#uncertain|not sure!}, you must answer with a numeric value in {TARGET__units} without using any {#other|additional!} words.
+Result: {TARGET#} {TARGET__units}""",  # noqa: E501
+    """Task: Please predict a molecule feature based on the description.
+Description: Predict the {TARGET__names__noun} in {TARGET__units}.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Even if you are {#uncertain|not sure!}, you must answer with a numeric value in {TARGET__units} without the unit and without using any {#other|additional!} words.
+Result: {TARGET#}""",  # noqa: E501
+    """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+Description: A molecule that has a {TARGET__names__noun} of {TARGET#} {TARGET__units}.
+Result: {SMILES#}""",  # noqa: E501
+    # Conversational text templates
+    """User: Can you {#tell me|derive|estimate!} the {TARGET__names__noun} in {TARGET__units} of the molecule with the {SMILES__description} {SMILES#}?
+Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, this molecule has a {TARGET__names__noun} of {TARGET#} {TARGET__units}.""",  # noqa: E501
+    """User: Can you {#give me|create|generate!} the {SMILES__description} of a molecule that has a {TARGET__names__noun} of {TARGET#} {TARGET__units}?
+Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}""",  # noqa: E501
+    """User: I'm {#searching|looking!} for the {SMILES__description} of a molecule that has a {TARGET__names__noun} of {TARGET#} {TARGET__units}.
+Assistant: This is a molecule that has a {TARGET__names__noun} of {TARGET#} {TARGET__units}: {SMILES#}""",  # noqa: E501
+    """User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
+User: Yes, please. The molecule should have a {TARGET__names__noun} of {TARGET#} {TARGET__units}.
+Assistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} represents a molecule that has a {TARGET__names__noun} of {TARGET#} {TARGET__units}: {SMILES#}""",  # noqa: E501
+    """User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
+User: Yes, the molecule should have a {TARGET__names__noun} of {TARGET#} {TARGET__units}.
+Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} represents a molecule that has a {TARGET__names__noun} of {TARGET#} {TARGET__units}: {SMILES#}""",  # noqa: E501
+    # Benchmarking text templates
+    "The {TARGET__names__noun} of the molecule with the {SMILES__description} {SMILES#} is:<EOI> {TARGET#} {TARGET__units}",  # noqa: E501
+    "The {TARGET__names__noun} of the {SMILES__description} {SMILES#} is:<EOI> {TARGET#} {TARGET__units}",  # noqa: E501
+    "The {TARGET__names__noun} of the molecule {SMILES__description} {SMILES#} is:<EOI> {TARGET#} {TARGET__units}",  # noqa: E501
+    """Task: Please predict a molecule feature based on the description.
+Description: Predict the {TARGET__names__noun} in {TARGET__units} of a molecule.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Even if you are {#uncertain|not sure!}, you must answer with a numeric value in {TARGET__units} without using any {#other|additional!} words.
+Result:<EOI> {TARGET#} {TARGET__units}""",  # noqa: E501
+    """Task: Please predict a molecule feature based on the description.
+Description: Predict the {TARGET__names__noun} in {TARGET__units} of a molecule.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Even if you are {#uncertain|not sure!}, you must answer with a numeric value in {TARGET__units} without the unit and without using any {#other|additional!} words.
+Result:<EOI> {TARGET#}""",  # noqa: E501
+    """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+Description: A molecule that has a {TARGET__names__noun} of {TARGET#} {TARGET__units}.
+Result:<EOI> {SMILES#}""",  # noqa: E501
 ]
 
 
@@ -34,9 +71,59 @@ exclude_from_standard_tabular_text_templates = [
     "ames_mutagenicity",  # because it is boolean target data
     "bioavailability_ma_et_al",  # because it is boolean target data
     "blood_brain_barrier_martins_et_al",  # because it is boolean target data
+    "carcinogens",  # because it is boolean target data
+    "cav3_t-type_calcium_channels_butkiewicz",  # because it is boolean target data
+    "chebi_20",  # target is text description
     "chembl_v29",  # text only, no SMILES
+    "choline_transporter_butkiewicz",  # because it is boolean target data
+    "clintox",  # because it is boolean target data
+    "cyp2c9_substrate_carbonmangels",  # boolean target data
+    "cyp2d6_substrate_carbonmangels",  # boolean target data
+    "cyp3a4_substrate_carbonmangels",  # boolean target data
+    "cyp_p450_1a2_inhibition_veith_et_al",  # boolean target data
+    "cyp_p450_2c19_inhibition_veith_et_al",  # boolean target data
+    "cyp_p450_2c9_inhibition_veith_et_al",  # boolean target data
+    "cyp_p450_2d6_inhibition_veith_et_al",  # boolean target data
+    "cyp_p450_3a4_inhibition_veith_et_al",  # boolean target data
+    "drug_induced_liver_injury",  # boolean target data
+    "freesolv",  # more than one target
+    # "h2_storage_materials",  # only IUPAC identifier, more than one target, LOW PRIO: has only 30 samples
+    "herg_blockers",  # more than one target
+    "herg_central_inhib",  # boolean target data
+    "herg_karim_et_al",  # boolean target data
+    "hiv",  # boolean target data
+    "human_intestinal_absorption",  # boolean target data
+    "iupac_goldbook",  # text only, no SMILES
+    "kcnq2_potassium_channel_butkiewicz",  # boolean target data
+    "m1_muscarinic_receptor_agonists_butkiewicz",  # boolean target data
+    "m1_muscarinic_receptor_antagonists_butkiewicz",  # boolean target data
+    "mona",  # more than one target
     "moses",  # SMILES only, has no target
+    "nlmchem",  # text only, no SMILES
+    "nr_ahr_tox21",  # boolean target data
+    "nr_ar_lbd_tox21",  # boolean target data
+    "nr_ar_tox21",  # boolean target data
+    "nr_aromatase_tox21",  # boolean target data
+    "nr_er_lbd_tox21",  # boolean target data
+    "nr_er_tox21",  # boolean target data
+    "nr_ppar_gamma_tox21",  # boolean target data
+    "orexin1_receptor_butkiewicz",  # boolean target data
+    "p_glycoprotein_inhibition_broccatelli_et_al",  # boolean target data
+    "pampa_ncats",  # boolean target data
+    "peptides_hemolytic",  # boolean target data
+    "potassium_ion_channel_kir2_1_butkiewicz",  # boolean target data
+    "sarscov2_3clpro_diamond",  # boolean target data
+    "sarscov2_vitro_touret",  # boolean target data
+    "serine_threonine_kinase_33_butkiewicz",  # boolean target data
+    "skin_reaction",  # boolean target data
+    "sr_are_tox21",  # boolean target data
+    "sr_atad5_tox21",  # boolean target data
+    "sr_hse_tox21",  # boolean target data
+    "sr_mmp_tox21",  # boolean target data
+    "sr_p53_tox21",  # boolean target data
+    "tyrosyl-dna_phosphodiesterase_butkiewicz",  # boolean target data
     "zinc",  # SMILES only, has no target
+    "bio_ner",
 ]
 
 
@@ -180,9 +267,15 @@ def get_random_text_identifiers_and_targets(meta: dict) -> dict:
                     [x[name] for x in e["names"] if name in x],
                 )
                 rnd_texts[e["id"]]["names"][name] = rnd_text
-        else:
+
+        if "description" in e:
             rnd_texts[e["id"]]["description"] = partial(
                 lambda x: x, e["description"]
+            )  # to wrap value in function = deterministic, no sampling
+
+        if "units" in e:
+            rnd_texts[e["id"]]["units"] = partial(
+                lambda x: x, e["units"]
             )  # to wrap value in function = deterministic, no sampling
 
     return rnd_texts
@@ -274,7 +367,7 @@ class TemplateSampler:
         column_datafield_sampler: Callable = None,
         benchmarking_templates: bool = False,
         multiple_choice_benchmarking_templates: bool = False,
-        multiple_choice_benchmarking_format: int = 0,
+        multiple_choice_benchmarking_format: int = None,
     ):
         # paths
         self.path_data_dir = path_data_dir
@@ -286,7 +379,7 @@ class TemplateSampler:
         self.meta = load_yaml(self.path_data_meta)
 
         # dataframe from csv
-        df = pd.read_csv(self.path_data_csv)
+        df = pd.read_csv(self.path_data_csv, low_memory=False)
 
         def check_targets_and_identifiers(meta: dict, df: pd.DataFrame):
             all_identifiers = [x["id"] for x in meta["identifiers"]] + [
@@ -397,8 +490,15 @@ class TemplateSampler:
 
     def _get_target_from_row(self, sample: pd.Series, var: str) -> str:
         """Get target string from sample row and variable string."""
+        # sampling based on multiple text strings separated by a |, no variable for row sampling!
+        if ("#" in var) and ("!" in var) and ("|" in var):
+            choices = var.replace("#", "")
+            choices = choices.replace("!", "")
+            choices = choices.split("|")
+            out = unwrap_list_length_1(self.column_datafield_sampler(choices))
+            return out
         # sampling based on columns and their definiton in the text template
-        if ("#" in var) and ("&" in var):  # recoding information in var
+        elif ("#" in var) and ("&" in var):  # recoding information in var
             var, choices = var.split("#")
             choices = choices.split("&")
             choice = choices[sample[var]]
@@ -407,11 +507,10 @@ class TemplateSampler:
             else:
                 out = choices[sample[var]]
         elif ("#" in var) and ("|" in var):  # use data from multiple columns
+            var = var.replace("#", "")
             columns = var.split("|")
-            columns = [var.replace("#", "") for var in columns]
-            choices = sample[columns].tolist()
-            choices = [c for c in choices if (isinstance(c, str) or not math.isnan(c))]
-            out = unwrap_list_length_1(self.column_datafield_sampler(choices))
+            var = unwrap_list_length_1(self.column_datafield_sampler(columns))
+            out = sample[var]
         elif "#" in var:  # use only data from column
             out = sample[var.replace("#", "")]
             # for KG: if *_smiles is nan sample from *_name
@@ -507,9 +606,21 @@ class TemplateSampler:
 
             if multiple_choice_indicator == "":
                 # standard sampling w/o paired data
-                all_choices = sorted(
-                    [str(x) for x in self.df[multiple_choice_var].unique().tolist()]
-                )
+                cutoff_full_unique = 100
+                if len(self.df[multiple_choice_var].unique()) < cutoff_full_unique:
+                    all_choices = sorted(
+                        [str(x) for x in self.df[multiple_choice_var].unique()]
+                    )
+                else:
+                    all_choices = sorted(
+                        [
+                            str(x)
+                            for x in self.df[multiple_choice_var]
+                            .sample(cutoff_full_unique)
+                            .unique()
+                        ]
+                    )
+
                 if all_choices == ["0", "1"]:
                     all_choices = ["False", "True"]
                     correct_choice = all_choices[int(correct_choice)]
@@ -560,7 +671,10 @@ class TemplateSampler:
                 )
                 + f"or {symbols[-1]}"
             )
-            if self.multiple_choice_benchmarking_templates:
+            if (
+                self.multiple_choice_benchmarking_templates
+                and self.multiple_choice_benchmarking_format
+            ):
                 if len(self.multiple_choice_rnd_symbols) > 1:
                     rnd_symbol = self.multiple_choice_rnd_symbols[
                         self.multiple_choice_benchmarking_format
@@ -701,7 +815,7 @@ class TemplateSampler:
             lambda sample: self.sample(sample, template_idx), axis=1
         )
 
-    def export(self):
+    def export(self, fn_suffix: str = None):
         """Exports the sampled data as separate jsonl files based on the split and benchmarking templates."""
         assert "sample" in self.df.columns, "Run apply_sampling before running export."
         print_data = {
@@ -753,10 +867,17 @@ class TemplateSampler:
                 )  # to use with safe_dum
 
                 if self.multiple_choice_benchmarking_templates:
-                    output_path_dir = (
-                        self.path_lm_eval_data_dir
-                        + f"/{self.path_data_dir.split('/')[-1]}_benchmark_multiple_choice_format-{self.multiple_choice_benchmarking_format}/"  # noqa: E501
-                    )
+                    if self.multiple_choice_benchmarking_format:
+                        output_path_dir = (
+                            self.path_lm_eval_data_dir
+                            + f"/{self.path_data_dir.split('/')[-1]}_benchmark_multiple_choice_format-{self.multiple_choice_benchmarking_format}/"  # noqa: E501
+                        )
+                    else:
+                        output_path_dir = (
+                            self.path_lm_eval_data_dir
+                            + f"/{self.path_data_dir.split('/')[-1]}_benchmark_multiple_choice_format/"  # noqa: E501
+                        )
+
                     os.makedirs(output_path_dir, exist_ok=True)
                     output_path = output_path_dir + f"{split}.jsonl"
 
@@ -781,7 +902,7 @@ class TemplateSampler:
                         + f"/{self.path_data_dir.split('/')[-1]}_benchmark/"
                     )
                     os.makedirs(output_path_dir, exist_ok=True)
-                    output_path = output_path_dir + f"{split}.jsonl"
+                    output_path = output_path_dir + f"{split}_{fn_suffix}.jsonl"
 
                     lm_eval_yaml_template_loglikelihood[
                         "task"
@@ -804,7 +925,10 @@ class TemplateSampler:
                     + f"/{self.path_data_dir.split('/')[-1]}/"
                 )
                 os.makedirs(output_path_dir, exist_ok=True)
-                output_path = output_path_dir + f"{split}.jsonl"
+                if fn_suffix is not None:
+                    output_path = output_path_dir + f"{split}_{fn_suffix}.jsonl"
+                else:
+                    output_path = output_path_dir + f"{split}.jsonl"
 
             with open(output_path, "w") as f:
                 f.write(df_out.to_json(orient="records", lines=True, force_ascii=False))
@@ -821,21 +945,38 @@ class TemplateSampler:
             print_data["path"].append("")
         return pd.DataFrame(print_data)
 
-    def apply_sampling_and_export(self, template_idx: int = None):
+    def apply_sampling_and_export(
+        self, template_idx: int = None, fn_suffix: str = None
+    ):
         """Applies the sampling and exports the data."""
-        self.apply_sampling(template_idx)
-        df_results = self.export()
+        self.apply_sampling(template_idx=template_idx)
+        df_results = self.export(fn_suffix=fn_suffix)
         print(f"\n### results\n{df_results.to_string()}")
 
 
 if __name__ == "__main__":
     path_base = __file__.replace("text_sampling/text_sampling.py", "")
-    path_data_dir = sorted(glob.glob(path_base + "tabular/*")) + sorted(
-        glob.glob(path_base + "kg/*[!.csv]")
+    path_data_dir = sorted(glob.glob(path_base + "tabular/*"))
+    path_data_dir += sorted(
+        [p for p in glob.glob(path_base + "kg/*") if os.path.isdir(p)]
     )
     path_lm_eval_data_dir = path_base + "text_sampling/export"
 
+    # index = [i for i, x in enumerate(path_data_dir) if x.find("data/tabular/sr_are_tox21") != -1][0]
+    # print(index)
+    # path_data_dir = path_data_dir[index:]
+
     for path in path_data_dir:
+        if path.find("data/tabular/lipophilicity") != -1:
+            continue  # needs the units fixed or templates copied over
+        # subselect one path
+        # if path.find("data/tabular/") == -1: continue
+        # if path.find("data/kg/") == -1: continue
+        # if path.find("chembl33") != -1: continue
+        # if path.find("data/kg/compound_chebi") == -1: continue
+        # if path.find("data/tabular/cyp3a4_substrate_carbonmangels") == -1: continue
+        # if path.find("data/tabular/bio_ner") == -1: continue
+
         print(f"\n###### {path}")
         path_meta = path + "/meta.yaml"
         path_data = path + "/data_clean.csv"
@@ -889,31 +1030,82 @@ if __name__ == "__main__":
             if "templates" in meta:
                 multiple_choice_rnd_symbols = ["", ".", ".)", ")", ":", "()", "[]"]
                 print(f"Running sampling for: {path}")
-                TemplateSampler(
+                # uncomment to randomly sample from all templates and save the output to a single file
+                # TemplateSampler(
+                #    path,
+                #    path_lm_eval_data_dir,
+                #    multiple_choice_rnd_symbols=multiple_choice_rnd_symbols,
+                #    additional_templates=additional_templates,
+                #    benchmarking_templates=False,
+                #    multiple_choice_benchmarking_templates=False,
+                # ).apply_sampling_and_export()
+
+                tempsamp = TemplateSampler(
                     path,
                     path_lm_eval_data_dir,
                     multiple_choice_rnd_symbols=multiple_choice_rnd_symbols,
                     additional_templates=additional_templates,
                     benchmarking_templates=False,
                     multiple_choice_benchmarking_templates=False,
-                ).apply_sampling_and_export()
+                )
+                for i, template in enumerate(
+                    [t for t in meta["templates"] if "<EOI>" not in t]
+                ):
+                    print(f"\nRunning sampling for template {i}:\n{template}")
+                    tempsamp.apply_sampling_and_export(
+                        template_idx=i,
+                        fn_suffix=i,
+                    )
+
                 if any(["<EOI>" in t for t in meta["templates"]]):
-                    TemplateSampler(
+                    # uncomment to randomly sample from all templates and save the output to a single file
+                    # TemplateSampler(
+                    #     path,
+                    #     path_lm_eval_data_dir,
+                    #     multiple_choice_rnd_symbols=multiple_choice_rnd_symbols,
+                    #     additional_templates=additional_templates,
+                    #     benchmarking_templates=True,
+                    #     multiple_choice_benchmarking_templates=False,
+                    # ).apply_sampling_and_export()
+
+                    tempsamp = TemplateSampler(
                         path,
                         path_lm_eval_data_dir,
                         multiple_choice_rnd_symbols=multiple_choice_rnd_symbols,
                         additional_templates=additional_templates,
                         benchmarking_templates=True,
                         multiple_choice_benchmarking_templates=False,
-                    ).apply_sampling_and_export()
+                    )
+                    for i, template in enumerate(
+                        [
+                            t
+                            for t in meta["templates"]
+                            if "<EOI>" in t and "%multiple_choice_" not in t
+                        ]
+                    ):
+                        print(f"\nRunning sampling for template {i}:\n{template}")
+                        tempsamp.apply_sampling_and_export(
+                            template_idx=i,
+                            fn_suffix=i,
+                        )
+
                     if any(["%multiple_choice_" in t for t in meta["templates"]]):
-                        for i, s in enumerate(multiple_choice_rnd_symbols):
-                            TemplateSampler(
-                                path,
-                                path_lm_eval_data_dir,
-                                multiple_choice_rnd_symbols=[s],
-                                additional_templates=additional_templates,
-                                benchmarking_templates=True,
-                                multiple_choice_benchmarking_templates=True,
-                                multiple_choice_benchmarking_format=i,
-                            ).apply_sampling_and_export()
+                        TemplateSampler(
+                            path,
+                            path_lm_eval_data_dir,
+                            multiple_choice_rnd_symbols=multiple_choice_rnd_symbols,
+                            additional_templates=additional_templates,
+                            benchmarking_templates=True,
+                            multiple_choice_benchmarking_templates=True,
+                        ).apply_sampling_and_export()
+
+                        # for i, s in enumerate(multiple_choice_rnd_symbols):
+                        #    TemplateSampler(
+                        #        path,
+                        #        path_lm_eval_data_dir,
+                        #        multiple_choice_rnd_symbols=[s],
+                        #        additional_templates=additional_templates,
+                        #        benchmarking_templates=True,
+                        #        multiple_choice_benchmarking_templates=True,
+                        #        multiple_choice_benchmarking_format=i,
+                        #    ).apply_sampling_and_export()

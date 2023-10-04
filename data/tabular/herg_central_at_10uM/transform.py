@@ -8,25 +8,24 @@ def get_and_transform_data():
     # get raw data
     name = "herg_central"
     label_names = retrieve_label_name_list("herg_central")
-    dfs = []
-    for ln in label_names:
-        # get raw data
-        splits = Tox(name=name, label_name=ln).get_split()
-        df_train = splits["train"]
-        df_valid = splits["valid"]
-        df_test = splits["test"]
-        df_train["split"] = "train"
-        df_valid["split"] = "valid"
-        df_test["split"] = "test"
-        df = pd.concat([df_train, df_valid, df_test], axis=0)
-        df["task"] = ln
-        dfs.append(df)
 
-    df = pd.concat(dfs, axis=0)
+    # select datasubset
+    ln = label_names[1]  # herg_central_at_10uM
+    print(ln)
+
+    # get raw data
+    splits = Tox(name=name, label_name=ln).get_split()
+    df_train = splits["train"]
+    df_valid = splits["valid"]
+    df_test = splits["test"]
+    df_train["split"] = "train"
+    df_valid["split"] = "valid"
+    df_test["split"] = "test"
+    df = pd.concat([df_train, df_valid, df_test], axis=0)
 
     fn_data_original = "data_original.csv"
     df.to_csv(fn_data_original, index=False)
-    del df, dfs, df_train, df_valid, df_test
+    del df, df_train, df_valid, df_test
 
     # create dataframe
     df = pd.read_csv(
@@ -36,10 +35,10 @@ def get_and_transform_data():
 
     # check if fields are the same
     fields_orig = df.columns.tolist()
-    assert fields_orig == ["Drug_ID", "Drug", "Y", "split", "task"]
+    assert fields_orig == ["Drug_ID", "Drug", "Y", "split"]
 
     # overwrite column names = fields
-    fields_clean = ["compound_id", "SMILES", "result", "split", "task"]
+    fields_clean = ["compound_id", "SMILES", "herg_central_at_10uM", "split"]
     df.columns = fields_clean
 
     assert not df.duplicated().sum()
@@ -50,69 +49,32 @@ def get_and_transform_data():
 
     # create meta yaml
     meta = {
-        "name": "herg_central",  # unique identifier, we will also use this for directory names
+        "name": "herg_central_at_10uM",
         "description": """Human ether-à-go-go related gene (hERG) is crucial for the coordination
 of the heart's beating. Thus, if a drug blocks the hERG, it could lead to severe
 adverse effects. Therefore, reliable prediction of hERG liability in the early
 stages of drug design is quite important to reduce the risk of cardiotoxicity-related
 attritions in the later development stages. There are three targets: hERG_at_1microM,
-hERG_at_10microM, and hERG_inhib.""",
+hERG_at_10microM, and herg_inhib.""",
         "targets": [
             {
-                "id": "hERG_at_1uM",
-                "description": "the percent inhibition of hERG at a 1uM concentration",
-                "units": "uM",
-                "type": "continuous",
-                "names": [
-                    {"noun": "hERG percent inhibition at a 1uM concentration"},
-                    {"noun": "hERG percent inhibition at 1uM"},
-                    {
-                        "noun": "human ether-à-go-go related gene (hERG) percent inhibition at a 1uM concentration"
-                    },
-                    {
-                        "noun": "human ether-à-go-go related gene (hERG) percent inhibition at 1uM"
-                    },
-                    {"verb": "is active against hERG at a 1uM concentration"},
-                    {
-                        "verb": "is active against human ether-à-go-go related gene (hERG) at a 1uM concentration"
-                    },
-                ],
-                "uris": [
-                    "http://purl.obolibrary.org/obo/MI_2136",
-                ],
-            },
-            {
-                "id": "hERG_at_10uM",
+                "id": "herg_central_at_10uM",
                 "description": "the percent inhibition of hERG at a 10uM concentration",
-                "units": "uM",
+                "units": "%",
                 "type": "continuous",
                 "names": [
-                    {"noun": "hERG percent inhibition at a 10uM concentration"},
-                    {"noun": "hERG percent inhibition at 1uM"},
+                    {"noun": "hERG inhibition at a concentration of 10uM"},
+                    {"noun": "hERG inhibition at a concentration of 10uM"},
+                    {"noun": "hERG inhibition at 10uM"},
                     {
-                        "noun": "human ether-à-go-go related gene (hERG) percent inhibition at a 10uM concentration"
+                        "noun": "human ether-à-go-go related gene (hERG) inhibition at a concentration of 10uM"
                     },
                     {
-                        "noun": "human ether-à-go-go related gene (hERG) percent inhibition at 10uM"
+                        "noun": "human ether-à-go-go related gene (hERG) inhibition at 10uM"
                     },
-                    {"verb": "is active against hERG at a 10uM concentration"},
                     {
-                        "verb": "is active against human ether-à-go-go related gene (hERG) at a 10uM concentration"
+                        "noun": "human ether-à-go-go related gene (hERG) inhibition at 10uM"
                     },
-                ],
-                "uris": ["http://purl.obolibrary.org/obo/MI_2136"],
-            },
-            {
-                "id": "hERG_inhib",
-                "description": """whether it blocks (1) or not blocks (0) hERG
-(This is equivalent to whether hERG_at_10microM < -50, i.e.,
-whether the compound has an IC50 of less than 10microM.)""",
-                "units": None,
-                "type": "boolean",
-                "names": [
-                    {"noun": "hERG percent inhibitor"},
-                    {"verb": "is active against hERG"},
-                    {"verb": "inhbits human ether-à-go-go related gene (hERG)"},
                 ],
                 "uris": [
                     "http://purl.obolibrary.org/obo/MI_2136",

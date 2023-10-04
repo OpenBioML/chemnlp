@@ -24,13 +24,12 @@ targets:
       type: string
       names:
           - noun: definition
-          - noun: definition of a chemistry term
+          - noun: text definition
 identifiers:
     - id: term
       type: Other
       description: chemistry term
       names:
-          - noun: term
           - noun: chemistry term
 license: CC BY-NC-ND 4.0
 links:
@@ -38,7 +37,7 @@ links:
       description: home page
     - url: https://creativecommons.org/licenses/by-nc-nd/4.0/
       description: license description
-num_points: 7035
+num_points: 5551
 bibtex:
     - |-
       @article{iupac2023,title={IUPAC Compendium of Chemical Terminology},
@@ -47,3 +46,50 @@ bibtex:
       doi={10.1351/goldbook},
       accessdate={2023-01-13T17:08:12+00:00},
       }
+templates:
+    - |-
+      The {term__names__noun} "{term#}" can be {#described|defined!} {#by|as!}:
+      {#definition}
+    - |-
+      Task: Please {#give me|create|generate!} a {definition__names__noun} of a {term__names__noun}.
+      Term: {term#}
+      Constraint: Answer the question with {#full|complete!} sentences.
+      Result: {definition#}
+    - |-
+      Task: Please {#give me|create|generate!} a {term__names__noun} for the {#following |!}{definition__names__noun}:
+      Definition: {definition#}
+      Result: {term#}
+    - |-
+      User: Can you {#give me|create|generate!} a {term__names__noun} {#described|defined!} by:
+      {#definition}
+      Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {term#}
+    - |-
+      User: Can you {#give me|create|generate!} the {definition__names__noun} for the following {term__names__noun}:
+      {#term}
+      Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go:
+      {#definition}
+    - |-
+      User: I'm {#searching|looking!} for the {term__names__noun} that can be described {#by|as!}:
+      {#definition}
+      Assistant: This {term__names__noun} fits {#your|this!} definition: {term#}
+    - |-
+      User: I want to {#come up with|create|generate!} a {definition__names__noun}.
+      Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
+      User: Yes, please. The {term__names__noun} can be described {#by|as!}:
+      {#term}
+      Assistant: {#Ok|Got it!},{# here you go,|!} this {definition__names__noun} fits {#your|this!} description: {definition#}
+    - |-
+      User: I want to {#come up with|create|generate!} a {term__names__noun}.
+      Assistant: {#This sounds very exciting. |This sounds very interesting. |!}How is the {term__names__noun} described?
+      User: The {term__names__noun} can be described {#by|as!}:
+      {#definition}
+      Assistant: {#Ok|Got it!},{# here you go,|!} this {term__names__noun} fits {#your|this!} description: {term#}
+    - |-
+      Task: Please {#give me|create|generate!} a {definition__names__noun} of a {term__names__noun}.
+      Term: {term#}
+      Constraint: Answer the question with {#full|complete!} sentences.
+      Result:<EOI> {definition#}
+    - |-
+      Task: Please {#give me|create|generate!} a {term__names__noun} for the {#following |!}{definition__names__noun}:
+      Definition: {definition#}
+      Result:<EOI> {term#}

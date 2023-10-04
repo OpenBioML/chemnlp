@@ -58,9 +58,7 @@ contains clearance measures from two experiments types, hepatocyte and microsome
                 "type": "continuous",
                 "names": [  # names for the property (to sample from for building the prompts)
                     {"noun": "drug clearance"},
-                    {
-                        "noun": "volume of plasma cleared of a drug over a specified time period"
-                    },
+                    {"noun": "volume of plasma cleared over a specified time period"},
                 ],
                 "uris": [
                     "http://purl.bioontology.org/ontology/MEDDRA/10077254",

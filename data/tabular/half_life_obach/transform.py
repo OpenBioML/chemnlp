@@ -55,10 +55,11 @@ This dataset deposited version under CHEMBL assay 1614674.""",
                 "type": "continuous",
                 "names": [  # names for the property (to sample from for building the prompts)
                     {"noun": "half life"},
+                    {"noun": "half life time"},
                     {"noun": "drug half life time"},
-                    {
-                        "noun": "the duration by which the concentration of the drug in the body is reduced by half"
-                    },
+                    # {
+                    #    "noun": "the duration by which the concentration of the drug in the body is reduced by half"
+                    # },
                 ],
                 "uris": [
                     "http://purl.bioontology.org/ontology/MESH/D006207",

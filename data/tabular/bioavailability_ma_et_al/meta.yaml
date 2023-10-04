@@ -52,21 +52,81 @@ bibtex:
       oral bioavailability derived by using GA-CG-SVM method},
       journal = {Journal of Pharmaceutical and Biomedical Analysis}
 templates:
-    - The molecule with the {SMILES__description} representation {SMILES#} has a {bioavailable#low&high} {bioavailable__names__noun}.
-    - Based on the {SMILES__description} representation {SMILES#}, the molecule has a {bioavailable#low&high} {bioavailable__names__noun}.
-    - The {SMILES__description} {SMILES#} represents a molecule that has a {bioavailable#low&high} {bioavailable__names__noun}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} has a {bioavailable#low&high} {bioavailable__names__noun}.
+    - Based on the {SMILES__description} {#representation of |!}{SMILES#}, the molecule has a {bioavailable#low&high} {bioavailable__names__noun}.
+    - The {SMILES__description} {SMILES#} {#represents|is from!} a molecule that has a {bioavailable#low&high} {bioavailable__names__noun}.
     - The {SMILES__description} {SMILES#} has a {bioavailable#low&high} {bioavailable__names__noun}.
-    - The molecule {SMILES#} has a {bioavailable#low&high} {bioavailable__names__noun}.
-    - Is the {SMILES__description} {SMILES#} {bioavailable__names__adjective}? <EOI> {bioavailable#yes&no}
+    - The molecule with the {SMILES__description} {SMILES#} has a {bioavailable#low&high} {bioavailable__names__noun}.
     - |-
-      Task: Please answer the multiple choice question below with {%multiple_choice_enum%2%aA1}.
-      Question: Is the molecule with the {SMILES__description} representation {SMILES#} {bioavailable__names__adjective}?
+      Task: Please classify a molecule based on the description.
+      Description: Predict if the molecule has a low or high {bioavailable__names__noun}?
+      {#Molecule |!}{SMILES__description}: {SMILES#}
+      Constraint: Even if you are {#uncertain|not sure!}, you must pick either "low" or "high" without using any {#other|additional!} words.
+      Result: {bioavailable#low&high}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: Predict if the molecule has a low or high {bioavailable__names__noun}?
+      {#Molecule |!}{SMILES__description}: {SMILES#}
+      Constraint: Answer the question in a {#full|complete!} sentence.
+      Result: This molecule has a {bioavailable#low&high} {bioavailable__names__noun}.
+    - |-
+      Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+      Description: A molecule that has a {bioavailable#low&high} {bioavailable__names__noun}.
+      Result: {SMILES#}
+    - |-
+      User: Can you {#tell me|derive|estimate!} if the molecule with the {SMILES__description} {SMILES#} has a low or high {bioavailable__names__noun}?
+      Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, this molecule has a {bioavailable#low&high} {bioavailable__names__noun}.
+    - |-
+      User: Has the molecule with the {SMILES__description} {SMILES#} a low or high {bioavailable__names__noun}?
+      Assistant: It has a {bioavailable#low&high} {bioavailable__names__noun}.
+    - |-
+      User: Can you {#give me|create|generate!} the {SMILES__description} of a molecule that has a {bioavailable#low&high} {bioavailable__names__noun}?
+      Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}
+    - |-
+      User: I'm {#searching|looking!} for the {SMILES__description} of a molecule that has a {bioavailable#low&high} {bioavailable__names__noun}?
+      Assistant: {#Ok, this|This!} is a molecule that has a {bioavailable#low&high} {bioavailable__names__noun}: {SMILES#}
+    - |-
+      User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+      Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
+      User: Yes, please. The molecule should have a {bioavailable#low&high} {bioavailable__names__noun}.
+      Assistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} has a {bioavailable#low&high} {bioavailable__names__noun}: {SMILES#}
+    - |-
+      User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+      Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
+      User: Yes, the molecule should have a {bioavailable#low&high} {bioavailable__names__noun}.
+      Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} has a {bioavailable#low&high} {bioavailable__names__noun}: {SMILES#}
+    - Is the {SMILES__description} {SMILES#} {bioavailable__names__adjective}?<EOI> {bioavailable#yes&no}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: Predict if the molecule has a low or high {bioavailable__names__noun}?
+      {#Molecule |!}{SMILES__description}: {SMILES#}
+      Constraint: Even if you are {#uncertain|not sure!}, you must pick either "low" or "high" without using any {#other|additional!} words.
+      Result:<EOI> {bioavailable#low&high}
+    - |-
+      Task: Please answer the multiple choice question.
+      Question: Has the molecule with the {SMILES__description} {#representation of |!}{SMILES#} a high {bioavailable__names__noun}?
+      Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
       Options:
       {bioavailable%}
       Answer: {%multiple_choice_result}
     - |-
-      Task: Please answer the multiple choice question below with {%multiple_choice_enum%2%aA1}.
-      Question: Is the molecule with the {SMILES__description} representation {SMILES#} {bioavailable__names__adjective}?
+      Task: Please answer the multiple choice question.
+      Question: Has the molecule with the {SMILES__description} {#representation of |!}{SMILES#} a high {bioavailable__names__noun}?
+      Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
       Options:
       {bioavailable%}
+      Answer:<EOI> {%multiple_choice_result}
+    - |-
+      Task: Please answer the multiple choice question.
+      Question: Which molecules have a high {bioavailable__names__noun}?
+      Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
+      Options:
+      {SMILES%bioavailable%}
+      Answer: {%multiple_choice_result}
+    - |-
+      Task: Please answer the multiple choice question.
+      Question: Which molecules have a high {bioavailable__names__noun}?
+      Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
+      Options:
+      {SMILES%bioavailable%}
       Answer:<EOI> {%multiple_choice_result}

@@ -44,6 +44,8 @@ def get_and_transform_data():
 
     assert not df.duplicated().sum()
 
+    df.liver_injury = df.liver_injury.astype(int)
+
     # save to csv
     fn_data_csv = "data_clean.csv"
     df.to_csv(fn_data_csv, index=False)
@@ -63,13 +65,10 @@ Research.""",
                 "units": None,  # units of the values in this column (leave empty if unitless)
                 "type": "boolean",
                 "names": [  # names for the property (to sample from for building the prompts)
-                    {"noun": "liver injury"},
-                    {"noun": "drug induced liver injury"},
+                    {"noun": "drug-induced liver injury"},
+                    {"noun": "drug-induced liver injury (DILI)"},
                     {"noun": "fatal liver disease caused by drugs"},
-                    {"noun": "liver toxicity"},
-                    {"verb": "injures the liver"},
-                    {"verb": "is toxic to the liver"},
-                    {"verb": "causes liver injury"},
+                    {"verb": "causes drug-induced liver injury"},
                 ],
                 "uris": [
                     "http://purl.bioontology.org/ontology/MEDDRA/10072268",
@@ -117,6 +116,74 @@ author = {Youjun Xu and Ziwei Dai and Fangjin Chen
 and Shuaishi Gao and Jianfeng Pei and Luhua Lai},
 title = {Deep Learning for Drug-Induced Liver Injury},
 journal = {Journal of Chemical Information and Modeling}""",
+        ],
+        "templates": [
+            "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} {#shows|causes|displays!} {liver_injury#no &NULL}{liver_injury__names__noun}.",  # noqa: E501
+            "Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule causes {liver_injury#no &NULL}{liver_injury__names__noun}.",  # noqa: E501
+            "The {SMILES__description} {SMILES#} represents a molecule that is {liver_injury#not &NULL}identified as causing a {liver_injury__names__noun}.",  # noqa: E501
+            "The {#molecule |!}{SMILES__description} {SMILES#} is causing {liver_injury#no &NULL}{liver_injury__names__noun}.",  # noqa: E501 not all variables need to be used
+            # Instruction tuning text templates
+            """Task: Please classify a molecule based on the description.
+Description: A molecule that {#shows|causes!} {liver_injury__names__noun}.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
+Result: {liver_injury#False&True}""",  # noqa: E501
+            """Task: Please classify a molecule based on the description.
+Description: A molecule that {#shows|causes!} {liver_injury__names__noun}.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Answer the question in a {#full|complete!} sentence.
+Result: This molecule is {liver_injury#not &NULL}causing {liver_injury__names__noun}.""",
+            """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+Description: A molecule that {#shows|causes!} {liver_injury__names__noun}.
+Result: {SMILES#}""",  # noqa: E501
+            # Conversational text templates
+            """User: Can you {#tell me|derive|estimate!} if the molecule with the {SMILES__description} {SMILES#} {#shows|causes!} a {liver_injury__names__noun}?
+Assistant: {liver_injury#No&Yes}, this molecule is {liver_injury#not &NULL}causing a {liver_injury__names__noun}.""",  # noqa: E501
+            """User: Is the molecule with the {SMILES__description} {SMILES#} causing a {liver_injury__names__noun}?
+Assistant: {liver_injury#No&Yes}, it is {liver_injury#not &NULL}causing a {liver_injury__names__noun}.""",  # noqa: E501
+            """User: Can you {#give me|create|generate!} the {SMILES__description} of a molecule that is {liver_injury#not &NULL}{#showing|causing!} a {liver_injury__names__noun}?
+Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}""",  # noqa: E501
+            """User: I'm {#searching|looking!} for the {SMILES__description} of a molecule that is {liver_injury#not &NULL}{#showing|causing!} a {liver_injury__names__noun}.
+Assistant: This is a molecule that is {liver_injury#not &NULL}causing a {liver_injury__names__noun}: {SMILES#}""",  # noqa: E501
+            """User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
+User: Yes, please. The molecule should {liver_injury#not &NULL}be causing a {liver_injury__names__noun}.
+Assistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} is {liver_injury#not &NULL}causing a {liver_injury__names__noun}: {SMILES#}""",  # noqa: E501
+            """User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
+User: Yes, the molecule should {liver_injury#not &NULL}be causing a {liver_injury__names__noun}.
+Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {liver_injury#not &NULL}causing a {liver_injury__names__noun}: {SMILES#}""",  # noqa: E501
+            # Benchmarking text templates
+            "Is the {SMILES__description} {SMILES#} causing a {liver_injury__names__noun}:<EOI> {liver_injury#no&yes}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
+            """Task: Please classify a molecule based on the description.
+Description: A molecule that {#shows|causes!} a {liver_injury__names__noun}.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
+Result:<EOI> {liver_injury#False&True}""",  # noqa: E501
+            """Task: Please answer the multiple choice question.
+Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} causing a {liver_injury__names__noun}?
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
+Options:
+{liver_injury%}
+Answer: {%multiple_choice_result}""",  # noqa: E501
+            """Task: Please answer the multiple choice question.
+Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} causing a {liver_injury__names__noun}?
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
+Options:
+{liver_injury%}
+Answer:<EOI> {%multiple_choice_result}""",  # noqa: E501
+            """Task: Please answer the multiple choice question.
+Question: Which molecules are {liver_injury#not &NULL} causing a {liver_injury__names__noun}?
+Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
+Options:
+{SMILES%liver_injury%}
+Answer: {%multiple_choice_result}""",  # noqa: E501
+            """Task: Please answer the multiple choice question.
+Question: Which molecules are {liver_injury#not &NULL} causing a {liver_injury__names__noun}?
+Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
+Options:
+{SMILES%liver_injury%}
+Answer:<EOI> {%multiple_choice_result}""",  # noqa: E501
         ],
     }
 

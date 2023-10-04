@@ -21,7 +21,7 @@ def get_and_transform_data():
     assert fields_orig == ["Drug_ID", "Drug", "Y", "split"]
 
     # overwrite column names = fields
-    fields_clean = ["compound_id", "SMILES", "m1_muscarinic_antagonists", "split"]
+    fields_clean = ["compound_id", "SMILES", "m1_muscarinic_antagonist", "split"]
     df.columns = fields_clean
 
     assert not df.duplicated().sum()
@@ -41,13 +41,17 @@ Final set of active compoundsobtained by subtracting active compounds of AID860
 from those in AID677, resulting in 448 total active compounds.""",
         "targets": [
             {
-                "id": "m1_muscarinic_antagonists",
+                "id": "m1_muscarinic_antagonist",
                 "description": "whether it negatively modulates the m1 muscarinic receptor (1) or not (0).",
                 "units": None,
                 "type": "boolean",
                 "names": [
-                    {"noun": "a negative modulator of M1 muscarinic receptors"},
-                    {"gerund": "negatively modulating M1 muscarinic receptors"},
+                    {
+                        "noun": "negative modulation of the M1 muscarinic receptor activity"
+                    },
+                    {
+                        "gerund": "modulating the M1 muscarinic receptor activity in a negative way"
+                    },
                 ],
                 "pubchem_aids": [628, 677, 860],
                 "uris": [],
@@ -130,6 +134,76 @@ E. W. and Weaver, D. C. and Meiler, J.},
 title = {{H}igh-{T}hroughput {S}creening {A}ssay {D}atasets from
 the {P}ub{C}hem {D}atabase}},
 journal = {Chemical Science}}""",
+        ],
+        "templates": [
+            "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} {#shows|exhibits|displays!} {m1_muscarinic_antagonist#no &NULL}{m1_muscarinic_antagonist__names__noun}.",  # noqa: E501
+            "Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule {#shows|exhibits|displays!} {m1_muscarinic_antagonist#no &NULL}{m1_muscarinic_antagonist__names__noun}.",  # noqa: E501
+            "The {SMILES__description} {SMILES#} represents a molecule that {#shows|exhibits|displays!} {m1_muscarinic_antagonist#no &NULL}{m1_muscarinic_antagonist__names__noun}.",  # noqa: E501
+            "The {#molecule |!}{SMILES__description} {SMILES#} is {m1_muscarinic_antagonist#not &NULL}{m1_muscarinic_antagonist__names__gerund}.",  # noqa: E501 not all variables need to be used
+            # Instruction tuning text templates
+            """Task: Please classify a molecule based on the description.
+Description: A molecule that is {m1_muscarinic_antagonist__names__gerund}.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
+Result: {m1_muscarinic_antagonist#False&True}""",  # noqa: E501
+            """Task: Please classify a molecule based on the description.
+Description: A molecule that is {m1_muscarinic_antagonist__names__gerund}.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Answer the question in a {#full|complete!} sentence.
+Result: This molecule is {m1_muscarinic_antagonist#not &NULL}{m1_muscarinic_antagonist__names__gerund}.""",  # noqa: E501
+            """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+Description: A molecule that is {m1_muscarinic_antagonist__names__gerund}.
+Result: {SMILES#}""",  # noqa: E501
+            # Conversational text templates
+            """User: Can you {#tell me|derive|estimate!} if the molecule with the {SMILES__description} {SMILES#} is {m1_muscarinic_antagonist__names__gerund}?
+Assistant: {m1_muscarinic_antagonist#No&Yes}, this molecule is {m1_muscarinic_antagonist#not &NULL}{m1_muscarinic_antagonist__names__gerund}.""",  # noqa: E501
+            """User: Is the molecule with the {SMILES__description} {SMILES#} {m1_muscarinic_antagonist__names__gerund}?
+Assistant: {m1_muscarinic_antagonist#No&Yes}, it is {m1_muscarinic_antagonist#not &NULL}{m1_muscarinic_antagonist__names__gerund}.""",  # noqa: E501
+            """User: Can you {#give me|create|generate!} the {SMILES__description} of a molecule that is {m1_muscarinic_antagonist#not &NULL}{m1_muscarinic_antagonist__names__gerund}?
+Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}""",  # noqa: E501
+            """User: I'm {#searching|looking!} for the {SMILES__description} of a molecule that is {m1_muscarinic_antagonist#not &NULL}{m1_muscarinic_antagonist__names__gerund}?
+Assistant: This is a molecule that is {m1_muscarinic_antagonist#not &NULL}{m1_muscarinic_antagonist__names__gerund}: {SMILES#}""",  # noqa: E501
+            """User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
+User: Yes, please. The molecule should {m1_muscarinic_antagonist#not &NULL}be {m1_muscarinic_antagonist__names__gerund}.
+Assistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} is {m1_muscarinic_antagonist#not &NULL}{m1_muscarinic_antagonist__names__gerund}: {SMILES#}""",  # noqa: E501
+            """User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
+User: Yes, the molecule should {m1_muscarinic_antagonist#not &NULL}be {m1_muscarinic_antagonist__names__gerund}.
+Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {m1_muscarinic_antagonist#not &NULL}{m1_muscarinic_antagonist__names__gerund}: {SMILES#}""",  # noqa: E501
+            # Benchmarking text templates
+            "Is the {SMILES__description} {SMILES#} {m1_muscarinic_antagonist__names__gerund}:<EOI> {m1_muscarinic_antagonist#no&yes}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
+            """Task: Please classify a molecule based on the description.
+Description: A molecule that is {m1_muscarinic_antagonist__names__gerund}.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
+Result:<EOI> {m1_muscarinic_antagonist#False&True}""",  # noqa: E501
+            """Task: Please classify a molecule based on the description.
+Description: A molecule that is {m1_muscarinic_antagonist__names__gerund}.
+{#Molecule |!}{SMILES__description}: {SMILES#}
+Constraint: Answer the question in a {#full|complete!} sentence.
+Result:<EOI> This molecule is {m1_muscarinic_antagonist#not &NULL}{m1_muscarinic_antagonist__names__gerund}.""",  # noqa: E501
+            # noqa: E501 """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+            # Description: A molecule that is {m1_muscarinic_antagonist__names__gerund}.
+            # Result:<EOI> {SMILES#}""",  # noqa: E501
+            """Task: Please answer the multiple choice question.
+Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} {m1_muscarinic_antagonist__names__gerund}?
+Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
+Options:
+{m1_muscarinic_antagonist%}
+Answer:<EOI> {%multiple_choice_result}""",  # noqa: E501
+            """Task: Please answer the multiple choice question.
+Question: Which molecules are {m1_muscarinic_antagonist#not &NULL}{m1_muscarinic_antagonist__names__gerund}?
+Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
+Options:
+{SMILES%m1_muscarinic_antagonist%}
+Answer: {%multiple_choice_result}""",  # noqa: E501
+            """Task: Please answer the multiple choice question.
+Question: Which molecules are {m1_muscarinic_antagonist#not &NULL}{m1_muscarinic_antagonist__names__gerund}?
+Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
+Options:
+{SMILES%m1_muscarinic_antagonist%}
+Answer:<EOI> {%multiple_choice_result}""",  # noqa: E501
         ],
     }
 

@@ -129,12 +129,12 @@ def line_reps_from_smiles(
     """
 
     if smiles in unique_smiles_processed:
-        print("SMILES was already previously processed.")
+        # print("SMILES was already previously processed.")
         representations = df_processed[df_processed.SMILES == smiles].to_dict(
             orient="records"
         )[0]
     else:
-        print("Process SMILES.")
+        # print("Process SMILES.")
         representations = {
             "smiles": smiles,
             "selfies": _try_except_none(smiles_to_selfies, smiles),
@@ -156,10 +156,13 @@ def line_reps_from_smiles(
 if __name__ == "__main__":
     path_base = __file__.replace("text_sampling/extend_tabular.py", "")
     path_data_dir = sorted(glob.glob(path_base + "tabular/*"))
+    path_data_dir += sorted(
+        [p for p in glob.glob(path_base + "kg/*") if os.path.isdir(p)]
+    )
     path_processed_smiles = path_base + "text_sampling/extend_tabular_processed.csv"
 
     if os.path.isfile(path_processed_smiles):
-        df_processed = pd.read_csv(path_processed_smiles)
+        df_processed = pd.read_csv(path_processed_smiles, low_memory=False)
         unique_smiles_processed = df_processed.SMILES.unique().tolist()
         process_func = partial(
             line_reps_from_smiles,
@@ -172,6 +175,9 @@ if __name__ == "__main__":
         process_func = line_reps_from_smiles
 
     for path in path_data_dir:
+        # subselect one path
+        # if path.find("data/kg/compound_protein_compound") == -1: continue
+        # if path.find("data/tabular/h2_storage_materials") == -1: continue
         if not os.path.isdir(path):
             continue
 
@@ -205,7 +211,7 @@ if __name__ == "__main__":
             )
             continue
 
-        df = pd.read_csv(path_data)
+        df = pd.read_csv(path_data, low_memory=False)
 
         # if {
         #    "SMILES",

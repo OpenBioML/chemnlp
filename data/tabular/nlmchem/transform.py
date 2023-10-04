@@ -57,7 +57,7 @@ def get_and_transform_data():
                 "id": "Full_Form",
                 "description": "full form or meaning of the abbreviation",
                 "type": "categorical",
-                "names": [{"noun": "full form or meaning of the abbreviation"}],
+                "names": [{"noun": "full form or meaning"}],
             },
         ],
         "license": "CC BY 4.0",
@@ -83,6 +83,31 @@ year = {2021},
 doi = {10.1038/s41597-021-00875-1},
 url = {https://doi.org/10.1038/s41597-021-00875-1}
 }""",
+        ],
+        "templates": [
+            'The {Abbreviation__names__noun} "{Abbreviation#}" stands for "{#Full_Form}".',  # noqa
+            """Task: Please give me the {Full_Form__names__noun} of the {Abbreviation__names__noun}.
+Abbreviation: {Abbreviation#}
+Constraint: Answer the question with {#full|complete!} words.
+Result: {Full_Form#}""",  # noqa
+            """Task: Please give me the {Abbreviation__names__noun} of the following {Full_Form__names__noun}.
+Full form or meaning of the abbreviation: {Full_Form#}
+Constraint: Answer the question with an {Abbreviation__names__noun}.
+Result: {Abbreviation#}""",  # noqa
+            """User: Can you give me the {Abbreviation__names__noun} of the following {Full_Form__names__noun}: {#Full_Form}
+Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {Abbreviation#}""",  # noqa
+            """User: Can you give me the {Full_Form__names__noun} of the following {Abbreviation__names__noun}: {#Abbreviation}
+Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {Full_Form#}""",  # noqa
+            """User: I'm {#searching|looking!} for the {Abbreviation__names__noun} for: {#Full_Form}
+Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {Abbreviation#}""",  # noqa
+            """Task: Please give me the {Full_Form__names__noun} of the {Abbreviation__names__noun}.
+Abbreviation: {Abbreviation#}
+Constraint: Answer the question with {#full|complete!} words.
+Result:<EOI> {Full_Form#}""",  # noqa
+            """Task: Please give me the {Abbreviation__names__noun} of the following {Full_Form__names__noun}.
+Full form or meaning of the abbreviation: {Full_Form#}
+Constraint: Answer the question with an {Abbreviation__names__noun}.
+Result:<EOI> {Abbreviation#}""",  # noqa
         ],
     }
 

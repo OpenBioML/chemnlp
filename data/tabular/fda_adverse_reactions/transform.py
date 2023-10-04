@@ -120,6 +120,10 @@ if __name__ == "__main__":
     print(df_clean.head(1))
     print(df_clean.info())
 
+    # save to csv
+    fn_data_csv = "data_clean.csv"
+    df_clean.to_csv(fn_data_csv, index=False)
+
     yaml.add_representer(str, str_presenter)
     yaml.representer.SafeRepresenter.add_representer(str, str_presenter)
 

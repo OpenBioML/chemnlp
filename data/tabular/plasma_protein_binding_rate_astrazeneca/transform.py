@@ -65,17 +65,14 @@ efficiency of delivery. The less bound a drug is, the more efficiently it can
 traverse and diffuse to the site of actions.""",
         "targets": [
             {
-                "id": "rate_of_PPBR",  # name of the column in a tabular dataset
+                "id": "rate_of_PPBR",
                 "description": "percentage of a drug bound to plasma proteins in the blood",
-                "units": "percentage",  # units of the values in this column (leave empty if unitless)
+                "units": "%",
                 "type": "continuous",
-                "names": [  # names for the property (to sample from for building the prompts)
+                "names": [
                     {"noun": "human plasma protein binding rate (PPBR)"},
                     {"noun": "human plasma protein binding rate"},
                     {"noun": "PPBR"},
-                    {
-                        "noun": "percentage of a drug bound to plasma proteins in the blood"
-                    },
                 ],
                 "uris": [
                     "http://purl.jp/bio/4/id/201306028362680450",

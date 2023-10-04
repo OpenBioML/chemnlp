@@ -45,6 +45,29 @@ def get_and_transform_data():
     ]
 
     # save to csv
+    fn_data_csv = "data_orig.csv"
+    df.to_csv(fn_data_csv, index=False)
+
+    # load again
+    # this somehow fixes some data issues coming directly from the json dict
+    df = pd.read_csv("data_orig.csv")
+
+    df = df.dropna(subset=["term", "definition"])
+
+    def cleanup(x):
+        if isinstance(x, list):
+            return x[0]
+        elif x is None:
+            return ""
+        elif x.find("[image:") != -1:
+            return ""
+        else:
+            return x
+
+    df.definition = df.definition.apply(cleanup)
+    df = df.loc[df["definition"] != "", :]
+
+    # save to csv
     fn_data_csv = "data_clean.csv"
     df.to_csv(fn_data_csv, index=False)
 
@@ -71,29 +94,28 @@ is a collection of nearly 7000 terms, with authoritative definitions,
 spanning the whole range of chemistry.""",
         "targets": [
             {
-                "id": "definition",  # name of the column in a tabular dataset
-                "description": "definition of a chemistry term",  # description of what this column means
-                "units": None,  # units of the values in this column (leave empty if unitless)
+                "id": "definition",
+                "description": "definition of a chemistry term",
+                "units": None,
                 "type": "string",
-                "names": [  # names for the property (to sample from for building the prompts)
+                "names": [
                     {"noun": "definition"},
-                    {"noun": "definition of a chemistry term"},
+                    {"noun": "text definition"},
                 ],
             },
         ],
         "identifiers": [
             {
-                "id": "term",  # column name
-                "type": "Other",  # can be "SMILES", "SELFIES", "IUPAC", "OTHER"
-                "description": "chemistry term",  # description (optional, except for "OTHER")
+                "id": "term",
+                "type": "Other",
+                "description": "chemistry term",
                 "names": [
-                    {"noun": "term"},
                     {"noun": "chemistry term"},
                 ],
             },
         ],
-        "license": "CC BY-NC-ND 4.0",  # license under which the original dataset was published
-        "links": [  # list of relevant links (original dataset, other uses, etc.)
+        "license": "CC BY-NC-ND 4.0",
+        "links": [
             {
                 "url": "https://goldbook.iupac.org",
                 "description": "home page",
@@ -103,7 +125,7 @@ spanning the whole range of chemistry.""",
                 "description": "license description",
             },
         ],
-        "num_points": len(df),  # number of datapoints in this dataset
+        "num_points": len(df),
         "bibtex": [
             "@article{iupac2023,"
             f"title={{{data['title']}}},\n"
@@ -112,6 +134,43 @@ spanning the whole range of chemistry.""",
             f"doi={{{data['doi']}}},\n"
             f"accessdate={{{data['accessdate']}}},\n"
             "}",
+        ],
+        "templates": [
+            'The {term__names__noun} "{term#}" can be {#described|defined!} {#by|as!}:\n{#definition}',  # noqa
+            """Task: Please {#give me|create|generate!} a {definition__names__noun} of a {term__names__noun}.
+Term: {term#}
+Constraint: Answer the question with {#full|complete!} sentences.
+Result: {definition#}""",  # noqa
+            """Task: Please {#give me|create|generate!} a {term__names__noun} for the {#following |!}{definition__names__noun}:
+Definition: {definition#}
+Result: {term#}""",  # noqa
+            """User: Can you {#give me|create|generate!} a {term__names__noun} {#described|defined!} by:
+{#definition}
+Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {term#}""",  # noqa
+            """User: Can you {#give me|create|generate!} the {definition__names__noun} for the following {term__names__noun}:
+{#term}
+Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go:
+{#definition}""",  # noqa
+            """User: I'm {#searching|looking!} for the {term__names__noun} that can be described {#by|as!}:
+{#definition}
+Assistant: This {term__names__noun} fits {#your|this!} definition: {term#}""",  # noqa
+            """User: I want to {#come up with|create|generate!} a {definition__names__noun}.
+Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
+User: Yes, please. The {term__names__noun} can be described {#by|as!}:
+{#term}
+Assistant: {#Ok|Got it!},{# here you go,|!} this {definition__names__noun} fits {#your|this!} description: {definition#}""",  # noqa
+            """User: I want to {#come up with|create|generate!} a {term__names__noun}.
+Assistant: {#This sounds very exciting. |This sounds very interesting. |!}How is the {term__names__noun} described?
+User: The {term__names__noun} can be described {#by|as!}:
+{#definition}
+Assistant: {#Ok|Got it!},{# here you go,|!} this {term__names__noun} fits {#your|this!} description: {term#}""",  # noqa
+            """Task: Please {#give me|create|generate!} a {definition__names__noun} of a {term__names__noun}.
+Term: {term#}
+Constraint: Answer the question with {#full|complete!} sentences.
+Result:<EOI> {definition#}""",  # noqa
+            """Task: Please {#give me|create|generate!} a {term__names__noun} for the {#following |!}{definition__names__noun}:
+Definition: {definition#}
+Result:<EOI> {term#}""",  # noqa
         ],
     }
 

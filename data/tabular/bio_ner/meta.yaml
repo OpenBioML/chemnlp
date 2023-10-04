@@ -1,0 +1,37 @@
+---
+name: bio_ner
+description: NER data.
+identifiers:
+    - id: Sentence
+      description: Sentence
+      type: Other
+targets:
+    - id: entity_1
+      description: entity_1
+      type: Other
+      units: entity_1
+      names:
+          - noun: entity_1
+    - id: json
+      description: json
+      type: Other
+      units:
+      names:
+          - noun: JSON output
+benchmarks:
+    - name: ???
+      link: ???
+      split_column: split
+license: NEEDS TO BE DEFINED
+links:
+    - url: https://github.com/ML4LitS/bio-datasets
+      description: ???
+num_points: 144675
+bibtex:
+    - ???
+templates:
+    - |-
+      Task: Please carry out the {#named entity recognition (NER)|named entity recognition|NER!} task for the the text below.
+      Text: {#Sentence}.
+      Constrain: Please, {#only |!}list the entities in the form NER entity, span start, span end, and type {#in separate lines |!}with a high probability of being in the text.
+      Result: {#entity_1}
