@@ -95,7 +95,7 @@ templates:
       Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
       User: Yes, the molecule should {toxicity_SR-ATAD5#not &NULL}be {toxicity_SR-ATAD5__names__adjective}.
       Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {toxicity_SR-ATAD5#not &NULL}{toxicity_SR-ATAD5__names__adjective}: {SMILES#}
-    - Is the {SMILES__description} {SMILES#} {toxicity_SR-ATAD5__names__adjective}:<EOI> {toxicity_SR-ATAD5#yes&no}
+    - Is the {SMILES__description} {SMILES#} {toxicity_SR-ATAD5__names__adjective}:<EOI> {toxicity_SR-ATAD5#no&yes}
     - |-
       Task: Please classify a molecule based on the description.
       Description: A molecule that is {toxicity_SR-ATAD5__names__adjective}.

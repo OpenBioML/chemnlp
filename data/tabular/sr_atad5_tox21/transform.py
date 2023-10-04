@@ -164,7 +164,7 @@ Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should 
 User: Yes, the molecule should {toxicity_SR-ATAD5#not &NULL}be {toxicity_SR-ATAD5__names__adjective}.
 Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {toxicity_SR-ATAD5#not &NULL}{toxicity_SR-ATAD5__names__adjective}: {SMILES#}""",  # noqa: E501
             # Benchmarking text templates
-            "Is the {SMILES__description} {SMILES#} {toxicity_SR-ATAD5__names__adjective}:<EOI> {toxicity_SR-ATAD5#yes&no}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
+            "Is the {SMILES__description} {SMILES#} {toxicity_SR-ATAD5__names__adjective}:<EOI> {toxicity_SR-ATAD5#no&yes}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
             """Task: Please classify a molecule based on the description.
 Description: A molecule that is {toxicity_SR-ATAD5__names__adjective}.
 {#Molecule |!}{SMILES__description}: {SMILES#}
