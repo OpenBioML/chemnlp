@@ -41,7 +41,7 @@ def get_and_transform_data():
 
     # save to csv
     fn_data_csv = "data_clean.csv"
-    df["toxicity_NR-ER"] = df[f"toxicity_NR-ER"].astype(int)
+    df["toxicity_NR-ER"] = df["toxicity_NR-ER"].astype(int)
     df.to_csv(fn_data_csv, index=False)
 
     # create meta yaml
@@ -161,7 +161,7 @@ Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should 
 User: Yes, the molecule should {toxicity_NR-ER#not &NULL}be {toxicity_NR-ER__names__adjective}.
 Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {toxicity_NR-ER#not &NULL}{toxicity_NR-ER__names__adjective}: {SMILES#}""",  # noqa: E501
             # Benchmarking text templates
-            "Is the {SMILES__description} {SMILES#} {toxicity_NR-ER__names__adjective}:<EOI> {toxicity_NR-ER#yes&no}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
+            "Is the {SMILES__description} {SMILES#} {toxicity_NR-ER__names__adjective}:<EOI> {toxicity_NR-ER#no&yes}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
             """Task: Please classify a molecule based on the description.
 Description: A molecule that is {toxicity_NR-ER__names__adjective}.
 {#Molecule |!}{SMILES__description}: {SMILES#}
