@@ -135,7 +135,7 @@ templates:
       Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
       User: Yes, the molecule should {activity_orexin1#not &NULL}be {activity_orexin1__names__adjective}.
       Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {activity_orexin1#not &NULL}{activity_orexin1__names__adjective}: {SMILES#}
-    - Is the {SMILES__description} {SMILES#} {activity_orexin1__names__adjective}:<EOI> {activity_orexin1#yes&no}
+    - Is the {SMILES__description} {SMILES#} {activity_orexin1__names__adjective}:<EOI> {activity_orexin1#no&yes}
     - |-
       Task: Please classify a molecule based on the description.
       Description: A molecule that is {activity_orexin1__names__adjective}.
