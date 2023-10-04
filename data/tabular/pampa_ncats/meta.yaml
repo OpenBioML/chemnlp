@@ -13,7 +13,7 @@ targets:
       units:
       type: boolean
       names:
-          - noun: permeability in the PAMPA assay
+          - noun: permeability
           - verb: is permeable in the PAMPA assay
           - verb: shows permeability in parallel artificial membrane permeability assay (PAMPA) assay
           - adjective: permeable in the PAMPA assay
@@ -94,7 +94,7 @@ templates:
       Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
       User: Yes, the molecule should {permeability#not &NULL}be {permeability__names__adjective}.
       Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {permeability#not &NULL}{permeability__names__adjective}: {SMILES#}
-    - Is the {SMILES__description} {SMILES#} {permeability__names__adjective}:<EOI> {permeability#yes&no}
+    - Is the {SMILES__description} {SMILES#} {permeability__names__adjective}:<EOI> {permeability#no&yes}
     - |-
       Task: Please classify a molecule based on the description.
       Description: A molecule that is {permeability__names__adjective}.
