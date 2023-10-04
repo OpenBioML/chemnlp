@@ -186,7 +186,7 @@ Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should 
 User: Yes, the molecule should {activity_tyrosyl_dna_phosphodiesterase#not &NULL}be {activity_tyrosyl_dna_phosphodiesterase__names__adjective}.
 Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {activity_tyrosyl_dna_phosphodiesterase#not &NULL}{activity_tyrosyl_dna_phosphodiesterase__names__adjective}: {SMILES#}""",  # noqa: E501
             # Benchmarking text templates
-            "Is the {SMILES__description} {SMILES#} {activity_tyrosyl_dna_phosphodiesterase__names__adjective}:<EOI> {activity_tyrosyl_dna_phosphodiesterase#yes&no}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
+            "Is the {SMILES__description} {SMILES#} {activity_tyrosyl_dna_phosphodiesterase__names__adjective}:<EOI> {activity_tyrosyl_dna_phosphodiesterase#no&yes}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
             """Task: Please classify a molecule based on the description.
 Description: A molecule that is {activity_tyrosyl_dna_phosphodiesterase__names__adjective}.
 {#Molecule |!}{SMILES__description}: {SMILES#}
