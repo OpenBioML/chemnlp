@@ -17,7 +17,7 @@ targets:
           - adjective: toxic in the NR-androgen receptor assay
           - gerund: displaying toxicity in the NR-AR assay
           - gerund: exhibiting toxicity in the NR-androgen assay
-          - gerund: demostrating toxicity in the NR-androgen assay
+          - gerund: demonstrating toxicity in the NR-androgen assay
       uris:
 benchmarks:
     - name: TDC
@@ -93,7 +93,7 @@ templates:
       Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
       User: Yes, the molecule should {toxicity_NR-AR#not &NULL}be {toxicity_NR-AR__names__adjective}.
       Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {toxicity_NR-AR#not &NULL}{toxicity_NR-AR__names__adjective}: {SMILES#}
-    - Is the {SMILES__description} {SMILES#} {toxicity_NR-AR__names__adjective}:<EOI> {toxicity_NR-AR#yes&no}
+    - Is the {SMILES__description} {SMILES#} {toxicity_NR-AR__names__adjective}:<EOI> {toxicity_NR-AR#no&yes}
     - |-
       Task: Please classify a molecule based on the description.
       Description: A molecule that is {toxicity_NR-AR__names__adjective}.
