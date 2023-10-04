@@ -8,7 +8,7 @@ description: |-
 targets:
     - id: VDss_Lombardo
       description: volume of distribution at steady state (VDss)
-      units: VDss(L/kg)
+      units: L/kg
       type: continuous
       names:
           - noun: volume of distribution at steady state (VDss)
