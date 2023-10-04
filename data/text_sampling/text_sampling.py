@@ -961,14 +961,20 @@ if __name__ == "__main__":
     )
     path_lm_eval_data_dir = path_base + "text_sampling/export"
 
+    # index = [i for i, x in enumerate(path_data_dir) if x.find("data/tabular/sr_are_tox21") != -1][0]
+    # print(index)
+    # path_data_dir = path_data_dir[index:]
+
     for path in path_data_dir:
+        if path.find("data/tabular/lipophilicity") != -1:
+            continue  # needs the units fixed or templates copied over
         # subselect one path
+        # if path.find("data/tabular/") == -1: continue
         # if path.find("data/kg/") == -1: continue
         # if path.find("chembl33") != -1: continue
-        # if path.find("data/kg/drug_protein_pathway_disease") == -1: continue
-        # if path.find("data/kg/compound_protein_compound_3") == -1: continue
         # if path.find("data/kg/compound_chebi") == -1: continue
-        # if path.find("data/tabular/h2_storage_materials") == -1: continue
+        # if path.find("data/tabular/cyp3a4_substrate_carbonmangels") == -1: continue
+
         print(f"\n###### {path}")
         path_meta = path + "/meta.yaml"
         path_data = path + "/data_clean.csv"
