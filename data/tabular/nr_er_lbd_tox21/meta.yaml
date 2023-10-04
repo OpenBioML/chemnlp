@@ -22,7 +22,7 @@ targets:
           - gerund: showing toxicity in the NR-ER-LBD assay
           - gerund: displaying toxicity in the NR-ER ligand binding domain assay
           - gerund: exhibiting toxicity in the NR-Estrogen-LBD receptor alpha assay
-          - gerund: demostrating toxicity in the NR-estrogen-LBD receptor alpha assay
+          - gerund: demonstrating toxicity in the NR-estrogen-LBD receptor alpha assay
       uris:
 benchmarks:
     - name: TDC
@@ -99,7 +99,7 @@ templates:
       Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
       User: Yes, the molecule should {toxicity_NR-ER-LBD#not &NULL}be {toxicity_NR-ER-LBD__names__adjective}.
       Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {toxicity_NR-ER-LBD#not &NULL}{toxicity_NR-ER-LBD__names__adjective}: {SMILES#}
-    - Is the {SMILES__description} {SMILES#} {toxicity_NR-ER-LBD__names__adjective}:<EOI> {toxicity_NR-ER-LBD#yes&no}
+    - Is the {SMILES__description} {SMILES#} {toxicity_NR-ER-LBD__names__adjective}:<EOI> {toxicity_NR-ER-LBD#no&yes}
     - |-
       Task: Please classify a molecule based on the description.
       Description: A molecule that is {toxicity_NR-ER-LBD__names__adjective}.
