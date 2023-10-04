@@ -159,7 +159,7 @@ Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should 
 User: Yes, the molecule should {Pgp_inhibition#not &NULL}be {Pgp_inhibition__names__adjective}.
 Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {Pgp_inhibition#not &NULL}{Pgp_inhibition__names__adjective}: {SMILES#}""",  # noqa: E501
             # Benchmarking text templates
-            "Is the {SMILES__description} {SMILES#} {Pgp_inhibition__names__adjective}:<EOI> {Pgp_inhibition#yes&no}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
+            "Is the {SMILES__description} {SMILES#} {Pgp_inhibition__names__adjective}:<EOI> {Pgp_inhibition#no&yes}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
             """Task: Please classify a molecule based on the description.
 Description: A molecule that is {Pgp_inhibition__names__adjective}.
 {#Molecule |!}{SMILES__description}: {SMILES#}

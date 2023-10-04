@@ -100,7 +100,7 @@ templates:
       Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
       User: Yes, the molecule should {Pgp_inhibition#not &NULL}be {Pgp_inhibition__names__adjective}.
       Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {Pgp_inhibition#not &NULL}{Pgp_inhibition__names__adjective}: {SMILES#}
-    - Is the {SMILES__description} {SMILES#} {Pgp_inhibition__names__adjective}:<EOI> {Pgp_inhibition#yes&no}
+    - Is the {SMILES__description} {SMILES#} {Pgp_inhibition__names__adjective}:<EOI> {Pgp_inhibition#no&yes}
     - |-
       Task: Please classify a molecule based on the description.
       Description: A molecule that is {Pgp_inhibition__names__adjective}.
