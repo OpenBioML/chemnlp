@@ -100,6 +100,28 @@ exclude_from_standard_tabular_text_templates = [
     "mona",  # more than one target
     "moses",  # SMILES only, has no target
     "nlmchem",  # text only, no SMILES
+    "nr_ahr_tox21",  # boolean target data
+    "nr_ar_lbd_tox21",  # boolean target data
+    "nr_ar_tox21",  # boolean target data
+    "nr_aromatase_tox21",  # boolean target data
+    "nr_er_lbd_tox21",  # boolean target data
+    "nr_er_tox21",  # boolean target data
+    "nr_ppar_gamma_tox21",  # boolean target data
+    "orexin1_receptor_butkiewicz",  # boolean target data
+    "p_glycoprotein_inhibition_broccatelli_et_al",  # boolean target data
+    "pampa_ncats",  # boolean target data
+    "peptides_hemolytic",  # boolean target data
+    "potassium_ion_channel_kir2_1_butkiewicz",  # boolean target data
+    "sarscov2_3clpro_diamond",  # boolean target data
+    "sarscov2_vitro_touret",  # boolean target data
+    "serine_threonine_kinase_33_butkiewicz",  # boolean target data
+    "skin_reaction",  # boolean target data
+    "sr_are_tox21",  # boolean target data
+    "sr_atad5_tox21",  # boolean target data
+    "sr_hse_tox21",  # boolean target data
+    "sr_mmp_tox21",  # boolean target data
+    "sr_p53_tox21",  # boolean target data
+    "tyrosyl-dna_phosphodiesterase_butkiewicz",  # boolean target data
     "zinc",  # SMILES only, has no target
 ]
 
