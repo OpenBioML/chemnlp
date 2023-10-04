@@ -123,6 +123,7 @@ exclude_from_standard_tabular_text_templates = [
     "sr_p53_tox21",  # boolean target data
     "tyrosyl-dna_phosphodiesterase_butkiewicz",  # boolean target data
     "zinc",  # SMILES only, has no target
+    "bio_ner",
 ]
 
 
@@ -974,6 +975,7 @@ if __name__ == "__main__":
         # if path.find("chembl33") != -1: continue
         # if path.find("data/kg/compound_chebi") == -1: continue
         # if path.find("data/tabular/cyp3a4_substrate_carbonmangels") == -1: continue
+        # if path.find("data/tabular/bio_ner") == -1: continue
 
         print(f"\n###### {path}")
         path_meta = path + "/meta.yaml"

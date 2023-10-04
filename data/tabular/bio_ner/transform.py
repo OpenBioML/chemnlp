@@ -83,9 +83,9 @@ def get_and_transform_data():
 
     # merge data with the same entity count to one file in separate dirs then also save yaml
     for entity_count in data:
-        # REMOVE THIS AT THE END FOR FULL TESTING!!!
-        if entity_count > 2:
-            continue
+        # subselect entity count
+        # if entity_count > 2:
+        #    continue
 
         df = read_and_concat(data[entity_count])
 
