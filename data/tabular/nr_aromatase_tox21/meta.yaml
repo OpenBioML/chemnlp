@@ -17,7 +17,7 @@ targets:
           - adjective: toxic in the Aromatase enzyme assay
           - gerund: displaying toxicity in the NR-Aromatase assay
           - gerund: exhibiting toxicity in the NR-Aromatase enzyme assay
-          - gerund: demostrating toxicity in the NR-aromatase enzyme assay
+          - gerund: demonstrating toxicity in the NR-aromatase enzyme assay
       uris:
 benchmarks:
     - name: TDC
@@ -94,7 +94,7 @@ templates:
       Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
       User: Yes, the molecule should {toxicity_NR-Aromatase#not &NULL}be {toxicity_NR-Aromatase__names__adjective}.
       Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {toxicity_NR-Aromatase#not &NULL}{toxicity_NR-Aromatase__names__adjective}: {SMILES#}
-    - Is the {SMILES__description} {SMILES#} {toxicity_NR-Aromatase__names__adjective}:<EOI> {toxicity_NR-Aromatase#yes&no}
+    - Is the {SMILES__description} {SMILES#} {toxicity_NR-Aromatase__names__adjective}:<EOI> {toxicity_NR-Aromatase#no&yes}
     - |-
       Task: Please classify a molecule based on the description.
       Description: A molecule that is {toxicity_NR-Aromatase__names__adjective}.
