@@ -14,9 +14,9 @@ targets:
       units:
       type: boolean
       names:
-          - gerund: blocking potassium ion channel activity
-          - noun: blocker of potassium ion channel activity
-          - adjective: effective for blocking potassium ion channel activity
+          - gerund: blocking the potassium ion channel
+          - noun: blocker of the potassium ion channel activity
+          - adjective: effective for the blocking potassium ion channel activity
           - adjective: reliable for potassium ion channel blocking
       pubchem_aids:
           - 1672
@@ -137,7 +137,7 @@ templates:
       Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
       User: Yes, the molecule should {activity_potassium_ion_channel#not &NULL}be {activity_potassium_ion_channel__names__adjective}.
       Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {activity_potassium_ion_channel#not &NULL}{activity_potassium_ion_channel__names__adjective}: {SMILES#}
-    - Is the {SMILES__description} {SMILES#} {activity_potassium_ion_channel__names__adjective}:<EOI> {activity_potassium_ion_channel#yes&no}
+    - Is the {SMILES__description} {SMILES#} {activity_potassium_ion_channel__names__adjective}:<EOI> {activity_potassium_ion_channel#no&yes}
     - |-
       Task: Please classify a molecule based on the description.
       Description: A molecule that is {activity_potassium_ion_channel__names__adjective}.
