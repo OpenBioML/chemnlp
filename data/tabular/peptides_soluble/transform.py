@@ -114,7 +114,7 @@ def get_and_transform_data():
          Andrei and Schwede, Torsten and Arnold, Konstantin and Kiefer, Florian and Bordoli, Lorenza and others},
         journal={Nucleic acids research},
         volume={37},
-        number={suppl\_1},
+        number={suppl1},
         pages={D365--D368},
         year={2009},
         publisher={Oxford University Press}""",
