@@ -68,12 +68,14 @@ def get_and_transform_data():
     # create meta yaml
     meta = {
         "name": "peptides_nonfouling",  # unique identifier, we will also use this for directory names
-        "description": """Non-fouling is defined as resistance to non-specific interactions. A non-fouling peptide (positive example) is
-             defined using the mechanism proposed in ref.~\cite{white2012decoding}. Briefly,~\citet{white2012decoding}, showed that the
-             exterior surfaces of proteins have a significantly different frequency of amino acids, and this increases in aggregation
-             prone environments, like the cytoplasm. Synthesizing self-assembling peptides that follow this amino acid distribution
-             and coating surfaces with the peptides creates non-fouling surfaces. This pattern was also found inside chaperone proteins,
-             another area where resistance to non-specific interactions is important\cite{white2012role}.""",
+        "description": """Non-fouling is defined as resistance to non-specific interactions.
+        A non-fouling peptide (positive example) is defined using the mechanism proposed in
+        ref white2012decoding. Briefly, ref white2012decoding, showed that the exterior surfaces
+        of proteins have a significantly different frequency of amino acids, and this increases
+        in aggregation prone environments, like the cytoplasm. Synthesizing self-assembling peptides
+        that follow this amino acid distribution and coating surfaces with the peptides creates
+        non-fouling surfaces. This pattern was also found inside chaperone proteins,
+        another area where resistance to non-specific interactions is important (ref white2012role).""",
         "targets": [
             {
                 "id": "nonfouling",  # name of the column in a tabular dataset
@@ -110,7 +112,8 @@ def get_and_transform_data():
         "bibtex": [
             """@article{white2012decoding,
         title={Decoding nonspecific interactions from nature},
-        author={White, Andrew D and Nowinski, Ann K and Huang, Wenjun and Keefe, Andrew J and Sun, Fang and Jiang, Shaoyi},
+        author={White, Andrew D and Nowinski, Ann K and Huang, Wenjun and Keefe,
+          Andrew J and Sun, Fang and Jiang, Shaoyi},
         journal={Chemical Science},
         volume={3},
         number={12},
