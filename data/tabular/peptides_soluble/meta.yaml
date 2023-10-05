@@ -1,10 +1,10 @@
 ---
 name: peptides_soluble
-description: "Solubility was estimated by retrospective analysis of electronic laboratory notebooks. The notebooks were part of a large effort called the\
-    \ Protein Structure Initiative and consider sequences linearly through the following stages: Selected,  Cloned,  Expressed,  Soluble,  Purified, Crystallized,\
-    \ HSQC (heteronuclear single quantum coherence), Structure, and deposited in PDB. The peptides were identified as soluble or insoluble by \"Comparing the\
-    \ experimental status at two time points, September 2009 and May 2010, we were able to derive a set of insoluble proteins defined as those which were not\
-    \ soluble in September 2009 and still remained in that state 8 months later.\""
+description: 'Solubility was estimated by retrospective analysis of electronic laboratory notebooks. The notebooks were part of a large effort called the
+    Protein Structure Initiative and consider sequences linearly through the following stages: Selected,  Cloned,  Expressed,  Soluble,  Purified, Crystallized,
+    HSQC (heteronuclear single quantum coherence), Structure, and deposited in PDB. The peptides were identified as soluble or insoluble by "Comparing the
+    experimental status at two time points, September 2009 and May 2010, we were able to derive a set of insoluble proteins defined as those which were
+    not soluble in September 2009 and still remained in that state 8 months later."'
 targets:
     - id: soluble
       description: The solubility of a peptide sequence (1) or not (0).
@@ -51,8 +51,7 @@ bibtex:
 templates:
     - The sequence of {#aminoacids|AAs!} {sequence#} {#shows|exhibits|demonstrates!} {soluble#no &NULL}{soluble__names__adjective} properties.
     - The aminoacid sequence {sequence#} {#shows|exhibits|displays!} {soluble#no &NULL}{soluble__names__adjective} properties.
-    - Based on the {sequence__description} {#representation |!}{sequence#}, the aminoacid sequence has {soluble#no &NULL}{soluble__names__adjective}
-      {#properties|characteristics|features!}.
+    - Based on the {sequence__description} {#representation |!}{sequence#}, the aminoacid sequence has {soluble#no &NULL}{soluble__names__adjective} {#properties|characteristics|features!}.
     - The {sequence__description} {sequence#} {#represents|is from!} an aminoacid sequence that is {soluble#not &NULL}identified as {soluble__names__adjective}.
     - The {#aminoacid sequence |!}{sequence__description} {sequence#} is {soluble#not &NULL}{soluble__names__adjective}.
     - |-
