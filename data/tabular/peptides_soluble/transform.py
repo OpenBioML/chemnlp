@@ -110,8 +110,8 @@ def get_and_transform_data():
         "bibtex": [
             """@article{berman2009protein,
         title={The protein structure initiative structural genomics knowledgebase},
-        author={Berman, Helen M and Westbrook, John D and Gabanyi, Margaret J and Tao, Wendy and Shah, Raship and Kouranov,/
-        / Andrei and Schwede, Torsten and Arnold, Konstantin and Kiefer, Florian and Bordoli, Lorenza and others},
+        author={Berman, Helen M and Westbrook, John D and Gabanyi, Margaret J and Tao, Wendy and Shah, Raship and Kouranov,
+         Andrei and Schwede, Torsten and Arnold, Konstantin and Kiefer, Florian and Bordoli, Lorenza and others},
         journal={Nucleic acids research},
         volume={37},
         number={suppl\_1},
