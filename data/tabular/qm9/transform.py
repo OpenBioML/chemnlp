@@ -48,5 +48,7 @@ def prepare_data():
 
 if __name__ == "__main__":
     print(f" Preparing  clean tabular {DATASET_NAME} datatset")
-    prepare_data()
-    print(f" Finished Preparing  clean tabular {DATASET_NAME} datatset")
+    datapoints = prepare_data()
+    print(
+        f" Finished Preparing  clean tabular {DATASET_NAME} datatset with {datapoints} datapoints"
+    )
