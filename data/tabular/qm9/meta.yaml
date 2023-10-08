@@ -155,7 +155,7 @@ templates:
     - The molecule with the {inchi__description} representation of {inchi#} has an energy of highest occupied molecular orbital {homo#} Hartree.
     - The molecule with the {smiles__description} representation of {smiles#} has an energy of lowest occupied molecular orbital {lumo#} Hartree.
     - The molecule with the {inchi__description} representation of {inchi#} has an energy of lowest occupied molecular orbital {lumo#} Hartree.
-    - The molecule with the {smiles__description} representation of {smiles#} has a homo-lumo gap of {gap#} Hartree.
+    - The molecule with the {smiles__description} representation of {smiles#} has a HOMO-LUMO gap of {gap#} Hartree.
     - The molecule with the {inchi__description} representation of {inchi#} has a homo-lumo gap of {gap#} Hartree.
     - The molecule with the {smiles__description} representation of {smiles#} has an electronic spatial extent of {r2#} Bohr^2.
     - The molecule with the {inchi__description} representation of {inchi#} has an electronic spatial extent of {r2#} Bohr^2.
@@ -167,7 +167,7 @@ templates:
     - The molecule with the {inchi__description} representation of {inchi#} has an internal energy of {u298#} Hartree at at 298.15 K.
     - The molecule with the {smiles__description} representation of {smiles#} has an enthalpy of {h298#} Hartree at at 298.15 K.
     - The molecule with the {inchi__description} representation of {inchi#} has an enthalpy of {h298#} Hartree at at 298.15 K.
-    - The molecule with the {smiles__description} representation of {smiles#} has a gibbs free energy of {g298#} Hartree at at 298.15 K.
+    - The molecule with the {smiles__description} representation of {smiles#} has a Gibbs free energy of {g298#} Hartree at at 298.15 K.
     - The molecule with the {inchi__description} representation of {inchi#} has a gibbs free energy of {g298#} Hartree at at 298.15 K.
     - The molecule with the {smiles__description} representation of {smiles#} has a heat capacity of {heat_capacity#} cal/(mol K) at at 298.15 K.
     - The molecule with the {inchi__description} representation of {inchi#} has a heat capacity of {heat_capacity#} cal/(mol K) at at 298.15 K.
@@ -175,7 +175,7 @@ templates:
       'Question: What is a molecule with a homo-lumo gap of {gap#} Hartree and an energy of highest occupied molecular orbital {lumo#} Hartree?
       Answer: A molecule with {smiles__description} {smiles#}'
     - |-
-      'Question: What is a molecule with an electronic spatial extent of {r2#} Bohr^2 and an energy of lowest occupied molecular orbital {lumo#} Hartree?
+      'Question: What is a molecule with an electronic spatial extent of {r2#} Bohr^2 and an energy of lowest unoccupied molecular orbital {lumo#} Hartree?
       Answer: A molecule with {inchi__description} {inchi#}'
     - |-
       Task: Please {#give me|create|generate!} a molecule with the {smiles__description} based on the {#text |!}description{# below|!}.
