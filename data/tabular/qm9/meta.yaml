@@ -51,19 +51,20 @@ targets:
           - noun: HOMO
           - noun: energy of Highest occupied molecular orbital
     - id: lumo
-      description: energy of Lowest occupied molecular orbital (LUMO)
+      description: energy of Lowest unoccupied molecular orbital (LUMO)
       units: Hartree
       type: float
       names:
           - noun: lumo
           - noun: LUMO
-          - noun: energy of Lowest occupied molecular orbital
+          - noun: energy of Lowest unoccupied molecular orbital
     - id: gap
-      description: homo lumogap, difference between LUMO and HOMO
+      description: HOMO-LUMO gap, difference between HOMO and LUMO
       units: Hartree
       type: float
       names:
           - noun: gap
+          - noun: HOMO-LUMO gap
           - noun: homo lumo gap
     - id: r2
       description: electronic spatial extent
@@ -99,12 +100,12 @@ targets:
       names:
           - noun: enthalpy at 298.15 K
     - id: g298
-      description: free energy at 298.15 K
+      description: Gibbs free energy at 298.15 K
       units: Hartree
       type: float
       names:
           - noun: free energy at 298.15 K
-          - noun: gibbs free energy at 298.15 K
+          - noun: Gibbs free energy at 298.15 K
     - id: heat_capacity
       description: heat capacity at 298.15 K
       units: cal/(mol K)
@@ -148,40 +149,28 @@ bibtex:
       publisher={ACS Publications}}
 templates:
     - The molecule with the {smiles__description} representation of {smiles#} has a dipole moment of {dipole_moment#} Debye.
-    - The molecule with the {inchi__description} representation of {inchi#} has a dipole moment of {dipole_moment#} Debye.
     - The molecule with the {smiles__description} representation of {smiles#} has an isotropic polarizability of {polarizability#} Bohr^3.
-    - The molecule with the {inchi__description} representation of {inchi#} has an isotropic polarizability of {polarizability#} Bohr^3.
     - The molecule with the {smiles__description} representation of {smiles#} has an energy of highest occupied molecular orbital {homo#} Hartree.
-    - The molecule with the {inchi__description} representation of {inchi#} has an energy of highest occupied molecular orbital {homo#} Hartree.
-    - The molecule with the {smiles__description} representation of {smiles#} has an energy of lowest occupied molecular orbital {lumo#} Hartree.
-    - The molecule with the {inchi__description} representation of {inchi#} has an energy of lowest occupied molecular orbital {lumo#} Hartree.
+    - The molecule with the {smiles__description} representation of {smiles#} has an energy of lowest unoccupied molecular orbital {lumo#} Hartree.
     - The molecule with the {smiles__description} representation of {smiles#} has a HOMO-LUMO gap of {gap#} Hartree.
-    - The molecule with the {inchi__description} representation of {inchi#} has a homo-lumo gap of {gap#} Hartree.
     - The molecule with the {smiles__description} representation of {smiles#} has an electronic spatial extent of {r2#} Bohr^2.
-    - The molecule with the {inchi__description} representation of {inchi#} has an electronic spatial extent of {r2#} Bohr^2.
     - The molecule with the {smiles__description} representation of {smiles#} has a zero point vibrational energy of {zero_point_energy#} Hartree.
-    - The molecule with the {inchi__description} representation of {inchi#} has a zero point vibrational energy of {zero_point_energy#} Hartree.
     - The molecule with the {smiles__description} representation of {smiles#} has an internal energy of {u0#} Hartree at 0 K.
-    - The molecule with the {inchi__description} representation of {inchi#} has an internal energy of {u0#} Hartree at 0 K.
     - The molecule with the {smiles__description} representation of {smiles#} has an internal energy of {u298#} Hartree at at 298.15 K.
-    - The molecule with the {inchi__description} representation of {inchi#} has an internal energy of {u298#} Hartree at at 298.15 K.
     - The molecule with the {smiles__description} representation of {smiles#} has an enthalpy of {h298#} Hartree at at 298.15 K.
-    - The molecule with the {inchi__description} representation of {inchi#} has an enthalpy of {h298#} Hartree at at 298.15 K.
     - The molecule with the {smiles__description} representation of {smiles#} has a Gibbs free energy of {g298#} Hartree at at 298.15 K.
-    - The molecule with the {inchi__description} representation of {inchi#} has a gibbs free energy of {g298#} Hartree at at 298.15 K.
     - The molecule with the {smiles__description} representation of {smiles#} has a heat capacity of {heat_capacity#} cal/(mol K) at at 298.15 K.
-    - The molecule with the {inchi__description} representation of {inchi#} has a heat capacity of {heat_capacity#} cal/(mol K) at at 298.15 K.
     - |-
-      'Question: What is a molecule with a homo-lumo gap of {gap#} Hartree and an energy of highest occupied molecular orbital {lumo#} Hartree?
+      'Question: What is a molecule with a HOMO-LUMO gap of {gap#} Hartree and an energy of highest occupied molecular orbital {homo#} Hartree?
       Answer: A molecule with {smiles__description} {smiles#}'
     - |-
       'Question: What is a molecule with an electronic spatial extent of {r2#} Bohr^2 and an energy of lowest unoccupied molecular orbital {lumo#} Hartree?
-      Answer: A molecule with {inchi__description} {inchi#}'
+      Answer: A molecule with {smiles__description} {smiles#}'
     - |-
       Task: Please {#give me|create|generate!} a molecule with the {smiles__description} based on the {#text |!}description{# below|!}.
       Description: A molecule with a dipole moment of {dipole_moment#} Debye and an isotropic polarizability of {polarizability#} Bohr^3.
       Result: {smiles#}
     - |-
-      Task: Please {#give me|create|generate!} a molecule with the {inchi__description} based on the {#text |!}description{# below|!}.
+      Task: Please {#give me|create|generate!} a molecule with the {smiles__description} based on the {#text |!}description{# below|!}.
       Description: A molecule that has a heat capacity of {heat_capacity#} cal/(mol K) at at 298.15 K and a dipole moment of {dipole_moment#} Debye.
-      Result: {inchi#}
+      Result: {smiles#}
