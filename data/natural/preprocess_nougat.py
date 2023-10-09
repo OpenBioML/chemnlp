@@ -6,6 +6,8 @@ import markdown
 from bs4 import BeautifulSoup
 from tqdm import tqdm
 
+TEXT_CUTOFF = 0
+
 
 def load_mmd_from_path(path):
     with open(path) as f:
@@ -15,12 +17,13 @@ def load_mmd_from_path(path):
 
 rm_ref_single = re.compile(r"\[\d+\]")
 rm_ref_multi = re.compile(r"\[\d+.+\d\]")
-rm_missing_page = re.compile(r"\n\n\[MISSING_PAGE_FAIL:\d+\]")
+rm_missing_page_fail = re.compile(r"\n\n\[MISSING_PAGE_FAIL:\d+\]")
+rm_missing_page_empty = re.compile(r"\n\n\[MISSING_PAGE_EMPTY:\d+\]")
 rm_d = re.compile(r"\d")
 
 
 def clean_mmd(mmd):
-    res = [rm_ref_single, rm_ref_multi, rm_missing_page]
+    res = [rm_ref_single, rm_ref_multi, rm_missing_page_fail, rm_missing_page_empty]
     for r in res:
         mmd = r.sub("", mmd)
     return mmd
@@ -31,23 +34,46 @@ def mmd_to_html(mmd):
 
 
 exclude_headers = [
-    "associated content",
     "accession codes",
-    "author information",
-    "corresponding author",
-    "authors",
-    "author contributions",
-    "notes",
-    "acknowledgments",
-    "references",
-    "notes",
-    "supporting information",
-    "code availability",
+    "acknowledgement",
     "acknowledgements",
-    "author contributions",
-    "competing interests",
-    "funding sources",
     "acknowledgment",
+    "acknowledgments",
+    "additional information",
+    "associated content",
+    "author contributions",
+    "author information",
+    "author",
+    "authors",
+    "bibliography",
+    "code availability",
+    "competing interest",
+    "competing interests statement",
+    "competing interests",
+    "conflict of interest",
+    "conflicts of interest",
+    "corresponding author",
+    "data and software availability",
+    "data availability",
+    "declaration of competing interest",
+    "dedication",
+    "disclaimer",
+    "financial support",
+    "funding acs",
+    "funding sources",
+    "keywords",
+    "note",
+    "notes",
+    "orcid",
+    "present address",
+    "reference",
+    "references",
+    "supplementary material",
+    "supporting formation available",
+    "supporting information available",
+    "supporting information",
+    "table of contents",
+    # "abbreviations",
 ]
 
 
@@ -69,7 +95,10 @@ def html_to_clean_text(html, verbose=False):
                 cont = False
 
         if cont:
-            text += header_text
+            if header_text.isupper():
+                text += header_text.capitalize()  # or .title() ?
+            else:
+                text += header_text
             text += "\n"
 
             if (
@@ -84,6 +113,8 @@ def html_to_clean_text(html, verbose=False):
                         text += sibling.text
                         text += "\n\n"
             text += "\n"
+
+    text = text.replace("\n\n\n", "\n\n")  # clean up line breaks
     return text
 
 
@@ -99,9 +130,14 @@ def create_jsonl_from_dir(path):
         mmd = clean_mmd(mmd)
         html = mmd_to_html(mmd)
         text = html_to_clean_text(html)
-        out = {"fn": fn, "text": text}
-        with open(path_jsonl, "a") as f:
-            f.write(json.dumps(out) + "\n")
+        if len(text) <= TEXT_CUTOFF:
+            print(f"Too short text in: {fn}")
+        elif text.count("Journal of") > 10:
+            print(f'Too many "Journal of" in text: {fn}')
+        else:
+            out = {"fn": fn, "text": text}
+            with open(path_jsonl, "a") as f:
+                f.write(json.dumps(out) + "\n")
 
 
 if __name__ == "__main__":
