@@ -15,15 +15,35 @@ def load_mmd_from_path(path):
     return data
 
 
-rm_ref_single = re.compile(r"\[\d+\]")
-rm_ref_multi = re.compile(r"\[\d+.+\d\]")
 rm_missing_page_fail = re.compile(r"\n\n\[MISSING_PAGE_FAIL:\d+\]")
 rm_missing_page_empty = re.compile(r"\n\n\[MISSING_PAGE_EMPTY:\d+\]")
-rm_d = re.compile(r"\d")
+rm_figure_caption_start = re.compile(r"[Ff]igure \d+\.?[:\|]?\s")
+rm_fig_caption_start = re.compile(r"[Ff]ig. \d+\.?[:\|]?\s")
+rm_figure_in_brackets = re.compile(r" \([Ff]igure \d+\.?\)")
+rm_fig_in_brackets = re.compile(r" \([Ff]ig. \d+\.?\)")
+rm_figure_reference = re.compile(r", see [Ff]igure \d+")
+rm_fig_reference = re.compile(r", see [Ff]ig. \d+")
+rm_ref_single = re.compile(r"\s?\[\d+]")
+rm_ref_multi = re.compile(r"\s?\[\d+.+\d\]")
+rm_email_with_text = re.compile(r"[Ee]mail[:\s] \S*@\S*\s?")
+rm_email = re.compile(r"\S*@\S*\s?")
 
 
 def clean_mmd(mmd):
-    res = [rm_ref_single, rm_ref_multi, rm_missing_page_fail, rm_missing_page_empty]
+    res = [
+        rm_missing_page_fail,
+        rm_missing_page_empty,
+        rm_figure_caption_start,
+        rm_fig_caption_start,
+        rm_figure_in_brackets,
+        rm_fig_in_brackets,
+        rm_figure_reference,
+        rm_fig_reference,
+        rm_ref_single,
+        rm_ref_multi,
+        rm_email_with_text,
+        rm_email,
+    ]
     for r in res:
         mmd = r.sub("", mmd)
     return mmd
@@ -39,6 +59,7 @@ exclude_headers = [
     "acknowledgements",
     "acknowledgment",
     "acknowledgments",
+    "additional files",
     "additional information",
     "associated content",
     "author contributions",
@@ -61,6 +82,7 @@ exclude_headers = [
     "financial support",
     "funding acs",
     "funding sources",
+    "graphical toc entry",
     "keywords",
     "note",
     "notes",
