@@ -15,11 +15,15 @@ def load_mmd_from_path(path):
     return data
 
 
+rm_double_asterisk_start = re.compile(r"\n\*\*"), "\n## "
+rm_double_asterisk_end = re.compile(r"\*\*\n"), ""
+rm_double_asterisk = re.compile(r"\*\*"), ""
 rm_missing_page_fail = re.compile(r"\n\n\[MISSING_PAGE_FAIL:\d+\]"), ""
 rm_missing_page_empty = re.compile(r"\n\n\[MISSING_PAGE_EMPTY:\d+\]"), ""
 rm_missing_page_post = re.compile(r"\n\n\[MISSING_PAGE_POST\]"), ""
 rm_figure_caption_start = re.compile(r"[Ff]igure \d+\w?\.?[:\|]?\s"), ""
 rm_schema_caption_start = re.compile(r"[Ss]chema \d+\w?\.?[:\|]?\s"), ""
+rm_schema_caption_start = re.compile(r"[Ss]cheme \d+\w?\.?[:\|]?\s"), ""
 rm_fig_caption_start = re.compile(r"[Ff]ig. \d+\w?\.?[:\|]?\s"), ""
 rm_figure_in_brackets = re.compile(r" \([Ff]igure \d+\w?\.?\)"), ""
 rm_fig_in_brackets = re.compile(r" \([Ff]ig. \d+\w?\.?\)"), ""
@@ -29,14 +33,18 @@ rm_ref_single = re.compile(r"\s?\[\d+]"), ""
 rm_ref_multi = re.compile(r"\s?\[\d+.+\d\]"), ""
 rm_email_with_text = re.compile(r"[Ee]mail[:\s] \S*@\S*\s?"), ""
 rm_email = re.compile(r"\S*@\S*\s?"), ""
+rm_empty_table = re.compile(r"\n\n\\begin{table}\n\n\\end{table}\nTable.+?\."), "\n"
 rm_incomplete_sentence_start_para = re.compile(r"\n\n[a-z].+?\.\s"), "\n\n"
 rm_incomplete_sentence_end_para = re.compile(r"\.\s[A-Z,a-z][^\.]+?[a-z][,]?\n"), ".\n"
-rm_empty_table = re.compile(r"\n\n\\begin{table}\n\n\\end{table}\nTable.+?\."), "\n"
-rm_double_asterisk = re.compile(r"\*\*"), ""
+
+year_numbers = re.compile(r"[19,20]\d\d\,")
 
 
 def clean_mmd(mmd):
     reg_replace = [
+        rm_double_asterisk_start,
+        rm_double_asterisk_end,
+        # rm_double_asterisk,
         rm_missing_page_fail,
         rm_missing_page_empty,
         rm_missing_page_post,
@@ -51,10 +59,9 @@ def clean_mmd(mmd):
         rm_ref_multi,
         rm_email_with_text,
         rm_email,
+        rm_empty_table,
         rm_incomplete_sentence_start_para,
         rm_incomplete_sentence_end_para,
-        rm_empty_table,
-        rm_double_asterisk,
     ]
     for reg, replace in reg_replace:
         mmd = reg.sub(replace, mmd)
@@ -95,6 +102,7 @@ exclude_headers = [
     "funding acs",
     "funding sources",
     "graphical toc entry",
+    "graphical abstract",
     "keywords",
     "note",
     "notes",
@@ -107,6 +115,7 @@ exclude_headers = [
     "supporting information available",
     "supporting information",
     "table of contents",
+    "toc",
     "corresponding authors:",
     # "abbreviations",
 ]
@@ -172,6 +181,8 @@ def create_jsonl_from_dir(path):
             print(f"Too short text in: {fn}")
         elif text.count("Journal of") > 10:
             print(f'Too many "Journal of" in text: {fn}')
+        elif len(year_numbers.findall(text)) > 10:
+            print(f"Too many year numbers in text: {fn}")
         else:
             out = {"fn": fn, "text": text}
             with open(path_jsonl, "a") as f:
