@@ -2,8 +2,6 @@ import glob
 import json
 import re
 
-import markdown
-from bs4 import BeautifulSoup
 from tqdm import tqdm
 
 TEXT_CUTOFF = 0
@@ -40,7 +38,56 @@ rm_incomplete_sentence_end_para = re.compile(r"\.\s[A-Z,a-z][^\.]+?[a-z][,]?\n")
 year_numbers = re.compile(r"[19,20]\d\d\,")
 
 
-def clean_mmd(mmd):
+def clean_mmd(mmd, verbose=False):
+    # section cleaning
+    find_headers = re.compile("(#{1,6}.*)\\n")
+
+    def get_headers(mmd, show=False):
+        headers = []
+        for match in find_headers.finditer(mmd):
+            span = match.span()
+            headers.append((mmd[span[0] : span[1]], span))
+        if show:
+            for h in headers:
+                print(h)
+        return headers
+
+    def get_next_header_to_remove(mmd, exclude_headers):
+        headers = get_headers(mmd)
+        for header, span in headers:
+            for eh in exclude_headers:
+                if header.lower().find(eh) != -1:
+                    return (header, span)
+        return False
+
+    def remove_header(mmd, header_span):
+        header, span = header_span
+        count_hashtag = header.count("#")
+        headers = get_headers(mmd)
+        header_idx = headers.index(header_span)
+        for i, (next_header, next_span) in enumerate(headers):
+            if i + 1 == len(headers):
+                next_header_pos = len(mmd) - 1
+            if i <= header_idx:
+                continue
+            if count_hashtag == next_header.count("#"):
+                next_header_pos = next_span[0]
+        if verbose:
+            print(f"Removed span: {span[0]}:{next_header_pos}")
+        mmd = mmd[: span[0]] + mmd[next_header_pos + 1 :]
+        return mmd
+
+    if verbose:
+        _ = get_headers(mmd, show=True)
+    header_span = True  # dummy start value
+    while header_span is not False:
+        header_span = get_next_header_to_remove(mmd, exclude_headers)
+        if verbose:
+            print(f"{header_span=}")
+        if isinstance(header_span, tuple):
+            mmd = remove_header(mmd, header_span)
+
+    # low level cleaning
     reg_replace = [
         rm_double_asterisk_start,
         rm_double_asterisk_end,
@@ -65,11 +112,8 @@ def clean_mmd(mmd):
     ]
     for reg, replace in reg_replace:
         mmd = reg.sub(replace, mmd)
+
     return mmd
-
-
-def mmd_to_html(mmd):
-    return markdown.markdown(mmd)
 
 
 exclude_headers = [
@@ -115,54 +159,10 @@ exclude_headers = [
     "supporting information available",
     "supporting information",
     "table of contents",
-    "toc",
+    # "toc",  # creates false positives
     "corresponding authors:",
     # "abbreviations",
 ]
-
-
-def html_to_clean_text(html, verbose=False):
-    soup = BeautifulSoup(html, "html.parser")
-    text = ""
-    headers = soup.find_all(re.compile("^h\d$"))  # noqa: W605
-    if verbose:
-        for i, h in enumerate(headers):
-            print(i, h.text)
-        print()
-
-    for i, h in enumerate(headers):
-        header_text = h.text
-
-        cont = True  # continue after exclude header check
-        for eh in exclude_headers:
-            if header_text.lower().find(eh) != -1:
-                cont = False
-
-        first_headers = ["abstract", "introduction"]
-        if i == 0:
-            # check if we don't find a first_headers
-            if not (any([header_text.lower().find(fh) > -1 for fh in first_headers])):
-                cont = False
-
-        if cont:
-            if header_text.isupper():
-                text += header_text.capitalize()  # or .title() ?
-            else:
-                text += header_text
-            text += "\n"
-
-            for sibling in h.next_siblings:
-                if sibling.name is None:
-                    continue
-                elif sibling.name.startswith("h"):
-                    break
-                else:
-                    text += sibling.text
-                    text += "\n\n"
-            text += "\n"
-
-    text = text.replace("\n\n\n", "\n\n")  # clean up line breaks
-    return text
 
 
 def create_jsonl_from_dir(path):
@@ -174,9 +174,7 @@ def create_jsonl_from_dir(path):
         fn = path.split("/")[-1].split(".mmd")[0]
         pbar.set_postfix_str(fn)
         mmd = load_mmd_from_path(path)
-        mmd = clean_mmd(mmd)
-        html = mmd_to_html(mmd)
-        text = html_to_clean_text(html)
+        text = clean_mmd(mmd)
         if len(text) <= TEXT_CUTOFF:
             print(f"Too short text in: {fn}")
         elif text.count("Journal of") > 10:
