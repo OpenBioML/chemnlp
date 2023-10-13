@@ -51,7 +51,7 @@ targets:
           - noun: HOMO
           - noun: highest occupied molecular orbital
     - id: lumo
-      description: energy of Lowest unoccupied molecular orbital (LUMO)
+      description: energy of Lowest Unoccupied Molecular Orbital (LUMO)
       units: Hartree
       type: float
       names:
