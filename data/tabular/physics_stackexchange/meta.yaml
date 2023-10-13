@@ -1,7 +1,7 @@
 ---
-name: mattermodeling_stackexchange
+name: physics_stackexchange
 description: |-
-    Questions and answers mined from mattermodeling.stackexchange.com.
+    Questions and answers mined from physics.stackexchange.com.
 targets:
     - id: a
       description: answer to the question
@@ -12,14 +12,14 @@ targets:
 identifiers:
     - id: q
       type: string
-      description: question asked on mattermodeling.stackexchange.com
+      description: question asked on physics.stackexchange.com
 license: CC BY-SA
 links:
-    - url:  mattermodeling.stackexchange.com
+    - url:  physics.stackexchange.com
       description: original data source
     - url: https://stackoverflow.com/help/licensing
       description: information about the license
-num_points: 673
+num_points: 7574
 templates:
     - |-
       {#Task: Please answer the question of the user.|Task: Provide a detailed response to the user's question.|Task: Address the user's query with a well-structured answer.|Task: Your role is to respond to the user's question with clarity.|Task: Offer a concise and informative answer to the user's question.|Task: Provide a clear and concise reply to the user's inquiry.!}
