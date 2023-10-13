@@ -43,6 +43,5 @@ def transform_data():
     clean_data.to_csv("data_clean.csv")
 
 
-
 if __name__ == "__main__":
     transform_data()
