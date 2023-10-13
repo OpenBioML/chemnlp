@@ -43,7 +43,7 @@ targets:
           - noun: isotropic polarizability
           - noun: alpha
     - id: homo
-      description: energy of Highest occupied molecular orbital (HOMO)
+      description: energy of Highest Occupied Molecular Orbital (HOMO)
       units: Hartree
       type: float
       names:
