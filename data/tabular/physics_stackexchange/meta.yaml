@@ -1,0 +1,31 @@
+---
+name: physics_stackexchange
+description: |-
+    Questions and answers mined from physics.stackexchange.com.
+targets:
+    - id: a
+      description: answer to the question
+      type: string
+    - id: title
+      description: title of the question
+      type: string
+identifiers:
+    - id: q
+      type: string
+      description: question asked on physics.stackexchange.com
+license: CC BY-SA
+links:
+    - url: physics.stackexchange.com
+      description: original data source
+    - url: https://stackoverflow.com/help/licensing
+      description: information about the license
+num_points: 7574
+templates:
+    - |-
+      {#Task: Please answer the question of the user.|Task: Provide a detailed response to the user's question.|Task: Address the user's query with a well-structured answer.|Task: Your role is to respond to the user's question with clarity.|Task: Offer a concise and informative answer to the user's question.|Task: Provide a clear and concise reply to the user's inquiry.!}
+      {#User: |Question: |Inquiry: |\n!}{#q}
+      {#Assistant: |Answer: !}{#a}
+    - |-
+      {#Task: Generate a title for this question.|Task: Create a meaningful title for this question.|Task: Summarize the question in a title.!}
+      {#Question: |Inquiry: |\n!}{#q}
+      {#Assistant: |Title: |Answer: |!}{#title}
