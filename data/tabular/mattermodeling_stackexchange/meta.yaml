@@ -15,7 +15,7 @@ identifiers:
       description: question asked on mattermodeling.stackexchange.com
 license: CC BY-SA
 links:
-    - url:  mattermodeling.stackexchange.com
+    - url: mattermodeling.stackexchange.com
       description: original data source
     - url: https://stackoverflow.com/help/licensing
       description: information about the license
