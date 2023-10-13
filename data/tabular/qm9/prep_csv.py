@@ -103,7 +103,7 @@ def prepare_csv_data(tar_path: str, raw_path: str, url: str, QM9_PROPERTIES: Lis
         mol_dict.append(mol)
 
     df = pd.DataFrame(mol_dict)
-    df.to_csv("data_clean.csv", index=False)
+    df.to_csv("qm9_dataset.csv", index=False)
 
 
 if __name__ == "__main__":
