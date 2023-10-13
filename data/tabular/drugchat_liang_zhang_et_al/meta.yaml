@@ -32,26 +32,26 @@ bibtex:
       month = "5",
       url = "https://www.techrxiv.org/articles/preprint/DrugChat_Towards_Enabling_ChatGPT-Like_Capabilities_on_Drug_Molecule_Graphs/22945922",
       doi = "10.36227/techrxiv.22945922.v1"}
-templates:  
-  - |-
-    Task: Please answer the following question about the molecule with {SMILES__description} {SMILES#}.
-    {#Description|Question|Request!}: {quest#}
-    {#Result|Answer|Completion!}: {answ#}
-  - |-
-    {#Question|Q!}: {quest#}
-    {#Constraint:|Description:|!} The {#Molecule|Compound|Chemical!} {#has the|can be represented with the!} {SMILES__description} {SMILES#}.
-    {#Answer|Result|Answer!}: {answ#}
-  - |-
-    User: I have a question about the {#molecule|chemical|compound!} with {SMILES__description} {SMILES#}.
-    Assistant: {#Sure, what is your question?|How can I help?|That sounds interesting, how can I help?|Interesting, how can I help?!}
-    User: {quest#}
-    Assistant: {#The answer is |!}{answ#}
-  - |-
-    User: I want to know more about the {#molecule|chemical|compound!} with {SMILES__description} {SMILES#}.
-    Assistant: {#Sure, what is your question?|How can I help?|That sounds interesting, how can I help?|Interesting, how can I help?!}
-    User: {quest#}
-    Assistant: {#The answer is |!}{answ#}
-  - |-
-    Task: Answer the following question about the molecule with {SMILES__description} {SMILES#}.
-    {#Description|Question|Request!}: {quest#}
-    {#Result|Answer|Completion!}: {answ#}
+templates:
+    - |-
+      Task: Please answer the following question about the molecule with {SMILES__description} {SMILES#}.
+      {#Description|Question|Request!}: {quest#}
+      {#Result|Answer|Completion!}: {answ#}
+    - |-
+      {#Question|Q!}: {quest#}
+      {#Constraint:|Description:|!} The {#Molecule|Compound|Chemical!} {#has the|can be represented with the!} {SMILES__description} {SMILES#}.
+      {#Answer|Result|Answer!}: {answ#}
+    - |-
+      User: I have a question about the {#molecule|chemical|compound!} with {SMILES__description} {SMILES#}.
+      Assistant: {#Sure, what is your question?|How can I help?|That sounds interesting, how can I help?|Interesting, how can I help?!}
+      User: {quest#}
+      Assistant: {#The answer is |!}{answ#}
+    - |-
+      User: I want to know more about the {#molecule|chemical|compound!} with {SMILES__description} {SMILES#}.
+      Assistant: {#Sure, what is your question?|How can I help?|That sounds interesting, how can I help?|Interesting, how can I help?!}
+      User: {quest#}
+      Assistant: {#The answer is |!}{answ#}
+    - |-
+      Task: Answer the following question about the molecule with {SMILES__description} {SMILES#}.
+      {#Description|Question|Request!}: {quest#}
+      {#Result|Answer|Completion!}: {answ#}
