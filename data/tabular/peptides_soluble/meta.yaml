@@ -1,133 +1,142 @@
----
 name: peptides_soluble
-description: 'Solubility was estimated by retrospective analysis of electronic laboratory notebooks. The notebooks were part of a large effort called the
-    Protein Structure Initiative and consider sequences linearly through the following stages: Selected,  Cloned,  Expressed,  Soluble,  Purified, Crystallized,
-    HSQC (heteronuclear single quantum coherence), Structure, and deposited in PDB. The peptides were identified as soluble or insoluble by "Comparing the
-    experimental status at two time points, September 2009 and May 2010, we were able to derive a set of insoluble proteins defined as those which were
-    not soluble in September 2009 and still remained in that state 8 months later."'
+description: |-
+  Solubility was estimated by retrospective analysis of electronic laboratory notebooks.
+          The notebooks were part of a large effort called the Protein Structure Initiative and consider sequences
+          linearly through the following stages: Selected,  Cloned,  Expressed,  Soluble,  Purified, Crystallized,
+          HSQC (heteronuclear single quantum coherence), Structure, and deposited in PDB. The peptides were identified
+          as soluble or insoluble by "Comparing the experimental status at two time points, September 2009 and May 2010,
+          we were able to derive a set of insoluble proteins defined as those which were not
+          soluble in September 2009 and still remained in that state 8 months later."
 targets:
-    - id: soluble
-      description: The solubility of a peptide sequence (1) or not (0).
-      units:
-      type: boolean
-      names:
-          - noun: solubility
-          - adjective: soluble
-      uris:
+- id: soluble
+  description: The solubility of a peptide sequence (1) or not (0).
+  units: null
+  type: boolean
+  names:
+  - noun: solubility
+  - adjective: soluble
+  uris: null
 benchmarks: []
 identifiers:
-    - id: sequence
-      type: Other
-      description: amino acid sequence
+- id: sequence
+  type: Other
+  description: amino acid sequence
 license: CC BY 4.0
 links:
-    - url: https://doi.org/10.1021/acs.jcim.2c01317
-      description: corresponding publication
-    - url: https://doi.org/10.1111/j.1742-4658.2012.08603.x
-      description: data source
-num_points: 18453
+- url: https://doi.org/10.1021/acs.jcim.2c01317
+  description: corresponding publication
+- url: https://doi.org/10.1111/j.1742-4658.2012.08603.x
+  description: data source
+num_points: 6541
 bibtex:
-    - |-
-      @article{berman2009protein,
-        title={The protein structure initiative structural genomics knowledgebase},
-        author={Berman, Helen M and Westbrook, John D and Gabanyi, Margaret J and Tao, Wendy and Shah, Raship and Kouranov,/
-        / Andrei and Schwede, Torsten and Arnold, Konstantin and Kiefer, Florian and Bordoli, Lorenza and others},
-        journal={Nucleic acids research},
-        volume={37},
-        number={suppl\_1},
-        pages={D365--D368},
-        year={2009},
-        publisher={Oxford University Press}
-    - |-
-      @article{smialowski2012proso,
-        title={PROSO II--a new method for protein solubility prediction},
-        author={Smialowski, Pawel and Doose, Gero and Torkler, Phillipp and Kaufmann, Stefanie and Frishman, Dmitrij},
-        journal={The FEBS journal},
-        volume={279},
-        number={12},
-        pages={2192--2200},
-        year={2012},
-        publisher={Wiley Online Library}
+- |-
+  @article{berman2009protein,
+          title={The protein structure initiative structural genomics knowledgebase},
+          author={Berman, Helen M and Westbrook, John D and Gabanyi, Margaret J and Tao,
+            Wendy and Shah, Raship and Kouranov, Andrei and Schwede, Torsten and Arnold,
+              Konstantin and Kiefer, Florian and Bordoli, Lorenza and others},
+          journal={Nucleic acids research},
+          volume={37},
+          number={suppl1},
+          pages={D365--D368},
+          year={2009},
+          publisher={Oxford University Press}
+- |-
+  @article{smialowski2012proso,
+          title={PROSO II--a new method for protein solubility prediction},
+          author={Smialowski, Pawel and Doose, Gero and Torkler, Phillipp and Kaufmann,
+            Stefanie and Frishman, Dmitrij},
+          journal={The FEBS journal},
+          volume={279},
+          number={12},
+          pages={2192--2200},
+          year={2012},
+          publisher={Wiley Online Library}
 templates:
-    - The sequence of {#aminoacids|AAs!} {sequence#} {#shows|exhibits|demonstrates!} {soluble#no &NULL}{soluble__names__adjective} properties.
-    - The aminoacid sequence {sequence#} {#shows|exhibits|displays!} {soluble#no &NULL}{soluble__names__adjective} properties.
-    - Based on the {sequence__description} {#representation |!}{sequence#}, the aminoacid sequence has {soluble#no &NULL}{soluble__names__adjective} {#properties|characteristics|features!}.
-    - The {sequence__description} {sequence#} {#represents|is from!} an aminoacid sequence that is {soluble#not &NULL}identified as {soluble__names__adjective}.
-    - The {#aminoacid sequence |!}{sequence__description} {sequence#} is {soluble#not &NULL}{soluble__names__adjective}.
-    - |-
-      Task: Please classify a aminoacid sequence based on the description.
-      Description: A aminoacid sequence that is {soluble__names__adjective}.
-      {#aminoacid sequence |!}{sequence__description}: {sequence#}
-      Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
-      Result: {soluble#False&True}
-    - |-
-      Task: Please classify a aminoacid sequence based on the description.
-      Description: A aminoacid sequence that is {soluble__names__adjective}.
-      {#aminoacid sequence |!}{sequence__description}: {sequence#}
-      Constraint: Answer the question in a {#full|complete!} sentence.
-      Result: This aminoacid sequence is {soluble#not &NULL}{soluble__names__adjective}.
-    - |-
-      Task: Please {#give me|create|generate!} a {#aminoacid sequence |!}{sequence__description} based on the {#text |!}description{# below|!}.
-      Description: A aminoacid sequence that is {soluble__names__adjective}.
-      Result: {sequence#}
-    - |-
-      User: Can you {#tell me|derive|estimate!} if the aminoacid sequence with the {sequence__description} {sequence#} is {soluble__names__adjective}?
-      Assistant: {soluble#No&Yes}, this aminoacid sequence is {soluble#not &NULL}{soluble__names__adjective}.
-    - |-
-      User: Is the aminoacid sequence with the {sequence__description} {sequence#} {soluble__names__adjective}?
-      Assistant: {soluble#No&Yes}, it is {soluble#not &NULL}{soluble__names__adjective}.
-    - |-
-      User: Can you {#give me|create|generate!} the {sequence__description} of a aminoacid sequence that is {soluble#not &NULL}{soluble__names__adjective}?
-      Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {sequence#}
-    - |-
-      User: I'm {#searching|looking!} for the {sequence__description} of a aminoacid sequence that is {soluble#not &NULL}{soluble__names__adjective}?
-      Assistant: This is a aminoacid sequence that is {soluble#not &NULL}{soluble__names__adjective}: {sequence#}
-    - |-
-      User: I want to {#come up with|create|generate!} a {#aminoacid sequence |!}{sequence__description}.
-      Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
-      User: Yes, please. The aminoacid sequence should {soluble#not &NULL}be {soluble__names__adjective}.
-      Assistant: {#Ok|Got it!},{# here you go,|!} this {sequence__description} is {soluble#not &NULL}{soluble__names__adjective}: {sequence#}
-    - |-
-      User: I want to {#come up with|create|generate!} a {#aminoacid sequence |!}{sequence__description}.
-      Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#aminoacid sequence|one!}?
-      User: Yes, the aminoacid sequence should {soluble#not &NULL}be {soluble__names__adjective}.
-      Assistant: {#Understood|Got it|Ok!}, this {sequence__description} is {soluble#not &NULL}{soluble__names__adjective}: {sequence#}
-    - Is the {sequence__description} {sequence#} {soluble__names__adjective}:<EOI> {soluble#no&yes}
-    - |-
-      Task: Please classify a aminoacid sequence based on the description.
-      Description: A aminoacid sequence that is {soluble__names__adjective}.
-      {#aminoacid sequence |!}{sequence__description}: {sequence#}
-      Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
-      Result:<EOI> {soluble#False&True}
-    - |-
-      Task: Please {#give me|create|generate!} a {#aminoacid sequence |!}{sequence__description} based on the {#text |!}description{# below|!}.
-      Description: A aminoacid sequence that is {soluble__names__adjective}.
-      Result:<EOI> {sequence#}
-    - |-
-      Task: Please answer the multiple choice question.
-      Question: Is the aminoacid sequence with the {sequence__description} {#representation of |!}{sequence#} {soluble__names__adjective}?
-      Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
-      Options:
-      {soluble%}
-      Answer: {%multiple_choice_result}
-    - |-
-      Task: Please answer the multiple choice question.
-      Question: Is the aminoacid sequence with the {sequence__description} {#representation of |!}{sequence#} {soluble__names__adjective}?
-      Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
-      Options:
-      {soluble%}
-      Answer:<EOI> {%multiple_choice_result}
-    - |-
-      Task: Please answer the multiple choice question.
-      Question: Which aminoacid sequences are {soluble#not &NULL}{soluble__names__adjective}?
-      Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
-      Options:
-      {sequence%soluble%}
-      Answer: {%multiple_choice_result}
-    - |-
-      Task: Please answer the multiple choice question.
-      Question: Which aminoacid sequences are {soluble#not &NULL}{soluble__names__adjective}?
-      Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
-      Options:
-      {sequence%soluble%}
-      Answer:<EOI> {%multiple_choice_result}
+- The sequence of {#aminoacids|AAs!} {sequence#} {#shows|exhibits|demonstrates!} {soluble#no
+  &NULL}{soluble__names__adjective} properties.
+- The aminoacid sequence {sequence#} {#shows|exhibits|displays!} {soluble#no &NULL}{soluble__names__adjective}
+  properties.
+- Based on the {sequence__description} {#representation |!}{sequence#}, the aminoacid
+  sequence has {soluble#no &NULL}{soluble__names__adjective} {#properties|characteristics|features!}.
+- The {sequence__description} {sequence#} {#represents|is from!} an aminoacid sequence
+  that is {soluble#not &NULL}identified as {soluble__names__adjective}.
+- The {#aminoacid sequence |!}{sequence__description} {sequence#} is {soluble#not
+  &NULL}{soluble__names__adjective}.
+- |-
+  Task: Please classify a aminoacid sequence based on the description.
+  Description: A aminoacid sequence that is {soluble__names__adjective}.
+  {#aminoacid sequence |!}{sequence__description}: {sequence#}
+  Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
+  Result: {soluble#False&True}
+- |-
+  Task: Please classify a aminoacid sequence based on the description.
+  Description: A aminoacid sequence that is {soluble__names__adjective}.
+  {#aminoacid sequence |!}{sequence__description}: {sequence#}
+  Constraint: Answer the question in a {#full|complete!} sentence.
+  Result: This aminoacid sequence is {soluble#not &NULL}{soluble__names__adjective}.
+- |-
+  Task: Please {#give me|create|generate!} a {#aminoacid sequence |!}{sequence__description} based on the {#text |!}description{# below|!}.
+  Description: A aminoacid sequence that is {soluble__names__adjective}.
+  Result: {sequence#}
+- |-
+  User: Can you {#tell me|derive|estimate!} if the aminoacid sequence with the {sequence__description} {sequence#} is {soluble__names__adjective}?
+  Assistant: {soluble#No&Yes}, this aminoacid sequence is {soluble#not &NULL}{soluble__names__adjective}.
+- |-
+  User: Is the aminoacid sequence with the {sequence__description} {sequence#} {soluble__names__adjective}?
+  Assistant: {soluble#No&Yes}, it is {soluble#not &NULL}{soluble__names__adjective}.
+- |-
+  User: Can you {#give me|create|generate!} the {sequence__description} of a aminoacid sequence that is {soluble#not &NULL}{soluble__names__adjective}?
+  Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {sequence#}
+- |-
+  User: I'm {#searching|looking!} for the {sequence__description} of a aminoacid sequence that is {soluble#not &NULL}{soluble__names__adjective}?
+  Assistant: This is a aminoacid sequence that is {soluble#not &NULL}{soluble__names__adjective}: {sequence#}
+- |-
+  User: I want to {#come up with|create|generate!} a {#aminoacid sequence |!}{sequence__description}.
+  Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
+  User: Yes, please. The aminoacid sequence should {soluble#not &NULL}be {soluble__names__adjective}.
+  Assistant: {#Ok|Got it!},{# here you go,|!} this {sequence__description} is {soluble#not &NULL}{soluble__names__adjective}: {sequence#}
+- |-
+  User: I want to {#come up with|create|generate!} a {#aminoacid sequence |!}{sequence__description}.
+  Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#aminoacid sequence|one!}?
+  User: Yes, the aminoacid sequence should {soluble#not &NULL}be {soluble__names__adjective}.
+  Assistant: {#Understood|Got it|Ok!}, this {sequence__description} is {soluble#not &NULL}{soluble__names__adjective}: {sequence#}
+- Is the {sequence__description} {sequence#} {soluble__names__adjective}:<EOI> {soluble#no&yes}
+- |-
+  Task: Please classify a aminoacid sequence based on the description.
+  Description: A aminoacid sequence that is {soluble__names__adjective}.
+  {#aminoacid sequence |!}{sequence__description}: {sequence#}
+  Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
+  Result:<EOI> {soluble#False&True}
+- |-
+  Task: Please {#give me|create|generate!} a {#aminoacid sequence |!}{sequence__description} based on the {#text |!}description{# below|!}.
+  Description: A aminoacid sequence that is {soluble__names__adjective}.
+  Result:<EOI> {sequence#}
+- |-
+  Task: Please answer the multiple choice question.
+  Question: Is the aminoacid sequence with the {sequence__description} {#representation of |!}{sequence#} {soluble__names__adjective}?
+  Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
+  Options:
+  {soluble%}
+  Answer: {%multiple_choice_result}
+- |-
+  Task: Please answer the multiple choice question.
+  Question: Is the aminoacid sequence with the {sequence__description} {#representation of |!}{sequence#} {soluble__names__adjective}?
+  Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
+  Options:
+  {soluble%}
+  Answer:<EOI> {%multiple_choice_result}
+- |-
+  Task: Please answer the multiple choice question.
+  Question: Which aminoacid sequences are {soluble#not &NULL}{soluble__names__adjective}?
+  Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
+  Options:
+  {sequence%soluble%}
+  Answer: {%multiple_choice_result}
+- |-
+  Task: Please answer the multiple choice question.
+  Question: Which aminoacid sequences are {soluble#not &NULL}{soluble__names__adjective}?
+  Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
+  Options:
+  {sequence%soluble%}
+  Answer:<EOI> {%multiple_choice_result}
