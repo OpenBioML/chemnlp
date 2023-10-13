@@ -430,7 +430,7 @@ class TemplateSampler:
             "deepsmiles",
             "canonical",
             "inchi",
-            "tucan",
+            # "tucan",
             "iupac_name",
         ]:
             if col in df.columns:
@@ -543,7 +543,7 @@ class TemplateSampler:
         else:
             out = str(out)
 
-        # sampling based on row data and their definiton in the row
+        # sampling based on row data and their definition in the row
         if "|" in out:  # datafield sampling of multiple options
             choices = out.split("|")
             choices = [c for c in choices if (isinstance(c, str) or not math.isnan(c))]
@@ -769,7 +769,7 @@ class TemplateSampler:
         prompt_template = self.get_prompt_template_from_template_idx(template_idx)
 
         # if there are additional_targets we replace the SMILES randomly
-        if len(self.additional_targets) > 0:
+        if (len(self.additional_targets) > 0) and "SMILES" in sample.keys():
             # get additional targets that are not NaN for this sample
             non_nan_targets = (
                 sample[["SMILES"] + self.additional_targets].dropna().keys().tolist()
@@ -967,7 +967,7 @@ if __name__ == "__main__":
     # path_data_dir = path_data_dir[index:]
 
     for path in path_data_dir:
-        if path.find("data/tabular/lipophilicity") != -1:
+        if path.find("data/tabular/bicerano_dataset") != -1:
             continue  # needs the units fixed or templates copied over
         # subselect one path
         # if path.find("data/tabular/") == -1: continue
