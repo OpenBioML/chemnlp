@@ -41,7 +41,8 @@ def prepare_data():
     df = df.drop_duplicates()
 
     datapoints = len(df)
-
+    # some parts of the code assume that "SMILES" is in upper case, rename this column
+    df.rename(columns={"smiles": "SMILES"}, inplace=True)
     df.to_csv(filename_to_save, index=False)
     return datapoints
 

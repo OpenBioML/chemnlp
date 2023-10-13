@@ -113,7 +113,7 @@ targets:
       names:
           - noun: heat capacity at 298.15 K
 identifiers:
-    - id: smiles
+    - id: SMILES
       type: SMILES
       description: SMILES
     - id: inchi
@@ -148,45 +148,45 @@ bibtex:
       year={2012},
       publisher={ACS Publications}}
 templates:
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {smiles__description} {#representation of |!}{smiles#} has a dipole
+    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a dipole
       moment of {dipole_moment#} Debye, {#calculated|simulated!} computationally using {#Density Functional Theory|DFT!} with B3LYP {#exchange correlation
       functional|functional|accuracy!}.
-    - The {#isotropic polarizability|polarizability|polarizability!} of {#molecule|compound|chemical|molecular species|chemical compound!} with the {smiles__description}
-      {smiles#} is {polarizability#} Bohr^3 calculated using {#Density Functional Theory|DFT!} with B3LYP {#exchange correlation functional|functional|accuracy!}.
-    - The {#molecule|compound|chemical!} with the {smiles__description} {smiles#} has a {rotational_constant_a__names__noun} of {rotational_constant_a#}
+    - The {#isotropic polarizability|polarizability|polarizability!} of {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description}
+      {SMILES#} is {polarizability#} Bohr^3 calculated using {#Density Functional Theory|DFT!} with B3LYP {#exchange correlation functional|functional|accuracy!}.
+    - The {#molecule|compound|chemical!} with the {SMILES__description} {SMILES#} has a {rotational_constant_a__names__noun} of {rotational_constant_a#}
       GHz calculated computationally.
     - Based on {#Density Functional Theory|DFT!} {#calculation|simulation!} with B3LYP {#exchange correlation functional|functional|accuracy!}, the {#molecule|compound|chemical!}
-      with the {smiles__description} {smiles#} has an energy of highest occupied molecular orbital {homo#} Hartree.
+      with the {SMILES__description} {SMILES#} has an energy of highest occupied molecular orbital {homo#} Hartree.
     - The {lumo__names__noun} {#computed|calculated!} using {#Density Functional Theory|DFT!} {#calculation|simulation!} and B3LYP {#exchange correlation
       functional|functional|accuracy!} is {lumo#} Hartree.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} {#described|represented!} by its {smiles__description} {#notation|representation!}
-      {smiles#} possesses a HOMO-LUMO gap measuring {gap#} Hartree as per {#Density Functional Theory|DFT!} results calculated with B3LYP {#exchange correlation
+    - The {#molecule|compound|chemical|molecular species|chemical compound!} {#described|represented!} by its {SMILES__description} {#notation|representation!}
+      {SMILES#} possesses a HOMO-LUMO gap measuring {gap#} Hartree as per {#Density Functional Theory|DFT!} results calculated with B3LYP {#exchange correlation
       functional|functional|accuracy!}.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {smiles__description} representation of {smiles#} has an electronic
+    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} representation of {SMILES#} has an electronic
       spatial extent of {r2#} Bohr^2 computed using {#Density Functional Theory|DFT!}.
-    - The {#molecule|compound|chemical!} with the {smiles__description} {#representation of |!}{smiles#} has a {zero_point_energy__names__noun} of {zero_point_energy#}
+    - The {#molecule|compound|chemical!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {zero_point_energy__names__noun} of {zero_point_energy#}
       Hartree when computed using {#Density Functional Theory|DFT!} with B3LYP functional.
-    - As per {#Density Functional Theory|DFT!} {#calculation|simulation!} the {#molecule|compound|chemical|molecular species|chemical compound!} with {smiles__description}
-      {smiles#} has an internal energy of {u0#} Hartree at 0 K.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} represented in {smiles__description} as {smiles#} has an internal energy of
+    - As per {#Density Functional Theory|DFT!} {#calculation|simulation!} the {#molecule|compound|chemical|molecular species|chemical compound!} with {SMILES__description}
+      {SMILES#} has an internal energy of {u0#} Hartree at 0 K.
+    - The {#molecule|compound|chemical|molecular species|chemical compound!} represented in {SMILES__description} as {SMILES#} has an internal energy of
       {u298#} Hartree at 298.15 K when calculated using {#Density Functional Theory|DFT!} with B3LYP {#exchange correlation functional|functional|accuracy!}.
-    - The {#molecule|compound|chemical!} with the {smiles__description} representation of {smiles#} when calculated with B3LYP DFT simlulations has an enthalpy
+    - The {#molecule|compound|chemical!} with the {SMILES__description} representation of {SMILES#} when calculated with B3LYP DFT simlulations has an enthalpy
       of {h298#} Hartree at 298.15 K.
-    - The {smiles__description} {smiles#} {#represents|is from!} a {#molecule|compound|chemical|molecular species|chemical compound!} that has a Gibbs free
+    - The {SMILES__description} {SMILES#} {#represents|is from!} a {#molecule|compound|chemical|molecular species|chemical compound!} that has a Gibbs free
       energy of {g298#} Hartree at 298.15 K, calculated computationally using {#Density Functional Theory|DFT!} with B3LYP {#exchange correlation functional|functional|accuracy!}.
     - At temperature 298.15 K, the {#Density Functional Theory|DFT!} calculated value of heat capacity is {heat_capacity#} cal/(mol K) for the {#molecule|compound|chemical|molecular
-      species|chemical compound!} with the {smiles__description} {#representation of |!}{smiles#}.
+      species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#}.
     - |-
       'Question: What is a {#molecule|compound|chemical|molecular species|chemical compound!} with a {gap__names__noun} of {gap#} Hartree and an energy of highest occupied molecular orbital {homo#} Hartree?
-      Answer: A {#molecule|compound|chemical|molecular species|chemical compound!} with {smiles__description} {smiles#}'
+      Answer: A {#molecule|compound|chemical|molecular species|chemical compound!} with {SMILES__description} {SMILES#}'
     - |-
       'Question: What is a molecule with an electronic spatial extent of {r2#} Bohr^2 and an energy of lowest unoccupied molecular orbital {lumo#} Hartree?
-      Answer: A molecule with {smiles__description} {smiles#}'
+      Answer: A molecule with {SMILES__description} {SMILES#}'
     - |-
-      Task: Please {#give me|create|generate!} a molecule with the {smiles__description} based on the {#text |!}description{# below|!}.
+      Task: Please {#give me|create|generate!} a molecule with the {SMILES__description} based on the {#text |!}description{# below|!}.
       Description: A molecule with a dipole moment of {dipole_moment#} Debye and an isotropic polarizability of {polarizability#} Bohr^3.
-      Result: {smiles#}
+      Result: {SMILES#}
     - |-
-      Task: Please {#give me|create|generate!} a {#molecule|compound|chemical|molecular species|chemical compound!} with the {smiles__description} based on the {#text |!}description{# below|!}.
+      Task: Please {#give me|create|generate!} a {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} based on the {#text |!}description{# below|!}.
       Description: It has a heat capacity of {heat_capacity#} cal/(mol K) at 298.15 K and a dipole moment of {dipole_moment#} Debye.
-      Result: {smiles#}
+      Result: {SMILES#}
