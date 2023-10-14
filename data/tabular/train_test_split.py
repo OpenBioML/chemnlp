@@ -24,10 +24,10 @@ def print_sys(s):
 
 def create_scaffold_split(df, seed, frac, entity):
     """create scaffold split. it first generates molecular scaffold for each molecule and then split based on scaffolds
-    reference: https://github.com/chemprop/chemprop/blob/master/chemprop/data/scaffold.py
+    adapted from: https://github.com/mims-harvard/TDC/tdc/utils/split.py
 
     Args:
-        df (pd.DataFrame): dataset dataframe
+        df (pd.DataFrame): dataset dataframex   
         fold_seed (int): the random seed
         frac (list): a list of train/valid/test fractions
         entity (str): the column name for where molecule stores
