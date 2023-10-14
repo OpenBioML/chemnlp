@@ -27,7 +27,7 @@ def create_scaffold_split(df, seed, frac, entity):
     adapted from: https://github.com/mims-harvard/TDC/tdc/utils/split.py
 
     Args:
-        df (pd.DataFrame): dataset dataframex   
+        df (pd.DataFrame): dataset dataframe
         fold_seed (int): the random seed
         frac (list): a list of train/valid/test fractions
         entity (str): the column name for where molecule stores
