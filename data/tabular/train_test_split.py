@@ -14,15 +14,16 @@ from glob import glob
 RDLogger.DisableLog("rdApp.*")
 
 
-REPRESENTATIONS = ['SMILES',
-                   'SELFIES',
-                   'PSMILES',
-                   'DeepSMILES',
-                   'canonical SMILES',
-                   'InChI',
-                   'TUCAN',
-                   'IUPAC name'
-                   ]
+REPRESENTATIONS = [
+    'SMILES',
+    'SELFIES',
+    'PSMILES',
+    'DeepSMILES',
+    'canonical SMILES',
+    'InChI',
+    'TUCAN',
+    'IUPAC name'
+    ]
 
 
 def print_sys(s):
@@ -111,16 +112,28 @@ def create_scaffold_split(df, seed, frac, entity):
     }
 
 
-def combine_representations(csv_paths: List[str]):
+def rewrite_data_with_splits(csv_paths: List[str], train_test_df: pd.DataFrame):
 
-    return
+    for path in csv_paths:
+        read_dataset = pd.read_csv(path)
+        try:
+            read_dataset = read_dataset.drop("split", axis=1)
+        except:
+            print("No split column")
+        
+        for col in read_dataset.columns:
+            if col in REPRESENTATIONS:
+                col_to_merge = col
+
+        train_test_df = train_test_df.rename(columns={"REPR" : col_to_merge})
+        merged_data = pd.merge(read_dataset, train_test_df, on=col_to_merge, how="left")
+        merged_data = merged_data.dropna()        
+        merged_data.to_csv(path, index=False)
 
 
 if __name__ == '__main__':
-    
-    data = pd.read_csv('ames_mutagenicity/data_clean.csv')
-    
-    paths_to_data = glob('*/data_clean.csv')[:5]
+        
+    paths_to_data = glob('*/data_clean.csv')
 
     REPRESENTATION_LIST = []
     
@@ -131,7 +144,15 @@ if __name__ == '__main__':
                 REPRESENTATION_LIST.extend(df[col].to_list())
     
     REPR_DF = pd.DataFrame()
-    REPR_DF["REPR"] = REPRESENTATION_LIST
+    REPR_DF["REPR"] = list(set(REPRESENTATION_LIST))
     
-        
-    scaffold_split = create_scaffold_split(REPR_DF, seed=0, frac=[0.8, 0.1, 0.1], entity='REPR')
+    scaffold_split = create_scaffold_split(REPR_DF, seed=42, frac=[0.8, 0, 0.2], entity='REPR')
+    
+    train_df = scaffold_split['train']
+    train_df["split"] = len(train_df) * ["train"]
+    test_df = scaffold_split['test']
+    test_df["split"] = len(test_df) * ["test"]
+    
+    merge = pd.concat([train_df, test_df], axis=0)
+
+    rewrite_data_with_splits(paths_to_data, merge)
