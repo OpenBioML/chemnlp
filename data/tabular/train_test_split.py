@@ -13,19 +13,6 @@ from glob import glob
 
 RDLogger.DisableLog("rdApp.*")
 
-
-REPRESENTATIONS = [
-    'SMILES',
-    'SELFIES',
-    'PSMILES',
-    'DeepSMILES',
-    'canonical SMILES',
-    'InChI',
-    'TUCAN',
-    'IUPAC name'
-    ]
-
-
 def print_sys(s):
     """system print
 
@@ -121,10 +108,7 @@ def rewrite_data_with_splits(csv_paths: List[str], train_test_df: pd.DataFrame):
         except:
             print("No split column")
         
-        for col in read_dataset.columns:
-            if col in REPRESENTATIONS:
-                col_to_merge = col
-
+        col_to_merge = "SMILES"
         train_test_df = train_test_df.rename(columns={"REPR" : col_to_merge})
         merged_data = pd.merge(read_dataset, train_test_df, on=col_to_merge, how="left")
         merged_data = merged_data.dropna()        
@@ -139,9 +123,8 @@ if __name__ == '__main__':
     
     for path in paths_to_data:
         df = pd.read_csv(path)
-        for col in df.columns:
-            if col in REPRESENTATIONS:
-                REPRESENTATION_LIST.extend(df[col].to_list())
+        if "SMILES" in df.columns:
+            REPRESENTATION_LIST.extend(df["SMILES"].to_list())
     
     REPR_DF = pd.DataFrame()
     REPR_DF["REPR"] = list(set(REPRESENTATION_LIST))
