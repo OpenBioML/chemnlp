@@ -31,16 +31,17 @@ links:
 num_points: 2344594
 bibtex:
     - |-
-      @article{Broccatelli2011,
-      doi = {10.1021/jm101421d},
-      url = {https://doi.org/10.1021/jm101421d},
-      year = {2011},
-      month = feb,
-      publisher = {American Chemical Society (ACS)},
-      volume = {54},
-      number = {6},
-      author = {Fabio Broccatelli and Emanuele Carosati and Annalisa Neri and
-      Maria Frosini and Laura Goracci and Tudor I. Oprea and Gabriele Cruciani},
-      title = {A Novel Approach for Predicting P-Glycoprotein (ABCB1) Inhibition
-      Using Molecular Interaction Fields},
-      journal = {Journal of Medicinal Chemistry}
+      @article{10.1063/5.0061990,
+          author = {Christensen, Anders S. and Sirumalla, Sai Krishna and Qiao, Zhuoran and O’Connor, Michael B. and Smith, Daniel G. A. and Ding, Feizhi and Bygrave, Peter J. and Anandkumar, Animashree and Welborn, Matthew and Manby, Frederick R. and Miller, Thomas F., III},
+          title = "{OrbNet Denali: A machine learning potential for biological and organic chemistry with semi-empirical cost and DFT accuracy}",
+          journal = {The Journal of Chemical Physics},
+          volume = {155},
+          number = {20},
+          year = {2021},
+          month = {11},
+          issn = {0021-9606},
+          doi = {10.1063/5.0061990},
+          url = {https://doi.org/10.1063/5.0061990},
+          note = {204103},
+          eprint = {https://pubs.aip.org/aip/jcp/article-pdf/doi/10.1063/5.0061990/13382066/204103\_1\_online.pdf},
+      }
