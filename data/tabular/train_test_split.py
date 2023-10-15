@@ -103,8 +103,9 @@ def rewrite_data_with_splits(csv_paths: List[str], train_test_df: pd.DataFrame) 
     """Rewrite dataframes with the correct split column
 
     Args:
-        csv_paths (List[str]): _description_
-        train_test_df (pd.DataFrame): _description_
+        csv_paths (List[str]): list of files to merge (data_clean.csv)
+        train_test_df (pd.DataFrame): dataframe containing merged SMILES representations from all datasets uniquely 
+                                      split into train and test
     """
 
     for path in csv_paths:
