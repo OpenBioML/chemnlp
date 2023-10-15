@@ -1,17 +1,16 @@
-import tdc
-import pandas as pd
-import numpy as np
-from typing import List, Tuple, Dict, Union, Optional
 import sys
-from tqdm import tqdm
-from random import Random
 from collections import defaultdict
-from rdkit import Chem
-from rdkit.Chem.Scaffolds import MurckoScaffold
-from rdkit import RDLogger
 from glob import glob
+from random import Random
+from typing import Dict, List
+
+import pandas as pd
+from rdkit import Chem, RDLogger
+from rdkit.Chem.Scaffolds import MurckoScaffold
+from tqdm import tqdm
 
 RDLogger.DisableLog("rdApp.*")
+
 
 def print_sys(s):
     """system print
@@ -22,7 +21,9 @@ def print_sys(s):
     print(s, flush=True, file=sys.stderr)
 
 
-def create_scaffold_split(df, seed, frac, entity):
+def create_scaffold_split(
+    df: pd.DataFrame, seed: int, frac: List[float], entity: str = "SMILES"
+) -> Dict[str, pd.DataFrame]:
     """create scaffold split. it first generates molecular scaffold for each molecule and then split based on scaffolds
     adapted from: https://github.com/mims-harvard/TDC/tdc/utils/split.py
 
@@ -39,7 +40,6 @@ def create_scaffold_split(df, seed, frac, entity):
 
     s = df[entity].values
     scaffolds = defaultdict(set)
-    idx2mol = dict(zip(list(range(len(s))), s))
 
     error_smiles = 0
     for i, smiles in tqdm(enumerate(s), total=len(s)):
@@ -99,7 +99,13 @@ def create_scaffold_split(df, seed, frac, entity):
     }
 
 
-def rewrite_data_with_splits(csv_paths: List[str], train_test_df: pd.DataFrame):
+def rewrite_data_with_splits(csv_paths: List[str], train_test_df: pd.DataFrame) -> None:
+    """Rewrite dataframes with the correct split column
+
+    Args:
+        csv_paths (List[str]): _description_
+        train_test_df (pd.DataFrame): _description_
+    """
 
     for path in csv_paths:
         read_dataset = pd.read_csv(path)
@@ -107,35 +113,36 @@ def rewrite_data_with_splits(csv_paths: List[str], train_test_df: pd.DataFrame):
             read_dataset = read_dataset.drop("split", axis=1)
         except:
             print("No split column")
-        
+
         col_to_merge = "SMILES"
-        train_test_df = train_test_df.rename(columns={"REPR" : col_to_merge})
         merged_data = pd.merge(read_dataset, train_test_df, on=col_to_merge, how="left")
-        merged_data = merged_data.dropna()        
+        merged_data = merged_data.dropna()
         merged_data.to_csv(path, index=False)
 
 
-if __name__ == '__main__':
-        
-    paths_to_data = glob('*/data_clean.csv')
+if __name__ == "__main__":
+    paths_to_data = glob("*/data_clean.csv")
 
     REPRESENTATION_LIST = []
-    
+
     for path in paths_to_data:
         df = pd.read_csv(path)
         if "SMILES" in df.columns:
             REPRESENTATION_LIST.extend(df["SMILES"].to_list())
-    
-    REPR_DF = pd.DataFrame()
-    REPR_DF["REPR"] = list(set(REPRESENTATION_LIST))
-    
-    scaffold_split = create_scaffold_split(REPR_DF, seed=42, frac=[0.8, 0, 0.2], entity='REPR')
-    
-    train_df = scaffold_split['train']
-    train_df["split"] = len(train_df) * ["train"]
-    test_df = scaffold_split['test']
-    test_df["split"] = len(test_df) * ["test"]
-    
-    merge = pd.concat([train_df, test_df], axis=0)
 
+    REPR_DF = pd.DataFrame()
+    REPR_DF["SMILES"] = list(set(REPRESENTATION_LIST))
+
+    scaffold_split = create_scaffold_split(REPR_DF, seed=42, frac=[0.8, 0, 0.2])
+
+    # create train and test dataframes
+    train_df = scaffold_split["train"]
+    test_df = scaffold_split["test"]
+    # add split columns to train and test dataframes
+    train_df["split"] = len(train_df) * ["train"]
+    test_df["split"] = len(test_df) * ["test"]
+
+    # merge train and test across all datasets
+    merge = pd.concat([train_df, test_df], axis=0)
+    # rewrite data_clean.csv for each dataset
     rewrite_data_with_splits(paths_to_data, merge)
