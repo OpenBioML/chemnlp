@@ -1,147 +1,157 @@
----
 name: peptides_hemolytic
-description: "Hemolysis is referred to the disruption of erythrocyte\nmembranes that decrease the life span of red blood cells and causes\nthe release of\
-    \ Hemoglobin. It is critical to identify non-hemolytic\nantimicrobial peptides as a non-toxic and safe measure against bacterial\ninfections. However,\
-    \ distinguishing between hemolytic and non-hemolytic\npeptides is a challenge, since they primarily exert their activity at the\ncharged surface of\
-    \ the bacterial plasma membrane.\nThe data here comes from the Database of Antimicrobial Activity and Structure of\nPeptides (DBAASP v3). Hemolytic\
-    \ activity is defined by extrapolating a measurement\nassuming dose response curves to the point\nat which 50% of red blood cells are lysed. Activities\
-    \ below 100 mu g/ml, are\nconsidered hemolytic.\nThe data contains sequences of only L- and canonical amino acids. Each measurement\nis treated independently,\
-    \ so sequences can appear multiple times. This experimental\ndataset contains noise, and in some observations (40%), an identical sequence appears\n\
-    in both negative and positive class. As an example, sequence \"RVKRVWPLVIRTVIAGYNLYRAIKKK\"\nis found to be both hemolytic and\nnon-hemolytic in two\
-    \ different lab experiments (i.e. two different training examples). "
+description: "Hemolysis is referred to the disruption of erythrocyte\nmembranes that\
+  \ decrease the life span of red blood cells and causes\nthe release of Hemoglobin.\
+  \ It is critical to identify non-hemolytic\nantimicrobial peptides as a non-toxic\
+  \ and safe measure against bacterial\ninfections. However, distinguishing between\
+  \ hemolytic and non-hemolytic\npeptides is a challenge, since they primarily exert\
+  \ their activity at the\ncharged surface of the bacterial plasma membrane.\nThe\
+  \ data here comes from the Database of Antimicrobial Activity and Structure of\n\
+  Peptides (DBAASP v3). Hemolytic activity is defined by extrapolating a measurement\n\
+  assuming dose response curves to the point\nat which 50% of red blood cells are\
+  \ lysed. Activities below 100 mu g/ml, are\nconsidered hemolytic.\nThe data contains\
+  \ sequences of only L- and canonical amino acids. Each measurement\nis treated independently,\
+  \ so sequences can appear multiple times. This experimental\ndataset contains noise,\
+  \ and in some observations (40%), an identical sequence appears\nin both negative\
+  \ and positive class. As an example, sequence \"RVKRVWPLVIRTVIAGYNLYRAIKKK\"\nis\
+  \ found to be both hemolytic and\nnon-hemolytic in two different lab experiments\
+  \ (i.e. two different training examples). "
 targets:
-    - id: hemolytic
-      description: The ability of a peptide sequence to lyse red blood cells (1) or not (0).
-      units:
-      type: boolean
-      names:
-          - noun: hemolytic activity
-          - noun: hemolysis
-          - verb: lyse red blood cells
-          - adjective: hemolytic
-          - gerund: lysing red blood cells
-      uris:
+- id: hemolytic
+  description: The ability of a peptide sequence to lyse red blood cells (1) or not
+    (0).
+  units: null
+  type: boolean
+  names:
+  - noun: hemolytic activity
+  - noun: hemolysis
+  - verb: lyse red blood cells
+  - adjective: hemolytic
+  - gerund: lysing red blood cells
+  uris: null
 benchmarks: []
 identifiers:
-    - id: sequence
-      type: Other
-      description: amino acid sequence
+- id: sequence
+  type: Other
+  description: amino acid sequence
 license: CC BY 4.0
 links:
-    - url: https://doi.org/10.1021/acs.jcim.2c01317
-      description: corresponding publication
-    - url: https://doi.org/10.1093/nar/gkaa991
-      description: data source
+- url: https://doi.org/10.1021/acs.jcim.2c01317
+  description: corresponding publication
+- url: https://doi.org/10.1093/nar/gkaa991
+  description: data source
 num_points: 6541
 bibtex:
-    - |-
-      @article{Martins2012,
-      doi = {10.1021/ci300124c},
-      url = {https://doi.org/10.1021/ci300124c},
-      year = {2012},
-      month = jun,
-      publisher = {American Chemical Society (ACS)},
-      volume = {52},
-      number = {6},
-      pages = {1686--1697},
-      author = {Ines Filipa Martins and Ana L. Teixeira and Luis Pinheiro
-      and Andre O. Falcao},
-      title = {A Bayesian Approach to in Silico Blood-Brain Barrier Penetration Modeling},
-      journal = {Journal of Chemical Information and Modeling}
-    - |-
-      @article{Wu2018,
-      doi = {10.1039/c7sc02664a},
-      url = {https://doi.org/10.1039/c7sc02664a},
-      year = {2018},
-      publisher = {Royal Society of Chemistry (RSC)},
-      volume = {9},
-      number = {2},
-      pages = {513--530},
-      author = {Zhenqin Wu and Bharath Ramsundar and Evan~N. Feinberg and Joseph
-      Gomes and Caleb Geniesse and Aneesh S. Pappu and Karl Leswing and Vijay Pande},
-      title = {MoleculeNet: a benchmark for molecular machine learning},
-      journal = {Chemical Science}
+- |-
+  @article{Martins2012,
+  doi = {10.1021/ci300124c},
+  url = {https://doi.org/10.1021/ci300124c},
+  year = {2012},
+  month = jun,
+  publisher = {American Chemical Society (ACS)},
+  volume = {52},
+  number = {6},
+  pages = {1686--1697},
+  author = {Ines Filipa Martins and Ana L. Teixeira and Luis Pinheiro
+  and Andre O. Falcao},
+  title = {A Bayesian Approach to in Silico Blood-Brain Barrier Penetration Modeling},
+  journal = {Journal of Chemical Information and Modeling}
+- |-
+  @article{Wu2018,
+  doi = {10.1039/c7sc02664a},
+  url = {https://doi.org/10.1039/c7sc02664a},
+  year = {2018},
+  publisher = {Royal Society of Chemistry (RSC)},
+  volume = {9},
+  number = {2},
+  pages = {513--530},
+  author = {Zhenqin Wu and Bharath Ramsundar and Evan~N. Feinberg and Joseph
+  Gomes and Caleb Geniesse and Aneesh S. Pappu and Karl Leswing and Vijay Pande},
+  title = {MoleculeNet: a benchmark for molecular machine learning},
+  journal = {Chemical Science}
 templates:
-    - The sequence of {#amino acids|AAs!} {sequence#} {#shows|exhibits|demonstrates!} {hemolytic#no &NULL}{hemolytic__names__adjective} properties.
-    - The amino acid sequence {sequence#} {#shows|exhibits|displays!} {hemolytic#no &NULL}{hemolytic__names__adjective} properties.
-    - Based on the {sequence__description} {#representation |!}{sequence#}, the amino acid sequence has {hemolytic#no &NULL}{hemolytic__names__adjective}
-      {#properties|characteristics|features!}.
-    - The {sequence__description} {sequence#} {#represents|is from!} an amino acid sequence that is {hemolytic#not &NULL}identified as {hemolytic__names__adjective}.
-    - The {#amino acid sequence |!}{sequence__description} {sequence#} is {hemolytic#not &NULL}{hemolytic__names__adjective}.
-    - |-
-      Task: Please classify a amino acid sequence based on the description.
-      Description: A amino acid sequence that is {hemolytic__names__adjective}.
-      {#amino acid sequence |!}{sequence__description}: {sequence#}
-      Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
-      Result: {hemolytic#False&True}
-    - |-
-      Task: Please classify a amino acid sequence based on the description.
-      Description: A amino acid sequence that is {hemolytic__names__adjective}.
-      {#amino acid sequence |!}{sequence__description}: {sequence#}
-      Constraint: Answer the question in a {#full|complete!} sentence.
-      Result: This amino acid sequence is {hemolytic#not &NULL}{hemolytic__names__adjective}.
-    - |-
-      Task: Please {#give me|create|generate!} a {#amino acid sequence |!}{sequence__description} based on the {#text |!}description{# below|!}.
-      Description: A amino acid sequence that is {hemolytic__names__adjective}.
-      Result: {sequence#}
-    - |-
-      User: Can you {#tell me|derive|estimate!} if the amino acid sequence with the {sequence__description} {sequence#} is {hemolytic__names__adjective}?
-      Assistant: {hemolytic#No&Yes}, this amino acid sequence is {hemolytic#not &NULL}{hemolytic__names__adjective}.
-    - |-
-      User: Is the amino acid sequence with the {sequence__description} {sequence#} {hemolytic__names__adjective}?
-      Assistant: {hemolytic#No&Yes}, it is {hemolytic#not &NULL}{hemolytic__names__adjective}.
-    - |-
-      User: Can you {#give me|create|generate!} the {sequence__description} of a amino acid sequence that is {hemolytic#not &NULL}{hemolytic__names__adjective}?
-      Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {sequence#}
-    - |-
-      User: I'm {#searching|looking!} for the {sequence__description} of a amino acid sequence that is {hemolytic#not &NULL}{hemolytic__names__adjective}?
-      Assistant: This is a amino acid sequence that is {hemolytic#not &NULL}{hemolytic__names__adjective}: {sequence#}
-    - |-
-      User: I want to {#come up with|create|generate!} a {#amino acid sequence |!}{sequence__description}.
-      Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
-      User: Yes, please. The amino acid sequence should {hemolytic#not &NULL}be {hemolytic__names__adjective}.
-      Assistant: {#Ok|Got it!},{# here you go,|!} this {sequence__description} is {hemolytic#not &NULL}{hemolytic__names__adjective}: {sequence#}
-    - |-
-      User: I want to {#come up with|create|generate!} a {#amino acid sequence |!}{sequence__description}.
-      Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#amino acid sequence|one!}?
-      User: Yes, the amino acid sequence should {hemolytic#not &NULL}be {hemolytic__names__adjective}.
-      Assistant: {#Understood|Got it|Ok!}, this {sequence__description} is {hemolytic#not &NULL}{hemolytic__names__adjective}: {sequence#}
-    - Is the {sequence__description} {sequence#} {hemolytic__names__adjective}:<EOI> {hemolytic#no&yes}
-    - |-
-      Task: Please classify a amino acid sequence based on the description.
-      Description: A amino acid sequence that is {hemolytic__names__adjective}.
-      {#amino acid sequence |!}{sequence__description}: {sequence#}
-      Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
-      Result:<EOI> {hemolytic#False&True}
-    - |-
-      Task: Please {#give me|create|generate!} a {#amino acid sequence |!}{sequence__description} based on the {#text |!}description{# below|!}.
-      Description: A amino acid sequence that is {hemolytic__names__adjective}.
-      Result:<EOI> {sequence#}
-    - |-
-      Task: Please answer the multiple choice question.
-      Question: Is the amino acid sequence with the {sequence__description} {#representation of |!}{sequence#} {hemolytic__names__adjective}?
-      Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
-      Options:
-      {hemolytic%}
-      Answer: {%multiple_choice_result}
-    - |-
-      Task: Please answer the multiple choice question.
-      Question: Is the amino acid sequence with the {sequence__description} {#representation of |!}{sequence#} {hemolytic__names__adjective}?
-      Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
-      Options:
-      {hemolytic%}
-      Answer:<EOI> {%multiple_choice_result}
-    - |-
-      Task: Please answer the multiple choice question.
-      Question: Which amino acid sequences are {hemolytic#not &NULL}{hemolytic__names__adjective}?
-      Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
-      Options:
-      {sequence%hemolytic%}
-      Answer: {%multiple_choice_result}
-    - |-
-      Task: Please answer the multiple choice question.
-      Question: Which amino acid sequences are {hemolytic#not &NULL}{hemolytic__names__adjective}?
-      Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
-      Options:
-      {sequence%hemolytic%}
-      Answer:<EOI> {%multiple_choice_result}
+- The sequence of {#amino acids|AAs!} {sequence#} {#shows|exhibits|demonstrates!} {hemolytic#no
+  &NULL}{hemolytic__names__adjective} properties.
+- The amino acid sequence {sequence#} {#shows|exhibits|displays!} {hemolytic#no &NULL}{hemolytic__names__adjective}
+  properties.
+- Based on the {#amino acid sequence |sequence of amino acids !}{sequence#}, the peptide has {hemolytic#no &NULL}{hemolytic__names__adjective} {#properties|characteristics|features!}.
+- The {sequence__description} {sequence#} {#represents|is from!} a peptide
+  that is {hemolytic#not &NULL}identified as {hemolytic__names__adjective}.
+- The {#amino acid sequence|sequence of amino acids!} {sequence#} is {hemolytic#not
+  &NULL}{hemolytic__names__adjective}.
+- |-
+  Task: Please classify a peptide based on the description.
+  Description: A amino acid sequence that is {hemolytic__names__adjective}.
+  {#amino acid sequence |sequence of amino acids!}: {sequence#}
+  Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
+  Result: {hemolytic#False&True}
+- |-
+  Task: Please classify a amino acid sequence based on the description.
+  Description: A amino acid sequence that is {hemolytic__names__adjective}.
+  {#amino acid sequence |sequence of amino acids !}: {sequence#}
+  Constraint: Answer the question in a {#full|complete!} sentence.
+  Result: This amino acid sequence is {hemolytic#not &NULL}{hemolytic__names__adjective}.
+- |-
+  Task: Please {#give me|create|generate!} a {#amino acid sequence|sequence of amino acids!} based on the {#text |!}description{# below|!}.
+  Description: A amino acid sequence that is {hemolytic__names__adjective}.
+  Result: {sequence#}
+- |-
+  User: Can you {#tell me|derive|estimate!} if the peptide with the {#amino acid sequence|sequence of amino acids!} {sequence#} is {hemolytic__names__adjective}?
+  Assistant: {hemolytic#No&Yes}, this amino acid sequence is {hemolytic#not &NULL}{hemolytic__names__adjective}.
+- |-
+  User: Is the peptide with the {#amino acid sequence|sequence of amino acids!} {sequence#} {hemolytic__names__adjective}?
+  Assistant: {hemolytic#No&Yes}, it is {hemolytic#not &NULL}{hemolytic__names__adjective}.
+- |-
+  User: Can you {#give me|create|generate!} the {sequence__description} of a peptide that is {hemolytic#not &NULL}{hemolytic__names__adjective}?
+  Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {sequence#}
+- |-
+  User: I'm {#searching|looking!} for the {sequence__description} of a peptide that is {hemolytic#not &NULL}{hemolytic__names__adjective}?
+  Assistant: This is a amino acid sequence that is {hemolytic#not &NULL}{hemolytic__names__adjective}: {sequence#}
+- |-
+  User: I want to {#come up with|create|generate!} a {#amino acid sequence|sequence of amino acids|peptide!}.
+  Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
+  User: Yes, please. The amino acid sequence should {hemolytic#not &NULL}be {hemolytic__names__adjective}.
+  Assistant: {#Ok|Got it!},{# here you go,|!} this {sequence__description} is {hemolytic#not &NULL}{hemolytic__names__adjective}: {sequence#}
+- |-
+  User: I want to {#come up with|create|generate!} a {#amino acid sequence|sequence of amino acids|peptide!}.
+  Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#amino acid sequence|one!}?
+  User: Yes, the amino acid sequence should {hemolytic#not &NULL}be {hemolytic__names__adjective}.
+  Assistant: {#Understood|Got it|Ok!}, this {sequence__description} is {hemolytic#not &NULL}{hemolytic__names__adjective}: {sequence#}
+- Is the {sequence__description} {sequence#} {hemolytic__names__adjective}:<EOI> {hemolytic#no&yes}
+- |-
+  Task: Please classify a {#amino acid sequence|sequence of amino acids|peptide!} based on the description.
+  Description: A amino acid sequence that is {hemolytic__names__adjective}.
+  {#amino acid sequence|sequence of amino acids!}: {sequence#}
+  Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
+  Result:<EOI> {hemolytic#False&True}
+- |-
+  Task: Please {#give me|create|generate!} a {#amino acid sequence|sequence of amino acids|peptide!} based on the {#text |!}description{# below|!}.
+  Description: A {#amino acid sequence|sequence of amino acids|peptide!} that is {hemolytic__names__adjective}.
+  Result:<EOI> {sequence#}
+- |-
+  Task: Please answer the multiple choice question.
+  Question: Is the peptide with the {sequence__description} {#representation of |!}{sequence#} {hemolytic__names__adjective}?
+  Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
+  Options:
+  {hemolytic%}
+  Answer: {%multiple_choice_result}
+- |-
+  Task: Please answer the multiple choice question.
+  Question: Is the peptide with the {sequence__description} {#representation of |!}{sequence#} {hemolytic__names__adjective}?
+  Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
+  Options:
+  {hemolytic%}
+  Answer:<EOI> {%multiple_choice_result}
+- |-
+  Task: Please answer the multiple choice question.
+  Question: Which amino acid sequences are {hemolytic#not &NULL}{hemolytic__names__adjective}?
+  Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
+  Options:
+  {sequence%hemolytic%}
+  Answer: {%multiple_choice_result}
+- |-
+  Task: Please answer the multiple choice question.
+  Question: Which amino acid sequences are {hemolytic#not &NULL}{hemolytic__names__adjective}?
+  Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
+  Options:
+  {sequence%hemolytic%}
+  Answer:<EOI> {%multiple_choice_result}
