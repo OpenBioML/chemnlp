@@ -1,5 +1,7 @@
-import pandas as pd
 import ast
+
+import pandas as pd
+from datasets import load_dataset
 
 
 def oxford_comma_join(list_of_str):
@@ -12,7 +14,7 @@ def oxford_comma_join(list_of_str):
 
 
 def preprocess():
-    df = pd.read_csv("perovskite_solar_cells_with_descriptions.csv", sep="|")
+    df = load_dataset("kjappelbaum/pervoskite_db", delimiter="|")["train"].to_pandas()
     df.dropna(
         subset=[
             "device_stack",

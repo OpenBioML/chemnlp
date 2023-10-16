@@ -1,49 +1,54 @@
 ---
 name: perovskite_db
 description: |-
-  Database of perovskite solar cells with their composition, device stacks, and performance.
+    Database of perovskite solar cells with their composition, device stacks, and performance.
 targets:
     - id: bandgap
       description: bandgap of the perovskite material
       units: eV
-      type: float
+      type: continuos
       names:
           - noun: bandgap
       uris:
+      significant_digits: 2
     - id: voc
       description: open-circuit voltage of the solar cell
       units: V
-      type: float
+      type: continuos
       names:
           - noun: open-circuit voltage
       uris:
+      significant_digits: 2
     - id: jsc
       description: short-circuit current density of the solar cell
       units: mA/cm^2
-      type: float
+      type: continuos
       names:
           - noun: short-circuit current density
       uris:
+      significant_digits: 2
     - id: ff
       description: fill factor of the solar cell
       units: percent
-      type: float
+      type: continuos
       names:
           - noun: fill factor
       uris:
+      significant_digits: 2
     - id: pce
       description: power conversion efficiency of the solar cell
       units: percent
-      type: float
+      type: continuos
       names:
           - noun: power conversion efficiency
       uris:
+      significant_digits: 2
 benchmarks: []
 identifiers:
     - id: reduced_formulas
       type: Other
       description: reduced chemical formula
-    - id: iupac_formulas 
+    - id: iupac_formulas
       type: Other
       description: IUPAC chemical formula
     - id: descriptive_formulas
@@ -73,22 +78,27 @@ bibtex:
         journal = {Nat Energy}
       }
 templates:
-    - The perovskite material with the {reduced_formulas__description} of {reduced_formulas#} has a bandgap of {bandgap#} eV.
-    - The perovskite material with the {descriptive_formulas__description} of {descriptive_formulas#} has an open-circuit voltage of {voc#} V.
-    - The {#perovskite solar cell|solar cell!} with the device stack of {device_stack_string#} has a bandgap of {bandgap#} eV.
-    - The {#perovskite solar cell|solar cell!} with the device stack of {device_stack_string#} {#has an|achieves an!} {#open-circuit voltage|OCV|open-circuit voltage (OCV)!} of {voc#} V.
-    - The {#perovskite solar cell|solar cell!} with the device stack of {device_stack_string#} {#has a|achieves a!} {#short-circuit voltage|JSC|short-circuit voltage (JSC)!} of {jsc#} mA/cm^2.
-    - The {#perovskite solar cell|solar cell!} with the device stack of {device_stack_string#} {#has a|achieves a!} {#fill factor|FF|fill factor (FF)!} of {ff#} percent.
-    - The {#perovskite solar cell|solar cell!} with the device stack of {device_stack_string#} {#has a|achieves a!} {#power conversion efficiency|PCE|power conversion efficiency (PCE)!} of {pce#} percent.
-    - The {#perovskite solar cell|solar cell!} with the device stack of {device_stack_string#} {#has an|achieves an!} {#open-circuit voltage|OCV|open-circuit voltage (OCV)!} of {voc#} V and {#a|achieves a!} {#short-circuit voltage|JSC|short-circuit voltage (JSC)!} of {jsc#} mA/cm^2.
-    - |- 
-      Question: What is a perovskite material with a bandgap of {bandgap#} eV?
+    - The perovskite material with the {reduced_formulas__description} of {reduced_formulas#} has a bandgap of {bandgap#} {bandgap__units}.
+    - The perovskite material with the {descriptive_formulas__description} of {descriptive_formulas#} has an open-circuit voltage of {voc#} {voc__units}.
+    - The {#perovskite solar cell|solar cell!} with the device stack of {device_stack_string#} has a bandgap of {bandgap#} {bandgap__units}.
+    - The {#perovskite solar cell|solar cell!} with the device stack of {device_stack_string#} {#has an|achieves an!} {#open-circuit voltage|OCV|open-circuit
+      voltage (OCV)!} of {voc#} {voc__units}.
+    - The {#perovskite solar cell|solar cell!} with the device stack of {device_stack_string#} {#has a|achieves a!} {#short-circuit voltage|JSC|short-circuit
+      voltage (JSC)!} of {jsc#} {jsc__units}.
+    - The {#perovskite solar cell|solar cell!} with the device stack of {device_stack_string#} {#has a|achieves a!} {#fill factor|FF|fill factor (FF)!}
+      of {ff#} percent.
+    - The {#perovskite solar cell|solar cell!} with the device stack of {device_stack_string#} {#has a|achieves a!} {#power conversion efficiency|PCE|power
+      conversion efficiency (PCE)!} of {pce#} percent.
+    - The {#perovskite solar cell|solar cell!} with the device stack of {device_stack_string#} {#has an|achieves an!} {#open-circuit voltage|OCV|open-circuit
+      voltage (OCV)!} of {voc#} V and {#a|achieves a!} {#short-circuit voltage|JSC|short-circuit voltage (JSC)!} of {jsc#} {jsc__units}.
+    - |-
+      Question: What is a perovskite material with a bandgap of {bandgap#} {bandgap__units}?
       Answer: A perovskite material with {reduced_formulas__description} {reduced_formulas#}
     - |-
-      Question: What is a perovskite solar cell with a an {#open-circuit voltage|OCV|open-circuit voltage (OCV)!} of {voc#} V?
+      Question: What is a perovskite solar cell with a an {#open-circuit voltage|OCV|open-circuit voltage (OCV)!} of {voc#} {voc__units}?
       Answer: A {#perovskite solar cell|solar cell|device!} with the device stack of {device_stack_string#}
     - |-
-      Question: What is a perovskite solar cell with a a {#short-circuit voltage|JSC|short-circuit voltage (JSC)!} of {jsc#} mA/cm^2?
+      Question: What is a perovskite solar cell with a a {#short-circuit voltage|JSC|short-circuit voltage (JSC)!} of {jsc#} {jsc__units}?
       Answer: A {#perovskite solar cell|solar cell|device!} with the device stack of {device_stack_string#}
     - |-
       Question: What is a perovskite solar cell with a a {#fill factor|FF|fill factor (FF)!} of {ff#} percent?
@@ -97,27 +107,27 @@ templates:
       Question: What is a perovskite solar cell with a a {#power conversion efficiency|PCE|power conversion efficiency (PCE)!} of {pce#} percent?
       Answer: A {#perovskite solar cell|solar cell|device!} with the device stack of {device_stack_string#}
     - |-
-      Question: What is a perovskite solar cell with a an {#open-circuit voltage|OCV|open-circuit voltage (OCV)!} of {voc#} V and a {#short-circuit voltage|JSC|short-circuit voltage (JSC)!} of {jsc#} mA/cm^2?
+      Question: What is a perovskite solar cell with a an {#open-circuit voltage|OCV|open-circuit voltage (OCV)!} of {voc#} {voc__units} and a {#short-circuit voltage|JSC|short-circuit voltage (JSC)!} of {jsc#} {jsc__units}?
       Answer: A {#perovskite solar cell|solar cell|device!} with the device stack of {device_stack_string#}
     - |-
-      Question: What is a perovskite solar cell with a an {#open-circuit voltage|OCV|open-circuit voltage (OCV)!} of {voc#} V and a {#fill factor|FF|fill factor (FF)!} of {ff#} percent?
+      Question: What is a perovskite solar cell with a an {#open-circuit voltage|OCV|open-circuit voltage (OCV)!} of {voc#} {voc__units} and a {#fill factor|FF|fill factor (FF)!} of {ff#} percent?
       Answer: A {#perovskite solar cell|solar cell|device!} with the device stack of {device_stack_string#}
     - |-
-      Question: What is a perovskite solar cell with a an {#open-circuit voltage|OCV|open-circuit voltage (OCV)!} of {voc#} V and a {#power conversion efficiency|PCE|power conversion efficiency (PCE)!} of {pce#} percent?
+      Question: What is a perovskite solar cell with a an {#open-circuit voltage|OCV|open-circuit voltage (OCV)!} of {voc#} {voc__units} and a {#power conversion efficiency|PCE|power conversion efficiency (PCE)!} of {pce#} percent?
       Answer: A {#perovskite solar cell|solar cell|device!} with the device stack of {device_stack_string#}
     - |-
-      Question: What is a perovskite solar cell with a a {#short-circuit voltage|JSC|short-circuit voltage (JSC)!} of {jsc#} mA/cm^2 and a {#fill factor|FF|fill factor (FF)!} of {ff#} percent?
+      Question: What is a perovskite solar cell with a a {#short-circuit voltage|JSC|short-circuit voltage (JSC)!} of {jsc#} {jsc__units} and a {#fill factor|FF|fill factor (FF)!} of {ff#} percent?
       Answer: A {#perovskite solar cell|solar cell|device!} with the device stack of {device_stack_string#}
     - |-
       User: {#I would like to|I want to|I would love to!} know the bandgap of a perovskite material.
       Assistant: {#That's interesting|Cool|Interesting|Awesome!}! What material are you interested in?
       User: I am interested in the material with the {reduced_formulas__description} of {reduced_formulas#}.
-      Assistant: The bandgap of the material with {reduced_formulas__description} {reduced_formulas#} is {bandgap#} eV.
+      Assistant: The bandgap of the material with {reduced_formulas__description} {reduced_formulas#} is {bandgap#} {bandgap__units}.
     - |-
       User: {#I would like to|I want to|I would love to!} know the bandgap of a perovskite material.
       Assistant: {#That's interesting|Cool|Interesting|Awesome!}! What material are you interested in?
       User: I am interested in the material with the {descriptive_formulas__description} of {descriptive_formulas#}.
-      Assistant: The bandgap of the material with {descriptive_formulas__description} {descriptive_formulas#} is {bandgap#} eV.
+      Assistant: The bandgap of the material with {descriptive_formulas__description} {descriptive_formulas#} is {bandgap#} {bandgap__units}.
     - |-
       User: {#I would like to|I want to|I would love to!} design a {#perovskite solar cell|solar cell!} with a {#power conversion efficiency|PCE|power conversion efficiency (PCE)!} of {pce#} percent.
       Assistant: {#That's interesting|Cool|Interesting|Awesome!}! Do you have other requirements?
@@ -126,22 +136,22 @@ templates:
     - |-
       User: {#I would like to|I want to|I would love to!} design a {#perovskite solar cell|solar cell!} with a {#power conversion efficiency|PCE|power conversion efficiency (PCE)!} of {pce#} percent.
       Assistant: {#That's interesting|Cool|Interesting|Awesome!}! Do you have other {#requirements|constraints|needs!}?
-      User: {#I would like|I want!} the {#perovskite solar cell|solar cell!} to have a {#short-circuit voltage|JSC|short-circuit voltage (JSC)!} of {jsc#} mA/cm^2.
+      User: {#I would like|I want!} the {#perovskite solar cell|solar cell!} to have a {#short-circuit voltage|JSC|short-circuit voltage (JSC)!} of {jsc#} {jsc__units}.
       Assistant: {#In that case, you should use the device stack of|In your case, I recommend|I would try the device stack!} {device_stack_string#}.
     - |-
       User: {#I would like to|I want to|I would love to!} design a {#perovskite solar cell|solar cell!} with a {#power conversion efficiency|PCE|power conversion efficiency (PCE)!} of {pce#} percent.
       Assistant: {#That's interesting|Cool|Interesting|Awesome!}! Do you have other {#requirements|constraints|needs!}?
-      User: {#I would like|I want!} the {#perovskite solar cell|solar cell!} to have an {#open-circuit voltage|OCV|open-circuit voltage (OCV)!} of {voc#} V.
+      User: {#I would like|I want!} the {#perovskite solar cell|solar cell!} to have an {#open-circuit voltage|OCV|open-circuit voltage (OCV)!} of {voc#} {voc__units}.
       Assistant: {#In that case, you should use the device stack of|In your case, I recommend|I would try the device stack!} {device_stack_string#}.
     - |-
       User: {#I would like to|I want to|I would love to!} design a {#perovskite solar cell|solar cell!} with a {#power conversion efficiency|PCE|power conversion efficiency (PCE)!} of {pce#} percent.
       Assistant: {#That's interesting|Cool|Interesting|Awesome!}! Do you have other {#requirements|constraints|needs!}?
-      User: {#I would like|I want!} the {#perovskite solar cell|solar cell!} to have an {#open-circuit voltage|OCV|open-circuit voltage (OCV)!} of {voc#} V and a {#short-circuit voltage|JSC|short-circuit voltage (JSC)!} of {jsc#} mA/cm^2.
+      User: {#I would like|I want!} the {#perovskite solar cell|solar cell!} to have an {#open-circuit voltage|OCV|open-circuit voltage (OCV)!} of {voc#} {voc__units} and a {#short-circuit voltage|JSC|short-circuit voltage (JSC)!} of {jsc#} {jsc__units}.
       Assistant: {#In that case, you should use the device stack of|In your case, I recommend|I would try the device stack!} {device_stack_string#}.
     - |-
       User: {#I would like to|I want to|I would love to!} design a {#perovskite solar cell|solar cell!} with a {#power conversion efficiency|PCE|power conversion efficiency (PCE)!} of {pce#} percent.
       Assistant: {#That's interesting|Cool|Interesting|Awesome!}! Do you have other {#requirements|constraints|needs!}?
-      User: {#I would like|I want!} the {#perovskite solar cell|solar cell!} to have an {#open-circuit voltage|OCV|open-circuit voltage (OCV)!} of {voc#} V and a {#fill factor|FF|fill factor (FF)!} of {ff#} percent.
+      User: {#I would like|I want!} the {#perovskite solar cell|solar cell!} to have an {#open-circuit voltage|OCV|open-circuit voltage (OCV)!} of {voc#} {voc__units} and a {#fill factor|FF|fill factor (FF)!} of {ff#} percent.
       Assistant: {#In that case, you should use the device stack of|In your case, I recommend|I would try the device stack!} {device_stack_string#}.
     - |-
       User: {#I would like to|I want to|I would love to!} design a {#perovskite solar cell|solar cell!} with a {#power conversion efficiency|PCE|power conversion efficiency (PCE)!} of {pce#} percent.
