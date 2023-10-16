@@ -44,35 +44,35 @@ RedDBs development steps, including:
                 "id": "solubilityAqSolPred",
                 "description": "Aqueous solubility prediction using machine learning",
                 "units": "logS",
-                "type": "numeric",
+                "type": "continous",
                 "names": [{"noun": "ML-predicted aqueous solubility"}],
             },
             {
                 "id": "molecularSurface",
                 "description": "Total surface area of a molecule",
                 "units": "\\AA^2",
-                "type": "numeric",
+                "type": "continous",
                 "names": [{"noun": "molecular surface area"}],
             },
             {
                 "id": "reactionFieldEnergy",
                 "description": "Energy associated with the interaction during a chemical reaction",
                 "units": "kT",
-                "type": "numeric",
+                "type": "continous",
                 "names": [{"noun": "chemical reaction field energy"}],
             },
             {
                 "id": "solventAccessSurface",
                 "description": "Surface area of a molecule accessible to a solvent",
                 "units": "\\AA^2",
-                "type": "numeric",
+                "type": "continous",
                 "names": [{"noun": "solvent-accessible surface area"}],
             },
             {
                 "id": "cavityEnergy",
                 "description": "Energy associated with the formation of cavities in a molecular structure",
                 "units": "kT",
-                "type": "numeric",
+                "type": "continous",
                 "names": [
                     {"noun": "cavity formation energy at the PBE level of theory"}
                 ],
@@ -81,7 +81,7 @@ RedDBs development steps, including:
                 "id": "gasEnergy",
                 "description": "Total energy of a molecule in the gas phase",
                 "units": "Hartree",
-                "type": "numeric",
+                "type": "continous",
                 "names": [
                     {"noun": "gas-phase molecular energy at the PBE level of theory"}
                 ],
@@ -90,7 +90,7 @@ RedDBs development steps, including:
                 "id": "gasHomo",
                 "description": "Highest Occupied Molecular Orbital (HOMO) energy of a gas-phase molecule",
                 "units": "Hartree",
-                "type": "numeric",
+                "type": "continous",
                 "names": [
                     {"noun": "gaseous phase HOMO energy at the PBE level of theory"}
                 ],
@@ -99,7 +99,7 @@ RedDBs development steps, including:
                 "id": "gasLumo",
                 "description": "Lowest Unoccupied Molecular Orbital (LUMO) energy of a gas-phase molecule",
                 "units": "Hartree",
-                "type": "numeric",
+                "type": "continous",
                 "names": [
                     {"noun": "gaseous phase LUMO energy at the PBE level of theory"}
                 ],
@@ -108,7 +108,7 @@ RedDBs development steps, including:
                 "id": "solutionEnergy",
                 "description": "Total energy of a molecule in a solution",
                 "units": "Hartree",
-                "type": "numeric",
+                "type": "continous",
                 "names": [
                     {
                         "noun": "aqueous phase molecular energy at the PBE level of theory"
@@ -119,7 +119,7 @@ RedDBs development steps, including:
                 "id": "solutionHomo",
                 "description": "Highest Occupied Molecular Orbital (HOMO) energy in a solution",
                 "units": "Hartree",
-                "type": "numeric",
+                "type": "continous",
                 "names": [
                     {"noun": "aqueous phase HOMO energy at the PBE level of theory"}
                 ],
@@ -128,7 +128,7 @@ RedDBs development steps, including:
                 "id": "solutionLumo",
                 "description": "Lowest Unoccupied Molecular Orbital (LUMO) energy in a solution",
                 "units": "Hartree",
-                "type": "numeric",
+                "type": "continous",
                 "names": [
                     {"noun": "aqueous phase LUMO energy at the PBE level of theory"}
                 ],
@@ -137,7 +137,7 @@ RedDBs development steps, including:
                 "id": "nuclearRepulsionEnergy",
                 "description": "Electrostatic repulsion energy between atomic nuclei in a molecule",
                 "units": "Hartree",
-                "type": "numeric",
+                "type": "continous",
                 "names": [
                     {"noun": "nuclear repulsion energy at the PBE level of theory"}
                 ],
@@ -146,7 +146,7 @@ RedDBs development steps, including:
                 "id": "optGasEnergy",
                 "description": "Total energy of an optimized gas-phase molecule",
                 "units": "Hartree",
-                "type": "numeric",
+                "type": "continous",
                 "names": [
                     {
                         "noun": "optimized gas-phase molecular energy at the PBE level of theory"
@@ -157,7 +157,7 @@ RedDBs development steps, including:
                 "id": "optGasHomo",
                 "description": "Highest Occupied Molecular Orbital (HOMO) energy of an optimized gas-phase molecule",
                 "units": "Hartree",
-                "type": "numeric",
+                "type": "continous",
                 "names": [
                     {
                         "noun": "optimized gas-phase HOMO energy at the PBE level of theory"
@@ -168,7 +168,7 @@ RedDBs development steps, including:
                 "id": "optGasLumo",
                 "description": "Lowest Unoccupied Molecular Orbital (LUMO) energy of an optimized gas-phase molecule",
                 "units": "Hartree",
-                "type": "numeric",
+                "type": "continous",
                 "names": [
                     {
                         "noun": "optimized gas-phase LUMO energy calculated at the PBE level of theory"
