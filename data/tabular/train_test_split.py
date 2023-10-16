@@ -120,6 +120,7 @@ def rewrite_data_with_splits(
     train_test_df: pd.DataFrame,
     override: bool = False,
     check: bool = True,
+    repr_col: str = "SMILES",
 ) -> None:
     """Rewrite dataframes with the correct split column
 
@@ -131,35 +132,46 @@ def rewrite_data_with_splits(
             defaults to False
         check (bool): whether to check if the split was successful
             defaults to True. Can be turned off to save memory
+        repr_col (str): the column name for where SMILES representation is stored
+            defaults to "SMILES"
     """
     if check:
         train_smiles = set(train_test_df.query("split == 'train'")["SMILES"].to_list())
 
     for path in csv_paths:
         read_dataset = pd.read_csv(path)
-        try:
-            read_dataset = read_dataset.drop("split", axis=1)
-        except KeyError:
-            print("No split column")
+        if repr_col in read_dataset.columns:
+            try:
+                read_dataset = read_dataset.drop("split", axis=1)
+                message = f"Split column found in {path}."
+                if override:
+                    message += " Overriding..."
+                print(message)
+            except KeyError:
+                print(f"No split column in {path}")
 
-        col_to_merge = "SMILES"
-        merged_data = pd.merge(read_dataset, train_test_df, on=col_to_merge, how="left")
-        merged_data = merged_data.dropna()
-        if override:
-            merged_data.to_csv(path, index=False)
-        else:
-            merged_data.to_csv(path.replace(".csv", "_split.csv"), index=False)
-
-        if len(merged_data.query("split == 'train'")) == 0:
-            raise ValueError("Split failed, no train data")
-        if len(merged_data.query("split == 'test'")) == 0:
-            raise ValueError("Split failed, no test data")
-        if check:
-            test_split_smiles = set(
-                merged_data.query("split == 'test'")["SMILES"].to_list()
+            col_to_merge = "SMILES"
+            merged_data = pd.merge(
+                read_dataset, train_test_df, on=col_to_merge, how="left"
             )
-            if len(train_smiles.intersection(test_split_smiles)) > 0:
-                raise ValueError("Split failed, train and test overlap")
+            merged_data = merged_data.dropna()
+            if override:
+                merged_data.to_csv(path, index=False)
+            else:
+                merged_data.to_csv(path.replace(".csv", "_split.csv"), index=False)
+
+            if len(merged_data.query("split == 'train'")) == 0:
+                raise ValueError("Split failed, no train data")
+            if len(merged_data.query("split == 'test'")) == 0:
+                raise ValueError("Split failed, no test data")
+            if check:
+                test_split_smiles = set(
+                    merged_data.query("split == 'test'")["SMILES"].to_list()
+                )
+                if len(train_smiles.intersection(test_split_smiles)) > 0:
+                    raise ValueError("Split failed, train and test overlap")
+        else:
+            print(f"Skipping {path} as it does not contain {repr_col} column")
 
 
 def cli(
@@ -170,22 +182,25 @@ def cli(
     path: str = "*/data_clean.csv",
     override: bool = False,
     check: bool = True,
+    repr_col: str = "SMILES",
 ):
     paths_to_data = glob(path)
-    filtered_paths = []
-    for path in paths_to_data:
-        if "flashpoint" in path:
-            filtered_paths.append(path)
-        elif "freesolv" in path:
-            filtered_paths.append(path)
-    paths_to_data = filtered_paths
+    # filtered_paths = []
+    # for path in paths_to_data:
+    #     if "flashpoint" in path:
+    #         filtered_paths.append(path)
+    #     elif "freesolv" in path:
+    #         filtered_paths.append(path)
+    #     elif "peptide" in path:
+    #         filtered_paths.append(path)
+    # paths_to_data = filtered_paths
 
     REPRESENTATION_LIST = []
 
     for path in tqdm(paths_to_data):
         df = pd.read_csv(path)
-        if "SMILES" in df.columns:
-            REPRESENTATION_LIST.extend(df["SMILES"].to_list())
+        if repr_col in df.columns:
+            REPRESENTATION_LIST.extend(df[repr_col].to_list())
 
     REPR_DF = pd.DataFrame()
     REPR_DF["SMILES"] = list(set(REPRESENTATION_LIST))
@@ -204,7 +219,9 @@ def cli(
     # merge train and test across all datasets
     merge = pd.concat([train_df, test_df], axis=0)
     # rewrite data_clean.csv for each dataset
-    rewrite_data_with_splits(paths_to_data, merge, override=override, check=check)
+    rewrite_data_with_splits(
+        paths_to_data, merge, override=override, check=check, repr_col=repr_col
+    )
 
 
 if __name__ == "__main__":
