@@ -22,7 +22,7 @@ def remove_repeated_almost_empty_lines(text):
 
 
 def get_clean_df():
-    dataset = load_dataset("marianna13/mattermodeling-stackexchange")
+    dataset = load_dataset("marianna13/chemistry-stackexchange")
     questions_w_answer = []
     df = dataset["train"].to_pandas()
     # we do the following, if there is no answer, we drop this question

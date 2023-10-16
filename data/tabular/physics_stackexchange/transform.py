@@ -35,6 +35,8 @@ def get_clean_df():
         # skip question with markdown image tag in it
         if "![" in row["question_text"]:
             continue
+        if "](" in row["question_text"]:
+            continue
         if "http" in row["question_text"]:
             continue
         if len(row["answers"]) == 0:
@@ -42,6 +44,8 @@ def get_clean_df():
         if len(row["answers"]) == 1:
             # if image tag in answer, skip
             if "![" in row["answers"][0][0]:
+                continue
+            if "](" in row["answers"][0][0]:
                 continue
             # if link in answer, skip
             if "http" in row["answers"][0][0]:
@@ -58,6 +62,8 @@ def get_clean_df():
                 if answer[1] != 0:
                     # if image tag in answer, skip
                     if "![" in answer[0]:
+                        continue
+                    if "](" in answer[0]:
                         continue
                     # if link in answer, skip
                     if "http" in answer[0]:
