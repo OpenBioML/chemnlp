@@ -1,3 +1,18 @@
+"""Perform scaffold split on all datasets and rewrite data_clean.csv files.
+
+Scaffold split is a method of splitting data that ensures that the same scaffold
+is not present in both the train and test sets. This is important for evaluating
+the generalizability of a model.
+
+For more information, see:
+    - Wu, Z.; Ramsundar, B.; Feinberg, E. N.; Gomes, J.; Geniesse, C.; Pappu, A. S.;
+        Leswing, K.; Pande, V. MoleculeNet: A Benchmark for Molecular Machine Learning.
+        Chemical Science 2018, 9 (2), 513–530. https://doi.org/10.1039/c7sc02664a.
+    - Jablonka, K. M.; Rosen, A. S.; Krishnapriyan, A. S.; Smit, B.
+        An Ecosystem for Digital Reticular Chemistry. ACS Central Science 2023, 9 (4), 563–581.
+        https://doi.org/10.1021/acscentsci.2c01177.
+
+"""
 import sys
 from collections import defaultdict
 from glob import glob
