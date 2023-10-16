@@ -30,7 +30,7 @@ def read_dataset():
     # create meta yaml
     meta = {
         "name": "RedDB",  # unique identifier, we will also use this for directory names
-        "description": """RedDB: a computational database that contains 31,618 molecules
+        "description": f"""RedDB: a computational database that contains {len(hf_data)} molecules
 from two prominent classes of organic electroactive compounds, quinones and aza-aromatics,
 has been presented. RedDB incorporates miscellaneous physicochemical property information
 of the compounds that can potentially be employed as battery performance descriptors.
@@ -73,77 +73,110 @@ RedDBs development steps, including:
                 "description": "Energy associated with the formation of cavities in a molecular structure",
                 "units": "kT",
                 "type": "numeric",
-                "names": [{"noun": "cavity formation energy"}],
+                "names": [
+                    {"noun": "cavity formation energy at the PBE level of theory"}
+                ],
             },
             {
                 "id": "gasEnergy",
                 "description": "Total energy of a molecule in the gas phase",
                 "units": "Hartree",
                 "type": "numeric",
-                "names": [{"noun": "gas-phase molecular energy"}],
+                "names": [
+                    {"noun": "gas-phase molecular energy at the PBE level of theory"}
+                ],
             },
             {
                 "id": "gasHomo",
                 "description": "Highest Occupied Molecular Orbital (HOMO) energy of a gas-phase molecule",
                 "units": "Hartree",
                 "type": "numeric",
-                "names": [{"noun": "gaseous phase HOMO energy"}],
+                "names": [
+                    {"noun": "gaseous phase HOMO energy at the PBE level of theory"}
+                ],
             },
             {
                 "id": "gasLumo",
                 "description": "Lowest Unoccupied Molecular Orbital (LUMO) energy of a gas-phase molecule",
                 "units": "Hartree",
                 "type": "numeric",
-                "names": [{"noun": "gaseous phase LUMO energy"}],
+                "names": [
+                    {"noun": "gaseous phase LUMO energy at the PBE level of theory"}
+                ],
             },
             {
                 "id": "solutionEnergy",
                 "description": "Total energy of a molecule in a solution",
                 "units": "Hartree",
                 "type": "numeric",
-                "names": [{"noun": "aqueous phase molecular energy"}],
+                "names": [
+                    {
+                        "noun": "aqueous phase molecular energy at the PBE level of theory"
+                    }
+                ],
             },
             {
                 "id": "solutionHomo",
                 "description": "Highest Occupied Molecular Orbital (HOMO) energy in a solution",
                 "units": "Hartree",
                 "type": "numeric",
-                "names": [{"noun": "aqueous phase HOMO energy"}],
+                "names": [
+                    {"noun": "aqueous phase HOMO energy at the PBE level of theory"}
+                ],
             },
             {
                 "id": "solutionLumo",
                 "description": "Lowest Unoccupied Molecular Orbital (LUMO) energy in a solution",
                 "units": "Hartree",
                 "type": "numeric",
-                "names": [{"noun": "aqueous phase LUMO energy"}],
+                "names": [
+                    {"noun": "aqueous phase LUMO energy at the PBE level of theory"}
+                ],
             },
             {
                 "id": "nuclearRepulsionEnergy",
                 "description": "Electrostatic repulsion energy between atomic nuclei in a molecule",
                 "units": "Hartree",
                 "type": "numeric",
-                "names": [{"noun": "nuclear repulsion energy"}],
+                "names": [
+                    {"noun": "nuclear repulsion energy at the PBE level of theory"}
+                ],
             },
             {
                 "id": "optGasEnergy",
                 "description": "Total energy of an optimized gas-phase molecule",
                 "units": "Hartree",
                 "type": "numeric",
-                "names": [{"noun": "optimized gas-phase molecular energy"}],
+                "names": [
+                    {
+                        "noun": "optimized gas-phase molecular energy at the PBE level of theory"
+                    }
+                ],
             },
             {
                 "id": "optGasHomo",
                 "description": "Highest Occupied Molecular Orbital (HOMO) energy of an optimized gas-phase molecule",
                 "units": "Hartree",
                 "type": "numeric",
-                "names": [{"noun": "optimized gas-phase HOMO energy"}],
+                "names": [
+                    {
+                        "noun": "optimized gas-phase HOMO energy at the PBE level of theory"
+                    }
+                ],
             },
             {
                 "id": "optGasLumo",
                 "description": "Lowest Unoccupied Molecular Orbital (LUMO) energy of an optimized gas-phase molecule",
                 "units": "Hartree",
                 "type": "numeric",
-                "names": [{"noun": "optimized gas-phase LUMO energy"}],
+                "names": [
+                    {
+                        "noun": "optimized gas-phase LUMO energy calculated at the PBE level of theory"
+                    },
+                    {
+                        "noun": "optimized gas-phase LUMO energy calculated with DFT at the PBE level of theory"
+                    },
+                ],
             },
         ],
         "identifiers": [
