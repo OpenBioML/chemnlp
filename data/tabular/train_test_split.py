@@ -8,6 +8,7 @@ import pandas as pd
 from rdkit import Chem, RDLogger
 from rdkit.Chem.Scaffolds import MurckoScaffold
 from tqdm import tqdm
+import fire
 
 RDLogger.DisableLog("rdApp.*")
 
@@ -99,34 +100,74 @@ def create_scaffold_split(
     }
 
 
-def rewrite_data_with_splits(csv_paths: List[str], train_test_df: pd.DataFrame) -> None:
+def rewrite_data_with_splits(
+    csv_paths: List[str],
+    train_test_df: pd.DataFrame,
+    override: bool = False,
+    check: bool = True,
+) -> None:
     """Rewrite dataframes with the correct split column
 
     Args:
         csv_paths (List[str]): list of files to merge (data_clean.csv)
-        train_test_df (pd.DataFrame): dataframe containing merged SMILES representations from all datasets uniquely 
-                                      split into train and test
+        train_test_df (pd.DataFrame): dataframe containing merged SMILES representations
+            from all datasets uniquely split into train and test
+        override (bool): whether to override the existing data_clean.csv files
+            defaults to False
+        check (bool): whether to check if the split was successful
+            defaults to True. Can be turned off to save memory
     """
+    if check:
+        train_smiles = set(train_test_df.query("split == 'train'")["SMILES"].to_list())
 
     for path in csv_paths:
         read_dataset = pd.read_csv(path)
         try:
             read_dataset = read_dataset.drop("split", axis=1)
-        except:
+        except KeyError:
             print("No split column")
 
         col_to_merge = "SMILES"
         merged_data = pd.merge(read_dataset, train_test_df, on=col_to_merge, how="left")
         merged_data = merged_data.dropna()
-        merged_data.to_csv(path, index=False)
+        if override:
+            merged_data.to_csv(path, index=False)
+        else:
+            merged_data.to_csv(path.replace(".csv", "_split.csv"), index=False)
+
+        if len(merged_data.query("split == 'train'")) == 0:
+            raise ValueError("Split failed, no train data")
+        if len(merged_data.query("split == 'test'")) == 0:
+            raise ValueError("Split failed, no test data")
+        if check:
+            test_split_smiles = set(
+                merged_data.query("split == 'test'")["SMILES"].to_list()
+            )
+            if len(train_smiles.intersection(test_split_smiles)) > 0:
+                raise ValueError("Split failed, train and test overlap")
 
 
-if __name__ == "__main__":
-    paths_to_data = glob("*/data_clean.csv")
+def cli(
+    seed: int = 42,
+    train_size: float = 0.8,
+    val_size: float = 0.0,
+    test_size: float = 0.2,
+    path: str = "*/data_clean.csv",
+    override: bool = False,
+    check: bool = True,
+):
+    paths_to_data = glob(path)
+    filtered_paths = []
+    for path in paths_to_data:
+        if "flashpoint" in path:
+            filtered_paths.append(path)
+        elif "freesolv" in path:
+            filtered_paths.append(path)
+    paths_to_data = filtered_paths
 
     REPRESENTATION_LIST = []
 
-    for path in paths_to_data:
+    for path in tqdm(paths_to_data):
         df = pd.read_csv(path)
         if "SMILES" in df.columns:
             REPRESENTATION_LIST.extend(df["SMILES"].to_list())
@@ -134,7 +175,9 @@ if __name__ == "__main__":
     REPR_DF = pd.DataFrame()
     REPR_DF["SMILES"] = list(set(REPRESENTATION_LIST))
 
-    scaffold_split = create_scaffold_split(REPR_DF, seed=42, frac=[0.8, 0, 0.2])
+    scaffold_split = create_scaffold_split(
+        REPR_DF, seed=seed, frac=[train_size, val_size, test_size]
+    )
 
     # create train and test dataframes
     train_df = scaffold_split["train"]
@@ -146,4 +189,8 @@ if __name__ == "__main__":
     # merge train and test across all datasets
     merge = pd.concat([train_df, test_df], axis=0)
     # rewrite data_clean.csv for each dataset
-    rewrite_data_with_splits(paths_to_data, merge)
+    rewrite_data_with_splits(paths_to_data, merge, override=override, check=check)
+
+
+if __name__ == "__main__":
+    fire.Fire(cli)
