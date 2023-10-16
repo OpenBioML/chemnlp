@@ -13,18 +13,18 @@ For more information, see:
         https://doi.org/10.1021/acscentsci.2c01177.
 
 """
-import sys
 import os
+import sys
 from collections import defaultdict
 from glob import glob
 from random import Random
 from typing import Dict, List
 
+import fire
 import pandas as pd
 from rdkit import Chem, RDLogger
 from rdkit.Chem.Scaffolds import MurckoScaffold
 from tqdm import tqdm
-import fire
 
 RDLogger.DisableLog("rdApp.*")
 
@@ -41,7 +41,8 @@ def print_sys(s):
 def create_scaffold_split(
     df: pd.DataFrame, seed: int, frac: List[float], entity: str = "SMILES"
 ) -> Dict[str, pd.DataFrame]:
-    """create scaffold split. it first generates molecular scaffold for each molecule and then split based on scaffolds
+    """create scaffold split. it first generates molecular scaffold for each molecule
+    and then split based on scaffolds
     adapted from: https://github.com/mims-harvard/TDC/tdc/utils/split.py
 
     Args:
@@ -51,7 +52,8 @@ def create_scaffold_split(
         entity (str): the column name for where molecule stores
 
     Returns:
-        dict: a dictionary of splitted dataframes, where keys are train/valid/test and values correspond to each dataframe
+        dict: a dictionary of splitted dataframes, where keys are train/valid/test
+        and values correspond to each dataframe
     """
     random = Random(seed)
 
@@ -65,7 +67,7 @@ def create_scaffold_split(
                 mol=Chem.MolFromSmiles(smiles), includeChirality=False
             )
             scaffolds[scaffold].add(i)
-        except:
+        except Exception:
             print_sys(smiles + " returns RDKit error and is thus omitted...")
             error_smiles += 1
 

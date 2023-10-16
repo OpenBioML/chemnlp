@@ -1,5 +1,5 @@
-from datasets import load_dataset
 import pandas as pd
+from datasets import load_dataset
 
 
 def remove_repeated_almost_empty_lines(text):
@@ -31,7 +31,7 @@ def get_clean_df():
     # the answers are in an array of arrays, the first element is the answer, the second is the score
     # we then also only keep two columns, the question and the answer, both as string on which we also
     # call the strip function to remove leading and trailing whitespaces
-    for i, row in df.iterrows():
+    for _i, row in df.iterrows():
         # skip question with markdown image tag in it
         if "![" in row["question_text"]:
             continue
