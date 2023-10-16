@@ -28,7 +28,7 @@ dev = [
         "flake8>=3.8.3",
         "isort>=5.0.0",
         "pre-commit",
-        "pydantic_yaml",
+        "pydantic_yaml<=0.11.2",
         "pytest",
         "pubchempy"
 ]
