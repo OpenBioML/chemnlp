@@ -14,6 +14,7 @@ For more information, see:
 
 """
 import sys
+import os
 from collections import defaultdict
 from glob import glob
 from random import Random
@@ -158,7 +159,10 @@ def rewrite_data_with_splits(
             if override:
                 merged_data.to_csv(path, index=False)
             else:
-                merged_data.to_csv(path.replace(".csv", "_split.csv"), index=False)
+                # rename the old data_clean.csv file to data_clean_old.csv
+                os.rename(path, path.replace(".csv", "_old.csv"))
+                # write the new data_clean.csv file
+                merged_data.to_csv(path, index=False)
 
             if len(merged_data.query("split == 'train'")) == 0:
                 raise ValueError("Split failed, no train data")
@@ -185,15 +189,15 @@ def cli(
     repr_col: str = "SMILES",
 ):
     paths_to_data = glob(path)
-    # filtered_paths = []
-    # for path in paths_to_data:
-    #     if "flashpoint" in path:
-    #         filtered_paths.append(path)
-    #     elif "freesolv" in path:
-    #         filtered_paths.append(path)
-    #     elif "peptide" in path:
-    #         filtered_paths.append(path)
-    # paths_to_data = filtered_paths
+    filtered_paths = []
+    for path in paths_to_data:
+        if "flashpoint" in path:
+            filtered_paths.append(path)
+        elif "freesolv" in path:
+            filtered_paths.append(path)
+        elif "peptide" in path:
+            filtered_paths.append(path)
+    paths_to_data = filtered_paths
 
     REPRESENTATION_LIST = []
 
