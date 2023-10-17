@@ -230,5 +230,5 @@ def create_jsonl_from_dir(path):
 
 
 if __name__ == "__main__":
-    path_base = "/Users/MMP/Documents/Projects/chemnlp3/data/natural/nougat_output/"
+    path_base = ""
     create_jsonl_from_dir(path_base)
