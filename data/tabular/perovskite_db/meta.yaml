@@ -6,7 +6,7 @@ targets:
     - id: bandgap
       description: bandgap of the perovskite material
       units: eV
-      type: continuos
+      type: continuous
       names:
           - noun: bandgap
       uris:
@@ -14,7 +14,7 @@ targets:
     - id: voc
       description: open-circuit voltage of the solar cell
       units: V
-      type: continuos
+      type: continuous
       names:
           - noun: open-circuit voltage
       uris:
@@ -22,7 +22,7 @@ targets:
     - id: jsc
       description: short-circuit current density of the solar cell
       units: mA/cm^2
-      type: continuos
+      type: continuous
       names:
           - noun: short-circuit current density
       uris:
@@ -30,7 +30,7 @@ targets:
     - id: ff
       description: fill factor of the solar cell
       units: percent
-      type: continuos
+      type: continuous
       names:
           - noun: fill factor
       uris:
@@ -38,7 +38,7 @@ targets:
     - id: pce
       description: power conversion efficiency of the solar cell
       units: percent
-      type: continuos
+      type: continuous
       names:
           - noun: power conversion efficiency
       uris:
