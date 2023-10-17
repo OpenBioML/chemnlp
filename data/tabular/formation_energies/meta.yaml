@@ -80,3 +80,7 @@ templates:
       Task: Classify the stability of {composition#}.
       Constraint: Give a reason for your answer.
       Answer: {#The material is |The compound is |The crystal is |The solid is |!}{stability#not &NULL}thermodynamically stable because its decomposition enthalpy is {Ed#} {Ed__units}.
+    - |-
+      Question: What is a compound with the following decomposition reaction?
+      Description: {rxn#}
+      Answer: {composition#}
