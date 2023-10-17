@@ -6,7 +6,7 @@ description: |-
     circulating blood and brain extracellular fluid, the blood-brain barrier
     blocks most drugs, hormones, and neurotransmitters. Thus penetration of the
     barrier forms a long-standing issue in the development of drugs targeting
-    the central nervous system. This dataset includes binary labels for over 2000 
+    the central nervous system. This dataset includes binary labels for over 2000
     compounds on their permeability properties.
 targets:
     - id: p_np
