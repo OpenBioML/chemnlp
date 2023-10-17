@@ -1,0 +1,42 @@
+---
+name: formation_energies
+description: |-
+    Formation and decomposition energies of inorganic solids mined from the Materials Project database.
+targets:
+    - id: rxn
+      description: decomposition reaction
+      type: text
+    - id: Ed
+      description: decomposition energy
+      units: eV/atom
+      type: continuos
+    - id: Ef
+      description: formation energy 
+      units: eV/atom
+      type: continuos 
+benchmarks: []
+identifiers:
+    - id: composition
+      type: text
+      description: chemical formula
+license: CC BY 4.0
+links:
+    - url: https://github.com/CJBartel/TestStabilityML/tree/master
+      description: original data source
+num_points: 85014
+bibtex:
+    - |-
+      @article{Bartel_2020,
+        doi = {10.1038/s41524-020-00362-y},
+        url = {https://doi.org/10.1038%2Fs41524-020-00362-y},
+        year = 2020,
+        month = {jul},
+        publisher = {Springer Science and Business Media {LLC}},
+        volume = {6},
+        number = {1},
+        author = {Christopher J. Bartel and Amalie Trewartha and Qi Wang and Alexander Dunn and Anubhav Jain and Gerbrand Ceder},
+        title = {A critical examination of compound stability predictions from machine-learned formation energies},
+        journal = {npj Comput Mater}
+      }
+templates:
+ 

@@ -6,14 +6,14 @@ targets:
     - id: mp
       description: mean melting point
       units: deg C
-      type: continous
+      type: continuous
       names:
           - noun: mean melting point
       uris:
     - id: mp_range
       description: melting point range
       units: deg C
-      type: continous
+      type: continuous
       names:
           - noun: melting point range
 benchmarks: []
