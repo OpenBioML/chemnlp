@@ -19,7 +19,7 @@ links:
       description: original data source
     - url: https://stackoverflow.com/help/licensing
       description: information about the license
-num_points: 7574
+num_points: 6732
 templates:
     - |-
       {#Task: Please answer the question of the user.|Task: Provide a detailed response to the user's question.|Task: Address the user's query with a well-structured answer.|Task: Your role is to respond to the user's question with clarity.|Task: Offer a concise and informative answer to the user's question.|Task: Provide a clear and concise reply to the user's inquiry.!}
