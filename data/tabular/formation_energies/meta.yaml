@@ -7,13 +7,18 @@ targets:
       description: decomposition reaction
       type: text
     - id: Ed
-      description: decomposition energy
+      description: decomposition enthalpy
       units: eV/atom
-      type: continuos
+      type: continuous
+      significant_digits: 3
     - id: Ef
-      description: formation energy 
+      description: formation enthalpy 
       units: eV/atom
-      type: continuos 
+      type: continuous 
+      significant_digits: 3
+    - id: stability
+      description: thermodynamic stability of material
+      type: boolean
 benchmarks: []
 identifiers:
     - id: composition
@@ -39,4 +44,24 @@ bibtex:
         journal = {npj Comput Mater}
       }
 templates:
- 
+  - The decomposition enthalpy of {composition#} is {Ed#} {Ed__units}.
+  - The formation enthalpy of {composition#} is {Ef#} {Ef__units}.
+  - The decomposition enthalpy of {composition#} is {Ed#} {Ed__units}.
+  - The decomposition reaction of {composition#} is {rxn#}.
+  - The {#material|compound|crystal|solid|inorganic material!} with composition {composition#} is {stability#not &NULL}thermodynamically stable because its decomposition enthalpy is {Ed#} {Ed__units}.
+  - |-
+    User: What is the decomposition enthalpy of {composition#}?
+    Assistant: {#The decomposition enthalpy of is |!}{Ed#} {Ed__units}.
+  - |-
+    User: What is the formation enthalpy of {composition#}?
+    Assistant: {#The formation enthalpy of is |!}{Ef#} {Ef__units}.
+  - |-
+    User: What is the decomposition enthalpy of {composition#}?
+    Assistant: {#The decomposition enthalpy is|!}is {Ed#} {Ed__units}.
+  - |-
+    User: {#I have a question about |I want to know something about| I need help with!}{composition#}.
+    Assistant: {#Sure.|How can I help?|How can I be of help?|How can I assist?|Happy to help.!} {#What is your question?|What do you want to know?|!}
+    User: {composition#} is {stability#not &NULL}thermodynamically stable because its decomposition enthalpy is {Ed#} {Ed__units}.
+  - |-
+    User: I want to design a stability#not &NULL}thermodynamically stable {#material|structure|compound|!} What {#chemical formula|composition!} should I use?
+    Assistant: {#I recommend using |I suggest using |I would use |I would recommend using!}{composition#}.

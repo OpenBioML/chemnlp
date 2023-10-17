@@ -1,5 +1,5 @@
 ---
-name: perovskite_db
+name: melting_points
 description: |-
     Literature mined data on melting points of organic compounds.
 targets:
