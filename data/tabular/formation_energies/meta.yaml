@@ -76,7 +76,7 @@ templates:
       Assistant: {#Do you have|Are there!} any other {#requirements|constraints|preferences|!}?
       User: The {#material|structure|compound|!} should have a formation enthalpy of {Ef#} {Ef__units}.
       Assistant: {#I recommend using |I suggest using |I would use |I would recommend using!}{composition#}.
-    - |- 
+    - |-
       Task: Classify the stability of {composition#}.
       Constraint: Give a reason for your answer.
       Answer: {#The material is |The compound is |The crystal is |The solid is |!}{stability#not &NULL}thermodynamically stable because its decomposition enthalpy is {Ed#} {Ed__units}.
