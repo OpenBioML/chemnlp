@@ -4,7 +4,7 @@ import re
 
 from tqdm import tqdm
 
-STR_CUTOFF = 0
+STR_CUTOFF = 1000
 KEEP_FIRST_HEADERS = [
     "main",
     "abstract",
@@ -19,10 +19,11 @@ def load_mmd_from_path(path):
     return data
 
 
-rm_ref_single = re.compile(r"\s?\[\d+]"), ""
-rm_ref_multi = re.compile(r"\s?\[\d+.+\d\]"), ""
-change_asterisk_headers = re.compile(r"\n\*\*(.*)\*\*\n\b"), r"\n## \1\n\n"
-change_asterisk_headers_inline = re.compile(r"\n\*\*(.*)\*\*\s\b"), r"\n## \1\n\n"
+rm_ref_brackets = re.compile(r"\s\(\d+([\,\-]\d+)*\)"), ""
+rm_ref_square_brackets = re.compile(r"\s\(\d+([\,\-]\d+)*\)"), ""
+change_asterisk_headers = re.compile(r"\n\*\*(.*)\*\*.?\n"), r"\n## \1\n"
+change_asterisk_headers_inline = re.compile(r"\n\*\*(.*)\*\*.?\s"), r"\n## \1\n"
+change_underline_headers = re.compile(r"\n\_(.*)\_.?\n"), r"\n## \1\n"
 # rm_double_asterisk = re.compile(r"\*\*"), ""
 rm_missing_page_fail_a = re.compile(r"\n\n\[MISSING_PAGE_FAIL:\d+\]"), ""
 rm_missing_page_fail_b = re.compile(r"\[MISSING_PAGE_FAIL:\d+\]"), ""
@@ -36,6 +37,7 @@ rm_schema_caption_start = re.compile(r"[Ss]cheme \d+\w?\.?[:\|]?\s"), ""
 rm_fig_caption_start = re.compile(r"[Ff]ig. \d+\w?\.?[:\|]?\s"), ""
 rm_figure_in_brackets = re.compile(r" \([Ff]igure \d+\w?\.?\)"), ""
 rm_fig_in_brackets = re.compile(r" \([Ff]ig. \d+\w?\.?\)"), ""
+rm_fig_in_brackets_asterisk = re.compile(r" \(\*\*[Ff]ig. \d+.*\*\*\)"), ""
 # rm_figure_reference = re.compile(r", see [Ff]igure \d+\w?"), ""
 # rm_fig_reference = re.compile(r", see [Ff]ig. \d+\w?"), ""
 rm_email_with_text = re.compile(r"[Ee]mail[:\s] \S*@\S*\s?"), ""
@@ -49,7 +51,7 @@ rm_incomplete_sentence_end_para = (
 
 find_headers = re.compile("(#{1,6}.*)\\n")
 
-year_numbers = re.compile(r"[19,20]\d\d\,")
+year_numbers = re.compile(r"(19|20)\d{2}")
 
 
 def get_headers(mmd, show=False):
@@ -112,10 +114,11 @@ def remove_first_header(mmd):
 def clean_mmd(mmd, rm_first_header=False, verbose=False):
     # low level cleaning
     reg_replace = [
-        rm_ref_single,
-        rm_ref_multi,
+        rm_ref_brackets,
+        rm_ref_square_brackets,
         change_asterisk_headers,
         change_asterisk_headers_inline,
+        change_underline_headers,
         # rm_double_asterisk,
         rm_missing_page_fail_a,
         rm_missing_page_fail_b,
@@ -128,6 +131,7 @@ def clean_mmd(mmd, rm_first_header=False, verbose=False):
         rm_fig_caption_start,
         rm_figure_in_brackets,
         rm_fig_in_brackets,
+        rm_fig_in_brackets_asterisk,
         # rm_figure_reference,
         # rm_fig_reference,
         rm_email_with_text,
@@ -172,14 +176,15 @@ exclude_headers = [
     "contributions",
     "conflict of interest",
     "conflicts of interest",
+    "consent",
     "data and software availability",
     "data availability",
-    "declaration of competing interest",
+    "declaration",
     "dedication",
     "disclaimer",
+    "disclosure",
     "financial support",
-    "funding acs",
-    "funding sources",
+    "funding",
     "graphical toc",
     "graphical abstract",
     "keywords",
