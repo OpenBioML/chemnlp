@@ -1,6 +1,5 @@
 import ast
 
-import pandas as pd
 from datasets import load_dataset
 
 
@@ -37,7 +36,7 @@ def preprocess():
     df["voc"] = df["voc"].round(2)
     df["bandgap"] = df["bandgap"].round(2)
 
-    for i, row in df.iterrows():
+    for _i, row in df.iterrows():
         device_stack = ast.literal_eval(row["device_stack"])
         device_stack_string = oxford_comma_join(device_stack)
         absorber = row["descriptive_formulas"]
