@@ -25,7 +25,7 @@ license: CC BY 4.0
 links:
     - url: https://next-gen.materialsproject.org/
       description: original data source
-num_points: 6307
+num_points: 6184
 bibtex:
     - |-
       @article{Jain_2013,
