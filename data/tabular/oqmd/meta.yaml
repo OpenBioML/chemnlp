@@ -1,0 +1,51 @@
+---
+name: oqmd
+description: |-
+    Open Quantum Materials Database (OQMD) is a database of DFT-computed thermodynamic and structural properties of materials.
+    We used a compilation of a prior version of this database.
+targets:
+  - id: spacegroup
+    description: space group number 
+    type: integer 
+    names:
+      - noun: number index of the space group
+      - noun: space group number
+  - id: energy_per_atom
+  - id: formation_energy_per_atom
+  - id: band_gap
+  - id: volume_per_atom
+  - id: magnetization_per_atom
+  - id: atomic_volume_per_atom
+identifiers:
+    - id: name
+      description: OQMD identifier
+      sample: False
+    - id: formula
+      description: composition
+license: CC-BY 4.0
+num_points: 561882
+links:
+    - url: https://oqmd.org/
+      description: raw data source
+    - urL: https://zenodo.org/records/7118055
+      description: original data source
+bibtex:
+    - |-
+       @article{yamamoto2019crystal,
+        title={Crystal graph neural networks for data mining in materials science},
+        author={Yamamoto, Takenori},
+        journal={Research Institute for Mathematical and Computational Sciences, LLC},
+        year={2019}
+        }
+    - |-
+      @article{kirklin2015open,
+        title={The Open Quantum Materials Database (OQMD): assessing the accuracy of DFT formation energies},
+        author={Kirklin, Scott and Saal, James E and Meredig, Bryce and Thompson, Alex and Doak, Jeff W and Aykol, Muratahan and R{\"u}hl, Stephan and Wolverton, Chris},
+        journal={npj Computational Materials},
+        volume={1},
+        number={1},
+        pages={1--15},
+        year={2015},
+        publisher={Nature Publishing Group}
+      }
+templates:
