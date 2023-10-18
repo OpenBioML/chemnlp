@@ -127,7 +127,7 @@ templates:
       Answer: {#The short-circuit current density is |The Jsc is!}{Jsc#} {Jsc__units}.
     - |-
       Question: What is the {FF__names__noun} of a {#non-fullerene|PC71BM|PCBM!} {#organic photovoltaics|OPV|organic solar cell|organic photovoltaics (OPV)!} device with a donor polymer with monomer SMILES {SMILES#} and {#Mw|weight-average molecular weight|weight-average molecular weight (Mw)!} {Mw#} g/mol and {#PDI|polydispersity index|polydispersity index (PDI)!} of {PDI#}?
-      Answer: {#The fill factor is |The FF is!}{FF#} {FF__units}.
+      Answer: {#The fill factor is |The FF is !}{FF#} {FF__units}.
     - |-
       Question: What is the {bandgap__names__noun} of a polymer with monomer SMILES {SMILES#}?
       Answer: {#The bandgap is |The bandgap of the polymer is!}{bandgap#} {bandgap__units}.
@@ -162,4 +162,4 @@ templates:
     - |-
       Task: Predict the {PCE_ave__names__noun} of a {#non-fullerene|PC71BM|PCBM!} {#organic photovoltaics|OPV|organic solar cell|organic photovoltaics (OPV)!} device based on a description of the donor polymer.
       Description: The donor polymer has monomer SMILES {SMILES#} and {#Mw|weight-average molecular weight|weight-average molecular weight (Mw)!} {Mw#} g/mol and {#PDI|polydispersity index|polydispersity index (PDI)!} of {PDI#}.
-      Solution: {#The power conversion efficiency is |The PCE is!}{PCE_ave#} %.
+      Solution: {#The power conversion efficiency is |The PCE is !}{PCE_ave#} %.
