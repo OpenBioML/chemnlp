@@ -8,8 +8,7 @@ targets:
       description: space group number
       type: integer
       names:
-          - noun: number index of the space group
-          - noun: space group number
+          - noun: space group with the International Tables number
           - noun: space group
     - id: energy_per_atom
       type: continuous
@@ -19,7 +18,7 @@ targets:
           - noun: energy per atom computed using DFT (with the PAW method as implemented in VASP) using the PBE functional
           - noun: energy per atom computed using the PBE GGA functional
     - id: formation_energy_per_atom
-      type: continuos
+      type: continuous
       units: eV / atom
       significant_digits: 4
       names:
@@ -35,7 +34,7 @@ targets:
           - noun: PBE-computed band gap
     - id: volume_per_atom
       type: continuous
-      units: \AA^3
+      units: \AA^3 / atom
       significant_digits: 4
       names:
           - noun: volume per atom computed using DFT (with the PAW method as implemented in VASP) using the PBE functional
