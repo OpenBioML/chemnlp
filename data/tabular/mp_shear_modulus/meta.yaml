@@ -83,7 +83,7 @@ templates:
       Question: How large is the {shear_modulus__names__noun} of {#the compound|the solid|!} {formula#}?
       Answer: The {shear_modulus__names__noun} of {#the compound|the solid|!} {formula#} is {shear_modulus#} {shear_modulus__units}.
     - |-
-      User: {#I would like to|I want tp!} know the {shear_modulus__names__noun} of {#the compound|the solid|!} {formula#}.
+      User: {#I would like to|I want to!} know the {shear_modulus__names__noun} of {#the compound|the solid|!} {formula#}.
       Assistant: The {shear_modulus__names__noun} of {#the compound|the solid|!} {formula#} is {shear_modulus#} {shear_modulus__units}.
     - |-
       User: {#I would like to|I want to!} design a {#compound|material|solid|!} with a {shear_modulus__names__noun} of {shear_modulus#} {shear_modulus__units}.
