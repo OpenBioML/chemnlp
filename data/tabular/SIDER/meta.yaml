@@ -1,6 +1,6 @@
 ---
 name: SIDER
-description: Database of marketed drugs and adverse drug reactions (ADR), grouped into 27 system organ classes.
+description: Database of marketed drugs and adverse drug reactions (ADR), grouped into 25 system organ classes.
 identifiers:
     - id: SMILES
       type: SMILES
@@ -16,131 +16,121 @@ targets:
       type: boolean
       names:
           - noun: metabolism and nutrition disorders
-    - id: product_issues
+    - id: eye_disorders
       description: product issues
       type: boolean
       names:
           - noun: product issues
-    - id: eye_disorders
+    - id: investigations
       description: eye disorders
       type: boolean
       names:
           - noun: eye disorders
-    - id: investigations
+    - id: musculoskeletal_and_connective_tissue_disorders
       description: investigations
       type: boolean
       names:
           - noun: investigations
-    - id: musculoskeletal_and_connective_tissue_disorders
+    - id: gastrointestinal_disorders
       description: musculoskeletal and connective tissue disorders
       type: boolean
       names:
           - noun: musculoskeletal and connective tissue disorders
-    - id: gastrointestinal_disorders
+    - id: immune_system_disorders
       description: gastrointestinal disorders
       type: boolean
       names:
           - noun: gastrointestinal disorders
-    - id: social_circumstances
+    - id: reproductive_system_and_breast_disorders
       description: social circumstances
       type: boolean
       names:
           - noun: social circumstances
-    - id: immune_system_disorders
+    - id: neoplasms_benign_malignant_and_unspecified_(incl_cysts_and_polyps)
       description: immune system disorders
       type: boolean
       names:
           - noun: immune system disorders
-    - id: reproductive_system_and_breast_disorders
+    - id: general_disorders_and_administration_site_conditions
       description: reproductive system and breast disorders
       type: boolean
       names:
           - noun: reproductive system and breast disorders
-    - id: neoplasms_benign_malignant_and_unspecified_(incl_cysts_and_polyps)
+    - id: endocrine_disorders
       description: neoplasms benign, malignant and unspecified (incl cysts and polyps)
       type: boolean
       names:
           - noun: neoplasms benign, malignant and unspecified (incl cysts and polyps)
-    - id: general_disorders_and_administration_site_conditions
+    - id: surgical_and_medical_procedures
       description: general disorders and administration site conditions
       type: boolean
       names:
           - noun: general disorders and administration site conditions
-    - id: endocrine_disorders
+    - id: vascular_disorders
       description: endocrine disorders
       type: boolean
       names:
           - noun: endocrine disorders
-    - id: surgical_and_medical_procedures
+    - id: blood_and_lymphatic_system_disorders
       description: surgical and medical procedures
       type: boolean
       names:
           - noun: surgical and medical procedures
-    - id: vascular_disorders
+    - id: skin_and_subcutaneous_tissue_disorders
       description: vascular disorders
       type: boolean
       names:
           - noun: vascular disorders
-    - id: blood_and_lymphatic_system_disorders
+    - id: congenital_familial_and_genetic_disorders
       description: blood and lymphatic system disorders
       type: boolean
       names:
           - noun: blood and lymphatic system disorders
-    - id: skin_and_subcutaneous_tissue_disorders
+    - id: infections_and_infestations
       description: skin and subcutaneous tissue disorders
       type: boolean
       names:
           - noun: skin and subcutaneous tissue disorders
-    - id: congenital_familial_and_genetic_disorders
+    - id: respiratory_thoracic_and_mediastinal_disorders
       description: congenital, familial and genetic disorders
       type: boolean
       names:
           - noun: congenital, familial and genetic disorders
-    - id: infections_and_infestations
+    - id: psychiatric_disorders
       description: infections and infestations
       type: boolean
       names:
           - noun: infections and infestations
-    - id: respiratory_thoracic_and_mediastinal_disorders
+    - id: renal_and_urinary_disorders
       description: respiratory, thoracic and mediastinal disorders
       type: boolean
       names:
           - noun: respiratory, thoracic and mediastinal disorders
-    - id: psychiatric_disorders
+    - id: pregnancy_puerperium_and_perinatal_conditions
       description: psychiatric disorders
       type: boolean
       names:
           - noun: psychiatric disorders
-    - id: renal_and_urinary_disorders
+    - id: ear_and_labyrinth_disorders
       description: renal and urinary disorders
       type: boolean
       names:
           - noun: renal and urinary disorders
-    - id: pregnancy_puerperium_and_perinatal_conditions
+    - id: cardiac_disorders
       description: pregnancy, puerperium and perinatal conditions
       type: boolean
       names:
           - noun: pregnancy, puerperium and perinatal conditions
-    - id: ear_and_labyrinth_disorders
+    - id: nervous_system_disorders
       description: ear and labyrinth disorders
       type: boolean
       names:
           - noun: ear and labyrinth disorders
-    - id: cardiac_disorders
+    - id: injury_poisoning_and_procedural_complications
       description: cardiac disorders
       type: boolean
       names:
           - noun: cardiac disorders
-    - id: nervous_system_disorders
-      description: nervous system disorders
-      type: boolean
-      names:
-          - noun: nervous system disorders
-    - id: injury_poisoning_and_procedural_complications
-      description: injury, poisoning and procedural complications
-      type: boolean
-      names:
-          - noun: injury, poisoning and procedural complications
 license: CC BY 4.0
 links:
     - url: https://academic.oup.com/nar/article/44/D1/D1075/2502602?login=false
@@ -168,8 +158,6 @@ templates:
       a &a }{#potential cause|potential reason!} for {hepatobiliary_disorders__names__noun}.
     - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {metabolism_and_nutrition_disorders#not
       a &a }{#potential cause|potential reason!} for {metabolism_and_nutrition_disorders__names__noun}.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {product_issues#not
-      a &a }{#potential cause|potential reason!} for {product_issues__names__noun}.
     - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {eye_disorders#not
       a &a }{#potential cause|potential reason!} for {eye_disorders__names__noun}.
     - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {investigations#not
@@ -178,8 +166,6 @@ templates:
       a &a }{#potential cause|potential reason!} for {musculoskeletal_and_connective_tissue_disorders__names__noun}.
     - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {gastrointestinal_disorders#not
       a &a }{#potential cause|potential reason!} for {gastrointestinal_disorders__names__noun}.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {social_circumstances#not
-      a &a }{#potential cause|potential reason!} for {social_circumstances__names__noun}.
     - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {immune_system_disorders#not
       a &a }{#potential cause|potential reason!} for {immune_system_disorders__names__noun}.
     - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {reproductive_system_and_breast_disorders#not

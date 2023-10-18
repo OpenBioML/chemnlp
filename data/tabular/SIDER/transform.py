@@ -16,6 +16,7 @@ def transform_data() -> Tuple[pd.DataFrame, pd.Index]:
     old_columns = sider.columns.str.lower()
     sider.columns = sider.columns.str.lower().str.replace(" ", "_").str.replace(",", "")
     sider = sider.rename(columns={"smiles": "SMILES"})
+    sider = sider.drop(columns=["product_issues", "social_circumstances"])
     sider.to_csv("data_clean.csv", index=False)
 
     return sider, old_columns
@@ -46,7 +47,7 @@ def write_meta(column_ids: pd.Index, descriptions: List[str], num_points: int) -
 
     meta = {
         "name": "SIDER",  # unique identifier, we will also use this for directory names
-        "description": """Database of marketed drugs and adverse drug reactions (ADR), grouped into 27 system organ classes.""",  # noqa: E501
+        "description": f"""Database of marketed drugs and adverse drug reactions (ADR), grouped into {len(column_ids[1:])} system organ classes.""",  # noqa: E501
         "identifiers": [
             {
                 "id": "SMILES",  # column name
