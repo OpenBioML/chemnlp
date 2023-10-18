@@ -1,4 +1,3 @@
-import inspect
 from typing import List, Tuple
 
 import pandas as pd
@@ -35,7 +34,7 @@ def write_meta(column_ids: pd.Index, descriptions: List[str], num_points: int) -
     ]
 
     templates = [
-        "The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description}" # noqa: E501
+        "The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description}"  # noqa: E501
         + "{#representation of |!}{SMILES#} is {"
         + col_id
         + "#not a &a }"
@@ -47,7 +46,7 @@ def write_meta(column_ids: pd.Index, descriptions: List[str], num_points: int) -
 
     meta = {
         "name": "SIDER",  # unique identifier, we will also use this for directory names
-        "description": """Database of marketed drugs and adverse drug reactions (ADR), grouped into 27 system organ classes.""", # noqa: E501
+        "description": """Database of marketed drugs and adverse drug reactions (ADR), grouped into 27 system organ classes.""",  # noqa: E501
         "identifiers": [
             {
                 "id": "SMILES",  # column name

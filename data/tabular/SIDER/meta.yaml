@@ -1,6 +1,6 @@
 ---
 name: SIDER
-description: Database of marketed drugs and adverse drug reactions (ADR), grouped into 27 system organ classes. 
+description: Database of marketed drugs and adverse drug reactions (ADR), grouped into 27 system organ classes.
 identifiers:
     - id: SMILES
       type: SMILES
