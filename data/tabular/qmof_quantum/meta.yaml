@@ -1,0 +1,113 @@
+---
+name: qmof_quantum
+description: |-
+    QM9 is a comprehensive dataset that provides geometric, energetic,
+    electronic and thermodynamic properties for a subset of GDB-17
+    database, comprising 134 thousand stable organic molecules with up
+    to 9 heavy atoms.  All molecules are modeled using density
+    functional theory (B3LYP/6-31G(2df,p) based DFT).
+targets:
+    - id: outputs.pbe.bandgap
+      type: continuous 
+      significant_digits: 3
+      names: 
+        - noun: PAW-PBE calculated band gap
+        - noun: PAW-PBE computed band gap
+    - id: outputs.pbe.cbm
+      type: continuous 
+      significant_digits: 3
+      names: 
+        - noun:  PAW-PBE calculated conduction band minimum 
+        - noun:  PAW-PBE computed conduction band minimum 
+        - noun:  PAW-PBE calculated conduction band minimum (CBM)
+        - noun:  PAW-PBE computed conduction band minimum (CBM)
+    - id: outputs.pbe.vbm
+      type: continuous 
+      significant_digits: 3
+      names:
+        - noun:  PAW-PBE calculated valende band maximum
+        - noun:  PAW-PBE computed valende band maximum
+        - noun:  PAW-PBE calculated valende band maximum (VBM)
+        - noun:  PAW-PBE computed valende band maximum (VBM) 
+    - id: outputs.hle17.bandgap
+      type: continuous 
+      significant_digits: 3
+    - id: outputs.hle17.cbm
+      type: continuous 
+      significant_digits: 3
+    - id: outputs.hle17.vbm
+      type: continuous 
+      significant_digits: 3
+    - id: outputs.hse06.bandgap
+      type: continuous 
+      significant_digits: 3
+    - id: outputs.hse06.cbm
+      type: continuous 
+      significant_digits: 3
+    - id: outputs.hse06.vbm
+      type: continuous 
+      significant_digits: 3
+    - id: info.pld
+      type: continuous
+      significant_digits: 3
+    - id: info.lcd
+      type: continuous
+      significant_digits: 3
+    - id: info.density
+      type: continuous
+      significant_digits: 3
+identifiers:
+    - id: info.mofid.mofid
+      type: Other
+      description: MOF ID
+    - id: info.mofid.smiles_nodes
+      type: Other
+      description: SMILES of nodes
+    - id: info.mofid.smiles_linkers
+      type: Other
+      description: SMILES of linkers
+    - id: info.mofid.smiles
+      type: Other
+      description: SMILES
+    - id: info.mofid.topology
+      type: Other
+      description: Topology RCSR ID
+    - id: info.symmetry.spacegroup_number
+      type: Other
+      description: Spacegroup number
+license: CC0 1.0
+num_points: 133885
+links:
+    - url: https://figshare.com/collections/Quantum_chemistry_structures_and_properties_of_134_kilo_molecules/978904
+      description: original data source
+    - url: https://huggingface.co/datasets/n0w0f/qm9-csv/blob/main/qm9_dataset.csv
+      description: parsed dataset in csv format
+bibtex:
+    - |-
+      @article{Rosen_2021,
+        doi = {10.1016/j.matt.2021.02.015},
+        url = {https://doi.org/10.1016%2Fj.matt.2021.02.015},
+        year = 2021,
+        month = {may},
+        publisher = {Elsevier {BV}},
+        volume = {4},
+        number = {5},
+        pages = {1578--1597},
+        author = {Andrew S. Rosen and Shaelyn M. Iyer and Debmalya Ray and Zhenpeng Yao and Al{\'{a}}n Aspuru-Guzik and Laura Gagliardi and Justin M. Notestein and Randall Q. Snurr},
+        title = {Machine learning the quantum-chemical properties of metal{\textendash}organic frameworks for accelerated materials discovery},
+        journal = {Matter}
+      }
+    - |-
+      @article{Rosen_2022,
+        doi = {10.1038/s41524-022-00796-6},
+        url = {https://doi.org/10.1038%2Fs41524-022-00796-6},
+        year = 2022,
+        month = {may},
+        publisher = {Springer Science and Business Media {LLC}},
+        volume = {8},
+        number = {1},
+        author = {Andrew S. Rosen and Victor Fung and Patrick Huck and Cody T. O'Donnell and Matthew K. Horton and Donald G. Truhlar and Kristin A. Persson and Justin M. Notestein and Randall Q. Snurr},
+        title = {High-throughput predictions of metal{\textendash}organic framework electronic properties: theoretical challenges, graph neural networks, and data exploration},
+        journal = {npj Comput Mater}
+      }
+templates:
