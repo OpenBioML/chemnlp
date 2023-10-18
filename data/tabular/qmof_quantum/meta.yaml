@@ -1,61 +1,95 @@
 ---
 name: qmof_quantum
 description: |-
-    QM9 is a comprehensive dataset that provides geometric, energetic,
-    electronic and thermodynamic properties for a subset of GDB-17
-    database, comprising 134 thousand stable organic molecules with up
-    to 9 heavy atoms.  All molecules are modeled using density
-    functional theory (B3LYP/6-31G(2df,p) based DFT).
+  QMOF is a database of electronic properties of MOFs
 targets:
     - id: outputs.pbe.bandgap
       type: continuous 
       significant_digits: 3
+      units: eV
       names: 
-        - noun: PAW-PBE calculated band gap
-        - noun: PAW-PBE computed band gap
+        - noun: PAW-PBE-D3(BJ) calculated band gap
+        - noun: PAW-PBE-D3(BJ) computed band gap
     - id: outputs.pbe.cbm
       type: continuous 
       significant_digits: 3
+      units: eV
       names: 
-        - noun:  PAW-PBE calculated conduction band minimum 
-        - noun:  PAW-PBE computed conduction band minimum 
-        - noun:  PAW-PBE calculated conduction band minimum (CBM)
-        - noun:  PAW-PBE computed conduction band minimum (CBM)
+        - noun:  PAW-PBE-D3(BJ) calculated conduction band minimum 
+        - noun:  PAW-PBE-D3(BJ) computed conduction band minimum 
+        - noun:  PAW-PBE-D3(BJ) calculated conduction band minimum (CBM)
+        - noun:  PAW-PBE-D3(BJ) computed conduction band minimum (CBM)
     - id: outputs.pbe.vbm
       type: continuous 
       significant_digits: 3
+      units: eV
       names:
-        - noun:  PAW-PBE calculated valende band maximum
-        - noun:  PAW-PBE computed valende band maximum
-        - noun:  PAW-PBE calculated valende band maximum (VBM)
-        - noun:  PAW-PBE computed valende band maximum (VBM) 
+        - noun:  PAW-PBE-D3(BJ) calculated valence band maximum
+        - noun:  PAW-PBE-D3(BJ) computed valence band maximum
+        - noun:  PAW-PBE-D3(BJ) calculated valence band maximum (VBM)
+        - noun:  PAW-PBE-D3(BJ) computed valence band maximum (VBM) 
     - id: outputs.hle17.bandgap
       type: continuous 
       significant_digits: 3
+      units: eV
+      names: 
+        - noun: HLE17 calculated band gap of PBE-D3(BJ) optimized structure
+        - noun: HLE17 computed band gap of PBE-D3(BJ) optimized structure
     - id: outputs.hle17.cbm
-      type: continuous 
+      type: continuous
       significant_digits: 3
+      units: eV
+      names: 
+        - noun: HLE17 calculated conduction band minimum of PBE-D3(BJ) optimized structure
+        - noun: HLE17 computed conduction band minimum of PBE-D3(BJ) optimized structure
     - id: outputs.hle17.vbm
       type: continuous 
+      units: eV
       significant_digits: 3
+      names: 
+        - noun: HLE17 calculated valence band maximum of PBE-D3(BJ) optimized structure
+        - noun: HLE17 computed valence band maximum of PBE-D3(BJ) optimized structure
     - id: outputs.hse06.bandgap
       type: continuous 
+      units: eV
       significant_digits: 3
+      names: 
+        - noun: HSE06 calculated band gap of PBE-D3(BJ) optimized structure
+        - noun: HSE06 computed band gap of PBE-D3(BJ) optimized structure
     - id: outputs.hse06.cbm
       type: continuous 
+      units: eV
       significant_digits: 3
+      names: 
+        - noun: HSE06 calculated conduction band minimum of PBE-D3(BJ) optimized structure
+        - noun: HSE06 computed conduction band minimum of PBE-D3(BJ) optimized structure
     - id: outputs.hse06.vbm
       type: continuous 
+      units: eV
       significant_digits: 3
+      names: 
+        - noun: HSE06 calculated valence band maximum of PBE-D3(BJ) optimized structure
+        - noun: HSE06 computed valence band maximum of PBE-D3(BJ) optimized structure
     - id: info.pld
       type: continuous
+      units: \AA
       significant_digits: 3
+      names: 
+        - noun: pore limiting diameter
+        - noun: pore limiting diameter (PLD)
     - id: info.lcd
       type: continuous
+      units: \AA
       significant_digits: 3
+      names:
+        - noun: largest cavity diameter
+        - noun: largest cavity diameter (LCD)
     - id: info.density
       type: continuous
+      units: g/cm^3
       significant_digits: 3
+      names:
+        - noun: density
 identifiers:
     - id: info.mofid.mofid
       type: Other
