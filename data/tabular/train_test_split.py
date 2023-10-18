@@ -191,15 +191,17 @@ def cli(
     repr_col: str = "SMILES",
 ):
     paths_to_data = glob(path)
-    filtered_paths = []
-    for path in paths_to_data:
-        if "flashpoint" in path:
-            filtered_paths.append(path)
-        elif "freesolv" in path:
-            filtered_paths.append(path)
-        elif "peptide" in path:
-            filtered_paths.append(path)
-    paths_to_data = filtered_paths
+
+    # uncomment the following lines for debugging on a subset of data
+    # filtered_paths = []
+    # for path in paths_to_data:
+    #     if "flashpoint" in path:
+    #         filtered_paths.append(path)
+    #     elif "freesolv" in path:
+    #         filtered_paths.append(path)
+    #     elif "peptide" in path:
+    #         filtered_paths.append(path)
+    # paths_to_data = filtered_paths
 
     REPRESENTATION_LIST = []
 
