@@ -191,7 +191,7 @@ def cli(
     repr_col: str = "SMILES",
 ):
     paths_to_data = glob(path)
-    
+
     # uncomment the following lines for debugging on a subset of data
     # filtered_paths = []
     # for path in paths_to_data:
