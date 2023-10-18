@@ -83,7 +83,7 @@ templates:
       Question: How large is the {elastic_anisotropy__names__noun} of {#the compound|the solid|!} {formula#}?
       Answer: The {elastic_anisotropy__names__noun} of {#the compound|the solid|!} {formula#} is {elastic_anisotropy#}.
     - |-
-      User: {#I would like to|I want tp!} know the {elastic_anisotropy__names__noun} of {#the compound|the solid|!} {formula#}.
+      User: {#I would like to|I want to!} know the {elastic_anisotropy__names__noun} of {#the compound|the solid|!} {formula#}.
       Assistant: The {elastic_anisotropy__names__noun} of {#the compound|the solid|!} {formula#} is {elastic_anisotropy#}.
     - |-
       User: {#I would like to|I want to!} design a {#compound|material|solid|!} with a {elastic_anisotropy__names__noun} of {elastic_anisotropy#}.
