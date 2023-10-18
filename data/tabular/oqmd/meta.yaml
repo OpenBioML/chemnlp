@@ -11,11 +11,41 @@ targets:
       - noun: number index of the space group
       - noun: space group number
   - id: energy_per_atom
+    type: continuos
+    units: eV
+    significant_digits: 4
+    names: 
+      - noun: energy per atom computed using DFT (with the PAW method as implemented in VASP) using the PBE functional
+      - noun: energy per atom computed using the PBE GGA functional
   - id: formation_energy_per_atom
+    type: continuos
+    units: eV
+    significant_digits: 4
+    names: 
+      - noun: formation energy per atom computed using DFT (with the PAW method as implemented in VASP) using the PBE functional
+      - noun: formation energy per atom computed using the PBE GGA functional
   - id: band_gap
+    type: continuos
+    units: eV
+    significant_digits: 4
+    names: 
+      - noun: band gap computed using DFT (with the PAW method as implemented in VASP) using the PBE functional
+      - noun: band gap computed using the PBE GGA functional
+      - noun: PBE-computed band gap
   - id: volume_per_atom
+    type: continuos
+    units: \AA^3
+    significant_digits: 4
+    names: 
+      - noun: volume per atom computed using DFT (with the PAW method as implemented in VASP) using the PBE functional
+      - noun: volume per atom computed using the PBE GGA functional
   - id: magnetization_per_atom
-  - id: atomic_volume_per_atom
+    type: continuos
+    units: mu B
+    significant_digits: 4
+    names: 
+      - noun: magnetization per atom computed using DFT (with the PAW method as implemented in VASP) using the PBE functional
+      - noun: magnetization per atom computed using the PBE GGA functional
 identifiers:
     - id: name
       description: OQMD identifier
@@ -49,3 +79,13 @@ bibtex:
         publisher={Nature Publishing Group}
       }
 templates:
+  - The {#material|compound|structure!} with composition {formula#} has a {band_gap__names__noun} of {band_gap} {band_gap__units}.
+  - The {#material|compound|structure!} with composition {formula#} and {spacegroup_names__noun} has a {band_gap__names__noun} of {band_gap} {band_gap__units}.
+  - The {#material|compound|structure!} with composition {formula#} has a {band_gap__names__noun} of {band_gap} {band_gap__units} and a {energy_per_atom__names__noun} of {energy_per_atom} {energy_per_atom__units}.
+  - The {#material|compound|structure!} with composition {formula#} and {spacegroup_names__noun} has a {band_gap__names__noun} of {band_gap} {band_gap__units} and a {magntization_per_atom__names__noun} of {magnetization_per_atom} {magnetization_per_atom__units}.
+  - The {#material|compound|structure!} with composition {formula#} has a {band_gap__names__noun} of {band_gap} {band_gap__units} and a {volume_per_atom__names__noun} of {volume_per_atom} {volume_per_atom__units}.
+  - The {#material|compound|structure!} with composition {formula#} {#can be found|occurs|crystallizes!} in the {spacegroup_names__noun} space group.
+  - The {#material|compound|structure!} with composition {formula#} {#can be found|occurs|crystallizes!} in the {spacegroup_names__noun} space group and has a {band_gap__names__noun} of {band_gap} {band_gap__units}.
+  - |- 
+    Question: What is the {band_gap__names__noun} of the {#material|compound|structure!} with composition {formula#}?
+    Answer: 
