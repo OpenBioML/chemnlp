@@ -4,7 +4,7 @@ import pandas as pd
 import yaml
 
 
-def load_dataset():
+def load_dataset() -> pd.DataFrame:
     sider = pd.read_csv(
         "https://deepchemdata.s3-us-west-1.amazonaws.com/datasets/sider.csv.gz"
     )
