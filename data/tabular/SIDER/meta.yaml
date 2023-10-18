@@ -164,57 +164,57 @@ bibtex:
       url = {https://doi.org/10.1093/nar/gkv1075},
       }
 templates:
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description}{#representation of |!}{SMILES#} is {hepatobiliary_disorders#not
+    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {hepatobiliary_disorders#not
       a &a }{#potential cause|potential reason!} for {hepatobiliary_disorders__names__noun}.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description}{#representation of |!}{SMILES#} is {metabolism_and_nutrition_disorders#not
+    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {metabolism_and_nutrition_disorders#not
       a &a }{#potential cause|potential reason!} for {metabolism_and_nutrition_disorders__names__noun}.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description}{#representation of |!}{SMILES#} is {product_issues#not
+    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {product_issues#not
       a &a }{#potential cause|potential reason!} for {product_issues__names__noun}.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description}{#representation of |!}{SMILES#} is {eye_disorders#not
+    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {eye_disorders#not
       a &a }{#potential cause|potential reason!} for {eye_disorders__names__noun}.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description}{#representation of |!}{SMILES#} is {investigations#not
+    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {investigations#not
       a &a }{#potential cause|potential reason!} for {investigations__names__noun}.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description}{#representation of |!}{SMILES#} is {musculoskeletal_and_connective_tissue_disorders#not
+    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {musculoskeletal_and_connective_tissue_disorders#not
       a &a }{#potential cause|potential reason!} for {musculoskeletal_and_connective_tissue_disorders__names__noun}.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description}{#representation of |!}{SMILES#} is {gastrointestinal_disorders#not
+    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {gastrointestinal_disorders#not
       a &a }{#potential cause|potential reason!} for {gastrointestinal_disorders__names__noun}.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description}{#representation of |!}{SMILES#} is {social_circumstances#not
+    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {social_circumstances#not
       a &a }{#potential cause|potential reason!} for {social_circumstances__names__noun}.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description}{#representation of |!}{SMILES#} is {immune_system_disorders#not
+    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {immune_system_disorders#not
       a &a }{#potential cause|potential reason!} for {immune_system_disorders__names__noun}.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description}{#representation of |!}{SMILES#} is {reproductive_system_and_breast_disorders#not
+    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {reproductive_system_and_breast_disorders#not
       a &a }{#potential cause|potential reason!} for {reproductive_system_and_breast_disorders__names__noun}.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description}{#representation of |!}{SMILES#} is {neoplasms_benign_malignant_and_unspecified_(incl_cysts_and_polyps)#not
+    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {neoplasms_benign_malignant_and_unspecified_(incl_cysts_and_polyps)#not
       a &a }{#potential cause|potential reason!} for {neoplasms_benign_malignant_and_unspecified_(incl_cysts_and_polyps)__names__noun}.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description}{#representation of |!}{SMILES#} is {general_disorders_and_administration_site_conditions#not
+    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {general_disorders_and_administration_site_conditions#not
       a &a }{#potential cause|potential reason!} for {general_disorders_and_administration_site_conditions__names__noun}.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description}{#representation of |!}{SMILES#} is {endocrine_disorders#not
+    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {endocrine_disorders#not
       a &a }{#potential cause|potential reason!} for {endocrine_disorders__names__noun}.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description}{#representation of |!}{SMILES#} is {surgical_and_medical_procedures#not
+    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {surgical_and_medical_procedures#not
       a &a }{#potential cause|potential reason!} for {surgical_and_medical_procedures__names__noun}.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description}{#representation of |!}{SMILES#} is {vascular_disorders#not
+    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {vascular_disorders#not
       a &a }{#potential cause|potential reason!} for {vascular_disorders__names__noun}.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description}{#representation of |!}{SMILES#} is {blood_and_lymphatic_system_disorders#not
+    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {blood_and_lymphatic_system_disorders#not
       a &a }{#potential cause|potential reason!} for {blood_and_lymphatic_system_disorders__names__noun}.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description}{#representation of |!}{SMILES#} is {skin_and_subcutaneous_tissue_disorders#not
+    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {skin_and_subcutaneous_tissue_disorders#not
       a &a }{#potential cause|potential reason!} for {skin_and_subcutaneous_tissue_disorders__names__noun}.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description}{#representation of |!}{SMILES#} is {congenital_familial_and_genetic_disorders#not
+    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {congenital_familial_and_genetic_disorders#not
       a &a }{#potential cause|potential reason!} for {congenital_familial_and_genetic_disorders__names__noun}.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description}{#representation of |!}{SMILES#} is {infections_and_infestations#not
+    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {infections_and_infestations#not
       a &a }{#potential cause|potential reason!} for {infections_and_infestations__names__noun}.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description}{#representation of |!}{SMILES#} is {respiratory_thoracic_and_mediastinal_disorders#not
+    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {respiratory_thoracic_and_mediastinal_disorders#not
       a &a }{#potential cause|potential reason!} for {respiratory_thoracic_and_mediastinal_disorders__names__noun}.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description}{#representation of |!}{SMILES#} is {psychiatric_disorders#not
+    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {psychiatric_disorders#not
       a &a }{#potential cause|potential reason!} for {psychiatric_disorders__names__noun}.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description}{#representation of |!}{SMILES#} is {renal_and_urinary_disorders#not
+    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {renal_and_urinary_disorders#not
       a &a }{#potential cause|potential reason!} for {renal_and_urinary_disorders__names__noun}.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description}{#representation of |!}{SMILES#} is {pregnancy_puerperium_and_perinatal_conditions#not
+    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {pregnancy_puerperium_and_perinatal_conditions#not
       a &a }{#potential cause|potential reason!} for {pregnancy_puerperium_and_perinatal_conditions__names__noun}.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description}{#representation of |!}{SMILES#} is {ear_and_labyrinth_disorders#not
+    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {ear_and_labyrinth_disorders#not
       a &a }{#potential cause|potential reason!} for {ear_and_labyrinth_disorders__names__noun}.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description}{#representation of |!}{SMILES#} is {cardiac_disorders#not
+    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {cardiac_disorders#not
       a &a }{#potential cause|potential reason!} for {cardiac_disorders__names__noun}.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description}{#representation of |!}{SMILES#} is {nervous_system_disorders#not
+    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {nervous_system_disorders#not
       a &a }{#potential cause|potential reason!} for {nervous_system_disorders__names__noun}.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description}{#representation of |!}{SMILES#} is {injury_poisoning_and_procedural_complications#not
+    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {injury_poisoning_and_procedural_complications#not
       a &a }{#potential cause|potential reason!} for {injury_poisoning_and_procedural_complications__names__noun}.

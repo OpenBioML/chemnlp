@@ -35,8 +35,7 @@ def write_meta(column_ids: pd.Index, descriptions: List[str], num_points: int) -
 
     templates = [
         "The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description}"  # noqa: E501
-        + "{#representation of |!} {SMILES#} is {"
-
+        + " {#representation of |!}{SMILES#} is {"
         + col_id
         + "#not a &a }"
         + "{#potential cause|potential reason!} for {"
