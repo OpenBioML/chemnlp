@@ -14,6 +14,7 @@ def process():
             "Mw (kg mol^-1)": "Mw",
             "Mn (kg mol^-1)": "Mn",
             "PDI (=Mw/Mn)": "PDI",
+            "bandgap(eV)": "bandgap",
         },
         inplace=True,
     )
@@ -28,7 +29,7 @@ def process():
             "Jsc",
             "Voc",
             "PCE_ave",
-            "bandgap(eV)",
+            "bandgap",
         ]
     )
     print(len(df))
