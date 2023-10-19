@@ -1,7 +1,8 @@
 ---
 name: qmof_quantum
 description: |-
-  QMOF is a database of electronic properties of MOFs
+  QMOF is a database of electronic properties of MOFs, assembled by Rosen et al.
+  Jablonka et al. added gas adsorption properties.
 targets:
     - id: outputs.pbe.bandgap
       type: continuous 
@@ -111,8 +112,10 @@ identifiers:
     - id: info.symmetry.spacegroup_number
       type: Other
       description: Spacegroup number
-license: CC0 1.0
-num_points: 133885
+      names: 
+        - noun: space group number
+license: CC-BY-4.0
+num_points: 1986
 links:
     - url: https://figshare.com/collections/Quantum_chemistry_structures_and_properties_of_134_kilo_molecules/978904
       description: original data source
@@ -145,6 +148,20 @@ bibtex:
         author = {Andrew S. Rosen and Victor Fung and Patrick Huck and Cody T. O'Donnell and Matthew K. Horton and Donald G. Truhlar and Kristin A. Persson and Justin M. Notestein and Randall Q. Snurr},
         title = {High-throughput predictions of metal{\textendash}organic framework electronic properties: theoretical challenges, graph neural networks, and data exploration},
         journal = {npj Comput Mater}
+      }
+    - |-
+      @article{Jablonka_2023,
+        doi = {10.1021/acscentsci.2c01177},
+        url = {https://doi.org/10.1021%2Facscentsci.2c01177},
+        year = 2023,
+        month = {mar},
+        publisher = {American Chemical Society ({ACS})},
+        volume = {9},
+        number = {4},
+        pages = {563--581},
+        author = {Kevin Maik Jablonka and Andrew S. Rosen and Aditi S. Krishnapriyan and Berend Smit},
+        title = {An Ecosystem for Digital Reticular Chemistry},
+        journal = {ACS Cent. Sci.} Central Science}
       }
 templates:
   - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {#density|mass density|mass density (density)!} of {info.density#} {info.density__units}.
@@ -254,18 +271,43 @@ templates:
   - |-
     User: Which linkers and nodes do I have to combine to form a {#metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {info.lcd__names__noun} {info.lcd#} {info.lcd__units}?
     Assistant: {#Do you have other constraints?|Do you have other requirements?|Are there additional constraints?|Is there anything else I should take into account?!}
-    User: {#Yes, |Indeed, |Thanks, |}I want to use linkers with SMILES {info.mofid.smiles_linkers#}.
+    User: {#Yes, |Indeed, |Thanks, |!}I want to use linkers with SMILES {info.mofid.smiles_linkers#}.
     Assistant: You have to combine your linkers with SMILES {info.mofid.smiles_linkers#} with nodes with SMILES {info.mofid.smiles_nodes#} to form a {#metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {info.lcd__names__noun} {info.lcd#} {info.lcd__units}.
   - |-
     User: Which linkers and nodes do I have to combine to form a {#metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {info.pld__names__noun} {info.pld#} {info.pld__units}?
     Assistant: {#Do you have other constraints?|Do you have other requirements?|Are there additional constraints?|Is there anything else I should take into account?!}
-    User: {#Yes, |Indeed, |Thanks, |}I want to use linkers with SMILES {info.mofid.smiles_linkers#} and want a {outputs.pbe.bandgap__names__noun} of {outputs.pbe.bandgap#} {outputs.pbe.bandgap__units}.
+    User: {#Yes, |Indeed, |Thanks, |!}I want to use linkers with SMILES {info.mofid.smiles_linkers#} and want a {outputs.pbe.bandgap__names__noun} of {outputs.pbe.bandgap#} {outputs.pbe.bandgap__units}.
     Assistant: You have to combine your linkers with SMILES {info.mofid.smiles_linkers#} with nodes with SMILES {info.mofid.smiles_nodes#}.
   - |-
     User: Which linkers and nodes do I have to combine to form a {#metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {outputs.pbe.bandgap__names__noun} of {outputs.pbe.bandgap#} {outputs.pbe.bandgap__units}?
     Assistant: {#Do you have other constraints?|Do you have other requirements?|Are there additional constraints?|Is there anything else I should take into account?!}
-    User: {#Yes, |Indeed, |Thanks, |}I want to have a {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#} and {outputs.pbe.cbm__names__noun} of {outputs.pbe.cbm#} {outputs.pbe.cbm__units}.
+    User: {#Yes, |Indeed, |Thanks, |!}I want to have a {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#} and {outputs.pbe.cbm__names__noun} of {outputs.pbe.cbm#} {outputs.pbe.cbm__units}.
     Assistant: You have to combine your linkers with SMILES {info.mofid.smiles_linkers#} with nodes with SMILES {info.mofid.smiles_nodes#}.
-    User: {#One more thing, |I have one more question, |}What is the {info.density__names__noun} and the {info.symmetry.spacegroup_number__names__noun}?
+    User: {#One more thing, |I have one more question, |!}What is the {info.density__names__noun} and the {info.symmetry.spacegroup_number__names__noun}?
     Assistant: The {info.density__names__noun} is {info.density#} {info.density__units} and the {info.symmetry.spacegroup_number__names__noun} is {info.symmetry.spacegroup_number#}.
-
+  - |-
+    User: What {#suggestion|proposals|ideas|recommendations!} do you have if I {#want|need!} a {#metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {outputs.pbe.bandgap__names__noun} of {outputs.pbe.bandgap#} {outputs.pbe.bandgap__units}?
+    Assistant: {#Do you have other constraints?|Do you have other requirements?|Are there additional constraints?|Is there anything else I should take into account?!}
+    User: {#Yes, |Indeed, |Thanks, |!}I want to have a {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#} and {outputs.pbe.cbm__names__noun} of {outputs.pbe.cbm#} {outputs.pbe.cbm__units}.
+    Assistant: {#Is that it?|Is there anything else I should take into account?|Do you have other constraints?|Do you have other requirements?|Are there additional constraints?!}
+    User: {#One more thing, |I have one more request, |!}The {info.density__names__noun} should be {info.density#} {info.density__units} and the {info.symmetry.spacegroup_number__names__noun} should be {info.symmetry.spacegroup_number#}.
+    Assistant: {#I recommend that you |I propose that you |I suggest that you |!} combine your linkers with SMILES {info.mofid.smiles_linkers#} with nodes with SMILES {info.mofid.smiles_nodes#}.
+  - |-
+    User: I'm thinking about the band gaps of {#metal-organic frameworks|metal-organic frameworks (MOFs)|reticular materials!}.
+    Assistant: {#That's interesting.|How can I help?|How can I be of assistance?|Is there anything I can do?|What can I do for you?!}
+    User: How does the {outputs.pbe.bandgap__names__noun} of the {#metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFid {info.mofid.mofid#} compare to the {outputs.hse06.bandgap__names__noun} and the {outputs.hle17.bandgap__names__noun}?
+    Assistant: The {outputs.pbe.bandgap__names__noun} is {outputs.pbe.bandgap#} {outputs.pbe.bandgap__units}, the {outputs.hse06.bandgap__names__noun} is {outputs.hse06.bandgap#} {outputs.hse06.bandgap__units} and the {outputs.hle17.bandgap__names__noun} is {outputs.hle17.bandgap#} {outputs.hle17.bandgap__units}.
+  - |- 
+    User: I'm thinking about the conduction band minima and valence band maxima of {#metal-organic frameworks|metal-organic frameworks (MOFs)|reticular materials!}.
+    Assistant: {#That's interesting.|How can I help?|How can I be of assistance?|Is there anything I can do?|What can I do for you?!}
+    User: How does the {outputs.pbe.cbm__names__noun} of the {#metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFid {info.mofid.mofid#} compare to the {outputs.hse06.cbm__names__noun} and the {outputs.hle17.cbm__names__noun}?
+    Assistant: The {outputs.pbe.cbm__names__noun} is {outputs.pbe.cbm#} {outputs.pbe.cbm__units}, the {outputs.hse06.cbm__names__noun} is {outputs.hse06.cbm#} {outputs.hse06.cbm__units} and the {outputs.hle17.cbm__names__noun} is {outputs.hle17.cbm#} {outputs.hle17.cbm__units}.
+    User: {#And how does it look like for|And how about|How about!} the {outputs.pbe.vbm__names__noun}?
+    Assistant: The {outputs.pbe.vbm__names__noun} is {outputs.pbe.vbm#} {outputs.pbe.vbm__units}, the {outputs.hse06.vbm__names__noun} is {outputs.hse06.vbm#} {outputs.hse06.vbm__units} and the {outputs.hle17.vbm__names__noun} is {outputs.hle17.vbm#} {outputs.hle17.vbm__units}.
+  - |-
+    User: I'm {#thinking|wondering!} about the {#topology|net|RCSR code|RCSR identifier!} of {#metal-organic frameworks|metal-organic frameworks (MOFs)|reticular materials!}.
+    Assistant: {#That's interesting.|How can I help?|How can I be of assistance?|Is there anything I can do?|What can I do for you?!}
+    User: Which {#topology|net|RCSR code|RCSR identifier!} do the linkers with SMILES {info.mofid.smiles_linkers#} and nodes with SMILES {info.mofid.smiles_nodes#} self-assemble to form a {#metal-organic framework|metal-organic framework (MOF)|reticular material!}?
+    Assistant: Into the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}.
+    User: {#One more thing, |I have one more request, |Another question, |I have one more question, |!}What density do you {#predict|expect|estimate!} for this {#metal-organic framework|metal-organic framework (MOF)|reticular material|material!}?
+    Assistant: The {info.density__names__noun} is {info.density#} {info.density__units}.
