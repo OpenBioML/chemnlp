@@ -1,0 +1,35 @@
+---
+name: MUV_737
+description: Activity in the MUV_737 assay
+identifiers:
+    - id: SMILES
+      type: SMILES
+      description: SMILES
+targets:
+    - id: MUV-737
+      type: boolean
+      description: MUV-737
+      names:
+          - noun: a potentiator of the estrogen receptor-alpha-coactivator binding
+license: CC BY 4.0
+links:
+    - url: https://academic.oup.com/nar/article/44/D1/D1075/2502602?login=false
+      description: corresponding publication
+    - url: https://deepchemdata.s3-us-west-1.amazonaws.com/datasets/muv.csv.gz
+      description: Data source
+num_points: 14691
+bibtex:
+    - |
+      @article{doi:10.1021/ci8002649,
+      author = {Rohrer, Sebastian G. and Baumann, Knut},
+      title = {Maximum Unbiased Validation (MUV) Data Sets for Virtual Screening Based on PubChem Bioactivity Data},
+      journal = {Journal of Chemical Information and Modeling},
+      volume = {49},
+      number = {2},
+      pages = {169-184},
+      year = {2009},
+      doi = {10.1021/ci8002649},
+      URL = {https://doi.org/10.1021/ci8002649}}
+templates:
+    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {MUV-737#not
+      &NULL}a potentiator of the estrogen receptor-alpha-coactivator binding
