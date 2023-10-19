@@ -1,10 +1,11 @@
 import glob
 import json
+import os
 import re
 
 from tqdm import tqdm
 
-STR_CUTOFF = 1000
+STR_CUTOFF = 5000
 KEEP_FIRST_HEADERS = [
     "main",
     "abstract",
@@ -19,12 +20,13 @@ def load_mmd_from_path(path):
     return data
 
 
-rm_ref_brackets = re.compile(r"\s\(\d+([\,\-]\d+)*\)"), ""
-rm_ref_square_brackets = re.compile(r"\s\(\d+([\,\-]\d+)*\)"), ""
-change_asterisk_headers = re.compile(r"\n\*\*(.*)\*\*.?\n"), r"\n## \1\n"
-change_asterisk_headers_inline = re.compile(r"\n\*\*(.*)\*\*.?\s"), r"\n## \1\n"
+rm_ref_brackets = re.compile(r"\s?\(\d+([\,\-\;] ?\d+)*\)"), ""
+rm_ref_square_brackets = re.compile(r"\s?\[\d+([\,\-\;] ?\d+)*\]"), ""
+change_asterisk_headers = re.compile(r"\n\*\*(.*)\*\*.?\n"), r"\n## \1\n\n"
+change_asterisk_headers_inline = re.compile(r"\n\*\*(.*)\*\*.?\s"), r"\n## \1\n\n"
 change_underline_headers = re.compile(r"\n\_(.*)\_.?\n"), r"\n## \1\n"
 # rm_double_asterisk = re.compile(r"\*\*"), ""
+rm_line_number = re.compile(r"\n\* \d+\s"), "\n"
 rm_missing_page_fail_a = re.compile(r"\n\n\[MISSING_PAGE_FAIL:\d+\]"), ""
 rm_missing_page_fail_b = re.compile(r"\[MISSING_PAGE_FAIL:\d+\]"), ""
 rm_missing_page_empty_a = re.compile(r"\n\n\[MISSING_PAGE_EMPTY:\d+\]"), ""
@@ -33,9 +35,9 @@ rm_missing_page_post_a = re.compile(r"\n\n\[MISSING_PAGE_POST\]"), ""
 rm_missing_page_post_b = re.compile(r"\[MISSING_PAGE_POST\]"), ""
 rm_figure_caption_start = re.compile(r"[Ff]igure \d+\w?\.?[:\|]?\s"), ""
 rm_schema_caption_start = re.compile(r"[Ss]chema \d+\w?\.?[:\|]?\s"), ""
-rm_fig_caption_start = re.compile(r"[Ff]ig. \d+\w?\.?[:\|]?\s"), ""
+rm_fig_caption_start = re.compile(r"[Ff]ig.? \d+\w?\.?[:\|]?\s"), ""
 rm_figure_in_brackets = re.compile(r" \([Ff]igure \d+\w?\.?\)"), ""
-rm_fig_in_brackets = re.compile(r" \([Ff]ig. \d+\w?\.?\)"), ""
+rm_fig_in_brackets = re.compile(r" \([Ff]ig.? \d+\w?\.?\)"), ""
 rm_fig_in_brackets_asterisk = re.compile(r" \(\*\*[Ff]ig. \d+.*\*\*\)"), ""
 # rm_figure_reference = re.compile(r", see [Ff]igure \d+\w?"), ""
 # rm_fig_reference = re.compile(r", see [Ff]ig. \d+\w?"), ""
@@ -169,8 +171,8 @@ exclude_headers = [
     "additional information",
     "associated content",
     "author",  # incl: "author information", "corresponding author",
+    "availability",
     "bibliography",
-    "code availability",
     "competing interest",
     "contributions",
     "conflict of interest",
@@ -182,6 +184,7 @@ exclude_headers = [
     "dedication",
     "disclaimer",
     "disclosure",
+    "figure legends",
     "financial support",
     "funding",
     "graphical toc",
@@ -204,6 +207,10 @@ def create_jsonl_from_dir(path):
     print(f"{path=}")
     paths = sorted(glob.glob(path + "/*.mmd"))
     path_jsonl = path + "/out.jsonl"
+    if os.path.isfile(path_jsonl):
+        print(f"Output file already exists, please check: {path_jsonl}")
+        return
+
     print(f"{path_jsonl=}")
     for path in (pbar := tqdm(paths)):
         fn = path.split("/")[-1].split(".mmd")[0]
@@ -215,6 +222,9 @@ def create_jsonl_from_dir(path):
             continue
         elif text.count("Journal of") > 10:
             # print(f'Too many "Journal of" in text: {fn}')
+            continue
+        elif text.count(" doi:") > 10:
+            # print(f'Too many " doi:" in text: {fn}')
             continue
         elif len(year_numbers.findall(text)) > 10:
             # print(f"Too many year numbers in text: {fn}")
