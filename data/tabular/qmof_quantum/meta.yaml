@@ -15,19 +15,21 @@ targets:
       significant_digits: 3
       units: eV
       names: 
-        - noun:  PAW-PBE-D3(BJ) calculated conduction band minimum 
-        - noun:  PAW-PBE-D3(BJ) computed conduction band minimum 
-        - noun:  PAW-PBE-D3(BJ) calculated conduction band minimum (CBM)
-        - noun:  PAW-PBE-D3(BJ) computed conduction band minimum (CBM)
+        - noun: PAW-PBE-D3(BJ) calculated conduction band minimum 
+        - noun: PAW-PBE-D3(BJ) computed conduction band minimum 
+        - noun: PAW-PBE-D3(BJ) calculated conduction band minimum (CBM)
+        - noun: PAW-PBE-D3(BJ) computed conduction band minimum (CBM)
+        - noun: PAW-PBE-D3(BJ) calculated energy of conduction band minimum 
     - id: outputs.pbe.vbm
       type: continuous 
       significant_digits: 3
       units: eV
       names:
-        - noun:  PAW-PBE-D3(BJ) calculated valence band maximum
-        - noun:  PAW-PBE-D3(BJ) computed valence band maximum
-        - noun:  PAW-PBE-D3(BJ) calculated valence band maximum (VBM)
-        - noun:  PAW-PBE-D3(BJ) computed valence band maximum (VBM) 
+        - noun: PAW-PBE-D3(BJ) calculated valence band maximum
+        - noun: PAW-PBE-D3(BJ) computed valence band maximum
+        - noun: PAW-PBE-D3(BJ) calculated valence band maximum (VBM)
+        - noun: PAW-PBE-D3(BJ) computed valence band maximum (VBM) 
+        - noun: PAW-PBE-D3(BJ) computed energy of valence band maximum (VBM) 
     - id: outputs.hle17.bandgap
       type: continuous 
       significant_digits: 3
@@ -145,3 +147,109 @@ bibtex:
         journal = {npj Comput Mater}
       }
 templates:
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {#density|mass density|mass density (density)!} of {info.density#} {info.density__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFid {info.mofid.mofid#} has a {#density|mass density|mass density (density)!} of {info.density#} {info.density__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {#pore limiting diameter|pore limiting diameter (PLD)!} of {info.pld#} {info.pld__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFid {info.mofid.mofid#} has a {#pore limiting diameter|pore limiting diameter (PLD)!} of {info.pld#} {info.pld__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {#largest cavity diameter|largest cavity diameter (LCD)!} of {info.lcd#} {info.lcd__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFid {info.mofid.mofid#} has a {#largest cavity diameter|largest cavity diameter (LCD)!} of {info.lcd#} {info.lcd__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {outputs.pbe.bandgap__names__noun} of {outputs.pbe.bandgap#} {outputs.pbe.bandgap__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFid {info.mofid.mofid#} has a {outputs.pbe.bandgap__names__noun} of {outputs.pbe.bandgap#} {outputs.pbe.bandgap__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {outputs.pbe.cbm__names__noun} of {outputs.pbe.cbm#} {outputs.pbe.cbm__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFid {info.mofid.mofid#} has a {outputs.pbe.cbm__names__noun} of {outputs.pbe.cbm#} {outputs.pbe.cbm__units}.  
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {outputs.pbe.vbm__names__noun} of {outputs.pbe.vbm#} {outputs.pbe.vbm__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFid {info.mofid.mofid#} has a {outputs.pbe.vbm__names__noun} of {outputs.pbe.vbm#} {outputs.pbe.vbm__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {outputs.hle17.bandgap__names__noun} of {outputs.hle17.bandgap#} {outputs.hle17.bandgap__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFid {info.mofid.mofid#} has a {outputs.hle17.bandgap__names__noun} of {outputs.hle17.bandgap#} {outputs.hle17.bandgap__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {outputs.hle17.cbm__names__noun} of {outputs.hle17.cbm#} {outputs.hle17.cbm__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFid {info.mofid.mofid#} has a {outputs.hle17.cbm__names__noun} of {outputs.hle17.cbm#} {outputs.hle17.cbm__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {outputs.hle17.vbm__names__noun} of {outputs.hle17.vbm#} {outputs.hle17.vbm__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFid {info.mofid.mofid#} has a {outputs.hle17.vbm__names__noun} of {outputs.hle17.vbm#} {outputs.hle17.vbm__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {outputs.hse06.bandgap__names__noun} of {outputs.hse06.bandgap#} {outputs.hse06.bandgap__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFid {info.mofid.mofid#} has a {outputs.hse06.bandgap__names__noun} of {outputs.hse06.bandgap#} {outputs.hse06.bandgap__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {outputs.hse06.cbm__names__noun} of {outputs.hse06.cbm#} {outputs.hse06.cbm__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFid {info.mofid.mofid#} has a {outputs.hse06.cbm__names__noun} of {outputs.hse06.cbm#} {outputs.hse06.cbm__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {outputs.hse06.vbm__names__noun} of {outputs.hse06.vbm#} {outputs.hse06.vbm__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFid {info.mofid.mofid#} has a {outputs.hse06.vbm__names__noun} of {outputs.hse06.vbm#} {outputs.hse06.vbm__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFid {info.mofid.mofid#} has a {#spacegroup number|space group number|space group number (spacegroup number)!} of {info.symmetry.spacegroup_number#}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} is a {#metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFid {info.mofid.mofid#}.
+  - |-
+    Question: {#What is|How large is!} the {#density|mass density|mass density (density)!} of the {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#}?
+    Answer: {#The density is |The mass density is |!}{info.density#} {info.density__units}.
+  - |-
+    Question: {#What is|How large is!} the {#density|mass density|mass density (density)!} of the {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFid {info.mofid.mofid#}?
+    Answer: {#The density is |The mass density is |!}{info.density#} {info.density__units}.
+  - |-
+    Question: {#What is|How large is!} the {#pore limiting diameter|pore limiting diameter (PLD)!} of the {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#}?
+    Answer: {#The pore limiting diameter is |The pore limiting diameter (PLD) is |!}{info.pld#} {info.pld__units}.
+  - |-
+    Question: {#What is|How large is!} the {#pore limiting diameter|pore limiting diameter (PLD)!} of the {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFid {info.mofid.mofid#}?
+    Answer: {#The pore limiting diameter is |The pore limiting diameter (PLD) is |!}{info.pld#} {info.pld__units}.
+  - |-
+    Question: {#What is|How large is!} the {#largest cavity diameter|largest cavity diameter (LCD)!} of the {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#}?
+    Answer: {#The largest cavity diameter is |The largest cavity diameter (LCD) is |!}{info.lcd#} {info.lcd__units}.
+  - |-
+    Question: {#What is|How large is!} the {#largest cavity diameter|largest cavity diameter (LCD)!} of the {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFid {info.mofid.mofid#}?
+    Answer: {#The largest cavity diameter is |The largest cavity diameter (LCD) is |!}{info.lcd#} {info.lcd__units}.
+  - |-
+    Question: {#What is|How large is!} the {outputs.pbe.bandgap__names__noun} of the {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#}?
+    Answer: {#The band gap is |The band gap of the MOF is |!}{outputs.pbe.bandgap#} {outputs.pbe.bandgap__units}.
+  - |-
+    Question: {#What is|How large is!} the {outputs.pbe.bandgap__names__noun} of the {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFid {info.mofid.mofid#}?
+    Answer: {#The band gap is |The band gap of the MOF is |!}{outputs.pbe.bandgap#} {outputs.pbe.bandgap__units}.
+  - |-
+    Question: {#What is|How large is!} the {outputs.pbe.cbm__names__noun} of the {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#}?
+    Answer: {#The conduction band minimum is |The conduction band minimum of the MOF is |!}{outputs.pbe.cbm#} {outputs.pbe.cbm__units}.
+  - |-
+    Question: {#What is|How large is!} the {outputs.pbe.cbm__names__noun} of the {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFid {info.mofid.mofid#}?
+    Answer: {#The conduction band minimum is |The conduction band minimum of the MOF is |!}{outputs.pbe.cbm#} {outputs.pbe.cbm__units}.
+  - |-
+    Question: {#What is|How large is!} the {outputs.pbe.vbm__names__noun} of the {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#}?
+    Answer: {#The valence band maximum is |The valence band maximum of the MOF is |!}{outputs.pbe.vbm#} {outputs.pbe.vbm__units}.
+  - |-
+    Question: {#What is|How large is!} the {outputs.pbe.vbm__names__noun} of the {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFid {info.mofid.mofid#}?
+    Answer: {#The valence band maximum is |The valence band maximum of the MOF is |!}{outputs.pbe.vbm#} {outputs.pbe.vbm__units}.
+  - |-
+    Question: {#What is|How large is!} the {outputs.hle17.bandgap__names__noun} of the {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#}?
+    Answer: {#The band gap is |The band gap of the MOF is |!}{outputs.hle17.bandgap#} {outputs.hle17.bandgap__units}.
+  - |-
+    Question: {#What is|How large is!} the {outputs.hle17.bandgap__names__noun} of the {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFid {info.mofid.mofid#}?
+    Answer: {#The band gap is |The band gap of the MOF is |!}{outputs.hle17.bandgap#} {outputs.hle17.bandgap__units}.
+  - |-
+    Question: {#What is|How large is!} the {outputs.hle17.cbm__names__noun} of the {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#}?
+    Answer: {#The conduction band minimum is |The conduction band minimum of the MOF is |!}{outputs.hle17.cbm#} {outputs.hle17.cbm__units}.
+  - |-
+    Question: {#What is|How large is!} the {outputs.hle17.cbm__names__noun} of the {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFid {info.mofid.mofid#}?
+    Answer: {#The conduction band minimum is |The conduction band minimum of the MOF is |!}{outputs.hle17.cbm#} {outputs.hle17.cbm__units}.
+  - |-
+    Question: {#What is|How large is!} the {outputs.hle17.vbm__names__noun} of the {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#}?
+    Answer: {#The valence band maximum is |The valence band maximum of the MOF is |!}{outputs.hle17.vbm#} {outputs.hle17.vbm__units}.
+  - |-
+    Question: {#What is|How large is!} the {outputs.hle17.vbm__names__noun} of the {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFid {info.mofid.mofid#}?
+    Answer: {#The valence band maximum is |The valence band maximum of the MOF is |!}{outputs.hle17.vbm#} {outputs.hle17.vbm__units}.
+  - |-
+    Question: {#What is|How large is!} the {outputs.hse06.bandgap__names__noun} of the {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#}?
+    Answer: {#The band gap is |The band gap of the MOF is |!}{outputs.hse06.bandgap#} {outputs.hse06.bandgap__units}.
+  - |-
+    Question: {#What is|How large is!} the {outputs.hse06.bandgap__names__noun} of the {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFid {info.mofid.mofid#}?
+    Answer: {#The band gap is |The band gap of the MOF is |!}{outputs.hse06.bandgap#} {outputs.hse06.bandgap__units}.
+  - |-
+    Question: {#What is|How large is!} the {outputs.hse06.cbm__names__noun} of the {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#}?
+    Answer: {#The conduction band minimum is |The conduction band minimum of the MOF is |!}{outputs.hse06.cbm#} {outputs.hse06.cbm__units}.
+  - |-
+    Question: {#What is|How large is!} the {outputs.hse06.cbm__names__noun} of the {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFid {info.mofid.mofid#}?
+    Answer: {#The conduction band minimum is |The conduction band minimum of the MOF is |!}{outputs.hse06.cbm#} {outputs.hse06.cbm__units}.
+  - |-
+    Question: {#What is|How large is!} the {outputs.hse06.vbm__names__noun} of the {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#}?
+    Answer: {#The valence band maximum is |The valence band maximum of the MOF is |!}{outputs.hse06.vbm#} {outputs.hse06.vbm__units}.
+  - |-
+    Question: In which {#topology|net!} do the linkers with SMILES {info.mofid.smiles_linkers#} and nodes with SMILES {info.mofid.smiles_nodes#} self-assemble to form a {#metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFid {info.mofid.mofid#}?
+    Answer: The {#metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFid {info.mofid.mofid#} self-assembles to form a {#metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net!} {info.mofid.topology#}.
+  - |-
+    User: With which linkers do I have to combine my nodes with SMILES {info.mofid.smiles_nodes#} to form a {#metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net!} {info.mofid.topology#}?
+    Assistant: You have to combine your nodes with SMILES {info.mofid.smiles_nodes#} with linkers with SMILES {info.mofid.smiles_linkers#} to form a {#metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {info.mofid.topology#} {#topology|net!}.
+  - |-
+    User: With which nodes do I have to combine my linkers with SMILES {info.mofid.smiles_linkers#} to form a {#metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net!} {info.mofid.topology#}?
+    Assistant: You have to combine your linkers with SMILES {info.mofid.smiles_linkers#} with nodes with SMILES {info.mofid.smiles_nodes#} to form a {#metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {info.mofid.topology#} {#topology|net!}.
+
+
