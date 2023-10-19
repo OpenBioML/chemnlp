@@ -1,10 +1,12 @@
-from datasets import load_dataset
 import ast
+
+import pandas as pd
 
 
 def process():
-    dataset = load_dataset("kjappelbaum/chemnlp-qmof-data")["train"]
-    df = dataset.to_pandas()
+    df = pd.read_json(
+        "https://huggingface.co/datasets/kjappelbaum/chemnlp-qmof-data/resolve/main/qmof_data.json"
+    )
 
     df.dropna(
         subset=[
