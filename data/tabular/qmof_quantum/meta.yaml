@@ -251,5 +251,21 @@ templates:
   - |-
     User: With which nodes do I have to combine my linkers with SMILES {info.mofid.smiles_linkers#} to form a {#metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net!} {info.mofid.topology#}?
     Assistant: You have to combine your linkers with SMILES {info.mofid.smiles_linkers#} with nodes with SMILES {info.mofid.smiles_nodes#} to form a {#metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {info.mofid.topology#} {#topology|net!}.
-
+  - |-
+    User: Which linkers and nodes do I have to combine to form a {#metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {info.lcd__names__noun} {info.lcd#} {info.lcd__units}?
+    Assistant: {#Do you have other constraints?|Do you have other requirements?|Are there additional constraints?|Is there anything else I should take into account?!}
+    User: {#Yes, |Indeed, |Thanks, |}I want to use linkers with SMILES {info.mofid.smiles_linkers#}.
+    Assistant: You have to combine your linkers with SMILES {info.mofid.smiles_linkers#} with nodes with SMILES {info.mofid.smiles_nodes#} to form a {#metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {info.lcd__names__noun} {info.lcd#} {info.lcd__units}.
+  - |-
+    User: Which linkers and nodes do I have to combine to form a {#metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {info.pld__names__noun} {info.pld#} {info.pld__units}?
+    Assistant: {#Do you have other constraints?|Do you have other requirements?|Are there additional constraints?|Is there anything else I should take into account?!}
+    User: {#Yes, |Indeed, |Thanks, |}I want to use linkers with SMILES {info.mofid.smiles_linkers#} and want a {outputs.pbe.bandgap__names__noun} of {outputs.pbe.bandgap#} {outputs.pbe.bandgap__units}.
+    Assistant: You have to combine your linkers with SMILES {info.mofid.smiles_linkers#} with nodes with SMILES {info.mofid.smiles_nodes#}.
+  - |-
+    User: Which linkers and nodes do I have to combine to form a {#metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {outputs.pbe.bandgap__names__noun} of {outputs.pbe.bandgap#} {outputs.pbe.bandgap__units}?
+    Assistant: {#Do you have other constraints?|Do you have other requirements?|Are there additional constraints?|Is there anything else I should take into account?!}
+    User: {#Yes, |Indeed, |Thanks, |}I want to have a {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#} and {outputs.pbe.cbm__names__noun} of {outputs.pbe.cbm#} {outputs.pbe.cbm__units}.
+    Assistant: You have to combine your linkers with SMILES {info.mofid.smiles_linkers#} with nodes with SMILES {info.mofid.smiles_nodes#}.
+    User: {#One more thing, |I have one more question, |}What is the {info.density__names__noun} and the {info.symmetry.spacegroup_number__names__noun}?
+    Assistant: The {info.density__names__noun} is {info.density#} {info.density__units} and the {info.symmetry.spacegroup_number__names__noun} is {info.symmetry.spacegroup_number#}.
 
