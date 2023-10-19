@@ -78,3 +78,10 @@ templates:
     - |-
       Question: What is the SMILES of a molecule with {mol3000__names__noun} {mol3000#}?
       Answer: {SMILES#}
+    - |-
+      User: I need to generate {#conformers|3D geometries|3D structures!} of molecules.
+      Assistant: What is the SMILES of the molecule?
+      User: {SMILES#}
+      Assistant: The {xyz__names__noun} of the molecule is {xyz#}.
+      User: Can you give me the {mol2000__names__noun}?
+      Assistant: The {mol2000__names__noun} of the molecule is {mol2000#}.
