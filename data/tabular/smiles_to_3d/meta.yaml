@@ -1,0 +1,80 @@
+---
+name: qm9
+description: |-
+    QM9 is a comprehensive dataset that provides geometric, energetic,
+    electronic and thermodynamic properties for a subset of GDB-17
+    database, comprising 134 thousand stable organic molecules with up
+    to 9 heavy atoms.  All molecules are modeled using density
+    functional theory (B3LYP/6-31G(2df,p) based DFT).
+targets:
+    - id: xyz
+      description: Structure of the molecule, modeled at B3LYP/6-31G(2df,p) level of theory in XYZ format
+      type: text
+      names:
+          - noun: geometry in XYZ format (after optimization on B3LYP/6-31G(2df,p) level of theory)
+          - noun: 3D-structure in XYZ format (after optimization on B3LYP/6-31G(2df,p) level of theory)
+          - noun: three-dimensional structure in XYZ format (after optimization on B3LYP/6-31G(2df,p) level of theory)
+    - id: mol2000
+      description: Structure of the molecule, modeled at B3LYP/6-31G(2df,p) level of theory in MOL2000 format, bonds inferred using RDKit
+      type: text
+      names:
+          - noun: geometry in MOL2000 format (after optimization on B3LYP/6-31G(2df,p) level of theory)
+          - noun: 3D-structure in MOL2000 format (after optimization on B3LYP/6-31G(2df,p) level of theory)
+          - noun: three-dimensional structure in MOL2000 format (after optimization on B3LYP/6-31G(2df,p) level of theory)
+    - id: mol3000
+      description: Structure of the molecule, modeled at B3LYP/6-31G(2df,p) level of theory in MOL3000 format, bonds inferred using RDKit
+      type: text
+      names:
+          - noun: geometry in MOL3000 format (after optimization on B3LYP/6-31G(2df,p) level of theory)
+          - noun: 3D-structure in MOL3000 format (after optimization on B3LYP/6-31G(2df,p) level of theory)
+          - noun: three-dimensional structure in MOL3000 format (after optimization on B3LYP/6-31G(2df,p) level of theory)
+identifiers:
+    - id: SMILES
+      type: SMILES
+      description: SMILES
+license: CC BY 4.0
+num_points: 133631
+links:
+    - url: https://data.dtu.dk/articles/dataset/xyz_files_of_the_QM9_molecules/19780570
+      description: original data source
+
+bibtex:
+    - |-
+      @article{ramakrishnan2014quantum,
+      title={Quantum chemistry structures and properties of 134 kilo molecules},
+      author={Ramakrishnan, Raghunathan and Dral, Pavlo O and Rupp, Matthias and Von Lilienfeld, O Anatole},
+      journal={Scientific data},
+      volume={1},
+      number={1},
+      pages={1--7},
+      year={2014},
+      publisher={Nature Publishing Group}}
+    - |-
+      @article{ruddigkeit2012enumeration,
+      title={Enumeration of 166 billion organic small molecules in the chemical universe database GDB-17},
+      author={Ruddigkeit, Lars and Van Deursen, Ruud and Blum, Lorenz C and Reymond, Jean-Louis},
+      journal={Journal of chemical information and modeling},
+      volume={52},
+      number={11},
+      pages={2864--2875},
+      year={2012},
+      publisher={ACS Publications}}
+templates:
+    - |-
+      Question: What is the {xyz__names__noun} of a molecule with SMILES {SMILES#}?
+      Answer: {xyz#}
+    - |-
+      Question: What is the {mol2000__names__noun} of a molecule with SMILES {SMILES#}?
+      Answer: {mol2000#}
+    - |-
+      Question: What is the {mol3000__names__noun} of a molecule with SMILES {SMILES#}?
+      Answer: {mol3000#}
+    - |-
+      Question: What is the SMILES of a molecule with {xyz__names__noun} {xyz#}?
+      Answer: {SMILES#}
+    - |-
+      Question: What is the SMILES of a molecule with {mol2000__names__noun} {mol2000#}?
+      Answer: {SMILES#}
+    - |-
+      Question: What is the SMILES of a molecule with {mol3000__names__noun} {mol3000#}?
+      Answer: {SMILES#}
