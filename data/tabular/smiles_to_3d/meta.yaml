@@ -78,25 +78,25 @@ bibtex:
       publisher={ACS Publications}}
 templates:
     - |-
-      Question: {#What is the|Can you generate the|Can you provide me with the!} {xyz__names__noun} of a {#molecule|compound|chemical!} with the {SMILES__description} {SMILES#}?
+      Question: {#What is the|Can you generate the|Can you provide me with the!} {xyz__names__noun} of the {#molecule|compound|chemical!} with the {SMILES__description} {SMILES#}?
       Answer: {xyz#}
     - |-
-      Question: {#What is the|Can you generate the|Can you provide me with the!} {mol2000__names__noun} of a {#molecule|compound|chemical!} with the {SMILES__description} {SMILES#}?
+      Question: {#What is the|Can you generate the|Can you provide me with the!} {mol2000__names__noun} of the {#molecule|compound|chemical!} with the {SMILES__description} {SMILES#}?
       Answer: {mol2000#}
     - |-
-      Question: {#What is the|Can you generate the|Can you provide me with the!} {mol3000__names__noun} of a {#molecule|compound|chemical!} with the {SMILES__description} {SMILES#}?
+      Question: {#What is the|Can you generate the|Can you provide me with the!} {mol3000__names__noun} of the {#molecule|compound|chemical!} with the {SMILES__description} {SMILES#}?
       Answer: {mol3000#}
     - |-
-      Question: {#What is the|Can you generate the|Can you provide me with the!} {SMILES__description} of a {#molecule|compound|chemical!} with {xyz__names__noun} {xyz#}?
+      Question: {#What is the|Can you generate the|Can you provide me with the!} {SMILES__description} of the {#molecule|compound|chemical!} with {xyz__names__noun} {xyz#}?
       Answer: {SMILES#}
     - |-
-      Question: {#What is the|Can you generate the|Can you provide me with the!} {SMILES__description} of a {#molecule|compound|chemical!} with {mol2000__names__noun} {mol2000#}?
+      Question: {#What is the|Can you generate the|Can you provide me with the!} {SMILES__description} of the {#molecule|compound|chemical!} with {mol2000__names__noun} {mol2000#}?
       Answer: {SMILES#}
     - |-
-      Question: {#What is the|Can you generate the|Can you provide me with the!} {SMILES__description} of a {#molecule|compound|chemical!} with {mol3000__names__noun} {mol3000#}?
+      Question: {#What is the|Can you generate the|Can you provide me with the!} {SMILES__description} of the {#molecule|compound|chemical!} with {mol3000__names__noun} {mol3000#}?
       Answer: {SMILES#}
     - |-
-      User: I need to generate {#conformers|3D geometries|3D structures!} of {#molecule|compound|chemical!}.
+      User: I need to generate {#conformers|3D geometries|3D structures!} of a {#molecule|compound|chemical!}.
       Assistant: {#What is|Can you provide!} the {SMILES__description} of the {#molecule|compound|chemical!}?
       User: {SMILES#}
       Assistant: The {xyz__names__noun} of the #molecule|compound|chemical!} is {xyz#}.
