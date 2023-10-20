@@ -78,13 +78,13 @@ bibtex:
       publisher={ACS Publications}}
 templates:
     - |-
-      Question: {#What is the|Can you generate the|Can you provide me with the!} {xyz__names__noun} of a {#molecule|compound|chemical!} with SMILES {SMILES#}?
+      Question: {#What is the|Can you generate the|Can you provide me with the!} {xyz__names__noun} of a {#molecule|compound|chemical!} with the {SMILES__description} {SMILES#}?
       Answer: {xyz#}
     - |-
-      Question: {#What is the|Can you generate the|Can you provide me with the!} {mol2000__names__noun} of a {#molecule|compound|chemical!} with SMILES {SMILES#}?
+      Question: {#What is the|Can you generate the|Can you provide me with the!} {mol2000__names__noun} of a {#molecule|compound|chemical!} with the {SMILES__description} {SMILES#}?
       Answer: {mol2000#}
     - |-
-      Question: {#What is the|Can you generate the|Can you provide me with the!} {mol3000__names__noun} of a {#molecule|compound|chemical!} with SMILES {SMILES#}?
+      Question: {#What is the|Can you generate the|Can you provide me with the!} {mol3000__names__noun} of a {#molecule|compound|chemical!} with the {SMILES__description} {SMILES#}?
       Answer: {mol3000#}
     - |-
       Question: {#What is the|Can you generate the|Can you provide me with the!} {SMILES__description} of a {#molecule|compound|chemical!} with {xyz__names__noun} {xyz#}?
