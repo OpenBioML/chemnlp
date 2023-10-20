@@ -125,6 +125,7 @@ exclude_from_standard_tabular_text_templates = [
     "sr_p53_tox21",  # boolean target data
     "tyrosyl-dna_phosphodiesterase_butkiewicz",  # boolean target data
     "zinc",  # SMILES only, has no target
+    "smiles_to_3d"
     # "h2_storage_materials",  # only IUPAC identifier, more than one target, LOW PRIO: has only 30 samples
 ]
 
@@ -969,8 +970,8 @@ if __name__ == "__main__":
     # path_data_dir = path_data_dir[index:]
 
     for path in path_data_dir:
-        if path.find("data/tabular/bicerano_dataset") != -1:
-            continue  # needs the units fixed or templates copied over
+        # if "smiles_to_3d" not in path:
+        #     continue
         # subselect one path
         # if path.find("data/tabular/") == -1: continue
         # if path.find("data/kg/") == -1: continue
