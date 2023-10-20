@@ -132,18 +132,15 @@ exclude_from_standard_tabular_text_templates = [
 
 lm_eval_yaml_template_loglikelihood = {
     "group": [
+        "chemnlp",
         "loglikelihood",
     ],
     "task": None,
     "dataset_path": None,
     "dataset_name": None,
     "output_type": "loglikelihood",
-    "test_split": "test",
-    "template_aliases": "",
-    "doc_to_text": "{{input}}",
-    "doc_to_target": "{{output}}",
-    # "should_decontaminate": True,
-    # "doc_to_decontamination_query": "{{text}}",
+    "doc_to_text": "input",
+    "doc_to_target": "output",
     "metric_list": [
         {
             "metric": "perplexity",
@@ -160,19 +157,16 @@ lm_eval_yaml_template_loglikelihood = {
 
 lm_eval_yaml_template_multiple_choice = {
     "group": [
+        "chemnlp",
         "multiple_choice",
     ],
     "task": None,
     "dataset_path": None,
     "dataset_name": None,
     "output_type": "multiple_choice",
-    "test_split": "test",
-    "template_aliases": "{% set gold = correct_output_index %}",
-    "doc_to_text": "{{input}}",
-    "doc_to_target": "{{output}}",
-    "gold_alias": "{{gold}}",
-    # "should_decontaminate": True,
-    # "doc_to_decontamination_query": "{{text}}",
+    "doc_to_text": "input",
+    "doc_to_target": "output",
+    "doc_to_choice": "{{answer_choices}}",
     "metric_list": [
         {
             "metric": "acc",
@@ -871,28 +865,40 @@ class TemplateSampler:
 
                 if self.multiple_choice_benchmarking_templates:
                     if self.multiple_choice_benchmarking_format:
-                        output_path_dir = (
+                        output_path_dir = os.path.abspath(
                             self.path_lm_eval_data_dir
                             + f"/{self.path_data_dir.split('/')[-1]}_benchmark_multiple_choice_format-{self.multiple_choice_benchmarking_format}/"  # noqa: E501
                         )
                     else:
-                        output_path_dir = (
+                        output_path_dir = os.path.abspath(
                             self.path_lm_eval_data_dir
-                            + f"/{self.path_data_dir.split('/')[-1]}_benchmark_multiple_choice_format/"  # noqa: E501
+                            + f"/{self.path_data_dir.split('/')[-1]}_benchmark_multiple_choice/"  # noqa: E501
                         )
 
                     os.makedirs(output_path_dir, exist_ok=True)
-                    output_path = output_path_dir + f"{split}.jsonl"
+                    output_path = output_path_dir + f"/{split}.jsonl"
 
-                    lm_eval_yaml_template_multiple_choice[
-                        "task"
-                    ] = self.path_data_dir.split("/")[-1]
+                    lm_eval_yaml_template_multiple_choice["task"] = (
+                        self.path_data_dir.split("/")[-1] + "_benchmark_multiple_choice"
+                    )
                     lm_eval_yaml_template_multiple_choice[
                         "dataset_path"
                     ] = output_path_dir
-                    lm_eval_yaml_template_multiple_choice[
-                        "dataset_name"
-                    ] = self.path_data_dir.split("/")[-1]
+                    lm_eval_yaml_template_multiple_choice["dataset_name"] = (
+                        self.path_data_dir.split("/")[-1] + "_benchmark_multiple_choice"
+                    )
+
+                    for split_out in self.df.split.unique():
+                        if split_out == "train":
+                            lm_eval_yaml_template_multiple_choice[
+                                "training_split"
+                            ] = "train"
+                        if split_out == "valid":
+                            lm_eval_yaml_template_multiple_choice[
+                                "validation_split"
+                            ] = "validation"
+                        if split_out == "valid":
+                            lm_eval_yaml_template_multiple_choice["test_split"] = "test"
 
                     fn_lm_eval_yaml = output_path_dir + "/config.yaml"
                     with open(fn_lm_eval_yaml, "w") as f:
@@ -900,22 +906,34 @@ class TemplateSampler:
                             lm_eval_yaml_template_multiple_choice, f, sort_keys=False
                         )
                 else:
-                    output_path_dir = (
+                    output_path_dir = os.path.abspath(
                         self.path_lm_eval_data_dir
                         + f"/{self.path_data_dir.split('/')[-1]}_benchmark/"
                     )
                     os.makedirs(output_path_dir, exist_ok=True)
-                    output_path = output_path_dir + f"{split}_{fn_suffix}.jsonl"
+                    output_path = output_path_dir + f"/{split}_{fn_suffix}.jsonl"
 
-                    lm_eval_yaml_template_loglikelihood[
-                        "task"
-                    ] = self.path_data_dir.split("/")[-1]
+                    lm_eval_yaml_template_loglikelihood["task"] = (
+                        self.path_data_dir.split("/")[-1] + "_benchmark"
+                    )
                     lm_eval_yaml_template_loglikelihood[
                         "dataset_path"
                     ] = output_path_dir
-                    lm_eval_yaml_template_loglikelihood[
-                        "dataset_name"
-                    ] = self.path_data_dir.split("/")[-1]
+                    lm_eval_yaml_template_loglikelihood["dataset_name"] = (
+                        self.path_data_dir.split("/")[-1] + "_benchmark"
+                    )
+
+                    for split_out in self.df.split.unique():
+                        if split_out == "train":
+                            lm_eval_yaml_template_loglikelihood[
+                                "training_split"
+                            ] = "train"
+                        if split_out == "valid":
+                            lm_eval_yaml_template_loglikelihood[
+                                "validation_split"
+                            ] = "validation"
+                        if split_out == "valid":
+                            lm_eval_yaml_template_loglikelihood["test_split"] = "test"
 
                     fn_lm_eval_yaml = output_path_dir + "/config.yaml"
                     with open(fn_lm_eval_yaml, "w") as f:
@@ -923,15 +941,15 @@ class TemplateSampler:
                             lm_eval_yaml_template_loglikelihood, f, sort_keys=False
                         )
             else:
-                output_path_dir = (
+                output_path_dir = os.path.abspath(
                     self.path_lm_eval_data_dir
                     + f"/{self.path_data_dir.split('/')[-1]}/"
                 )
                 os.makedirs(output_path_dir, exist_ok=True)
                 if fn_suffix is not None:
-                    output_path = output_path_dir + f"{split}_{fn_suffix}.jsonl"
+                    output_path = output_path_dir + f"/{split}_{fn_suffix}.jsonl"
                 else:
-                    output_path = output_path_dir + f"{split}.jsonl"
+                    output_path = output_path_dir + f"/{split}.jsonl"
 
             with open(output_path, "w") as f:
                 f.write(df_out.to_json(orient="records", lines=True, force_ascii=False))
