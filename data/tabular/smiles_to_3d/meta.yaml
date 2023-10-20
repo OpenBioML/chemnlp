@@ -90,7 +90,7 @@ templates:
       Question: {#What is the|Can you generate the|Can you provide me with the!} {SMILES__description} of the {#molecule|compound|chemical!} with {xyz__names__noun} {xyz#}?
       Answer: {SMILES#}
     - |-
-      Question: {#What is the|Can you generate the|Can you provide me with the!} {SMILES__description} of the {#molecule|compound|chemical!} with {mol2000__names__noun} {mol2000#}?
+      Question: {#What is the|Can you generate the|Can you provide me with the!} {SMILES__description} of the {#molecule|compound|chemical!} with the {mol2000__names__noun} {mol2000#}?
       Answer: {SMILES#}
     - |-
       Question: {#What is the|Can you generate the|Can you provide me with the!} {SMILES__description} of the {#molecule|compound|chemical!} with {mol3000__names__noun} {mol3000#}?
