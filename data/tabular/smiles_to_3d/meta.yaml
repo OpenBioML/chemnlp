@@ -14,20 +14,38 @@ targets:
           - noun: geometry in XYZ format (after optimization on B3LYP/6-31G(2df,p) level of theory)
           - noun: 3D-structure in XYZ format (after optimization on B3LYP/6-31G(2df,p) level of theory)
           - noun: three-dimensional structure in XYZ format (after optimization on B3LYP/6-31G(2df,p) level of theory)
+          - noun: content of a XYZ file with the geometry (after optimization on B3LYP/6-31G(2df,p) level of theory)
+          - noun: molecular geometry in XYZ format (optimized with B3LYP/6-31G(2df,p) level of theory)
+          - noun: 3D molecular structure in XYZ format (following optimization using B3LYP/6-31G(2df,p) theory)
+          - noun: three-dimensional molecular structure in XYZ format (after B3LYP/6-31G(2df,p) level of theory optimization)
+          - noun: data from a XYZ file containing optimized geometry (using B3LYP/6-31G(2df,p) theory)
+          - noun: content within a XYZ file with optimized molecular geometry (following B3LYP/6-31G(2df,p) theory)
     - id: mol2000
       description: Structure of the molecule, modeled at B3LYP/6-31G(2df,p) level of theory in MOL2000 format, bonds inferred using RDKit
       type: text
       names:
-          - noun: geometry in MOL2000 format (after optimization on B3LYP/6-31G(2df,p) level of theory)
-          - noun: 3D-structure in MOL2000 format (after optimization on B3LYP/6-31G(2df,p) level of theory)
-          - noun: three-dimensional structure in MOL2000 format (after optimization on B3LYP/6-31G(2df,p) level of theory)
+          - noun: geometry in V2000 Molfile format (after optimization on B3LYP/6-31G(2df,p) level of theory)
+          - noun: 3D-structure in V2000 Molfile format (after optimization on B3LYP/6-31G(2df,p) level of theory)
+          - noun: three-dimensional structure in V2000 Molfile format (after optimization on B3LYP/6-31G(2df,p) level of theory)
+          - noun: content of a V2000 Molfile file with the geometry (after optimization on B3LYP/6-31G(2df,p) level of theory)
+          - noun: molecular geometry in V2000 Molfile format (optimized with B3LYP/6-31G(2df,p) level of theory)
+          - noun: 3D molecular structure in V2000 Molfile format (following optimization using B3LYP/6-31G(2df,p) theory)
+          - noun: three-dimensional molecular structure in MOLV2000 Molfile format (after B3LYP/6-31G(2df,p) level of theory optimization)
+          - noun: data from a V2000 Molfile format file containing optimized geometry (using B3LYP/6-31G(2df,p) theory)
+          - noun: content within a V2000 Molfile format file with optimized molecular geometry (following B3LYP/6-31G(2df,p) theory)
     - id: mol3000
       description: Structure of the molecule, modeled at B3LYP/6-31G(2df,p) level of theory in MOL3000 format, bonds inferred using RDKit
       type: text
       names:
-          - noun: geometry in MOL3000 format (after optimization on B3LYP/6-31G(2df,p) level of theory)
-          - noun: 3D-structure in MOL3000 format (after optimization on B3LYP/6-31G(2df,p) level of theory)
-          - noun: three-dimensional structure in MOL3000 format (after optimization on B3LYP/6-31G(2df,p) level of theory)
+          - noun: geometry in V3000 Molfile format (after optimization on B3LYP/6-31G(2df,p) level of theory)
+          - noun: 3D-structure in V3000 Molfile format format (after optimization on B3LYP/6-31G(2df,p) level of theory)
+          - noun: three-dimensional structure in MOLV3000 Molfile format3000 format (after optimization on B3LYP/6-31G(2df,p) level of theory)
+          - noun: content of a V3000 Molfile format file with the geometry (after optimization on B3LYP/6-31G(2df,p) level of theory)
+          - noun: molecular geometry in V3000 Molfile format (optimized with B3LYP/6-31G(2df,p) level of theory)
+          - noun: 3D molecular structure in V3000 Molfile format (following optimization using B3LYP/6-31G(2df,p) theory)
+          - noun: three-dimensional molecular structure in MOLV3000 Molfile format (after B3LYP/6-31G(2df,p) level of theory optimization)
+          - noun: data from a V3000 Molfile format file containing optimized geometry (using B3LYP/6-31G(2df,p) theory)
+          - noun: content within a V3000 Molfile format file with optimized molecular geometry (following B3LYP/6-31G(2df,p) theory)
 identifiers:
     - id: SMILES
       type: SMILES
@@ -37,7 +55,6 @@ num_points: 133631
 links:
     - url: https://data.dtu.dk/articles/dataset/xyz_files_of_the_QM9_molecules/19780570
       description: original data source
-
 bibtex:
     - |-
       @article{ramakrishnan2014quantum,
@@ -61,27 +78,27 @@ bibtex:
       publisher={ACS Publications}}
 templates:
     - |-
-      Question: What is the {xyz__names__noun} of a molecule with SMILES {SMILES#}?
+      Question: {#What is the|Can you generate the|Can you provide me with the!} {xyz__names__noun} of a {#molecule|compound|chemical!} with SMILES {SMILES#}?
       Answer: {xyz#}
     - |-
-      Question: What is the {mol2000__names__noun} of a molecule with SMILES {SMILES#}?
+      Question: {#What is the|Can you generate the|Can you provide me with the!} {mol2000__names__noun} of a {#molecule|compound|chemical!} with SMILES {SMILES#}?
       Answer: {mol2000#}
     - |-
-      Question: What is the {mol3000__names__noun} of a molecule with SMILES {SMILES#}?
+      Question: {#What is the|Can you generate the|Can you provide me with the!} {mol3000__names__noun} of a {#molecule|compound|chemical!} with SMILES {SMILES#}?
       Answer: {mol3000#}
     - |-
-      Question: What is the SMILES of a molecule with {xyz__names__noun} {xyz#}?
+      Question: {#What is the|Can you generate the|Can you provide me with the!} SMILES of a {#molecule|compound|chemical!} with {xyz__names__noun} {xyz#}?
       Answer: {SMILES#}
     - |-
-      Question: What is the SMILES of a molecule with {mol2000__names__noun} {mol2000#}?
+      Question: {#What is the|Can you generate the|Can you provide me with the!} SMILES of a {#molecule|compound|chemical!} with {mol2000__names__noun} {mol2000#}?
       Answer: {SMILES#}
     - |-
-      Question: What is the SMILES of a molecule with {mol3000__names__noun} {mol3000#}?
+      Question: {#What is the|Can you generate the|Can you provide me with the!} SMILES of a {#molecule|compound|chemical!} with {mol3000__names__noun} {mol3000#}?
       Answer: {SMILES#}
     - |-
-      User: I need to generate {#conformers|3D geometries|3D structures!} of molecules.
-      Assistant: What is the SMILES of the molecule?
+      User: I need to generate {#conformers|3D geometries|3D structures!} of {#molecule|compound|chemical!}.
+      Assistant: {#What is|Can you provide!} the SMILES of the {#molecule|compound|chemical!}?
       User: {SMILES#}
-      Assistant: The {xyz__names__noun} of the molecule is {xyz#}.
-      User: Can you give me the {mol2000__names__noun}?
-      Assistant: The {mol2000__names__noun} of the molecule is {mol2000#}.
+      Assistant: The {xyz__names__noun} of the #molecule|compound|chemical!} is {xyz#}.
+      User: {#Can you give me the|What is the|And how about the!} {mol2000__names__noun}?
+      Assistant: The {mol2000__names__noun} of the {#molecule|compound|chemical!} is {mol2000#}.
