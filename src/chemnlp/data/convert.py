@@ -76,9 +76,9 @@ def smiles_to_3Dstring(
     if outformat == "xyz":
         return "[XYZ]\n" + Chem.MolToXYZBlock(mol, confId=-1) + "[\XYZ]"
     elif outformat == "V2000MolBlock":
-        return "[V2000]\n" + Chem.MolToMolBlock(mol, confId=-1) + "[\V2000]"
+        return _write_mol2000(mol)
     elif outformat == "V3000MolBlock":
-        return "[V3000]\n" + Chem.MolToV3KMolBlock(mol, confId=-1) + "[\V3000]"
+        return _write_mol3000(mol)
     else:
         raise ValueError(f"outformat {outformat} not supported")
 
