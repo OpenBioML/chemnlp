@@ -32,4 +32,4 @@ bibtex:
       URL = {https://doi.org/10.1021/ci8002649}}
 templates:
     - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {MUV-689#not
-      &NULL}an inhibitor of the EPH receptor A4
+      &NULL}{MUV-689__names__noun}.

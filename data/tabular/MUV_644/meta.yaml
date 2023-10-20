@@ -11,6 +11,7 @@ targets:
       description: MUV-644
       names:
           - noun: an inhibitor of Rho-kinase 2 (ROCK-2)
+          - noun: an inhibitor of ROCK-2
 license: CC BY 4.0
 links:
     - url: https://academic.oup.com/nar/article/44/D1/D1075/2502602?login=false
@@ -32,4 +33,4 @@ bibtex:
       URL = {https://doi.org/10.1021/ci8002649}}
 templates:
     - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {MUV-644#not
-      &NULL}an inhibitor of Rho-kinase 2 (ROCK-2)
+      &NULL}{MUV-644__names__noun}.

@@ -11,6 +11,7 @@ targets:
       description: MUV-858
       names:
           - noun: an allosteric modulator of the dopamine receptor D1
+          - noun: an allosteric modulator of the D1 receptor
 license: CC BY 4.0
 links:
     - url: https://academic.oup.com/nar/article/44/D1/D1075/2502602?login=false
@@ -32,4 +33,4 @@ bibtex:
       URL = {https://doi.org/10.1021/ci8002649}}
 templates:
     - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {MUV-858#not
-      &NULL}an allosteric modulator of the dopamine receptor D1
+      &NULL}{MUV-858__names__noun}.

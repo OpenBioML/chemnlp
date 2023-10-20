@@ -11,6 +11,7 @@ targets:
       description: MUV-712
       names:
           - noun: an inhibitor of the heat shock protein 90
+          - noun: an inhibitor of HSP90
 license: CC BY 4.0
 links:
     - url: https://academic.oup.com/nar/article/44/D1/D1075/2502602?login=false
@@ -32,4 +33,4 @@ bibtex:
       URL = {https://doi.org/10.1021/ci8002649}}
 templates:
     - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {MUV-712#not
-      &NULL}an inhibitor of the heat shock protein 90
+      &NULL}{MUV-712__names__noun}.

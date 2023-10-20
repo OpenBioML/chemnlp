@@ -11,6 +11,8 @@ targets:
       description: MUV-548
       names:
           - noun: an inhibitor of the protein kinase A (PKA)
+          - noun: an inhibitor of the protein kinase A
+          - noun: an inhibitor of PKA
 license: CC BY 4.0
 links:
     - url: https://academic.oup.com/nar/article/44/D1/D1075/2502602?login=false
@@ -32,4 +34,4 @@ bibtex:
       URL = {https://doi.org/10.1021/ci8002649}}
 templates:
     - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} is {MUV-548#not
-      &NULL}an inhibitor of the protein kinase A (PKA)
+      &NULL}{MUV-548__names__noun}.
