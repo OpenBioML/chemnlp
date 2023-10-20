@@ -93,7 +93,7 @@ templates:
       Question: {#What is the|Can you generate the|Can you provide me with the!} {SMILES__description} of the {#molecule|compound|chemical!} with the {mol2000__names__noun} {mol2000#}?
       Answer: {SMILES#}
     - |-
-      Question: {#What is the|Can you generate the|Can you provide me with the!} {SMILES__description} of the {#molecule|compound|chemical!} with {mol3000__names__noun} {mol3000#}?
+      Question: {#What is the|Can you generate the|Can you provide me with the!} {SMILES__description} of the {#molecule|compound|chemical!} with the {mol3000__names__noun} {mol3000#}?
       Answer: {SMILES#}
     - |-
       User: I need to generate {#conformers|3D geometries|3D structures!} of a {#molecule|compound|chemical!}.
