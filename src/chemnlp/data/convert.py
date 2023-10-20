@@ -1,12 +1,11 @@
-from pymatgen.core import Structure, Molecule
+from pathlib import Path
+from typing import Optional, Union
+
+from givemeconformer.api import _get_conformer
+from pymatgen.core import Molecule, Structure
 from pymatgen.io.cif import CifWriter
 from pymatgen.io.xyz import XYZ
 from rdkit import Chem
-
-from givemeconformer.api import _get_conformer
-
-from typing import Union, Optional
-from pathlib import Path
 
 
 def cif_file_to_string(
@@ -52,7 +51,9 @@ def xyz_file_to_string(path: Union[Path, str], significant_figures: int = 3) -> 
         str: String representation of the xyz file
     """
     s = Molecule.from_file(path)
-    return "[XYZ]\n" + str(XYZ(s, coord_precision=significant_figures)) + "[\XYZ]"
+    return (
+        "[XYZ]\n" + str(XYZ(s, coord_precision=significant_figures)) + "[\XYZ]"  # noqa
+    )
 
 
 def smiles_to_3Dstring(
@@ -74,7 +75,7 @@ def smiles_to_3Dstring(
         conformer_kwargs = {}
     mol, _conformer = _get_conformer(smiles, **conformer_kwargs)
     if outformat == "xyz":
-        return "[XYZ]\n" + Chem.MolToXYZBlock(mol, confId=-1) + "[\XYZ]"
+        return "[XYZ]\n" + Chem.MolToXYZBlock(mol, confId=-1) + "[\XYZ]"  # noqa
     elif outformat == "V2000MolBlock":
         return _write_mol2000(mol)
     elif outformat == "V3000MolBlock":
@@ -84,11 +85,11 @@ def smiles_to_3Dstring(
 
 
 def _write_mol2000(mol):
-    return "[V2000]\n" + Chem.MolToMolBlock(mol, confId=-1) + "[\V2000]"
+    return "[V2000]\n" + Chem.MolToMolBlock(mol, confId=-1) + "[\V2000]"  # noqa
 
 
 def _write_mol3000(mol):
-    return "[V3000]\n" + Chem.MolToV3KMolBlock(mol, confId=-1) + "[\V3000]"
+    return "[V3000]\n" + Chem.MolToV3KMolBlock(mol, confId=-1) + "[\V3000]"  # noqa
 
 
 def get_token_count(string):
