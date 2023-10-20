@@ -41,7 +41,7 @@ targets:
       significant_digits: 2
     - id: FF
       description: Fill factor of devices with this polymer
-      units: ''
+      units: (dimensionless)
       type: continuous
       names:
           - noun: fill factor of tested devices

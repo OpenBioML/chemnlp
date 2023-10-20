@@ -68,7 +68,9 @@ Result:<EOI> {SMILES#}""",  # noqa: E501
 
 
 exclude_from_standard_tabular_text_templates = [
+    "BBBP",  # because it is boolean target data
     "ames_mutagenicity",  # because it is boolean target data
+    "bio_ner",
     "bioavailability_ma_et_al",  # because it is boolean target data
     "blood_brain_barrier_martins_et_al",  # because it is boolean target data
     "carcinogens",  # because it is boolean target data
@@ -86,8 +88,8 @@ exclude_from_standard_tabular_text_templates = [
     "cyp_p450_2d6_inhibition_veith_et_al",  # boolean target data
     "cyp_p450_3a4_inhibition_veith_et_al",  # boolean target data
     "drug_induced_liver_injury",  # boolean target data
+    "drugchat_liang_zhang_et_al",  # text
     "freesolv",  # more than one target
-    # "h2_storage_materials",  # only IUPAC identifier, more than one target, LOW PRIO: has only 30 samples
     "herg_blockers",  # more than one target
     "herg_central_inhib",  # boolean target data
     "herg_karim_et_al",  # boolean target data
@@ -123,7 +125,8 @@ exclude_from_standard_tabular_text_templates = [
     "sr_p53_tox21",  # boolean target data
     "tyrosyl-dna_phosphodiesterase_butkiewicz",  # boolean target data
     "zinc",  # SMILES only, has no target
-    "bio_ner",
+    "smiles_to_3d"
+    # "h2_storage_materials",  # only IUPAC identifier, more than one target, LOW PRIO: has only 30 samples
 ]
 
 
@@ -967,8 +970,8 @@ if __name__ == "__main__":
     # path_data_dir = path_data_dir[index:]
 
     for path in path_data_dir:
-        if path.find("data/tabular/bicerano_dataset") != -1:
-            continue  # needs the units fixed or templates copied over
+        # if "smiles_to_3d" not in path:
+        #     continue
         # subselect one path
         # if path.find("data/tabular/") == -1: continue
         # if path.find("data/kg/") == -1: continue
