@@ -867,25 +867,25 @@ class TemplateSampler:
                     if self.multiple_choice_benchmarking_format:
                         output_path_dir = os.path.abspath(
                             self.path_lm_eval_data_dir
-                            + f"/{self.path_data_dir.split('/')[-1]}_multiple_choice_format-{self.multiple_choice_benchmarking_format}/"  # noqa: E501
+                            + f"/{self.path_data_dir.split('/')[-1]}_benchmark_multiple_choice_format-{self.multiple_choice_benchmarking_format}/"  # noqa: E501
                         )
                     else:
                         output_path_dir = os.path.abspath(
                             self.path_lm_eval_data_dir
-                            + f"/{self.path_data_dir.split('/')[-1]}_multiple_choice/"  # noqa: E501
+                            + f"/{self.path_data_dir.split('/')[-1]}_benchmark_multiple_choice/"  # noqa: E501
                         )
 
                     os.makedirs(output_path_dir, exist_ok=True)
                     output_path = output_path_dir + f"/{split}.jsonl"
 
                     lm_eval_yaml_template_multiple_choice["task"] = (
-                        self.path_data_dir.split("/")[-1] + "_multiple_choice"
+                        self.path_data_dir.split("/")[-1] + "_benchmark_multiple_choice"
                     )
                     lm_eval_yaml_template_multiple_choice[
                         "dataset_path"
                     ] = output_path_dir
                     lm_eval_yaml_template_multiple_choice["dataset_name"] = (
-                        self.path_data_dir.split("/")[-1] + "_multiple_choice"
+                        self.path_data_dir.split("/")[-1] + "_benchmark_multiple_choice"
                     )
 
                     for split_out in self.df.split.unique():
@@ -908,19 +908,19 @@ class TemplateSampler:
                 else:
                     output_path_dir = os.path.abspath(
                         self.path_lm_eval_data_dir
-                        + f"/{self.path_data_dir.split('/')[-1]}_continuation/"
+                        + f"/{self.path_data_dir.split('/')[-1]}_benchmark/"
                     )
                     os.makedirs(output_path_dir, exist_ok=True)
                     output_path = output_path_dir + f"/{split}_{fn_suffix}.jsonl"
 
                     lm_eval_yaml_template_loglikelihood["task"] = (
-                        self.path_data_dir.split("/")[-1] + "_continuation"
+                        self.path_data_dir.split("/")[-1] + "_benchmark"
                     )
                     lm_eval_yaml_template_loglikelihood[
                         "dataset_path"
                     ] = output_path_dir
                     lm_eval_yaml_template_loglikelihood["dataset_name"] = (
-                        self.path_data_dir.split("/")[-1] + "_continuation"
+                        self.path_data_dir.split("/")[-1] + "_benchmark"
                     )
 
                     for split_out in self.df.split.unique():
