@@ -168,7 +168,7 @@ Task: Please answer the multiple choice question below with {%multiple_choice_en
 Question: Is the molecule with the {SMILES__description} representation of {SMILES#} {mutagenic__names__adjective}?
 Options:
 {mutagenic%}
-Answer:<EOI> {%multiple_choice_result}
+Answer:<EOI>{%multiple_choice_result}
 ```
 The benchmarking setup exports additional fields for the benchmarking setup, see the example below:
 `{"input":"Task: Please answer the multiple choice question below with 1 or 2.\nQuestion: Is the molecule with the SMILES representation of BrCBr Ames mutagenic?\nOptions:\n1.) False\n2.) True\nAnswer:","output":" 2","output_choices":["1","2"],"correct_output_index":"1"}`

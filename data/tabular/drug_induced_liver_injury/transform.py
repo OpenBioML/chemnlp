@@ -154,12 +154,12 @@ Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should 
 User: Yes, the molecule should {liver_injury#not &NULL}be causing a {liver_injury__names__noun}.
 Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {liver_injury#not &NULL}causing a {liver_injury__names__noun}: {SMILES#}""",  # noqa: E501
             # Benchmarking text templates
-            "Is the {SMILES__description} {SMILES#} causing a {liver_injury__names__noun}:<EOI> {liver_injury#no&yes}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
+            "Is the {SMILES__description} {SMILES#} causing a {liver_injury__names__noun}:<EOI>{liver_injury#no&yes}",  # noqa: E501 for the benchmarking setup <EOI>separates input and output
             """Task: Please classify a molecule based on the description.
 Description: A molecule that {#shows|causes!} a {liver_injury__names__noun}.
 {#Molecule |!}{SMILES__description}: {SMILES#}
 Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
-Result:<EOI> {liver_injury#False&True}""",  # noqa: E501
+Result:<EOI>{liver_injury#False&True}""",  # noqa: E501
             """Task: Please answer the multiple choice question.
 Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} causing a {liver_injury__names__noun}?
 Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
@@ -171,7 +171,7 @@ Question: Is the molecule with the {SMILES__description} {#representation of |!}
 Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
 Options:
 {liver_injury%}
-Answer:<EOI> {%multiple_choice_result}""",  # noqa: E501
+Answer:<EOI>{%multiple_choice_result}""",  # noqa: E501
             """Task: Please answer the multiple choice question.
 Question: Which molecules are {liver_injury#not &NULL} causing a {liver_injury__names__noun}?
 Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
@@ -183,7 +183,7 @@ Question: Which molecules are {liver_injury#not &NULL} causing a {liver_injury__
 Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
 Options:
 {SMILES%liver_injury%}
-Answer:<EOI> {%multiple_choice_result}""",  # noqa: E501
+Answer:<EOI>{%multiple_choice_result}""",  # noqa: E501
         ],
     }
 

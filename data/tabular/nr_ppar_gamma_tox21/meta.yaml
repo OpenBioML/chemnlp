@@ -95,17 +95,17 @@ templates:
       Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
       User: Yes, the molecule should {toxicity_NR-PPAR-gamma#not &NULL}be {toxicity_NR-PPAR-gamma__names__adjective}.
       Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {toxicity_NR-PPAR-gamma#not &NULL}{toxicity_NR-PPAR-gamma__names__adjective}: {SMILES#}
-    - Is the {SMILES__description} {SMILES#} {toxicity_NR-PPAR-gamma__names__adjective}:<EOI> {toxicity_NR-PPAR-gamma#no&yes}
+    - Is the {SMILES__description} {SMILES#} {toxicity_NR-PPAR-gamma__names__adjective}:<EOI>{toxicity_NR-PPAR-gamma#no&yes}
     - |-
       Task: Please classify a molecule based on the description.
       Description: A molecule that is {toxicity_NR-PPAR-gamma__names__adjective}.
       {#Molecule |!}{SMILES__description}: {SMILES#}
       Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
-      Result:<EOI> {toxicity_NR-PPAR-gamma#False&True}
+      Result:<EOI>{toxicity_NR-PPAR-gamma#False&True}
     - |-
       Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
       Description: A molecule that is {toxicity_NR-PPAR-gamma__names__adjective}.
-      Result:<EOI> {SMILES#}
+      Result:<EOI>{SMILES#}
     - |-
       Task: Please answer the multiple choice question.
       Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} {toxicity_NR-PPAR-gamma__names__adjective}?
@@ -119,7 +119,7 @@ templates:
       Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
       Options:
       {toxicity_NR-PPAR-gamma%}
-      Answer:<EOI> {%multiple_choice_result}
+      Answer:<EOI>{%multiple_choice_result}
     - |-
       Task: Please answer the multiple choice question.
       Question: Which molecules are {toxicity_NR-PPAR-gamma#not &NULL}{toxicity_NR-PPAR-gamma__names__adjective}?
@@ -133,4 +133,4 @@ templates:
       Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
       Options:
       {SMILES%toxicity_NR-PPAR-gamma%}
-      Answer:<EOI> {%multiple_choice_result}
+      Answer:<EOI>{%multiple_choice_result}

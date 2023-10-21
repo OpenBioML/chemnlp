@@ -115,10 +115,10 @@ Assistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} fits {#yo
         """Task: Please create a {#text |!}description for a molecule{# based on its representation|!}.
 {#Molecule |!}{SMILES__description}: {SMILES#}
 Constraint: Answer the question with {#full|complete!} sentences.
-Result:<EOI> {description#}""",  # noqa
+Result:<EOI>{description#}""",  # noqa
         """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
 Description: {description#}
-Result:<EOI> {SMILES#}""",  # noqa
+Result:<EOI>{SMILES#}""",  # noqa
     ],
 }
 

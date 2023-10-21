@@ -118,13 +118,13 @@ templates:
       Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
       User: Yes, the molecule should {penetrate_BBB#not &NULL}be {penetrate_BBB__names__adjective}.
       Assistant: Got it, this {SMILES__description} is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}: {SMILES#}
-    - Is the {SMILES__description} {SMILES#} {penetrate_BBB__names__adjective}:<EOI> {penetrate_BBB#no&yes}
+    - Is the {SMILES__description} {SMILES#} {penetrate_BBB__names__adjective}:<EOI>{penetrate_BBB#no&yes}
     - |-
       Task: Please classify a molecule based on the description.
       Description: A molecule that is {penetrate_BBB__names__adjective}.
       {#Molecule |!}{SMILES__description}: {SMILES#}
       Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
-      Result:<EOI> {penetrate_BBB#False&True}
+      Result:<EOI>{penetrate_BBB#False&True}
     - |-
       Task: Please answer the multiple choice question.
       Question: Is the molecule with the {SMILES__description} of {SMILES#} {penetrate_BBB__names__adjective}?
@@ -145,11 +145,11 @@ templates:
       Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
       Options:
       {penetrate_BBB%}
-      Answer:<EOI> {%multiple_choice_result}
+      Answer:<EOI>{%multiple_choice_result}
     - |-
       Task: Please answer the multiple choice question.
       Question: Which molecules are {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}?
       Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
       Options:
       {SMILES%penetrate_BBB%}
-      Answer:<EOI> {%multiple_choice_result}
+      Answer:<EOI>{%multiple_choice_result}

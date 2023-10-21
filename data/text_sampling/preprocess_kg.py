@@ -14,7 +14,7 @@ templates = {
         """Task: Please {#create|generate!} {#a compound |a !}{SMILES__description} that {rel1_type#} {node2_name#}.
 Result: {SMILES#}""",  # noqa E501
         """Task: Please {#create|generate!} {#a compound |a !}{SMILES__description} that {rel1_type#} {node2_name#}.
-Result:<EOI> {SMILES#}""",  # noqa E501
+Result:<EOI>{SMILES#}""",  # noqa E501
         # Add templates with constraint section?
     ],
     "compound_chebi_chebi": [
@@ -22,7 +22,7 @@ Result:<EOI> {SMILES#}""",  # noqa E501
         # """Task: Please {#create|generate!} {#a compound |a !}{SMILES__description} that {rel1_type#} {node2_name#} and {rel2_type#} {node3_name#}.  # noqa E501
         # Result: {SMILES#}""",  # noqa E501
         # """Task: Please {#create|generate!} {#a compound |a !}{SMILES__description} that {rel1_type#} {node2_name#} and {rel2_type#} {node3_name#}.  # noqa E501
-        # Result:<EOI> {SMILES#}""",  # noqa E501
+        # Result:<EOI>{SMILES#}""",  # noqa E501
         # Not sure if this templates make sense here? Add templates with constraint section?
     ],
     "compound_chebi_chebi_chebi": [],
@@ -215,9 +215,9 @@ Assistant: {#Sure|Yes|Of course!}, here you go:
 Protein{# name|!}: {protein_name#}
 {#Molecule |!}{SMILES__description}: {SMILES#}
 Constraint{#s|!}: The {#resulting|derived|calculated!} {standard_type#} {#value |!}should be in {standard_units#}. Even if you are {#uncertain|not sure!}, you must {#derive|estimate|come up with!} a {standard_type#} {#value |!}without using any {#other|additional!} words.
-Result:<EOI> {standard_value#} {standard_units#}""",  # noqa E501
+Result:<EOI>{standard_value#} {standard_units#}""",  # noqa E501
         """Task: Please {#create|generate!} a {#molecule |!}{SMILES__description} that has a {#bioaffinity|affinity!} to {#the protein |!}{protein_name#} with a {standard_type#} {#value |!}of {standard_value#} {standard_units#}.
-Result:<EOI> {SMILES#}""",  # noqa E501
+Result:<EOI>{SMILES#}""",  # noqa E501
         """Task: Please answer the multiple choice question.
 Question: What is the {#the bioaffinity|the affinity!} of a {#molecule to a protein|protein to a molecule!}?
 Protein{# name|!}: {protein_name#}
@@ -233,7 +233,7 @@ Protein{# name|!}: {protein_name#}
 Constraint: The {#shown|listed!} {standard_type#} values {#below |!}are in {standard_units#}. Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%3-5%aA1} without using any other words.
 Options:
 {standard_value%}
-Answer:<EOI> {%multiple_choice_result}""",  # noqa E501
+Answer:<EOI>{%multiple_choice_result}""",  # noqa E501
     ],
 }
 

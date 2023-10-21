@@ -103,11 +103,11 @@ Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {Abbrevia
             """Task: Please give me the {Full_Form__names__noun} of the {Abbreviation__names__noun}.
 Abbreviation: {Abbreviation#}
 Constraint: Answer the question with {#full|complete!} words.
-Result:<EOI> {Full_Form#}""",  # noqa
+Result:<EOI>{Full_Form#}""",  # noqa
             """Task: Please give me the {Abbreviation__names__noun} of the following {Full_Form__names__noun}.
 Full form or meaning of the abbreviation: {Full_Form#}
 Constraint: Answer the question with an {Abbreviation__names__noun}.
-Result:<EOI> {Abbreviation#}""",  # noqa
+Result:<EOI>{Abbreviation#}""",  # noqa
         ],
     }
 

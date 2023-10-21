@@ -88,19 +88,19 @@ templates:
     - "User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.\nAssistant: {#This sounds very exciting. |This sounds very\
       \ interesting. !}Should it be a special {#molecule|one!}?\nUser: Yes, the molecule should have a {GAFF__names__noun} of {GAFF#} {GAFF__units}.\nAssistant:\
       \ {#Understood|Got it|Ok!}, this {SMILES__description} represents a molecule that has a {GAFF__names__noun} of {GAFF#} {GAFF__units}: {SMILES#}"
-    - The {exp_value__names__noun} of the molecule with the {SMILES__description} {SMILES#} is:<EOI> {exp_value#} {exp_value__units}
-    - The {exp_value__names__noun} of the {SMILES__description} {SMILES#} is:<EOI> {exp_value#} {exp_value__units}
-    - The {exp_value__names__noun} of the molecule {SMILES__description} {SMILES#} is:<EOI> {exp_value#} {exp_value__units}
+    - The {exp_value__names__noun} of the molecule with the {SMILES__description} {SMILES#} is:<EOI>{exp_value#} {exp_value__units}
+    - The {exp_value__names__noun} of the {SMILES__description} {SMILES#} is:<EOI>{exp_value#} {exp_value__units}
+    - The {exp_value__names__noun} of the molecule {SMILES__description} {SMILES#} is:<EOI>{exp_value#} {exp_value__units}
     - "Task: Please predict a molecule feature based on the description.\nDescription: Predict the {exp_value__names__noun} in {exp_value__units} of a molecule.\n\
       {#Molecule |!}{SMILES__description}: {SMILES#}\nConstraint: Even if you are {#uncertain|not sure!}, you must answer with a numeric value in {exp_value__units}\
-      \ without using any {#other|additional!} words.\nResult:<EOI> {exp_value#} {exp_value__units}"
+      \ without using any {#other|additional!} words.\nResult:<EOI>{exp_value#} {exp_value__units}"
     - "Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.\nDescription: A molecule\
-      \ that has {exp_value__names__noun} of {exp_value#} {exp_value__units}.\nResult:<EOI> {SMILES#}"
-    - The {GAFF__names__noun} of the molecule with the {SMILES__description} {SMILES#} is:<EOI> {GAFF#} {GAFF__units}
-    - The {GAFF__names__noun} of the {SMILES__description} {SMILES#} is:<EOI> {GAFF#} {GAFF__units}
-    - The {GAFF__names__noun} of the molecule {SMILES__description} {SMILES#} is:<EOI> {GAFF#} {GAFF__units}
+      \ that has {exp_value__names__noun} of {exp_value#} {exp_value__units}.\nResult:<EOI>{SMILES#}"
+    - The {GAFF__names__noun} of the molecule with the {SMILES__description} {SMILES#} is:<EOI>{GAFF#} {GAFF__units}
+    - The {GAFF__names__noun} of the {SMILES__description} {SMILES#} is:<EOI>{GAFF#} {GAFF__units}
+    - The {GAFF__names__noun} of the molecule {SMILES__description} {SMILES#} is:<EOI>{GAFF#} {GAFF__units}
     - "Task: Please predict a molecule feature based on the description.\nDescription: Predict the {GAFF__names__noun} in {GAFF__units} of a molecule.\n\
       {#Molecule |!}{SMILES__description}: {SMILES#}\nConstraint: Even if you are {#uncertain|not sure!}, you must answer with a numeric value in {GAFF__units}\
-      \ without using any {#other|additional!} words.\nResult:<EOI> {GAFF#} {GAFF__units}"
+      \ without using any {#other|additional!} words.\nResult:<EOI>{GAFF#} {GAFF__units}"
     - "Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.\nDescription: A molecule\
-      \ that has {GAFF__names__noun} of {GAFF#} {GAFF__units}.\nResult:<EOI> {SMILES#}"
+      \ that has {GAFF__names__noun} of {GAFF#} {GAFF__units}.\nResult:<EOI>{SMILES#}"
