@@ -1,0 +1,220 @@
+---
+name: core_mof_no_topo
+description: |-
+  CoRE MOF is a database of "computationally ready" crystal structures of metal-organic frameworks
+targets:
+    - id: cif
+      description: Crystal structure, in CIF format
+      type: text
+      names:
+          - noun: crystal structure in CIF format
+          - noun: content of a CIF file with the crystal structure
+          - noun: data from a CIF file with the crystal structure
+          - noun: content within a CIF file of the crystal structure
+          - noun: crystal structure represented in CIF format
+    - id: outputs.pure_CO2_widomHOA
+      description: heat of adsorption of CO2, simulated using Widom insertion
+      units: kJ/mol
+      type: continuous
+      significant_digits: 2
+      names: 
+        - noun: heat of adsorption of CO2 (computed using the Widom insertion technique)
+        - noun: simulated heat of adsorption of CO2 (obtained using Widom insertions)
+        - noun: heat of adsorption of carbon dioxide (computed using the Widom insertion technique)
+        - noun: simulated heat of adsorption of carbon dioxide (obtained using Widom insertions)
+    - id: outputs.pure_methane_widomHOA
+      description: heat of adsorption for methane, simulated using Widom insertion
+      units: kJ/mol
+      type: continuous
+      significant_digits: 2
+      names: 
+        - noun: heat of adsorption of methane (computed using the Widom insertion technique)
+        - noun: simulated heat of adsorption of methane (obtained using Widom insertions)
+        - noun: heat of adsorption of CH4 (computed using the Widom insertion technique)
+        - noun: simulated heat of adsorption of CH4 (obtained using Widom insertions)
+    - id: outputs.pure_uptake_CO2_298.00_15000
+      description: CO2 uptake at 298 K and 15000 Pa
+      units: mol/kg
+      type: continuous
+      significant_digits: 1
+      names:
+        - noun: CO2 uptake at 298 K and 15000 Pa as obtained from GCMC simulations
+        - noun: simulated CO2 uptake at 298 K and 15000 Pa
+        - noun: CO2 uptake at 298 K and 15000 Pa as obtained from grand canonical Monte Carlo simulations
+        - noun: carbon dioxide uptake at 298 K and 15000 Pa as obtained from GCMC simulations
+        - noun: simulated carbon dioxide uptake at 298 K and 15000 Pa
+        - noun: carbon dioxide uptake at 298 K and 15000 Pa as obtained from grand canonical Monte Carlo simulations
+        - noun: CO2 uptake at 298 K and 0.15 bar as obtained from GCMC simulations
+        - noun: simulated CO2 uptake at 298 K and 0.15 bar
+    - id: outputs.pure_uptake_CO2_298.00_1600000
+      description: CO2 uptake at 298 K and 1600000 Pa
+      units: mol/kg
+      type: continuous
+      significant_digits: 1
+      names:
+        - noun: CO2 uptake at 298 K and 1600000 Pa as obtained from GCMC simulations
+        - noun: simulated CO2 uptake at 298 K and 1600000 Pa
+        - noun: CO2 uptake at 298 K and 1600000 Pa as obtained from grand canonical Monte Carlo simulations
+        - noun: carbon dioxide uptake at 298 K and 1600000 Pa as obtained from GCMC simulations
+        - noun: simulated carbon dioxide uptake at 298 K and 1600000 Pa
+        - noun: carbon dioxide uptake at 298 K and 1600000 Pa as obtained from grand canonical Monte Carlo simulations
+        - noun: CO2 uptake at 298 K and 16 bar as obtained from GCMC simulations
+        - noun: simulated CO2 uptake at 298 K and 16 bar
+    - id: outputs.pure_uptake_methane_298.00_580000
+      description: methane uptake at 298 K and 580000 Pa
+      units: mol/kg
+      type: continuous
+      significant_digits: 1
+      names:
+        - noun: methane uptake at 298 K and 580000 Pa as obtained from GCMC simulations
+        - noun: simulated methane uptake at 298 K and 580000 Pa
+        - noun: methane uptake at 298 K and 580000 Pa as obtained from grand canonical Monte Carlo simulations
+        - noun: CH4 uptake at 298 K and 580000 Pa as obtained from GCMC simulations
+        - noun: simulated CH4 uptake at 298 K and 580000 Pa
+        - noun: CH4 uptake at 298 K and 580000 Pa as obtained from grand canonical Monte Carlo simulations
+        - noun: methane uptake at 298 K and 5.8 bar as obtained from GCMC simulations
+        - noun: simulated methane uptake at 298 K and 5.8 bar
+    - id: outputs.pure_uptake_methane_298.00_6500000
+      description: methane uptake at 298 K and 6500000 Pa
+      units: mol/kg
+      type: continuous
+      significant_digits: 1
+      names:
+        - noun: methane uptake at 298 K and 6500000 Pa as obtained from GCMC simulations
+        - noun: simulated methane uptake at 298 K and 6500000 Pa
+        - noun: methane uptake at 298 K and 6500000 Pa as obtained from grand canonical Monte Carlo simulations
+        - noun: CH4 uptake at 298 K and 6500000 Pa as obtained from GCMC simulations
+        - noun: simulated CH4 uptake at 298 K and 6500000 Pa
+        - noun: CH4 uptake at 298 K and 6500000 Pa as obtained from grand canonical Monte Carlo simulations
+        - noun: methane uptake at 298 K and 65 bar as obtained from GCMC simulations
+        - noun: simulated methane uptake at 298 K and 65 bar
+    - id: outputs.logKH_CO2
+      description: logarithm of Henry's constant for CO2
+      units: log(mol/kg/Pa)
+      type: continuous
+      significant_digits: 2
+      names:
+        - noun: logarithm of Henry's constant for CO2 obtained from Widom insertion simulations
+        - noun: logarithm of Henry's constant for carbon dioxide obtained from Widom insertion simulations
+        - noun: logarithm of Henry's constant for CO2 obtained from Widom insertion simulations
+        - noun: logarithm of Henry's constant for carbon dioxide obtained from Widom insertion simulations
+    - id: outputs.logKH_CH4
+      description: logarithm of Henry's constant for methane
+      units: log(mol/kg/Pa)
+      type: continuous
+      significant_digits: 2
+      names:
+        - noun: logarithm of Henry's constant for methane obtained from Widom insertion simulations
+        - noun: logarithm of Henry's constant for CH4 obtained from Widom insertion simulations
+        - noun: logarithm of Henry's constant for methane obtained from Widom insertion simulations
+        - noun: logarithm of Henry's constant for CH4 obtained from Widom insertion simulations
+    - id: outputs.CH4DC
+      description: deliverable capacity of methane 
+      type: continuous
+      units: vSTP/v
+      names:
+        - noun: deliverable capacity (between 5.8 bar and 65 bar at 298 K) of methane obtained from GCMC simulations 
+        - noun: deliverable capacity of CH4 obtained from GCMC simulations between 5.8 bar and 65 bar at 298 K
+        - noun: deliverable capacity of methane (between 5.8 bar and 65 bar at 298 K) obtained from GCMC simulations 
+        - noun: deliverable capacity of CH4 (between 5.8 bar and 65 bar at 298 K) obtained from GCMC simulations
+identifiers:
+    - id: smiles_linkers
+      description: SMILES representation of the linker
+      type: text
+    - id: smiles_nodes
+      description: SMILES representation of the nodes
+      type: text
+license: CC BY 4.0
+num_points: 1664
+links:
+    - url: https://huggingface.co/datasets/kjappelbaum/chemnlp-core-mof/tree/main
+      description: original data source
+bibtex:
+    - |-
+      @article{Jablonka_2023,
+      doi = {10.1021/acscentsci.2c01177},
+      url = {https://doi.org/10.1021%2Facscentsci.2c01177},
+      year = 2023,
+      month = {mar},
+      publisher = {American Chemical Society ({ACS})},
+      volume = {9},
+      number = {4},
+      pages = {563--581},
+      author = {Kevin Maik Jablonka and Andrew S. Rosen and Aditi S. Krishnapriyan and Berend Smit},
+      title = {An Ecosystem for Digital Reticular Chemistry},
+      journal = {ACS Cent. Sci.}
+      }
+    - |-
+      @article{Chung_2014,
+        doi = {10.1021/cm502594j},
+        url = {https://doi.org/10.1021%2Fcm502594j},
+        year = 2014,
+        month = {oct},
+        publisher = {American Chemical Society ({ACS})},
+        volume = {26},
+        number = {21},
+        pages = {6185--6192},
+        author = {Yongchul G. Chung and Jeffrey Camp and Maciej Haranczyk and Benjamin J. Sikora and Wojciech Bury and Vaiva Krungleviciute and Taner Yildirim and Omar K. Farha and David S. Sholl and Randall Q. Snurr},
+        title = {Computation-Ready, Experimental Metal{\textendash}Organic Frameworks: A Tool To Enable High-Throughput Screening of Nanoporous Crystals},
+        journal = {Chem. Mater.}
+      }
+    - |-
+      @article{Chung_2019,
+        doi = {10.1021/acs.jced.9b00835},
+        url = {https://doi.org/10.1021%2Facs.jced.9b00835},
+        year = 2019,
+        month = {nov},
+        publisher = {American Chemical Society ({ACS})},
+        volume = {64},
+        number = {12},
+        pages = {5985--5998},
+        author = {Yongchul G. Chung and Emmanuel Haldoupis and Benjamin J. Bucior and Maciej Haranczyk and Seulchan Lee and Hongda Zhang and Konstantinos D. Vogiatzis and Marija Milisavljevic and Sanliang Ling and Jeffrey S. Camp and Ben Slater and J. Ilja Siepmann and David S. Sholl and Randall Q. Snurr},
+        title = {Advances, Updates, and Analytics for the Computation-Ready, Experimental Metal{\textendash}Organic Framework Database: {CoRE} {MOF} 2019},
+        journal = {J. Chem. Eng. Data}amp$\mathsemicolon$ Engineering Data}
+      }
+templates:
+    - The {#metal-organic framework|MOF|reticular material|metal-organic framework (MOF)!} with the following {#CIF file|crystal structure in CIF format!} {cif#} is build from linker molecules with the SMILES {smiles_linkers#} and nodes with the SMILES {smiles_nodes#}.
+    - The {#metal-organic framework|MOF|reticular material|metal-organic framework (MOF)!} with the following {#CIF file|crystal structure in CIF format!} {cif#} has a {outputs.pure_CO2_widomHOA__names__noun} of {outputs.pure_CO2_widomHOA#} {outputs.pure_CO2_widomHOA__units}.
+    - The {#metal-organic framework|MOF|reticular material|metal-organic framework (MOF)!} with the following {#CIF file|crystal structure in CIF format!} {cif#} has a {outputs.pure_methane_widomHOA__names__noun} of {outputs.pure_methane_widomHOA#} {outputs.pure_methane_widomHOA__units}.
+    - The {#metal-organic framework|MOF|reticular material|metal-organic framework (MOF)!} with the following {#CIF file|crystal structure in CIF format!} {cif#} has a {outputs.pure_uptake_CO2_298.00_15000__names__noun} of {outputs.pure_uptake_CO2_298.00_15000#} {outputs.pure_uptake_CO2_298.00_15000__units}.
+    - The {#metal-organic framework|MOF|reticular material|metal-organic framework (MOF)!} with the following {#CIF file|crystal structure in CIF format!} {cif#} has a {outputs.pure_uptake_CO2_298.00_1600000__names__noun} of {outputs.pure_uptake_CO2_298.00_1600000#} {outputs.pure_uptake_CO2_298.00_1600000__units}.
+    - The {#metal-organic framework|MOF|reticular material|metal-organic framework (MOF)!} with the following {#CIF file|crystal structure in CIF format!} {cif#} has a {outputs.pure_uptake_methane_298.00_580000__names__noun} of {outputs.pure_uptake_methane_298.00_580000#} {outputs.pure_uptake_methane_298.00_580000__units}.
+    - The {#metal-organic framework|MOF|reticular material|metal-organic framework (MOF)!} with the following {#CIF file|crystal structure in CIF format!} {cif#} has a {outputs.pure_uptake_methane_298.00_6500000__names__noun} of {outputs.pure_uptake_methane_298.00_6500000#} {outputs.pure_uptake_methane_298.00_6500000__units}.
+    - The {#metal-organic framework|MOF|reticular material|metal-organic framework (MOF)!} with the following {#CIF file|crystal structure in CIF format!} {cif#} has a {outputs.logKH_CO2__names__noun} of {outputs.logKH_CO2#} {outputs.logKH_CO2__units}.
+    - The {#metal-organic framework|MOF|reticular material|metal-organic framework (MOF)!} with the following {#CIF file|crystal structure in CIF format!} {cif#} has a {outputs.logKH_CH4__names__noun} of {outputs.logKH_CH4#} {outputs.logKH_CH4__units}.
+    - The {#metal-organic framework|MOF|reticular material|metal-organic framework (MOF)!} with the following {#CIF file|crystal structure in CIF format!} {cif#} has a {outputs.CH4DC__names__noun} of {outputs.CH4DC#} {outputs.CH4DC__units}.
+    - |- 
+      Question: What linker molecules are {#used|present!} in the {#metal-organic framework|MOF|reticular material|metal-organic framework (MOF)!} with the following {#CIF file|crystal structure in CIF format!} {cif#}?
+      Answer: The SMILES of the linker molecules are {smiles_linkers#}.
+    - |-
+      Question: What nodes are {#used|present!} in the {#metal-organic framework|MOF|reticular material|metal-organic framework (MOF)!} with the following {#CIF file|crystal structure in CIF format!} {cif#}?
+      Answer: The SMILES of the nodes are {smiles_nodes#}.
+    - |-
+      Question: What is the {outputs.pure_CO2_widomHOA__names__noun} of the {#metal-organic framework|MOF|reticular material|metal-organic framework (MOF)!} with the following {#CIF file|crystal structure in CIF format!} {cif#}?
+      Answer: The {outputs.pure_CO2_widomHOA__names__noun} is {outputs.pure_CO2_widomHOA#} {outputs.pure_CO2_widomHOA__units}.
+    - |-
+      Question: What is the {outputs.pure_methane_widomHOA__names__noun} of the {#metal-organic framework|MOF|reticular material|metal-organic framework (MOF)!} with the following {#CIF file|crystal structure in CIF format!} {cif#}?
+      Answer: The {outputs.pure_methane_widomHOA__names__noun} is {outputs.pure_methane_widomHOA#} {outputs.pure_methane_widomHOA__units}.
+    - |-
+      Question: What is the {outputs.pure_uptake_CO2_298.00_15000__names__noun} of the {#metal-organic framework|MOF|reticular material|metal-organic framework (MOF)!} with the following {#CIF file|crystal structure in CIF format!} {cif#}?
+      Answer: The {outputs.pure_uptake_CO2_298.00_15000__names__noun} is {outputs.pure_uptake_CO2_298.00_15000#} {outputs.pure_uptake_CO2_298.00_15000__units}.
+    - |-
+      Question: What is the {outputs.pure_uptake_CO2_298.00_1600000__names__noun} of the {#metal-organic framework|MOF|reticular material|metal-organic framework (MOF)!} with the following {#CIF file|crystal structure in CIF format!} {cif#}?
+      Answer: The {outputs.pure_uptake_CO2_298.00_1600000__names__noun} is {outputs.pure_uptake_CO2_298.00_1600000#} {outputs.pure_uptake_CO2_298.00_1600000__units}.
+    - |-
+      Question: What is the {outputs.pure_uptake_methane_298.00_580000__names__noun} of the {#metal-organic framework|MOF|reticular material|metal-organic framework (MOF)!} with the following {#CIF file|crystal structure in CIF format!} {cif#}?
+      Answer: The {outputs.pure_uptake_methane_298.00_580000__names__noun} is {outputs.pure_uptake_methane_298.00_580000#} {outputs.pure_uptake_methane_298.00_580000__units}.
+    - |-
+      Question: What is the {outputs.pure_uptake_methane_298.00_6500000__names__noun} of the {#metal-organic framework|MOF|reticular material|metal-organic framework (MOF)!} with the following {#CIF file|crystal structure in CIF format!} {cif#}?
+      Answer: The {outputs.pure_uptake_methane_298.00_6500000__names__noun} is {outputs.pure_uptake_methane_298.00_6500000#} {outputs.pure_uptake_methane_298.00_6500000__units}.
+    - |-
+      Question: What is the {outputs.logKH_CO2__names__noun} of the {#metal-organic framework|MOF|reticular material|metal-organic framework (MOF)!} with the following {#CIF file|crystal structure in CIF format!} {cif#}?
+      Answer: The {outputs.logKH_CO2__names__noun} is {outputs.logKH_CO2#} {outputs.logKH_CO2__units}.
+    - |-
+      Question: What is the {outputs.logKH_CH4__names__noun} of the {#metal-organic framework|MOF|reticular material|metal-organic framework (MOF)!} with the following {#CIF file|crystal structure in CIF format!} {cif#}?
+      Answer: The {outputs.logKH_CH4__names__noun} is {outputs.logKH_CH4#} {outputs.logKH_CH4__units}.
+    - |-
+      Question: What is the {outputs.CH4DC__names__noun} of the {#metal-organic framework|MOF|reticular material|metal-organic framework (MOF)!} with the following {#CIF file|crystal structure in CIF format!} {cif#}?
+      Answer: The {outputs.CH4DC__names__noun} is {outputs.CH4DC#} {outputs.CH4DC__units}.
+    
+    
