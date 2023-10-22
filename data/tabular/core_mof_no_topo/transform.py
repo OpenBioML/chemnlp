@@ -1,10 +1,11 @@
-from chemnlp.data.convert import is_longer_than_allowed
 import pandas as pd
-import ast
 
 
 def process():
     df = pd.read_json("core_mofid.json")
+    # df = pd.read_json(
+    #     "https://huggingface.co/datasets/kjappelbaum/chemnlp-core-mof/resolve/main/core_mofid.json"
+    # )
     df = df.query("is_longer_than_allowed==False").dropna(
         subset=[
             "outputs.pure_CO2_kH",
