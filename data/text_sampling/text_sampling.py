@@ -887,22 +887,6 @@ class TemplateSampler:
                     output_path = output_path_dir + f"/{split}.jsonl"
 
                     lm_eval_yaml = copy.deepcopy(lm_eval_yaml_template_multiple_choice)
-                    lm_eval_yaml["group"].append(group_name)
-                    lm_eval_yaml["task"] = task_name
-                    lm_eval_yaml["dataset_path"] = output_path_dir
-                    lm_eval_yaml["dataset_name"] = task_name
-
-                    for split_out in self.df.split.unique():
-                        if split_out == "train":
-                            lm_eval_yaml["training_split"] = "train"
-                        if split_out == "valid":
-                            lm_eval_yaml["validation_split"] = "validation"
-                        if split_out == "valid":
-                            lm_eval_yaml["test_split"] = "test"
-
-                    fn_lm_eval_yaml = output_path_dir + "/config.yaml"
-                    with open(fn_lm_eval_yaml, "w") as f:
-                        yaml.dump(lm_eval_yaml, f, sort_keys=False)
                 else:
                     if dir_suffix:
                         task_name = (
@@ -919,22 +903,6 @@ class TemplateSampler:
                     output_path = output_path_dir + f"/{split}.jsonl"
 
                     lm_eval_yaml = copy.deepcopy(lm_eval_yaml_template_loglikelihood)
-                    lm_eval_yaml["group"].append(group_name)
-                    lm_eval_yaml["task"] = task_name
-                    lm_eval_yaml["dataset_path"] = output_path_dir
-                    lm_eval_yaml["dataset_name"] = task_name
-
-                    for split_out in self.df.split.unique():
-                        if split_out == "train":
-                            lm_eval_yaml["training_split"] = "train"
-                        if split_out == "valid":
-                            lm_eval_yaml["validation_split"] = "validation"
-                        if split_out == "valid":
-                            lm_eval_yaml["test_split"] = "test"
-
-                    fn_lm_eval_yaml = output_path_dir + "/config.yaml"
-                    with open(fn_lm_eval_yaml, "w") as f:
-                        yaml.dump(lm_eval_yaml, f, sort_keys=False)
             else:
                 group_name = self.path_data_dir.split("/")[-1]
 
@@ -948,6 +916,25 @@ class TemplateSampler:
                 )
                 os.makedirs(output_path_dir, exist_ok=True)
                 output_path = output_path_dir + f"/{split}.jsonl"
+
+                lm_eval_yaml = copy.deepcopy(lm_eval_yaml_template_loglikelihood)
+
+            lm_eval_yaml["group"].append(group_name)
+            lm_eval_yaml["task"] = task_name
+            lm_eval_yaml["dataset_path"] = output_path_dir
+            lm_eval_yaml["dataset_name"] = task_name
+
+            for split_out in self.df.split.unique():
+                if split_out == "train":
+                    lm_eval_yaml["training_split"] = "train"
+                if split_out == "valid":
+                    lm_eval_yaml["validation_split"] = "validation"
+                if split_out == "valid":
+                    lm_eval_yaml["test_split"] = "test"
+
+            fn_lm_eval_yaml = output_path_dir + "/config.yaml"
+            with open(fn_lm_eval_yaml, "w") as f:
+                yaml.dump(lm_eval_yaml, f, sort_keys=False)
 
             with open(output_path, "w") as f:
                 f.write(df_out.to_json(orient="records", lines=True, force_ascii=False))
