@@ -3,11 +3,41 @@ from typing import List, Tuple
 import pandas as pd
 import yaml
 
+ALT_DESCRIPTIONS = [
+    "Liver and Gallbladder Disorders",
+    "Metabolic and Nutritional Disorders",
+    "Ophthalmic Disorders",
+    "Medical Investigations",
+    "Muscle and Joint Disorders",
+    "Digestive System Disorders",
+    "Disorders of the Immune System",
+    "Disorders of the breasts and the Reproductive system",
+    "Benign and Malignant Tumors (including Cysts and Polyps)",
+    "General Health and Administration Site Conditions",
+    "Endocrine System Disorders",
+    "Medical and Surgical Procedures",
+    "Vascular System Disorders",
+    "Disorders of the blood and lymphatic system",
+    "Disorders of the Skin and Subcutaneous Tissue",
+    "Familial, Congenital and Genetic Disorders",
+    "Infestations and Infections",
+    "Respiratory and Thoracic Disorders",
+    "Mental Health and Psychiatric Disorders",
+    "Kidney and Urinary Tract Disorders",
+    "Pregnancy, Childbirth, and Newborn Conditions",
+    "Ear and Inner Ear Disorders",
+    "Cardiovascular Disorders",
+    "Disorders of the Nervous System",
+    "Injuries, Poisonings, and Complications from Procedures",
+]
+
 
 def load_dataset() -> pd.DataFrame:
     sider = pd.read_csv(
         "https://deepchemdata.s3-us-west-1.amazonaws.com/datasets/sider.csv.gz"
     )
+    sider = sider.drop(columns=["Product issues", "Social circumstances"])
+    sider.to_csv("data_raw.csv", index=False)
     return sider
 
 
@@ -16,7 +46,6 @@ def transform_data() -> Tuple[pd.DataFrame, pd.Index]:
     old_columns = sider.columns.str.lower()
     sider.columns = sider.columns.str.lower().str.replace(" ", "_").str.replace(",", "")
     sider = sider.rename(columns={"smiles": "SMILES"})
-    sider = sider.drop(columns=["product_issues", "social_circumstances"])
     sider.to_csv("data_clean.csv", index=False)
 
     return sider, old_columns
@@ -29,9 +58,14 @@ def write_meta(column_ids: pd.Index, descriptions: List[str], num_points: int) -
             "id": f"{col_id}",
             "description": f"{description}",
             "type": "boolean",
-            "names": [{"noun": f"{description}".lower()}],
+            "names": [
+                {"noun": f"{description}".lower()},
+                {"noun": f"{alt_desc}".lower()},
+            ],
         }
-        for col_id, description in zip(column_ids[1:], descriptions[1:])
+        for col_id, description, alt_desc in zip(
+            column_ids[1:], descriptions[1:], ALT_DESCRIPTIONS
+        )
     ]
 
     templates = [
@@ -103,8 +137,6 @@ url = {https://doi.org/10.1093/nar/gkv1075},
         yaml.dump(meta, f, sort_keys=False)
 
     print(f"Finished processing {meta['name']} dataset!")
-
-    return
 
 
 def main():

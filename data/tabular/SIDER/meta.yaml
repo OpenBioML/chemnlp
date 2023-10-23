@@ -11,126 +11,151 @@ targets:
       type: boolean
       names:
           - noun: hepatobiliary disorders
+          - noun: liver and gallbladder disorders
     - id: metabolism_and_nutrition_disorders
       description: metabolism and nutrition disorders
       type: boolean
       names:
           - noun: metabolism and nutrition disorders
+          - noun: metabolic and nutritional disorders
     - id: eye_disorders
-      description: product issues
-      type: boolean
-      names:
-          - noun: product issues
-    - id: investigations
       description: eye disorders
       type: boolean
       names:
           - noun: eye disorders
-    - id: musculoskeletal_and_connective_tissue_disorders
+          - noun: ophthalmic disorders
+    - id: investigations
       description: investigations
       type: boolean
       names:
           - noun: investigations
-    - id: gastrointestinal_disorders
+          - noun: medical investigations
+    - id: musculoskeletal_and_connective_tissue_disorders
       description: musculoskeletal and connective tissue disorders
       type: boolean
       names:
           - noun: musculoskeletal and connective tissue disorders
-    - id: immune_system_disorders
+          - noun: muscle and joint disorders
+    - id: gastrointestinal_disorders
       description: gastrointestinal disorders
       type: boolean
       names:
           - noun: gastrointestinal disorders
-    - id: reproductive_system_and_breast_disorders
-      description: social circumstances
-      type: boolean
-      names:
-          - noun: social circumstances
-    - id: neoplasms_benign_malignant_and_unspecified_(incl_cysts_and_polyps)
+          - noun: digestive system disorders
+    - id: immune_system_disorders
       description: immune system disorders
       type: boolean
       names:
           - noun: immune system disorders
-    - id: general_disorders_and_administration_site_conditions
+          - noun: disorders of the immune system
+    - id: reproductive_system_and_breast_disorders
       description: reproductive system and breast disorders
       type: boolean
       names:
           - noun: reproductive system and breast disorders
-    - id: endocrine_disorders
+          - noun: disorders of the breasts and the reproductive system
+    - id: neoplasms_benign_malignant_and_unspecified_(incl_cysts_and_polyps)
       description: neoplasms benign, malignant and unspecified (incl cysts and polyps)
       type: boolean
       names:
           - noun: neoplasms benign, malignant and unspecified (incl cysts and polyps)
-    - id: surgical_and_medical_procedures
+          - noun: benign and malignant tumors (including cysts and polyps)
+    - id: general_disorders_and_administration_site_conditions
       description: general disorders and administration site conditions
       type: boolean
       names:
           - noun: general disorders and administration site conditions
-    - id: vascular_disorders
+          - noun: general health and administration site conditions
+    - id: endocrine_disorders
       description: endocrine disorders
       type: boolean
       names:
           - noun: endocrine disorders
-    - id: blood_and_lymphatic_system_disorders
+          - noun: endocrine system disorders
+    - id: surgical_and_medical_procedures
       description: surgical and medical procedures
       type: boolean
       names:
           - noun: surgical and medical procedures
-    - id: skin_and_subcutaneous_tissue_disorders
+          - noun: medical and surgical procedures
+    - id: vascular_disorders
       description: vascular disorders
       type: boolean
       names:
           - noun: vascular disorders
-    - id: congenital_familial_and_genetic_disorders
+          - noun: vascular system disorders
+    - id: blood_and_lymphatic_system_disorders
       description: blood and lymphatic system disorders
       type: boolean
       names:
           - noun: blood and lymphatic system disorders
-    - id: infections_and_infestations
+          - noun: disorders of the blood and lymphatic system
+    - id: skin_and_subcutaneous_tissue_disorders
       description: skin and subcutaneous tissue disorders
       type: boolean
       names:
           - noun: skin and subcutaneous tissue disorders
-    - id: respiratory_thoracic_and_mediastinal_disorders
+          - noun: disorders of the skin and subcutaneous tissue
+    - id: congenital_familial_and_genetic_disorders
       description: congenital, familial and genetic disorders
       type: boolean
       names:
           - noun: congenital, familial and genetic disorders
-    - id: psychiatric_disorders
+          - noun: familial, congenital and genetic disorders
+    - id: infections_and_infestations
       description: infections and infestations
       type: boolean
       names:
           - noun: infections and infestations
-    - id: renal_and_urinary_disorders
+          - noun: infestations and infections
+    - id: respiratory_thoracic_and_mediastinal_disorders
       description: respiratory, thoracic and mediastinal disorders
       type: boolean
       names:
           - noun: respiratory, thoracic and mediastinal disorders
-    - id: pregnancy_puerperium_and_perinatal_conditions
+          - noun: respiratory and thoracic disorders
+    - id: psychiatric_disorders
       description: psychiatric disorders
       type: boolean
       names:
           - noun: psychiatric disorders
-    - id: ear_and_labyrinth_disorders
+          - noun: mental health and psychiatric disorders
+    - id: renal_and_urinary_disorders
       description: renal and urinary disorders
       type: boolean
       names:
           - noun: renal and urinary disorders
-    - id: cardiac_disorders
+          - noun: kidney and urinary tract disorders
+    - id: pregnancy_puerperium_and_perinatal_conditions
       description: pregnancy, puerperium and perinatal conditions
       type: boolean
       names:
           - noun: pregnancy, puerperium and perinatal conditions
-    - id: nervous_system_disorders
+          - noun: pregnancy, childbirth, and newborn conditions
+    - id: ear_and_labyrinth_disorders
       description: ear and labyrinth disorders
       type: boolean
       names:
           - noun: ear and labyrinth disorders
-    - id: injury_poisoning_and_procedural_complications
+          - noun: ear and inner ear disorders
+    - id: cardiac_disorders
       description: cardiac disorders
       type: boolean
       names:
           - noun: cardiac disorders
+          - noun: cardiovascular disorders
+    - id: nervous_system_disorders
+      description: nervous system disorders
+      type: boolean
+      names:
+          - noun: nervous system disorders
+          - noun: disorders of the nervous system
+    - id: injury_poisoning_and_procedural_complications
+      description: injury, poisoning and procedural complications
+      type: boolean
+      names:
+          - noun: injury, poisoning and procedural complications
+          - noun: injuries, poisonings, and complications from procedures
 license: CC BY 4.0
 links:
     - url: https://academic.oup.com/nar/article/44/D1/D1075/2502602?login=false
