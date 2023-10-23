@@ -27,10 +27,82 @@ targets:
           - noun: S0 -> S2 transition energy computed using second-order approximate coupled-cluster theory (CC2)
           - noun: S0 -> S2 transition energy computed using RI-CC2/def2TZVP
           - noun: RI-CC2/def2TZVP-computed S0 -> S2 transition energy
+    - id: f1-CC2
+      description: Oscillator strength of the first excited state, computed using CC2
+      units: a. u.
+      type: continuous
+      significant_digits: 4
+      names:
+          - noun: S0 -> S1 transition oscillator strength computed using second-order approximate coupled-cluster theory (CC2)
+          - noun: S0 -> S1 transition oscillator strength computed using RI-CC2/def2TZVP
+          - noun: RI-CC2/def2TZVP-computed S0 -> S1 transition oscillator strength
+    - id: f2-CC2
+      description: Oscillator strength of the second excited state, computed using CC2
+      units: a. u.
+      type: continuous
+      significant_digits: 4
+      names:
+          - noun: S0 -> S2 transition oscillator strength computed using second-order approximate coupled-cluster theory (CC2)
+          - noun: S0 -> S2 transition oscillator strength computed using RI-CC2/def2TZVP
+          - noun: RI-CC2/def2TZVP-computed S0 -> S2 transition oscillator strength
+    - id: E1-PBE0
+      description: Excitation energy of the first excited state, computed using LR-TDPBE0/def2SVP
+      units: a. u.
+      type: continuous
+      significant_digits: 4
+      names:
+          - noun: S0 -> S1 transition energy computed using linear-response time-dependent density functional theory (LR-TDPBE0/def2SVP)
+          - noun: S0 -> S1 transition energy computed using LR-TDPBE0/def2SVP
+          - noun: LR-TDPBE0/def2SVP-computed S0 -> S1 transition energy
+    - id: E2-PBE0
+      description: Excitation energy of the second excited state, computed using LR-TDPBE0/def2SVP
+      units: a. u.
+      type: continuous
+      significant_digits: 4
+      names:
+          - noun: S0 -> S2 transition energy computed using linear-response time-dependent density functional theory (LR-TDPBE0/def2SVP)
+          - noun: S0 -> S2 transition energy computed using LR-TDPBE0/def2SVP
+          - noun: LR-TDPBE0/def2SVP-computed S0 -> S2 transition energy
+    - id: f1-PBE0
+      description: Oscillator strength of the first excited state, computed using LR-TDPBE0/def2SVP
+      units: a. u.
+      type: continuous
+      significant_digits: 4
+      names:
+          - noun: S0 -> S1 transition oscillator strength computed using linear-response time-dependent density functional theory (LR-TDPBE0/def2SVP)
+          - noun: S0 -> S1 transition oscillator strength computed using LR-TDPBE0/def2SVP
+          - noun: LR-TDPBE0/def2SVP-computed S0 -> S1 transition oscillator strength
+    - id: f2-PBE0
+      description: Oscillator strength of the second excited state, computed using LR-TDPBE0/def2SVP
+      units: a. u.
+      type: continuous
+      significant_digits: 4
+      names:
+          - noun: S0 -> S2 transition oscillator strength computed using linear-response time-dependent density functional theory (LR-TDPBE0/def2SVP)
+          - noun: S0 -> S2 transition oscillator strength computed using LR-TDPBE0/def2SVP
+          - noun: LR-TDPBE0/def2SVP-computed S0 -> S2 transition oscillator strength
+    - id: E1-CAM
+      description: Excitation energy of the first excited state, computed using CAM-B3LYP/def2TZVP
+      units: a. u.
+      type: continuous
+      significant_digits: 4
+      names:
+          - noun: S0 -> S1 transition energy computed using Coulomb-attenuated B3LYP density functional theory (CAM-B3LYP/def2TZVP)
+          - noun: S0 -> S1 transition energy computed using CAM-B3LYP/def2TZVP
+          - noun: CAM-B3LYP/def2TZVP-computed S0 -> S1 transition energy
 identifiers:
     - id: SMILES
       type: SMILES
       description: SMILES
+    - id: XYZ 
+      type: XYZ
+      description: XYZ file
+    - id: MOL200
+      type: MOL2000
+      description: MOL2000 file
+    - id: MOL300
+      type: MOL3000
+      description: MOL3000 file
 license: CC BY 4.0
 links:
     - url: https://deepchemdata.s3-us-west-1.amazonaws.com/datasets/gdb8.tar.gz
