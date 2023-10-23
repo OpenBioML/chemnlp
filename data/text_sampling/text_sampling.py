@@ -383,7 +383,9 @@ class TemplateSampler:
         self.meta = load_yaml(self.path_data_meta)
 
         # dataframe from csv
-        df = pd.read_csv(self.path_data_csv, low_memory=False)
+        df = pd.read_csv(self.path_data_csv, low_memory=False).replace(
+            "REPLACENULL", ""
+        )
 
         def check_targets_and_identifiers(meta: dict, df: pd.DataFrame):
             all_identifiers = [x["id"] for x in meta["identifiers"]] + [
@@ -442,6 +444,7 @@ class TemplateSampler:
                 self.meta["targets"].append(additional_targets[col])
 
         # assert not df.duplicated().sum()
+
         df.drop_duplicates(inplace=True)
         if "split" not in df.columns:
             df["split"] = "train"
@@ -971,8 +974,8 @@ if __name__ == "__main__":
     # path_data_dir = path_data_dir[index:]
 
     for path in path_data_dir:
-        # if "core_mof_no_topo" not in path:
-        #     continue
+        if "block_polymers_morphology" not in path:
+            continue
         # subselect one path
         # if path.find("data/tabular/") == -1: continue
         # if path.find("data/kg/") == -1: continue
