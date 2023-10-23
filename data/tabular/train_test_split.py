@@ -30,6 +30,19 @@ from tqdm import tqdm
 RDLogger.DisableLog("rdApp.*")
 
 
+REPRESENTATION_LIST = [
+    "SMILES",
+    "PSMILES",
+    "SELFIES",
+    "RXNSMILES",
+    "RXNSMILESWAdd",
+    "IUPAC",
+    "InChI",
+    "InChIKey",
+    "compositions"
+]
+
+
 def print_sys(s):
     """system print
 
@@ -121,10 +134,10 @@ def create_scaffold_split(
 
 def rewrite_data_with_splits(
     csv_paths: List[str],
+    repr_col: str,
     train_test_df: pd.DataFrame,
     override: bool = False,
     check: bool = True,
-    repr_col: str = "SMILES",
 ) -> None:
     """Rewrite dataframes with the correct split column
 
@@ -139,8 +152,14 @@ def rewrite_data_with_splits(
         repr_col (str): the column name for where SMILES representation is stored
             defaults to "SMILES"
     """
+    
+    for path in csv_paths:
+        read_dataset = pd.read_csv(path)
+        if repr_col != "SMILES" and repr_col in read_dataset.columns:
+            return
+    
     if check:
-        train_smiles = set(train_test_df.query("split == 'train'")["SMILES"].to_list())
+        train_smiles = set(train_test_df.query("split == 'train'")[repr_col].to_list())
 
     for path in csv_paths:
         read_dataset = pd.read_csv(path)
@@ -154,9 +173,8 @@ def rewrite_data_with_splits(
             except KeyError:
                 print(f"No split column in {path}")
 
-            col_to_merge = "SMILES"
             merged_data = pd.merge(
-                read_dataset, train_test_df, on=col_to_merge, how="left"
+                read_dataset, train_test_df, on=repr_col, how="left"
             )
             merged_data = merged_data.dropna()
             if override:
@@ -181,7 +199,8 @@ def rewrite_data_with_splits(
             print(f"Skipping {path} as it does not contain {repr_col} column")
 
 
-def cli(
+def per_repr(
+    repr_col : str,
     seed: int = 42,
     train_size: float = 0.8,
     val_size: float = 0.0,
@@ -189,22 +208,21 @@ def cli(
     path: str = "*/data_clean.csv",
     override: bool = False,
     check: bool = True,
-    repr_col: str = "SMILES",
 ):
     paths_to_data = glob(path)
 
     # uncomment the following lines for debugging on a subset of data
-    # filtered_paths = []
-    # for path in paths_to_data:
-    #     if "flashpoint" in path:
-    #         filtered_paths.append(path)
-    #     elif "freesolv" in path:
-    #         filtered_paths.append(path)
-    #     elif "peptide" in path:
-    #         filtered_paths.append(path)
-    #     elif "bicerano_dataset" in path:
-    #         filtered_paths.append(path)
-    # paths_to_data = filtered_paths
+    filtered_paths = []
+    for path in paths_to_data:
+        if "flashpoint" in path:
+            filtered_paths.append(path)
+        elif "freesolv" in path:
+            filtered_paths.append(path)
+        elif "peptide" in path:
+            filtered_paths.append(path)
+        elif "bicerano_dataset" in path:
+            filtered_paths.append(path)
+    paths_to_data = filtered_paths
 
     REPRESENTATION_LIST = []
 
@@ -212,47 +230,70 @@ def cli(
         df = pd.read_csv(path)
         if repr_col in df.columns:
             REPRESENTATION_LIST.extend(df[repr_col].to_list())
-        else:
-            df["split"] = np.random.choice(
-                ["train", "test", "valid"],
-                size=len(df),
-                p=[1 - val_size - test_size, test_size, val_size],
-            )
-
-            if override:
-                df.to_csv(path, index=False)
-            else:
-                # rename the old data_clean.csv file to data_clean_old.csv
-                os.rename(path, path.replace(".csv", "_old.csv"))
-                # write the new data_clean.csv file
-                df.to_csv(path, index=False)
-
-            if len(df.query("split == 'train'")) == 0:
-                raise ValueError("Split failed, no train data")
-            if len(df.query("split == 'test'")) == 0:
-                raise ValueError("Split failed, no test data")
-
+        
     REPR_DF = pd.DataFrame()
-    REPR_DF["SMILES"] = list(set(REPRESENTATION_LIST))
+    REPR_DF[repr_col] = list(set(REPRESENTATION_LIST))
 
-    scaffold_split = create_scaffold_split(
-        REPR_DF, seed=seed, frac=[train_size, val_size, test_size]
-    )
 
+    if repr_col=="SMILES":
+        split = create_scaffold_split(
+            REPR_DF, seed=seed, frac=[train_size, val_size, test_size]
+        )
+    else: 
+        split_ = pd.DataFrame(np.random.choice(
+            ["train", "test", "valid"], 
+            size=len(REPR_DF), 
+            p=[1 - val_size - test_size, test_size, val_size]
+        ))
+        
+        REPR_DF["split"] = split_
+        train = REPR_DF.query("split == 'train'").reset_index(drop=True)
+        test = REPR_DF.query("split == 'test'").reset_index(drop=True)
+        valid = REPR_DF.query("split == 'valid'").reset_index(drop=True)
+        
+        split = {"train": train, 
+                 "test": test, 
+                 "valid": valid}
+        
     # create train and test dataframes
-    train_df = scaffold_split["train"]
-    test_df = scaffold_split["test"]
+    train_df = split["train"]
+    test_df = split["test"]
+    valid_df = split["valid"]
     # add split columns to train and test dataframes
     train_df["split"] = len(train_df) * ["train"]
     test_df["split"] = len(test_df) * ["test"]
-
+    valid_df["split"] = len(valid_df) * ["valid"]
+    
     # merge train and test across all datasets
-    merge = pd.concat([train_df, test_df], axis=0)
+    merge = pd.concat([train_df, test_df, valid_df], axis=0)
     # rewrite data_clean.csv for each dataset
     rewrite_data_with_splits(
-        paths_to_data, merge, override=override, check=check, repr_col=repr_col
+        csv_paths=paths_to_data, 
+        repr_col=repr_col, 
+        train_test_df=merge, 
+        override=override, 
+        check=check
     )
 
 
+def cli(seed: int = 42,
+        train_size: float = 0.75,
+        val_size: float = 0.125,
+        test_size: float = 0.125,
+        path: str = "*/data_clean.csv",
+        override: bool = False,
+        check: bool = True):
+    
+    for representation in REPRESENTATION_LIST:
+        per_repr(representation, 
+                 seed, 
+                 train_size, 
+                 val_size, 
+                 test_size,
+                 path, 
+                 override, 
+                 check)
+
+    
 if __name__ == "__main__":
     fire.Fire(cli)
