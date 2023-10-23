@@ -202,6 +202,8 @@ def cli(
     #         filtered_paths.append(path)
     #     elif "peptide" in path:
     #         filtered_paths.append(path)
+    #     elif "bicerano_dataset" in path:
+    #         filtered_paths.append(path)
     # paths_to_data = filtered_paths
 
     REPRESENTATION_LIST = []
@@ -216,7 +218,19 @@ def cli(
                 size=len(df),
                 p=[1 - val_size - test_size, test_size, val_size],
             )
-            df.to_csv(path, index=False)
+
+            if override:
+                df.to_csv(path, index=False)
+            else:
+                # rename the old data_clean.csv file to data_clean_old.csv
+                os.rename(path, path.replace(".csv", "_old.csv"))
+                # write the new data_clean.csv file
+                df.to_csv(path, index=False)
+
+            if len(df.query("split == 'train'")) == 0:
+                raise ValueError("Split failed, no train data")
+            if len(df.query("split == 'test'")) == 0:
+                raise ValueError("Split failed, no test data")
 
     REPR_DF = pd.DataFrame()
     REPR_DF["SMILES"] = list(set(REPRESENTATION_LIST))
