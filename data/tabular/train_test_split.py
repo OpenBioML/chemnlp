@@ -155,7 +155,7 @@ def rewrite_data_with_splits(
 
     for path in csv_paths:
         read_dataset = pd.read_csv(path)
-        if repr_col != "SMILES" and repr_col in read_dataset.columns:
+        if repr_col != "SMILES" and "SMILES" in read_dataset.columns:
             return
 
     if check:
@@ -189,7 +189,7 @@ def rewrite_data_with_splits(
                 raise ValueError("Split failed, no test data")
             if check:
                 test_split_smiles = set(
-                    merged_data.query("split == 'test'")["SMILES"].to_list()
+                    merged_data.query("split == 'test'")[repr_col].to_list()
                 )
                 if len(train_smiles.intersection(test_split_smiles)) > 0:
                     raise ValueError("Split failed, train and test overlap")
@@ -269,7 +269,7 @@ def per_repr(
         repr_col=repr_col,
         train_test_df=merge,
         override=override,
-        check=check,
+        check=check
     )
 
 
