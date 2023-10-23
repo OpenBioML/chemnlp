@@ -19,12 +19,13 @@ from collections import defaultdict
 from glob import glob
 from random import Random
 from typing import Dict, List
-
+import numpy as np
 import fire
 import pandas as pd
 from rdkit import Chem, RDLogger
 from rdkit.Chem.Scaffolds import MurckoScaffold
 from tqdm import tqdm
+
 
 RDLogger.DisableLog("rdApp.*")
 
@@ -193,15 +194,15 @@ def cli(
     paths_to_data = glob(path)
 
     # uncomment the following lines for debugging on a subset of data
-    # filtered_paths = []
-    # for path in paths_to_data:
-    #     if "flashpoint" in path:
-    #         filtered_paths.append(path)
-    #     elif "freesolv" in path:
-    #         filtered_paths.append(path)
-    #     elif "peptide" in path:
-    #         filtered_paths.append(path)
-    # paths_to_data = filtered_paths
+    filtered_paths = []
+    for path in paths_to_data:
+        if "flashpoint" in path:
+            filtered_paths.append(path)
+        elif "freesolv" in path:
+            filtered_paths.append(path)
+        elif "peptide" in path:
+            filtered_paths.append(path)
+    paths_to_data = filtered_paths
 
     REPRESENTATION_LIST = []
 
@@ -209,7 +210,12 @@ def cli(
         df = pd.read_csv(path)
         if repr_col in df.columns:
             REPRESENTATION_LIST.extend(df[repr_col].to_list())
-
+        else:
+            df["split"] = np.random.choice(
+                ["train", "test", "valid"], size=len(df), p=[1 - val_size - test_size, test_size, val_size]
+            )
+            df.to_csv(path, index=False)
+        
     REPR_DF = pd.DataFrame()
     REPR_DF["SMILES"] = list(set(REPRESENTATION_LIST))
 
@@ -232,5 +238,6 @@ def cli(
     )
 
 
+    
 if __name__ == "__main__":
     fire.Fire(cli)
