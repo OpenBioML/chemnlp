@@ -232,3 +232,13 @@ templates:
     Assistant: {#Cool, |Awesome, |Great, |That sounds interesting, |!}I would need to know the {E1-CC2__names__noun}, {E2-CC2__names__noun}, and {f1-CC2__names__noun} of the molecule you want to design.
     User: The {E1-CC2__names__noun} should be {E1-CC2#} {E1-CC2__units}, the {E2-CC2__names__noun} should be {E2-CC2#} {E2-CC2__units}, and the {f1-CC2__names__noun} should be {f1-CC2#} {f1-CC2__units}.
     Assistant: I {#recommend|suggest|propose|advise!} the {#molecule|molecule|compound!} with the V2000 Molfile with the following content: {MOL200#}.
+  - |-
+    User: I have computed the {E1-CC2__names__noun}, {E2-CC2__names__noun}, and {f1-CC2__names__noun} of a {#molecule|molecule|compound!} and want to know its {SMILES__description}.
+    Assistant: {#Cool, |Awesome, |Great, |That sounds interesting, |!}I would need to know the {E1-CC2__names__noun}, {E2-CC2__names__noun}, and {f1-CC2__names__noun} of the molecule you want to know the {SMILES__description} of.
+    User: The {E1-CC2__names__noun} is {E1-CC2#} {E1-CC2__units}, the {E2-CC2__names__noun} is {E2-CC2#} {E2-CC2__units}, and the {f1-CC2__names__noun} is {f1-CC2#} {f1-CC2__units}.
+    Assistant: The {SMILES__description} of the molecule is {SMILES#}.
+  - |-
+    User: I want to design a {#molecule|molecule|compound!} that has a {E1-CC2__names__noun} of {E1-CC2#} {E1-CC2__units} and a {E2-CC2__names__noun} of {E2-CC2#} {E2-CC2__units}.
+    Assistant: {#Cool, |Awesome, |Great, |That sounds interesting, |!}{#Do you have any other constraints?|Do you have other requirements?|What else should I take into account?!}
+    User: {#No, |Nope, |No, I don't, |!}I only want to know the {SMILES__description} of the molecule.
+    Assistant: I {#recommend|suggest|propose|advise!} the {#molecule|molecule|compound!} with the {SMILES__description} {SMILES#}.
