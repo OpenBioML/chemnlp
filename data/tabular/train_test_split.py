@@ -269,7 +269,7 @@ def per_repr(
         repr_col=repr_col,
         train_test_df=merge,
         override=override,
-        check=check
+        check=check,
     )
 
 
