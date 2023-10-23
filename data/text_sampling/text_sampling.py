@@ -812,7 +812,7 @@ class TemplateSampler:
             lambda sample: self.sample(sample, template_idx), axis=1
         )
 
-    def export(self, fn_suffix: str = None):
+    def export(self, dir_suffix: str = None):
         """Exports the sampled data as separate jsonl files based on the split and benchmarking templates."""
         assert "sample" in self.df.columns, "Run apply_sampling before running export."
         print_data = {
@@ -863,30 +863,34 @@ class TemplateSampler:
                     str, str_presenter
                 )  # to use with safe_dum
 
+                group_name = self.path_data_dir.split("/")[-1]
+
                 if self.multiple_choice_benchmarking_templates:
                     if self.multiple_choice_benchmarking_format:
-                        output_path_dir = os.path.abspath(
-                            self.path_lm_eval_data_dir
-                            + f"/{self.path_data_dir.split('/')[-1]}_benchmark_multiple_choice_format-{self.multiple_choice_benchmarking_format}/"  # noqa: E501
+                        task_name = (
+                            group_name
+                            + f"_benchmark_multiple_choice_format-{self.multiple_choice_benchmarking_format}"
                         )
                     else:
-                        output_path_dir = os.path.abspath(
-                            self.path_lm_eval_data_dir
-                            + f"/{self.path_data_dir.split('/')[-1]}_benchmark_multiple_choice/"  # noqa: E501
-                        )
+                        if dir_suffix:
+                            task_name = (
+                                group_name + f"_benchmark_multiple_choice_{dir_suffix}"
+                            )
+                        else:
+                            task_name = group_name + "_benchmark_multiple_choice"
 
+                    output_path_dir = os.path.abspath(
+                        self.path_lm_eval_data_dir + f"/{task_name}/"
+                    )
                     os.makedirs(output_path_dir, exist_ok=True)
                     output_path = output_path_dir + f"/{split}.jsonl"
 
-                    lm_eval_yaml_template_multiple_choice["task"] = (
-                        self.path_data_dir.split("/")[-1] + "_benchmark_multiple_choice"
-                    )
+                    lm_eval_yaml_template_multiple_choice["group"].append(group_name)
+                    lm_eval_yaml_template_multiple_choice["task"] = task_name
                     lm_eval_yaml_template_multiple_choice[
                         "dataset_path"
                     ] = output_path_dir
-                    lm_eval_yaml_template_multiple_choice["dataset_name"] = (
-                        self.path_data_dir.split("/")[-1] + "_benchmark_multiple_choice"
-                    )
+                    lm_eval_yaml_template_multiple_choice["dataset_name"] = task_name
 
                     for split_out in self.df.split.unique():
                         if split_out == "train":
@@ -906,22 +910,26 @@ class TemplateSampler:
                             lm_eval_yaml_template_multiple_choice, f, sort_keys=False
                         )
                 else:
+                    if dir_suffix:
+                        task_name = (
+                            self.path_data_dir.split("/")[-1]
+                            + f"_benchmark_{dir_suffix}"
+                        )
+                    else:
+                        task_name = self.path_data_dir.split("/")[-1] + "_benchmark"
+
                     output_path_dir = os.path.abspath(
-                        self.path_lm_eval_data_dir
-                        + f"/{self.path_data_dir.split('/')[-1]}_benchmark/"
+                        self.path_lm_eval_data_dir + f"/{task_name}/"
                     )
                     os.makedirs(output_path_dir, exist_ok=True)
-                    output_path = output_path_dir + f"/{split}_{fn_suffix}.jsonl"
+                    output_path = output_path_dir + f"/{split}.jsonl"
 
-                    lm_eval_yaml_template_loglikelihood["task"] = (
-                        self.path_data_dir.split("/")[-1] + "_benchmark"
-                    )
+                    lm_eval_yaml_template_loglikelihood["group"].append(group_name)
+                    lm_eval_yaml_template_loglikelihood["task"] = task_name
                     lm_eval_yaml_template_loglikelihood[
                         "dataset_path"
                     ] = output_path_dir
-                    lm_eval_yaml_template_loglikelihood["dataset_name"] = (
-                        self.path_data_dir.split("/")[-1] + "_benchmark"
-                    )
+                    lm_eval_yaml_template_loglikelihood["dataset_name"] = task_name
 
                     for split_out in self.df.split.unique():
                         if split_out == "train":
@@ -941,15 +949,18 @@ class TemplateSampler:
                             lm_eval_yaml_template_loglikelihood, f, sort_keys=False
                         )
             else:
+                group_name = self.path_data_dir.split("/")[-1]
+
+                if dir_suffix:
+                    task_name = group_name + f"_{dir_suffix}"
+                else:
+                    task_name = group_name
+
                 output_path_dir = os.path.abspath(
-                    self.path_lm_eval_data_dir
-                    + f"/{self.path_data_dir.split('/')[-1]}/"
+                    self.path_lm_eval_data_dir + f"/{task_name}/"
                 )
                 os.makedirs(output_path_dir, exist_ok=True)
-                if fn_suffix is not None:
-                    output_path = output_path_dir + f"/{split}_{fn_suffix}.jsonl"
-                else:
-                    output_path = output_path_dir + f"/{split}.jsonl"
+                output_path = output_path_dir + f"/{split}.jsonl"
 
             with open(output_path, "w") as f:
                 f.write(df_out.to_json(orient="records", lines=True, force_ascii=False))
@@ -967,11 +978,11 @@ class TemplateSampler:
         return pd.DataFrame(print_data)
 
     def apply_sampling_and_export(
-        self, template_idx: int = None, fn_suffix: str = None
+        self, template_idx: int = None, dir_suffix: str = None
     ):
         """Applies the sampling and exports the data."""
         self.apply_sampling(template_idx=template_idx)
-        df_results = self.export(fn_suffix=fn_suffix)
+        df_results = self.export(dir_suffix=dir_suffix)
         print(f"\n### results\n{df_results.to_string()}")
 
 
@@ -1075,7 +1086,7 @@ if __name__ == "__main__":
                     print(f"\nRunning sampling for template {i}:\n{template}")
                     tempsamp.apply_sampling_and_export(
                         template_idx=i,
-                        fn_suffix=i,
+                        dir_suffix=str(i),
                     )
 
                 if any(["<EOI>" in t for t in meta["templates"]]):
@@ -1107,19 +1118,12 @@ if __name__ == "__main__":
                         print(f"\nRunning sampling for template {i}:\n{template}")
                         tempsamp.apply_sampling_and_export(
                             template_idx=i,
-                            fn_suffix=i,
+                            dir_suffix=str(i),
                         )
 
                     if any(["%multiple_choice_" in t for t in meta["templates"]]):
-                        TemplateSampler(
-                            path,
-                            path_lm_eval_data_dir,
-                            multiple_choice_rnd_symbols=multiple_choice_rnd_symbols,
-                            additional_templates=additional_templates,
-                            benchmarking_templates=True,
-                            multiple_choice_benchmarking_templates=True,
-                        ).apply_sampling_and_export()
-
+                        # uncomment to sample from all templates for each benchmarking format
+                        # and save the output to a separate directory
                         # for i, s in enumerate(multiple_choice_rnd_symbols):
                         #    TemplateSampler(
                         #        path,
@@ -1130,3 +1134,34 @@ if __name__ == "__main__":
                         #        multiple_choice_benchmarking_templates=True,
                         #        multiple_choice_benchmarking_format=i,
                         #    ).apply_sampling_and_export()
+
+                        # uncomment to randomly sample from all templates and save the output to a single file
+                        # TemplateSampler(
+                        #     path,
+                        #     path_lm_eval_data_dir,
+                        #     multiple_choice_rnd_symbols=multiple_choice_rnd_symbols,
+                        #     additional_templates=additional_templates,
+                        #     benchmarking_templates=True,
+                        #     multiple_choice_benchmarking_templates=True,
+                        # ).apply_sampling_and_export()
+
+                        tempsamp = TemplateSampler(
+                            path,
+                            path_lm_eval_data_dir,
+                            multiple_choice_rnd_symbols=multiple_choice_rnd_symbols,
+                            additional_templates=additional_templates,
+                            benchmarking_templates=True,
+                            multiple_choice_benchmarking_templates=True,
+                        )
+                        for i, template in enumerate(
+                            [
+                                t
+                                for t in meta["templates"]
+                                if "<EOI>" in t and "%multiple_choice_" in t
+                            ]
+                        ):
+                            print(f"\nRunning sampling for template {i}:\n{template}")
+                            tempsamp.apply_sampling_and_export(
+                                template_idx=i,
+                                dir_suffix=str(i),
+                            )
