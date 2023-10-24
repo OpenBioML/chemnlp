@@ -1,12 +1,12 @@
 ---
 name: qm8
 description: |-
-    QM8 is a dataset of quantum mechanical simulations of electronic spectra 
-    and the energy levels of excited states in small molecules. 
-    The dataset involves the application of various techniques, 
-    such as time-dependent density functional theories (TDDFT) 
-    and second-order approximate coupled-cluster (CC2), 
-    to a group of molecules, which encompasses those containing as many as eight heavy atoms. 
+    QM8 is a dataset of quantum mechanical simulations of electronic spectra
+    and the energy levels of excited states in small molecules.
+    The dataset involves the application of various techniques,
+    such as time-dependent density functional theories (TDDFT)
+    and second-order approximate coupled-cluster (CC2),
+    to a group of molecules, which encompasses those containing as many as eight heavy atoms.
     These molecules also form a subset of the GDB-17 database.
 targets:
     - id: E1-CC2
@@ -94,7 +94,7 @@ identifiers:
     - id: SMILES
       type: SMILES
       description: SMILES
-    - id: XYZ 
+    - id: XYZ
       type: XYZ
       description: XYZ file
     - id: MOL2000
@@ -133,9 +133,9 @@ bibtex:
         publisher = {{AIP} Publishing},
         volume = {143},
         number = {8},
-        author = {Raghunathan Ramakrishnan and Mia Hartmann 
+        author = {Raghunathan Ramakrishnan and Mia Hartmann
         and Enrico Tapavicza and O. Anatole von Lilienfeld},
-        title = {Electronic spectra from {TDDFT} 
+        title = {Electronic spectra from {TDDFT}
         and machine learning in chemical space},
         journal = {The Journal of Chemical Physics}
       }
@@ -148,97 +148,102 @@ bibtex:
         volume = {9},
         number = {2},
         pages = {513--530},
-        author = {Zhenqin Wu and Bharath Ramsundar and Evan~N. Feinberg 
-        and Joseph Gomes and Caleb Geniesse and Aneesh S. Pappu 
+        author = {Zhenqin Wu and Bharath Ramsundar and Evan~N. Feinberg
+        and Joseph Gomes and Caleb Geniesse and Aneesh S. Pappu
         and Karl Leswing and Vijay Pande},
         title = {{MoleculeNet}: a benchmark for molecular machine learning},
         journal = {Chem. Sci.}
       }
 templates:
-  - The {E1-CC2__names__noun} of the {#molecule|molecule|compound!} with the {SMILES__description} {SMILES#} is {E1-CC2#} {E1-CC2__units}.
-  - The {E2-CC2__names__noun} of the {#molecule|molecule|compound!} with the {SMILES__description} {SMILES#} is {E2-CC2#} {E2-CC2__units}.
-  - The {f1-CC2__names__noun} of the {#molecule|molecule|compound!} with the {SMILES__description} {SMILES#} is {f1-CC2#} {f1-CC2__units}.
-  - The {f2-CC2__names__noun} of the {#molecule|molecule|compound!} with the {SMILES__description} {SMILES#} is {f2-CC2#} {f2-CC2__units}.
-  - The {E1-PBE0__names__noun} of the {#molecule|molecule|compound!} with the {SMILES__description} {SMILES#} is {E1-PBE0#} {E1-PBE0__units}.
-  - The {E2-PBE0__names__noun} of the {#molecule|molecule|compound!} with the {SMILES__description} {SMILES#} is {E2-PBE0#} {E2-PBE0__units}.
-  - The {f1-PBE0__names__noun} of the {#molecule|molecule|compound!} with the {SMILES__description} {SMILES#} is {f1-PBE0#} {f1-PBE0__units}.
-  - The {f2-PBE0__names__noun} of the {#molecule|molecule|compound!} with the {SMILES__description} {SMILES#} is {f2-PBE0#} {f2-PBE0__units}.
-  - The {E1-CAM__names__noun} of the {#molecule|molecule|compound!} with the {SMILES__description} {SMILES#} is {E1-CAM#} {E1-CAM__units}.
-  - The {E2-CAM__names__noun} of the {#molecule|molecule|compound!} with the {SMILES__description} {SMILES#} is {E2-CAM#} {E2-CAM__units}.
-  - The {f1-CAM__names__noun} of the {#molecule|molecule|compound!} with the {SMILES__description} {SMILES#} is {f1-CAM#} {f1-CAM__units}.
-  - The {f2-CAM__names__noun} of the {#molecule|molecule|compound!} with the {SMILES__description} {SMILES#} is {f2-CAM#} {f2-CAM__units}.
-  - |- 
-    Question: What is the {E1-CC2__names__noun} of the {#molecule|molecule|compound!} with the V2000 Molfile with the following content?
-    Description: The content of the V2000 Molfile is {MOL200#}.
-    Answer: {E1-CC2#} {E1-CC2__units}.
-  - |-
-    Question: What is the {E2-CC2__names__noun} of the {#molecule|molecule|compound!} with the V2000 Molfile with the following content?
-    Description: The content of the V2000 Molfile is {MOL200#}.
-    Answer: {E2-CC2#} {E2-CC2__units}.
-  - |-
-    Question: What is the {f1-CC2__names__noun} of the {#molecule|molecule|compound!} with the V2000 Molfile with the following content?
-    Description: The content of the V2000 Molfile is {MOL200#}.
-    Answer: {f1-CC2#} {f1-CC2__units}.
-  - |-
-    Question: What is the {f2-CC2__names__noun} of the {#molecule|molecule|compound!} with the V2000 Molfile with the following content?
-    Description: The content of the V2000 Molfile is {MOL200#}.
-    Answer: {f2-CC2#} {f2-CC2__units}.
-  - |-
-    Question: What is the {E1-PBE0__names__noun} of the {#molecule|molecule|compound!} with the V2000 Molfile with the following content?
-    Description: The content of the V2000 Molfile is {MOL200#}.
-    Answer: {E1-PBE0#} {E1-PBE0__units}.
-  - |-
-    Question: What is the {E2-PBE0__names__noun} of the {#molecule|molecule|compound!} with the V2000 Molfile with the following content?
-    Description: The content of the V2000 Molfile is {MOL200#}.
-    Answer: {E2-PBE0#} {E2-PBE0__units}.
-  - |-
-    Question: What is the {f1-PBE0__names__noun} of the {#molecule|molecule|compound!} with the V2000 Molfile with the following content?
-    Description: The content of the V2000 Molfile is {MOL200#}.
-    Answer: {f1-PBE0#} {f1-PBE0__units}.
-  - |-
-    Question: What is the {f2-PBE0__names__noun} of the {#molecule|molecule|compound!} with the V2000 Molfile with the following content?
-    Description: The content of the V2000 Molfile is {MOL200#}.
-    Answer: {f2-PBE0#} {f2-PBE0__units}.
-  - |-
-    Question: What is the {E1-CAM__names__noun} of the {#molecule|molecule|compound!} with the V2000 Molfile with the following content?
-    Description: The content of the V2000 Molfile is {MOL200#}.
-    Answer: {E1-CAM#} {E1-CAM__units}.
-  - |-
-    Question: What is the {E2-CAM__names__noun} of the {#molecule|molecule|compound!} with the V2000 Molfile with the following content?
-    Description: The content of the V2000 Molfile is {MOL200#}.
-    Answer: {E2-CAM#} {E2-CAM__units}.
-  - |-
-    Question: What is the {f1-CAM__names__noun} of the {#molecule|molecule|compound!} with the V2000 Molfile with the following content?
-    Description: The content of the V2000 Molfile is {MOL200#}.
-    Answer: {f1-CAM#} {f1-CAM__units}.
-  - |-
-    Question: What is the {f2-CAM__names__noun} of the {#molecule|molecule|compound!} with the V2000 Molfile with the following content?
-    Description: The content of the V2000 Molfile is {MOL200#}.
-    Answer: {f2-CAM#} {f2-CAM__units}.
-  - |-
-    Question: What is the {E1-CC2__names__noun} of the {#molecule|molecule|compound!} with the V3000 Molfile with the following content?
-    Description: The content of the V3000 Molfile is {MOL300#}.
-    Answer: {E1-CC2#} {E1-CC2__units}.
-  - |-
-    Question: What is the {SMILES__description} of the {#molecule|molecule|compound!} with the V3000 Molfile with the following content?
-    Description: The content of the V3000 Molfile is {MOL300#}.
-    Answer: {SMILES#}.
-  - |-
-    Question: What is the {E2-CC2__names__noun} of the {#molecule|molecule|compound!} with the V3000 Molfile with the following content?
-    Description: The content of the V3000 Molfile is {MOL300#}.
-    Answer: {E2-CC2#} {E2-CC2__units}.
-  - |- 
-    User: I want to design a {#molecule|molecule|compound!} with a particular {E1-CC2__names__noun}, {E2-CC2__names__noun}, and {f1-CC2__names__noun}.
-    Assistant: {#Cool, |Awesome, |Great, |That sounds interesting, |!}I would need to know the {E1-CC2__names__noun}, {E2-CC2__names__noun}, and {f1-CC2__names__noun} of the molecule you want to design.
-    User: The {E1-CC2__names__noun} should be {E1-CC2#} {E1-CC2__units}, the {E2-CC2__names__noun} should be {E2-CC2#} {E2-CC2__units}, and the {f1-CC2__names__noun} should be {f1-CC2#} {f1-CC2__units}.
-    Assistant: I {#recommend|suggest|propose|advise!} the {#molecule|molecule|compound!} with the V2000 Molfile with the following content: {MOL200#}.
-  - |-
-    User: I have computed the {E1-CC2__names__noun}, {E2-CC2__names__noun}, and {f1-CC2__names__noun} of a {#molecule|molecule|compound!} and want to know its {SMILES__description}.
-    Assistant: {#Cool, |Awesome, |Great, |That sounds interesting, |!}I would need to know the {E1-CC2__names__noun}, {E2-CC2__names__noun}, and {f1-CC2__names__noun} of the molecule you want to know the {SMILES__description} of.
-    User: The {E1-CC2__names__noun} is {E1-CC2#} {E1-CC2__units}, the {E2-CC2__names__noun} is {E2-CC2#} {E2-CC2__units}, and the {f1-CC2__names__noun} is {f1-CC2#} {f1-CC2__units}.
-    Assistant: The {SMILES__description} of the molecule is {SMILES#}.
-  - |-
-    User: I want to design a {#molecule|molecule|compound!} that has a {E1-CC2__names__noun} of {E1-CC2#} {E1-CC2__units} and a {E2-CC2__names__noun} of {E2-CC2#} {E2-CC2__units}.
-    Assistant: {#Cool, |Awesome, |Great, |That sounds interesting, |!}{#Do you have any other constraints?|Do you have other requirements?|What else should I take into account?!}
-    User: {#No, |Nope, |No, I don't, |!}I only want to know the {SMILES__description} of the molecule.
-    Assistant: I {#recommend|suggest|propose|advise!} the {#molecule|molecule|compound!} with the {SMILES__description} {SMILES#}.
+    - The {E1-CC2__names__noun} of the {#molecule|molecule|compound!} with the {SMILES__description} {SMILES#} is {E1-CC2#} {E1-CC2__units}.
+    - The {E2-CC2__names__noun} of the {#molecule|molecule|compound!} with the {SMILES__description} {SMILES#} is {E2-CC2#} {E2-CC2__units}.
+    - The {f1-CC2__names__noun} of the {#molecule|molecule|compound!} with the {SMILES__description} {SMILES#} is {f1-CC2#} {f1-CC2__units}.
+    - The {f2-CC2__names__noun} of the {#molecule|molecule|compound!} with the {SMILES__description} {SMILES#} is {f2-CC2#} {f2-CC2__units}.
+    - The {E1-PBE0__names__noun} of the {#molecule|molecule|compound!} with the {SMILES__description} {SMILES#} is {E1-PBE0#} {E1-PBE0__units}.
+    - The {E2-PBE0__names__noun} of the {#molecule|molecule|compound!} with the {SMILES__description} {SMILES#} is {E2-PBE0#} {E2-PBE0__units}.
+    - The {f1-PBE0__names__noun} of the {#molecule|molecule|compound!} with the {SMILES__description} {SMILES#} is {f1-PBE0#} {f1-PBE0__units}.
+    - The {f2-PBE0__names__noun} of the {#molecule|molecule|compound!} with the {SMILES__description} {SMILES#} is {f2-PBE0#} {f2-PBE0__units}.
+    - The {E1-CAM__names__noun} of the {#molecule|molecule|compound!} with the {SMILES__description} {SMILES#} is {E1-CAM#} {E1-CAM__units}.
+    - The {E2-CAM__names__noun} of the {#molecule|molecule|compound!} with the {SMILES__description} {SMILES#} is {E2-CAM#} {E2-CAM__units}.
+    - The {f1-CAM__names__noun} of the {#molecule|molecule|compound!} with the {SMILES__description} {SMILES#} is {f1-CAM#} {f1-CAM__units}.
+    - The {f2-CAM__names__noun} of the {#molecule|molecule|compound!} with the {SMILES__description} {SMILES#} is {f2-CAM#} {f2-CAM__units}.
+    - |-
+      Question: What is the {E1-CC2__names__noun} of the {#molecule|molecule|compound!} with the V2000 Molfile with the following content?
+      Description: The content of the V2000 Molfile is {MOL200#}.
+      Answer: {E1-CC2#} {E1-CC2__units}.
+    - |-
+      Question: What is the {E2-CC2__names__noun} of the {#molecule|molecule|compound!} with the V2000 Molfile with the following content?
+      Description: The content of the V2000 Molfile is {MOL200#}.
+      Answer: {E2-CC2#} {E2-CC2__units}.
+    - |-
+      Question: What is the {f1-CC2__names__noun} of the {#molecule|molecule|compound!} with the V2000 Molfile with the following content?
+      Description: The content of the V2000 Molfile is {MOL200#}.
+      Answer: {f1-CC2#} {f1-CC2__units}.
+    - |-
+      Question: What is the {f2-CC2__names__noun} of the {#molecule|molecule|compound!} with the V2000 Molfile with the following content?
+      Description: The content of the V2000 Molfile is {MOL200#}.
+      Answer: {f2-CC2#} {f2-CC2__units}.
+    - |-
+      Question: What is the {E1-PBE0__names__noun} of the {#molecule|molecule|compound!} with the V2000 Molfile with the following content?
+      Description: The content of the V2000 Molfile is {MOL200#}.
+      Answer: {E1-PBE0#} {E1-PBE0__units}.
+    - |-
+      Question: What is the {E2-PBE0__names__noun} of the {#molecule|molecule|compound!} with the V2000 Molfile with the following content?
+      Description: The content of the V2000 Molfile is {MOL200#}.
+      Answer: {E2-PBE0#} {E2-PBE0__units}.
+    - |-
+      Question: What is the {f1-PBE0__names__noun} of the {#molecule|molecule|compound!} with the V2000 Molfile with the following content?
+      Description: The content of the V2000 Molfile is {MOL200#}.
+      Answer: {f1-PBE0#} {f1-PBE0__units}.
+    - |-
+      Question: What is the {f2-PBE0__names__noun} of the {#molecule|molecule|compound!} with the V2000 Molfile with the following content?
+      Description: The content of the V2000 Molfile is {MOL200#}.
+      Answer: {f2-PBE0#} {f2-PBE0__units}.
+    - |-
+      Question: What is the {E1-CAM__names__noun} of the {#molecule|molecule|compound!} with the V2000 Molfile with the following content?
+      Description: The content of the V2000 Molfile is {MOL200#}.
+      Answer: {E1-CAM#} {E1-CAM__units}.
+    - |-
+      Question: What is the {E2-CAM__names__noun} of the {#molecule|molecule|compound!} with the V2000 Molfile with the following content?
+      Description: The content of the V2000 Molfile is {MOL200#}.
+      Answer: {E2-CAM#} {E2-CAM__units}.
+    - |-
+      Question: What is the {f1-CAM__names__noun} of the {#molecule|molecule|compound!} with the V2000 Molfile with the following content?
+      Description: The content of the V2000 Molfile is {MOL200#}.
+      Answer: {f1-CAM#} {f1-CAM__units}.
+    - |-
+      Question: What is the {f2-CAM__names__noun} of the {#molecule|molecule|compound!} with the V2000 Molfile with the following content?
+      Description: The content of the V2000 Molfile is {MOL200#}.
+      Answer: {f2-CAM#} {f2-CAM__units}.
+    - |-
+      Question: What is the {E1-CC2__names__noun} of the {#molecule|molecule|compound!} with the V3000 Molfile with the following content?
+      Description: The content of the V3000 Molfile is {MOL300#}.
+      Answer: {E1-CC2#} {E1-CC2__units}.
+    - |-
+      Question: What is the {SMILES__description} of the {#molecule|molecule|compound!} with the V3000 Molfile with the following content?
+      Description: The content of the V3000 Molfile is {MOL300#}.
+      Answer: {SMILES#}.
+    - |-
+      Question: What is the {E2-CC2__names__noun} of the {#molecule|molecule|compound!} with the V3000 Molfile with the following content?
+      Description: The content of the V3000 Molfile is {MOL300#}.
+      Answer: {E2-CC2#} {E2-CC2__units}.
+    - |-
+      User: I want to design a {#molecule|molecule|compound!} with a particular {E1-CC2__names__noun}, {E2-CC2__names__noun}, and {f1-CC2__names__noun}.
+      Assistant: {#Cool, |Awesome, |Great, |That sounds interesting, |!}I would need to know the {E1-CC2__names__noun}, {E2-CC2__names__noun}, and {f1-CC2__names__noun} of the molecule you want to design.
+      User: The {E1-CC2__names__noun} should be {E1-CC2#} {E1-CC2__units}, the {E2-CC2__names__noun} should be {E2-CC2#} {E2-CC2__units}, and the {f1-CC2__names__noun} should be {f1-CC2#} {f1-CC2__units}.
+      Assistant: I {#recommend|suggest|propose|advise!} the {#molecule|molecule|compound!} with the V2000 Molfile with the following content: {MOL200#}.
+    - |-
+      User: I have computed the {E1-CC2__names__noun}, {E2-CC2__names__noun}, and {f1-CC2__names__noun} of a {#molecule|molecule|compound!} and want to know its {SMILES__description}.
+      Assistant: {#Cool, |Awesome, |Great, |That sounds interesting, |!}I would need to know the {E1-CC2__names__noun}, {E2-CC2__names__noun}, and {f1-CC2__names__noun} of the molecule you want to know the {SMILES__description} of.
+      User: The {E1-CC2__names__noun} is {E1-CC2#} {E1-CC2__units}, the {E2-CC2__names__noun} is {E2-CC2#} {E2-CC2__units}, and the {f1-CC2__names__noun} is {f1-CC2#} {f1-CC2__units}.
+      Assistant: The {SMILES__description} of the molecule is {SMILES#}.
+    - |-
+      User: I want to design a {#molecule|molecule|compound!} that has a {E1-CC2__names__noun} of {E1-CC2#} {E1-CC2__units} and a {E2-CC2__names__noun} of {E2-CC2#} {E2-CC2__units}.
+      Assistant: {#Cool, |Awesome, |Great, |That sounds interesting, |!}{#Do you have any other constraints?|Do you have other requirements?|What else should I take into account?!}
+      User: {#No, |Nope, |No, I don't, |!}I only want to know the {SMILES__description} of the molecule.
+      Assistant: I {#recommend|suggest|propose|advise!} the {#molecule|molecule|compound!} with the {SMILES__description} {SMILES#}.
+    - |-
+      User: I want to design a {#molecule|molecule|compound!} that has a {E1-CC2__names__noun} of {E1-CC2#} {E1-CC2__units} and a {E2-CC2__names__noun} of {E2-CC2#} {E2-CC2__units}.
+      Assistant: {#Cool, |Awesome, |Great, |That sounds interesting, |!}{#Do you have any other constraints?|Do you have other requirements?|What else should I take into account?!}
+      User: {#Yes, |Yeah, |Yep, |Indeed, |!}I {#want|would like!} the {f1-CC2__names__noun} to be {f1-CC2#} {f1-CC2__units}.
+      Assistant: I {#recommend|suggest|propose|advise!} the {#molecule|molecule|compound!} with the {SMILES__description} {SMILES#}.

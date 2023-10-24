@@ -10,6 +10,7 @@ def process():
     df["is_longer_than_allowed"] = df["mol2000"].apply(is_longer_than_allowed)
     df = df[~df["is_longer_than_allowed"]]
     print(len(df))
+    df = df.replace("RDKit", "ChemNLP")
     df.to_csv("data_clean.csv", index=False)
 
 

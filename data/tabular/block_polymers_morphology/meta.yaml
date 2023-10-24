@@ -6,53 +6,54 @@ targets:
     - id: phase1
       description: experimentally observed phase
       type: text
-      names: 
-        - noun: phase
-        - noun: experimentally observed phase
-    - id: T 
-      description: temperature of measurement 
-      type: continuous 
+      names:
+          - noun: phase
+          - noun: experimentally observed phase
+    - id: T
+      description: temperature of measurement
+      type: continuous
       significant_digits: 0
       units: K
-    - id: Mn 
+    - id: Mn
       description: number-average molar mass
-      type: continuos 
+      type: continuos
       units: g/mol
       significant_digits: 0
-      names: 
-        - noun: number-average molar mass
-        - noun: Mn
-        - noun: number-average molar mass (Mn)
-    - id: f1 
+      names:
+          - noun: number-average molar mass
+          - noun: Mn
+          - noun: number-average molar mass (Mn)
+    - id: f1
       description: volume fraction of block type 1
       type: continuous
       significant_digits: 2
-      names: 
-        - noun: volume fraction of block type 1
+      names:
+          - noun: volume fraction of block type 1
     - id: Mw
       description: mass-average molar mass
-      type: text 
-      names: 
-        - noun: mass-average molar mass
-        - noun: mass-average molar mass (Mw)
+      type: text
+      names:
+          - noun: mass-average molar mass
+          - noun: mass-average molar mass (Mw)
     - id: D
       description: dispersity
       type: text
-      names: 
-        - noun: dispersity
-        - noun: dispersity (D)
+      names:
+          - noun: dispersity
+          - noun: dispersity (D)
 identifiers:
     - id: BigSMILES
       type: string
       description: BigSMILES
-license:  CC BY 4.0
+license: CC BY 4.0
 links:
     - url: https://github.com/olsenlabmit/BCDB/tree/main
       description: original data source
 num_points: 4438
 templates:
-    - The {#polymer|di-block copolymer|copolymer!} with BigSMILES {BigSMILES#}, {Mn__names__noun} of {Mn#} {Mn__units}, {f1__names__noun} of {f1#}{Mw#}{D#} was {#measured|analyzed|studied!} at {T#} {T__units} and found to be in the {phase1#} phase.
-    - |- 
+    - The {#polymer|di-block copolymer|copolymer!} with BigSMILES {BigSMILES#}, {Mn__names__noun} of {Mn#} {Mn__units}, {f1__names__noun} of {f1#}{Mw#}{D#}
+      was {#measured|analyzed|studied!} at {T#} {T__units} and found to be in the {phase1#} phase.
+    - |-
       Question: If I have a {#polymer|di-block copolymer|copolymer!} with {Mn__names__noun} of {Mn#} {Mn__units}, {f1__names__noun} of {f1#}{Mw#}{D#}, what phase will it be in at {T#} {T__units}?
       Answer: The polymer will be in the {phase1#} phase.
     - |-
@@ -65,5 +66,3 @@ templates:
       Assistant: {#Cool, |Awesome, |Great, |That sounds interesting, |!}{#Do you have any other constraints?|Do you have other requirements?|What else should I take into account?!}
       User: The {Mn__names__noun} should be {Mn#} {Mn__units}, the {f1__names__noun} should be {f1#}.
       Assistant: I {#recommend|suggest|propose|advise!} the {#polymer|di-block copolymer|copolymer!} with BigSMILES {BigSMILES#}{Mw#}{D#}.
-
-    

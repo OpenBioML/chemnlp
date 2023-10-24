@@ -1,7 +1,7 @@
 ---
 name: solubility_aqsoldb
 description: |-
-    Aqeuous solubility measures a drug's ability to dissolve in water.
+    Aqueous solubility measures a drug's ability to dissolve in water.
     Poor water solubility could lead to slow drug absorptions, inadequate bioavailablity
     and even induce toxicity. More than 40 percent of new chemical entities are
     not soluble.
@@ -11,10 +11,9 @@ targets:
       units: log(mol/L)
       type: continuous
       names:
-          - noun: aqeuous solubility
-          - noun: water solubility
-          - noun: ability of a drug to dissolve in a water
-          - adjective: dissolves in a water
+          - noun: aqueous solubility (at room temperature)
+          - noun: solubility in water (at room temperature)
+          - noun: water-solubility at room temperature
       uris:
           - http://purl.jp/bio/4/id/200906006880450101
           - http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C60821

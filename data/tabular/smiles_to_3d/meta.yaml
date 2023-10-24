@@ -51,7 +51,7 @@ identifiers:
       type: SMILES
       description: SMILES
 license: CC BY 4.0
-num_points: 133631
+num_points: 133885
 links:
     - url: https://data.dtu.dk/articles/dataset/xyz_files_of_the_QM9_molecules/19780570
       description: original data source
