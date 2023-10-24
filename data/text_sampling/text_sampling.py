@@ -125,7 +125,24 @@ exclude_from_standard_tabular_text_templates = [
     "sr_p53_tox21",  # boolean target data
     "tyrosyl-dna_phosphodiesterase_butkiewicz",  # boolean target data
     "zinc",  # SMILES only, has no target
-    "smiles_to_3d"
+    "smiles_to_3d",
+    "MUV_466",  # boolean target data
+    "MUV_548",  # boolean target data
+    "MUV_600",  # boolean target data
+    "MUV_644",  # boolean target data
+    "MUV_652",  # boolean target data
+    "MUV_689",  # boolean target data
+    "MUV_692",  # boolean target data
+    "MUV_712",  # boolean target data
+    "MUV_713",  # boolean target data
+    "MUV_733",  # boolean target data
+    "MUV_737",  # boolean target data
+    "MUV_810",  # boolean target data
+    "MUV_832",  # boolean target data
+    "MUV_846",  # boolean target data
+    "MUV_852",  # boolean target data
+    "MUV_858",  # boolean target data
+    "MUV_859"  # boolean target data
     # "h2_storage_materials",  # only IUPAC identifier, more than one target, LOW PRIO: has only 30 samples
 ]
 
