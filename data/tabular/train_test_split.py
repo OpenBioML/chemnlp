@@ -40,7 +40,7 @@ REPRESENTATION_LIST = [
     "InChI",
     "InChIKey",
     "Compositions",
-    "Sentence"
+    "Sentence",
 ]
 
 
@@ -196,6 +196,7 @@ def rewrite_data_with_splits(
 
 TRACKED_DATASETS = []
 
+
 def per_repr(
     repr_col: str,
     seed: int = 42,
@@ -222,7 +223,7 @@ def per_repr(
     # paths_to_data = filtered_paths
 
     REPRESENTATION_LIST = []
- 
+
     for path in paths_to_data:
         df = pd.read_csv(path)
 
@@ -230,7 +231,6 @@ def per_repr(
             print("Processing", path.split("/")[0])
             TRACKED_DATASETS.append(path)
             REPRESENTATION_LIST.extend(df[repr_col].to_list())
-
 
     REPR_DF = pd.DataFrame()
     REPR_DF[repr_col] = list(set(REPRESENTATION_LIST))
@@ -266,7 +266,6 @@ def per_repr(
 
     # merge train and test across all datasets
     merge = pd.concat([train_df, test_df, valid_df], axis=0)
-    print(merge)
     # rewrite data_clean.csv for each dataset
     rewrite_data_with_splits(
         csv_paths=paths_to_data,
@@ -286,7 +285,6 @@ def cli(
     override: bool = False,
     check: bool = True,
 ):
-    
     for representation in tqdm(REPRESENTATION_LIST):
         if representation == "SMILES":
             print("Processing priority representation: SMILES")
