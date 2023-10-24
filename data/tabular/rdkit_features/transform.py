@@ -1,19 +1,24 @@
-from datasets import load_dataset
-import pandas as pd
 import fire
+import pandas as pd
+from datasets import load_dataset
 
 
 def process(debug=False):
-    dataset = load_dataset("maykcaldas/smiles-transformers")
     if debug:
-        dataset = dataset.select(range(100))
-    train_pandas = dataset["train"].to_pandas()
-    test_pandas = dataset["test"].to_pandas()
-    valid_pandas = dataset["validation"].to_pandas()
+        dataset = load_dataset("maykcaldas/smiles-transformers", split="train[:100]")
+        train_pandas = dataset.to_pandas()
+        test_pandas = dataset.to_pandas()
+        valid_pandas = dataset.to_pandas()
+    else:
+        dataset = load_dataset("maykcaldas/smiles-transformers")
+        train_pandas = dataset["train"].to_pandas()
+        test_pandas = dataset["test"].to_pandas()
+        valid_pandas = dataset["validation"].to_pandas()
     train_pandas["split"] = "train"
     test_pandas["split"] = "test"
     valid_pandas["split"] = "valid"
     df = pd.concat([train_pandas, test_pandas, valid_pandas])
+    print(df.columns)
     df.rename(columns={"text": "SMILES"}, inplace=True)
 
     print(len(df))
