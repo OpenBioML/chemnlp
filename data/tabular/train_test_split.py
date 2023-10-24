@@ -39,7 +39,8 @@ REPRESENTATION_LIST = [
     "IUPAC",
     "InChI",
     "InChIKey",
-    "compositions",
+    "Compositions",
+    "Sentence"
 ]
 
 
@@ -155,8 +156,6 @@ def rewrite_data_with_splits(
 
     for path in csv_paths:
         read_dataset = pd.read_csv(path)
-        if repr_col != "SMILES" and "SMILES" in read_dataset.columns:
-            return
 
     if check:
         train_smiles = set(train_test_df.query("split == 'train'")[repr_col].to_list())
@@ -174,7 +173,7 @@ def rewrite_data_with_splits(
                 print(f"No split column in {path}")
 
             merged_data = pd.merge(read_dataset, train_test_df, on=repr_col, how="left")
-            merged_data = merged_data.dropna()
+            # merged_data = merged_data.dropna()
             if override:
                 merged_data.to_csv(path, index=False)
             else:
@@ -193,9 +192,9 @@ def rewrite_data_with_splits(
                 )
                 if len(train_smiles.intersection(test_split_smiles)) > 0:
                     raise ValueError("Split failed, train and test overlap")
-        else:
-            print(f"Skipping {path} as it does not contain {repr_col} column")
 
+
+TRACKED_DATASETS = []
 
 def per_repr(
     repr_col: str,
@@ -210,29 +209,33 @@ def per_repr(
     paths_to_data = glob(path)
 
     # uncomment the following lines for debugging on a subset of data
-    filtered_paths = []
-    for path in paths_to_data:
-        if "flashpoint" in path:
-            filtered_paths.append(path)
-        elif "freesolv" in path:
-            filtered_paths.append(path)
-        elif "peptide" in path:
-            filtered_paths.append(path)
-        elif "bicerano_dataset" in path:
-            filtered_paths.append(path)
-    paths_to_data = filtered_paths
+    # filtered_paths = []
+    # for path in paths_to_data:
+    #     if "flashpoint" in path:
+    #         filtered_paths.append(path)
+    #     elif "BBBP" in path:
+    #         filtered_paths.append(path)
+    #     elif "peptide" in path:
+    #         filtered_paths.append(path)
+    #     elif "bicerano_dataset" in path:
+    #         filtered_paths.append(path)
+    # paths_to_data = filtered_paths
 
     REPRESENTATION_LIST = []
-
-    for path in tqdm(paths_to_data):
+ 
+    for path in paths_to_data:
         df = pd.read_csv(path)
-        if repr_col in df.columns:
+
+        if repr_col in df.columns and path not in TRACKED_DATASETS:
+            print("Processing", path.split("/")[0])
+            TRACKED_DATASETS.append(path)
             REPRESENTATION_LIST.extend(df[repr_col].to_list())
+
 
     REPR_DF = pd.DataFrame()
     REPR_DF[repr_col] = list(set(REPRESENTATION_LIST))
 
-    if repr_col == "SMILES":
+    if "SMILES" in REPR_DF.columns:
         split = create_scaffold_split(
             REPR_DF, seed=seed, frac=[train_size, val_size, test_size]
         )
@@ -263,6 +266,7 @@ def per_repr(
 
     # merge train and test across all datasets
     merge = pd.concat([train_df, test_df, valid_df], axis=0)
+    print(merge)
     # rewrite data_clean.csv for each dataset
     rewrite_data_with_splits(
         csv_paths=paths_to_data,
@@ -282,7 +286,12 @@ def cli(
     override: bool = False,
     check: bool = True,
 ):
-    for representation in REPRESENTATION_LIST:
+    
+    for representation in tqdm(REPRESENTATION_LIST):
+        if representation == "SMILES":
+            print("Processing priority representation: SMILES")
+        else:
+            print("Processing datasets with the representation column:", representation)
         per_repr(
             representation, seed, train_size, val_size, test_size, path, override, check
         )
