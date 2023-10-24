@@ -18,6 +18,36 @@ def process(debug=False):
     test_pandas["split"] = "test"
     valid_pandas["split"] = "valid"
     df = pd.concat([train_pandas, test_pandas, valid_pandas])
+    df.dropna(inplace=True)
+    df[
+        [
+            "NumHDonors",
+            "NumHAcceptors",
+            "NumHeteroatoms",
+            "RingCount",
+            "NumRotatableBonds",
+            "NumAromaticBonds",
+            "NumAcidGroups",
+            "NumBasicGroups",
+        ]
+    ] = df[
+        [
+            "NumHDonors",
+            "NumHAcceptors",
+            "NumHeteroatoms",
+            "RingCount",
+            "NumRotatableBonds",
+            "NumAromaticBonds",
+            "NumAcidGroups",
+            "NumBasicGroups",
+        ]
+    ].astype(
+        int
+    )
+
+    df["MolLogP"] = df["MolLogP"].astype(float)
+    df["Apol"] = df["Apol"].astype(float)
+
     print(df.columns)
     df.rename(columns={"text": "SMILES"}, inplace=True)
 
