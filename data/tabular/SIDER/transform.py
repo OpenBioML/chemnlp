@@ -37,7 +37,6 @@ def load_dataset() -> pd.DataFrame:
         "https://deepchemdata.s3-us-west-1.amazonaws.com/datasets/sider.csv.gz"
     )
     sider = sider.drop(columns=["Product issues", "Social circumstances"])
-    sider.to_csv("data_raw.csv", index=False)
     return sider
 
 
