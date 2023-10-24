@@ -1,7 +1,7 @@
 ---
 name: thermosol
 description: |-
-    Solubility in pH 7.4 buffer using solid starting material using the method described in J. Assoc. Lab. Autom. 2011, 16, 276-284. 
+    Solubility in pH 7.4 buffer using solid starting material using the method described in J. Assoc. Lab. Autom. 2011, 16, 276-284.
     Experimental range 0.10 to 1500 uM
 targets:
     - id: target
@@ -55,12 +55,12 @@ bibtex:
       title = {MoleculeNet: a benchmark for molecular machine learning},
       journal = {Chemical Science}
 templates:
-  - The {target__names__noun} of the {#compound|drug|chemical|molecule!} with the {SMILES__description} {SMILES#} is {target#} {target__units}.
-  - |- 
-    Question: What is the {target__names__noun} of the {#compound|drug|chemical|molecule!} with the {SMILES__description} {SMILES#}?
-    Answer: {target#} {target__units}.
-  - |-
-    User: I want to {#design|discover|find|identify|!} a {#compound|drug|chemical|molecule!} with a particular {target__names__noun}.
-    Assistant: {#Cool, |Awesome, |Great, |That sounds interesting, |!}I would need to know the {target__names__noun} of the {#compound|drug|chemical|molecule!} you want to design.
-    User: The {target__names__noun} should be {target#} {target__units}.
-    Assistant: I {#recommend|suggest|propose|advise|!} the {#compound|drug|chemical|molecule!} with the {SMILES__description} {SMILES#}. 
+    - The {target__names__noun} of the {#compound|drug|chemical|molecule!} with the {SMILES__description} {SMILES#} is {target#} {target__units}.
+    - |-
+      Question: What is the {target__names__noun} of the {#compound|drug|chemical|molecule!} with the {SMILES__description} {SMILES#}?
+      Answer: {target#} {target__units}.
+    - |-
+      User: I want to {#design|discover|find|identify|!} a {#compound|drug|chemical|molecule!} with a particular {target__names__noun}.
+      Assistant: {#Cool, |Awesome, |Great, |That sounds interesting, |!}I would need to know the {target__names__noun} of the {#compound|drug|chemical|molecule!} you want to design.
+      User: The {target__names__noun} should be {target#} {target__units}.
+      Assistant: I {#recommend|suggest|propose|advise|!} the {#compound|drug|chemical|molecule!} with the {SMILES__description} {SMILES#}.
