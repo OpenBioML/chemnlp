@@ -1,0 +1,66 @@
+---
+name: thermosol
+description: |-
+    Solubility in pH 7.4 buffer using solid starting material using the method described in J. Assoc. Lab. Autom. 2011, 16, 276-284. 
+    Experimental range 0.10 to 1500 uM
+targets:
+    - id: target
+      description: aqueous solubility
+      units: log(microM)
+      type: continuous
+      significant_digits: 3
+      names:
+          - noun: aqueous solubility in pH 7.4 buffer at 20 deg C
+          - noun: solubility in aqueous pH 7.4 buffer at 20 deg C
+      uris:
+          - http://purl.jp/bio/4/id/200906006880450101
+          - http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C60821
+identifiers:
+    - id: SMILES
+      type: SMILES
+      description: SMILES
+license: CC BY-SA 3.0 DEED
+links:
+    - url: https://journals.sagepub.com/doi/10.1016/j.jala.2010.10.002
+      description: corresponding publication
+    - url: https://www.ebi.ac.uk/chembl/assay_report_card/CHEMBL3301364/
+      description: corresponding assay report card
+num_points: 1763
+bibtex:
+    - |-
+      @article{Wenlock_2011,
+        doi = {10.1016/j.jala.2010.10.002},
+        url = {https://doi.org/10.1016%2Fj.jala.2010.10.002},
+        year = 2011,
+        month = {aug},
+        publisher = {{SAGE} Publications},
+        volume = {16},
+        number = {4},
+        pages = {276--284},
+        author = {Mark C. Wenlock and Rupert P. Austin and Tim Potter and Patrick Barton},
+        title = {A Highly Automated Assay for Determining the Aqueous Equilibrium Solubility of Drug Discovery Compounds},
+        journal = {JALA: Journal of the Association for Laboratory Automation}: Journal of the Association for Laboratory Automation}
+      }
+    - |-
+      @article{Wu2018,
+      doi = {10.1039/c7sc02664a},
+      url = {https://doi.org/10.1039/c7sc02664a},
+      year = {2018},
+      publisher = {Royal Society of Chemistry (RSC)},
+      volume = {9},
+      number = {2},
+      pages = {513--530},
+      author = {Zhenqin Wu and Bharath Ramsundar and Evan~N. Feinberg and Joseph Gomes
+      and Caleb Geniesse and Aneesh S. Pappu and Karl Leswing and Vijay Pande},
+      title = {MoleculeNet: a benchmark for molecular machine learning},
+      journal = {Chemical Science}
+templates:
+  - The {target__names__noun} of the {#compound|drug|chemical|molecule!} with the {SMILES__description} {SMILES#} is {target#} {target__units}.
+  - |- 
+    Question: What is the {target__names__noun} of the {#compound|drug|chemical|molecule!} with the {SMILES__description} {SMILES#}?
+    Answer: {target#} {target__units}.
+  - |-
+    User: I want to {#design|discover|find|identify|!} a {#compound|drug|chemical|molecule!} with a particular {target__names__noun}.
+    Assistant: {#Cool, |Awesome, |Great, |That sounds interesting, |!}I would need to know the {target__names__noun} of the {#compound|drug|chemical|molecule!} you want to design.
+    User: The {target__names__noun} should be {target#} {target__units}.
+    Assistant: I {#recommend|suggest|propose|advise|!} the {#compound|drug|chemical|molecule!} with the {SMILES__description} {SMILES#}. 
