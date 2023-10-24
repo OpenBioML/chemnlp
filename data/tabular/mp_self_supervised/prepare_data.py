@@ -27,7 +27,7 @@ def compile_info(ciffile):
 
 if __name__ == "__main__":
     all_structures = glob(
-        "/Users/kevinmaikjablonka/LSMO Dropbox/Kevin Jablonka/small_tests/download_mp/structures/optimade_materialsproject_org/*.cif"
+        "structures/*.cif" #assumes structures have been downloaded
     )
 
     data = []
