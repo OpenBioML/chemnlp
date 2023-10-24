@@ -1,10 +1,11 @@
-from pymatgen.core import Structure
-from glob import glob
-from chemnlp.data.convert import cif_file_to_string, is_longer_than_allowed
-
-from tqdm import tqdm
 import concurrent.futures
+from glob import glob
+
 import pandas as pd
+from pymatgen.core import Structure
+from tqdm import tqdm
+
+from chemnlp.data.convert import cif_file_to_string, is_longer_than_allowed
 
 data = []
 
@@ -26,9 +27,7 @@ def compile_info(ciffile):
 
 
 if __name__ == "__main__":
-    all_structures = glob(
-        "structures/*.cif" #assumes structures have been downloaded
-    )
+    all_structures = glob("structures/*.cif")  # assumes structures have been downloaded
 
     data = []
     with concurrent.futures.ProcessPoolExecutor() as executor:
