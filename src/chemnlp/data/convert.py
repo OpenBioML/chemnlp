@@ -22,15 +22,19 @@ def cif_file_to_string(
         symprec (float, optional): If not None, symmetrizes the structure with the given
             symmetry tolerance. In this case, the space group (and other symmetry info)
             will be in the CIF. Defaults to None.
-        significant_figures (int, optional): No. of significant figures to write. Defaults to 3.
+        significant_figures (int, optional): No. of significant figures to write.
+            Defaults to 3.
 
     Returns:
         str: String representation of the cif file
     """
     s = Structure.from_file(path)
+    return _structure_to_cif(s, primitive, symprec, significant_figures)
+
+
+def _structure_to_cif(s, primitive, symprec, significant_figures):
     if primitive:
         s = s.get_primitive_structure()
-
     return (
         "[CIF]\n"
         + str(
@@ -75,13 +79,17 @@ def smiles_to_3Dstring(
         conformer_kwargs = {}
     mol, _conformer = _get_conformer(smiles, **conformer_kwargs)
     if outformat == "xyz":
-        return "[XYZ]\n" + Chem.MolToXYZBlock(mol, confId=-1) + "[\XYZ]"  # noqa
+        return _write_xyz(mol)
     elif outformat == "V2000MolBlock":
         return _write_mol2000(mol)
     elif outformat == "V3000MolBlock":
         return _write_mol3000(mol)
     else:
         raise ValueError(f"outformat {outformat} not supported")
+
+
+def _write_xyz(mol):
+    return "[XYZ]\n" + Chem.MolToXYZBlock(mol, confId=-1) + "[\XYZ]"  # noqa
 
 
 def _write_mol2000(mol):
@@ -96,7 +104,8 @@ def get_token_count(string):
     from transformers import GPTNeoXTokenizerFast
 
     tokenizer = GPTNeoXTokenizerFast.from_pretrained("EleutherAI/gpt-neox-20b")
-    return len(tokenizer(string))
+    tokenized = tokenizer(string)
+    return len(tokenized["input_ids"])
 
 
 def is_longer_than_allowed(string, tolerance=0.8, window=2000):
