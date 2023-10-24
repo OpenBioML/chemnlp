@@ -16,7 +16,7 @@ targets:
       units: K
     - id: Mn
       description: number-average molar mass
-      type: continuos
+      type: continuous
       units: g/mol
       significant_digits: 0
       names:
