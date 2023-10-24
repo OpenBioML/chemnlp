@@ -6,7 +6,7 @@ import numpy as np
 
 def process():
     df = pd.read_json(
-        "/Users/kevinmaikjablonka/LSMO Dropbox/Kevin Jablonka/mofdscribe_data/qmof/v0.0.1/data.json"  # "https://huggingface.co/datasets/kjappelbaum/chemnlp-qmof-data/resolve/main/qmof_data.json"
+        "https://huggingface.co/datasets/kjappelbaum/chemnlp-qmof-data/resolve/main/qmof_data.json"
     )
 
     df.dropna(
