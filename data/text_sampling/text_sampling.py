@@ -74,6 +74,7 @@ exclude_from_standard_tabular_text_templates = [
     "bioavailability_ma_et_al",  # because it is boolean target data
     "blood_brain_barrier_martins_et_al",  # because it is boolean target data
     "carcinogens",  # because it is boolean target data
+    "core_mof_no_topo",
     "cav3_t-type_calcium_channels_butkiewicz",  # because it is boolean target data
     "chebi_20",  # target is text description
     "chembl_v29",  # text only, no SMILES
@@ -399,7 +400,9 @@ class TemplateSampler:
         self.meta = load_yaml(self.path_data_meta)
 
         # dataframe from csv
-        df = pd.read_csv(self.path_data_csv, low_memory=False)
+        df = pd.read_csv(self.path_data_csv, low_memory=False).replace(
+            "REPLACENULL", ""
+        )
 
         def check_targets_and_identifiers(meta: dict, df: pd.DataFrame):
             all_identifiers = [x["id"] for x in meta["identifiers"]] + [
@@ -458,6 +461,7 @@ class TemplateSampler:
                 self.meta["targets"].append(additional_targets[col])
 
         # assert not df.duplicated().sum()
+
         df.drop_duplicates(inplace=True)
         if "split" not in df.columns:
             df["split"] = "train"
@@ -987,7 +991,7 @@ if __name__ == "__main__":
     # path_data_dir = path_data_dir[index:]
 
     for path in path_data_dir:
-        # if "rdkit_features" not in path:
+        # if "qm8" not in path:
         #     continue
         # subselect one path
         # if path.find("data/tabular/") == -1: continue
