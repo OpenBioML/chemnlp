@@ -7,7 +7,6 @@ ALT_DESCRIPTIONS = [
     "Liver and Gallbladder Disorders",
     "Metabolic and Nutritional Disorders",
     "Ophthalmic Disorders",
-    "Medical Investigations",
     "Muscle and Joint Disorders",
     "Digestive System Disorders",
     "Disorders of the Immune System",
@@ -28,7 +27,7 @@ ALT_DESCRIPTIONS = [
     "Ear and Inner Ear Disorders",
     "Cardiovascular Disorders",
     "Disorders of the Nervous System",
-    "Injuries, Poisonings, and Complications from Procedures",
+    "Injuries and Poisonings",
 ]
 
 
@@ -36,7 +35,9 @@ def load_dataset() -> pd.DataFrame:
     sider = pd.read_csv(
         "https://deepchemdata.s3-us-west-1.amazonaws.com/datasets/sider.csv.gz"
     )
-    sider = sider.drop(columns=["Product issues", "Social circumstances"])
+    sider = sider.drop(
+        columns=["Product issues", "Social circumstances", "Investigations"]
+    )
     return sider
 
 
