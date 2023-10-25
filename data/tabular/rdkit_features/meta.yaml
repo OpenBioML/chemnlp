@@ -11,14 +11,14 @@ targets:
           - noun: chemical formula
           - noun: molecular formula
     - id: NumHDonors
-      type: text
-      significant_digits: 1
+      type: continuos
+      significant_digits: 0
       names:
           - noun: number of hydrogen bond donors
           - noun: number of hydrogen bond donor sites
           - noun: count of hydrogen bond donors
     - id: NumHAcceptors
-      type: text
+      type: continuos
       significant_digits: 0
       names:
           - noun: number of hydrogen bond acceptors
@@ -32,48 +32,48 @@ targets:
           - noun: count of heteroatoms
           - noun: heteroatom count
     - id: RingCount
-      type: text
+      type: continuos
       significant_digits: 0
       names:
           - noun: number of rings
           - noun: count of rings
           - noun: ring count
     - id: NumRotatableBonds
-      type: text
+      type: continuos
       significant_digits: 0
       names:
           - noun: number of rotatable bonds
           - noun: count of rotatable bonds
           - noun: rotatable bond count
     - id: NumAromaticBonds
-      type: text
+      type: continuos
       significant_digits: 0
       names:
           - noun: number of aromatic bonds
           - noun: count of aromatic bonds
           - noun: aromatic bond count
     - id: NumAcidGroups
-      type: text
+      type: continuos
       significant_digits: 0
       names:
           - noun: number of acid groups
           - noun: count of acid groups
           - noun: acid group count
     - id: NumBasicGroups
-      type: text
+      type: continuos
       significant_digits: 0
       names:
           - noun: number of basic groups
           - noun: count of basic groups
           - noun: basic group count
     - id: Apol
-      type: text
+      type: continuos
       significant_digits: 2
       names:
           - noun: sum of atomic polarizabilities
           - noun: total sum of atomic polarizabilities
     - id: MolLogP
-      type: text
+      type: continuos
       significant_digits: 2
       names:
           - noun: Wildman-Crippen LogP value computed using RDKit
@@ -106,46 +106,46 @@ templates:
     - The {MolLogP__names__noun} of the {#molecule|compound|chemical!} with {SMILES__description} {SMILES#} is {MolLogP#}.
     - |-
       User: I want to {#design|create|make|synthesize|analyze!} a {#molecule|compound|chemical!} with a {formula__names__noun} of {formula#}.
-      Assistant: {#Cool, |Nice, |Interesting, |That's interesting, |That is a very interesting question, |!}Do you have some additional {#contraints|requirements|conditions|limitations|!}{# I should take into account| that help me narrow down the search| that I should consider| I should consider| I should take into account|!}?
+      Assistant: {#Cool, do|Nice, do|Interesting, do|That's interesting, do|That is a very interesting question, do|Do!} you have some additional {#constraints|requirements|conditions|limitations|!}{# I should take into account| that help me narrow down the search| that I should consider| I should consider| I should take into account|!}?
       User: {#Yes, |Indeed, |Yeah, |Yea, |Yep, |!}I want the {NumHDonors__names__noun} to be {NumHDonors#}, the {NumHAcceptors__names__noun} to be {NumHAcceptors#}.
       Assistant: {#Then, |In that case, |In that situation, |In that scenario, |!}I {#recommend|suggest|propose|advise|!} the {#molecule|compound|chemical!} with {SMILES__description} {SMILES#}.
     - |-
       Question: What is the {formula__names__noun} of the {#molecule|compound|chemical!} with {SMILES__description} {SMILES#}?
-      Answer: {formula#}.
+      Answer: {formula#}
     - |-
       Question: What is the {NumHDonors__names__noun} of the {#molecule|compound|chemical!} with {SMILES__description} {SMILES#}?
-      Answer: {NumHDonors#}.
+      Answer: {NumHDonors#}
     - |-
       Question: What is the {NumHAcceptors__names__noun} of the {#molecule|compound|chemical!} with {SMILES__description} {SMILES#}?
-      Answer: {NumHAcceptors#}.
+      Answer: {NumHAcceptors#}
     - |-
       Question: What is the {NumHeteroatoms__names__noun} of the {#molecule|compound|chemical!} with {SMILES__description} {SMILES#}?
-      Answer: {NumHeteroatoms#}.
+      Answer: {NumHeteroatoms#}
     - |-
       Question: What is the {RingCount__names__noun} of the {#molecule|compound|chemical!} with {SMILES__description} {SMILES#}?
-      Answer: {RingCount#}.
+      Answer: {RingCount#}
     - |-
       Question: What is the {NumRotatableBonds__names__noun} of the {#molecule|compound|chemical!} with {SMILES__description} {SMILES#}?
-      Answer: {NumRotatableBonds#}.
+      Answer: {NumRotatableBonds#}
     - |-
       Question: What is the {NumAromaticBonds__names__noun} of the {#molecule|compound|chemical!} with {SMILES__description} {SMILES#}?
-      Answer: {NumAromaticBonds#}.
+      Answer: {NumAromaticBonds#}
     - |-
       Question: What is the {NumAcidGroups__names__noun} of the {#molecule|compound|chemical!} with {SMILES__description} {SMILES#}?
-      Answer: {NumAcidGroups#}.
+      Answer: {NumAcidGroups#}
     - |-
       Question: What is the {NumBasicGroups__names__noun} of the {#molecule|compound|chemical!} with {SMILES__description} {SMILES#}?
-      Answer: {NumBasicGroups#}.
+      Answer: {NumBasicGroups#}
     - |-
       Question: What is the {Apol__names__noun} of the {#molecule|compound|chemical!} with {SMILES__description} {SMILES#}?
-      Answer: {Apol#}.
+      Answer: {Apol#}
     - |-
       User: I want to {#design|create|make|synthesize|analyze!} a {#molecule|compound|chemical!} with a {NumHDonors__names__noun} of {NumHDonors#} and a {NumHAcceptors__names__noun} of {NumHAcceptors#}.
-      Assistant: {#Cool, |Nice, |Interesting, |That's interesting, |That is a very interesting question, |!}Do you have some additional {#contraints|requirements|conditions|limitations|!}{# I should take into account| that help me narrow down the search| that I should consider| I should consider| I should take into account|!}?
+      Assistant: {#Cool, do|Nice, do|Interesting, do|That's interesting, do|That is a very interesting question, do|Do!} you have some additional {#constraints|requirements|conditions|limitations|!}{# I should take into account| that help me narrow down the search| that I should consider| I should consider| I should take into account|!}?
       User: {#Yes, |Indeed, |Yeah, |Yea, |Yep, |!}I want the {NumHeteroatoms__names__noun} to be {NumHeteroatoms#}.
       Assistant: {#Then, |In that case, |In that situation, |In that scenario, |!}I {#recommend|suggest|propose|advise|!} the {#molecule|compound|chemical!} with {SMILES__description} {SMILES#}.
     - |-
       User: I want to {#design|create|make|synthesize|analyze!} a {#molecule|compound|chemical!} with a {NumHDonors__names__noun} of {NumHDonors#}, a {NumHAcceptors__names__noun} of {NumHAcceptors#} and a {MolLogP__names__noun} of {MolLogP#}.
-      Assistant: {#Cool, |Nice, |Interesting, |That's interesting, |That is a very interesting question, |!}Do you have some additional {#contraints|requirements|conditions|limitations|!}{# I should take into account| that help me narrow down the search| that I should consider| I should consider| I should take into account|!}?
+      Assistant: {#Cool, do|Nice, do|Interesting, do|That's interesting, do|That is a very interesting question, do|Do!} you have some additional {#constraints|requirements|conditions|limitations|!}{# I should take into account| that help me narrow down the search| that I should consider| I should consider| I should take into account|!}?
       User: {#Yes, |Indeed, |Yeah, |Yea, |Yep, |!}I want the {formula__names__noun} to be {formula#}.
       Assistant: {#Then, |In that case, |In that situation, |In that scenario, |!}I {#recommend|suggest|propose|advise|!} the {#molecule|compound|chemical!} with {SMILES__description} {SMILES#}.
