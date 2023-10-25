@@ -222,7 +222,7 @@ def per_repr(
     #         filtered_paths.append(path)
     # paths_to_data = filtered_paths
 
-    REPRESENTATION_LIST = []
+    representations = []
 
     for path in paths_to_data:
         df = pd.read_csv(path)
@@ -230,28 +230,28 @@ def per_repr(
         if repr_col in df.columns and path not in TRACKED_DATASETS:
             print("Processing", path.split("/")[0])
             TRACKED_DATASETS.append(path)
-            REPRESENTATION_LIST.extend(df[repr_col].to_list())
+            representations.extend(df[repr_col].to_list())
 
-    REPR_DF = pd.DataFrame()
-    REPR_DF[repr_col] = list(set(REPRESENTATION_LIST))
+    repr_df = pd.DataFrame()
+    repr_df[repr_col] = list(set(representations))
 
-    if "SMILES" in REPR_DF.columns:
+    if "SMILES" in repr_df.columns:
         split = create_scaffold_split(
-            REPR_DF, seed=seed, frac=[train_size, val_size, test_size]
+            repr_df, seed=seed, frac=[train_size, val_size, test_size]
         )
     else:
         split_ = pd.DataFrame(
             np.random.choice(
                 ["train", "test", "valid"],
-                size=len(REPR_DF),
+                size=len(repr_df),
                 p=[1 - val_size - test_size, test_size, val_size],
             )
         )
 
-        REPR_DF["split"] = split_
-        train = REPR_DF.query("split == 'train'").reset_index(drop=True)
-        test = REPR_DF.query("split == 'test'").reset_index(drop=True)
-        valid = REPR_DF.query("split == 'valid'").reset_index(drop=True)
+        repr_df["split"] = split_
+        train = repr_df.query("split == 'train'").reset_index(drop=True)
+        test = repr_df.query("split == 'test'").reset_index(drop=True)
+        valid = repr_df.query("split == 'valid'").reset_index(drop=True)
 
         split = {"train": train, "test": test, "valid": valid}
 
