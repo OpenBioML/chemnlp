@@ -555,7 +555,7 @@ class TemplateSampler:
         ][0]
         data_type = var_dict["type"]
         if data_type == "continuous":
-            assert isinstance(out, float)
+            assert isinstance(out, (float, int)), f"out is not a float: {out}"
             significant_digits = var_dict.get(
                 "significant_digits", DEFAULT_SIGNIFICANT_DIGITS
             )
@@ -987,7 +987,7 @@ if __name__ == "__main__":
     # path_data_dir = path_data_dir[index:]
 
     for path in path_data_dir:
-        # if "smiles_to_3d" not in path:
+        # if "rdkit_features" not in path:
         #     continue
         # subselect one path
         # if path.find("data/tabular/") == -1: continue
