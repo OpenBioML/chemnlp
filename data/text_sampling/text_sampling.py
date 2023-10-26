@@ -559,7 +559,7 @@ class TemplateSampler:
         ][0]
         data_type = var_dict["type"]
         if data_type == "continuous":
-            assert isinstance(out, (float, int)), f"out is not a float: {out}"
+            assert isinstance(out, (float, int)), f"out is not a number (int or float): {out}"
             significant_digits = var_dict.get(
                 "significant_digits", DEFAULT_SIGNIFICANT_DIGITS
             )

@@ -11,69 +11,69 @@ targets:
           - noun: chemical formula
           - noun: molecular formula
     - id: NumHDonors
-      type: continuos
+      type: continuous
       significant_digits: 0
       names:
           - noun: number of hydrogen bond donors
           - noun: number of hydrogen bond donor sites
           - noun: count of hydrogen bond donors
     - id: NumHAcceptors
-      type: continuos
+      type: continuous
       significant_digits: 0
       names:
           - noun: number of hydrogen bond acceptors
           - noun: number of hydrogen bond acceptor sites
           - noun: count of hydrogen bond acceptors
     - id: NumHeteroatoms
-      type: continuos
+      type: continuous
       significant_digits: 0
       names:
           - noun: number of heteroatoms
           - noun: count of heteroatoms
           - noun: heteroatom count
     - id: RingCount
-      type: continuos
+      type: continuous
       significant_digits: 0
       names:
           - noun: number of rings
           - noun: count of rings
           - noun: ring count
     - id: NumRotatableBonds
-      type: continuos
+      type: continuous
       significant_digits: 0
       names:
           - noun: number of rotatable bonds
           - noun: count of rotatable bonds
           - noun: rotatable bond count
     - id: NumAromaticBonds
-      type: continuos
+      type: continuous
       significant_digits: 0
       names:
           - noun: number of aromatic bonds
           - noun: count of aromatic bonds
           - noun: aromatic bond count
     - id: NumAcidGroups
-      type: continuos
+      type: continuous
       significant_digits: 0
       names:
           - noun: number of acid groups
           - noun: count of acid groups
           - noun: acid group count
     - id: NumBasicGroups
-      type: continuos
+      type: continuous
       significant_digits: 0
       names:
           - noun: number of basic groups
           - noun: count of basic groups
           - noun: basic group count
     - id: Apol
-      type: continuos
+      type: continuous
       significant_digits: 2
       names:
           - noun: sum of atomic polarizabilities
           - noun: total sum of atomic polarizabilities
     - id: MolLogP
-      type: continuos
+      type: continuous
       significant_digits: 2
       names:
           - noun: Wildman-Crippen LogP value computed using RDKit
