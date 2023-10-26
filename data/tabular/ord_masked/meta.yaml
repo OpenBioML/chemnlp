@@ -49,4 +49,3 @@ templates:
       Task: Predict the masked component in a {masked_rxn_smiles__names__noun}.
       Description: {masked_rxn_smiles#}
       {#Answer|Solution!}: {missing_component#}
-

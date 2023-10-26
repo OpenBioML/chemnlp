@@ -1,14 +1,13 @@
-from datasets import load_dataset
 import pandas as pd
 
 
-def oxford_comma_join(l):
-    if len(l) == 1:
-        return l[0]
-    elif len(l) == 2:
-        return " and ".join(l)
+def oxford_comma_join(elements):
+    if len(elements) == 1:
+        return elements[0]
+    elif len(elements) == 2:
+        return " and ".join(elements)
     else:
-        return ", ".join(l[:-1]) + ", and " + l[-1]
+        return ", ".join(elements[:-1]) + ", and " + elements[-1]
 
 
 def process():

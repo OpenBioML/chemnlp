@@ -41,15 +41,15 @@ bibtex:
         volume = {50},
         number = {D1},
         pages = {D693--D700},
-        author = {Parit Bansal and Anne Morgat and Kristian B Axelsen 
-        and Venkatesh Muthukrishnan and Elisabeth Coudert and Lucila Aimo 
-        and Nevila Hyka-Nouspikel and Elisabeth Gasteiger and Arnaud Kerhornou 
-        and Teresa Batista Neto and Monica Pozzato and Marie-Claude Blatter 
+        author = {Parit Bansal and Anne Morgat and Kristian B Axelsen
+        and Venkatesh Muthukrishnan and Elisabeth Coudert and Lucila Aimo
+        and Nevila Hyka-Nouspikel and Elisabeth Gasteiger and Arnaud Kerhornou
+        and Teresa Batista Neto and Monica Pozzato and Marie-Claude Blatter
         and Alex Ignatchenko and Nicole Redaschi and Alan Bridge},
         title = {Rhea, the reaction knowledgebase in 2022},
         journal = {Nucleic Acids Research}
       }
-    - |- 
+    - |-
       @article{Alc_ntara_2011,
         doi = {10.1093/nar/gkr1126},
         url = {https://doi.org/10.1093%2Fnar%2Fgkr1126},
@@ -59,25 +59,25 @@ bibtex:
         volume = {40},
         number = {D1},
         pages = {D754--D760},
-        author = {Rafael Alc{\'{a}}ntara and Kristian B. Axelsen 
-        and Anne Morgat and Eugeni Belda and Elisabeth Coudert 
-        and Alan Bridge and Hong Cao and Paula de Matos and Marcus Ennis 
-        and Steve Turner and Gareth Owen and Lydie Bougueleret 
+        author = {Rafael Alc{\'{a}}ntara and Kristian B. Axelsen
+        and Anne Morgat and Eugeni Belda and Elisabeth Coudert
+        and Alan Bridge and Hong Cao and Paula de Matos and Marcus Ennis
+        and Steve Turner and Gareth Owen and Lydie Bougueleret
         and Ioannis Xenarios and Christoph Steinbeck},
         title = {Rhea{\textemdash}a manually curated resource of biochemical reactions},
         journal = {Nucleic Acids Research}
       }
-templates: 
-  - The {RXNSMILES__names__noun} {RXNSMILES#} has the {educt_string__names__noun} {educt_string#} and the {product_string__names__noun} {product_string#}.
-  - The {RXNSMILES__names__noun} {RXNSMILES#} has the {product_string__names__noun} {product_string#} and the {educt_string__names__noun} {educt_string#}.
-  - |- 
-    Question: {#What|Which!} {educt_string__names__noun} are {#needed|required!} to {#produce|synthesize!} the {product_string__names__noun} {product_string#}?
-    Answer: {educt_string#}.
-  - |-
-    Question: {#What|Which!} {product_string__names__noun} are produced from the {educt_string__names__noun} {educt_string#}?
-    Answer: {product_string#}.
-  - |- 
-    User: I {#want|would like to|must|need to!} {#synthesize|produce!} the {product_string__names__noun} {product_string#}.
-    Assistant: {#Cool, is|That's interesting, is|Great, is|Is!} there anything else I can do for you?
-    User: {#Yes, |!}I would like to know the {educt_string__names__noun} I need to produce the {product_string__names__noun} {product_string#}.
-    Assistant: {#I recommend|I suggest|I propose|I advise!} the following {educt_string__names__noun}: {educt_string#}. 
+templates:
+    - The {RXNSMILES__names__noun} {RXNSMILES#} has the {educt_string__names__noun} {educt_string#} and the {product_string__names__noun} {product_string#}.
+    - The {RXNSMILES__names__noun} {RXNSMILES#} has the {product_string__names__noun} {product_string#} and the {educt_string__names__noun} {educt_string#}.
+    - |-
+      Question: {#What|Which!} {educt_string__names__noun} are {#needed|required!} to {#produce|synthesize!} the {product_string__names__noun} {product_string#}?
+      Answer: {educt_string#}.
+    - |-
+      Question: {#What|Which!} {product_string__names__noun} are produced from the {educt_string__names__noun} {educt_string#}?
+      Answer: {product_string#}.
+    - |-
+      User: I {#want|would like to|must|need to!} {#synthesize|produce!} the {product_string__names__noun} {product_string#}.
+      Assistant: {#Cool, is|That's interesting, is|Great, is|Is!} there anything else I can do for you?
+      User: {#Yes, |!}I would like to know the {educt_string__names__noun} I need to produce the {product_string__names__noun} {product_string#}.
+      Assistant: {#I recommend|I suggest|I propose|I advise!} the following {educt_string__names__noun}: {educt_string#}.
