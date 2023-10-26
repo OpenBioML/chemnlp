@@ -1,10 +1,10 @@
-import pandas as pd
-import yaml
-from rdkit import Chem  # 2022.9.5
-import random 
+import random
 
+import pandas as pd
+from rdkit import Chem  # 2022.9.5
 from rxn.chemutils.reaction_equation import rxn_standardization
 from rxn.chemutils.reaction_smiles import parse_any_reaction_smiles
+
 
 def oxford_comma_join(elements):
     try:
@@ -50,12 +50,14 @@ def extract_reaction_info(equation_string):
         "canonical_rxn_smiles": std.to_string(),
         "masked_rxn_smiles": equation.to_string(),
         "missing_component": replaced_element,
-        'rxn_smiles': equation_string,
+        "rxn_smiles": equation_string,
         "educt_string": oxford_comma_join([str(x) for x in std.reactants]),
         "product_string": oxford_comma_join([str(x) for x in std.products]),
     }
 
     return reaction
+
+
 reactant_1_smiles_dict = {
     "6-chloroquinoline": "C1=C(Cl)C=CC2=NC=CC=C12.CCC1=CC(=CC=C1)CC",
     "6-Bromoquinoline": "C1=C(Br)C=CC2=NC=CC=C12.CCC1=CC(=CC=C1)CC",
@@ -119,7 +121,7 @@ def canonicalize_smiles(smi):
 
 
 def make_reaction_smiles(row):
-    precursors = f" {row['reactant1_SMILES']}.{row['reactant2_SMILES']}.{row['catalyst_SMILES']}.{row['ligand_SMILES']}.{row['reagent_SMILES']}.{row['solvent_SMILES']} "
+    precursors = f" {row['reactant1_SMILES']}.{row['reactant2_SMILES']}.{row['catalyst_SMILES']}.{row['ligand_SMILES']}.{row['reagent_SMILES']}.{row['solvent_SMILES']} "  # noqa
     product = "C1=C(C2=C(C)C=CC3N(C4OCCCC4)N=CC2=3)C=CC2=NC=CC=C12"
     #     print(precursors, product)
     can_precursors = Chem.MolToSmiles(
@@ -203,17 +205,17 @@ def get_and_transform_data():
     fn_data_csv = "data_clean.csv"
     df.dropna(
         subset=[
-            'RXNSMILES',
-            'educt_string',
-            'product_string',
-            'missing_component',
-            'masked_rxn_smiles'
+            "RXNSMILES",
+            "educt_string",
+            "product_string",
+            "missing_component",
+            "masked_rxn_smiles",
         ],
-        inplace=True
+        inplace=True,
     )
-    df = df[df['masked_rxn_smiles'].str.contains('MASK')]
-    df.rename(columns={'Product_Yield_PCT_Area_UV': 'yield'}, inplace=True)
-    assert len(df['RXNSMILES'].unique()) == len(df)
+    df = df[df["masked_rxn_smiles"].str.contains("MASK")]
+    df.rename(columns={"Product_Yield_PCT_Area_UV": "yield"}, inplace=True)
+    assert len(df["RXNSMILES"].unique()) == len(df)
     print(len(df))
     df.to_csv(fn_data_csv, index=False)
 
