@@ -107,5 +107,4 @@ def clean_jsonl(path_jsonl_in):
 
 if __name__ == "__main__":
     path_base = ""
-    path_base = "/Users/MMP/Documents/Projects/ft_results_005.jsonl"
     clean_jsonl(path_base)
