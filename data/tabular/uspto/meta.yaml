@@ -1,30 +1,30 @@
 ---
 name: uspto
 description: |-
-  The USPTO dataset is a collection of reaction mined from US patents.
+    The USPTO dataset is a collection of reaction mined from US patents.
 targets:
-  - id: masked_rxn_smiles
-    type: text
-    description: reaction SMILES with one element masked
-    names:
-        - noun: reaction SMILES with one element masked as `MASK`
-        - noun: reaction SMILES with one element hidden as `MASK`
-        - noun: masked reaction SMILES (one component masked as `MASK`)
-        - noun: masked reaction SMILES string (one component masked as `MASK`)
-        - noun: masked RXNSMILES (one component masked as `MASK`)
-  - id: educt_string
-    type: text
-    description: reaction educts
-    names:
-        - noun: reaction educts
-        - noun: educts
-        - noun: starting materials
-  - id: product_string
-    type: text
-    description: reaction products
-    names:
-        - noun: reaction products
-        - noun: products
+    - id: masked_rxn_smiles
+      type: text
+      description: reaction SMILES with one element masked
+      names:
+          - noun: reaction SMILES with one element masked as `MASK`
+          - noun: reaction SMILES with one element hidden as `MASK`
+          - noun: masked reaction SMILES (one component masked as `MASK`)
+          - noun: masked reaction SMILES string (one component masked as `MASK`)
+          - noun: masked RXNSMILES (one component masked as `MASK`)
+    - id: educt_string
+      type: text
+      description: reaction educts
+      names:
+          - noun: reaction educts
+          - noun: educts
+          - noun: starting materials
+    - id: product_string
+      type: text
+      description: reaction products
+      names:
+          - noun: reaction products
+          - noun: products
 identifiers:
     - id: RXNSMILES
       type: RXNSMILES
