@@ -24,7 +24,7 @@ license: CC BY SA 4.0
 links:
     - url: https://github.com/open-reaction-database/ord-data
       description: original data source
-num_points: 30
+num_points: 28
 bibtex:
     - |-
       @article{Kearnes_2021,

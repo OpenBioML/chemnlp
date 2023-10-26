@@ -34,21 +34,21 @@ bibtex:
         volume = {143},
         number = {45},
         pages = {18820--18826},
-        author = {Steven M. Kearnes and Michael R. Maser 
-        and Michael Wleklinski and Anton Kast and Abigail G. Doyle 
-        and Spencer D. Dreher and Joel M. Hawkins 
+        author = {Steven M. Kearnes and Michael R. Maser
+        and Michael Wleklinski and Anton Kast and Abigail G. Doyle
+        and Spencer D. Dreher and Joel M. Hawkins
         and Klavs F. Jensen and Connor W. Coley},
         title = {The Open Reaction Database},
         journal = {J. Am. Chem. Soc.}
       }
-templates: 
-  - |- 
-    User: {#Can you|Could you!} {#tell me|give me|show me!} the {procedure__names__noun} for the {steps_string__names__noun} {steps_string#}?
-    Assistant: {#I propose|I suggest!} the {procedure__names__noun} {procedure#}
-  - |-
-    User: {#Can you|Could you!} {#tell me|give me|show me!} the {steps_string__names__noun} for the {procedure__names__noun} {procedure#}?
-    Assistant: {#I propose|I suggest!} the {steps_string__names__noun} {steps_string#}
-  - |- 
-    Task: Convert a {procedure__names__noun} into a {steps_string__names__noun}.
-    Procedure: {procedure#}
-    Answer: {steps_string#}
+templates:
+    - |-
+      User: {#Can you|Could you!} {#tell me|give me|show me!} the {procedure__names__noun} for the {steps_string__names__noun} {steps_string#}?
+      Assistant: {#I propose|I suggest!} the {procedure__names__noun} {procedure#}
+    - |-
+      User: {#Can you|Could you!} {#tell me|give me|show me!} the {steps_string__names__noun} for the {procedure__names__noun} {procedure#}?
+      Assistant: {#I propose|I suggest!} the {steps_string__names__noun} {steps_string#}
+    - |-
+      Task: Convert a {procedure__names__noun} into a {steps_string__names__noun}.
+      Procedure: {procedure#}
+      Answer: {steps_string#}
