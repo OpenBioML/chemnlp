@@ -992,7 +992,7 @@ if __name__ == "__main__":
 
     for path in path_data_dir:
 #         if "suzuki_miyaura_sach" not in path:
-            continue
+#             continue
         # subselect one path
         # if path.find("data/tabular/") == -1: continue
         # if path.find("data/kg/") == -1: continue
