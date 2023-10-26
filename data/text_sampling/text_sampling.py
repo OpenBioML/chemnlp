@@ -991,8 +991,8 @@ if __name__ == "__main__":
     # path_data_dir = path_data_dir[index:]
 
     for path in path_data_dir:
-        # if "qm8" not in path:
-        #     continue
+        if "suzuki_miyaura_sach" not in path:
+            continue
         # subselect one path
         # if path.find("data/tabular/") == -1: continue
         # if path.find("data/kg/") == -1: continue
