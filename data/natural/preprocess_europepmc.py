@@ -7,7 +7,7 @@ import numpy as np
 # import pandas as pd
 
 STR_CUTOFF = 5000
-GAP_CUTOFF = 5000
+GAP_CUTOFF = 1000
 SENTENCE_END_IDX = -1
 
 
@@ -51,6 +51,7 @@ def clean_text_from_citation_section(text, gap_cutoff=1000, sentence_end_idx=-1)
         if year_number_span_starts[0] > len(text) // 2:
             last_gap = year_number_span_starts[0]
 
+    # get sentence ends
     spans_sentence_end = [x.span() for x in sentence_end.finditer(text[:last_gap])]
     if len(spans_sentence_end) == 0:
         return text
