@@ -1,7 +1,7 @@
 ---
 name: uspto_yield
 description: |-
-  The USPTO dataset is a collection of reaction mined from US patents.
+    The USPTO dataset is a collection of reaction mined from US patents.
 targets:
     - id: yield
       type: continuous
@@ -57,6 +57,6 @@ templates:
       Question: {#What is|What's|What is the|What's the!} {yield__names__noun} of a reaction with the {RXNSMILES__names__noun} {RXNSMILES#}?
       Answer: {yield#}{yield__units}.
     - The {yield__names__noun} of a reaction of {educt_string#} to {product_string#} is {yield#}{yield__units}.
-    - |- 
+    - |-
       Question: {#What is|What's|What is the|What's the!} {yield__names__noun} of a reaction of {educt_string#} to {product_string#}?
       Answer: {yield#}{yield__units}.
