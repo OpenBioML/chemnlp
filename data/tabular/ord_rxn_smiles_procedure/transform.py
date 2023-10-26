@@ -1,5 +1,14 @@
 import pandas as pd
 from huggingface_hub import hf_hub_download
+from rxn.chemutils.reaction_equation import rxn_standardization
+from rxn.chemutils.reaction_smiles import parse_any_reaction_smiles
+
+
+def canoncialize_rxn_smiles(rxn_smiles):
+    try:
+        return rxn_standardization(parse_any_reaction_smiles(rxn_smiles)).to_string()
+    except Exception:
+        return None
 
 
 def process():
@@ -9,11 +18,14 @@ def process():
         repo_type="dataset",
     )
     df = pd.read_json(file)
-    df.rename(columns={"rxn_smiles": "RXNSMILES"}, inplace=True)
+    df["canonical_rxn_smiles"] = df["rxn_smiles"].apply(canoncialize_rxn_smiles)
+    df.rename(columns={"canonical_rxn_smiles": "RXNSMILES"}, inplace=True)
     df = df.dropna(subset=["RXNSMILES", "procedure"])
     df = df.query("RXNSMILES != 'None'")
     # make sure RXNSMILES values have at least 10 characters
     df = df[df["RXNSMILES"].str.len() > 10]
+    # there must be > in the reaction SMILES
+    df = df[df["RXNSMILES"].str.contains(">")]
     df = df.query("procedure != 'None'")
     df.query(
         "steps_string != 'None'", inplace=True
