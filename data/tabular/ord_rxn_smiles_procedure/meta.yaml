@@ -1,0 +1,63 @@
+---
+name: ord_rxn_smiles_procedure
+description: |-
+    The open reaction database is a database of chemical reactions and their conditions
+targets:
+    - id: procedure
+      type: text
+      description: reaction procedure
+      names:
+          - noun: reaction procedure
+          - noun: description of reaction procedure
+          - noun: reaction procedure description
+          - noun: procedure
+identifiers:
+    - id: RXNSMILES
+      type: RXNSMILES
+      description: reaction SMILES
+      names: 
+        - noun: reaction SMILES
+        - noun: reaction SMILES string
+        - noun: RXNSMILES
+        - noun: reaction SMILES (RXNSMILES)
+license: CC BY SA 4.0
+links:
+    - url: https://github.com/open-reaction-database/ord-data
+      description: original data source
+num_points: 76815
+bibtex:
+    - |-
+      @article{Kearnes_2021,
+        doi = {10.1021/jacs.1c09820},
+        url = {https://doi.org/10.1021%2Fjacs.1c09820},
+        year = 2021,
+        month = {nov},
+        publisher = {American Chemical Society ({ACS})},
+        volume = {143},
+        number = {45},
+        pages = {18820--18826},
+        author = {Steven M. Kearnes and Michael R. Maser 
+        and Michael Wleklinski and Anton Kast and Abigail G. Doyle 
+        and Spencer D. Dreher and Joel M. Hawkins 
+        and Klavs F. Jensen and Connor W. Coley},
+        title = {The Open Reaction Database},
+        journal = {J. Am. Chem. Soc.}
+      }
+templates: 
+  - |- 
+    The {RXNSMILES__names__noun} of a reaction with the {procedure__names__noun} below is {RXNSMILES#}.
+    Procedure: {procedure#}
+  - The {procedure__names__noun} of a reaction with the {RXNSMILES__names__noun} {RXNSMILES#} is {procedure#}
+  - |-
+    User: {#I want|I need|I would like!} to run a reaction with the {RXNSMILES__names__noun} {RXNSMILES#}.
+    Assistant: {#Cool, is|That's interesting, is|Great, is|Is!} there anything else I can do for you?
+    User: {#Yes, |!}I would like to know the {procedure__names__noun} I should follow to run the reaction.
+    Assistant: {#I recommend|I suggest|I propose|I advise!} the following procedure: {procedure#}
+  - |-
+    User: {#I want|I need|I would like!} to run a reaction with the {procedure__names__noun} below and now need to know the {RXNSMILES__names__noun}.
+    Procedure: {procedure#}
+    Assistant: The {RXNSMILES__names__noun} of the reaction is {RXNSMILES#}.
+  - |-
+    Task: Extract the {RXNSMILES__names__noun} of a reaction based on its {procedure__names__noun}.
+    Procedure: {procedure#}
+    Answer: {RXNSMILES#}
