@@ -81,7 +81,6 @@ def join_punctuation(token_list):
             elif token in ["(", "[", "{"] and re.match(r"\w", token_list[i - 1]):
                 output.append(" " + token)
             else:
-                print(token_list[i - 1], token)
                 if token_list[i - 1] in [
                     ".",
                     ",",

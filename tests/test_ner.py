@@ -66,5 +66,5 @@ def test_join_punctuation():
     print(sentence)
     assert (
         sentence
-        == "This is a list of tokens with 2.5, and 3 numbers intact semi-colon separated words with decimal numbers split at dots. This is a comma, and a dot (test)."
+        == "This is a list of tokens with 2.5, and 3 numbers intact semi-colon separated words with decimal numbers split at dots. This is a comma, and a dot (test)."  # noqa
     )
