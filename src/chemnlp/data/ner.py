@@ -28,6 +28,13 @@ def group_tokens_by_labels(tokens, labels, join=True):
 
 
 def punctuation_joiner(tokens):
+    # join tokens with spaces
+    joined = " ".join(tokens)
+    joined = cleaner(joined)
+    return joined
+
+
+def cleaner(string):
     # join tokens with spaces and then remove space that should not be there
     # spaces that should not be there are:
     # 1. space before punctuation
@@ -44,11 +51,8 @@ def punctuation_joiner(tokens):
     # 12 no space after opening quote
     # 13 no space before closing quote, e.g. "test " -> "test"
 
-    # join tokens with spaces
-    joined = " ".join(tokens)
-
     # remove space before punctuation
-    joined = re.sub(r"\s([.,;!?])", r"\1", joined)
+    joined = re.sub(r"\s([.,;!?])", r"\1", string)
 
     # remove space after left parenthesis
     joined = re.sub(r"([(])\s", r"\1", joined)
