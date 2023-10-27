@@ -24,7 +24,7 @@ def group_tokens_by_labels(tokens, labels, join=True):
         else:
             grouped_tokens.append(current_group)
 
-    return grouped_tokens
+    return list(set(grouped_tokens))
 
 
 def punctuation_joiner(tokens):
