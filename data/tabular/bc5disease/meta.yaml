@@ -1,30 +1,30 @@
 ---
-name: bc2gm
+name: bc5disease
 description: |-
-  BCGM is a named entity recognition dataset for gene mentions.
+    BC5Disease is a named entity recognition dataset for disease mentions.
 targets:
     - id: matched_words
       description: matched words
       type: text
-      names: 
-        - noun: entity
-        - noun: matched entity
+      names:
+          - noun: entity
+          - noun: matched entity
 identifiers:
     - id: sentence
       description: Sentence
       type: text
-      names: 
-        - noun: sentence
-        - noun: text
+      names:
+          - noun: sentence
+          - noun: text
 license: https://huggingface.co/datasets/bigbio/blurb/blob/main/LICENSE
 links:
     - url: https://huggingface.co/datasets/bigbio/blurb
       description: original dataset
 benchmarks:
-    - name: BCGM
+    - name: bc5chem
       link: hhttps://huggingface.co/datasets/bigbio/blurb
       split_column: split
-num_points: 20131
+num_points: 13755
 bibtex:
     - |-
       @article{gu2021domain,
@@ -45,11 +45,11 @@ bibtex:
           pages = {1--23}
       }
 templates:
-  - |- 
-    Task: Find all the mentions of genes in the {#following|subsequent!} {#text|sentence!}. Return the matching {#words|entities!}. If there is no {#match|gene mention|matching entity!}, return `no match`.
-    {#Sentence|Description!}: {sentence#}
-    Answer: {matched_words#}
-  - |- 
-    User: Does the following text contain mentions of genes? 
-    {#Text: |!}{sentence#}
-    Assistant: {#I found|There is!} {matched_words#}
+    - |-
+      Task: Find all the mentions of diseases in the {#following|subsequent!} {#text|sentence!}. Return the matching {#words|entities!}. If there is no {#match|mention of a disease|matching entity!}, return `no match`.
+      {#Sentence|Description!}: {sentence#}
+      Answer: {matched_words#}
+    - |-
+      User: Does the following text contain mentions of diseases?{# Can you return matches?| Can you output matches?!}
+      {#Text: |!}{sentence#}
+      Assistant: {#I found|There is!} {matched_words#}

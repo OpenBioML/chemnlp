@@ -1,13 +1,13 @@
 import pandas as pd
 from datasets import load_dataset
 
-from chemnlp.data.ner import group_tokens_by_labels, join_punctuation
+from chemnlp.data.ner import group_tokens_by_labels, punctuation_joiner
 from chemnlp.data.utils import oxford_comma_join
 
 
 def process():
     # tokenized at whitespaces and punctuations
-    dataset = load_dataset("bigbio/blurb", "bc2gm")
+    dataset = load_dataset("bigbio/blurb", "bc5disease")
     dfs = []
     for split in ["train", "validation", "test"]:
         df_ = dataset[split].to_pandas()
@@ -25,9 +25,13 @@ def process():
             matched_words.append(oxford_comma_join(words))
 
     df["matched_words"] = matched_words
-    df["sentences"] = df["tokens"].apply(join_punctuation)
+    df["sentence"] = df["tokens"].apply(punctuation_joiner)
 
-    df = df[["sentences", "matched_words"]]
+    df = df[["sentence", "matched_words"]]
+
+    # ensure we have at least 5 words in a sentence
+    df = df[df["sentence"].apply(lambda x: len(x.split()) >= 5)]
+
     print(len(df))
     df.to_csv("data_clean.csv", index=False)
 
