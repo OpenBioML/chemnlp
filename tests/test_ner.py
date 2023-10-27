@@ -1,4 +1,4 @@
-from chemnlp.data.ner import group_tokens_by_labels, join_punctuation
+from chemnlp.data.ner import group_tokens_by_labels, punctuation_joiner
 
 
 def test_tokens_by_label():
@@ -17,7 +17,7 @@ def test_tokens_by_label():
 
     labels = [0, 1, 2, 0, 1, 0]
     grouped_tokens = group_tokens_by_labels(tokens, labels, join=True)
-    assert grouped_tokens == ["bc", "e"]
+    assert grouped_tokens == ["b c", "e"]
 
 
 def test_join_punctuation():
@@ -62,7 +62,7 @@ def test_join_punctuation():
         ")",
         ".",
     ]
-    sentence = join_punctuation(token_list)
+    sentence = punctuation_joiner(token_list)
     print(sentence)
     assert (
         sentence

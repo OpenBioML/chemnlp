@@ -1,7 +1,7 @@
 import pandas as pd
 from datasets import load_dataset
 
-from chemnlp.data.ner import group_tokens_by_labels, join_punctuation
+from chemnlp.data.ner import group_tokens_by_labels, punctuation_joiner
 from chemnlp.data.utils import oxford_comma_join
 
 
@@ -25,7 +25,7 @@ def process():
             matched_words.append(oxford_comma_join(words))
 
     df["matched_words"] = matched_words
-    df["sentences"] = df["tokens"].apply(join_punctuation)
+    df["sentences"] = df["tokens"].apply(punctuation_joiner)
 
     df = df[["sentences", "matched_words"]]
     print(len(df))
