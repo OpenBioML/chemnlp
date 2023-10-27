@@ -3,7 +3,7 @@ from canonicalize_psmiles.canonicalize import canonicalize
 
 
 def transform_data():
-    url = "https://huggingface.co/datasets/AdrianM0/bicerano_polymers/raw/main/HT_MD_polymer_properties.csv"
+    url = "https://huggingface.co/datasets/chemNLP/bicerano_polymers/raw/main/HT_MD_polymer_properties.csv"
     original_data = pd.read_csv(url)
     clean_data = original_data.drop("sl_num", axis=1)
 
