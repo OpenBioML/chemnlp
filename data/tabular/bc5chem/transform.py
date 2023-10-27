@@ -25,9 +25,13 @@ def process():
             matched_words.append(oxford_comma_join(words))
 
     df["matched_words"] = matched_words
-    df["sentences"] = df["tokens"].apply(punctuation_joiner)
+    df["sentence"] = df["tokens"].apply(punctuation_joiner)
 
-    df = df[["sentences", "matched_words"]]
+    df = df[["sentence", "matched_words"]]
+
+    # ensure we have at least 5 words in a sentence
+    df = df[df["sentence"].apply(lambda x: len(x.split()) >= 5)]
+
     print(len(df))
     df.to_csv("data_clean.csv", index=False)
 

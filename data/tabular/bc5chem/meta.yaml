@@ -1,21 +1,21 @@
 ---
 name: bc5chem
 description: |-
-  BC5CHEM is a named entity recognition dataset for chemical mentions.
+    BC5CHEM is a named entity recognition dataset for chemical mentions.
 targets:
     - id: matched_words
       description: matched words
       type: text
-      names: 
-        - noun: entity
-        - noun: matched entity
+      names:
+          - noun: entity
+          - noun: matched entity
 identifiers:
     - id: sentence
       description: Sentence
       type: text
-      names: 
-        - noun: sentence
-        - noun: text
+      names:
+          - noun: sentence
+          - noun: text
 license: https://huggingface.co/datasets/bigbio/blurb/blob/main/LICENSE
 links:
     - url: https://huggingface.co/datasets/bigbio/blurb
@@ -24,7 +24,7 @@ benchmarks:
     - name: bc5chem
       link: hhttps://huggingface.co/datasets/bigbio/blurb
       split_column: split
-num_points: 13938
+num_points: 13755
 bibtex:
     - |-
       @article{gu2021domain,
@@ -45,11 +45,11 @@ bibtex:
           pages = {1--23}
       }
 templates:
-  - |- 
-    Task: Find all the mentions of {#chemicals|chemical compounds!} in the {#following|subsequent!} {#text|sentence!}. Return the matching {#words|entities!}. If there is no {#match|mention of a chemical|matching entity!}, return `no match`.
-    {#Sentence|Description!}: {sentence#}
-    Answer: {matched_words#}
-  - |- 
-    User: Does the following text contain mentions of {#chemicals|chemical compounds!}? 
-    {#Text: |!}{sentence#}
-    Assistant: {#I found|There is!} {matched_words#}
+    - |-
+      Task: Find all the mentions of {#chemicals|chemical compounds|chemical substances!} in the {#following|subsequent!} {#text|sentence!}. Return the matching {#words|entities!}. If there is no {#match|mention of a chemical|matching entity!}, return `no match`.
+      {#Sentence|Description!}: {sentence#}
+      Answer: {matched_words#}
+    - |-
+      User: Does the following text contain mentions of {#chemicals|chemical compounds|chemical substances!}?{# Can you return matches?| Can you output matches?!}
+      {#Text: |!}{sentence#}
+      Assistant: {#I found|There is!} {matched_words#}
