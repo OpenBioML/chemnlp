@@ -1,6 +1,6 @@
 ---
 name: bio_ner
-description: NER data.
+description: NER task on bio-related text.
 identifiers:
     - id: Sentence
       description: Sentence
@@ -19,16 +19,14 @@ targets:
       names:
           - noun: JSON output
 benchmarks:
-    - name: ???
-      link: ???
+    - name: bio_ner
+      link: https://github.com/ML4LitS/bio-datasets
       split_column: split
-license: NEEDS TO BE DEFINED
+license: unknown
 links:
     - url: https://github.com/ML4LitS/bio-datasets
-      description: ???
+      description: original data source
 num_points: 144675
-bibtex:
-    - ???
 templates:
     - |-
       Task: Please carry out the {#named entity recognition (NER)|named entity recognition|NER!} task for the the text below.
