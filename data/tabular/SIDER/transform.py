@@ -27,13 +27,18 @@ ALT_DESCRIPTIONS = [
     "Ear and Inner Ear Disorders",
     "Cardiovascular Disorders",
     "Disorders of the Nervous System",
-    "Injuries and Poisonings",
+    "Poisonings and Injuries",
 ]
 
 
 def load_dataset() -> pd.DataFrame:
     sider = pd.read_csv(
         "https://deepchemdata.s3-us-west-1.amazonaws.com/datasets/sider.csv.gz"
+    )
+    sider = sider.rename(
+        columns={
+            "Injury, poisoning and procedural complications": "Injury and Poisoning"
+        }
     )
     sider = sider.drop(
         columns=["Product issues", "Social circumstances", "Investigations"]
