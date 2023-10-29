@@ -4,7 +4,7 @@ import pandas as pd
 def process():
     # get the smarts config
     df = pd.read_parquet(
-        "https://huggingface.co/datasets/kjappelbaum/chemnlp-chem-caption/resolve/main/smarts/train-00000-of-00001-71cef18c6383b463.parquet" # noqa
+        "https://huggingface.co/datasets/kjappelbaum/chemnlp-chem-caption/resolve/main/smarts/train-00000-of-00001-71cef18c6383b463.parquet"  # noqa
     )
     df["completion_labels"] = df["completion_labels"].astype(str)
     df["completion_labels"] = df["completion_labels"].str.replace(
