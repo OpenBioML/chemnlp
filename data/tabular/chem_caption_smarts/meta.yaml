@@ -1,16 +1,16 @@
 ---
 name: chem_caption_smarts
 description: |-
-  This dataset contains the count of substructures in molecules
+    This dataset contains the count of substructures in molecules
 targets:
     - id: smarts
       type: text
       description: substructure smarts
-      names: 
-        - noun: SMARTS
-        - noun: SMiles ARbitrary Target Specification (SMARTS)
+      names:
+          - noun: SMARTS
+          - noun: SMiles ARbitrary Target Specification (SMARTS)
     - id: completion
-      type: text
+      type: categorical
       description: number of matches
     - id: completion_labels
       type: text
@@ -25,17 +25,17 @@ identifiers:
 license: CC BY 4.0
 links:
     - url: https://github.com/lamalab-org/chem-caption
-      description: Original codebase
+      description: Original codebase used to generate this dataset
 templates:
-    - |- 
-      Question: {#How many times|How often!} does the {#molecule|chemical|compound!} with {representation_type#} {representation#} contain the substructure with the {smarts__names__noun} {#smarts#}?
+    - |-
+      Question: {#How many times|How often!} does the {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} contain the substructure with the {smarts__names__noun} {#smarts#}?
       Answer: {completion#}
-    - |- 
-      Question: {#How many times|How often!} does the {#molecule|chemical|compound!} with {representation_type#} {representation#} contain a {completion#} substructure?
+    - |-
+      Question: {#How many times|How often!} does the {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} contain a {completion#} substructure?
       Answer: {smarts__names__noun} {#smarts#}
     - |-
-      User: {#I want to|I have to|I must|I would like to!} know how many times the molecule with {representation_type#} {representation#} contains the substructure with the {smarts__names__noun} {#smarts#}.
-      Assistant: The molecule with {representation_type#} {representation#} contains the substructure with the {smarts__names__noun} {#smarts#} {completion#} times.
+      User: {#I want to|I have to|I must|I would like to!} know {#how many times|how often!} the {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} contains the substructure with the {smarts__names__noun} {#smarts#}.
+      Assistant: The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} contains the substructure with the {smarts__names__noun} {#smarts#} {completion#} times.
     - |-
-      User: {#I want to|I have to|I must|I would like to!} know how many times the molecule with {representation_type#} {representation#} contains a {completion#} substructure.
-      Assistant: The molecule contains the substructure with the {smarts__names__noun} {#smarts#} {completion#} times.
+      User: {#I want to|I have to|I must|I would like to!} know how many times the {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} contains a {completion#} substructure.
+      Assistant: The {#molecule|chemical|compound|chemical structure!} contains the substructure with the {smarts__names__noun} {#smarts#} {completion#} times.
