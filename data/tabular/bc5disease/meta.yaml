@@ -52,4 +52,4 @@ templates:
     - |-
       User: Does the following text contain mentions of diseases?{# Can you return matches?| Can you output matches?|Please return matches!}
       {#Text: |!}{sentence#}
-      Assistant: {#I found|There is!} {matched_words#}
+      Assistant: {#I found|There is!} {matched_words#}.
