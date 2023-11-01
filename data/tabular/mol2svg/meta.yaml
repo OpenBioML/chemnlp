@@ -11,6 +11,9 @@ identifiers:
     - id: prompt
       type: text
       description: prompt
+    - id: smiles
+      type: SMILES
+      description: SMILES
 license: CC BY 4.0
 num_points: 16019
 links:
