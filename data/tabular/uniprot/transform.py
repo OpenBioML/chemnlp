@@ -9,7 +9,4 @@ def load_dataset() -> pd.DataFrame:
 
 
 if __name__ == "__main__":
-    
     print(len(load_dataset()))
-    
-    
