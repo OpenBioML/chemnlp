@@ -40,14 +40,16 @@ targets:
           - noun: double bond fraction
           - noun: double bond proportion
     - id: num_triple_bonds
-      type: categorical
+      type: continuous
+      significant_digits: 3
       description: number of triple bonds
       names:
           - noun: fraction of triple bonds
           - noun: triple bond fraction
           - noun: triple bond proportion
     - id: num_aromatic_bonds
-      type: categorical
+      type: continuous
+      significant_digits: 3
       description: number of aromatic bonds
       names:
           - noun: fraction of aromatic bonds
@@ -226,8 +228,7 @@ templates:
     - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has a {rotable_proportion__names__noun} of {rotable_proportion#}.
     - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has a {non_rotable_proportion__names__noun} of
       {non_rotable_proportion#}.
-    - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has a {num_single_bonds__names__noun} of {num_single_bonds#}
-      .
+    - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has a {num_single_bonds__names__noun} of {num_single_bonds#}.
     - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has a {num_double_bonds__names__noun} of {num_double_bonds#}.
     - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has a {num_triple_bonds__names__noun} of {num_triple_bonds#}.
     - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has a {num_aromatic_bonds__names__noun} of {num_aromatic_bonds#}.
