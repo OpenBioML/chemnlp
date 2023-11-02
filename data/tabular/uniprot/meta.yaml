@@ -5,17 +5,34 @@ description: |-
 targets:
     - id: sentences
       description: sentences describing the catalytic activity of a protein
+      type: text
       names:
           - noun: catalytic activity
     - id: reactions
       description: biochemical reactions catalyzed by a protein
+      type: text
       names:
           - noun: chemical reactions
           - noun: biochemical reactions
+    - id: organisms
+      description: organisms in which a protein can be found
+      type: text
+      names:
+          - noun: organisms
+    - id: domains
+      description: domains to which a protein belongs
+      type: text
+      names:
+          - noun: domains
+    - id: binding_sites
+      description: binding sites of a protein
+      type: text
+      names:
+          - noun: binding sites
 identifiers:
-    - id: sequence
-      type: sequence
-      description: sequence
+    - id: other
+      type: other
+      description: other
 license: MIT
 links:
     - url: https://www.uniprot.org/
@@ -37,8 +54,18 @@ bibtex:
       url = {https://doi.org/10.1093/nar/gkac1052}}
 templates:
     - |-
-      User: Describe the {sentences__names__noun} of the {#protein|amino-acid sequence|AA sequence|polypeptide!} {sequence#}?
+      User: In what organism can you find the following {#protein|amino-acid sequence|AA sequence|polypeptide!} {other#}?
+      Assistant: The given sequence can be found in {organisms#}.
+    - |-
+      User: Describe the catalytic activity
+       of the {#protein|amino-acid sequence|AA sequence|polypeptide!} {other#}?
       Assistant: {sentences#}.
     - |-
-      User: What biochemical reactions can be catalyzed by the following {#protein|amino-acid sequence|AA sequence|polypeptide!}?
-      Assistant: The biochemical reactions that can be catalyzed by the given sequence are: {reactions#}
+      User: What biochemical reactions can be catalyzed by the following {#protein|amino-acid sequence|AA sequence|polypeptide!} : {other#}?
+      Assistant: The biochemical reactions that can be catalyzed by the given sequence are: {reactions#}.
+    - |-
+      User: To what domain does this {#protein|amino-acid sequence|AA sequence|polypeptide!} {other#} belong to?
+      Assistant: {domains#}.
+    - |-
+      User: What are the binding sites indices in this {#protein|amino-acid sequence|AA sequence|polypeptide!} {other#}?
+      Assistant: The binding sites indices are: {binding_sites#}.
