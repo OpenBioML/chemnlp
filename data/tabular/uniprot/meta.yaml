@@ -57,8 +57,7 @@ templates:
       User: In what organism can you find the following {#protein|amino-acid sequence|AA sequence|polypeptide!} {other#}?
       Assistant: The given sequence can be found in {organisms#}.
     - |-
-      User: Describe the catalytic activity
-       of the {#protein|amino-acid sequence|AA sequence|polypeptide!} {other#}?
+      User: Describe the catalytic activity of the {#protein|amino-acid sequence|AA sequence|polypeptide!} {other#}?
       Assistant: {sentences#}.
     - |-
       User: What biochemical reactions can be catalyzed by the following {#protein|amino-acid sequence|AA sequence|polypeptide!} : {other#}?
