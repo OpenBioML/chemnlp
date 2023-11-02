@@ -78,21 +78,21 @@ bibtex:
         journal = {MRS Communications}
       }
 templates:
-  - |-
-    Task: Describe a {#crystal structure|material|compound|material structure|structure!} based on the {cifstr__names__noun}.
-    CIF: {cifstr#}
-    {#Description|Answer}: {description#}
-  - |-
-    Task: Design a {cifstr__names__noun} that matches the description below.
-    Description: {description#}
-    {#Answer|CIF}: {cifstr#}
-  - |-
-    User: Can you describe a {#crystal structure|material|compound|material structure|structure!} based on the {cifstr__names__noun}?
-    Assistant: {#Sure, |I can give it a try, |!} I {#would need|need|require!} the {cifstr__names__noun} to do that.
-    User: {cifstr#}
-    Assistant: {description#}
-  - |-
-    User: Can you design a {cifstr__names__noun} that matches a description of a {#crystal structure|material|compound|material structure|structure!}?
-    Assistant: {#Sure, |I can give it a try, |!} I {#would need|need|require!} the description of the {#crystal structure|material|compound|material structure|structure!} to do that.
-    User: {description#}
-    Assistant: {cifstr#}
+    - |-
+      Task: {Please design|Design!} a {#crystal structure|material|compound|material structure|structure!} based on the {cifstr__names__noun}.
+      CIF: {cifstr#}
+      {#Description|Answer!}: {description#}
+    - |-
+      Task: {Please design|Design!} a {cifstr__names__noun} that matches the description below.
+      Description: {description#}
+      {#Answer|CIF!}: {cifstr#}
+    - |-
+      User: {#Can|Could!} you describe a {#crystal structure|material|compound|material structure|structure!} based on the {cifstr__names__noun}?
+      Assistant: {#Sure, |I can give it a try, |!} I {#would need|need|require!} the {cifstr__names__noun} to do that.
+      User: {cifstr#}
+      Assistant: {description#}
+    - |-
+      User: {#Can|Could!} you design a {cifstr__names__noun} that matches a description of a {#crystal structure|material|compound|material structure|structure!}?
+      Assistant: {#Sure, |I can give it a try, |!} I {#would need|need|require!} the description of the {#crystal structure|material|compound|material structure|structure!} to do that.
+      User: {description#}
+      Assistant: {cifstr#}
