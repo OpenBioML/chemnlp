@@ -36,11 +36,11 @@ bibtex:
           doi = {10.1021/acscatal.0c04525},
       }
 templates:
-  - |-
-    Question: What is the adsorption energy of the following adsorbate-adsorbent pair?
-    Text: {text#}
-    Answer: {target#} {target__units}
-  - |-
-    Task: {#Predict|Estimate|Calculate|Compute|Determine!} the adsorption energy of the following adsorbate-adsorbent pair.
-    Text: {text#}
-    Answer: {target#} {target__units}
+    - |-
+      Question: What is the adsorption energy of the following adsorbate-adsorbent pair?
+      Text: {text#}
+      Answer: {target#} {target__units}
+    - |-
+      Task: {#Predict|Estimate|Calculate|Compute|Determine!} the adsorption energy of the following adsorbate-adsorbent pair.
+      Text: {text#}
+      Answer: {target#} {target__units}
