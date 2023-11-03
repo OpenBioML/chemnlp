@@ -1,0 +1,37 @@
+---
+name: uniprot_binding_sites
+description: |-
+    Descriptions of the function of a protein.
+targets:
+    - id: binding_sites
+      description: binding sites of a protein
+      type: text
+      names:
+          - noun: binding sites
+identifiers:
+    - id: other
+      type: other
+      description: other
+license: MIT
+links:
+    - url: https://www.uniprot.org/
+      description: data source
+num_points: 216329
+bibtex:
+    - |-
+      @article{10.1093/nar/gkac1052,
+      author = {The UniProt Consortium},
+      title = {UniProt - the Universal Protein Knowledgebase in 2023},
+      journal = {Nucleic Acids Research},
+      volume = {51},
+      number = {D1},
+      pages = {D523-D531},
+      year = {2022},
+      month = {11},
+      issn = {0305-1048},
+      doi = {10.1093/nar/gkac1052},
+      url = {https://doi.org/10.1093/nar/gkac1052}}
+templates:
+    - |-
+      User: What are the binding sites indices in this {#protein|amino-acid sequence|AA sequence|polypeptide!} {other#}?
+      Assistant: The binding sites indices are: {binding_sites#}.

@@ -1,0 +1,37 @@
+---
+name: uniprot_sentences
+description: |-
+    Descriptions of the function of a protein.
+targets:
+    - id: sentences
+      description: sentences describing the function of a protein
+      type: text
+      names:
+          - noun: function
+identifiers:
+    - id: other
+      type: other
+      description: other
+license: MIT
+links:
+    - url: https://www.uniprot.org/
+      description: data source
+num_points: 464396
+bibtex:
+    - |-
+      @article{10.1093/nar/gkac1052,
+      author = {The UniProt Consortium},
+      title = {UniProt - the Universal Protein Knowledgebase in 2023},
+      journal = {Nucleic Acids Research},
+      volume = {51},
+      number = {D1},
+      pages = {D523-D531},
+      year = {2022},
+      month = {11},
+      issn = {0305-1048},
+      doi = {10.1093/nar/gkac1052},
+      url = {https://doi.org/10.1093/nar/gkac1052}}
+templates:
+    - |-
+      User: Describe the {#function|biological function!} of the {#protein|amino-acid sequence|AA sequence|polypeptide!} {other#}?
+      Assistant: {sentences#}.
