@@ -1,8 +1,8 @@
-import pypandoc
 import re
+
 import pandas as pd
-from datasets import load_dataset
-from datasets import Dataset
+import pypandoc
+from datasets import Dataset, load_dataset
 
 
 def latex_to_markdown_with_pandoc(latex_text):
