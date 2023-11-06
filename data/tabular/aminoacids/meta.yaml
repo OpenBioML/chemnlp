@@ -1,5 +1,5 @@
 ---
-name: ames_mutagenicity
+name: aminoacids
 description: |-
     The list of the 20 essential aminoacids, their SMILES, one letter and three letter codes.
 targets:
