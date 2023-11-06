@@ -9,6 +9,7 @@ import deepsmiles
 import pandas as pd
 import pubchempy as pcp
 import requests
+import safe
 import selfies
 from rdkit import Chem
 
@@ -71,6 +72,13 @@ def smiles_to_inchi(smiles: str) -> str:
     """
     mol = Chem.MolFromSmiles(smiles)
     return Chem.MolToInchi(mol)
+
+
+def smiles_to_safe(smiles: str) -> str:
+    """
+    Takes a SMILES and return the SAFE.
+    """
+    return safe.encode(smiles)
 
 
 # def smiles_to_tucan(smiles: str) -> str:
@@ -143,6 +151,7 @@ def line_reps_from_smiles(
             "inchi": _try_except_none(smiles_to_inchi, smiles),
             # "tucan": _try_except_none(smiles_to_tucan, smiles),
             "iupac_name": _try_except_none(smiles_to_iupac_name, smiles),
+            "safe": _try_except_none(smiles_to_safe, smiles),
         }
 
         # Note: This needs proper filelocking to work.
@@ -248,6 +257,7 @@ if __name__ == "__main__":
             "inchi": [],
             # "tucan": [],
             "iupac_name": [],
+            "safe": [],
         }
 
         for entry in parsed:
