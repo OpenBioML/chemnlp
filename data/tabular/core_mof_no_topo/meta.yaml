@@ -117,14 +117,6 @@ targets:
           - noun: deliverable capacity of CH4 obtained from GCMC simulations between 5.8 bar and 65 bar at 298 K
           - noun: deliverable capacity of methane (between 5.8 bar and 65 bar at 298 K) obtained from GCMC simulations
           - noun: deliverable capacity of CH4 (between 5.8 bar and 65 bar at 298 K) obtained from GCMC simulations
-    - id: info.density
-      description: density of the material
-      type: continuous
-      units: g/cm^3
-      significant_digits: 2
-      names:
-          - noun: density of the material
-          - noun: density
 identifiers:
     - id: smiles_linkers
       description: SMILES representation of the linker
@@ -199,8 +191,6 @@ templates:
       {cif#} has a {outputs.logKH_CO2__names__noun} of {outputs.logKH_CO2#} {outputs.logKH_CO2__units}.
     - The {#metal-organic framework|MOF|reticular material|metal-organic framework (MOF)!} with the following {#CIF file|crystal structure in CIF format!}
       {cif#} has a {outputs.logKH_CH4__names__noun} of {outputs.logKH_CH4#} {outputs.logKH_CH4__units}.
-    - The {density__names__noun} of the {#metal-organic framework|MOF|reticular material|material|structure|metal-organic framework (MOF)!} with the following
-      {#CIF file|crystal structure in CIF format!} {cif#} is {density#} {density__units}.
     - The {#metal-organic framework|MOF|reticular material|metal-organic framework (MOF)!} with the following {#CIF file|crystal structure in CIF format!}
       {cif#} has a {outputs.CH4DC__names__noun} of {outputs.CH4DC#} {outputs.CH4DC__units}.
     - |-
@@ -258,10 +248,3 @@ templates:
       Assistant: The {outputs.pure_uptake_methane_298.00_580000__names__noun} is {outputs.pure_uptake_methane_298.00_580000#} {outputs.pure_uptake_methane_298.00_580000__units}. {#Is there anything else you want to know?|Is there anything else I can do for you?!}
       User: {#No, |Nope, |No thank you, |!}that's all I need to know.
       Assistant: {#You're welcome.||Anytime.|Happy to help.!}
-    - |-
-      User: {#I want to|I need to|I must|I have to!} {#synthesize|create|make!} a {#metal-organic framework|MOF|reticular material|metal-organic framework (MOF)!} with a {outputs.CH4DC__names__noun} of {outputs.CH4DC#} {outputs.CH4DC__units} and a {outputs.pure_uptake_CO2_298.00_15000__names__noun} of {outputs.pure_uptake_CO2_298.00_15000#} {outputs.pure_uptake_CO2_298.00_15000__units}. What {#building blocks|linkers and nodes!} do I need to combine?
-      Assistant: {#I'd go for|I'd recommend!} linkers with SMILES {smiles_linkers#} and nodes with SMILES {smiles_nodes#}. {#Is there anything else you want to know?|Is there anything else I can do for you?!}
-      User: {#Yes, |Yeah, |Indeed, |!}What {#CIF file|crystal structure in CIF format!} can I expect?
-      Assistant: The {#CIF file|crystal structure in CIF format!} should be {cif#}. {#Is there anything else you want to know?|Is there anything else I can do for you?!}
-      User: {#Yes, |Yeah, |Indeed, |!}I would like to know the {info.density__names__noun}.
-      Assistant: The {info.density__names__noun} is {info.density#} {info.density__units}.

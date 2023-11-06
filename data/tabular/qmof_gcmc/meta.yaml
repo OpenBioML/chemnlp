@@ -1,5 +1,5 @@
 ---
-name: qmof_quantum
+name: qmof_gcmc
 description: |-
     QMOF is a database of electronic properties of MOFs, assembled by Rosen et al.
     Jablonka et al. added gas adsorption properties.
@@ -254,7 +254,7 @@ identifiers:
       names:
           - noun: space group number
 license: CC-BY-4.0
-num_points: 884
+num_points: 88
 bibtex:
     - |-
       @article{Rosen_2021,
@@ -300,82 +300,130 @@ bibtex:
 templates:
     - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
       linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {lg10_CO2_Henry__names__noun} of {lg10_CO2_Henry#} {lg10_CO2_Henry__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {lg10_CO2_Henry__names__noun} of {lg10_CO2_Henry#} {lg10_CO2_Henry__units}.
+    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {lg10_CO2_Henry__names__noun}
+      of {lg10_CO2_Henry#} {lg10_CO2_Henry__units}.
     - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
       linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {lg10_N2_Henry__names__noun} of {lg10_N2_Henry#} {lg10_N2_Henry__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {lg10_N2_Henry__names__noun} of {lg10_N2_Henry#} {lg10_N2_Henry__units}.
+    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {lg10_N2_Henry__names__noun}
+      of {lg10_N2_Henry#} {lg10_N2_Henry__units}.
     - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
       linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {lg10_CH4_Henry__names__noun} of {lg10_CH4_Henry#} {lg10_CH4_Henry__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {lg10_CH4_Henry__names__noun} of {lg10_CH4_Henry#} {lg10_CH4_Henry__units}.
+    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {lg10_CH4_Henry__names__noun}
+      of {lg10_CH4_Henry#} {lg10_CH4_Henry__units}.
     - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
       linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {lg10_O2_Henry__names__noun} of {lg10_O2_Henry#} {lg10_O2_Henry__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {lg10_O2_Henry__names__noun} of {lg10_O2_Henry#} {lg10_O2_Henry__units}.
+    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {lg10_O2_Henry__names__noun}
+      of {lg10_O2_Henry#} {lg10_O2_Henry__units}.
     - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
       linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {log10_Xe_Henry__names__noun} of {log10_Xe_Henry#} {log10_Xe_Henry__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {log10_Xe_Henry__names__noun} of {log10_Xe_Henry#} {log10_Xe_Henry__units}.
+    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {log10_Xe_Henry__names__noun}
+      of {log10_Xe_Henry#} {log10_Xe_Henry__units}.
     - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
       linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {log10_Kr_Henry__names__noun} of {log10_Kr_Henry#} {log10_Kr_Henry__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {log10_Kr_Henry__names__noun} of {log10_Kr_Henry#} {log10_Kr_Henry__units}.
+    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {log10_Kr_Henry__names__noun}
+      of {log10_Kr_Henry#} {log10_Kr_Henry__units}.
     - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {log10_H2S_Henry__names__noun} of {log10_H2S_Henry#} {log10_H2S_Henry__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {log10_H2S_Henry__names__noun} of {log10_H2S_Henry#} {log10_H2S_Henry__units}.
+      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {log10_H2S_Henry__names__noun} of {log10_H2S_Henry#}
+      {log10_H2S_Henry__units}.
+    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {log10_H2S_Henry__names__noun}
+      of {log10_H2S_Henry#} {log10_H2S_Henry__units}.
     - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {log10_H2O_Henry__names__noun} of {log10_H2O_Henry#} {log10_H2O_Henry__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {log10_H2O_Henry__names__noun} of {log10_H2O_Henry#} {log10_H2O_Henry__units}.
+      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {log10_H2O_Henry__names__noun} of {log10_H2O_Henry#}
+      {log10_H2O_Henry__units}.
+    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {log10_H2O_Henry__names__noun}
+      of {log10_H2O_Henry#} {log10_H2O_Henry__units}.
     - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.CO2-adsorption_energy-kJ--mol__names__noun} of {outputs.CO2-adsorption_energy-kJ--mol#} {outputs.CO2-adsorption_energy-kJ--mol__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.CO2-adsorption_energy-kJ--mol__names__noun} of {outputs.CO2-adsorption_energy-kJ--mol#} {outputs.CO2-adsorption_energy-kJ--mol__units}.
+      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.CO2-adsorption_energy-kJ--mol__names__noun}
+      of {outputs.CO2-adsorption_energy-kJ--mol#} {outputs.CO2-adsorption_energy-kJ--mol__units}.
+    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.CO2-adsorption_energy-kJ--mol__names__noun}
+      of {outputs.CO2-adsorption_energy-kJ--mol#} {outputs.CO2-adsorption_energy-kJ--mol__units}.
     - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.N2-adsorption_energy-kJ--mol__names__noun} of {outputs.N2-adsorption_energy-kJ--mol#} {outputs.N2-adsorption_energy-kJ--mol__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.N2-adsorption_energy-kJ--mol__names__noun} of {outputs.N2-adsorption_energy-kJ--mol#} {outputs.N2-adsorption_energy-kJ--mol__units}.
+      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.N2-adsorption_energy-kJ--mol__names__noun}
+      of {outputs.N2-adsorption_energy-kJ--mol#} {outputs.N2-adsorption_energy-kJ--mol__units}.
+    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.N2-adsorption_energy-kJ--mol__names__noun}
+      of {outputs.N2-adsorption_energy-kJ--mol#} {outputs.N2-adsorption_energy-kJ--mol__units}.
     - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.CH4-adsorption_energy-kJ--mol__names__noun} of {outputs.CH4-adsorption_energy-kJ--mol#} {outputs.CH4-adsorption_energy-kJ--mol__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.CH4-adsorption_energy-kJ--mol__names__noun} of {outputs.CH4-adsorption_energy-kJ--mol#} {outputs.CH4-adsorption_energy-kJ--mol__units}.
+      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.CH4-adsorption_energy-kJ--mol__names__noun}
+      of {outputs.CH4-adsorption_energy-kJ--mol#} {outputs.CH4-adsorption_energy-kJ--mol__units}.
+    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.CH4-adsorption_energy-kJ--mol__names__noun}
+      of {outputs.CH4-adsorption_energy-kJ--mol#} {outputs.CH4-adsorption_energy-kJ--mol__units}.
     - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.O2-adsorption_energy-kJ--mol__names__noun} of {outputs.O2-adsorption_energy-kJ--mol#} {outputs.O2-adsorption_energy-kJ--mol__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.O2-adsorption_energy-kJ--mol__names__noun} of {outputs.O2-adsorption_energy-kJ--mol#} {outputs.O2-adsorption_energy-kJ--mol__units}.
+      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.O2-adsorption_energy-kJ--mol__names__noun}
+      of {outputs.O2-adsorption_energy-kJ--mol#} {outputs.O2-adsorption_energy-kJ--mol__units}.
+    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.O2-adsorption_energy-kJ--mol__names__noun}
+      of {outputs.O2-adsorption_energy-kJ--mol#} {outputs.O2-adsorption_energy-kJ--mol__units}.
     - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.Xe-adsorption_energy-kJ--mol__names__noun} of {outputs.Xe-adsorption_energy-kJ--mol#} {outputs.Xe-adsorption_energy-kJ--mol__units}.   
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.Xe-adsorption_energy-kJ--mol__names__noun} of {outputs.Xe-adsorption_energy-kJ--mol#} {outputs.Xe-adsorption_energy-kJ--mol__units}.
+      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.Xe-adsorption_energy-kJ--mol__names__noun}
+      of {outputs.Xe-adsorption_energy-kJ--mol#} {outputs.Xe-adsorption_energy-kJ--mol__units}.
+    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.Xe-adsorption_energy-kJ--mol__names__noun}
+      of {outputs.Xe-adsorption_energy-kJ--mol#} {outputs.Xe-adsorption_energy-kJ--mol__units}.
     - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.Kr-adsorption_energy-kJ--mol__names__noun} of {outputs.Kr-adsorption_energy-kJ--mol#} {outputs.Kr-adsorption_energy-kJ--mol__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.Kr-adsorption_energy-kJ--mol__names__noun} of {outputs.Kr-adsorption_energy-kJ--mol#} {outputs.Kr-adsorption_energy-kJ--mol__units}.
+      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.Kr-adsorption_energy-kJ--mol__names__noun}
+      of {outputs.Kr-adsorption_energy-kJ--mol#} {outputs.Kr-adsorption_energy-kJ--mol__units}.
+    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.Kr-adsorption_energy-kJ--mol__names__noun}
+      of {outputs.Kr-adsorption_energy-kJ--mol#} {outputs.Kr-adsorption_energy-kJ--mol__units}.
     - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.H2S-adsorption_energy-kJ--mol__names__noun} of {outputs.H2S-adsorption_energy-kJ--mol#} {outputs.H2S-adsorption_energy-kJ--mol__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.H2S-adsorption_energy-kJ--mol__names__noun} of {outputs.H2S-adsorption_energy-kJ--mol#} {outputs.H2S-adsorption_energy-kJ--mol__units}.
+      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.H2S-adsorption_energy-kJ--mol__names__noun}
+      of {outputs.H2S-adsorption_energy-kJ--mol#} {outputs.H2S-adsorption_energy-kJ--mol__units}.
+    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.H2S-adsorption_energy-kJ--mol__names__noun}
+      of {outputs.H2S-adsorption_energy-kJ--mol#} {outputs.H2S-adsorption_energy-kJ--mol__units}.
     - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.H2O-adsorption_energy-kJ--mol__names__noun} of {outputs.H2O-adsorption_energy-kJ--mol#} {outputs.H2O-adsorption_energy-kJ--mol__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.H2O-adsorption_energy-kJ--mol__names__noun} of {outputs.H2O-adsorption_energy-kJ--mol#} {outputs.H2O-adsorption_energy-kJ--mol__units}.
+      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.H2O-adsorption_energy-kJ--mol__names__noun}
+      of {outputs.H2O-adsorption_energy-kJ--mol#} {outputs.H2O-adsorption_energy-kJ--mol__units}.
+    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.H2O-adsorption_energy-kJ--mol__names__noun}
+      of {outputs.H2O-adsorption_energy-kJ--mol#} {outputs.H2O-adsorption_energy-kJ--mol__units}.
     - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {outputs.H2S--H2O-selectivity_298_K-__names__noun} of {outputs.H2S--H2O-selectivity_298_K-#}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {outputs.H2S--H2O-selectivity_298_K-__names__noun} of {outputs.H2S--H2O-selectivity_298_K-#}.
+      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {outputs.H2S--H2O-selectivity_298_K-__names__noun} of
+      {outputs.H2S--H2O-selectivity_298_K-#}.
+    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {outputs.H2S--H2O-selectivity_298_K-__names__noun}
+      of {outputs.H2S--H2O-selectivity_298_K-#}.
     - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {outputs.CH4--N2-selectivity_298_K-__names__noun} of {outputs.CH4--N2-selectivity_298_K-#}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {outputs.CH4--N2-selectivity_298_K-__names__noun} of {outputs.CH4--N2-selectivity_298_K-#}.
+      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {outputs.CH4--N2-selectivity_298_K-__names__noun} of
+      {outputs.CH4--N2-selectivity_298_K-#}.
+    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {outputs.CH4--N2-selectivity_298_K-__names__noun}
+      of {outputs.CH4--N2-selectivity_298_K-#}.
     - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
       linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {outputs.Xe--Kr-selectivity_298_K-__names__noun} of {outputs.Xe--Kr-selectivity_298_K-#}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {outputs.Xe--Kr-selectivity_298_K-__names__noun} of {outputs.Xe--Kr-selectivity_298_K-#}.
+    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {outputs.Xe--Kr-selectivity_298_K-__names__noun}
+      of {outputs.Xe--Kr-selectivity_298_K-#}.
     - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {outputs.CH4-working_capacity_vol_58_to_65_bar_298_K-cm3_STP--cm3__names__noun} of {outputs.CH4-working_capacity_vol_58_to_65_bar_298_K-cm3_STP--cm3#} {outputs.CH4-working_capacity_vol_58_to_65_bar_298_K-cm3_STP--cm3__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {outputs.CH4-working_capacity_vol_58_to_65_bar_298_K-cm3_STP--cm3__names__noun} of {outputs.CH4-working_capacity_vol_58_to_65_bar_298_K-cm3_STP--cm3#} {outputs.CH4-working_capacity_vol_58_to_65_bar_298_K-cm3_STP--cm3__units}.
+      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {outputs.CH4-working_capacity_vol_58_to_65_bar_298_K-cm3_STP--cm3__names__noun}
+      of {outputs.CH4-working_capacity_vol_58_to_65_bar_298_K-cm3_STP--cm3#} {outputs.CH4-working_capacity_vol_58_to_65_bar_298_K-cm3_STP--cm3__units}.
+    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {outputs.CH4-working_capacity_vol_58_to_65_bar_298_K-cm3_STP--cm3__names__noun}
+      of {outputs.CH4-working_capacity_vol_58_to_65_bar_298_K-cm3_STP--cm3#} {outputs.CH4-working_capacity_vol_58_to_65_bar_298_K-cm3_STP--cm3__units}.
     - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {outputs.CH4-working_capacity_mol_58_to_65_bar_298_K-mol--kg__names__noun} of {outputs.CH4-working_capacity_mol_58_to_65_bar_298_K-mol--kg#} {outputs.CH4-working_capacity_mol_58_to_65_bar_298_K-mol--kg__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {outputs.CH4-working_capacity_mol_58_to_65_bar_298_K-mol--kg__names__noun} of {outputs.CH4-working_capacity_mol_58_to_65_bar_298_K-mol--kg#} {outputs.CH4-working_capacity_mol_58_to_65_bar_298_K-mol--kg__units}.
+      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {outputs.CH4-working_capacity_mol_58_to_65_bar_298_K-mol--kg__names__noun}
+      of {outputs.CH4-working_capacity_mol_58_to_65_bar_298_K-mol--kg#} {outputs.CH4-working_capacity_mol_58_to_65_bar_298_K-mol--kg__units}.
+    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {outputs.CH4-working_capacity_mol_58_to_65_bar_298_K-mol--kg__names__noun}
+      of {outputs.CH4-working_capacity_mol_58_to_65_bar_298_K-mol--kg#} {outputs.CH4-working_capacity_mol_58_to_65_bar_298_K-mol--kg__units}.
     - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.O2-working_capacity_vol_5_to_140_bar_298_K-cm3_STP--cm3__names__noun} of {outputs.O2-working_capacity_vol_5_to_140_bar_298_K-cm3_STP--cm3#} {outputs.O2-working_capacity_vol_5_to_140_bar_298_K-cm3_STP--cm3__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.O2-working_capacity_vol_5_to_140_bar_298_K-cm3_STP--cm3__names__noun} of {outputs.O2-working_capacity_vol_5_to_140_bar_298_K-cm3_STP--cm3#} {outputs.O2-working_capacity_vol_5_to_140_bar_298_K-cm3_STP--cm3__units}.
+      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.O2-working_capacity_vol_5_to_140_bar_298_K-cm3_STP--cm3__names__noun}
+      of {outputs.O2-working_capacity_vol_5_to_140_bar_298_K-cm3_STP--cm3#} {outputs.O2-working_capacity_vol_5_to_140_bar_298_K-cm3_STP--cm3__units}.
+    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.O2-working_capacity_vol_5_to_140_bar_298_K-cm3_STP--cm3__names__noun}
+      of {outputs.O2-working_capacity_vol_5_to_140_bar_298_K-cm3_STP--cm3#} {outputs.O2-working_capacity_vol_5_to_140_bar_298_K-cm3_STP--cm3__units}.
     - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.O2-working_capacity_mol_5_to_140_bar_298_K-mol--kg__names__noun} of {outputs.O2-working_capacity_mol_5_to_140_bar_298_K-mol--kg#} {outputs.O2-working_capacity_mol_5_to_140_bar_298_K-mol--kg__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.O2-working_capacity_mol_5_to_140_bar_298_K-mol--kg__names__noun} of {outputs.O2-working_capacity_mol_5_to_140_bar_298_K-mol--kg#} {outputs.O2-working_capacity_mol_5_to_140_bar_298_K-mol--kg__units}.
+      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.O2-working_capacity_mol_5_to_140_bar_298_K-mol--kg__names__noun}
+      of {outputs.O2-working_capacity_mol_5_to_140_bar_298_K-mol--kg#} {outputs.O2-working_capacity_mol_5_to_140_bar_298_K-mol--kg__units}.
+    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.O2-working_capacity_mol_5_to_140_bar_298_K-mol--kg__names__noun}
+      of {outputs.O2-working_capacity_mol_5_to_140_bar_298_K-mol--kg#} {outputs.O2-working_capacity_mol_5_to_140_bar_298_K-mol--kg__units}.
     - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.H2-working_capacity_5_to_100_bar_298_to_198_K-g--L__names__noun} of {outputs.H2-working_capacity_5_to_100_bar_298_to_198_K-g--L#} {outputs.H2-working_capacity_5_to_100_bar_298_to_198_K-g--L__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.H2-working_capacity_5_to_100_bar_298_to_198_K-g--L__names__noun} of {outputs.H2-working_capacity_5_to_100_bar_298_to_198_K-g--L#} {outputs.H2-working_capacity_5_to_100_bar_298_to_198_K-g--L__units}.
+      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.H2-working_capacity_5_to_100_bar_298_to_198_K-g--L__names__noun}
+      of {outputs.H2-working_capacity_5_to_100_bar_298_to_198_K-g--L#} {outputs.H2-working_capacity_5_to_100_bar_298_to_198_K-g--L__units}.
+    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.H2-working_capacity_5_to_100_bar_298_to_198_K-g--L__names__noun}
+      of {outputs.H2-working_capacity_5_to_100_bar_298_to_198_K-g--L#} {outputs.H2-working_capacity_5_to_100_bar_298_to_198_K-g--L__units}.
     - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.H2-working_capacity_5_to_100_bar_77_K-g--L__names__noun} of {outputs.H2-working_capacity_5_to_100_bar_77_K-g--L#} {outputs.H2-working_capacity_5_to_100_bar_77_K-g--L__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.H2-working_capacity_5_to_100_bar_77_K-g--L__names__noun} of {outputs.H2-working_capacity_5_to_100_bar_77_K-g--L#} {outputs.H2-working_capacity_5_to_100_bar_77_K-g--L__units}.
+      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.H2-working_capacity_5_to_100_bar_77_K-g--L__names__noun}
+      of {outputs.H2-working_capacity_5_to_100_bar_77_K-g--L#} {outputs.H2-working_capacity_5_to_100_bar_77_K-g--L__units}.
+    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.H2-working_capacity_5_to_100_bar_77_K-g--L__names__noun}
+      of {outputs.H2-working_capacity_5_to_100_bar_77_K-g--L#} {outputs.H2-working_capacity_5_to_100_bar_77_K-g--L__units}.
     - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.H2-working_capacity_1_to_100_bar_77_K-g--L__names__noun} of {outputs.H2-working_capacity_1_to_100_bar_77_K-g--L#} {outputs.H2-working_capacity_1_to_100_bar_77_K-g--L__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.H2-working_capacity_1_to_100_bar_77_K-g--L__names__noun} of {outputs.H2-working_capacity_1_to_100_bar_77_K-g--L#} {outputs.H2-working_capacity_1_to_100_bar_77_K-g--L__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {info.pld#} {info.pld__units} pore limiting diameter (PLD).
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {info.lcd#} {info.lcd__units} largest cavity diameter (LCD).
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {info.density#} {info.density__units} density.
+      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.H2-working_capacity_1_to_100_bar_77_K-g--L__names__noun}
+      of {outputs.H2-working_capacity_1_to_100_bar_77_K-g--L#} {outputs.H2-working_capacity_1_to_100_bar_77_K-g--L__units}.
+    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.H2-working_capacity_1_to_100_bar_77_K-g--L__names__noun}
+      of {outputs.H2-working_capacity_1_to_100_bar_77_K-g--L#} {outputs.H2-working_capacity_1_to_100_bar_77_K-g--L__units}.
+    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {info.pld#} {info.pld__units}
+      pore limiting diameter (PLD).
+    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {info.lcd#} {info.lcd__units}
+      largest cavity diameter (LCD).
+    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {info.density#} {info.density__units}
+      density.
