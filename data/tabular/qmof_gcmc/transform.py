@@ -66,7 +66,7 @@ def process():
     df["lg10_Xe_Henry"] = np.log10(df["outputs.Xe-henry_coefficient-mol--kg--Pa"])
     df["lg10_Kr_Henry"] = np.log10(df["outputs.Kr-henry_coefficient-mol--kg--Pa"])
     df["lg10_H2S_Henry"] = np.log(df["outputs.H2S-henry_coefficient-mol--kg--Pa"])
-    df["lg10_H20_Henry"] = np.log(df["outputs.H2O-henry_coefficient-mol--kg--Pa"])
+    df["lg10_H2O_Henry"] = np.log(df["outputs.H2O-henry_coefficient-mol--kg--Pa"])
 
     df["info.mofid.smiles_nodes"] = df["info.mofid.smiles_nodes"].apply(
         lambda x: ", ".join(ast.literal_eval(x))

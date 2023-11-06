@@ -36,7 +36,7 @@ targets:
       names:
           - noun: 10-based logarithm of O2 Henry coefficient computed using grand canonical Monte Carlo
           - noun: 10-based logarithm of oxygen Henry coefficient using grand canonical Monte Carlo
-    - id: log10_Xe_Henry
+    - id: lg10_Xe_Henry
       description: Xe Henry coefficient
       type: continuous
       units: mol/kg/Pa
@@ -44,7 +44,7 @@ targets:
       names:
           - noun: 10-based logarithm of Xe Henry coefficient computed using grand canonical Monte Carlo
           - noun: 10-based logarithm of xenon Henry coefficient computed using grand canonical Monte Carlo
-    - id: log10_Kr_Henry
+    - id: lg10_Kr_Henry
       description: Kr Henry coefficient
       type: continuous
       units: mol/kg/Pa
@@ -52,7 +52,7 @@ targets:
       names:
           - noun: 10-based logarithm of Kr Henry coefficient computed using grand canonical Monte Carlo
           - noun: 10-based logarithm of krypton Henry coefficient computed using grand canonical Monte Carlo
-    - id: log10_H2S_Henry
+    - id: lg10_H2S_Henry
       description: H2S Henry coefficient
       type: continuous
       units: mol/kg/Pa
@@ -60,7 +60,7 @@ targets:
       names:
           - noun: 10-based logarithm of H2S Henry coefficient computed using grand canonical Monte Carlo
           - noun: 10-based logarithm of hydrogen sulfide Henry coefficient computed using grand canonical Monte Carlo
-    - id: log10_H2O_Henry
+    - id: lg10_H2O_Henry
       description: H2O Henry coefficient
       type: continuous
       units: mol/kg/Pa
@@ -315,23 +315,23 @@ templates:
     - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {lg10_O2_Henry__names__noun}
       of {lg10_O2_Henry#} {lg10_O2_Henry__units}.
     - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {log10_Xe_Henry__names__noun} of {log10_Xe_Henry#} {log10_Xe_Henry__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {log10_Xe_Henry__names__noun}
-      of {log10_Xe_Henry#} {log10_Xe_Henry__units}.
+      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {lg10_Xe_Henry__names__noun} of {lg10_Xe_Henry#} {lg10_Xe_Henry__units}.
+    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {lg10_Xe_Henry__names__noun}
+      of {lg10_Xe_Henry#} {lg10_Xe_Henry__units}.
     - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {log10_Kr_Henry__names__noun} of {log10_Kr_Henry#} {log10_Kr_Henry__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {log10_Kr_Henry__names__noun}
-      of {log10_Kr_Henry#} {log10_Kr_Henry__units}.
+      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {lg10_Kr_Henry__names__noun} of {lg10_Kr_Henry#} {lg10_Kr_Henry__units}.
+    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {lg10_Kr_Henry__names__noun}
+      of {lg10_Kr_Henry#} {lg10_Kr_Henry__units}.
     - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {log10_H2S_Henry__names__noun} of {log10_H2S_Henry#}
-      {log10_H2S_Henry__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {log10_H2S_Henry__names__noun}
-      of {log10_H2S_Henry#} {log10_H2S_Henry__units}.
+      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {lg10_H2S_Henry__names__noun} of {lg10_H2S_Henry#}
+      {lg10_H2S_Henry__units}.
+    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {lg10_H2S_Henry__names__noun}
+      of {lg10_H2S_Henry#} {lg10_H2S_Henry__units}.
     - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {log10_H2O_Henry__names__noun} of {log10_H2O_Henry#}
-      {log10_H2O_Henry__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {log10_H2O_Henry__names__noun}
-      of {log10_H2O_Henry#} {log10_H2O_Henry__units}.
+      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {lg10_H2O_Henry__names__noun} of {lg10_H2O_Henry#}
+      {lg10_H2O_Henry__units}.
+    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {lg10_H2O_Henry__names__noun}
+      of {lg10_H2O_Henry#} {lg10_H2O_Henry__units}.
     - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
       linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.CO2-adsorption_energy-kJ--mol__names__noun}
       of {outputs.CO2-adsorption_energy-kJ--mol#} {outputs.CO2-adsorption_energy-kJ--mol__units}.
