@@ -180,7 +180,7 @@ targets:
       names:
           - noun: O2 working capacity between 5 and 140 bar at 298 K computed using grand canonical Monte Carlo
           - noun: oxygen working capacity between 5 and 140 bar at 298 K computed using grand canonical Monte Carlo
-    - id: outputs.O2-working_capacity_mol_5_to_140_bar_298_K-mol--kg"
+    - id: outputs.O2-working_capacity_mol_5_to_140_bar_298_K-mol--kg
       description: O2 working capacity
       type: continuous
       units: mol/kg
