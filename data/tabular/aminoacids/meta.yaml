@@ -35,6 +35,6 @@ templates:
       Question: What is the one-letter code of the {#essential amino acid|amino acid|amino acid (AA)|AA!} with the {SMILES__description} {SMILES#}?
       Answer: {three_letter_code#}.
     - |-
-      Question: What is the the type of the amino acid with the one-letter code {one_letter_code#} and {SMILES__description} {SMILES#}?
+      Question: What is the type of the amino acid with the one-letter code {one_letter_code#} and {SMILES__description} {SMILES#}?
       Constraint: The possible types are: polar, non-polar, positively charged, negatively charged
       Answer: From the provided amino acid types (polar, non-polar, positively charged, negatively charged), the amino acid with the one-letter code {one_letter_code#} is {type#}.
