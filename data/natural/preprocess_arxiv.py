@@ -3,7 +3,7 @@ import re
 import pandas as pd
 import pypandoc
 from datasets import Dataset, load_dataset
-
+from tqdm import tqdm
 
 def latex_to_markdown_with_pandoc(latex_text):
     # Remove \cite statements, also if there are options passed. Note that there might be non, or
@@ -161,17 +161,17 @@ def latex_to_markdown_with_pandoc(latex_text):
                 flags=re.MULTILINE | re.DOTALL | re.IGNORECASE,
             )
     except Exception as e:
-        print(f"An error occurred during Pandoc conversion: {e}")
+        #print(f"An error occurred during Pandoc conversion: {e}")
         return None
 
     return markdown_text
 
 
 def clean_ds():
-    ds_arxiv = load_dataset("EleutherAI/proof-pile-2", "arxiv")
+    ds_arxiv = load_dataset("togethercomputer/RedPajama-Data-1T", "arxiv")
     clean_entries = []
 
-    for entry in ds_arxiv["train"]:
+    for entry in tqdm(ds_arxiv["train"], total=len(ds_arxiv["train"])):
         entry["text"] = latex_to_markdown_with_pandoc(entry["text"])
         if entry["text"] is not None:
             clean_entries.append(entry)
@@ -180,7 +180,7 @@ def clean_ds():
     df.to_json("arxiv.jsonl", orient="records", lines=True)
 
     ds = Dataset.from_pandas(df)
-    ds.push_to_hub("chemnlp/arxiv")
+    ds.push_to_hub("kjappelbaum/arxiv")
 
 
 if __name__ == "__main__":
