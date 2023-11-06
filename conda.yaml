@@ -6,4 +6,4 @@ dependencies:
     - pip:
           - .
           - .[dev]
-          - ".[dataset_creation]"
+          - .[dataset_creation]

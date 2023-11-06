@@ -1,13 +1,10 @@
+import backoff
 import deepsmiles
-import pandas as pd
 import pubchempy as pcp
 import requests
 import safe
 import selfies
 from rdkit import Chem
-import backoff
-
-
 
 
 def smiles_to_selfies(smiles: str) -> str:
