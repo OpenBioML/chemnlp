@@ -90,6 +90,7 @@ ligand_smiles_dict = {
     "dppf": "C1=CC=C(C=C1)P([C-]2C=CC=C2)C3=CC=CC=C3.C1=CC=C(C=C1)P([C-]2C=CC=C2)C3=CC=CC=C3.[Fe+2]",
     "Xantphos": "O6c1c(cccc1P(c2ccccc2)c3ccccc3)C(c7cccc(P(c4ccccc4)c5ccccc5)c67)(C)C",
     "None": "",
+    "nan": "",
 }
 
 reagent_1_smiles_dict = {
@@ -101,6 +102,7 @@ reagent_1_smiles_dict = {
     "LiOtBu": "[Li+].[O-]C(C)(C)C",
     "Et3N": "CCN(CC)CC",
     "None": "",
+    "nan": "",
 }
 
 solvent_1_smiles_dict = {
