@@ -21,10 +21,8 @@ identifiers:
       description: SMILES
 license: CC BY 4.0
 links:
-    - url: https://doi.org/10.1021/ci300400a
-      description: corresponding publication
-    - url: https://tdcommons.ai/single_pred_tasks/tox/#ames-mutagenicity
-      description: Data source
+    - url: https://chemistry.stackexchange.com/questions/138614/why-are-tyrosine-and-tryptophan-considered-hydrophobic
+      description: reference for aminoacid type
 num_points: 20
 templates:
     - The {#essential aminoacid|aminoacid|AA!} with the {SMILES__description} {SMILES#} has a one-letter code {one_letter_code#} and a three-letter code
