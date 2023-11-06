@@ -43,7 +43,7 @@ def smiles_to_safe(smiles: str) -> str:
     """
     Takes a SMILES and return the SAFE.
     """
-    return safe.encode(smiles)
+    return safe.encode(smiles, seed=42, canonical=True, randomize=False)
 
 
 CACTUS = "https://cactus.nci.nih.gov/chemical/structure/{0}/{1}"
