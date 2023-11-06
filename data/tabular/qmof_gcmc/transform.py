@@ -8,7 +8,6 @@ def process():
     df = pd.read_json(
         "https://huggingface.co/datasets/kjappelbaum/chemnlp-qmof-data/resolve/main/qmof_data.json"
     )
-
     df.dropna(
         subset=[
             "outputs.CO2-henry_coefficient-mol--kg--Pa",
@@ -67,7 +66,7 @@ def process():
         inplace=True,
     )
 
-    df["lg10_CO2_Henry"] = np.log10(df['outputs.CO2-henry_coefficient-mol--kg--Pa"'])
+    df["lg10_CO2_Henry"] = np.log10(df["outputs.CO2-henry_coefficient-mol--kg--Pa"])
     df["lg10_N2_Henry"] = np.log10(df["outputs.N2-henry_coefficient-mol--kg--Pa"])
     df["lg10_CH4_Henry"] = np.log10(df["outputs.CH4-henry_coefficient-mol--kg--Pa"])
     df["log10_O2_Henry"] = np.log10(df["outputs.O2-henry_coefficient-mol--kg--Pa"])

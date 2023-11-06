@@ -1,0 +1,160 @@
+---
+name: qmof_quantum
+description: |-
+    QMOF is a database of electronic properties of MOFs, assembled by Rosen et al.
+    Jablonka et al. added gas adsorption properties.
+targets:
+    - id: lg10_CO2_Henry
+      description: CO2 Henry coefficient
+      type: continuous
+      units: mol/kg/Pa
+      significant_digits: 3
+      names:
+          - noun: 10-based logarithm of CO2 Henry coefficient computed using grand canonical Monte Carlo
+          - noun: 10-based logarithm of carbon dioxide Henry coefficient computed using grand canonical Monte Carlo
+    - id: lg10_N2_Henry
+      description: N2 Henry coefficient
+      type: continuous
+      units: mol/kg/Pa
+      significant_digits: 3
+      names:
+          - noun: 10-based logarithm of N2 Henry coefficient computed using grand canonical Monte Carlo
+          - noun: 10-based logarithm of nitrogen Henry coefficient computed using grand canonical Monte Carlo
+    - id: lg10_CH4_Henry
+      description: CH4 Henry coefficient
+      type: continuous
+      units: mol/kg/Pa
+      significant_digits: 3
+      names:
+          - noun: 10-based logarithm of CH4 Henry coefficient computed using grand canonical Monte Carlo
+          - noun: 10-based logarithm of methane Henry coefficient computed using grand canonical Monte Carlo
+    - id: lg10_O2_Henry
+      description: O2 Henry coefficient
+      type: continuous
+      units: mol/kg/Pa
+      significant_digits: 3
+      names:
+          - noun: 10-based logarithm of O2 Henry coefficient computed using grand canonical Monte Carlo
+          - noun: 10-based logarithm of oxygen Henry coefficient using grand canonical Monte Carlo
+    - id: log10_Xe_Henry
+      description: Xe Henry coefficient
+      type: continuous
+      units: mol/kg/Pa
+      significant_digits: 3
+      names:
+          - noun: 10-based logarithm of Xe Henry coefficient computed using grand canonical Monte Carlo
+          - noun: 10-based logarithm of xenon Henry coefficient computed using grand canonical Monte Carlo
+    - id: log10_Kr_Henry
+      description: Kr Henry coefficient
+      type: continuous
+      units: mol/kg/Pa
+      significant_digits: 3
+      names:
+          - noun: 10-based logarithm of Kr Henry coefficient computed using grand canonical Monte Carlo
+          - noun: 10-based logarithm of krypton Henry coefficient computed using grand canonical Monte Carlo
+    - id: log10_H2S_Henry
+      description: H2S Henry coefficient
+      type: continuous
+      units: mol/kg/Pa
+      significant_digits: 3
+      names:
+          - noun: 10-based logarithm of H2S Henry coefficient computed using grand canonical Monte Carlo
+          - noun: 10-based logarithm of hydrogen sulfide Henry coefficient computed using grand canonical Monte Carlo
+    - id: log10_H2O_Henry
+      description: H2O Henry coefficient
+      type: continuous
+      units: mol/kg/Pa
+      significant_digits: 3
+      names:
+          - noun: 10-based logarithm of H2O Henry coefficient computed using grand canonical Monte Carlo
+          - noun: 10-based logarithm of water Henry coefficient computed using grand canonical Monte Carlo
+    - id: info.pld
+      type: continuous
+      units: \AA
+      significant_digits: 3
+      names:
+          - noun: pore limiting diameter
+          - noun: pore limiting diameter (PLD)
+    - id: info.lcd
+      type: continuous
+      units: \AA
+      significant_digits: 3
+      names:
+          - noun: largest cavity diameter
+          - noun: largest cavity diameter (LCD)
+    - id: info.density
+      type: continuous
+      units: g/cm^3
+      significant_digits: 3
+      names:
+          - noun: density
+identifiers:
+    - id: info.mofid.mofid
+      type: Other
+      description: MOF ID
+    - id: info.mofid.smiles_nodes
+      type: Other
+      description: SMILES of nodes
+    - id: info.mofid.smiles_linkers
+      type: Other
+      description: SMILES of linkers
+    - id: info.mofid.smiles
+      type: Other
+      description: SMILES
+    - id: info.mofid.topology
+      type: Other
+      description: Topology RCSR ID
+    - id: info.symmetry.spacegroup_number
+      type: Other
+      description: Spacegroup number
+      names:
+          - noun: space group number
+license: CC-BY-4.0
+num_points: 884
+bibtex:
+    - |-
+      @article{Rosen_2021,
+        doi = {10.1016/j.matt.2021.02.015},
+        url = {https://doi.org/10.1016%2Fj.matt.2021.02.015},
+        year = 2021,
+        month = {may},
+        publisher = {Elsevier {BV}},
+        volume = {4},
+        number = {5},
+        pages = {1578--1597},
+        author = {Andrew S. Rosen and Shaelyn M. Iyer and Debmalya Ray and Zhenpeng Yao and Al{\'{a}}n Aspuru-Guzik and Laura Gagliardi and Justin M. Notestein and Randall Q. Snurr},
+        title = {Machine learning the quantum-chemical properties of metal{\textendash}organic frameworks for accelerated materials discovery},
+        journal = {Matter}
+      }
+    - |-
+      @article{Rosen_2022,
+        doi = {10.1038/s41524-022-00796-6},
+        url = {https://doi.org/10.1038%2Fs41524-022-00796-6},
+        year = 2022,
+        month = {may},
+        publisher = {Springer Science and Business Media {LLC}},
+        volume = {8},
+        number = {1},
+        author = {Andrew S. Rosen and Victor Fung and Patrick Huck and Cody T. O'Donnell and Matthew K. Horton and Donald G. Truhlar and Kristin A. Persson and Justin M. Notestein and Randall Q. Snurr},
+        title = {High-throughput predictions of metal{\textendash}organic framework electronic properties: theoretical challenges, graph neural networks, and data exploration},
+        journal = {npj Comput Mater}
+      }
+    - |-
+      @article{Jablonka_2023,
+        doi = {10.1021/acscentsci.2c01177},
+        url = {https://doi.org/10.1021%2Facscentsci.2c01177},
+        year = 2023,
+        month = {mar},
+        publisher = {American Chemical Society ({ACS})},
+        volume = {9},
+        number = {4},
+        pages = {563--581},
+        author = {Kevin Maik Jablonka and Andrew S. Rosen and Aditi S. Krishnapriyan and Berend Smit},
+        title = {An Ecosystem for Digital Reticular Chemistry},
+        journal = {ACS Cent. Sci.} Central Science}
+      }
+templates:
+    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
+      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {#density|mass density!} of {info.density#} {info.density__units}.
+    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFid {info.mofid.mofid#} has a {#density|mass density|mass
+      density (density)!} of {info.density#} {info.density__units}.
