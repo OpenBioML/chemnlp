@@ -29,7 +29,7 @@ links:
 num_points: 144675
 templates:
     - |-
-      Task: Please carry out the {#named entity recognition (NER)|named entity recognition|NER!} task for the the text below.
+      Task: Please carry out the {#named entity recognition (NER)|named entity recognition|NER!} task for the text below.
       Text: {#Sentence}.
       Constrain: Please, {#only |!}list the entities in the form NER entity, span start, span end, and type {#in separate lines |!}with a high probability of being in the text.
       Result: {#entity_1}
