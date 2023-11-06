@@ -26,3 +26,4 @@ jobs:
               shell: bash -l {0}
               run: |
                   pip install pytest
+                  pytest tests
