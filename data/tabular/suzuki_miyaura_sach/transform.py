@@ -199,6 +199,28 @@ def get_and_transform_data():
     ]
 
     # data cleaning
+    # make the columns we look up to str
+    df[
+        [
+            "Reactant_1_Name",
+            "Reactant_2_Name",
+            "Catalyst_1_Short_Hand",
+            "Ligand_Short_Hand",
+            "Reagent_1_Short_Hand",
+            "Solvent_1_Short_Hand",
+        ]
+    ] = df[
+        [
+            "Reactant_1_Name",
+            "Reactant_2_Name",
+            "Catalyst_1_Short_Hand",
+            "Ligand_Short_Hand",
+            "Reagent_1_Short_Hand",
+            "Solvent_1_Short_Hand",
+        ]
+    ].astype(
+        str
+    )
     df = add_molecules_and_rxn_smiles_to_df(df)
 
     # save to csv
