@@ -1,0 +1,41 @@
+---
+name: ames_mutagenicity
+description: |-
+    The list of the 20 essential aminoacids, their SMILES, one letter and three letter codes.
+targets:
+    - id: three_letter_code
+      description: three-letter code
+      type: text
+    - id: one_letter_code
+      description: one-letter code
+      type: text
+    - id: aminoacid_name
+      description: name
+      type: text
+    - id: type
+      description: type of aminoacid
+      type: text
+identifiers:
+    - id: SMILES
+      type: SMILES
+      description: SMILES
+license: CC BY 4.0
+links:
+    - url: https://doi.org/10.1021/ci300400a
+      description: corresponding publication
+    - url: https://tdcommons.ai/single_pred_tasks/tox/#ames-mutagenicity
+      description: Data source
+num_points: 20
+templates:
+    - The {#essential aminoacid|aminoacid|AA!} with the {SMILES__description} {SMILES#} has a one-letter code {one_letter_code#} and a three-letter code
+      {three_letter_code#}.
+    - The {#essential aminoacid|aminoacid|AA!} {aminoacid_name#} has a one-letter code {one_letter_code#} and a three-letter code {three_letter_code#}.
+    - |-
+      Question: What is the one-letter code of the {#essential aminoacid|aminoacid|AA!} with the {SMILES__description} {SMILES#}?
+      Answer: {one_letter_code#}.
+    - |-
+      Question: What is the one-letter code of the {#essential aminoacid|aminoacid|AA!} with the {SMILES__description} {SMILES#}?
+      Answer: {three_letter_code#}.
+    - |-
+      Question: What is the the type of the aminoacid with the one-letter {one_letter_code#} and {SMILES__description} {SMILES#}?
+      Answer: From the provided aminoacid types (polar, non-polar, positively charged, negatively charged), the aminoacid with the one-letter code {one_letter_code#} is {type#}.
