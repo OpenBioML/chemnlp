@@ -44,9 +44,9 @@ dataset_creation = [
         "bioc",
         "pylatexenc",
         "canonicalize_psmiles@git+https://github.com/Ramprasad-Group/canonicalize_psmiles.git",
-        #"tucan@git+https://github.com/TUCAN-nest/TUCAN.git"  # the current version has bugs due to the type checking, maybe this is due to our python version?
         "rxn-chem-utils",
         "safe-mol",
+        "backoff"
 ]
 
 training = [

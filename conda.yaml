@@ -1,9 +1,9 @@
 ---
 name: dummy
 dependencies:
-    - python==3.8.*
+    - python==3.9.*
     - pip
     - pip:
           - .
           - .[dev]
-        #   - ".[dataset_creation]"
+          - ".[dataset_creation]"

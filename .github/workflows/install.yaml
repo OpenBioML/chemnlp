@@ -22,3 +22,7 @@ jobs:
               run: |
                   conda activate chemnlp
                   python -m src.chemnlp.data_val.validate data
+            - name: Tests
+              shell: bash -l {0}
+              run: |
+                pip install pytest
