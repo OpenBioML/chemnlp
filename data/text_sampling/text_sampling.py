@@ -78,6 +78,7 @@ exclude_from_standard_tabular_text_templates = [
     "cav3_t-type_calcium_channels_butkiewicz",  # because it is boolean target data
     "chebi_20",  # target is text description
     "chembl_v29",  # text only, no SMILES
+    "chemcaption_rdkit",  # text only, no SMILES
     "choline_transporter_butkiewicz",  # because it is boolean target data
     "clintox",  # because it is boolean target data
     "cyp2c9_substrate_carbonmangels",  # boolean target data
@@ -992,7 +993,7 @@ if __name__ == "__main__":
     # path_data_dir = path_data_dir[index:]
 
     for path in path_data_dir:
-        # if "qm8" not in path:
+        # if "rdkit" not in path:
         #     continue
         # subselect one path
         # if path.find("data/tabular/") == -1: continue

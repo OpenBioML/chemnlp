@@ -25,36 +25,29 @@ targets:
           - noun: proportion of non-rotatable bonds
           - noun: non-rotatable bond proportion
     - id: num_single_bonds
-      type: continuous
-      significant_digits: 3
+      type: categorical
       description: number of single bonds
       names:
-          - noun: fraction of single bonds
-          - noun: single bond fraction
+          - noun: number of single bonds
+          - only_name: single bonds
     - id: num_double_bonds
-      type: continuous
-      significant_digits: 3
+      type: categorical
       description: number of double bonds
       names:
-          - noun: fraction of double bonds
-          - noun: double bond fraction
-          - noun: double bond proportion
+          - noun: number of double bonds
+          - only_name: double bonds
     - id: num_triple_bonds
-      type: continuous
-      significant_digits: 3
+      type: categorical
       description: number of triple bonds
       names:
-          - noun: fraction of triple bonds
-          - noun: triple bond fraction
-          - noun: triple bond proportion
+          - noun: number of triple bonds
+          - only_name: triple bonds
     - id: num_aromatic_bonds
-      type: continuous
-      significant_digits: 3
+      type: categorical
       description: number of aromatic bonds
       names:
-          - noun: fraction of aromatic bonds
-          - noun: aromatic bond fraction
-          - noun: aromatic bond proportion
+          - noun: number of aromatic bonds
+          - only_name: aromatic bonds
     - id: num_bonds
       type: categorical
       description: number of bonds
@@ -219,7 +212,7 @@ identifiers:
       type: text
       description: representation type
 license: CC BY 4.0
-num_points: 82337
+num_points: 79811
 links:
     - url: https://github.com/lamalab-org/chem-caption
       description: Original codebase used to generate this dataset
@@ -228,10 +221,10 @@ templates:
     - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has a {rotable_proportion__names__noun} of {rotable_proportion#}.
     - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has a {non_rotable_proportion__names__noun} of
       {non_rotable_proportion#}.
-    - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has a {num_single_bonds__names__noun} of {num_single_bonds#}.
-    - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has a {num_double_bonds__names__noun} of {num_double_bonds#}.
-    - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has a {num_triple_bonds__names__noun} of {num_triple_bonds#}.
-    - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has a {num_aromatic_bonds__names__noun} of {num_aromatic_bonds#}.
+    - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has {num_single_bonds#} {num_single_bonds__names__only_name}.
+    - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has {num_double_bonds#} {num_double_bonds__names__only_name}.
+    - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has {num_triple_bonds#} {num_triple_bonds__names__only_name}.
+    - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has {num_aromatic_bonds#} {num_aromatic_bonds__names__only_name}.
     - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has {num_bonds#} {num_bonds__names__only_name}.
     - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has {num_carbon_atoms#} {num_carbon_atoms__names__only_name}.
     - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has {num_hydrogen_atoms#} {num_hydrogen_atoms__names__only_name}.
