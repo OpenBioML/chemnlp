@@ -1,5 +1,5 @@
 ---
-name: orbnet_denali_structures
+name: orbnet_denali
 description: |-
     Structures (including conformers, protomers, ...) of structures.
     Has been used for training of OrbNet Denali.
@@ -8,7 +8,7 @@ targets:
       type: ordinal
       description: integer charge of the molecule
       names:
-          noun: charge
+          - noun: charge
     - id: xtb1_energy
       type: continuous
       description: XTB1 energy
@@ -16,14 +16,14 @@ targets:
       significant_digits: 5
       names:
           - noun: total energy computed at the GFN1-xTB level of theory
-          - noun: total energy after geometry optimization at the GFN1-xTB level of theory
     - id: dft_energy
       type: continuous
       description: DFT energy
       units: Hartree
       significant_digits: 5
       names:
-          - noun: total energy computed at the {\\omega}B97X-D3/def2-TZVP level of theory
+          - noun: total energy computed at the {\omega}B97X-D3/def2-TZVP level of theory
+          - lot: the {\omega}B97X-D3/def2-TZVP
 identifiers:
     - id: SMILES
       type: SMILES
@@ -31,12 +31,18 @@ identifiers:
     - id: xyz
       type: XYZFILE
       description: XYZ file
+      names:
+          - noun: XYZ file
     - id: mol2000
       type: MOL2000FILE
       description: MOL2000 file
+      names:
+          - noun: MOL2000 file
     - id: mol3000
       type: MOL3000FILE
       description: MOL3000 file
+      names:
+          - noun: MOL3000 file
 license: CC BY 4.0
 links:
     - url: https://arxiv.org/abs/2107.00299
@@ -68,23 +74,23 @@ templates:
     - The {#molecule|chemical|compound|chemical structure!} with {SMILES__description} {SMILES#} has a charge of {charge#}.
     - |-
       Question: {#What is the|What's the!} structure of a conformer of the {#molecule|chemical|compound|chemical structure!} with {SMILES__description} {SMILES#}?
-      Constraint: Return a {xyz__names__noun} file.
+      Constraint: Return a {xyz__names__noun}.
       Answer: {xyz#}
     - |-
       Question: {#What is the|What's the!} structure of a conformer of the {#molecule|chemical|compound|chemical structure!} with {SMILES__description} {SMILES#}?
-      Constraint: Return a {mol2000__names__noun} file.
+      Constraint: Return a {mol2000__names__noun}.
       Answer: {mol2000#}
     - |-
       Question: {#What is the|What's the!} structure of a conformer of the {#molecule|chemical|compound|chemical structure!} with {SMILES__description} {SMILES#}?
-      Constraint: Return a {mol3000__names__noun} file.
+      Constraint: Return a {mol3000__names__noun}.
       Answer: {mol3000#}
     - |-
       Task: Return the total energy of a {#molecule|chemical|compound|chemical structure!} computed at the GFN1-xTB level of theory.
-      Description: The {#molecule|chemical|compound|chemical structure!} has the {xyz__names__noun} file {xyz#}.
+      Description: The {#molecule|chemical|compound|chemical structure!} has the {xyz__names__noun} {xyz#}.
       Answer: {xtb1_energy#} {xtb1_energy__units}
     - |-
-      Task: Return the total energy of a {#molecule|chemical|compound|chemical structure!} computed at the {\\omega}B97X-D3/def2-TZVP level of theory.
-      Description: The {#molecule|chemical|compound|chemical structure!} has the {xyz__names__noun} file {xyz#}.
+      Task: Return the total energy of a {#molecule|chemical|compound|chemical structure!} computed at {dft_energy__names__lot} level of theory.
+      Description: The {#molecule|chemical|compound|chemical structure!} has the {xyz__names__noun} {xyz#}.
       Answer: {dft_energy#} {dft_energy__units}
     - |-
       User: {#I want to|I have to|I must|I would like to!} know the GFN1-xTB total energy of the {#molecule|chemical|compound|chemical structure!} with {SMILES__description} {SMILES#}.
@@ -92,7 +98,7 @@ templates:
       User: {#Yes:|Here it is:|I have it:|I do:!} {xyz#}
       Assistant: The GFN1-xTB total energy of the {#molecule|chemical|compound|chemical structure!} is {xtb1_energy#} {xtb1_energy__units}.
     - |-
-      User: {#I want to|I have to|I must|I would like to!} know the {\\omega}B97X-D3/def2-TZVP total energy of the {#molecule|chemical|compound|chemical structure!} with {SMILES__description} {SMILES#}.
+      User: {#I want to|I have to|I must|I would like to!} know {dft_energy__names__lot} total energy of the {#molecule|chemical|compound|chemical structure!} with {SMILES__description} {SMILES#}.
       Assistant: Do you have the {xyz__names__noun} file of a conformer of the {#molecule|chemical|compound|chemical structure!}?
       User: {#Yes:|Here it is:|I have it:|I do:!} {xyz#}
-      Assistant: The {\\omega}B97X-D3/def2-TZVP total energy of the {#molecule|chemical|compound|chemical structure!} is {dft_energy#} {dft_energy__units}.
+      Assistant: The total energy on {dft_energy__names__lot} level of theory of the {#molecule|chemical|compound|chemical structure!} is {dft_energy#} {dft_energy__units}.

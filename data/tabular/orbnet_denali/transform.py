@@ -6,6 +6,7 @@ def process():
     df = dataset["train"].to_pandas()
     df = df.dropna()
     print(len(df))
+    df.rename(columns={"smiles": "SMILES"}, inplace=True)
     df.to_csv("data_clean.csv", index=False)
 
 
