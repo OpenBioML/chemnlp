@@ -38,7 +38,7 @@ dataset_creation = [
         "pylatexenc",
         "canonicalize_psmiles@git+https://github.com/Ramprasad-Group/canonicalize_psmiles.git",
         "rxn-chem-utils",
-        "safe-mol",
+      #  "safe-mol",
         "backoff",
         "givemeconformer",
 ]
