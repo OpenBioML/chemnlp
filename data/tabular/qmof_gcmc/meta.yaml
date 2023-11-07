@@ -10,31 +10,31 @@ targets:
       units: mol/kg/Pa
       significant_digits: 3
       names:
-          - noun: 10-based logarithm of CO2 Henry coefficient computed using grand canonical Monte Carlo
-          - noun: 10-based logarithm of carbon dioxide Henry coefficient computed using grand canonical Monte Carlo
+          - noun: 10-based logarithm of CO2 Henry coefficient (computed using grand canonical Monte Carlo)
+          - noun: 10-based logarithm of carbon dioxide Henry coefficient (computed using grand canonical Monte Carlo)
     - id: lg10_N2_Henry
       description: N2 Henry coefficient
       type: continuous
       units: mol/kg/Pa
       significant_digits: 3
       names:
-          - noun: 10-based logarithm of N2 Henry coefficient computed using grand canonical Monte Carlo
-          - noun: 10-based logarithm of nitrogen Henry coefficient computed using grand canonical Monte Carlo
+          - noun: 10-based logarithm of N2 Henry coefficient (computed using grand canonical Monte Carlo)
+          - noun: 10-based logarithm of nitrogen Henry coefficient (computed using grand canonical Monte Carlo)
     - id: lg10_CH4_Henry
       description: CH4 Henry coefficient
       type: continuous
       units: mol/kg/Pa
       significant_digits: 3
       names:
-          - noun: 10-based logarithm of CH4 Henry coefficient computed using grand canonical Monte Carlo
-          - noun: 10-based logarithm of methane Henry coefficient computed using grand canonical Monte Carlo
+          - noun: 10-based logarithm of CH4 Henry coefficient (computed using grand canonical Monte Carlo)
+          - noun: 10-based logarithm of methane Henry coefficient (computed using grand canonical Monte Carlo)
     - id: lg10_O2_Henry
       description: O2 Henry coefficient
       type: continuous
       units: mol/kg/Pa
       significant_digits: 3
       names:
-          - noun: 10-based logarithm of O2 Henry coefficient computed using grand canonical Monte Carlo
+          - noun: 10-based logarithm of O2 Henry coefficient (computed using grand canonical Monte Carlo)
           - noun: 10-based logarithm of oxygen Henry coefficient using grand canonical Monte Carlo
     - id: lg10_Xe_Henry
       description: Xe Henry coefficient
@@ -42,176 +42,176 @@ targets:
       units: mol/kg/Pa
       significant_digits: 3
       names:
-          - noun: 10-based logarithm of Xe Henry coefficient computed using grand canonical Monte Carlo
-          - noun: 10-based logarithm of xenon Henry coefficient computed using grand canonical Monte Carlo
+          - noun: 10-based logarithm of Xe Henry coefficient (computed using grand canonical Monte Carlo)
+          - noun: 10-based logarithm of xenon Henry coefficient (computed using grand canonical Monte Carlo)
     - id: lg10_Kr_Henry
       description: Kr Henry coefficient
       type: continuous
       units: mol/kg/Pa
       significant_digits: 3
       names:
-          - noun: 10-based logarithm of Kr Henry coefficient computed using grand canonical Monte Carlo
-          - noun: 10-based logarithm of krypton Henry coefficient computed using grand canonical Monte Carlo
+          - noun: 10-based logarithm of Kr Henry coefficient (computed using grand canonical Monte Carlo)
+          - noun: 10-based logarithm of krypton Henry coefficient (computed using grand canonical Monte Carlo)
     - id: lg10_H2S_Henry
       description: H2S Henry coefficient
       type: continuous
       units: mol/kg/Pa
       significant_digits: 3
       names:
-          - noun: 10-based logarithm of H2S Henry coefficient computed using grand canonical Monte Carlo
-          - noun: 10-based logarithm of hydrogen sulfide Henry coefficient computed using grand canonical Monte Carlo
+          - noun: 10-based logarithm of H2S Henry coefficient (computed using grand canonical Monte Carlo)
+          - noun: 10-based logarithm of hydrogen sulfide Henry coefficient (computed using grand canonical Monte Carlo)
     - id: lg10_H2O_Henry
       description: H2O Henry coefficient
       type: continuous
       units: mol/kg/Pa
       significant_digits: 3
       names:
-          - noun: 10-based logarithm of H2O Henry coefficient computed using grand canonical Monte Carlo
-          - noun: 10-based logarithm of water Henry coefficient computed using grand canonical Monte Carlo
+          - noun: 10-based logarithm of H2O Henry coefficient (computed using grand canonical Monte Carlo)
+          - noun: 10-based logarithm of water Henry coefficient (computed using grand canonical Monte Carlo)
     - id: outputs.CO2-adsorption_energy-kJ--mol
       description: CO2 adsorption energy
       type: continuous
       units: kJ/mol
       significant_digits: 3
       names:
-          - noun: CO2 adsorption energy computed using grand canonical Monte Carlo
-          - noun: carbon dioxide adsorption energy computed using grand canonical Monte Carlo
+          - noun: CO2 adsorption energy (computed using grand canonical Monte Carlo)
+          - noun: carbon dioxide adsorption energy (computed using grand canonical Monte Carlo)
     - id: outputs.N2-adsorption_energy-kJ--mol
       description: N2 adsorption energy
       type: continuous
       units: kJ/mol
       significant_digits: 3
       names:
-          - noun: N2 adsorption energy computed using grand canonical Monte Carlo
-          - noun: nitrogen adsorption energy computed using grand canonical Monte Carlo
+          - noun: N2 adsorption energy (computed using grand canonical Monte Carlo)
+          - noun: nitrogen adsorption energy (computed using grand canonical Monte Carlo)
     - id: outputs.CH4-adsorption_energy-kJ--mol
       description: CH4 adsorption energy
       type: continuous
       units: kJ/mol
       significant_digits: 3
       names:
-          - noun: CH4 adsorption energy computed using grand canonical Monte Carlo
-          - noun: methane adsorption energy computed using grand canonical Monte Carlo
+          - noun: CH4 adsorption energy (computed using grand canonical Monte Carlo)
+          - noun: methane adsorption energy (computed using grand canonical Monte Carlo)
     - id: outputs.O2-adsorption_energy-kJ--mol
       description: O2 adsorption energy
       type: continuous
       units: kJ/mol
       significant_digits: 3
       names:
-          - noun: O2 adsorption energy computed using grand canonical Monte Carlo
-          - noun: oxygen adsorption energy computed using grand canonical Monte Carlo
+          - noun: O2 adsorption energy (computed using grand canonical Monte Carlo)
+          - noun: oxygen adsorption energy (computed using grand canonical Monte Carlo)
     - id: outputs.Xe-adsorption_energy-kJ--mol
       description: Xe adsorption energy
       type: continuous
       units: kJ/mol
       significant_digits: 3
       names:
-          - noun: Xe adsorption energy computed using grand canonical Monte Carlo
-          - noun: xenon adsorption energy computed using grand canonical Monte Carlo
+          - noun: Xe adsorption energy (computed using grand canonical Monte Carlo)
+          - noun: xenon adsorption energy (computed using grand canonical Monte Carlo)
     - id: outputs.Kr-adsorption_energy-kJ--mol
       description: Kr adsorption energy
       type: continuous
       units: kJ/mol
       significant_digits: 3
       names:
-          - noun: Kr adsorption energy computed using grand canonical Monte Carlo
-          - noun: krypton adsorption energy computed using grand canonical Monte Carlo
+          - noun: Kr adsorption energy (computed using grand canonical Monte Carlo)
+          - noun: krypton adsorption energy (computed using grand canonical Monte Carlo)
     - id: outputs.H2S-adsorption_energy-kJ--mol
       description: H2S adsorption energy
       type: continuous
       units: kJ/mol
       significant_digits: 3
       names:
-          - noun: H2S adsorption energy computed using grand canonical Monte Carlo
-          - noun: hydrogen sulfide adsorption energy computed using grand canonical Monte Carlo
+          - noun: H2S adsorption energy (computed using grand canonical Monte Carlo)
+          - noun: hydrogen sulfide adsorption energy (computed using grand canonical Monte Carlo)
     - id: outputs.H2O-adsorption_energy-kJ--mol
       description: H2O adsorption energy
       type: continuous
       units: kJ/mol
       significant_digits: 3
       names:
-          - noun: H2O adsorption energy computed using grand canonical Monte Carlo
-          - noun: water adsorption energy computed using grand canonical Monte Carlo
+          - noun: H2O adsorption energy (computed using grand canonical Monte Carlo)
+          - noun: water adsorption energy (computed using grand canonical Monte Carlo)
     - id: outputs.H2S--H2O-selectivity_298_K-
       description: H2S/H2O selectivity
       type: continuous
       units: dimensionless
       significant_digits: 3
       names:
-          - noun: H2S/H2O selectivity computed using grand canonical Monte Carlo
-          - noun: hydrogen sulfide/water selectivity computed using grand canonical Monte Carlo
+          - noun: H2S/H2O selectivity (computed using grand canonical Monte Carlo)
+          - noun: hydrogen sulfide/water selectivity (computed using grand canonical Monte Carlo)
     - id: outputs.CH4--N2-selectivity_298_K-
       description: CH4/N2 selectivity
       type: continuous
       units: dimensionless
       significant_digits: 3
       names:
-          - noun: CH4/N2 selectivity computed using grand canonical Monte Carlo
-          - noun: methane/nitrogen selectivity computed using grand canonical Monte Carlo
+          - noun: CH4/N2 selectivity (computed using grand canonical Monte Carlo)
+          - noun: methane/nitrogen selectivity (computed using grand canonical Monte Carlo)
     - id: outputs.Xe--Kr-selectivity_298_K-
       description: Xe/Kr selectivity
       type: continuous
       units: dimensionless
       significant_digits: 3
       names:
-          - noun: Xe/Kr selectivity computed using grand canonical Monte Carlo
-          - noun: xenon/krypton selectivity computed using grand canonical Monte Carlo
+          - noun: Xe/Kr selectivity (computed using grand canonical Monte Carlo)
+          - noun: xenon/krypton selectivity (computed using grand canonical Monte Carlo)
     - id: outputs.CH4-working_capacity_vol_58_to_65_bar_298_K-cm3_STP--cm3
       description: CH4 working capacity
       type: continuous
       units: cm^3 STP/cm^3
       significant_digits: 3
       names:
-          - noun: CH4 working capacity between 58 and 65 bar at 298 K computed using grand canonical Monte Carlo
-          - noun: methane working capacity between 58 and 65 bar at 298 K computed using grand canonical Monte Carlo
+          - noun: CH4 working capacity between 58 and 65 bar at 298 K (computed using grand canonical Monte Carlo)
+          - noun: methane working capacity between 58 and 65 bar at 298 K (computed using grand canonical Monte Carlo)
     - id: outputs.CH4-working_capacity_mol_58_to_65_bar_298_K-mol--kg
       description: CH4 working capacity
       type: continuous
       units: mol/kg
       significant_digits: 3
       names:
-          - noun: CH4 working capacity between 58 and 65 bar at 298 K computed using grand canonical Monte Carlo
-          - noun: methane working capacity between 58 and 65 bar at 298 K computed using grand canonical Monte Carlo
+          - noun: CH4 working capacity between 58 and 65 bar at 298 K (computed using grand canonical Monte Carlo)
+          - noun: methane working capacity between 58 and 65 bar at 298 K (computed using grand canonical Monte Carlo)
     - id: outputs.O2-working_capacity_vol_5_to_140_bar_298_K-cm3_STP--cm3
       description: O2 working capacity
       type: continuous
       units: cm^3 STP/cm^3
       significant_digits: 3
       names:
-          - noun: O2 working capacity between 5 and 140 bar at 298 K computed using grand canonical Monte Carlo
-          - noun: oxygen working capacity between 5 and 140 bar at 298 K computed using grand canonical Monte Carlo
+          - noun: O2 working capacity between 5 and 140 bar at 298 K (computed using grand canonical Monte Carlo)
+          - noun: oxygen working capacity between 5 and 140 bar at 298 K (computed using grand canonical Monte Carlo)
     - id: outputs.O2-working_capacity_mol_5_to_140_bar_298_K-mol--kg
       description: O2 working capacity
       type: continuous
       units: mol/kg
       significant_digits: 3
       names:
-          - noun: O2 working capacity between 5 and 140 bar at 298 K computed using grand canonical Monte Carlo
-          - noun: oxygen working capacity between 5 and 140 bar at 298 K computed using grand canonical Monte Carlo
+          - noun: O2 working capacity between 5 and 140 bar at 298 K (computed using grand canonical Monte Carlo)
+          - noun: oxygen working capacity between 5 and 140 bar at 298 K (computed using grand canonical Monte Carlo)
     - id: outputs.H2-working_capacity_5_to_100_bar_298_to_198_K-g--L
       description: H2 working capacity
       type: continuous
       units: g/L
       significant_digits: 3
       names:
-          - noun: H2 working capacity between 5 and 100 bar at 298 K computed using grand canonical Monte Carlo
-          - noun: hydrogen working capacity between 5 and 100 bar at 298 K computed using grand canonical Monte Carlo
+          - noun: H2 working capacity between 5 and 100 bar at 298 K (computed using grand canonical Monte Carlo)
+          - noun: hydrogen working capacity between 5 and 100 bar at 298 K (computed using grand canonical Monte Carlo)
     - id: outputs.H2-working_capacity_5_to_100_bar_77_K-g--L
       description: H2 working capacity
       type: continuous
       units: g/L
       significant_digits: 3
       names:
-          - noun: H2 working capacity between 5 and 100 bar at 77 K computed using grand canonical Monte Carlo
-          - noun: hydrogen working capacity between 5 and 100 bar at 77 K computed using grand canonical Monte Carlo
+          - noun: H2 working capacity between 5 and 100 bar at 77 K (computed using grand canonical Monte Carlo)
+          - noun: hydrogen working capacity between 5 and 100 bar at 77 K (computed using grand canonical Monte Carlo)
     - id: outputs.H2-working_capacity_1_to_100_bar_77_K-g--L
       description: H2 working capacity
       type: continuous
       units: g/L
       significant_digits: 3
       names:
-          - noun: H2 working capacity between 1 and 100 bar at 77 K computed using grand canonical Monte Carlo
-          - noun: hydrogen working capacity between 1 and 100 bar at 77 K computed using grand canonical Monte Carlo
+          - noun: H2 working capacity between 1 and 100 bar at 77 K (computed using grand canonical Monte Carlo)
+          - noun: hydrogen working capacity between 1 and 100 bar at 77 K (computed using grand canonical Monte Carlo)
     - id: info.pld
       type: continuous
       units: \AA
@@ -421,9 +421,6 @@ templates:
       of {outputs.H2-working_capacity_1_to_100_bar_77_K-g--L#} {outputs.H2-working_capacity_1_to_100_bar_77_K-g--L__units}.
     - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.H2-working_capacity_1_to_100_bar_77_K-g--L__names__noun}
       of {outputs.H2-working_capacity_1_to_100_bar_77_K-g--L#} {outputs.H2-working_capacity_1_to_100_bar_77_K-g--L__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {info.pld#} {info.pld__units}
-      pore limiting diameter (PLD).
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {info.lcd#} {info.lcd__units}
-      largest cavity diameter (LCD).
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {info.density#} {info.density__units}
-      density.
+    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {info.pld__names__noun} of {info.pld#} {info.pld__units}
+    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {info.lcd__names__noun} of {info.lcd#} {info.lcd__units}.
+    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {info.density__names__noun} of {info.density#} {info.density__units}.
