@@ -143,7 +143,8 @@ exclude_from_standard_tabular_text_templates = [
     "MUV_846",  # boolean target data
     "MUV_852",  # boolean target data
     "MUV_858",  # boolean target data
-    "MUV_859"  # boolean target data
+    "MUV_859",  # boolean target data
+    "orbnet_denali_structures"  # only makes sense for the structure files
     # "h2_storage_materials",  # only IUPAC identifier, more than one target, LOW PRIO: has only 30 samples
 ]
 

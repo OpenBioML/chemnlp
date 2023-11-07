@@ -49,7 +49,7 @@ links:
       md5: bc9b612f75373d1d191ce7493eebfd62
     - url: https://figshare.com/articles/dataset/OrbNet_Denali_Training_Data/14883867?file=28672248
       description: data source
-num_points: 2344594
+num_points: 1053275
 bibtex:
     - |-
       @article{Christensen_2021,
