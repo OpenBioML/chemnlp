@@ -1,23 +1,10 @@
+import os.path
+
 import fire
-import pandas as pd
 from datasets import load_dataset
 
 
-def process(debug=False):
-    if debug:
-        dataset = load_dataset("maykcaldas/smiles-transformers", split="train[:100]")
-        train_pandas = dataset.to_pandas()
-        test_pandas = dataset.to_pandas()
-        valid_pandas = dataset.to_pandas()
-    else:
-        dataset = load_dataset("maykcaldas/smiles-transformers")
-        train_pandas = dataset["train"].to_pandas()
-        test_pandas = dataset["test"].to_pandas()
-        valid_pandas = dataset["validation"].to_pandas()
-    train_pandas["split"] = "train"
-    test_pandas["split"] = "test"
-    valid_pandas["split"] = "valid"
-    df = pd.concat([train_pandas, test_pandas, valid_pandas])
+def clean_df(df):
     df.dropna(inplace=True)
     df[
         [
@@ -44,16 +31,36 @@ def process(debug=False):
     ].astype(
         int
     )
-
     df["MolLogP"] = df["MolLogP"].astype(float)
     df["Apol"] = df["Apol"].astype(float)
-
-    print(df.columns)
     df.rename(columns={"text": "SMILES"}, inplace=True)
+    return df
 
-    print(len(df))
 
-    df.to_csv("data_clean.csv", index=False)
+def process():
+    if not (os.path.isfile("data_clean.csv")):
+        df = load_dataset(
+            "maykcaldas/smiles-transformers", split="validation"
+        ).to_pandas()
+        df = clean_df(df)
+        df["split"] = "valid"
+        df.to_csv("data_clean.csv", index=False)
+        del df
+
+        df = load_dataset("maykcaldas/smiles-transformers", split="test").to_pandas()
+        df = clean_df(df)
+        df["split"] = "test"
+        df.to_csv("data_clean.csv", index=False, mode="a", header=False)
+        del df
+
+        splits = [f"train[{k}%:{k+5}%]" for k in range(0, 100, 5)]
+        for s in splits:
+            df = load_dataset("maykcaldas/smiles-transformers", split=s).to_pandas()
+            df = clean_df(df)
+            df["split"] = "train"
+            df.to_csv("data_clean.csv", index=False, mode="a", header=False)
+    else:
+        print("Reusing present data_clean.csv.")
 
 
 if __name__ == "__main__":
