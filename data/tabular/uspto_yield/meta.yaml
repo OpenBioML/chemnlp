@@ -1,0 +1,62 @@
+---
+name: uspto_yield
+description: |-
+    The USPTO dataset is a collection of reaction mined from US patents.
+targets:
+    - id: yield
+      type: continuous
+      significant_digits: 0
+      description: reaction yield
+      units: \%
+      names:
+          - noun: yield
+          - noun: reaction yield
+identifiers:
+    - id: RXNSMILES
+      type: RXNSMILES
+      description: reaction SMILES
+      names:
+          - noun: reaction SMILES
+          - noun: reaction SMILES string
+          - noun: RXNSMILES
+          - noun: reaction SMILES (RXNSMILES)
+    - id: educt_string
+      type: text
+      description: reaction educts
+      names:
+          - noun: reaction educts
+          - noun: educts
+          - noun: starting materials
+    - id: product_string
+      type: text
+      description: reaction products
+      names:
+          - noun: reaction products
+          - noun: products
+license: CC0
+links:
+    - url: https://figshare.com/articles/dataset/Chemical_reactions_from_US_patents_1976-Sep2016_/5104873
+      description: original data source
+num_points: 36564
+bibtex:
+    - |-
+      @article{Lowe2017,
+      author = "Daniel Lowe",
+      title = "{Chemical reactions from US patents (1976-Sep2016)}",
+      year = "2017",
+      month = "6",
+      url = "https://figshare.com/articles/dataset/Chemical_reactions_from_US_patents_1976-Sep2016_/5104873",
+      doi = "10.6084/m9.figshare.5104873.v1"
+      }
+templates:
+    - The {yield__names__noun} of a reaction with the {RXNSMILES__names__noun} {RXNSMILES#} is {yield#}{yield__units}.
+    - |-
+      User: {#I need|I want|I would like!} to run a reaction with the {RXNSMILES__names__noun} {RXNSMILES#}. What is the {yield__names__noun} {#I can expect|I should expect|I should get|I can get!}?
+      Assistant: {#The|The expected|The predicted|The estimated!} {yield__names__noun} is {yield#}{yield__units}.
+    - |-
+      Question: {#What is|What's|What is the|What's the!} {yield__names__noun} of a reaction with the {RXNSMILES__names__noun} {RXNSMILES#}?
+      Answer: {yield#}{yield__units}.
+    - The {yield__names__noun} of a reaction of {educt_string#} to {product_string#} is {yield#}{yield__units}.
+    - |-
+      Question: {#What is|What's|What is the|What's the!} {yield__names__noun} of a reaction of {educt_string#} to {product_string#}?
+      Answer: {yield#}{yield__units}.

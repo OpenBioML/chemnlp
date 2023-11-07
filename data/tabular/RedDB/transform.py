@@ -1,4 +1,3 @@
-import fire
 import pandas as pd
 import yaml
 from rdkit import Chem
@@ -17,7 +16,7 @@ def is_valid_smiles(smiles: str) -> bool:
 
 def read_dataset():
     hf_data = pd.read_csv(
-        "https://huggingface.co/datasets/AdrianM0/RedDB/resolve/main/RedDBv2.csv"
+        "https://huggingface.co/datasets/chemNLP/RedDB/raw/main/RedDBv2.csv"
     )
 
     assert hf_data.SMILES.apply(is_valid_smiles).to_list() == [True] * len(hf_data)
@@ -274,4 +273,4 @@ journal = {Nature Scientific Data}""",
 
 
 if __name__ == "__main__":
-    fire.Fire(read_dataset)
+    read_dataset()

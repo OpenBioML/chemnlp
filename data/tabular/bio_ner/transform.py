@@ -5,6 +5,8 @@ import subprocess
 import pandas as pd
 import yaml
 
+from chemnlp.data.ner import cleaner
+
 # create meta yaml
 meta_template = {
     "name": None,
@@ -97,6 +99,7 @@ def get_and_transform_data():
             )
             os.makedirs(path_export, exist_ok=True)
 
+        df["Sentence"] = df["Sentence"].apply(cleaner)
         fn_data_clean = path_export + "/data_clean.csv"
         df.to_csv(fn_data_clean, index=False)
 
