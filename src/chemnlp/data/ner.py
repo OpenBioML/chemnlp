@@ -1,7 +1,8 @@
 import re
 
 
-def group_tokens_by_labels(tokens, labels, join=True):
+def group_tokens_by_labels(tokens, labels):
+    join = True
     grouped_tokens = []
     current_group = []
 
