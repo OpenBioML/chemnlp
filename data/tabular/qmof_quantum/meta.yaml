@@ -118,11 +118,6 @@ identifiers:
           - noun: space group number
 license: CC-BY-4.0
 num_points: 1986
-links:
-    - url: https://figshare.com/collections/Quantum_chemistry_structures_and_properties_of_134_kilo_molecules/978904
-      description: original data source
-    - url: https://huggingface.co/datasets/n0w0f/qm9-csv/blob/main/qm9_dataset.csv
-      description: parsed dataset in csv format
 bibtex:
     - |-
       @article{Rosen_2021,

@@ -75,6 +75,8 @@ exclude_from_standard_tabular_text_templates = [
     "blood_brain_barrier_martins_et_al",  # because it is boolean target data
     "carcinogens",  # because it is boolean target data
     "core_mof_no_topo",
+    "qmof_gcmc",
+    "qmof_quantum",
     "cav3_t-type_calcium_channels_butkiewicz",  # because it is boolean target data
     "chebi_20",  # target is text description
     "chembl_v29",  # text only, no SMILES
@@ -993,8 +995,6 @@ if __name__ == "__main__":
     # path_data_dir = path_data_dir[index:]
 
     for path in path_data_dir:
-        # if "orbnet" not in path:
-        #     continue
         # subselect one path
         # if path.find("data/tabular/") == -1: continue
         # if path.find("data/kg/") == -1: continue
