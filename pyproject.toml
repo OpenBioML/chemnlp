@@ -23,7 +23,7 @@ dev = [
         "pre-commit",
         "pydantic_yaml<=0.11.2",
         "pytest",
-        "pubchempy"
+        "pubchempy",
 ]
 
 dataset_creation = [
@@ -39,8 +39,8 @@ dataset_creation = [
         "canonicalize_psmiles@git+https://github.com/Ramprasad-Group/canonicalize_psmiles.git",
         "rxn-chem-utils",
         "safe-mol",
-        "backoff"
-        "givemeconformer"
+        "backoff",
+        "givemeconformer",
 ]
 
 training = [
@@ -55,7 +55,7 @@ tokenisation = [
         "zstandard",
         "apache_beam",
         "mwparserfromhell",
-        "jsonlines"
+        "jsonlines",
 ]
 
 [tool.setuptools_scm]
