@@ -40,6 +40,7 @@ dataset_creation = [
         "rxn-chem-utils",
         "safe-mol",
         "backoff"
+        "givemeconformer"
 ]
 
 training = [
