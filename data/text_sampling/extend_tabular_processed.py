@@ -16,7 +16,7 @@ if __name__ == "__main__":
         "canonical",
         "inchi",
         "iupac_name",
-        "safe",
+        # "safe",
     ]
 
     if not os.path.isfile(path_processed_smiles):

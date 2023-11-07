@@ -8,12 +8,11 @@ from functools import partial
 import pandas as pd
 from utils import load_yaml
 
-from chemnlp.data.reprs import (
+from chemnlp.data.reprs import (  # smiles_to_safe,
     smiles_to_canoncial,
     smiles_to_deepsmiles,
     smiles_to_inchi,
     smiles_to_iupac_name,
-    smiles_to_safe,
     smiles_to_selfies,
 )
 
@@ -50,7 +49,7 @@ def line_reps_from_smiles(
             "canonical": _try_except_none(smiles_to_canoncial, smiles),
             "inchi": _try_except_none(smiles_to_inchi, smiles),
             "iupac_name": _try_except_none(smiles_to_iupac_name, smiles),
-            "safe": _try_except_none(smiles_to_safe, smiles),
+            # "safe": _try_except_none(smiles_to_safe, smiles),
         }
 
         # Note: This needs proper filelocking to work.
@@ -156,7 +155,7 @@ if __name__ == "__main__":
             "inchi": [],
             # "tucan": [],
             "iupac_name": [],
-            "safe": [],
+            # "safe": [],
         }
 
         for entry in parsed:
