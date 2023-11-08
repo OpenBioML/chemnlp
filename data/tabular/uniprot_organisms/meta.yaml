@@ -34,4 +34,4 @@ bibtex:
 templates:
     - |-
       User: In what organism can you find the following {#protein|amino-acid sequence|AA sequence|polypeptide!} {other#}?
-      Assistant: The given sequence can be found in {organisms#}.
+      Assistant: The given {#polypeptide|protein|amino-acid sequence|AA sequence!} can be found in {organisms#}.
