@@ -77,6 +77,12 @@ def get_and_transform_data():
     # create dict with entity count as key
     data = {}
     for path in paths:
+        if "BC5CDR-chem" in path:
+            continue  # treated separately
+        if "BC5CDR-disease" in path:
+            continue  # treated separately
+        if "NCBI-disease" in path:
+            continue  # treated separately
         entity_count = get_entity_count(path)
         if entity_count in data:
             data[entity_count].append(path)
