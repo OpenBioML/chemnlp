@@ -2,7 +2,6 @@ import backoff
 import deepsmiles
 import pubchempy as pcp
 import requests
-import safe
 import selfies
 from rdkit import Chem
 
@@ -43,6 +42,8 @@ def smiles_to_safe(smiles: str) -> str:
     """
     Takes a SMILES and return the SAFE.
     """
+    import safe
+
     return safe.encode(smiles, seed=42, canonical=True, randomize=False)
 
 
