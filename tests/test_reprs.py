@@ -1,4 +1,4 @@
-from chemnlp.data.reprs import smiles_to_iupac_name, smiles_to_safe
+from chemnlp.data.reprs import smiles_to_iupac_name
 
 # not used at the moment
 # def test_smiles_to_safe():
