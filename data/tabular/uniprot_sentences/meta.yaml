@@ -36,7 +36,7 @@ templates:
       User: Describe the {#function|biological function!} of the {#protein|amino-acid sequence|AA sequence|polypeptide!} {other#}?
       Assistant: {sentences#}.
     - |-
-      User: What {#protein|amino-acid sequence|AA sequence|polypeptide!} best fits the {#function|biological function!} described in the next sentence(s). {sentences#}
+      User: What {#protein|amino-acid sequence|AA sequence|polypeptide!} fits the {#function|biological function!} described in the next sentence(s) best?\n{sentences#}
       Assistant: The {#amino-acid sequence|AA sequence|polypeptide| protein!} that fits the described function best is {other#}.
     - |-
       Task: {#Generate|Create|Come up with!} a {#AA sequence|protein!} based on the description.
