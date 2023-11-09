@@ -40,5 +40,5 @@ templates:
       Assistant: The {#protein|amino-acid sequence|AA sequence|polypeptide!} that best fits the described function is {other#}.
     - |-
       Task: {#Generate|Create|Come up with!} a {#AA sequence|protein!} based on the description.
-      Descriptions: {sentences#}
+      Description: {sentences#}
       {#Output|Result!}: {other#}
