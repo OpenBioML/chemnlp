@@ -21,11 +21,11 @@ Uses Tanimoto Similarity with Morgan Fingerprints implemented in RDKit, with rad
 
 
 def load_dataset():
-    return MolGen(name='ChEMBL_V29').get_split()
+    return MolGen(name="ChEMBL_V29").get_split()
 
 
 def transform_dataset(dataset, n_permutations):
-    smis = dataset['smiles'].values
+    smis = dataset["smiles"].values
     # Make sure smi_idx_arr contain no duplicate indexes in any of its rows
     smi_idx_arr = np.stack([np.arange(len(dataset)) for _ in range(n_permutations)]).T
     for i in range(n_permutations):
@@ -35,39 +35,48 @@ def transform_dataset(dataset, n_permutations):
     odd_one_out_idx = []  # the least similar index, or the "odd-one-out"
 
     for row in tqdm(smi_idx_arr):
-        # gather Morgan fingerprints for all mols in row, with radius of 2
-        fingerprints = []
-        for val in row:
-            mol = Chem.MolFromSmiles(smis[val])
-            fingerprint = AllChem.GetMorganFingerprint(mol, 2)
-            fingerprints.append(fingerprint)
+        try:
+            # gather Morgan fingerprints for all mols in row, with radius of 2
+            fingerprints = []
+            for val in row:
+                mol = Chem.MolFromSmiles(smis[val])
+                fingerprint = AllChem.GetMorganFingerprint(mol, 2)
+                fingerprints.append(fingerprint)
 
-        # Calculate summed Tanimoto similarity of mol i to all remaining mols
-        similarities = []
-        for i in range(len(fingerprints)):
-            similarity_sum = 0
-            for j in range(len(fingerprints)):
-                if i != j:
-                    similarity_sum += DataStructs.TanimotoSimilarity(fingerprints[i], fingerprints[j])
-            similarities.append(similarity_sum)
+            # Calculate summed Tanimoto similarity of mol i to all remaining mols
+            similarities = []
+            for i in range(len(fingerprints)):
+                similarity_sum = 0
+                for j in range(len(fingerprints)):
+                    if i != j:
+                        similarity_sum += DataStructs.TanimotoSimilarity(
+                            fingerprints[i], fingerprints[j]
+                        )
+                similarities.append(similarity_sum)
 
-        lowest_similarity = np.argmin(similarities)
-        odd_one_out_idx.append(lowest_similarity)
+            lowest_similarity = np.argmin(similarities)
+            odd_one_out_idx.append(lowest_similarity)
+        except Exception:
+            odd_one_out_idx.append(np.nan)
     return smi_idx_arr, odd_one_out_idx
 
 
 def save_dataset_title():
-    with open('data_clean.csv', 'w') as f:
-        col_strs = [f'mol_{i}' for i in range(n_permutations)]
-        f.write(','.join(col_strs) + ',least_similar_index,split\n')  # 'mol_0,mol_1,...,mol_n,least_similar_index,split'
+    with open("data_clean.csv", "w") as f:
+        col_strs = [f"mol_{i}" for i in range(n_permutations)]
+        f.write(
+            ",".join(col_strs) + ",least_similar_index,split\n"
+        )  # 'mol_0,mol_1,...,mol_n,least_similar_index,split'
 
 
 def save_dataset(dataset, idx_permutations, odd_one_out_idx, split_label):
-    smis = dataset['smiles'].values
-    with open('data_clean.csv', 'a') as f:
+    smis = dataset["smiles"].values
+    with open("data_clean.csv", "a") as f:
         for i in tqdm(range(len(smis))):
-            smi_strs = ','.join(smis[idx_permutations[i]])
-            f.write(smi_strs + f',{odd_one_out_idx[i]},{split_label}\n')
+            if odd_one_out_idx[i] == np.nan:
+                continue
+            smi_strs = ",".join(smis[idx_permutations[i]])
+            f.write(smi_strs + f",{odd_one_out_idx[i]},{split_label}\n")
 
 
 if __name__ == "__main__":
@@ -76,11 +85,11 @@ if __name__ == "__main__":
     df = load_dataset()
     save_dataset_title()
 
-    idx_permutations, odd_one_out_idx = transform_dataset(df['train'], n_permutations)
-    save_dataset(df['train'], idx_permutations, odd_one_out_idx, 'train')
+    idx_permutations, odd_one_out_idx = transform_dataset(df["train"], n_permutations)
+    save_dataset(df["train"], idx_permutations, odd_one_out_idx, "train")
 
-    idx_permutations, odd_one_out_idx = transform_dataset(df['valid'], n_permutations)
-    save_dataset(df['valid'], idx_permutations, odd_one_out_idx, 'valid')
+    idx_permutations, odd_one_out_idx = transform_dataset(df["valid"], n_permutations)
+    save_dataset(df["valid"], idx_permutations, odd_one_out_idx, "valid")
 
-    idx_permutations, odd_one_out_idx = transform_dataset(df['test'], n_permutations)
-    save_dataset(df['test'], idx_permutations, odd_one_out_idx, 'test')
+    idx_permutations, odd_one_out_idx = transform_dataset(df["test"], n_permutations)
+    save_dataset(df["test"], idx_permutations, odd_one_out_idx, "test")
