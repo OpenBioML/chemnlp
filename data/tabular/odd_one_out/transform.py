@@ -4,6 +4,7 @@ from rdkit import DataStructs
 from rdkit.Chem import AllChem
 from tdc.generation import MolGen
 from tqdm import tqdm
+import pandas as pd
 
 """
 Creating the odd-one-out dataset, for an example application such as below:
@@ -33,7 +34,14 @@ def transform_dataset(dataset, n_permutations):
         smi_idx_arr[:, i] %= len(dataset)
 
     odd_one_out_idx = []  # the least similar index, or the "odd-one-out"
+    similarity_list = []
 
+    most_diff_pairs = []
+    biggest_sim_pairs = []
+    similarity_sum_list = []
+
+    smallest_similariies = []
+    biggest_similarities = []
     for row in tqdm(smi_idx_arr):
         try:
             # gather Morgan fingerprints for all mols in row, with radius of 2
@@ -45,51 +53,98 @@ def transform_dataset(dataset, n_permutations):
 
             # Calculate summed Tanimoto similarity of mol i to all remaining mols
             similarities = []
+            similarity_sums = []
+            most_diff = None
+
+            smallest_similarity = np.inf
+
+            biggest_sim = None
+            biggest_similarity = -np.inf
+
             for i in range(len(fingerprints)):
                 similarity_sum = 0
                 for j in range(len(fingerprints)):
                     if i != j:
-                        similarity_sum += DataStructs.TanimotoSimilarity(
+                        sim = DataStructs.TanimotoSimilarity(
                             fingerprints[i], fingerprints[j]
                         )
-                similarities.append(similarity_sum)
+                        similarity_sum += sim
+                        if sim < smallest_similarity:
+                            smallest_similarity = sim
+                            most_diff = (i, j)
+                        if sim > biggest_similarity:
+                            biggest_similarity = sim
+                            biggest_sim = (i, j)
+                similarity_sums.append(similarity_sum)
+                similarities.append(sim)
 
-            lowest_similarity = np.argmin(similarities)
+            most_diff_pairs.append(most_diff)
+            biggest_sim_pairs.append(biggest_sim)
+            smallest_similariies.append(smallest_similarity)
+            biggest_similarities.append(biggest_similarity)
+
+            lowest_similarity = np.argmin(similarity_sums)
             odd_one_out_idx.append(lowest_similarity)
+            similarity_list.append(similarities)
+            similarity_sum_list.append(similarity_sums)
         except Exception:
             odd_one_out_idx.append(np.nan)
-    return smi_idx_arr, odd_one_out_idx
+            similarity_list.append(np.nan)
+            biggest_sim_pairs.append(np.nan)
+            lowest_similarity.append(np.nan)
+            smallest_similariies.append(np.nan)
+            biggest_similarities.append(np.nan)
+            similarity_sum_list.append(np.nan)
+
+    return {
+        # "smi_idx_arr": smi_idx_arr,
+        "smi_1": smis[smi_idx_arr[:, 0]],
+        "smi_2": smis[smi_idx_arr[:, 1]],
+        "smi_3": smis[smi_idx_arr[:, 2]],
+        "smi_4": smis[smi_idx_arr[:, 3]],
+        "odd_one_out_idx": odd_one_out_idx,
+        # "similarity_list": similarity_list,
+        "smallest_to_second_smallest_ratio": [
+            division_catch_zero(x) for x in similarity_sum_list
+        ],
+        "most_diff_pairs": most_diff_pairs,
+        "biggest_sim_pairs": biggest_sim_pairs,
+        "most_diff_0": smis[[x[0] for x in most_diff_pairs]],
+        "most_diff_1": smis[[x[1] for x in most_diff_pairs]],
+        "biggest_sim_0": smis[[x[0] for x in biggest_sim_pairs]],
+        "biggest_sim_1": smis[[x[1] for x in biggest_sim_pairs]],
+        "smallest_similariies": smallest_similariies,
+        "biggest_similarities": biggest_similarities,
+    }
 
 
-def save_dataset_title():
-    with open("data_clean.csv", "w") as f:
-        col_strs = [f"mol_{i}" for i in range(n_permutations)]
-        f.write(
-            ",".join(col_strs) + ",least_similar_index,split\n"
-        )  # 'mol_0,mol_1,...,mol_n,least_similar_index,split'
-
-
-def save_dataset(dataset, idx_permutations, odd_one_out_idx, split_label):
-    smis = dataset["smiles"].values
-    with open("data_clean.csv", "a") as f:
-        for i in tqdm(range(len(smis))):
-            if odd_one_out_idx[i] == np.nan:
-                continue
-            smi_strs = ",".join(smis[idx_permutations[i]])
-            f.write(smi_strs + f",{odd_one_out_idx[i]},{split_label}\n")
+def division_catch_zero(x):
+    x = sorted(x)
+    try:
+        return x[0] / x[1]
+    except ZeroDivisionError:
+        return np.nan
 
 
 if __name__ == "__main__":
     n_permutations = 4  # Controls how many molecules are given in the question
 
     df = load_dataset()
-    save_dataset_title()
 
-    idx_permutations, odd_one_out_idx = transform_dataset(df["train"], n_permutations)
-    save_dataset(df["train"], idx_permutations, odd_one_out_idx, "train")
+    # idx_permutations, odd_one_out_idx, similarity_list = transform_dataset(
+    #     df["train"], n_permutations
+    # )
+    # save_dataset(
+    #     df["train"], idx_permutations, odd_one_out_idx, similarity_list, "train"
+    # )
 
-    idx_permutations, odd_one_out_idx = transform_dataset(df["valid"], n_permutations)
-    save_dataset(df["valid"], idx_permutations, odd_one_out_idx, "valid")
+    # idx_permutations, odd_one_out_idx, similarity_list = transform_dataset(
+    #     df["valid"], n_permutations
+    # )
+    # save_dataset(
+    #     df["valid"], idx_permutations, odd_one_out_idx, similarity_list, "valid"
+    # )
 
-    idx_permutations, odd_one_out_idx = transform_dataset(df["test"], n_permutations)
-    save_dataset(df["test"], idx_permutations, odd_one_out_idx, "test")
+    out = transform_dataset(df["test"].iloc[:100], n_permutations)
+    out_df = pd.DataFrame(out)
+    out_df.to_csv("test.csv")
