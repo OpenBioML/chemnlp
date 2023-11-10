@@ -13,6 +13,9 @@ identifiers:
     - id: fragment
       type: text
       description: identifier of the fragment
+    - id: smarts
+      type: text
+      description: SMARTS of the fragment
     - id: representation
       type: text
       description: representation type of the molecule
@@ -20,15 +23,18 @@ license: MIT
 links:
     - url: https://github.com/lamalab-org/chem-caption
       description: software used to generate the data
-num_points: 143,517
+num_points: 812177
 templates:
+    - |-
+      {#Question: |Q: !}Is the fragment with SMARTs {smarts#} present in the molecule with {representation#} {molecule#}?
+      {#Answer: |A: |!}{presence#yes &NULL}Yes{presence#no &NULL}No
     - |-
       {#Question: |Q: !}Is the fragment {fragment#} present in the molecule with {representation#} {molecule#}?
       {#Answer: |A: |!}{presence#yes &NULL}Yes{presence#no &NULL}No
     - The fragment {fragment#} is {presence#not &NULL}present{presence#not &NULL}absent in the molecule with {representation#} {molecule#}.
     - |-
       Task: {#Answer a question about substructures|Answer a question about fragments!}
-      {#Question: |Q: !}Is the fragment {fragment#} present in the molecule with {representation#} {molecule#}?
+      {#Question: |Q: !}Is the fragment with SMARTS {smarts#} present in the molecule with {representation#} {molecule#}?
       {#Answer: |A: |!}{presence#yes &NULL}Yes{presence#no &NULL}No
     - |-
       User: Is the fragment {fragment#} present in the molecule with {representation#} {molecule#}?
