@@ -91,10 +91,11 @@ def transform_dataset(dataset, n_permutations):
             odd_one_out_idx.append(np.nan)
             similarity_list.append(np.nan)
             biggest_sim_pairs.append(np.nan)
-            lowest_similarity.append(np.nan)
+            lowest_similarity = np.nan
             smallest_similariies.append(np.nan)
             biggest_similarities.append(np.nan)
             similarity_sum_list.append(np.nan)
+            most_diff_pairs.append(np.nan)
 
     return {
         # "smi_idx_arr": smi_idx_arr,
@@ -107,44 +108,47 @@ def transform_dataset(dataset, n_permutations):
         "smallest_to_second_smallest_ratio": [
             division_catch_zero(x) for x in similarity_sum_list
         ],
-        "most_diff_pairs": most_diff_pairs,
-        "biggest_sim_pairs": biggest_sim_pairs,
-        "most_diff_0": smis[[x[0] for x in most_diff_pairs]],
-        "most_diff_1": smis[[x[1] for x in most_diff_pairs]],
-        "biggest_sim_0": smis[[x[0] for x in biggest_sim_pairs]],
-        "biggest_sim_1": smis[[x[1] for x in biggest_sim_pairs]],
-        "smallest_similariies": smallest_similariies,
+        "most_diff_0": [smis[smi_idx_arr[i,x[0]]] if not isinstance(x, float) else np.nan for i, x in enumerate(most_diff_pairs) ] ,
+        "most_diff_1": [smis[smi_idx_arr[i,x[1]]] if not isinstance(x, float) else np.nan for i, x in enumerate(most_diff_pairs) ],
+        "biggest_sim_0": [smis[smi_idx_arr[i,x[0]]] if not isinstance(x, float) else np.nan for i, x in enumerate(biggest_sim_pairs) ],
+        "biggest_sim_1": [smis[smi_idx_arr[i,x[1]]] if not isinstance(x, float) else np.nan for i, x in enumerate(biggest_sim_pairs) ],
+        "smallest_similarities": smallest_similariies,
         "biggest_similarities": biggest_similarities,
     }
 
-
 def division_catch_zero(x):
-    x = sorted(x)
     try:
-        return x[0] / x[1]
-    except ZeroDivisionError:
+        x = sorted(x)
+        try:
+            return x[0] / x[1]
+        except ZeroDivisionError:
+            return np.nan
+    except Exception:
         return np.nan
 
+
+MAX_SECOND_FIRST_RATIO = 0.5
+MIN_SMALLEST_TO_LARGEST_DIFF = 0.2
 
 if __name__ == "__main__":
     n_permutations = 4  # Controls how many molecules are given in the question
 
     df = load_dataset()
 
-    # idx_permutations, odd_one_out_idx, similarity_list = transform_dataset(
-    #     df["train"], n_permutations
-    # )
-    # save_dataset(
-    #     df["train"], idx_permutations, odd_one_out_idx, similarity_list, "train"
-    # )
+    out_train = pd.DataFrame(transform_dataset(
+        df["train"], n_permutations
+    ))
 
-    # idx_permutations, odd_one_out_idx, similarity_list = transform_dataset(
-    #     df["valid"], n_permutations
-    # )
-    # save_dataset(
-    #     df["valid"], idx_permutations, odd_one_out_idx, similarity_list, "valid"
-    # )
 
-    out = transform_dataset(df["test"].iloc[:100], n_permutations)
-    out_df = pd.DataFrame(out)
-    out_df.to_csv("test.csv")
+    out_valid = pd.DataFrame(transform_dataset(
+        df["valid"], n_permutations
+    ))
+
+    out_test = pd.DataFrame(transform_dataset(df["test"], n_permutations))
+
+
+    all_data = pd.concat([out_train, out_valid, out_test])
+    all_data['smallest_to_largest_diff'] = all_data['biggest_similarities'] - all_data['smallest_similarities']
+    all_data = all_data[all_data['smallest_to_largest_diff']>=MIN_SMALLEST_TO_LARGEST_DIFF]
+    all_data = all_data[all_data['smallest_to_second_smallest_ratio'] <= MAX_SECOND_FIRST_RATIO]
+    all_data.to_csv("data_clean.csv", index=False)
