@@ -1,10 +1,9 @@
 import numpy as np
-from rdkit import Chem
-from rdkit import DataStructs
+import pandas as pd
+from rdkit import Chem, DataStructs
 from rdkit.Chem import AllChem
 from tdc.generation import MolGen
 from tqdm import tqdm
-import pandas as pd
 
 """
 Creating the odd-one-out dataset, for an example application such as below:
@@ -104,17 +103,36 @@ def transform_dataset(dataset, n_permutations):
         "smi_3": smis[smi_idx_arr[:, 2]],
         "smi_4": smis[smi_idx_arr[:, 3]],
         "odd_one_out_idx": odd_one_out_idx,
+        "odd_one_out_mol": [
+            smis[smi_idx_arr[i, int(odd_one_out_idx[i])]]
+            if not np.isnan(odd_one_out_idx[i])
+            else np.nan
+            for i in range(len(odd_one_out_idx))
+        ],
         # "similarity_list": similarity_list,
         "smallest_to_second_smallest_ratio": [
             division_catch_zero(x) for x in similarity_sum_list
         ],
-        "most_diff_0": [smis[smi_idx_arr[i,x[0]]] if not isinstance(x, float) else np.nan for i, x in enumerate(most_diff_pairs) ] ,
-        "most_diff_1": [smis[smi_idx_arr[i,x[1]]] if not isinstance(x, float) else np.nan for i, x in enumerate(most_diff_pairs) ],
-        "biggest_sim_0": [smis[smi_idx_arr[i,x[0]]] if not isinstance(x, float) else np.nan for i, x in enumerate(biggest_sim_pairs) ],
-        "biggest_sim_1": [smis[smi_idx_arr[i,x[1]]] if not isinstance(x, float) else np.nan for i, x in enumerate(biggest_sim_pairs) ],
+        "most_diff_0": [
+            smis[smi_idx_arr[i, x[0]]] if not isinstance(x, float) else np.nan
+            for i, x in enumerate(most_diff_pairs)
+        ],
+        "most_diff_1": [
+            smis[smi_idx_arr[i, x[1]]] if not isinstance(x, float) else np.nan
+            for i, x in enumerate(most_diff_pairs)
+        ],
+        "biggest_sim_0": [
+            smis[smi_idx_arr[i, x[0]]] if not isinstance(x, float) else np.nan
+            for i, x in enumerate(biggest_sim_pairs)
+        ],
+        "biggest_sim_1": [
+            smis[smi_idx_arr[i, x[1]]] if not isinstance(x, float) else np.nan
+            for i, x in enumerate(biggest_sim_pairs)
+        ],
         "smallest_similarities": smallest_similariies,
         "biggest_similarities": biggest_similarities,
     }
+
 
 def division_catch_zero(x):
     try:
@@ -135,20 +153,22 @@ if __name__ == "__main__":
 
     df = load_dataset()
 
-    out_train = pd.DataFrame(transform_dataset(
-        df["train"], n_permutations
-    ))
+    out_train = pd.DataFrame(transform_dataset(df["train"], n_permutations))
 
-
-    out_valid = pd.DataFrame(transform_dataset(
-        df["valid"], n_permutations
-    ))
+    out_valid = pd.DataFrame(transform_dataset(df["valid"], n_permutations))
 
     out_test = pd.DataFrame(transform_dataset(df["test"], n_permutations))
 
-
     all_data = pd.concat([out_train, out_valid, out_test])
-    all_data['smallest_to_largest_diff'] = all_data['biggest_similarities'] - all_data['smallest_similarities']
-    all_data = all_data[all_data['smallest_to_largest_diff']>=MIN_SMALLEST_TO_LARGEST_DIFF]
-    all_data = all_data[all_data['smallest_to_second_smallest_ratio'] <= MAX_SECOND_FIRST_RATIO]
+    all_data["smallest_to_largest_diff"] = (
+        all_data["biggest_similarities"] - all_data["smallest_similarities"]
+    )
+    all_data = all_data[
+        all_data["smallest_to_largest_diff"] >= MIN_SMALLEST_TO_LARGEST_DIFF
+    ]
+    all_data = all_data[
+        all_data["smallest_to_second_smallest_ratio"] <= MAX_SECOND_FIRST_RATIO
+    ]
+    all_data.dropna(inplace=True)
+    print(len(all_data))
     all_data.to_csv("data_clean.csv", index=False)

@@ -147,7 +147,8 @@ exclude_from_standard_tabular_text_templates = [
     "MUV_852",  # boolean target data
     "MUV_858",  # boolean target data
     "MUV_859",  # boolean target data
-    "orbnet_denali"  # only makes sense for the structure files
+    "orbnet_denali",  # only makes sense for the structure files
+    "odd_one_out"
     # "h2_storage_materials",  # only IUPAC identifier, more than one target, LOW PRIO: has only 30 samples
 ]
 
@@ -997,6 +998,8 @@ if __name__ == "__main__":
 
     for path in path_data_dir:
         # subselect one path
+        # if not "odd_one_out" in path:
+        #     continue
         # if path.find("data/tabular/") == -1: continue
         # if path.find("data/kg/") == -1: continue
         # if path.find("chembl33") != -1: continue

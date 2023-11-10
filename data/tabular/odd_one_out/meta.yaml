@@ -1,0 +1,88 @@
+---
+name: odd_one_out
+description: |-
+  Tanimoto distance between Morgan fingerprints of SMILES in the ZINC dataset.
+  We performed filtering to exclude sequences of molecules where there is no strong difference.
+targets:
+    - id: smallest_similarities
+      type: continuous
+      description: smallest Tanimoto similarity between Morgan fingerprints
+      names:
+        - noun: smallest Tanimoto similarity between Morgan fingerprints
+    - id: biggest_similarities
+      type: continuous
+      description: largest Tanimoto similarity between Morgan fingerprints
+      names:
+        - noun: largest Tanimoto similarity between Morgan fingerprints
+benchmarks:
+  - name: TDC
+    link: https://tdcommons.ai/
+    split_column:  split
+identifiers:
+    - id: smi_1
+      type: SMILES
+      description: SMILES
+    - id: smi_2
+      type: SMILES
+      description: SMILES
+    - id: smi_3
+      type: SMILES
+      description: SMILES
+    - id: smi_4
+      type: SMILES
+      description: SMILES
+    - id: odd_one_out_mol
+      type: SMILES
+      description: SMILES
+    - id: biggest_sim_0
+      description: SMILES
+      type: SMILES
+    - id: biggest_sim_1
+      type: SMILES
+      description: SMILES 
+    - id: most_diff_0
+      type: SMILES 
+      description: SMILES
+    - id: most_diff_1
+      type: SMILES 
+      description: SMILES
+license: MIT
+num_points: 98715
+bibtex:
+    - |-
+      @article{Irwin_2020,
+        doi = {10.1021/acs.jcim.0c00675},
+        url = {https://doi.org/10.1021%2Facs.jcim.0c00675},
+        year = 2020,
+        month = {oct},
+        publisher = {American Chemical Society ({ACS})},
+        volume = {60},
+        number = {12},
+        pages = {6065--6073},
+        author = {John J. Irwin and Khanh G. Tang and Jennifer Young and Chinzorig Dandarchuluun 
+        and Benjamin R. Wong and Munkhzul Khurelbaatar and Yurii S. Moroz and John Mayfield and Roger A. Sayle},
+        title = {{ZINC}20{\textemdash}A Free Ultralarge-Scale Chemical Database for Ligand Discovery},
+        journal = {J. Chem. Inf. Model.}
+      }
+templates:
+  - |- 
+    Task: You are given a {#list|sequence!} of SMILES of {#molecules|chemicals|chemical compounds!} and {#must|are asked to!} find the {#molecule|chemical|compound!} that is {#most|maximally!} different from the others.
+    Molecules: {smi_1#}, {smi_2#}, {smi_3#}, and {smi_4#}
+    Constraint: Answer by returning the SMILES string. Similarity is measured in terms of Tanimoto distance between Morgan fingerprints of radius {#two|2!}.
+    Answer: {odd_one_out_mol#}
+  - |- 
+    Task: You are given a {#list|sequence!} of SMILES of {#molecules|chemicals|chemical compounds!} and {#must|are asked to!} find the pair {#molecule|chemical|compound!} that is {#most|maximally!} different from each other.
+    Molecules: {smi_1#}, {smi_2#}, {smi_3#}, and {smi_4#}
+    Constraint: Answer by returning two SMILES strings separated by a comma. Similarity is measured in terms of Tanimoto distance between Morgan fingerprints of radius {#two|2!}.
+    Answer: {most_diff_0#}, {most_diff_1#}
+  - |- 
+    Task: You are given a {#list|sequence!} of SMILES of {#molecules|chemicals|chemical compounds!} and {#must|are asked to!} find the pair {#molecule|chemical|compound!} that is {#most|maximally!} similar to each other.
+    Molecules: {smi_1#}, {smi_2#}, {smi_3#}, and {smi_4#}
+    Constraint: Answer by returning two SMILES strings separated by a comma. Similarity is measured in terms of Tanimoto distance between Morgan fingerprints of radius {#two|2!}.
+    Answer: {biggest_sim_1#}, {biggest_sim_0#}
+  - |- 
+    Question: I have a {#list|sequence!} of SMILES for {#molecules|chemicals|chemical compounds!}: {smi_1#}, {smi_2#}, {smi_3#}, and {smi_4#}. Which two molecules have the highest similarity based on their Tanimoto distance calculated from Morgan fingerprints of radius {#two|2!}?
+    Answer: The two most similar molecules are {biggest_sim_1#} and {biggest_sim_0#}.
+  - |- 
+    Question: I have the following SMILES strings: {smi_1#}, {smi_2#}, {smi_3#}, and {smi_4#}. Which {#molecule|chemical|chemical compound|compound!} is the most {#dissimilar|different!} from the others based on Tanimoto distance of their Morgan fingerprints of radius {#two|2!}?
+    Answer: The most dissimilar {#molecule|chemical|chemical compound|compound!} is {odd_one_out_mol#}.
