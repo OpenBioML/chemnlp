@@ -145,6 +145,7 @@ def division_catch_zero(x):
         return np.nan
 
 
+# tune this to tune difficulty of task, not optimized atm
 MAX_SECOND_FIRST_RATIO = 0.5
 MIN_SMALLEST_TO_LARGEST_DIFF = 0.2
 
