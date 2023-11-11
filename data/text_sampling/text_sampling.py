@@ -77,6 +77,7 @@ exclude_from_standard_tabular_text_templates = [
     "chembl_v29",  # text only, no SMILES
     "choline_transporter_butkiewicz",  # because it is boolean target data
     "clintox",  # because it is boolean target data
+    "chemcaption_fragments",
     "cyp2c9_substrate_carbonmangels",  # boolean target data
     "cyp2d6_substrate_carbonmangels",  # boolean target data
     "cyp3a4_substrate_carbonmangels",  # boolean target data
@@ -967,8 +968,8 @@ if __name__ == "__main__":
     # path_data_dir = path_data_dir[index:]
 
     for path in path_data_dir:
-        if path.find("data/tabular/bicerano_dataset") != -1:
-            continue  # needs the units fixed or templates copied over
+        # if not "chemcaption_fragments" in path:
+        #     continue  # needs the units fixed or templates copied over
         # subselect one path
         # if path.find("data/tabular/") == -1: continue
         # if path.find("data/kg/") == -1: continue
