@@ -6,17 +6,10 @@ build-backend = "setuptools.build_meta"
 name = "chemnlp"
 description = "Open source chemistry dataset & LLM"
 readme = "README.md"
-requires-python = "==3.8.*"  # required for gpt-neox
+requires-python = "==3.9.*"
 dependencies = [
-        "datasets>=2.8.0",
-        "numpy>=1.21.2",
-        "openpyxl>=3.0.9",
-        "pandas>=1.3.3",
-        "peft",
+        "pandas",
         "pydantic",
-        "pytdc>=0.3.9",
-        "transformers",
-        "wandb==0.10.28"
 ]
 
 dynamic = ["version"]
@@ -28,9 +21,9 @@ dev = [
         "flake8>=3.8.3",
         "isort>=5.0.0",
         "pre-commit",
-        "pydantic_yaml",
+        "pydantic_yaml<=0.11.2",
         "pytest",
-        "pubchempy"
+        "pubchempy",
 ]
 
 dataset_creation = [
@@ -41,8 +34,13 @@ dataset_creation = [
         "selfies",
         "deepsmiles",
         "pubchempy",
+        "bioc",
+        "pylatexenc",
         "canonicalize_psmiles@git+https://github.com/Ramprasad-Group/canonicalize_psmiles.git",
-        #"tucan@git+https://github.com/TUCAN-nest/TUCAN.git"  # the current version has bugs due to the type checking, maybe this is due to our python version?
+        "rxn-chem-utils",
+      #  "safe-mol",
+        "backoff",
+        "givemeconformer",
 ]
 
 training = [
@@ -57,7 +55,7 @@ tokenisation = [
         "zstandard",
         "apache_beam",
         "mwparserfromhell",
-        "jsonlines"
+        "jsonlines",
 ]
 
 [tool.setuptools_scm]

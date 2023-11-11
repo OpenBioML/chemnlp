@@ -1,0 +1,342 @@
+---
+name: chemcaption_rdkit
+description: |-
+    This dataset contains molecular descriptors, mostly derived using RDKit.
+targets:
+    - id: num_valence_electrons
+      type: categorical
+      description: number of valence electrons
+      names:
+          - noun: number of valence electrons
+          - noun: valence electron count
+          - only_name: valence electrons
+    - id: rotable_proportion
+      type: continuous
+      significant_digits: 3
+      description: proportion of rotatable bonds
+      names:
+          - noun: proportion of rotatable bonds
+          - noun: rotatable bond proportion
+    - id: non_rotable_proportion
+      type: continuous
+      significant_digits: 3
+      description: proportion of non-rotatable bonds
+      names:
+          - noun: proportion of non-rotatable bonds
+          - noun: non-rotatable bond proportion
+    - id: num_single_bonds
+      type: categorical
+      description: number of single bonds
+      names:
+          - noun: number of single bonds
+          - only_name: single bonds
+    - id: num_double_bonds
+      type: categorical
+      description: number of double bonds
+      names:
+          - noun: number of double bonds
+          - only_name: double bonds
+    - id: num_triple_bonds
+      type: categorical
+      description: number of triple bonds
+      names:
+          - noun: number of triple bonds
+          - only_name: triple bonds
+    - id: num_aromatic_bonds
+      type: categorical
+      description: number of aromatic bonds
+      names:
+          - noun: number of aromatic bonds
+          - only_name: aromatic bonds
+    - id: num_bonds
+      type: categorical
+      description: number of bonds
+      names:
+          - noun: number of bonds
+          - noun: bond count
+          - only_name: bonds
+    - id: num_carbon_atoms
+      type: categorical
+      description: number of carbon atoms
+      names:
+          - noun: number of carbon atoms
+          - noun: carbon atom count
+          - only_name: carbon atoms
+    - id: num_hydrogen_atoms
+      type: categorical
+      description: number of hydrogen atoms
+      names:
+          - noun: number of hydrogen atoms
+          - noun: hydrogen atom count
+          - only_name: hydrogen atoms
+    - id: num_nitrogen_atoms
+      type: categorical
+      description: number of nitrogen atoms
+      names:
+          - noun: number of nitrogen atoms
+          - noun: nitrogen atom count
+          - only_name: nitrogen atoms
+    - id: num_oxygen_atoms
+      type: categorical
+      description: number of oxygen atoms
+      names:
+          - noun: number of oxygen atoms
+          - noun: oxygen atom count
+          - only_name: oxygen atoms
+    - id: num_hydrogen_bond_acceptors
+      type: categorical
+      description: number of hydrogen bond acceptors
+      names:
+          - noun: number of hydrogen bond acceptors
+          - noun: hydrogen bond acceptor count
+          - only_name: hydrogen bond acceptors
+    - id: num_hydrogen_bond_donors
+      type: categorical
+      description: number of hydrogen bond donors
+      names:
+          - noun: number of hydrogen bond donors
+          - noun: hydrogen bond donor count
+          - only_name: hydrogen bond donors
+    - id: num_lipinski_violations
+      type: categorical
+      description: number of Lipinski violations
+      names:
+          - noun: number of violations of Lipinski's rule of five
+          - noun: number of violations of Lipinski's rule of 5
+          - only_name: violations of Lipinski's rule of five
+          - only_name: violations of Lipinski's rule of 5
+    - id: monoisotopic_molecular_mass
+      type: continuous
+      significant_digits: 3
+      description: monoisotopic molecular mass
+      names:
+          - noun: monoisotopic molecular mass
+          - noun: monoisotopic mass
+      units: Da
+    - id: carbon_mass
+      type: continuous
+      significant_digits: 3
+      description: carbon mass
+      names:
+          - noun: carbon mass fraction
+          - noun: carbon mass proportion
+    - id: hydrogen_mass
+      type: continuous
+      significant_digits: 3
+      description: hydrogen mass
+      names:
+          - noun: hydrogen mass fraction
+          - noun: hydrogen mass proportion
+    - id: nitrogen_mass
+      type: continuous
+      significant_digits: 3
+      description: nitrogen mass
+      names:
+          - noun: nitrogen mass fraction
+          - noun: nitrogen mass proportion
+    - id: oxygen_mass
+      type: continuous
+      significant_digits: 3
+      description: oxygen mass
+      names:
+          - noun: oxygen mass fraction
+          - noun: oxygen mass proportion
+    - id: num_chiral_centers
+      type: categorical
+      description: number of chiral centers
+      names:
+          - noun: number of chiral centers
+          - noun: chiral center count
+          - only_name: chiral centers
+    - id: inertial_shape_factor
+      type: continuous
+      significant_digits: 3
+      description: inertial shape factor
+      names:
+          - noun: inertial shape factor
+    - id: eccentricity
+      type: continuous
+      significant_digits: 3
+      description: eccentricity
+      names:
+          - noun: eccentricity
+    - id: asphericity
+      type: continuous
+      significant_digits: 3
+      description: asphericity
+      names:
+          - noun: asphericity
+    - id: npr1_value
+      type: continuous
+      significant_digits: 3
+      description: NPR1 value
+      names:
+          - noun: NPR1 value
+          - noun: normalized principal moment of inertia ratio 1 value
+          - noun: normalized principal moment of inertia ratio 1 (NPR1) value
+    - id: npr2_value
+      type: continuous
+      significant_digits: 3
+      description: NPR2 value
+      names:
+          - noun: NPR2 value
+          - noun: normalized principal moment of inertia ratio 2 value
+          - noun: normalized principal moment of inertia ratio 2 (NPR2) value
+    - id: pmi1_value
+      type: continuous
+      significant_digits: 3
+      description: PMI1 value
+      names:
+          - noun: PMI1 value
+          - noun: principal moment of inertia 1 value
+          - noun: principal moment of inertia 1 (PMI1) value
+    - id: pmi2_value
+      type: continuous
+      significant_digits: 3
+      description: PMI2 value
+      names:
+          - noun: PMI2 value
+          - noun: principal moment of inertia 2 value
+          - noun: principal moment of inertia 2 (PMI2) value
+    - id: molecular_formula
+      type: text
+      description: molecular formula
+      names:
+          - noun: molecular formula
+          - noun: chemical formula
+identifiers:
+    - id: representation
+      type: text
+      description: representation
+    - id: representation_type
+      type: text
+      description: representation type
+license: CC BY 4.0
+num_points: 79811
+links:
+    - url: https://github.com/lamalab-org/chem-caption
+      description: Original codebase used to generate this dataset
+templates:
+    - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has {num_valence_electrons#} {num_valence_electrons__names__only_name}.
+    - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has a {rotable_proportion__names__noun} of {rotable_proportion#}.
+    - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has a {non_rotable_proportion__names__noun} of
+      {non_rotable_proportion#}.
+    - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has {num_single_bonds#} {num_single_bonds__names__only_name}.
+    - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has {num_double_bonds#} {num_double_bonds__names__only_name}.
+    - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has {num_triple_bonds#} {num_triple_bonds__names__only_name}.
+    - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has {num_aromatic_bonds#} {num_aromatic_bonds__names__only_name}.
+    - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has {num_bonds#} {num_bonds__names__only_name}.
+    - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has {num_carbon_atoms#} {num_carbon_atoms__names__only_name}.
+    - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has {num_hydrogen_atoms#} {num_hydrogen_atoms__names__only_name}.
+    - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has {num_nitrogen_atoms#} {num_nitrogen_atoms__names__only_name}.
+    - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has {num_oxygen_atoms#} {num_oxygen_atoms__names__only_name}.
+    - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has {num_hydrogen_bond_acceptors#} {num_hydrogen_bond_acceptors__names__only_name}.
+    - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has {num_hydrogen_bond_donors#} {num_hydrogen_bond_donors__names__only_name}.
+    - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has {num_lipinski_violations#} {num_lipinski_violations__names__only_name}.
+    - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has a {monoisotopic_molecular_mass__names__noun}
+      of {monoisotopic_molecular_mass#} {monoisotopic_molecular_mass__units}.
+    - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has a {carbon_mass__names__noun} of {carbon_mass#}.
+    - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has a {hydrogen_mass__names__noun} of {hydrogen_mass#}.
+    - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has a {nitrogen_mass__names__noun} of {nitrogen_mass#}.
+    - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has an {oxygen_mass__names__noun} of {oxygen_mass#}.
+    - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has {num_chiral_centers#} {num_chiral_centers__names__only_name}.
+    - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has an {inertial_shape_factor__names__noun} of
+      {inertial_shape_factor#}.
+    - A conformer of the {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has an {eccentricity__names__noun}
+      of {eccentricity#}.
+    - A conformer of the {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has an {asphericity__names__noun}
+      of {asphericity#}.
+    - A conformer of the {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has an {npr1_value__names__noun}
+      of {npr1_value#}.
+    - A conformer of the {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has an {npr2_value__names__noun}
+      of {npr2_value#}.
+    - A conformer of the {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has a {pmi1_value__names__noun}
+      of {pmi1_value#}.
+    - A conformer of the {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has a {pmi2_value__names__noun}
+      of {pmi2_value#}.
+    - The {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#} has the {molecular_formula__names__noun} {molecular_formula#}.
+    - |-
+      Question: What is the {molecular_formula__names__noun} and {monoisotopic_molecular_mass__names__noun} of the {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#}?
+      Constraint: Answer by only returning the values separated by a comma.
+      Answer: {molecular_formula#}, {monoisotopic_molecular_mass#} {monoisotopic_molecular_mass__units}
+    - |-
+      Question: What is the {molecular_formula__names__noun} and {num_valence_electrons__names__noun} of the {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#}?
+      Constraint: Answer by only returning the values separated by a comma.
+      Answer: {molecular_formula#}, {num_valence_electrons#}
+    - |-
+      Question: What is the {molecular_formula__names__noun}, {rotable_proportion__names__noun}, and {num_chiral_centers__names__noun} of the {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#}?
+      Constraint: Answer by only returning the values separated by a comma.
+      Answer: {molecular_formula#}, {rotable_proportion#}, {num_chiral_centers#}
+    - |-
+      Question: What is the {carbon_mass__names__noun}, {hydrogen_mass__names__noun}, {nitrogen_mass__names__noun}, and {oxygen_mass__names__noun} of the {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#}?
+      Constraint: Answer by only returning the values separated by a comma.
+      Answer: {carbon_mass#}, {hydrogen_mass#}, {nitrogen_mass#}, {oxygen_mass#}
+    - |-
+      User: I {#want|need|have!} to design a {#molecule|chemical|compound|chemical structure!} with {molecular_formula__names__noun} {molecular_formula#}.
+      Assistant: {#That's interesting, do you have|Do you have|Cool, do you have|Awesome, do you have!} any other {#constraints|requirements|conditions|limitations!}?
+      User: I {#want|would like!} the {#molecule|chemical|compound|chemical structure!} to have {num_valence_electrons#} {num_valence_electrons__names__noun}, {num_chiral_centers#} {num_chiral_centers__names__only_name}, and {num_lipinski_violations#} {num_lipinski_violations__names__only_name}.
+      Assistant: {#Given those requirements, |In that case, |!}I recommend the {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#}.
+    - |-
+      User: I {#want|need|have!} to design a {#molecule|chemical|compound|chemical structure!} with {num_lipinski_violations#} {num_lipinski_violations__names__only_name}.
+      Assistant: {#That's interesting, do you have|Do you have|Cool, do you have|Awesome, do you have!} any other {#constraints|requirements|conditions|limitations!}?
+      User: I {#want|would like!} the {#molecule|chemical|compound|chemical structure!} to have {num_bonds#} {num_bonds__names__only_name}, {num_chiral_centers#} {num_chiral_centers__names__only_name}, and a {carbon_mass__names__noun} of {carbon_mass#}.
+      Assistant: {#Given those requirements, |In that case, |!}I recommend the {#molecule|chemical|compound|chemical structure!} with {representation_type#} {representation#}.
+    - |-
+      User: I {#want|need|have!} to design a {#molecule|chemical|compound|drug|chemical structure!} with {num_lipinski_violations#} {num_lipinski_violations__names__only_name}.
+      Assistant: {#That's interesting, do you have|Do you have|Cool, do you have|Awesome, do you have!} any other {#constraints|requirements|conditions|limitations!}?
+      User: I {#want|would like!} the {#molecule|chemical|compound|drug|chemical structure!} to have {num_bonds#} {num_bonds__names__only_name}.
+      Assistant: {#OK, that already helps constraining my search. |Thanks, that already helps constraining my search. |Thanks, that already helps. |OK, that already helps. |!}It would {#help|be great|be useful!} if you could tell me more about the {#molecule|chemical|compound|drug|chemical structure!} you are looking for.
+      User: I {#want|would like!} the {#molecule|chemical|compound|drug|chemical structure!} to have {num_chiral_centers#} {num_chiral_centers__names__only_name}. {#In addition,|Additionally,|Moreover,!} I want the {#molecule|chemical|compound|drug|chemical structure!} to have a {carbon_mass__names__noun} of {carbon_mass#}.
+      Assistant: {#Given those requirements, |In that case, |!}I recommend the {#molecule|chemical|compound|drug|chemical structure!} with {representation_type#} {representation#}.
+    - |-
+      User: I {#want|need|have!} to design a {#molecule|chemical|compound|drug|chemical structure!} with {num_lipinski_violations#} {num_lipinski_violations__names__only_name}.
+      Assistant: {#That's interesting, do you have|Do you have|Cool, do you have|Awesome, do you have!} any other {#constraints|requirements|conditions|limitations!}?
+      User: I {#want|would like!} the {#molecule|chemical|compound|drug|chemical structure!} to have {num_bonds#} {num_bonds__names__only_name}.
+      Assistant: {#OK, that already helps constraining my search. |Thanks, that already helps constraining my search. |Thanks, that already helps. |OK, that already helps. |!}It would {#help|be great|be useful!} if you could tell me more about the {#molecule|chemical|compound|drug|chemical structure!} you {#want to design|are looking for|are interested in!}.
+      User: I {#want|would like!} the {#molecule|chemical|compound|drug|chemical structure!} to have {num_chiral_centers#} {num_chiral_centers__names__only_name}. {#In addition,|Additionally,|Moreover,!} I want the {#molecule|chemical|compound|drug|chemical structure!} to have a {monoisotopic_molecular_mass__names__noun} of {monoisotopic_molecular_mass#} {monoisotopic_molecular_mass__units}.
+      Assistant: {#Given those requirements, |In that case, |!}I recommend the {#molecule|chemical|compound|drug|chemical structure!} with {representation_type#} {representation#}.
+    - |-
+      User: I {#want|need|have!} to design a {#molecule|chemical|compound|drug|chemical structure!} with a {monoisotopic_molecular_mass__names__noun} of {monoisotopic_molecular_mass#} {monoisotopic_molecular_mass__units}.
+      Assistant: {#That's interesting, do you have|Do you have|Cool, do you have|Awesome, do you have!} any other {#constraints|requirements|conditions|limitations!}?
+      User: I {#want|would like!} the {#molecule|chemical|compound|drug|chemical structure!} to have {num_bonds#} {num_bonds__names__only_name}.
+      Assistant: {#OK, that already helps constraining my search. |Thanks, that already helps constraining my search. |Thanks, that already helps. |OK, that already helps. |!}It would {#help|be great|be useful!} if you could tell me more about the {#molecule|chemical|compound|drug|chemical structure!} you {#want to design|are looking for|are interested in!}.
+      User: I {#want|would like!} the {#molecule|chemical|compound|drug|chemical structure!} to have {num_chiral_centers#} {num_chiral_centers__names__only_name}.
+      Assistant: {#Given those requirements, |In that case, |!}I recommend the {#molecule|chemical|compound|drug|chemical structure!} with {representation_type#} {representation#}.
+    - |-
+      User: I {#have some questions|want to ask you!} about the {#molecule|chemical|compound|drug|chemical structure!} with {representation_type#} {representation#}.
+      Assistant: {#How can I help?|What can I do for you?|How can I be of assistance?!}
+      User: {#What is|I want to know|I need to know!} the {molecular_formula__names__noun} and {monoisotopic_molecular_mass__names__noun} of this {#molecule|chemical|compound|drug|chemical structure!}.
+      Assistant: The {#molecule|chemical|compound|drug|chemical structure!} has the {molecular_formula__names__noun} {molecular_formula#} and a {monoisotopic_molecular_mass__names__noun} of {monoisotopic_molecular_mass#} {monoisotopic_molecular_mass__units}.
+    - |-
+      User: I {#have some questions|want to ask you!} about the {#molecule|chemical|compound|drug|chemical structure!} with {representation_type#} {representation#}.
+      Assistant: {#How can I help?|What can I do for you?|How can I be of assistance?!}
+      User: {#What is|I want to know|I need to know!} the {asphericity__names__noun} of this {#molecule|chemical|compound|drug|chemical structure!}.
+      Assistant: The {#molecule|chemical|compound|drug|chemical structure!} has an {asphericity__names__noun} of {asphericity#}.
+    - |-
+      User: I {#want|must|would like|need!} to {#design|create|synthesize|make!} a {#molecule|chemical|compound|drug|chemical structure!} with {asphericity__names__noun} of {asphericity#}.
+      Assistant: {#That's interesting, do you have|Do you have|Cool, do you have|Awesome, do you have!} any other {#constraints|requirements|conditions|limitations!}?
+      User: {#In addition,|Additionally,|Moreover,!} I {#want|would like!} the {#molecule|chemical|compound|drug|chemical structure!} to have a {eccentricity__names__noun} of {eccentricity#}.
+      Assistant: {#Is there anything else I should know?|Is there anything else I should be aware of?|Is there anything else I should take into account?|Is there anything else I should consider?|Is there anything else I should take into consideration?|Is there anything else I should take into account?|Is there anything else I should take into consideration?|Is there anything else I should consider?!}
+      User: {#In addition,|Additionally,|Moreover,!} I {#want|would like!} the {#molecule|chemical|compound|drug|chemical structure!} to have a {npr1_value__names__noun} of {npr1_value#} and a {molecular_formula__names__noun} of {molecular_formula#}.
+      Assistant: {#Given those requirements, |In that case, |!}I recommend the {#molecule|chemical|compound|drug|chemical structure!} with {representation_type#} {representation#}.
+    - |-
+      User: I {#want|must|would like|need!} to {#design|create|synthesize|make!} a {#molecule|chemical|compound|drug|chemical structure!} with {eccentricity__names__noun} of {eccentricity#}.
+      Assistant: {#That's interesting, do you have|Do you have|Cool, do you have|Awesome, do you have!} any other {#constraints|requirements|conditions|limitations!}?
+      User: {#In addition,|Additionally,|Moreover,!} I {#want|would like!} the {#molecule|chemical|compound|drug|chemical structure!} to have a {asphericity__names__noun} of {asphericity#}.
+      Assistant: {#Is there anything else I should know?|Is there anything else I should be aware of?|Is there anything else I should take into account?|Is there anything else I should consider?|Is there anything else I should take into consideration?|Is there anything else I should take into account?|Is there anything else I should take into consideration?|Is there anything else I should consider?!}
+      User: {#In addition,|Additionally,|Moreover,!} I {#want|would like!} the {#molecule|chemical|compound|drug|chemical structure!} to have a {num_lipinski_violations#} {num_lipinski_violations__names__only_name} and a {molecular_formula__names__noun} of {molecular_formula#}.
+      Assistant: {#Given those requirements, |In that case, |!}I recommend the {#molecule|chemical|compound|drug|chemical structure!} with {representation_type#} {representation#}.
+    - |-
+      User: I {#want|must|would like|need!} to {#design|create|synthesize|make!} a {#molecule|chemical|compound|drug|chemical structure!} with {npr1_value__names__noun} of {npr1_value#}.
+      Assistant: {#That's interesting, do you have|Do you have|Cool, do you have|Awesome, do you have!} any other {#constraints|requirements|conditions|limitations!}?
+      User: {#In addition,|Additionally,|Moreover,!} I {#want|would like!} the {#molecule|chemical|compound|drug|chemical structure!} to have a {npr2_value__names__noun} of {npr2_value#}.
+      Assistant: {#Is there anything else I should know?|Is there anything else I should be aware of?|Is there anything else I should take into account?|Is there anything else I should consider?|Is there anything else I should take into consideration?|Is there anything else I should take into account?|Is there anything else I should take into consideration?|Is there anything else I should consider?!}
+      User: {#In addition,|Additionally,|Moreover,!} I {#want|would like!} the {#molecule|chemical|compound|drug|chemical structure!} to have a {molecular_formula__names__noun} of {molecular_formula#}.
+      Assistant: {#Given those requirements, |In that case, |!}I recommend the {#molecule|chemical|compound|drug|chemical structure!} with {representation_type#} {representation#}.
+    - |-
+      User: I {#want|must|would like|need!} to {#design|create|synthesize|make!} a {#molecule|chemical|compound|drug|chemical structure!} with {pmi1_value__names__noun} of {pmi1_value#}.
+      Assistant: {#That's interesting, do you have|Do you have|Cool, do you have|Awesome, do you have!} any other {#constraints|requirements|conditions|limitations!}?
+      User: {#In addition,|Additionally,|Moreover,!} I {#want|would like!} the {#molecule|chemical|compound|drug|chemical structure!} to have a {pmi2_value__names__noun} of {pmi2_value#}.
+      Assistant: {#Is there anything else I should know?|Is there anything else I should be aware of?|Is there anything else I should take into account?|Is there anything else I should consider?|Is there anything else I should take into consideration?|Is there anything else I should take into account?|Is there anything else I should take into consideration?|Is there anything else I should consider?!}
+      User: {#In addition,|Additionally,|Moreover,!} I {#want|would like!} the {#molecule|chemical|compound|drug|chemical structure!} to have a {molecular_formula__names__noun} of {molecular_formula#}.
+      Assistant: {#Given those requirements, |In that case, |!}I recommend the {#molecule|chemical|compound|drug|chemical structure!} with {representation_type#} {representation#}.

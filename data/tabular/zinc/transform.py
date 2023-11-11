@@ -29,6 +29,11 @@ def get_and_transform_data():
         "split",
         "dataset",
     ]
+    df.columns = [
+        "SMILES",
+        "split",
+        "dataset",
+    ]
     assert not df.duplicated().sum()
 
     # save to csv
