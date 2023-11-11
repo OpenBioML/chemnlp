@@ -16,7 +16,7 @@ identifiers:
     - id: smarts
       type: text
       description: SMARTS of the fragment
-    - id: representation
+    - id: representation_type
       type: text
       description: representation type of the molecule
 license: MIT
@@ -26,26 +26,26 @@ links:
 num_points: 812177
 templates:
     - |-
-      {#Question: |Q: !}Is the fragment with SMARTs {smarts#} present in the molecule with {representation#} {molecule#}?
-      {#Answer: |A: |!}{presence#yes &NULL}Yes{presence#no &NULL}No
+      {#Question: |Q: !}Is the fragment with SMARTs {smarts#} present in the molecule with {representation_type#} {molecule#}?
+      {#Answer: |A: |!}{presence#No&Yes}
     - |-
-      {#Question: |Q: !}Is the fragment {fragment#} present in the molecule with {representation#} {molecule#}?
-      {#Answer: |A: |!}{presence#yes &NULL}Yes{presence#no &NULL}No
-    - The fragment {fragment#} is {presence#not &NULL}present{presence#not &NULL}absent in the molecule with {representation#} {molecule#}.
+      {#Question: |Q: !}Is a {fragment#} fragment present in the molecule with {representation_type#} {molecule#}?
+      {#Answer: |A: |!}{presence#No&Yes}
+    - A {fragment#} fragment is {presence#present&absent} in the molecule with {representation_type#} {molecule#}.
     - |-
       Task: {#Answer a question about substructures|Answer a question about fragments!}
-      {#Question: |Q: !}Is the fragment with SMARTS {smarts#} present in the molecule with {representation#} {molecule#}?
-      {#Answer: |A: |!}{presence#yes &NULL}Yes{presence#no &NULL}No
+      {#Question: |Q: !}Is the fragment with SMARTS {smarts#} {#present in|part of!} the molecule with {representation_type#} {molecule#}?
+      {#Answer: |A: |!}{presence#No&Yes}
     - |-
-      User: Is the fragment {fragment#} present in the molecule with {representation#} {molecule#}?
-      Assistant: {presence#yes &NULL}Yes{presence#no &NULL}No
+      User: Is the fragment {fragment#} {#present in|part of!} the molecule with {representation_type#} {molecule#}?
+      Assistant: {presence#No&Yes}
     - |-
-      User: I have a question about the molecule with {representation#} {molecule#}.
+      User: I have a question about the molecule with {representation_type#} {molecule#}.
       Assistant: {#Sure, what is your question?|How can I help?|That sounds interesting, how can I help?|Interesting, how can I help?!}
-      User: Is the fragment {fragment#} present in the molecule?
-      Assistant: {presence#yes &NULL}Yes{presence#no &NULL}No
+      User: Is a {fragment#} fragment {#present in|part of!} the molecule?
+      Assistant: {presence#No&Yes}
     - |-
-      User: I want to know more about the molecule with {representation#} {molecule#}.
+      User: I want to know more about the molecule with {representation_type#} {molecule#}.
       Assistant: {#Sure, what is your question?|How can I help?|That sounds interesting, how can I help?|Interesting, how can I help?!}
-      User: Is the fragment {fragment#} {#present in|[part of of|substructure of!} the molecule?
-      Assistant: {presence#yes &NULL}Yes{presence#no &NULL}No
+      User: Is a {fragment#} fragment {#present in|part of of|substructure of!} the molecule?
+      Assistant: {presence#No&Yes}
