@@ -83,6 +83,7 @@ exclude_from_standard_tabular_text_templates = [
     "chemcaption_rdkit",  # text only, no SMILES
     "choline_transporter_butkiewicz",  # because it is boolean target data
     "clintox",  # because it is boolean target data
+    "chemcaption_fragments",
     "cyp2c9_substrate_carbonmangels",  # boolean target data
     "cyp2d6_substrate_carbonmangels",  # boolean target data
     "cyp3a4_substrate_carbonmangels",  # boolean target data
