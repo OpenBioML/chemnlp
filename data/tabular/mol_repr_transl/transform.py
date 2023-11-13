@@ -26,12 +26,12 @@ meta_template = {
     "num_points": None,
     "bibtex": ["Please see source material."],
     "templates": [
-        "The molecule with the {IDENTIFIER__description} {#representation of |!}{IDENTIFIER#} can also be represented as {TARGET__names__noun} {#representation of |!} {TARGET#}.",  # noqa: E501
-        "The molecule with the {TARGET__description} {#representation of |!}{TARGET#} can also be represented as {IDENTIFIER__names__noun} {#representation of |!} {TARGET#}.",  # noqa: E501
+        "The molecule with the {IDENTIFIER__names__noun} {#representation of |!}{IDENTIFIER#} can also be represented as {TARGET__names__noun} {#representation of |!}{TARGET#}.",  # noqa: E501
+        "The molecule with the {TARGET__names__noun} {#representation of |!}{TARGET#} can also be represented as {IDENTIFIER__names__noun} {#representation of |!}{TARGET#}.",  # noqa: E501
         # Instruction tuning text templates
-        """Task: Please {#create|generate} a molecule representation based on {#the input molecule representation and |!}the description.
-Description: {#Generate|Create!} the {TARGET__names__noun} from the {TARGET__description}.
-{#Molecule |!}{IDENTIFIER__description}: {IDENTIFIER#}
+        """Task: Please {#create|generate!} a molecule representation based on {#the input molecule representation and |!}the description.
+Description: {#Generate|Create!} the {TARGET__names__noun} from the {TARGET__names__noun}.
+{#Molecule |!}{IDENTIFIER__names__noun}: {IDENTIFIER#}
 Constraint: Even if you are {#uncertain|not sure!}, you must answer with a numeric value in without using any {#other|additional!} words.
 Result: {TARGET#}""",  # noqa: E501
     ],
@@ -77,6 +77,14 @@ def get_and_transform_data():
             df_subset.to_csv(path_export + "/data_clean.csv", index=False)
 
             # meta yaml export
+            names = {
+                "SMILES": "SMILES",
+                "selfies": "SELFIES",
+                "deepsmiles": "DeepSMILES",
+                "canonical": "canonical SMILES",
+                "inchi": "InChI",
+                "iupac_name": "IUPAC name",
+            }
             meta_copy = meta_template.copy()
             meta_copy["name"] = dataset_name
             meta_copy["num_points"] = len(df_subset)
@@ -85,7 +93,7 @@ def get_and_transform_data():
                     "id": subset_cols[0] + col_suffix,
                     "description": subset_cols[0],
                     "type": "Other",
-                    "names": [{"noun": subset_cols[0]}],
+                    "names": [{"noun": names[subset_cols[0]]}],
                 }
             ]
             meta_copy["targets"] = [
@@ -93,7 +101,7 @@ def get_and_transform_data():
                     "id": subset_cols[1] + col_suffix,
                     "description": subset_cols[1],
                     "type": "Other",
-                    "names": [{"noun": subset_cols[1]}],
+                    "names": [{"noun": names[subset_cols[1]]}],
                 }
             ]
 
