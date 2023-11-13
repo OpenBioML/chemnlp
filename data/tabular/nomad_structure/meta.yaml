@@ -106,7 +106,7 @@ templates:
       Assistant: {#Certainly|Sure|Of course!}, {density__names__noun} of the {#material|compound|solid!} is {density#} {density__units}
     - |-
       User: I want to design a {#material|compound|solid!} with a {density__names__noun} of {density#} {density__units}, and a {#chemical formula|composition|reduced formula!} of {formula#}.
-      Assistant: {#Cool, |Awesome, |Great, |That sounds interesting, |!}I suggest the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}. {#Is there anything else I can do for you?|Do you need anything else?|Anything else?|!}
+      Assistant: {#Cool, |Awesome, |Great, |That sounds interesting, |!}I suggest the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}. {#Is there anything else I can do for you?|Do you need anything else?|Anything else?!}
       User: {#Yes, |Yeah, |Yep, |Indeed, |!}I also want to know the {spacegroup__names__noun} of this {#material|compound|solid!}.
       Assistant: The {spacegroup__names__noun} of the {#material|compound|solid!} is {spacegroup#}.
     - |-
