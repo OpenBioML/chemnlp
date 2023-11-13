@@ -7,7 +7,7 @@ description: |-
 targets:
     - id: density
       description: Density of the material
-      units: Kg/m^3
+      units: kg/m^3
       type: continuous
       names:
           - noun: density of the material
