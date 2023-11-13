@@ -38,6 +38,12 @@ targets:
           - noun: spacegroup number
           - noun: number of the spacegroup in the International Tables for Crystallography
       uris:
+    - id: cif_masked
+      description: CIF file of the material
+      type: text
+      names:
+          - noun: CIF file with masked rows
+          - noun: CIF card with masked rows
 identifiers:
     - id: cif
       type: cif
@@ -45,12 +51,12 @@ identifiers:
     - id: formula
       type: COMPOSITION
       description: reduced formula
-      names: 
-        - noun: chemical formula
-        - noun: composition
-        - noun: reduced formula
+      names:
+          - noun: chemical formula
+          - noun: composition
+          - noun: reduced formula
 license: CC BY 4.0
-num_points: 530088
+num_points: 527984
 links:
     - url: https://nomad-lab.eu/nomad-lab/
       description: original data source
@@ -66,12 +72,12 @@ bibtex:
       year={2023}
       }
 templates:
-    - The {spacegroup__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#} is {spacegroup#}.
+    - The {spacegroup__names__noun} of the symmetrized version of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#} is {spacegroup#}.
     - The {crystal_system__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#} is {crystal_system#}.
     - The {density__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#} is {density#} {density__units}.
     - The {#chemical formula|composition|reduced formula!} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#} is {formula#}.
-    - The {spacegroup_number__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#} is {spacegroup_number#}.
-    - The {pointgroup__names__noun} of the material with {#chemical formula|composition|reduced formula!} {formula#} is {pointgroup#}.
+    - The {spacegroup_number__names__noun} of the symmetrized version of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#} is {spacegroup_number#}.
+    - The {pointgroup__names__noun} of the symmetrized version of the material with {#chemical formula|composition|reduced formula!} {formula#} is {pointgroup#}.
     - The {#CIF|CIF file|CIF card!} of the material with {#chemical formula|composition|reduced formula!} {formula#}, {spacegroup_number__names__noun} {spacegroup_number#}
       and {density__names__noun} {density#} {density__units} is {cif#}.
     - |-
@@ -80,7 +86,7 @@ templates:
       Answer: {cif#}
     - |-
       User: In the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}, what is the {pointgroup__names__noun}?
-      Assistant: The {pointgroup__names__noun} of the {#material|compound|solid!} is {pointgroup#}.
+      Assistant: The {pointgroup__names__noun} of the symmetrized version of the {#material|compound|solid!} is {pointgroup#}.
     - |-
       Question: {#What is the|What's the!} {density__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}?
       Answer: The {density__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#} is {density#} {density__units}.
@@ -93,13 +99,13 @@ templates:
       Question: What is the {density__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}?
       Answer: {density#} {density__units}.
     - |-
-      Question: What is the {spacegroup__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}?
+      Question: What is the {spacegroup__names__noun} of the symmetrized version of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}?
       Answer: {spacegroup#}.
     - |-
       Question: What is the {#chemical formula|composition|reduced formula!} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}?
       Answer: {formula#}.
     - |-
-      Question: What is the {spacegroup_number__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}?
+      Question: What is the {spacegroup_number__names__noun} of the symmetrized version of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}?
       Answer: {spacegroup_number#}.
     - |-
       User: The {#CIF|CIF file|CIF card!} of the {#material|compound|solid!} is {cif#}. {#Tell|Show|Give|!} me the {#chemical formula|composition|reduced formula!}.
@@ -110,12 +116,12 @@ templates:
     - |-
       User: I want to design a {#material|compound|solid!} with a {density__names__noun} of {density#} {density__units}, and a {#chemical formula|composition|reduced formula!} of {formula#}.
       Assistant: {#Cool, |Awesome, |Great, |That sounds interesting, |!}I suggest the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}. {#Is there anything else I can do for you?|Do you need anything else?|Anything else?!}
-      User: {#Yes, |Yeah, |Yep, |Indeed, |!}I also want to know the {spacegroup__names__noun} of this {#material|compound|solid!}.
+      User: {#Yes, |Yeah, |Yep, |Indeed, |!}I also want to know the {spacegroup__names__noun} of the symmetrized version of this {#material|compound|solid!}.
       Assistant: The {spacegroup__names__noun} of the {#material|compound|solid!} is {spacegroup#}.
     - |-
       User: I have a {#material|compound|solid|structure!} with the following {#CIF|CIF file|CIF card!} {cif#}. {#Can you tell me the density?|What is the density?!}
       Assistant: The {density__names__noun} of the {#material|compound|solid!} is {density#} {density__units}. {#Is there anything else I can do for you?|Do you need anything else?|Anything else?!}
-      User: {#Yes, |Yeah, |Yep, |Indeed, |!}I also want to know the {spacegroup__names__noun} of this {#material|compound|solid!}.
+      User: {#Yes, |Yeah, |Yep, |Indeed, |!}I also want to know the {spacegroup__names__noun} of the symmetrized version of this {#material|compound|solid!}.
       Assistant: The {spacegroup__names__noun} of the {#material|compound|solid!} is {spacegroup#}.
     - |-
       User: For a {#material|compound|solid|structure!} with {spacegroup_number__names__noun} {spacegroup#}, can you estimate the {density__names__noun} in {density__units}, and the {pointgroup__names__noun}?
@@ -123,3 +129,19 @@ templates:
     - |-
       User: I want you to {#write|tell|suggest!} the {#CIF|CIF file|CIF card!} of a {#material|compound|solid!} with a {density__names__noun} of {density#} {density__units}, and {#chemical formula|composition|reduced formula!} {formula#}. Also the {spacegroup__names__noun} of the {#material|compound|solid!} should be {spacegroup#}
       Assistant: {#Certainly|Sure|Of course!}, the {#CIF|CIF file|CIF card!} is {cif#}.
+    - |-
+      Task: Fill the rows masked with `[MASK]` in this {#CIF|CIF file|CIF card!} to fulfill the given constraints. Return the {#CIF|CIF file|CIF card!} with the masked rows filled.
+      Masked {#CIF|CIF file|CIF card!}: {cif_masked#}
+      Constraint: The {density__names__noun} should be {density#} {density__units}, and the {#chemical formula|composition|reduced formula!} should be {formula#}.
+      Answer: {cif#}
+    - |-
+      Task: Fill the rows masked with `[MASK]` in this {#CIF|CIF file|CIF card!} to fulfill the given constraints. Return the {#CIF|CIF file|CIF card!} with the masked rows filled.
+      Masked {#CIF|CIF file|CIF card!}: {cif_masked#}
+      Constraint: The {density__names__noun} should be {density#} {density__units}, the {#chemical formula|composition|reduced formula!} should be {formula#}, and the {spacegroup__names__noun} should be {spacegroup#}.
+      Answer: {cif#}
+    - |-
+      Question: {#What is the|What's the!} complete {#CIF|CIF file|CIF card!} of the {#material|compound|solid!} with the masked {#CIF|CIF file|CIF card!} {cif_masked#} and {density__names__noun} {density#} {density__units}?
+      Answer: {cif#}
+    - |-
+      Question: {#What is the|What's the!} complete {#CIF|CIF file|CIF card!} of the {#material|compound|solid!} with the masked {#CIF|CIF file|CIF card!} {cif_masked#}, {density__names__noun} {density#} {density__units}, and {#chemical formula|composition|reduced formula!} {formula#}?
+      Answer: {cif#}

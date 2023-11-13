@@ -1,6 +1,8 @@
 import datasets
 import pandas as pd
 
+from chemnlp.data.convert import mask_cif_lines, remove_composition_rows
+
 DATASET_NAME = "nomad-structure"
 
 
@@ -13,7 +15,7 @@ def prepare_data():
     dataset = datasets.load_dataset(dataset_name, split=split_name)
 
     df = pd.DataFrame(dataset)
-
+    df = df[~df["is_longer_than_allowed"]]
     # assert column names
     fields_orig = df.columns.tolist()
     assert fields_orig == [
@@ -26,10 +28,11 @@ def prepare_data():
         "density",
         "is_longer_than_allowed",
     ]
-
+    df["cif"] = df["cif"].apply(remove_composition_rows)
+    df["cif_masked"] = df["cif"].apply(mask_cif_lines)
     # remove duplicates if any
     df = df.drop_duplicates()
-
+    df.dropna(inplace=True)
     df.to_csv(filename_to_save, index=False)
     datapoints = len(df)
     return datapoints
