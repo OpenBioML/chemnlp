@@ -111,7 +111,7 @@ templates:
       Assistant: The {spacegroup__names__noun} of the {#material|compound|solid!} is {spacegroup#}.
     - |-
       User: I have a {#material|compound|solid|structure!} with the following {#CIF|CIF file|CIF card!} {cif#}. {#Can you tell me the density?|What is the density?|!}
-      Assistant: The {density__names__noun} of the {#material|compound|solid!} is {density#} {density__units}. {#Is there anything else I can do for you?|Do you need anything else?|Anything else?|!}
+      Assistant: The {density__names__noun} of the {#material|compound|solid!} is {density#} {density__units}. {#Is there anything else I can do for you?|Do you need anything else?|Anything else?!}
       User: {#Yes, |Yeah, |Yep, |Indeed, |!}I also want to know the {spacegroup__names__noun} of this {#material|compound|solid!}.
       Assistant: The {spacegroup__names__noun} of the {#material|compound|solid!} is {spacegroup#}.
     - |-
