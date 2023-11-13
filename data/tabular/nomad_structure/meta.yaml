@@ -36,7 +36,6 @@ targets:
       description: Spacegroup number of the material
       type: categorical
       names:
-          - noun: spacegroup number of the material
           - noun: spacegroup number
           - noun: number of the spacegroup in the International Tables for Crystallography
       uris:
