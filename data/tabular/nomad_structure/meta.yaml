@@ -30,7 +30,6 @@ targets:
       description: Pointgroup of the material
       type: categorical
       names:
-          - noun: pointgroup of the material
           - noun: pointgroup
       uris:
     - id: spacegroup_number
