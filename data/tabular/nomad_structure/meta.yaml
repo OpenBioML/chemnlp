@@ -18,9 +18,7 @@ targets:
       description: Geometric arrangement of atoms within a crystal
       type: categorical
       names:
-          - noun: crystal structure type
-          - noun: geometric arrangement of atoms within a crystal
-          - noun: arrangement of lattice points in space
+          - noun: crystal system
       uris:
     - id: spacegroup
       description: Spacegroup of the material
