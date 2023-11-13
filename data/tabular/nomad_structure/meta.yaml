@@ -13,7 +13,7 @@ targets:
       names:
           - noun: density
       uris:
-    - id: crystal_ststem
+    - id: crystal_system
       description: Geometric arrangement of atoms within a crystal
       type: categorical
       names:
@@ -45,6 +45,10 @@ identifiers:
     - id: formula
       type: COMPOSITION
       description: reduced formula
+      names: 
+        - noun: chemical formula
+        - noun: composition
+        - noun: reduced formula
 license: CC BY 4.0
 num_points: 530088
 links:
@@ -63,7 +67,7 @@ bibtex:
       }
 templates:
     - The {spacegroup__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#} is {spacegroup#}.
-    - The {crystal_ststem__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#} is {crystal_ststem#}.
+    - The {crystal_system__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#} is {crystal_system#}.
     - The {density__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#} is {density#} {density__units}.
     - The {#chemical formula|composition|reduced formula!} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#} is {formula#}.
     - The {spacegroup_number__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#} is {spacegroup_number#}.
