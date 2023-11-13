@@ -67,15 +67,15 @@ templates:
     - The {density__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#} is {density#} {density__units}.
     - The {#chemical formula|composition|reduced formula!} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#} is {formula#}.
     - The {spacegroup_number__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#} is {spacegroup_number#}.
-    - The {pointgroup__names__noun} of the material with {#chemical formula|composition|reduced formula!} {formula#} is {pointgroup#}
+    - The {pointgroup__names__noun} of the material with {#chemical formula|composition|reduced formula!} {formula#} is {pointgroup#}.
     - The {#CIF|CIF file|CIF card!} of the material with {#chemical formula|composition|reduced formula!} {formula#}, {spacegroup_number__names__noun} {spacegroup_number#}
-      and {density__names__noun} {density#} {density__units} is {cif#}
+      and {density__names__noun} {density#} {density__units} is {cif#}.
     - |-
       Question: {#What is the|What's the!} structure of {#material|compound|solid!} with {#chemical formula|composition|reduced formula!} {formula#} and {spacegroup_number__names__noun} {spacegroup_number#}?
       Constraint: Return a {#CIF|CIF file|CIF card!}.
       Answer: {cif#}
     - |-
-      User: In the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}, what is the {pointgroup__names__noun}.
+      User: In the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}, what is the {pointgroup__names__noun}?
       Assistant: The {pointgroup__names__noun} of the {#material|compound|solid!} is {pointgroup#}.
     - |-
       Question: {#What is the|What's the!} {density__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}?
@@ -118,4 +118,4 @@ templates:
       Assistant: Certainly, the {density__names__noun} is {density#} {density__units}, and the {pointgroup__names__noun} is {pointgroup#}.
     - |-
       User: I want you to {#write|tell|suggest!} the {#CIF|CIF file|CIF card!} of a {#material|compound|solid!} with a {density__names__noun} of {density#} {density__units}, and {#chemical formula|composition|reduced formula!} {formula#}. Also the {spacegroup__names__noun} of the {#material|compound|solid!} should be {spacegroup#}
-      Assitant: {#Certainly|Sure|Ofcourse!}, the {#CIF|CIF file|CIF card!} is {cif#}. 
+      Assistant: {#Certainly|Sure|Of course!}, the {#CIF|CIF file|CIF card!} is {cif#}.
