@@ -5,6 +5,7 @@ import pypandoc
 from datasets import Dataset, load_dataset
 from tqdm import tqdm
 
+
 def latex_to_markdown_with_pandoc(latex_text):
     # Remove \cite statements, also if there are options passed. Note that there might be non, or
     # multiple square brackets and they might or might not be filled
@@ -160,8 +161,8 @@ def latex_to_markdown_with_pandoc(latex_text):
                 markdown_text,
                 flags=re.MULTILINE | re.DOTALL | re.IGNORECASE,
             )
-    except Exception as e:
-        #print(f"An error occurred during Pandoc conversion: {e}")
+    except Exception:
+        # print(f"An error occurred during Pandoc conversion: {e}")
         return None
 
     return markdown_text
