@@ -76,14 +76,21 @@ def get_and_transform_data():
         "/".join(path_base.split("/")[:-2])
         + "/text_sampling/extend_tabular_processed.csv"
     )
-    print(path_base)
-    print(path_csv)
 
     df = pd.read_csv(
         path_csv,
         delimiter=",",
     )
-    col_len = len(df.columns)
+
+    if "split" in df.columns:
+        assert df.columns[-1] == "split", "Split column needs to be the last column."
+        col_len = len(df.columns) - 1
+    else:
+        print(
+            "CAUTION: No split information found, maybe you need to rerun the train_test_split.py script over extend_tabular_processed.csv?"  # noqa: E501
+        )
+        col_len = len(df.columns)
+
     for i in range(col_len):
         for j in range(i + 1, col_len):
             subset_cols = [df.columns[i], df.columns[j]]
@@ -95,8 +102,13 @@ def get_and_transform_data():
 
             # df export
             col_suffix = "_text"  # to exclude from other preprocessing steps
-            df_subset = df[subset_cols].dropna()
-            df_subset.columns = [x + col_suffix for x in subset_cols]
+            if "split" in df.columns:
+                df_subset = df[subset_cols + ["split"]].dropna()
+            else:
+                df_subset = df[subset_cols].dropna()
+            df_subset.columns = [
+                x + col_suffix if x != "split" else x for x in subset_cols
+            ]
             df_subset.to_csv(path_export + "/data_clean.csv", index=False)
 
             # meta yaml export
