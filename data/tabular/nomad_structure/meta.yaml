@@ -116,7 +116,7 @@ templates:
       Assistant: The {spacegroup__names__noun} of the {#material|compound|solid!} is {spacegroup#}.
     - |-
       User: For a {#material|compound|solid|structure!} with {spacegroup_number__names__noun} {spacegroup#}, can you estimate the {density__names__noun} in {density__units}, and the {pointgroup__names__noun}?
-      Assistant: "Certainly, the {density__names__noun} is {density#} {density__units}, and the {pointgroup__names__noun} is {pointgroup#}."
+      Assistant: Certainly, the {density__names__noun} is {density#} {density__units}, and the {pointgroup__names__noun} is {pointgroup#}.
     - |-
       User: I want you to {#write|tell|suggest!} the {#CIF|CIF file|CIF card!} of a {#material|compound|solid!} with a {density__names__noun} of {density#} {density__units}, and {#chemical formula|composition|reduced formula!} {formula#}. Also the {spacegroup__names__noun} of the {#material|compound|solid!} should be {spacegroup#}
       Assitant: {#Certainly|Sure|Ofcourse!}, the {#CIF|CIF file|CIF card!} is {cif#}. 
