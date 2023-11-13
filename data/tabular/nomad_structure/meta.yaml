@@ -100,7 +100,7 @@ templates:
       Answer: {spacegroup_number#}.
     - |-
       User: The {#CIF|CIF file|CIF card!} of the {#material|compound|solid!} is {cif#}. {#Tell|Show|Give|!} me the {#chemical formula|composition|reduced formula!}.
-      Assistant: "{#Certainly|Sure|Ofcourse!}, the {formula__names__noun} is {formula#}
+      Assistant: {#Certainly|Sure|Of course!}, the {formula__names__noun} is {formula#}
     - |-
       User: The {#CIF|CIF file|CIF card!} of the {#material|compound|solid!} is {cif#}. {#Tell|show|Give|!} me the {density__names__noun}.
       Assistant: "{#Certainly|Sure|Ofcourse!}, {density__names__noun} of the {#material|compound|solid!} is {density#} {density__units}
