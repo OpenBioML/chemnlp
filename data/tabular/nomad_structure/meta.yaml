@@ -99,7 +99,7 @@ templates:
       Question: What is the {spacegroup_number__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}?
       Answer: {spacegroup_number#}.
     - |-
-      User: The {#CIF|CIF file|CIF card!} of the {#material|compound|solid!} is {cif#}. {#Tell|show|Give|!} me the {#chemical formula|composition|reduced formula!}.
+      User: The {#CIF|CIF file|CIF card!} of the {#material|compound|solid!} is {cif#}. {#Tell|Show|Give|!} me the {#chemical formula|composition|reduced formula!}.
       Assistant: "{#Certainly|Sure|Ofcourse!}, the {formula__names__noun} is {formula#}
     - |-
       User: The {#CIF|CIF file|CIF card!} of the {#material|compound|solid!} is {cif#}. {#Tell|show|Give|!} me the {density__names__noun}.
