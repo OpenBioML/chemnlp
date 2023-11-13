@@ -149,7 +149,22 @@ exclude_from_standard_tabular_text_templates = [
     "MUV_858",  # boolean target data
     "MUV_859",  # boolean target data
     "orbnet_denali",  # only makes sense for the structure files
-    "odd_one_out"
+    "odd_one_out",
+    "mol_repr_transl_smiles_selfies",
+    "mol_repr_transl_smiles_deepsmiles",
+    "mol_repr_transl_smiles_canonical",
+    "mol_repr_transl_smiles_inchi",
+    "mol_repr_transl_smiles_iupac_name",
+    "mol_repr_transl_selfies_deepsmiles",
+    "mol_repr_transl_selfies_canonical",
+    "mol_repr_transl_selfies_inchi",
+    "mol_repr_transl_selfies_iupac_name",
+    "mol_repr_transl_deepsmiles_canonical",
+    "mol_repr_transl_deepsmiles_inchi",
+    "mol_repr_transl_deepsmiles_iupac_name",
+    "mol_repr_transl_canonical_inchi",
+    "mol_repr_transl_canonical_iupac_name",
+    "mol_repr_transl_inchi_iupac_name",
     # "h2_storage_materials",  # only IUPAC identifier, more than one target, LOW PRIO: has only 30 samples
 ]
 
