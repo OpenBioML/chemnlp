@@ -24,7 +24,6 @@ targets:
       description: Spacegroup of the material
       type: categorical
       names:
-          - noun: spacegroup of the material
           - noun: spacegroup
       uris:
     - id: pointgroup
