@@ -77,7 +77,6 @@ templates:
     - The {density__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#} is {density#} {density__units}.
     - The {#chemical formula|composition|reduced formula!} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#} is {formula#}.
     - The {spacegroup_number__names__noun} of the symmetrized version of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#} is {spacegroup_number#}.
-    - The {pointgroup__names__noun} of the symmetrized version of the material with {#chemical formula|composition|reduced formula!} {formula#} is {pointgroup#}.
     - The {#CIF|CIF file|CIF card!} of the material with {#chemical formula|composition|reduced formula!} {formula#}, {spacegroup_number__names__noun} {spacegroup_number#}
       and {density__names__noun} {density#} {density__units} is {cif#}.
     - |-
