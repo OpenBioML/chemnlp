@@ -9,6 +9,7 @@ targets:
       description: Density of the material
       units: kg/m^3
       type: continuous
+      significant_digits: 3
       names:
           - noun: density of the material
           - noun: density
