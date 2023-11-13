@@ -119,4 +119,4 @@ templates:
       Assistant: "Certainly, the {density__names__noun} is {density#} {density__units}, and the {pointgroup__names__noun} is {pointgroup#}."
     - |-
       User: I want you to {#write|tell|suggest!} the {#CIF|CIF file|CIF card!} of a {#material|compound|solid!} with a {density__names__noun} of {density#} {density__units}, and {#chemical formula|composition|reduced formula!} {formula#}.Also the {spacegroup__names__noun} of the {#material|compound|solid!} is {spacegroup#}
-      Assitant: "{#Certainly|Sure|Ofcourse!}, the {#CIF|CIF file|CIF card!} is {cif#}. {#Is there anything else I can do for you?|Do you need anything else?|Anything else?|!}
+      Assitant: {#Certainly|Sure|Ofcourse!}, the {#CIF|CIF file|CIF card!} is {cif#}. 
