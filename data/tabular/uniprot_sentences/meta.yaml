@@ -33,7 +33,7 @@ bibtex:
       url = {https://doi.org/10.1093/nar/gkac1052}}
 templates:
     - |-
-      User: Describe the {#function|biological function!} of the {#protein|amino-acid sequence|AA sequence|polypeptide!} {other#}?
+      User: Describe the {#function|biological function!} of the {#protein|amino acid sequence|AA sequence|polypeptide!} {other#}?
       Assistant: {sentences#}.
     - |-
       User: What {#protein|amino acid sequence|AA sequence|polypeptide!} fits the {#function|biological function!} described in the next sentence(s) best?\n{sentences#}
