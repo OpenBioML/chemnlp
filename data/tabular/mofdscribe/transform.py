@@ -1,6 +1,8 @@
 import pandas as pd
 from huggingface_hub import hf_hub_download
 
+from chemnlp.data.convert import remove_composition_rows
+
 
 def process():
     file = hf_hub_download(
@@ -10,7 +12,7 @@ def process():
     )
     df = pd.read_parquet(file)
     print(len(df))
-
+    df["cif"] = df["cif"].apply(remove_composition_rows)
     df.to_csv("data_clean.csv", index=False)
 
 
