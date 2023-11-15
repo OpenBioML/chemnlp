@@ -1,24 +1,19 @@
 import pandas as pd
-import regex as re
+from huggingface_hub import hf_hub_download
 
-FILENAME = "uniprot_sentences"
-
-
-def remove_text_from_column(sentence: str) -> str:
-    # Replace "(By similarity)" with empty string and remove extra spaces
-    updated_text = re.sub(r"\s*\(By similarity\)", "", sentence)
-    return updated_text
+DATA = "uniprot_sentences"
 
 
 def load_dataset() -> pd.DataFrame:
-    uniprot = pd.read_csv(
-        f"https://huggingface.co/datasets/chemNLP/uniprot/resolve/main/{FILENAME}/data_clean.csv"  # noqa: E501
+    uniprot = hf_hub_download(
+        repo_id="chemnlp/uniprot",
+        filename=f"{DATA}/data_clean.csv",
+        repo_type="dataset",
     )
-
+    uniprot = pd.read_csv(uniprot)
     uniprot.rename(columns={"sequence": "other"}, inplace=True)
-    uniprot["sentences"] = uniprot["sentences"].apply(remove_text_from_column)
     uniprot.to_csv("data_clean.csv", index=False)
-    print(f"Successfully loaded {FILENAME}!")
+    print(f"Successfully loaded {DATA}!")
     return uniprot
 
 

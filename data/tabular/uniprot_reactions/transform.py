@@ -1,15 +1,19 @@
 import pandas as pd
+from huggingface_hub import hf_hub_download
 
-FILENAME = "uniprot_reactions"
+DATA = "uniprot_reactions"
 
 
 def load_dataset() -> pd.DataFrame:
-    uniprot = pd.read_csv(
-        f"https://huggingface.co/datasets/chemNLP/uniprot/resolve/main/{FILENAME}/data_clean.csv"  # noqa: E501
+    uniprot = hf_hub_download(
+        repo_id="chemnlp/uniprot",
+        filename=f"{DATA}/data_clean.csv",
+        repo_type="dataset",
     )
+    uniprot = pd.read_csv(uniprot)
     uniprot.rename(columns={"sequence": "other"}, inplace=True)
     uniprot.to_csv("data_clean.csv", index=False)
-    print(f"Successfully loaded {FILENAME}!")
+    print(f"Successfully loaded {DATA}!")
     return uniprot
 
 
