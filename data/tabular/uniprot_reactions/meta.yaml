@@ -34,5 +34,5 @@ bibtex:
       url = {https://doi.org/10.1093/nar/gkac1052}}
 templates:
     - |-
-      User: What {#biochemical|chemical|bio-chemical!} reactions can be catalyzed by the following {#protein|amino-acid sequence|AA sequence|polypeptide!} : {other#}?
+      User: What {#biochemical|chemical|biochemical!} reactions can be catalyzed by the following {#protein|amino acid sequence|AA sequence|polypeptide!} : {other#}?
       Assistant: The reactions that can be catalyzed by the given sequence are: {reactions#}.
