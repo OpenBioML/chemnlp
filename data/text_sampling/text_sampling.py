@@ -118,6 +118,8 @@ exclude_from_standard_tabular_text_templates = [
     "p_glycoprotein_inhibition_broccatelli_et_al",  # boolean target data
     "pampa_ncats",  # boolean target data
     "peptides_hemolytic",  # boolean target data
+    "peptides_soluble",  # boolean target data
+    "peptides_nonfouling",  # boolean target data
     "potassium_ion_channel_kir2_1_butkiewicz",  # boolean target data
     "sarscov2_3clpro_diamond",  # boolean target data
     "sarscov2_vitro_touret",  # boolean target data
