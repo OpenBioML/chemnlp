@@ -1,16 +1,16 @@
+from collections import defaultdict
+from random import Random
+from typing import Dict, Iterable, List
+
 import pandas as pd
 from rdkit import Chem
 from rdkit.Chem.Scaffolds import MurckoScaffold
 from tqdm import tqdm
-from typing import Dict, List
-
-from collections import defaultdict
-from random import Random
 
 
 def create_scaffold_split(
     df: pd.DataFrame, seed: int, frac: List[float], entity: str = "SMILES"
-) -> Dict[str, pd.DataFrame]:
+):
     """create scaffold split. it first generates molecular scaffold for each molecule
     and then split based on scaffolds
     adapted from: https://github.com/mims-harvard/TDC/tdc/utils/split.py
@@ -25,9 +25,27 @@ def create_scaffold_split(
         dict: a dictionary of splitted dataframes, where keys are train/valid/test
         and values correspond to each dataframe
     """
+    return _create_scaffold_split(df[entity], seed, frac)
+
+
+def _create_scaffold_split(
+    smiles: Iterable[str], seed: int, frac: List[float]
+) -> Dict[str, pd.DataFrame]:
+    """create scaffold split. it first generates molecular scaffold for each molecule
+    and then split based on scaffolds
+    adapted from: https://github.com/mims-harvard/TDC/tdc/utils/split.py
+
+    Args:
+        smiles (Iterable[str]): dataset smiles
+        fold_seed (int): the random seed
+        frac (list): a list of train/valid/test fractions
+
+    Returns:
+        dict: a dictionary of indices for splitted data, where keys are train/valid/test
+    """
     random = Random(seed)
 
-    s = df[entity].values
+    s = smiles
     scaffolds = defaultdict(set)
 
     error_smiles = 0
@@ -42,9 +60,9 @@ def create_scaffold_split(
             error_smiles += 1
 
     train, val, test = [], [], []
-    train_size = int((len(df) - error_smiles) * frac[0])
-    val_size = int((len(df) - error_smiles) * frac[1])
-    test_size = (len(df) - error_smiles) - train_size - val_size
+    train_size = int((len(s) - error_smiles) * frac[0])
+    val_size = int((len(s) - error_smiles) * frac[1])
+    test_size = (len(s) - error_smiles) - train_size - val_size
     train_scaffold_count, val_scaffold_count, test_scaffold_count = 0, 0, 0
 
     # index_sets = sorted(list(scaffolds.values()), key=lambda i: len(i), reverse=True)
@@ -82,7 +100,7 @@ def create_scaffold_split(
                 test_scaffold_count += 1
 
     return {
-        "train": df.iloc[train].reset_index(drop=True),
-        "valid": df.iloc[val].reset_index(drop=True),
-        "test": df.iloc[test].reset_index(drop=True),
+        "train": train,
+        "valid": val,
+        "test": test,
     }

@@ -14,18 +14,15 @@ For more information, see:
 
 """
 import os
-import sys
-from collections import defaultdict
 from glob import glob
-from random import Random
-from typing import Dict, List
+from typing import List
 
 import fire
 import numpy as np
 import pandas as pd
-from rdkit import Chem, RDLogger
-from rdkit.Chem.Scaffolds import MurckoScaffold
+from rdkit import RDLogger
 from tqdm import tqdm
+
 from chemnlp.data.split import create_scaffold_split
 
 RDLogger.DisableLog("rdApp.*")
