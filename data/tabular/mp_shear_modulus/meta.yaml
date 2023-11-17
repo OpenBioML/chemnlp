@@ -19,7 +19,7 @@ benchmarks:
       split_column: split
 identifiers:
     - id: formula
-      type: text
+      type: COMPOSITION
       description: composition
 license: CC BY 4.0
 links:

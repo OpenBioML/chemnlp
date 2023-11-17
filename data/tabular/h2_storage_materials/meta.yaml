@@ -19,7 +19,7 @@ identifiers:
       type: IUPAC
       description: chemical name
     - id: chemical_formula
-      type: Other
+      type: COMPOSITION
       names:
           - noun: chemical formula
       description: chemical formula

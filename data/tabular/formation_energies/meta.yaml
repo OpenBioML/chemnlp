@@ -22,7 +22,7 @@ targets:
 benchmarks: []
 identifiers:
     - id: composition
-      type: text
+      type: COMPOSITION
       description: chemical formula
 license: CC BY 4.0
 links:
