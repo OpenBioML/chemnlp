@@ -159,3 +159,13 @@ def _pad_batched_data(
         "token_type_ids": [[0] * max_length] * len(padded_sequences_all),
         "attention_mask": attention_masks_all,
     }
+
+
+def oxford_comma_join(items: List[str]) -> str:
+    """Join a list of items with Oxford comma"""
+    if len(items) == 1:
+        return items[0]
+    elif len(items) == 2:
+        return f"{items[0]} and {items[1]}"
+    else:
+        return ", ".join(items[:-1]) + f", and {items[-1]}"

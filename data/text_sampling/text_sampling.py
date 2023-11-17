@@ -74,11 +74,16 @@ exclude_from_standard_tabular_text_templates = [
     "bioavailability_ma_et_al",  # because it is boolean target data
     "blood_brain_barrier_martins_et_al",  # because it is boolean target data
     "carcinogens",  # because it is boolean target data
+    "core_mof_no_topo",
+    "qmof_gcmc",
+    "qmof_quantum",
     "cav3_t-type_calcium_channels_butkiewicz",  # because it is boolean target data
     "chebi_20",  # target is text description
     "chembl_v29",  # text only, no SMILES
+    "chemcaption_rdkit",  # text only, no SMILES
     "choline_transporter_butkiewicz",  # because it is boolean target data
     "clintox",  # because it is boolean target data
+    "chemcaption_fragments",
     "cyp2c9_substrate_carbonmangels",  # boolean target data
     "cyp2d6_substrate_carbonmangels",  # boolean target data
     "cyp3a4_substrate_carbonmangels",  # boolean target data
@@ -125,7 +130,41 @@ exclude_from_standard_tabular_text_templates = [
     "sr_p53_tox21",  # boolean target data
     "tyrosyl-dna_phosphodiesterase_butkiewicz",  # boolean target data
     "zinc",  # SMILES only, has no target
-    "smiles_to_3d"
+    "smiles_to_3d",
+    "MUV_466",  # boolean target data
+    "MUV_548",  # boolean target data
+    "MUV_600",  # boolean target data
+    "MUV_644",  # boolean target data
+    "MUV_652",  # boolean target data
+    "MUV_689",  # boolean target data
+    "MUV_692",  # boolean target data
+    "MUV_712",  # boolean target data
+    "MUV_713",  # boolean target data
+    "MUV_733",  # boolean target data
+    "MUV_737",  # boolean target data
+    "MUV_810",  # boolean target data
+    "MUV_832",  # boolean target data
+    "MUV_846",  # boolean target data
+    "MUV_852",  # boolean target data
+    "MUV_858",  # boolean target data
+    "MUV_859",  # boolean target data
+    "orbnet_denali",  # only makes sense for the structure files
+    "odd_one_out",
+    "mol_repr_transl_smiles_selfies",
+    "mol_repr_transl_smiles_deepsmiles",
+    "mol_repr_transl_smiles_canonical",
+    "mol_repr_transl_smiles_inchi",
+    "mol_repr_transl_smiles_iupac_name",
+    "mol_repr_transl_selfies_deepsmiles",
+    "mol_repr_transl_selfies_canonical",
+    "mol_repr_transl_selfies_inchi",
+    "mol_repr_transl_selfies_iupac_name",
+    "mol_repr_transl_deepsmiles_canonical",
+    "mol_repr_transl_deepsmiles_inchi",
+    "mol_repr_transl_deepsmiles_iupac_name",
+    "mol_repr_transl_canonical_inchi",
+    "mol_repr_transl_canonical_iupac_name",
+    "mol_repr_transl_inchi_iupac_name",
     # "h2_storage_materials",  # only IUPAC identifier, more than one target, LOW PRIO: has only 30 samples
 ]
 
@@ -382,7 +421,9 @@ class TemplateSampler:
         self.meta = load_yaml(self.path_data_meta)
 
         # dataframe from csv
-        df = pd.read_csv(self.path_data_csv, low_memory=False)
+        df = pd.read_csv(self.path_data_csv, low_memory=False).replace(
+            "REPLACENULL", ""
+        )
 
         def check_targets_and_identifiers(meta: dict, df: pd.DataFrame):
             all_identifiers = [x["id"] for x in meta["identifiers"]] + [
@@ -441,6 +482,7 @@ class TemplateSampler:
                 self.meta["targets"].append(additional_targets[col])
 
         # assert not df.duplicated().sum()
+
         df.drop_duplicates(inplace=True)
         if "split" not in df.columns:
             df["split"] = "train"
@@ -538,7 +580,8 @@ class TemplateSampler:
         ][0]
         data_type = var_dict["type"]
         if data_type == "continuous":
-            assert isinstance(out, float)
+            if not isinstance(out, (float, int)):
+                raise ValueError(f"out is not a number (int or float): {out}")
             significant_digits = var_dict.get(
                 "significant_digits", DEFAULT_SIGNIFICANT_DIGITS
             )
@@ -970,9 +1013,9 @@ if __name__ == "__main__":
     # path_data_dir = path_data_dir[index:]
 
     for path in path_data_dir:
-        # if "smiles_to_3d" not in path:
-        #     continue
         # subselect one path
+        # if not "odd_one_out" in path:
+        #     continue
         # if path.find("data/tabular/") == -1: continue
         # if path.find("data/kg/") == -1: continue
         # if path.find("chembl33") != -1: continue
