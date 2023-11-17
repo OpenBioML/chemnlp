@@ -33,5 +33,11 @@ bibtex:
       url = {https://doi.org/10.1093/nar/gkac1052}}
 templates:
     - |-
-      User: What are the binding sites indices in this {#protein|amino acid sequence|AA sequence|polypeptide!} {other#}?
-      Assistant: The binding sites indices are: {binding_sites#}.
+      The binding sites indices in the protein with the {#amino acid sequence|AA sequence!} {other#} are {binding_sites#}.
+    - |-
+      Task: Please identify the binding sites of the {#protein|amino acid sequence|AA sequence|polypeptide!}.
+      {#amino acid sequence |sequence|AA sequence!}: {other#}
+      Result: {binding_sites#}
+    - |-
+      User: What are the binding sites indices in the following {#protein|amino acid sequence|AA sequence|polypeptide!}:\n{other#}
+      Assistant: The binding sites indices are:\n{binding_sites#}.
