@@ -1,7 +1,15 @@
 import pandas as pd
 from huggingface_hub import hf_hub_download
+import regex as re
 
 DATA = "uniprot_sentences"
+
+def clean_up_sentences(text : str) -> str:
+    "Remove (By similarity) from the sentences"
+     
+    updated_text = re.sub(r'\s*\(By similarity\)\s*', '', text)
+    updated_text = updated_text.replace(" . ", ". ")
+    return updated_text
 
 
 def load_dataset() -> pd.DataFrame:
@@ -10,8 +18,10 @@ def load_dataset() -> pd.DataFrame:
         filename=f"{DATA}/data_clean.csv",
         repo_type="dataset",
     )
+    uniprot
     uniprot = pd.read_csv(uniprot)
-    uniprot.rename(columns={"sequence": "other"}, inplace=True)
+    uniprot.sentences = uniprot.sentences.apply(clean_up_sentences)
+    # uniprot.rename(columns={"sequence": "other"}, inplace=True)
     uniprot.to_csv("data_clean.csv", index=False)
     print(f"Successfully loaded {DATA}!")
     return uniprot
