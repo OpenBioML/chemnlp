@@ -1,11 +1,41 @@
 from pathlib import Path
 from typing import Optional, Union
 
+import numpy as np
 from givemeconformer.api import _get_conformer
 from pymatgen.core import Molecule, Structure
 from pymatgen.io.cif import CifWriter
 from pymatgen.io.xyz import XYZ
 from rdkit import Chem
+
+
+def remove_composition_rows(cif_string: str) -> str:
+    rows = cif_string.split("\n")
+    new_rows = []
+    for row in rows:
+        if "chemical_formula" in row:
+            continue
+        new_rows.append(row)
+    return "\n".join(new_rows)
+
+
+def mask_cif_lines(
+    cif_string: str, mask_min_ratio: float = 0.1, mask_max_ratio: float = 0.4
+) -> str:
+    # chose a random number of lines to mask. don't mask the first line and the last line
+    rows = cif_string.split("\n")
+    num_rows = len(rows)
+    num_rows_to_mask = int(num_rows * np.random.uniform(mask_min_ratio, mask_max_ratio))
+    rows_to_mask = np.random.choice(
+        np.arange(1, num_rows - 1), size=num_rows_to_mask, replace=False
+    )
+    new_rows = []
+    for i, row in enumerate(rows):
+        if i in rows_to_mask:
+            new_rows.append("[MASK]]")
+        else:
+            new_rows.append(row)
+    return "\n".join(new_rows)
 
 
 def cif_file_to_string(
