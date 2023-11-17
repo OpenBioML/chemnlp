@@ -129,7 +129,7 @@ def main(
 
     all_smiles = set()
     for file in transformed_files:
-        df = pd.read_csv(file)
+        df = pd.read_csv(file, low_memory=False)
         all_smiles.update(df["SMILES"].tolist())
         del df  # ensure memory is freed
 
@@ -160,7 +160,7 @@ def main(
         split_for_smiles, train_smiles=train_smiles, val_smiles=val_smiles
     )
     for file in transformed_files:
-        df = pd.read_csv(file)
+        df = pd.read_csv(file, low_memory=False)
         df["split"] = df["SMILES"].parallel_apply(split_for_smiles_curried)
 
         # to ensure overall scaffold splitting does not distort train/val/test split sizes for each dataset
