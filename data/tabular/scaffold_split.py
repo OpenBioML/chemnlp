@@ -1,13 +1,15 @@
-from glob import glob
-import yaml
-import pandas as pd
-from chemnlp.data.split import _create_scaffold_split
-import fire
 import os
 import subprocess
-from pandarallel import pandarallel
-from typing import List
 from functools import partial
+from glob import glob
+from typing import List
+
+import fire
+import pandas as pd
+import yaml
+from pandarallel import pandarallel
+
+from chemnlp.data.split import _create_scaffold_split
 
 pandarallel.initialize(progress_bar=True)
 
