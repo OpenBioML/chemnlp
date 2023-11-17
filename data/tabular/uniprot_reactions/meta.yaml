@@ -34,5 +34,11 @@ bibtex:
       url = {https://doi.org/10.1093/nar/gkac1052}}
 templates:
     - |-
-      User: What {#biochemical|chemical|biochemical!} reactions can be catalyzed by the following {#protein|amino acid sequence|AA sequence|polypeptide!} : {other#}?
-      Assistant: The reactions that can be catalyzed by the given sequence are: {reactions#}.
+      The {#protein|amino acid sequence|AA sequence|polypeptide!} {#with the sequence |!}{other#} catalyzes the {#following |!}{#chemical |biochemical |!}reaction: {reactions#}
+    - |-
+      Task: {#Predict|Identify!} a {#biochemical |chemical |!}reaction that can be catalyzed by {#this|the following!} {#protein|amino acid sequence|AA sequence|polypeptide!}.
+      {#Amino acid sequence |Sequence|AA sequence!}: {other#}
+      Result: {reactions#}
+    - |-
+      User: Can you {#tell me|come up with!} a {#biochemical |chemical |!}reaction that can be catalyzed by the following {#protein|amino acid sequence|AA sequence|polypeptide!}:\n{other#}
+      Assistant: {#Yes, the|Sure, the|Yes, sure, the|The!} {#chemical |biochemical |!}reaction that can be catalyzed by the given {#protein|amino acid sequence|AA sequence|polypeptide!} are:\n{reactions#}
