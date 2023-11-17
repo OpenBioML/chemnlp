@@ -9,7 +9,7 @@ targets:
       names:
           - noun: function
 identifiers:
-    - id: other
+    - id: sequence
       type: other
       description: other
 license: MIT
