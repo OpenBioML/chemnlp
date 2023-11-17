@@ -7,7 +7,7 @@ DATA = "uniprot_sentences"
 def clean_up_sentences(text : str) -> str:
     "Remove (By similarity) from the sentences"
      
-    updated_text = re.sub(r'\s*\(By similarity\)\s*', '', text)
+    updated_text = re.sub(r'\s*\((?:By\.? similarity)\)\s*', '', text)
     updated_text = updated_text.replace(" . ", ". ")
     return updated_text
 
