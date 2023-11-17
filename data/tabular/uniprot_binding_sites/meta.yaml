@@ -35,9 +35,9 @@ templates:
     - |-
       The binding sites indices in the protein with the {#amino acid sequence|AA sequence!} {other#} are {binding_sites#}.
     - |-
-      Task: Please identify the binding sites of the {#protein|amino acid sequence|AA sequence|polypeptide!}.
-      {#amino acid sequence |sequence|AA sequence!}: {other#}
+      Task: Please {#identify|look for!} the binding sites indices of the {#protein|amino acid sequence|AA sequence|polypeptide!}.
+      {#Amino acid sequence |Sequence|AA sequence!}: {other#}
       Result: {binding_sites#}
     - |-
-      User: What are the binding sites indices in the following {#protein|amino acid sequence|AA sequence|polypeptide!}:\n{other#}
+      User: What are the binding sites indices in the {#following |!}{#protein|amino acid sequence|AA sequence|polypeptide!}:\n{other#}
       Assistant: The binding sites indices are:\n{binding_sites#}.
