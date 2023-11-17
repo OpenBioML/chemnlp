@@ -40,5 +40,9 @@ templates:
       {#Amino acid sequence |Sequence|AA sequence!}: {other#}
       Result: {reactions#}
     - |-
+      Task: {#Generate|Create|Come up with!} a {#protein|amino acid sequence|AA sequence|polypeptide!} that can catalyze {#a|this!} specific {#biochemical |chemical |!}reaction.
+      Reaction: {reactions#}
+      {#Output|Result!}: {other#}
+    - |-
       User: Can you {#tell me|come up with!} a {#biochemical |chemical |!}reaction that can be catalyzed by the following {#protein|amino acid sequence|AA sequence|polypeptide!}:\n{other#}
       Assistant: {#Yes, the|Sure, the|Yes, sure, the|The!} {#chemical |biochemical |!}reaction that can be catalyzed by the given {#protein|amino acid sequence|AA sequence|polypeptide!} are:\n{reactions#}
