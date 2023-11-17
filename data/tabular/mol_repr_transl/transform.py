@@ -2,6 +2,7 @@ import os
 
 import pandas as pd
 import yaml
+from rdkit import Chem
 
 # create meta yaml
 meta_template = {
@@ -70,6 +71,14 @@ def str_presenter(dumper, data: str):
     return dumper.represent_scalar("tag:yaml.org,2002:str", data)
 
 
+def smiles_with_hydrogens(smiles):
+    """Add hydrogens to smiles string"""
+
+    mol = Chem.MolFromSmiles(smiles)
+    mol = Chem.AddHs(mol)
+    return Chem.MolToSmiles(mol)
+
+
 def get_and_transform_data():
     path_base = os.getcwd()
     path_csv = (
@@ -81,6 +90,7 @@ def get_and_transform_data():
         path_csv,
         delimiter=",",
     )
+    df["smiles_with_hydrogens"] = df["smiles"].apply(smiles_with_hydrogens)
 
     if "split" in df.columns:
         assert df.columns[-1] == "split", "Split column needs to be the last column."
@@ -119,6 +129,7 @@ def get_and_transform_data():
                 "canonical": "canonical SMILES",
                 "inchi": "InChI string",
                 "iupac_name": "IUPAC name",
+                "SMILES_with_H": "SMILES with hydrogens",
             }
             meta_copy = meta_template.copy()
             meta_copy["name"] = dataset_name
