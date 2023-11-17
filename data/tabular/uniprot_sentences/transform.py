@@ -18,10 +18,9 @@ def load_dataset() -> pd.DataFrame:
         filename=f"{DATA}/data_clean.csv",
         repo_type="dataset",
     )
-    uniprot
+
     uniprot = pd.read_csv(uniprot)
     uniprot.sentences = uniprot.sentences.apply(clean_up_sentences)
-    # uniprot.rename(columns={"sequence": "other"}, inplace=True)
     uniprot.to_csv("data_clean.csv", index=False)
     print(f"Successfully loaded {DATA}!")
     return uniprot
