@@ -33,12 +33,12 @@ bibtex:
       url = {https://doi.org/10.1093/nar/gkac1052}}
 templates:
     - |-
-      User: Describe the {#function|biological function!} of the {#protein|amino acid sequence|AA sequence|polypeptide!} {other#}?
+      User: {#Please describe|Describe!|Please briefly describe|Briefly describe!} the {#biological |biochemical |!}function of {#the|this!} {#protein|amino acid sequence|AA sequence|polypeptide!}: {other#}
       Assistant: {sentences#}.
     - |-
-      User: What {#protein|amino acid sequence|AA sequence|polypeptide!} fits the {#function|biological function!} described in the next sentence(s) best?\n{sentences#}
-      Assistant: The {#amino acid sequence|AA sequence|polypeptide|protein!} that fits the described function best is {other#}.
+      User: What {#protein|amino acid sequence|AA sequence|polypeptide!} fits the {#biological |biochemical |!}description {#in the next sentence(s) |!}best?\n{sentences#}
+      Assistant: A {#protein|amino acid sequence|AA sequence|polypeptide!} that fits the {#description|sentences!} is:\n{other#}
     - |-
-      Task: {#Generate|Create|Come up with!} a {#AA sequence|protein!} based on the description.
+      Task: {#Generate|Create|Come up with!} a {#protein|amino acid sequence|AA sequence|polypeptide!} based on the description.
       Description: {sentences#}
       {#Output|Result!}: {other#}
