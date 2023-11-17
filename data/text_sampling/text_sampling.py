@@ -75,11 +75,15 @@ exclude_from_standard_tabular_text_templates = [
     "blood_brain_barrier_martins_et_al",  # because it is boolean target data
     "carcinogens",  # because it is boolean target data
     "core_mof_no_topo",
+    "qmof_gcmc",
+    "qmof_quantum",
     "cav3_t-type_calcium_channels_butkiewicz",  # because it is boolean target data
     "chebi_20",  # target is text description
     "chembl_v29",  # text only, no SMILES
+    "chemcaption_rdkit",  # text only, no SMILES
     "choline_transporter_butkiewicz",  # because it is boolean target data
     "clintox",  # because it is boolean target data
+    "chemcaption_fragments",
     "cyp2c9_substrate_carbonmangels",  # boolean target data
     "cyp2d6_substrate_carbonmangels",  # boolean target data
     "cyp3a4_substrate_carbonmangels",  # boolean target data
@@ -144,6 +148,23 @@ exclude_from_standard_tabular_text_templates = [
     "MUV_852",  # boolean target data
     "MUV_858",  # boolean target data
     "MUV_859",  # boolean target data
+    "orbnet_denali",  # only makes sense for the structure files
+    "odd_one_out",
+    "mol_repr_transl_smiles_selfies",
+    "mol_repr_transl_smiles_deepsmiles",
+    "mol_repr_transl_smiles_canonical",
+    "mol_repr_transl_smiles_inchi",
+    "mol_repr_transl_smiles_iupac_name",
+    "mol_repr_transl_selfies_deepsmiles",
+    "mol_repr_transl_selfies_canonical",
+    "mol_repr_transl_selfies_inchi",
+    "mol_repr_transl_selfies_iupac_name",
+    "mol_repr_transl_deepsmiles_canonical",
+    "mol_repr_transl_deepsmiles_inchi",
+    "mol_repr_transl_deepsmiles_iupac_name",
+    "mol_repr_transl_canonical_inchi",
+    "mol_repr_transl_canonical_iupac_name",
+    "mol_repr_transl_inchi_iupac_name",
     # "h2_storage_materials",  # only IUPAC identifier, more than one target, LOW PRIO: has only 30 samples
     "uniprot_binding_sites",
     "uniprot_organisms",
@@ -996,9 +1017,9 @@ if __name__ == "__main__":
     # path_data_dir = path_data_dir[index:]
 
     for path in path_data_dir:
-        #         if "suzuki_miyaura_sach" not in path:
-        #             continue
         # subselect one path
+        # if not "odd_one_out" in path:
+        #     continue
         # if path.find("data/tabular/") == -1: continue
         # if path.find("data/kg/") == -1: continue
         # if path.find("chembl33") != -1: continue

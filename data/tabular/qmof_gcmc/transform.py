@@ -8,20 +8,12 @@ def process():
     df = pd.read_json(
         "https://huggingface.co/datasets/kjappelbaum/chemnlp-qmof-data/resolve/main/qmof_data.json"
     )
-
     df.dropna(
         subset=[
             "outputs.CO2-henry_coefficient-mol--kg--Pa",
             "outputs.CO2-adsorption_energy-kJ--mol",
             "outputs.N2-henry_coefficient-mol--kg--Pa",
             "outputs.N2-adsorption_energy-kJ--mol",
-            "outputs.CO2-parasitic_energy_coal-MJ--kg",
-            "outputs.CO2-gravimetric_working_capacity_coal-kgCO2--kg",
-            "outputs.CO2-volumetric_working_capacity_coal-kgCO2--m3",
-            "outputs.CO2-parasitic_energy_nat_gas-MJ--kg",
-            "outputs.CO2-gravimetric_working_capacity_nat_gas-kgCO2--kg",
-            "outputs.CO2-volumetric_working_capacity_nat_gas-kgCO2--m3",
-            "outputs.CO2-final_purity_nat_gas-mol--mol",
             "outputs.CH4-henry_coefficient-mol--kg--Pa",
             "outputs.CH4-adsorption_energy-kJ--mol",
             "outputs.CH4-enthalphy_of_adsorption_58_bar_298_K-kJ--mol",
@@ -67,14 +59,14 @@ def process():
         inplace=True,
     )
 
-    df["lg10_CO2_Henry"] = np.log10(df['outputs.CO2-henry_coefficient-mol--kg--Pa"'])
+    df["lg10_CO2_Henry"] = np.log10(df["outputs.CO2-henry_coefficient-mol--kg--Pa"])
     df["lg10_N2_Henry"] = np.log10(df["outputs.N2-henry_coefficient-mol--kg--Pa"])
     df["lg10_CH4_Henry"] = np.log10(df["outputs.CH4-henry_coefficient-mol--kg--Pa"])
-    df["log10_O2_Henry"] = np.log10(df["outputs.O2-henry_coefficient-mol--kg--Pa"])
-    df["log10_Xe_Henry"] = np.log10(df["outputs.Xe-henry_coefficient-mol--kg--Pa"])
-    df["log10_Kr_Henry"] = np.log10(df["outputs.Kr-henry_coefficient-mol--kg--Pa"])
-    df["log10_H2S_Henry"] = np.log(df["outputs.H2S-henry_coefficient-mol--kg--Pa"])
-    df["log10_H20_Henry"] = np.log(df["outputs.H2O-henry_coefficient-mol--kg--Pa"])
+    df["lg10_O2_Henry"] = np.log10(df["outputs.O2-henry_coefficient-mol--kg--Pa"])
+    df["lg10_Xe_Henry"] = np.log10(df["outputs.Xe-henry_coefficient-mol--kg--Pa"])
+    df["lg10_Kr_Henry"] = np.log10(df["outputs.Kr-henry_coefficient-mol--kg--Pa"])
+    df["lg10_H2S_Henry"] = np.log(df["outputs.H2S-henry_coefficient-mol--kg--Pa"])
+    df["lg10_H2O_Henry"] = np.log(df["outputs.H2O-henry_coefficient-mol--kg--Pa"])
 
     df["info.mofid.smiles_nodes"] = df["info.mofid.smiles_nodes"].apply(
         lambda x: ", ".join(ast.literal_eval(x))

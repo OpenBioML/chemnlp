@@ -1,0 +1,40 @@
+---
+name: aminoacids
+description: |-
+    The list of the 20 essential aminoacids, their SMILES, one letter and three letter codes.
+targets:
+    - id: three_letter_code
+      description: three-letter code
+      type: text
+    - id: one_letter_code
+      description: one-letter code
+      type: text
+    - id: aminoacid_name
+      description: name
+      type: text
+    - id: type
+      description: type of aminoacid
+      type: text
+identifiers:
+    - id: SMILES
+      type: SMILES
+      description: SMILES
+license: CC BY 4.0
+links:
+    - url: https://chemistry.stackexchange.com/questions/138614/why-are-tyrosine-and-tryptophan-considered-hydrophobic
+      description: reference for amino acid type
+num_points: 20
+templates:
+    - The {#essential amino acid|amino acid|amino acid (AA)|AA!} with the {SMILES__description} {SMILES#} has a one-letter code {one_letter_code#} and a
+      three-letter code {three_letter_code#}.
+    - The {#essential amino acid|amino acid|amino acid (AA)|AA!} {amino acid_name#} has a one-letter code {one_letter_code#} and a three-letter code {three_letter_code#}.
+    - |-
+      Question: What is the one-letter code of the {#essential amino acid|amino acid|amino acid (AA)|AA!} with the {SMILES__description} {SMILES#}?
+      Answer: {one_letter_code#}.
+    - |-
+      Question: What is the one-letter code of the {#essential amino acid|amino acid|amino acid (AA)|AA!} with the {SMILES__description} {SMILES#}?
+      Answer: {three_letter_code#}.
+    - |-
+      Question: What is the type of the amino acid with the one-letter code {one_letter_code#} and {SMILES__description} {SMILES#}?
+      Constraint: The possible types are: polar, non-polar, positively charged, negatively charged
+      Answer: From the provided amino acid types (polar, non-polar, positively charged, negatively charged), the amino acid with the one-letter code {one_letter_code#} is {type#}.
