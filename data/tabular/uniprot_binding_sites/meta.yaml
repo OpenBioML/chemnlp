@@ -41,3 +41,7 @@ templates:
     - |-
       User: What are the binding sites indices in the {#following |!}{#protein|amino acid sequence|AA sequence|polypeptide!}:\n{other#}
       Assistant: The binding sites indices are:\n{binding_sites#}.
+    - |-
+      Task: Please {#identify|look for!} the binding sites indices of the {#protein|amino acid sequence|AA sequence|polypeptide!}.
+      {#Amino acid sequence |Sequence|AA sequence!}: {other#}
+      Result:<EOI> {binding_sites#}

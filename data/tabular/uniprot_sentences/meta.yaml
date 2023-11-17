@@ -42,3 +42,7 @@ templates:
       Task: {#Generate|Create|Come up with!} a {#protein|amino acid sequence|AA sequence|polypeptide!} based on the description.
       Description: {sentences#}
       {#Output|Result!}: {other#}
+    - |-
+      Task: {#Generate|Create|Come up with!} a {#protein|amino acid sequence|AA sequence|polypeptide!} based on the description.
+      Description: {sentences#}
+      {#Output|Result!}:<EOI> {other#}
