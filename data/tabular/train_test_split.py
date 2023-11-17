@@ -39,8 +39,9 @@ REPRESENTATION_LIST = [
     "IUPAC",
     "InChI",
     "InChIKey",
-    "Compositions",
+    "COMPOSITION",
     "Sentence",
+    "AS_SEQUENCE",
 ]
 
 
