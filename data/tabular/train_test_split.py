@@ -1,3 +1,9 @@
+"""Perform train/test split on all tabular and knowledge graph datasets.
+
+First, a scaffold split is run on selected SMILES datasets, than a random split is run on all other datasets.
+For this second step, we ensure if there are SMILES in the dataset, that the there is no SMILES 
+that is in the validation or test set of the scaffold split that is in the training set of the random split.
+"""
 import os
 import subprocess
 from functools import partial
@@ -164,13 +170,21 @@ def scaffold_split(
     # select the right indices for each split
     train_smiles = [all_smiles[i] for i in splits["train"]]
     val_smiles = [all_smiles[i] for i in splits["valid"]]
+    test_smiles = [all_smiles[i] for i in splits["test"]]
+
+    # write the validation and test smiles to files
+    with open("val_smiles.txt", "w") as f:
+        f.write("\n".join(val_smiles))
+    with open("test_smiles.txt", "w") as f:
+        f.write("\n".join(test_smiles))
+
     print(
         "Train smiles:",
         len(train_smiles),
         "Val smiles:",
         len(val_smiles),
         "Test smiles:",
-        len(splits["test"]),
+        len(test_smiles),
     )
 
     # now for each dataframe, add a split column based on in which list in the `splits` dict the smiles is
