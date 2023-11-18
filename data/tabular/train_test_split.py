@@ -3,6 +3,10 @@
 First, a scaffold split is run on selected SMILES datasets, than a random split is run on all other datasets.
 For this second step, we ensure if there are SMILES in the dataset, that the there is no SMILES 
 that is in the validation or test set of the scaffold split that is in the training set of the random split.
+
+The meta.yaml files are used to determine the if there are SMILES in the dataset.
+For this reason, certain scripts (e.g. preprocess_kg.py, several transform.py) need to be run before this script
+as they sometimes update or create the meta.yaml files.
 """
 import os
 import subprocess
@@ -17,6 +21,11 @@ import yaml
 from pandarallel import pandarallel
 
 from chemnlp.data.split import _create_scaffold_split
+import dask
+import numpy as np
+import random
+
+import dask.array as da
 
 pandarallel.initialize(progress_bar=True)
 
@@ -102,6 +111,140 @@ def split_for_smiles(smiles: str, train_smiles: List[str], val_smiles: List[str]
         return "valid"
     else:
         return "test"
+
+
+def has_yaml_file_smiles_column(yaml_file: Union[str, Path]) -> bool:
+    """Returns True if the yaml file has a SMILES column.
+
+    Those columns are in either the targets or identifiers keys
+    (which are both lists). In there, we have dicts and it is a SMILES
+    if the key type is SMILES.
+    """
+    with open(yaml_file, "r") as f:
+        meta = yaml.safe_load(f)
+
+    if "targets" in meta:
+        for target in meta["targets"]:
+            if target["type"] == "SMILES":
+                return True
+    if "identifiers" in meta:
+        for identifier in meta["identifiers"]:
+            if identifier["type"] == "SMILES":
+                return True
+
+    return False
+
+
+def is_in_scaffold_split_list(yaml_file: Union[str, Path]) -> bool:
+    """Returns True if the yaml file is in the to_scaffold_split list."""
+    with open(yaml_file, "r") as f:
+        meta = yaml.safe_load(f)
+
+    return meta["name"] in to_scaffold_split
+
+
+def smiles_split(
+    data_dir,
+    override: bool = False,
+    seed: int = 42,
+    debug: bool = False,
+    train_frac: float = 0.7,
+    val_frac: float = 0.15,
+    test_frac: float = 0.15,
+    val_smiles_path: Union[str, Path] = "val_smiles.txt",
+    test_smiles_path: Union[str, Path] = "test_smiles.txt",
+):
+    # make deterministic
+    np.random.seed(seed)
+    random.seed(seed)
+    dask_random_state = da.random.RandomState(seed)
+
+    def assign_split(
+        row,
+        test_smiles,
+        val_smiles,
+        train_frac,
+        test_frac,
+        random_state=dask_random_state,
+    ):
+        if row["SMILES"] in test_smiles:
+            return "test"
+        elif row["SMILES"] in val_smiles:
+            return "valid"
+        else:
+            # Assign random number for train/remaining split using the random state
+            random_value = random_state.random_sample()
+            if random_value < train_frac:
+                return "train"
+            elif random_value < train_frac + test_frac:
+                return "test"
+            else:
+                return "valid"
+
+    # we err toward doing more I/O but having simpler code to ensure we don't make anything stupid
+    all_yaml_files = glob(os.path.join(data_dir, "**", "*.yaml"), recursive=True)
+    smiles_yaml_files = [
+        file for file in all_yaml_files if has_yaml_file_smiles_column(file)
+    ]
+    # we filter those out that are in the to_scaffold_split list
+    not_scaffold_split_yaml_files = [
+        file for file in smiles_yaml_files if not is_in_scaffold_split_list(file)
+    ]
+
+    # if we debug, we only run split on the first 5 datasets
+    if debug:
+        not_scaffold_split_yaml_files = not_scaffold_split_yaml_files[:5]
+
+    # we run random splitting for each dataset but ensure that the validation and test sets
+    # do not contain any SMILES that are in the validation and test sets of the scaffold split
+
+    with open(val_smiles_path, "r") as f:
+        val_smiles = f.read().splitlines()
+
+    with open(test_smiles_path, "r") as f:
+        test_smiles = f.read().splitlines()
+
+    # some datasets are hundreds of GB, so we have to use dask
+    # we will first do a random split on the whole dataset
+    # then we flip the values based on whether a SMILES
+    # is in the validation or test set of the scaffold split
+    # we will then write the new data_clean.csv file
+
+    # if the is no data_clean.csv file, we run the transform.py script
+    # in the directory of the yaml file
+    # we will then read the data_clean.csv file and do the split
+    for file in not_scaffold_split_yaml_files:
+        print(f"Processing {file}")
+        if not os.path.exists(os.path.join(os.path.dirname(file), "data_clean.csv")):
+            subprocess.run(
+                ["python", "transform.py"],
+                cwd=os.path.dirname(file),
+            )
+
+        ddf = dask.dataframe.read_csv(
+            os.path.join(os.path.dirname(file), "data_clean.csv")
+        )
+        meta = ("split", "object")  # Meta defines the structure of the new column
+        ddf["split"] = ddf.apply(
+            assign_split,
+            axis=1,
+            meta=meta,
+            args=(test_smiles, val_smiles, train_frac, test_frac, dask_random_state),
+        )
+
+        # we then write the new data_clean.csv file
+        # if the override option is true, we write this new file to `data_clean.csv` in the same directory
+        # otherwise, we copy the old `data_clean.csv` to `data_clean_old.csv`
+        # and write the new file to `data_clean.csv`
+        if not override:
+            os.rename(
+                os.path.join(os.path.dirname(file), "data_clean.csv"),
+                os.path.join(os.path.dirname(file), "data_clean_old.csv"),
+            )
+        ddf.to_csv(
+            os.path.join(os.path.dirname(file), "data_clean.csv"),
+            index=False,
+        )
 
 
 def scaffold_split(
@@ -191,7 +334,6 @@ def scaffold_split(
     # smiles are in the SMILES column
     # if the override option is true, we write this new file to `data_clean.csv` in the same directory
     # otherwise, we copy the old `data_clean.csv` to `data_clean_old.csv` and write the new file to `data_clean.csv`
-    # we print the train/val/test split sizes and fractions for each dataset
 
     split_for_smiles_curried = partial(
         split_for_smiles, train_smiles=train_smiles, val_smiles=val_smiles
