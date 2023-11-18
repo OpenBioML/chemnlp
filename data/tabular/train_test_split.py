@@ -1,209 +1,207 @@
-"""Perform scaffold split on all datasets and rewrite data_clean.csv files.
-
-Scaffold split is a method of splitting data that ensures that the same scaffold
-is not present in both the train and test sets. This is important for evaluating
-the generalizability of a model.
-
-For more information, see:
-    - Wu, Z.; Ramsundar, B.; Feinberg, E. N.; Gomes, J.; Geniesse, C.; Pappu, A. S.;
-        Leswing, K.; Pande, V. MoleculeNet: A Benchmark for Molecular Machine Learning.
-        Chemical Science 2018, 9 (2), 513–530. https://doi.org/10.1039/c7sc02664a.
-    - Jablonka, K. M.; Rosen, A. S.; Krishnapriyan, A. S.; Smit, B.
-        An Ecosystem for Digital Reticular Chemistry. ACS Central Science 2023, 9 (4), 563–581.
-        https://doi.org/10.1021/acscentsci.2c01177.
-
-"""
 import os
+import subprocess
+from functools import partial
 from glob import glob
-from typing import List
+from typing import List, Union
+from pathlib import Path
 
 import fire
-import numpy as np
 import pandas as pd
-from rdkit import RDLogger
-from tqdm import tqdm
+import yaml
+from pandarallel import pandarallel
 
-from chemnlp.data.split import create_scaffold_split
+from chemnlp.data.split import _create_scaffold_split
 
-RDLogger.DisableLog("rdApp.*")
+pandarallel.initialize(progress_bar=True)
 
-
-REPRESENTATION_LIST = [
-    "SMILES",
-    "PSMILES",
-    "SELFIES",
-    "RXNSMILES",
-    "RXNSMILESWAdd",
-    "IUPAC",
-    "InChI",
-    "InChIKey",
-    "COMPOSITION",
-    "Sentence",
-    "AS_SEQUENCE",
+# see issue https://github.com/OpenBioML/chemnlp/issues/498 for the list of datasets
+# mostly those from TDC/moleculenet that have scaffold split as recommended method
+to_scaffold_split = [
+    "blood_brain_barrier_martins_et_al",
+    "serine_threonine_kinase_33_butkiewicz",
+    "ld50_zhu",
+    "herg_blockers",
+    "clearance_astrazeneca",
+    "half_life_obach",
+    "drug_induced_liver_injury",
+    "kcnq2_potassium_channel_butkiewicz",
+    "sarscov2_3clpro_diamond",
+    "volume_of_distribution_at_steady_state_lombardo_et_al",
+    "sr_hse_tox21",
+    "nr_er_tox21",
+    "cyp2c9_substrate_carbonmangels",
+    "nr_aromatase_tox21",
+    "cyp_p450_2d6_inhibition_veith_et_al",
+    "cyp_p450_1a2_inhibition_veith_et_al",
+    "cyp_p450_2c9_inhibition_veith_et_al",
+    "m1_muscarinic_receptor_antagonists_butkiewicz",
+    "nr_ar_tox21",
+    "sr_atad5_tox21",
+    "tyrosyl-dna_phosphodiesterase_butkiewicz",
+    "cav3_t-type_calcium_channels_butkiewicz",
+    "clintox" "sr_p53_tox21",
+    "nr_er_lbd_tox21" "pampa_ncats",
+    "sr_mmp_tox21",
+    "caco2_wang",
+    "sarscov2_vitro_touret",
+    "choline_transporter_butkiewicz",
+    "orexin1_receptor_butkiewicz",
+    "human_intestinal_absorption",
+    "nr_ahr_tox21",
+    "cyp3a4_substrate_carbonmangels",
+    "herg_karim_et_al",
+    "hiv",
+    "carcinogens",
+    "sr_are_tox21",
+    "nr_ppar_gamma_tox21",
+    "solubility_aqsoldb",
+    "m1_muscarinic_receptor_agonists_butkiewicz",
+    "ames_mutagenicity",
+    "potassium_ion_channel_kir2_1_butkiewicz",
+    "cyp_p450_3a4_inhibition_veith_et_al",
+    "skin_reaction",
+    "cyp2d6_substrate_carbonmangels",
+    "cyp_p450_2c19_inhibition_veith_et_al",
+    "nr_ar_lbd_tox21",
+    "p_glycoprotein_inhibition_broccatelli_et_al",
+    "bioavailability_ma_et_al",
+    "BACE",
+    "hiv",
+    "lipophilicity",
+    "thermosol",
+    "MUV_466",
+    "MUV_548",
+    "MUV_600",
+    "MUV_644",
+    "MUV_652",
+    "MUV_689",
+    "MUV_692",
+    "MUV_712",
+    "MUV_713",
+    "MUV_733",
+    "MUV_737",
+    "MUV_810",
+    "MUV_832",
+    "MUV_846",
+    "MUV_852",
+    "MUV_858",
+    "MUV_859",
 ]
 
 
-def rewrite_data_with_splits(
-    csv_paths: List[str],
-    repr_col: str,
-    train_test_df: pd.DataFrame,
+def split_for_smiles(smiles: str, train_smiles: List[str], val_smiles: List[str]):
+    if smiles in train_smiles:
+        return "train"
+    elif smiles in val_smiles:
+        return "valid"
+    else:
+        return "test"
+
+
+def scaffold_split(
+    data_dir: Union[str, Path],
     override: bool = False,
-    check: bool = True,
-) -> None:
-    """Rewrite dataframes with the correct split column
+    train_frac: float = 0.7,
+    val_frac: float = 0.15,
+    test_frac: float = 0.15,
+    seed: int = 42,
+    debug: bool = False,
+):
+    """Performs scaffold splitting on all datasets in the data_dir directory.
+    It serializes the validation and test smiles into `val_smiles.txt` and `test_smiles.txt`
+    in the current directory.
+
+    It is the first step of the splitting procedure as we will then perform a random split
+    on the remaining datasets on all other datasets. However, if they have smiles,
+    we will set all smiles that are in the validation and test sets to be in the validation and test sets.
 
     Args:
-        csv_paths (List[str]): list of files to merge (data_clean.csv)
-        train_test_df (pd.DataFrame): dataframe containing merged SMILES representations
-            from all datasets uniquely split into train and test
-        override (bool): whether to override the existing data_clean.csv files
-            defaults to False
-        check (bool): whether to check if the split was successful
-            defaults to True. Can be turned off to save memory
-        repr_col (str): the column name for where SMILES representation is stored
-            defaults to "SMILES"
+        data_dir (Union[str, Path]): The directory containing the directories with the datasets.
+        override (bool, optional): Whether to override the existing data_clean.csv files with the new ones.
+            Defaults to False. In this case, the old data_clean.csv files will be renamed to data_clean_old.csv.
+        train_frac (float, optional): The fraction of the data to be used for training. Defaults to 0.7.
+        val_frac (float, optional): The fraction of the data to be used for validation. Defaults to 0.15.
+        test_frac (float, optional): The fraction of the data to be used for testing. Defaults to 0.15.
+        seed (int, optional): The random seed. Defaults to 42.
+        debug (bool, optional): Whether to run in debug mode. Defaults to False.
+            In this case, only the first 5 datasets will be processed.
     """
+    all_yaml_files = glob(os.path.join(data_dir, "**", "*.yaml"), recursive=True)
+    if debug:
+        all_yaml_files = all_yaml_files[:5]
+    transformed_files = []
+    for file in all_yaml_files:
+        print(f"Processing {file}")
+        with open(file, "r") as f:
+            meta = yaml.safe_load(f)
 
-    for path in csv_paths:
-        read_dataset = pd.read_csv(path)
-
-    if check:
-        train_smiles = set(train_test_df.query("split == 'train'")[repr_col].to_list())
-
-    for path in csv_paths:
-        read_dataset = pd.read_csv(path)
-        if repr_col in read_dataset.columns:
-            try:
-                read_dataset = read_dataset.drop("split", axis=1)
-                message = f"Split column found in {path}."
-                if override:
-                    message += " Overriding..."
-                print(message)
-            except KeyError:
-                print(f"No split column in {path}")
-
-            merged_data = pd.merge(read_dataset, train_test_df, on=repr_col, how="left")
-            # merged_data = merged_data.dropna()
-            if override:
-                merged_data.to_csv(path, index=False)
-            else:
-                # rename the old data_clean.csv file to data_clean_old.csv
-                os.rename(path, path.replace(".csv", "_old.csv"))
-                # write the new data_clean.csv file
-                merged_data.to_csv(path, index=False)
-
-            if len(merged_data.query("split == 'train'")) == 0:
-                raise ValueError("Split failed, no train data")
-            if len(merged_data.query("split == 'test'")) == 0:
-                raise ValueError("Split failed, no test data")
-            if check:
-                test_split_smiles = set(
-                    merged_data.query("split == 'test'")[repr_col].to_list()
+        if meta["name"] in to_scaffold_split:
+            # run transform.py script in this directory if `data_clean.csv` does not exist
+            # use this dir as cwd
+            if not os.path.exists(
+                os.path.join(os.path.dirname(file), "data_clean.csv")
+            ):
+                subprocess.run(
+                    ["python", "transform.py"],
+                    cwd=os.path.dirname(file),
                 )
-                if len(train_smiles.intersection(test_split_smiles)) > 0:
-                    raise ValueError("Split failed, train and test overlap")
 
-
-TRACKED_DATASETS = []
-
-
-def per_repr(
-    repr_col: str,
-    seed: int = 42,
-    train_size: float = 0.8,
-    val_size: float = 0.0,
-    test_size: float = 0.2,
-    path: str = "*/data_clean.csv",
-    override: bool = False,
-    check: bool = True,
-):
-    paths_to_data = glob(path)
-
-    # uncomment the following lines for debugging on a subset of data
-    # filtered_paths = []
-    # for path in paths_to_data:
-    #     if "flashpoint" in path:
-    #         filtered_paths.append(path)
-    #     elif "BBBP" in path:
-    #         filtered_paths.append(path)
-    #     elif "peptide" in path:
-    #         filtered_paths.append(path)
-    #     elif "bicerano_dataset" in path:
-    #         filtered_paths.append(path)
-    # paths_to_data = filtered_paths
-
-    representations = []
-
-    for path in paths_to_data:
-        df = pd.read_csv(path)
-
-        if repr_col in df.columns and path not in TRACKED_DATASETS:
-            print("Processing", path.split("/")[0])
-            TRACKED_DATASETS.append(path)
-            representations.extend(df[repr_col].to_list())
-
-    repr_df = pd.DataFrame()
-    repr_df[repr_col] = list(set(representations))
-
-    if "SMILES" in repr_df.columns:
-        split = create_scaffold_split(
-            repr_df, seed=seed, frac=[train_size, val_size, test_size]
-        )
-    else:
-        split_ = pd.DataFrame(
-            np.random.choice(
-                ["train", "test", "valid"],
-                size=len(repr_df),
-                p=[1 - val_size - test_size, test_size, val_size],
+            transformed_files.append(
+                os.path.join(os.path.dirname(file), "data_clean.csv")
             )
-        )
 
-        repr_df["split"] = split_
-        train = repr_df.query("split == 'train'").reset_index(drop=True)
-        test = repr_df.query("split == 'test'").reset_index(drop=True)
-        valid = repr_df.query("split == 'valid'").reset_index(drop=True)
+    all_smiles = set()
+    for file in transformed_files:
+        df = pd.read_csv(file, low_memory=False)
+        all_smiles.update(df["SMILES"].tolist())
+        del df  # ensure memory is freed
 
-        split = {"train": train, "test": test, "valid": valid}
-
-    # create train and test dataframes
-    train_df = split["train"]
-    test_df = split["test"]
-    valid_df = split["valid"]
-    # add split columns to train and test dataframes
-    train_df["split"] = len(train_df) * ["train"]
-    test_df["split"] = len(test_df) * ["test"]
-    valid_df["split"] = len(valid_df) * ["valid"]
-
-    # merge train and test across all datasets
-    merge = pd.concat([train_df, test_df, valid_df], axis=0)
-    # rewrite data_clean.csv for each dataset
-    rewrite_data_with_splits(
-        csv_paths=paths_to_data,
-        repr_col=repr_col,
-        train_test_df=merge,
-        override=override,
-        check=check,
+    all_smiles = list(all_smiles)
+    splits = _create_scaffold_split(
+        all_smiles, frac=[train_frac, val_frac, test_frac], seed=seed
     )
 
+    # select the right indices for each split
+    train_smiles = [all_smiles[i] for i in splits["train"]]
+    val_smiles = [all_smiles[i] for i in splits["valid"]]
+    print(
+        "Train smiles:",
+        len(train_smiles),
+        "Val smiles:",
+        len(val_smiles),
+        "Test smiles:",
+        len(splits["test"]),
+    )
 
-def cli(
-    seed: int = 42,
-    train_size: float = 0.75,
-    val_size: float = 0.125,
-    test_size: float = 0.125,
-    path: str = "*/data_clean.csv",
-    override: bool = False,
-    check: bool = True,
-):
-    for representation in tqdm(REPRESENTATION_LIST):
-        if representation == "SMILES":
-            print("Processing priority representation: SMILES")
-        else:
-            print("Processing datasets with the representation column:", representation)
-        per_repr(
-            representation, seed, train_size, val_size, test_size, path, override, check
+    # now for each dataframe, add a split column based on in which list in the `splits` dict the smiles is
+    # smiles are in the SMILES column
+    # if the override option is true, we write this new file to `data_clean.csv` in the same directory
+    # otherwise, we copy the old `data_clean.csv` to `data_clean_old.csv` and write the new file to `data_clean.csv`
+    # we print the train/val/test split sizes and fractions for each dataset
+
+    split_for_smiles_curried = partial(
+        split_for_smiles, train_smiles=train_smiles, val_smiles=val_smiles
+    )
+    for file in transformed_files:
+        df = pd.read_csv(file, low_memory=False)
+        df["split"] = df["SMILES"].parallel_apply(split_for_smiles_curried)
+
+        # to ensure overall scaffold splitting does not distort train/val/test split sizes for each dataset
+        print(
+            f"Dataset {file} has {len(df)} datapoints. Split sizes: {len(df[df['split'] == 'train'])} train, {len(df[df['split'] == 'valid'])} valid, {len(df[df['split'] == 'test'])} test."  # noqa: E501
         )
+        print(
+            f"Dataset {file} has {len(df)} datapoints. Split fractions: {len(df[df['split'] == 'train']) / len(df)} train, {len(df[df['split'] == 'valid']) / len(df)} valid, {len(df[df['split'] == 'test']) / len(df)} test."  # noqa: E501
+        )
+        if override:
+            # write the new data_clean.csv file
+            df.to_csv(file, index=False)
+        else:
+            # copy the old data_clean.csv to data_clean_old.csv
+            os.rename(file, file.replace(".csv", "_old.csv"))
+            # write the new data_clean.csv file
+            df.to_csv(file, index=False)
 
 
 if __name__ == "__main__":
-    fire.Fire(cli)
+    fire.Fire(scaffold_split)
