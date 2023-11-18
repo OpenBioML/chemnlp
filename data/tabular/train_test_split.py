@@ -1,7 +1,7 @@
 """Perform train/test split on all tabular and knowledge graph datasets.
 
 First, a scaffold split is run on selected SMILES datasets, than a random split is run on all other datasets.
-For this second step, we ensure if there are SMILES in the dataset, that the there is no SMILES 
+For this second step, we ensure if there are SMILES in the dataset, that the there is no SMILES
 that is in the validation or test set of the scaffold split that is in the training set of the random split.
 
 The meta.yaml files are used to determine the if there are SMILES in the dataset.
@@ -9,23 +9,22 @@ For this reason, certain scripts (e.g. preprocess_kg.py, several transform.py) n
 as they sometimes update or create the meta.yaml files.
 """
 import os
+import random
 import subprocess
 from functools import partial
 from glob import glob
-from typing import List, Union
 from pathlib import Path
+from typing import List, Literal, Union
 
+import dask
+import dask.array as da
 import fire
+import numpy as np
 import pandas as pd
 import yaml
 from pandarallel import pandarallel
 
 from chemnlp.data.split import _create_scaffold_split
-import dask
-import numpy as np
-import random
-
-import dask.array as da
 
 pandarallel.initialize(progress_bar=True)
 
@@ -113,7 +112,9 @@ def split_for_smiles(smiles: str, train_smiles: List[str], val_smiles: List[str]
         return "test"
 
 
-def has_yaml_file_smiles_column(yaml_file: Union[str, Path]) -> bool:
+def yaml_file_has_column_of_type(
+    yaml_file: Union[str, Path], data_type: Literal["AS_SEQUENCE", "SMILE"]
+) -> bool:
     """Returns True if the yaml file has a SMILES column.
 
     Those columns are in either the targets or identifiers keys
@@ -125,11 +126,11 @@ def has_yaml_file_smiles_column(yaml_file: Union[str, Path]) -> bool:
 
     if "targets" in meta:
         for target in meta["targets"]:
-            if target["type"] == "SMILES":
+            if target["type"] == data_type:
                 return True
     if "identifiers" in meta:
         for identifier in meta["identifiers"]:
-            if identifier["type"] == "SMILES":
+            if identifier["type"] == data_type:
                 return True
 
     return False
@@ -156,6 +157,24 @@ def run_transform(file):
         )
 
 
+def get_smiles_columns(yaml_file: Union[str, Path]) -> List[str]:
+    """Returns the id for all columns with type SMILES"""
+    with open(yaml_file, "r") as f:
+        meta = yaml.safe_load(f)
+
+    smiles_columns = []
+    if "targets" in meta:
+        for target in meta["targets"]:
+            if target["type"] == "SMILES":
+                smiles_columns.append(target["id"])
+    if "identifiers" in meta:
+        for identifier in meta["identifiers"]:
+            if identifier["type"] == "SMILES":
+                smiles_columns.append(identifier["id"])
+
+    return smiles_columns
+
+
 def remaining_split(
     data_dir,
     override: bool = False,
@@ -164,6 +183,7 @@ def remaining_split(
     train_frac: float = 0.7,
     val_frac: float = 0.15,
     test_frac: float = 0.15,
+    run_transform_py: bool = False,
 ):
     # make deterministic
     np.random.seed(seed)
@@ -172,7 +192,7 @@ def remaining_split(
 
     yaml_files = get_yaml_files(data_dir)
     non_smiles_yaml_files = [
-        file for file in yaml_files if not has_yaml_file_smiles_column(file)
+        file for file in yaml_files if not yaml_file_has_column_of_type(file)
     ]
 
     # if we debug, we only run split on the first 5 datasets
@@ -192,7 +212,8 @@ def remaining_split(
     # we run random splitting for each dataset
     for file in non_smiles_yaml_files:
         print(f"Processing {file}")
-        run_transform(file)
+        if run_transform_py:
+            run_transform(file)
 
         ddf = dask.dataframe.read_csv(
             os.path.join(os.path.dirname(file), "data_clean.csv")
@@ -217,14 +238,14 @@ def remaining_split(
                 os.path.join(os.path.dirname(file), "data_clean.csv"),
                 os.path.join(os.path.dirname(file), "data_clean_old.csv"),
             )
-        df.to_csv(
+        ddf.to_csv(
             os.path.join(os.path.dirname(file), "data_clean.csv"),
             index=False,
         )
 
 
 def smiles_split(
-    data_dir,
+    data_dir: Union[str, Path],
     override: bool = False,
     seed: int = 42,
     debug: bool = False,
@@ -233,7 +254,33 @@ def smiles_split(
     test_frac: float = 0.15,
     val_smiles_path: Union[str, Path] = "val_smiles.txt",
     test_smiles_path: Union[str, Path] = "test_smiles.txt",
+    run_transform_py: bool = False,
 ):
+    """Runs a random split on all datasets in the data_dir directory that have a SMILES column.
+
+    The validation and test sets are ensured to not contain any SMILES that are in the validation and test sets
+    of the scaffold split.
+
+    Args:
+        data_dir (Union[str, Path]): The directory containing the directories with the datasets.
+        override (bool, optional): Whether to override the existing data_clean.csv files with the new ones.
+            Defaults to False. In this case, the old data_clean.csv files will be renamed to data_clean_old.csv.
+        seed (int, optional): The random seed. Defaults to 42.
+        debug (bool, optional): Whether to run in debug mode. Defaults to False.
+            In this case, only the first 5 datasets will be processed.
+        train_frac (float, optional): The fraction of the data to be used for training. Defaults to 0.7.
+        val_frac (float, optional): The fraction of the data to be used for validation. Defaults to 0.15.
+        test_frac (float, optional): The fraction of the data to be used for testing. Defaults to 0.15.
+        val_smiles_path (Union[str, Path], optional): The path to the validation smiles file.
+            Defaults to "val_smiles.txt".
+        test_smiles_path (Union[str, Path], optional): The path to the test smiles file.
+            Defaults to "test_smiles.txt".
+        run_transform_py (bool, optional): Whether to run the transform.py script in the directory of the dataset.
+            Defaults to False.
+
+    Returns:
+        None
+    """
     # make deterministic
     np.random.seed(seed)
     random.seed(seed)
@@ -241,15 +288,21 @@ def smiles_split(
 
     def assign_split(
         row,
-        test_smiles,
-        val_smiles,
-        train_frac,
-        test_frac,
+        smiles_columns: List[str],
+        test_smiles: List[str],
+        val_smiles: List[str],
+        train_frac: float,
+        test_frac: float,
         random_state=dask_random_state,
     ):
-        if row["SMILES"] in test_smiles:
+        """Assigns a split to a row based on the SMILES columns."""
+        # if there are no SMILES columns, we assign a random split
+        all_smiles_for_row = row[smiles_columns].tolist()
+        # if any smiles in the row is in the test smiles, we assign it to the test set
+        if any(smiles in test_smiles for smiles in all_smiles_for_row):
             return "test"
-        elif row["SMILES"] in val_smiles:
+        # if any smiles in the row is in the val smiles, we assign it to the val set
+        elif any(smiles in val_smiles for smiles in all_smiles_for_row):
             return "valid"
         else:
             # Assign random number for train/remaining split using the random state
@@ -264,7 +317,7 @@ def smiles_split(
     # we err toward doing more I/O but having simpler code to ensure we don't make anything stupid
     all_yaml_files = get_yaml_files(data_dir)
     smiles_yaml_files = [
-        file for file in all_yaml_files if has_yaml_file_smiles_column(file)
+        file for file in all_yaml_files if yaml_file_has_column_of_type(file)
     ]
     # we filter those out that are in the to_scaffold_split list
     not_scaffold_split_yaml_files = [
@@ -295,7 +348,8 @@ def smiles_split(
     # we will then read the data_clean.csv file and do the split
     for file in not_scaffold_split_yaml_files:
         print(f"Processing {file}")
-        run_transform(file)
+        if run_transform_py:
+            run_transform(file)
         ddf = dask.dataframe.read_csv(
             os.path.join(os.path.dirname(file), "data_clean.csv")
         )
@@ -335,8 +389,11 @@ def scaffold_split(
     test_frac: float = 0.15,
     seed: int = 42,
     debug: bool = False,
+    run_transform_py: bool = False,
 ):
-    """Performs scaffold splitting on all datasets in the data_dir directory.
+    """Performs scaffold splitting on all datasets in the data_dir directory
+    that are in the to_scaffold_split list.
+
     It serializes the validation and test smiles into `val_smiles.txt` and `test_smiles.txt`
     in the current directory.
 
@@ -354,6 +411,7 @@ def scaffold_split(
         seed (int, optional): The random seed. Defaults to 42.
         debug (bool, optional): Whether to run in debug mode. Defaults to False.
             In this case, only the first 5 datasets will be processed.
+        run_transform_py (bool, optional): Whether to run the transform.py script in the directory of the dataset.
     """
     # make deterministic
     np.random.seed(seed)
@@ -371,7 +429,8 @@ def scaffold_split(
         if meta["name"] in to_scaffold_split:
             # run transform.py script in this directory if `data_clean.csv` does not exist
             # use this dir as cwd
-            run_transform(file)
+            if run_transform_py:
+                run_transform(file)
 
             transformed_files.append(
                 os.path.join(os.path.dirname(file), "data_clean.csv")
@@ -445,15 +504,25 @@ def run_all_split(
     test_frac: float = 0.15,
     seed: int = 42,
     debug: bool = False,
+    run_transform_py: bool = False,
 ):
     """Runs all splitting steps on the datasets in the data_dir directory."""
     print("Running scaffold split...")
-    scaffold_split(data_dir, override, train_frac, val_frac, test_frac, seed, debug)
+    scaffold_split(
+        data_dir,
+        override,
+        train_frac,
+        val_frac,
+        test_frac,
+        seed,
+        debug,
+        run_transform_py,
+    )
     print("Running SMILES split...")
-    smiles_split(data_dir, override, seed, debug)
+    smiles_split(data_dir, override, seed, debug, run_transform_py=run_transform_py)
     print("Running remaining split...")
-    remaining_split(data_dir, override, seed, debug)
+    remaining_split(data_dir, override, seed, debug, run_transform_py=run_transform_py)
 
 
 if __name__ == "__main__":
-    fire.Fire(scaffold_split)
+    fire.Fire(run_all_split)
