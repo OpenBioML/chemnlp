@@ -109,6 +109,7 @@ def main(
         all_yaml_files = all_yaml_files[:5]
     transformed_files = []
     for file in all_yaml_files:
+        print(f"Processing {file}")
         with open(file, "r") as f:
             meta = yaml.safe_load(f)
 
