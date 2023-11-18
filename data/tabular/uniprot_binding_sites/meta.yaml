@@ -1,0 +1,58 @@
+---
+name: uniprot_binding_sites
+description: |-
+    Binding sites of a molecule in protein sequences.
+targets:
+    - id: start_binding_site
+      description: index for start of the binding sites of a protein
+      type: text
+      names:
+          - noun: start binding site
+    - id: end_binding_site
+      description: index for emd of the binding sites of a protein
+      type: text
+      names:
+          - noun: end binding site
+    - id: SMILES
+      description: SMILES
+      type: SMILES
+      names:
+          - noun: SMILES
+identifiers:
+    - id: sequence
+      type: AS_SEQUENCE
+      description: other
+license: MIT
+links:
+    - url: https://www.uniprot.org/
+      description: data source
+num_points: 780449
+bibtex:
+    - |-
+      @article{10.1093/nar/gkac1052,
+      author = {The UniProt Consortium},
+      title = {UniProt - the Universal Protein Knowledgebase in 2023},
+      journal = {Nucleic Acids Research},
+      volume = {51},
+      number = {D1},
+      pages = {D523-D531},
+      year = {2022},
+      month = {11},
+      issn = {0305-1048},
+      doi = {10.1093/nar/gkac1052},
+      url = {https://doi.org/10.1093/nar/gkac1052}}
+templates:
+    - |-
+      Question: What are the binding sites of the {#molecule|chemical|compound!} with {SMILES__description} {SMILES#} in this {#AA|amino acid!} sequence {sequence#}?
+      Answer: The binding site for the {#molecule|chemical|compound!} with the SMILES {SMILES#} in the given {#AA|amino acid!} sequence is: {start_binding_site#}-{end_binding_site#}.
+    - |-
+      Question: What molecule can bind in the binding site {start_binding_site#}-{end_binding_site#} in the amino acid sequence below?
+      {#AA|amino acid!} sequence: {sequence#}.
+      Answer: {SMILES#}
+    - |-
+      Task: Design a binding site in the {#AA|amino acid!} sequence {sequence#}, in which the {#molecule|chemical|compound!} with {SMILES__description} {SMILES#} can bind.
+      Answer: {start_binding_site#}-{end_binding_site#}
+    - |-
+      Task: Design a {#molecule|chemical|compound!} that binds to a given site in the {#AA|amino acid!} sequence {sequence#}.
+      Description: The binding site is {start_binding_site#}-{end_binding_site#}.
+      Answer: {SMILES#}
