@@ -165,6 +165,11 @@ def remaining_split(
     val_frac: float = 0.15,
     test_frac: float = 0.15,
 ):
+    # make deterministic
+    np.random.seed(seed)
+    random.seed(seed)
+    dask_random_state = da.random.RandomState(seed)
+
     yaml_files = get_yaml_files(data_dir)
     non_smiles_yaml_files = [
         file for file in yaml_files if not has_yaml_file_smiles_column(file)
@@ -174,17 +179,34 @@ def remaining_split(
     if debug:
         non_smiles_yaml_files = non_smiles_yaml_files[:5]
 
+    def assign_split(train_frac, val_frac, test_frac, random_state):
+        # Assign random number for train/remaining split using the random state
+        random_value = random_state.random_sample()
+        if random_value < train_frac:
+            return "train"
+        elif random_value < train_frac + test_frac:
+            return "test"
+        else:
+            return "valid"
+
     # we run random splitting for each dataset
     for file in non_smiles_yaml_files:
         print(f"Processing {file}")
         run_transform(file)
 
-        df = pd.read_csv(os.path.join(os.path.dirname(file), "data_clean.csv"))
-        split_counts = df["split"].value_counts()
-
-        print(
-            f"Dataset {file} has {len(df)} datapoints. Split sizes: {split_counts['train']} train, {split_counts['valid']} valid, {split_counts['test']} test."  # noqa: E501
+        ddf = dask.dataframe.read_csv(
+            os.path.join(os.path.dirname(file), "data_clean.csv")
         )
+        meta = ("split", "object")  # Meta defines the structure of the new column
+        ddf["split"] = ddf.apply(
+            assign_split,
+            axis=1,
+            meta=meta,
+            args=(train_frac, val_frac, test_frac, dask_random_state),
+        )
+        split_counts = ddf["split"].value_counts().compute()
+
+        print(f"Dataset {file} has {len(ddf)} datapoints. Split sizes: {split_counts}")
 
         # we then write the new data_clean.csv file
         # if the override option is true, we write this new file to `data_clean.csv` in the same directory
