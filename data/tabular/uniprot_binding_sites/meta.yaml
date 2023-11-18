@@ -20,7 +20,7 @@ targets:
           - noun: SMILES
 identifiers:
     - id: sequence
-      type: other
+      type: AS_SEQUENCE
       description: other
 license: MIT
 links:
@@ -43,17 +43,16 @@ bibtex:
       url = {https://doi.org/10.1093/nar/gkac1052}}
 templates:
     - |-
-      Question: What are the binding sites of the molecule in this {#AA|amino acid!} {sequence#}?
-      Answer: The binding site for the molecule with the SMILES {SMILES#} in the given {#AA|amino acid!} sequence is:
-      {start_binding_site#}-{end_binding_site#}
+      Question: What are the binding sites of the {#molecule|chemical|compound!} with {SMILES__description} {SMILES#} in this {#AA|amino acid!} {sequence#}?
+      Answer: The binding site for the {#molecule|chemical|compound!} with the SMILES {SMILES#} in the given {#AA|amino acid!} sequence is: {start_binding_site#}-{end_binding_site#}.
     - |-
-      Question: What molecule can bind in the binding site {start_binding_site#}-{end_binding_site#} in the amino acid sequence?
-      Constraint: Amino acid sequence : {sequence#}.
+      Question: What molecule can bind in the binding site {start_binding_site#}-{end_binding_site#} in the amino acid sequence below?
+      {#AA|amino acid!} sequence: {sequence#}.
       Answer: {SMILES#}
     - |-
-      Task: Design a binding site in the {#AA|amino acid!} sequence {sequence#}, in which the molecule {SMILES#} can bind.
+      Task: Design a binding site in the {#AA|amino acid!} sequence {sequence#}, in which the {#molecule|chemical|compound!} with {SMILES__description} {SMILES#} can bind.
       Answer: {start_binding_site#}-{end_binding_site#}
     - |-
-      Task: Design a molecule that binds to this site in the {#AA|amino acid!} sequence {sequence#}.
-      Constraint: Binding site : {start_binding_site#}-{end_binding_site#}.
+      Task: Design a {#molecule|chemical|compound!} that binds to a given site in the {#AA|amino acid!} sequence {sequence#}.
+      Description: The binding site is {start_binding_site#}-{end_binding_site#}.
       Answer: {SMILES#}

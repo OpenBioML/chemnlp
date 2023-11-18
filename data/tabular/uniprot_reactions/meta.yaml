@@ -11,7 +11,7 @@ targets:
           - noun: biochemical reactions
 identifiers:
     - id: other
-      type: other
+      type: AS_SEQUENCE
       description: other
 license: MIT
 links:

@@ -10,7 +10,7 @@ targets:
           - noun: function
 identifiers:
     - id: sequence
-      type: other
+      type: AS_SEQUENCE
       description: other
 license: MIT
 links:
@@ -33,7 +33,7 @@ bibtex:
       url = {https://doi.org/10.1093/nar/gkac1052}}
 templates:
     - |-
-      User: {#Please describe|Describe!|Please briefly describe|Briefly describe!} the {#biological |biochemical |!}function of {#the|this!} {#protein|amino acid sequence|AA sequence|polypeptide!}: {sequence#}
+      User: {#Please describe|Describe|Please briefly describe|Briefly describe!} the {#biological |biochemical |!}function of {#the|this!} {#protein|amino acid sequence|AA sequence|polypeptide!}: {sequence#}
       Assistant: {sentences#}.
     - |-
       User: What {#protein|amino acid sequence|AA sequence|polypeptide!} fits the {#biological |biochemical |!}description {#in the next sentence(s) |!}best?\n{sentences#}
