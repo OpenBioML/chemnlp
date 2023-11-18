@@ -1,10 +1,12 @@
 import pandas as pd
+from huggingface_hub import hf_hub_download
 
 
 def transform_data():
-    df = pd.read_csv(
-        "https://huggingface.co/datasets/chemNLP/MUV/raw/main/MUV_548/data_clean.csv"
+    file = hf_hub_download(
+        repo_id="chemNLP/MUV", filename="MUV_548/data_clean.csv", repo_type="dataset"
     )
+    df = pd.read_csv(file)
     df.to_csv("data_clean.csv", index=False)
 
 
