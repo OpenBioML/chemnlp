@@ -11,6 +11,7 @@ def load_dataset() -> pd.DataFrame:
         repo_type="dataset",
     )
     uniprot = pd.read_csv(uniprot)
+    uniprot.end_binding_site = uniprot.end_binding_site.astype(int)
     uniprot.to_csv("data_clean.csv", index=False)
     print(f"Successfully loaded {DATA}!")
     return uniprot
