@@ -4,9 +4,14 @@ First, a scaffold split is run on selected SMILES datasets, than a random split 
 For this second step, we ensure if there are SMILES in the dataset, that the there is no SMILES
 that is in the validation or test set of the scaffold split that is in the training set of the random split.
 
+If there are multiple SMILES columns, we move to test/val if any of the SMILES is in the test/val set of the scaffold split.
+
 The meta.yaml files are used to determine the if there are SMILES in the dataset.
 For this reason, certain scripts (e.g. preprocess_kg.py, several transform.py) need to be run before this script
 as they sometimes update or create the meta.yaml files.
+
+Prior to the SMILES split and the split of all other files, we perform a random split on the files with
+amino acid sequences. 
 """
 import os
 import random
@@ -103,7 +108,9 @@ to_scaffold_split = [
 ]
 
 
-def split_for_smiles(smiles: str, train_smiles: List[str], val_smiles: List[str]):
+def split_for_smiles(
+    smiles: str, train_smiles: List[str], val_smiles: List[str]
+) -> str:
     if smiles in train_smiles:
         return "train"
     elif smiles in val_smiles:
@@ -157,7 +164,10 @@ def run_transform(file):
         )
 
 
-def get_smiles_columns(yaml_file: Union[str, Path]) -> List[str]:
+def get_columns_of_type(
+    yaml_file: Union[str, Path],
+    column_type: Literal["SMILES", "AS_SEQUENCE"] = "SMILES",
+) -> List[str]:
     """Returns the id for all columns with type SMILES"""
     with open(yaml_file, "r") as f:
         meta = yaml.safe_load(f)
@@ -165,11 +175,11 @@ def get_smiles_columns(yaml_file: Union[str, Path]) -> List[str]:
     smiles_columns = []
     if "targets" in meta:
         for target in meta["targets"]:
-            if target["type"] == "SMILES":
+            if target["type"] == column_type:
                 smiles_columns.append(target["id"])
     if "identifiers" in meta:
         for identifier in meta["identifiers"]:
-            if identifier["type"] == "SMILES":
+            if identifier["type"] == column_type:
                 smiles_columns.append(identifier["id"])
 
     return smiles_columns
@@ -184,7 +194,7 @@ def remaining_split(
     val_frac: float = 0.15,
     test_frac: float = 0.15,
     run_transform_py: bool = False,
-):
+) -> None:
     # make deterministic
     np.random.seed(seed)
     random.seed(seed)
@@ -192,7 +202,10 @@ def remaining_split(
 
     yaml_files = get_yaml_files(data_dir)
     non_smiles_yaml_files = [
-        file for file in yaml_files if not yaml_file_has_column_of_type(file)
+        file
+        for file in yaml_files
+        if not yaml_file_has_column_of_type(file)
+        or yaml_file_has_column_of_type(file, "AS_SEQUENCE")
     ]
 
     # if we debug, we only run split on the first 5 datasets
@@ -244,6 +257,124 @@ def remaining_split(
         )
 
 
+def as_sequence_split(
+    data_dir,
+    override: bool = False,
+    seed: int = 42,
+    debug: bool = False,
+    train_frac: float = 0.7,
+    val_frac: float = 0.15,
+    test_frac: float = 0.15,
+    run_transform_py: bool = False,
+) -> None:
+    """Run a random split on all datasets in the data_dir directory that have a AS_SEQUENCE column.
+
+    Ensures that, overall, a AS_SEQUENCE is not split across train/val/test.
+
+    Args:
+        data_dir ([type]): [description]
+        override (bool, optional): [description]. Defaults to False.
+        seed (int, optional): [description]. Defaults to 42.
+        debug (bool, optional): [description]. Defaults to False.
+        train_frac (float, optional): [description]. Defaults to 0.7.
+        val_frac (float, optional): [description]. Defaults to 0.15.
+        test_frac (float, optional): [description]. Defaults to 0.15.
+        run_transform_py (bool, optional): [description]. Defaults to False.
+
+    Returns:
+        None
+    """
+    all_yaml_files = get_yaml_files(data_dir)
+    as_sequence_yaml_files = [
+        file
+        for file in all_yaml_files
+        if yaml_file_has_column_of_type(file, "AS_SEQUENCE")
+    ]
+
+    # if we debug, we only run split on the first 5 datasets
+    if debug:
+        as_sequence_yaml_files = as_sequence_yaml_files[:5]
+
+    # make deterministic
+    np.random.seed(seed)
+    random.seed(seed)
+
+    all_as_sequence = set()
+
+    for file in as_sequence_yaml_files:
+        print(f"Processing {file}")
+        if run_transform_py:
+            run_transform(file)
+
+        ddf = dask.dataframe.read_csv(
+            os.path.join(os.path.dirname(file), "data_clean.csv")
+        )
+        all_as_sequence.update(ddf["AS_SEQUENCE"].tolist())
+
+    all_as_sequence = list(all_as_sequence)
+    # random split into train/val/test using numpy
+    # randomly take train_frac of the data for training set, val_frac for validation set
+    # and the rest for test set
+    train_size = int(len(all_as_sequence) * train_frac)
+    val_size = int(len(all_as_sequence) * val_frac)
+
+    # shuffle the data
+    np.random.shuffle(all_as_sequence)
+    # split into train/val/test
+    train = all_as_sequence[:train_size]
+    val = all_as_sequence[train_size : train_size + val_size]
+    test = all_as_sequence[train_size + val_size :]
+    print(
+        f"In total, there are {len(all_as_sequence)} AS_SEQUENCEs. Split sizes: {len(train)} train, {len(val)} valid, {len(test)} test."  # noqa: E501
+    )
+
+    with open("val_as_sequences.txt", "w") as f:
+        f.write("\n".join(val))
+
+    with open("test_as_sequences.txt", "w") as f:
+        f.write("\n".join(test))
+
+    def assign_split(row):
+        as_sequence_columns = get_columns_of_type(file, "AS_SEQUENCE")
+        if any(as_sequence in test for as_sequence in as_sequence_columns):
+            return "test"
+        elif any(as_sequence in val for as_sequence in as_sequence_columns):
+            return "valid"
+        else:
+            return "train"
+
+    for file in as_sequence_yaml_files:
+        print(f"Processing {file}")
+
+        ddf = dask.dataframe.read_csv(
+            os.path.join(os.path.dirname(file), "data_clean.csv")
+        )
+        meta = ("split", "object")
+
+        ddf["split"] = ddf.apply(
+            assign_split,
+            axis=1,
+            meta=meta,
+        )
+        split_counts = ddf["split"].value_counts().compute()
+
+        print(f"Dataset {file} has {len(ddf)} datapoints. Split sizes: {split_counts}")
+
+        # we then write the new data_clean.csv file
+        # if the override option is true, we write this new file to `data_clean.csv` in the same directory
+        # otherwise, we copy the old `data_clean.csv` to `data_clean_old.csv`
+        # and write the new file to `data_clean.csv`
+        if not override:
+            os.rename(
+                os.path.join(os.path.dirname(file), "data_clean.csv"),
+                os.path.join(os.path.dirname(file), "data_clean_old.csv"),
+            )
+        ddf.to_csv(
+            os.path.join(os.path.dirname(file), "data_clean.csv"),
+            index=False,
+        )
+
+
 def smiles_split(
     data_dir: Union[str, Path],
     override: bool = False,
@@ -255,7 +386,7 @@ def smiles_split(
     val_smiles_path: Union[str, Path] = "val_smiles.txt",
     test_smiles_path: Union[str, Path] = "test_smiles.txt",
     run_transform_py: bool = False,
-):
+) -> None:
     """Runs a random split on all datasets in the data_dir directory that have a SMILES column.
 
     The validation and test sets are ensured to not contain any SMILES that are in the validation and test sets
@@ -317,7 +448,12 @@ def smiles_split(
     # we err toward doing more I/O but having simpler code to ensure we don't make anything stupid
     all_yaml_files = get_yaml_files(data_dir)
     smiles_yaml_files = [
-        file for file in all_yaml_files if yaml_file_has_column_of_type(file)
+        file
+        for file in all_yaml_files
+        if (
+            yaml_file_has_column_of_type(file)
+            and not yaml_file_has_column_of_type(file, "AS_SEQUENCE")
+        )  # noqa: E501
     ]
     # we filter those out that are in the to_scaffold_split list
     not_scaffold_split_yaml_files = [
@@ -354,11 +490,19 @@ def smiles_split(
             os.path.join(os.path.dirname(file), "data_clean.csv")
         )
         meta = ("split", "object")  # Meta defines the structure of the new column
+        smiles_columns = get_columns_of_type(file, "SMILES")
         ddf["split"] = ddf.apply(
             assign_split,
             axis=1,
             meta=meta,
-            args=(test_smiles, val_smiles, train_frac, test_frac, dask_random_state),
+            args=(
+                smiles_columns,
+                test_smiles,
+                val_smiles,
+                train_frac,
+                test_frac,
+                dask_random_state,
+            ),
         )
         split_counts = ddf["split"].value_counts().compute()
 
@@ -507,6 +651,17 @@ def run_all_split(
     run_transform_py: bool = False,
 ):
     """Runs all splitting steps on the datasets in the data_dir directory."""
+    print('Running "as_sequence" split...')
+    as_sequence_split(
+        data_dir,
+        override,
+        seed,
+        debug,
+        train_frac,
+        val_frac,
+        test_frac,
+        run_transform_py,
+    )
     print("Running scaffold split...")
     scaffold_split(
         data_dir,
