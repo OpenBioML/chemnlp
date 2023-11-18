@@ -143,6 +143,64 @@ def is_in_scaffold_split_list(yaml_file: Union[str, Path]) -> bool:
     return meta["name"] in to_scaffold_split
 
 
+def get_yaml_files(data_dir: Union[str, Path]) -> List[str]:
+    """Returns all yaml files in the data_dir directory."""
+    return glob(os.path.join(data_dir, "**", "*.yaml"), recursive=True)
+
+
+def run_transform(file):
+    if not os.path.exists(os.path.join(os.path.dirname(file), "data_clean.csv")):
+        subprocess.run(
+            ["python", "transform.py"],
+            cwd=os.path.dirname(file),
+        )
+
+
+def remaining_split(
+    data_dir,
+    override: bool = False,
+    seed: int = 42,
+    debug: bool = False,
+    train_frac: float = 0.7,
+    val_frac: float = 0.15,
+    test_frac: float = 0.15,
+):
+    yaml_files = get_yaml_files(data_dir)
+    non_smiles_yaml_files = [
+        file for file in yaml_files if not has_yaml_file_smiles_column(file)
+    ]
+
+    # if we debug, we only run split on the first 5 datasets
+    if debug:
+        non_smiles_yaml_files = non_smiles_yaml_files[:5]
+
+    # we run random splitting for each dataset
+    for file in non_smiles_yaml_files:
+        print(f"Processing {file}")
+        run_transform(file)
+
+        df = pd.read_csv(os.path.join(os.path.dirname(file), "data_clean.csv"))
+        split_counts = df["split"].value_counts()
+
+        print(
+            f"Dataset {file} has {len(df)} datapoints. Split sizes: {split_counts['train']} train, {split_counts['valid']} valid, {split_counts['test']} test."  # noqa: E501
+        )
+
+        # we then write the new data_clean.csv file
+        # if the override option is true, we write this new file to `data_clean.csv` in the same directory
+        # otherwise, we copy the old `data_clean.csv` to `data_clean_old.csv`
+        # and write the new file to `data_clean.csv`
+        if not override:
+            os.rename(
+                os.path.join(os.path.dirname(file), "data_clean.csv"),
+                os.path.join(os.path.dirname(file), "data_clean_old.csv"),
+            )
+        df.to_csv(
+            os.path.join(os.path.dirname(file), "data_clean.csv"),
+            index=False,
+        )
+
+
 def smiles_split(
     data_dir,
     override: bool = False,
@@ -182,7 +240,7 @@ def smiles_split(
                 return "valid"
 
     # we err toward doing more I/O but having simpler code to ensure we don't make anything stupid
-    all_yaml_files = glob(os.path.join(data_dir, "**", "*.yaml"), recursive=True)
+    all_yaml_files = get_yaml_files(data_dir)
     smiles_yaml_files = [
         file for file in all_yaml_files if has_yaml_file_smiles_column(file)
     ]
@@ -215,12 +273,7 @@ def smiles_split(
     # we will then read the data_clean.csv file and do the split
     for file in not_scaffold_split_yaml_files:
         print(f"Processing {file}")
-        if not os.path.exists(os.path.join(os.path.dirname(file), "data_clean.csv")):
-            subprocess.run(
-                ["python", "transform.py"],
-                cwd=os.path.dirname(file),
-            )
-
+        run_transform(file)
         ddf = dask.dataframe.read_csv(
             os.path.join(os.path.dirname(file), "data_clean.csv")
         )
@@ -230,6 +283,11 @@ def smiles_split(
             axis=1,
             meta=meta,
             args=(test_smiles, val_smiles, train_frac, test_frac, dask_random_state),
+        )
+        split_counts = ddf["split"].value_counts().compute()
+
+        print(
+            f"Dataset {file} has {len(ddf)} datapoints. Split sizes: {split_counts['train']} train, {split_counts['valid']} valid, {split_counts['test']} test."  # noqa: E501
         )
 
         # we then write the new data_clean.csv file
@@ -275,7 +333,11 @@ def scaffold_split(
         debug (bool, optional): Whether to run in debug mode. Defaults to False.
             In this case, only the first 5 datasets will be processed.
     """
-    all_yaml_files = glob(os.path.join(data_dir, "**", "*.yaml"), recursive=True)
+    # make deterministic
+    np.random.seed(seed)
+    random.seed(seed)
+
+    all_yaml_files = get_yaml_files(data_dir)
     if debug:
         all_yaml_files = all_yaml_files[:5]
     transformed_files = []
@@ -287,13 +349,7 @@ def scaffold_split(
         if meta["name"] in to_scaffold_split:
             # run transform.py script in this directory if `data_clean.csv` does not exist
             # use this dir as cwd
-            if not os.path.exists(
-                os.path.join(os.path.dirname(file), "data_clean.csv")
-            ):
-                subprocess.run(
-                    ["python", "transform.py"],
-                    cwd=os.path.dirname(file),
-                )
+            run_transform(file)
 
             transformed_files.append(
                 os.path.join(os.path.dirname(file), "data_clean.csv")
