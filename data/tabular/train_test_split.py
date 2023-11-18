@@ -437,5 +437,23 @@ def scaffold_split(
             df.to_csv(file, index=False)
 
 
+def run_all_split(
+    data_dir: Union[str, Path],
+    override: bool = False,
+    train_frac: float = 0.7,
+    val_frac: float = 0.15,
+    test_frac: float = 0.15,
+    seed: int = 42,
+    debug: bool = False,
+):
+    """Runs all splitting steps on the datasets in the data_dir directory."""
+    print("Running scaffold split...")
+    scaffold_split(data_dir, override, train_frac, val_frac, test_frac, seed, debug)
+    print("Running SMILES split...")
+    smiles_split(data_dir, override, seed, debug)
+    print("Running remaining split...")
+    remaining_split(data_dir, override, seed, debug)
+
+
 if __name__ == "__main__":
     fire.Fire(scaffold_split)
