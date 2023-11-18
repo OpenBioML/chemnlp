@@ -58,7 +58,8 @@ to_scaffold_split = [
     "sr_atad5_tox21",
     "tyrosyl-dna_phosphodiesterase_butkiewicz",
     "cav3_t-type_calcium_channels_butkiewicz",
-    "clintox" "sr_p53_tox21",
+    "clintox",
+    "sr_p53_tox21",
     "nr_er_lbd_tox21" "pampa_ncats",
     "sr_mmp_tox21",
     "caco2_wang",
@@ -674,9 +675,27 @@ def run_all_split(
         run_transform_py,
     )
     print("Running SMILES split...")
-    smiles_split(data_dir, override, seed, debug, run_transform_py=run_transform_py)
+    smiles_split(
+        data_dir,
+        override,
+        seed,
+        debug,
+        train_frac,
+        val_frac,
+        test_frac,
+        run_transform_py=run_transform_py,
+    )
     print("Running remaining split...")
-    remaining_split(data_dir, override, seed, debug, run_transform_py=run_transform_py)
+    remaining_split(
+        data_dir,
+        override,
+        seed,
+        debug,
+        train_frac=train_frac,
+        val_frac=val_frac,
+        test_frac=test_frac,
+        run_transform_py=run_transform_py,
+    )
 
 
 if __name__ == "__main__":
