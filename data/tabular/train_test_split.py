@@ -16,6 +16,7 @@ amino acid sequences.
 
 Warning:
     - Note that the logic assumes that the SMILES columns only contain valid SMILES.
+    - The current script does not set up a dask client. If distributed computing is needed, please set up.
 """
 import os
 import random
