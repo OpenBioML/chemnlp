@@ -1,22 +1,32 @@
 ---
 name: uniprot_binding_sites
 description: |-
-    Descriptions of the function of a protein.
+    Binding sites of a molecule in protein sequences.
 targets:
-    - id: binding_sites
-      description: binding sites of a protein
+    - id: start_binding_site
+      description: index for start of the binding sites of a protein
       type: text
       names:
-          - noun: binding sites
+          - noun: start binding site
+    - id: end_binding_site
+      description: index for emd of the binding sites of a protein
+      type: text
+      names:
+          - noun: end binding site
+    - id: SMILES
+      description: SMILES of the binding molecule
+      type: text
+      names:
+          - noun: SMILES
 identifiers:
-    - id: other
+    - id: sequence
       type: other
       description: other
 license: MIT
 links:
     - url: https://www.uniprot.org/
       description: data source
-num_points: 216329
+num_points: 931251
 bibtex:
     - |-
       @article{10.1093/nar/gkac1052,
@@ -33,15 +43,16 @@ bibtex:
       url = {https://doi.org/10.1093/nar/gkac1052}}
 templates:
     - |-
-      The binding sites indices in the protein with the {#amino acid sequence|AA sequence!} {other#} are {binding_sites#}.
+      Question: What are the binding sites of the molecule in this {#AA|amino acid!} {sequence#}?
+      Answer: The binding sites of the molecule with the SMILES {SMILES#} spans the following indices in the given {#AA|amino acid!} sequence
+      {start_binding_site#}-{end_binding_site#}
     - |-
-      Task: Please {#identify|look for!} the binding sites indices of the {#protein|amino acid sequence|AA sequence|polypeptide!}.
-      {#Amino acid sequence |Sequence|AA sequence!}: {other#}
-      Result: {binding_sites#}
+      Question: What molecule can bind in the binding sites {start_binding_site#}-{end_binding_site#}?
+      Answer: {SMILES#}
     - |-
-      User: What are the binding sites indices in the {#following |!}{#protein|amino acid sequence|AA sequence|polypeptide!}:\n{other#}
-      Assistant: The binding sites indices are:\n{binding_sites#}.
+      Task: Design a binding site in the {#AA|amino acid!} sequence {sequence#}, in which the molecule {SMILES#} can bind.
+      Answer: {start_binding_site#}-{end_binding_site}
     - |-
-      Task: Please {#identify|look for!} the binding sites indices of the {#protein|amino acid sequence|AA sequence|polypeptide!}.
-      {#Amino acid sequence |Sequence|AA sequence!}: {other#}
-      Result:<EOI> {binding_sites#}
+      Task: Design a molecule that binds to this site.
+      Constraint: Binding site : {start_binding_site#}-{end_binding_site}.
+      Answer: {SMILES#}
