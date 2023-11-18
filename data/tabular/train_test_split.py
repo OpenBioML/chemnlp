@@ -4,14 +4,18 @@ First, a scaffold split is run on selected SMILES datasets, than a random split 
 For this second step, we ensure if there are SMILES in the dataset, that the there is no SMILES
 that is in the validation or test set of the scaffold split that is in the training set of the random split.
 
-If there are multiple SMILES columns, we move to test/val if any of the SMILES is in the test/val set of the scaffold split.
+If there are multiple SMILES columns, we move to test/val if any of the SMILES
+is in the test/val set of the scaffold split.
 
 The meta.yaml files are used to determine the if there are SMILES in the dataset.
 For this reason, certain scripts (e.g. preprocess_kg.py, several transform.py) need to be run before this script
 as they sometimes update or create the meta.yaml files.
 
 Prior to the SMILES split and the split of all other files, we perform a random split on the files with
-amino acid sequences. 
+amino acid sequences.
+
+Warning:
+    - Note that the logic assumes that the SMILES columns only contain valid SMILES.
 """
 import os
 import random
@@ -28,6 +32,7 @@ import numpy as np
 import pandas as pd
 import yaml
 from pandarallel import pandarallel
+from tqdm import tqdm
 
 from chemnlp.data.split import _create_scaffold_split
 
@@ -60,7 +65,8 @@ to_scaffold_split = [
     "cav3_t-type_calcium_channels_butkiewicz",
     "clintox",
     "sr_p53_tox21",
-    "nr_er_lbd_tox21" "pampa_ncats",
+    "nr_er_lbd_tox21",
+    "pampa_ncats",
     "sr_mmp_tox21",
     "caco2_wang",
     "sarscov2_vitro_touret",
@@ -86,7 +92,6 @@ to_scaffold_split = [
     "p_glycoprotein_inhibition_broccatelli_et_al",
     "bioavailability_ma_et_al",
     "BACE",
-    "hiv",
     "lipophilicity",
     "thermosol",
     "MUV_466",
@@ -112,6 +117,7 @@ to_scaffold_split = [
 def split_for_smiles(
     smiles: str, train_smiles: List[str], val_smiles: List[str]
 ) -> str:
+    """Returns the split for a SMILES based on the train and val smiles."""
     if smiles in train_smiles:
         return "train"
     elif smiles in val_smiles:
@@ -157,7 +163,7 @@ def get_yaml_files(data_dir: Union[str, Path]) -> List[str]:
     return glob(os.path.join(data_dir, "**", "*.yaml"), recursive=True)
 
 
-def run_transform(file):
+def run_transform(file: Union[str, Path]) -> None:
     if not os.path.exists(os.path.join(os.path.dirname(file), "data_clean.csv")):
         subprocess.run(
             ["python", "transform.py"],
@@ -196,6 +202,22 @@ def remaining_split(
     test_frac: float = 0.15,
     run_transform_py: bool = False,
 ) -> None:
+    """Run a random split on all datasets in the data_dir directory that do not have a AS_SEQUENCE column
+    and do not have a SMILES column.
+
+    Args:
+        data_dir ([type]): [description]
+        override (bool, optional): [description]. Defaults to False.
+        seed (int, optional): [description]. Defaults to 42.
+        debug (bool, optional): [description]. Defaults to False.
+        train_frac (float, optional): [description]. Defaults to 0.7.
+        val_frac (float, optional): [description]. Defaults to 0.15.
+        test_frac (float, optional): [description]. Defaults to 0.15.
+        run_transform_py (bool, optional): [description]. Defaults to False.
+
+    Returns:
+        None
+    """
     # make deterministic
     np.random.seed(seed)
     random.seed(seed)
@@ -224,7 +246,7 @@ def remaining_split(
             return "valid"
 
     # we run random splitting for each dataset
-    for file in non_smiles_yaml_files:
+    for file in tqdm(non_smiles_yaml_files):
         print(f"Processing {file}")
         if run_transform_py:
             run_transform(file)
@@ -302,7 +324,7 @@ def as_sequence_split(
 
     all_as_sequence = set()
 
-    for file in as_sequence_yaml_files:
+    for file in tqdm(as_sequence_yaml_files):
         print(f"Processing {file}")
         if run_transform_py:
             run_transform(file)
@@ -344,7 +366,7 @@ def as_sequence_split(
         else:
             return "train"
 
-    for file in as_sequence_yaml_files:
+    for file in tqdm(as_sequence_yaml_files):
         print(f"Processing {file}")
 
         ddf = dask.dataframe.read_csv(
@@ -483,7 +505,7 @@ def smiles_split(
     # if the is no data_clean.csv file, we run the transform.py script
     # in the directory of the yaml file
     # we will then read the data_clean.csv file and do the split
-    for file in not_scaffold_split_yaml_files:
+    for file in tqdm(not_scaffold_split_yaml_files):
         print(f"Processing {file}")
         if run_transform_py:
             run_transform(file)
@@ -566,7 +588,7 @@ def scaffold_split(
     if debug:
         all_yaml_files = all_yaml_files[:5]
     transformed_files = []
-    for file in all_yaml_files:
+    for file in tqdm(all_yaml_files):
         print(f"Processing {file}")
         with open(file, "r") as f:
             meta = yaml.safe_load(f)
@@ -620,7 +642,7 @@ def scaffold_split(
     split_for_smiles_curried = partial(
         split_for_smiles, train_smiles=train_smiles, val_smiles=val_smiles
     )
-    for file in transformed_files:
+    for file in tqdm(transformed_files):
         df = pd.read_csv(file, low_memory=False)
         df["split"] = df["SMILES"].parallel_apply(split_for_smiles_curried)
 
