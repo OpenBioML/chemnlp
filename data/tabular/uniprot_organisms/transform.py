@@ -12,6 +12,10 @@ def load_dataset() -> pd.DataFrame:
     )
     uniprot = pd.read_csv(uniprot)
     uniprot.rename(columns={"sequence": "other"}, inplace=True)
+    uniprot.drop_duplicates(
+        inplace=True,
+    )
+    print(f"Successfully loaded {DATA}! {len(uniprot)} rows")
     uniprot.to_csv("data_clean.csv", index=False)
     print(f"Successfully loaded {DATA}!")
     return uniprot

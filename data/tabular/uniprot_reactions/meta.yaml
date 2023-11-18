@@ -51,6 +51,6 @@ templates:
       {#Amino acid sequence |Sequence|AA sequence!}: {other#}
       Result:<EOI> {reactions#}
     - |-
-      Task: {#Generate|Create|Come up with!} a {#protein|amino acid sequence|AA sequence|polypeptide!} that can catalyze {#a|this!} specific {#biochemical |chemical |!}reaction.
+      Task: {#Generate|Create|Come up with|Design!} a {#protein|amino acid sequence|AA sequence|polypeptide!} that can catalyze {#a|this!} specific {#biochemical |chemical |!}reaction.
       Reaction: {reactions#}
       {#Output|Result!}:<EOI> {other#}

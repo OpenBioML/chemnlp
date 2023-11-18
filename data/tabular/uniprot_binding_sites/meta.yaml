@@ -14,8 +14,8 @@ targets:
       names:
           - noun: end binding site
     - id: SMILES
-      description: SMILES of the binding molecule
-      type: text
+      description: SMILES
+      type: SMILES
       names:
           - noun: SMILES
 identifiers:
@@ -26,7 +26,7 @@ license: MIT
 links:
     - url: https://www.uniprot.org/
       description: data source
-num_points: 931251
+num_points: 780449
 bibtex:
     - |-
       @article{10.1093/nar/gkac1052,
@@ -43,7 +43,7 @@ bibtex:
       url = {https://doi.org/10.1093/nar/gkac1052}}
 templates:
     - |-
-      Question: What are the binding sites of the {#molecule|chemical|compound!} with {SMILES__description} {SMILES#} in this {#AA|amino acid!} {sequence#}?
+      Question: What are the binding sites of the {#molecule|chemical|compound!} with {SMILES__description} {SMILES#} in this {#AA|amino acid!} sequence {sequence#}?
       Answer: The binding site for the {#molecule|chemical|compound!} with the SMILES {SMILES#} in the given {#AA|amino acid!} sequence is: {start_binding_site#}-{end_binding_site#}.
     - |-
       Question: What molecule can bind in the binding site {start_binding_site#}-{end_binding_site#} in the amino acid sequence below?
