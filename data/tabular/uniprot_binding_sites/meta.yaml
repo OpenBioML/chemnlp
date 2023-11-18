@@ -44,15 +44,16 @@ bibtex:
 templates:
     - |-
       Question: What are the binding sites of the molecule in this {#AA|amino acid!} {sequence#}?
-      Answer: The binding sites of the molecule with the SMILES {SMILES#} spans the following indices in the given {#AA|amino acid!} sequence
+      Answer: The binding site for the molecule with the SMILES {SMILES#} in the given {#AA|amino acid!} sequence is:
       {start_binding_site#}-{end_binding_site#}
     - |-
-      Question: What molecule can bind in the binding sites {start_binding_site#}-{end_binding_site#}?
+      Question: What molecule can bind in the binding site {start_binding_site#}-{end_binding_site#} in the amino acid sequence?
+      Constraint: Amino acid sequence : {sequence#}.
       Answer: {SMILES#}
     - |-
       Task: Design a binding site in the {#AA|amino acid!} sequence {sequence#}, in which the molecule {SMILES#} can bind.
-      Answer: {start_binding_site#}-{end_binding_site}
+      Answer: {start_binding_site#}-{end_binding_site#}
     - |-
-      Task: Design a molecule that binds to this site.
-      Constraint: Binding site : {start_binding_site#}-{end_binding_site}.
+      Task: Design a molecule that binds to this site in the {#AA|amino acid!} sequence {sequence#}.
+      Constraint: Binding site : {start_binding_site#}-{end_binding_site#}.
       Answer: {SMILES#}
