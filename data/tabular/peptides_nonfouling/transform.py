@@ -63,6 +63,12 @@ def get_and_transform_data():
         + [False for _ in range(len(unique_neg))],
     }
     df = pd.DataFrame.from_dict(seq_dict, orient="index").transpose()
+    df["split"] = pd.NA
+    split = ["train", "valid", "test"]
+    df["split"] = df["split"].apply(
+        lambda x: np.random.choice(split, p=[0.70, 0.15, 0.15])
+    )
+    print(df["split"].value_counts())
     df.to_csv("data_clean.csv", index=False)
 
     # create meta yaml
