@@ -28,6 +28,7 @@ from typing import List, Literal, Union
 
 import dask
 import dask.array as da
+import dask.dataframe as dd
 import fire
 import numpy as np
 import pandas as pd
@@ -161,7 +162,7 @@ def is_in_scaffold_split_list(yaml_file: Union[str, Path]) -> bool:
 
 def get_yaml_files(data_dir: Union[str, Path]) -> List[str]:
     """Returns all yaml files in the data_dir directory."""
-    return glob(os.path.join(data_dir, "**", "*.yaml"), recursive=True)
+    return glob(os.path.join(data_dir, "**", "**", "*.yaml"), recursive=True)
 
 
 def run_transform(file: Union[str, Path]) -> None:
@@ -252,9 +253,7 @@ def remaining_split(
         if run_transform_py:
             run_transform(file)
 
-        ddf = dask.dataframe.read_csv(
-            os.path.join(os.path.dirname(file), "data_clean.csv")
-        )
+        ddf = dd.read_csv(os.path.join(os.path.dirname(file), "data_clean.csv"))
         meta = ("split", "object")  # Meta defines the structure of the new column
         ddf["split"] = ddf.apply(
             assign_split,
@@ -333,7 +332,8 @@ def as_sequence_split(
         ddf = dask.dataframe.read_csv(
             os.path.join(os.path.dirname(file), "data_clean.csv")
         )
-        all_as_sequence.update(ddf["AS_SEQUENCE"].tolist())
+        for as_seq_col in get_columns_of_type(file, "AS_SEQUENCE"):
+            all_as_sequence.update(ddf[as_seq_col].tolist())
 
     all_as_sequence = list(all_as_sequence)
     # random split into train/val/test using numpy
@@ -370,9 +370,7 @@ def as_sequence_split(
     for file in tqdm(as_sequence_yaml_files):
         print(f"Processing {file}")
 
-        ddf = dask.dataframe.read_csv(
-            os.path.join(os.path.dirname(file), "data_clean.csv")
-        )
+        ddf = dd.read_csv(os.path.join(os.path.dirname(file), "data_clean.csv"))
         meta = ("split", "object")
 
         ddf["split"] = ddf.apply(
@@ -510,9 +508,7 @@ def smiles_split(
         print(f"Processing {file}")
         if run_transform_py:
             run_transform(file)
-        ddf = dask.dataframe.read_csv(
-            os.path.join(os.path.dirname(file), "data_clean.csv")
-        )
+        ddf = dd.read_csv(os.path.join(os.path.dirname(file), "data_clean.csv"))
         meta = ("split", "object")  # Meta defines the structure of the new column
         smiles_columns = get_columns_of_type(file, "SMILES")
         ddf["split"] = ddf.apply(
