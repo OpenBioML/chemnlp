@@ -363,6 +363,7 @@ def as_sequence_split(
         ddf["split"] = "train"  # Default assignment
         ddf["split"] = ddf["split"].mask(test_mask, "test")
         ddf["split"] = ddf["split"].mask(val_mask, "valid")
+        return ddf
 
     for file in tqdm(as_sequence_yaml_files):
         print(f"Processing {file}")
