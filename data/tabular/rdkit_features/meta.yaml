@@ -1,5 +1,5 @@
 ---
-names: rdkit_features
+name: rdkit_features
 description: |-
     Molecular descriptors computed using RDKit
 targets:
