@@ -167,6 +167,7 @@ exclude_from_standard_tabular_text_templates = [
     "mol_repr_transl_canonical_inchi",
     "mol_repr_transl_canonical_iupac_name",
     "mol_repr_transl_inchi_iupac_name",
+    "iupac_smiles"  # translation from IUPAC name to SMILES
     # "h2_storage_materials",  # only IUPAC identifier, more than one target, LOW PRIO: has only 30 samples
     "uniprot_binding_sites",
     "uniprot_organisms",
@@ -1020,7 +1021,7 @@ if __name__ == "__main__":
 
     for path in path_data_dir:
         # subselect one path
-        # if not "odd_one_out" in path:
+        # if not "iupac" in path:
         #     continue
         # if path.find("data/tabular/") == -1: continue
         # if path.find("data/kg/") == -1: continue
