@@ -329,11 +329,11 @@ def as_sequence_split(
         if run_transform_py:
             run_transform(file)
 
-        ddf = dask.dataframe.read_csv(
-            os.path.join(os.path.dirname(file), "data_clean.csv")
+        df = pd.read_csv(
+            os.path.join(os.path.dirname(file), "data_clean.csv"), low_memory=False
         )
         for as_seq_col in get_columns_of_type(file, "AS_SEQUENCE"):
-            all_as_sequence.update(ddf[as_seq_col].tolist())
+            all_as_sequence.update(df[as_seq_col].tolist())
 
     all_as_sequence = list(all_as_sequence)
     # random split into train/val/test using numpy
