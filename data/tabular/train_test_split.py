@@ -358,26 +358,22 @@ def as_sequence_split(
     with open("test_as_sequences.txt", "w") as f:
         f.write("\n".join(test))
 
-    def assign_split(row):
-        as_sequence_columns = get_columns_of_type(file, "AS_SEQUENCE")
-        if any(as_sequence in test for as_sequence in as_sequence_columns):
-            return "test"
-        elif any(as_sequence in val for as_sequence in as_sequence_columns):
-            return "valid"
-        else:
-            return "train"
+    def assign_split(ddf, as_sequence_columns, test_sequences, val_sequences):
+        test_mask = ddf[as_sequence_columns].isin(test_sequences).any(axis=1)
+        val_mask = ddf[as_sequence_columns].isin(val_sequences).any(axis=1)
+
+        # Assign the 'split' based on the masks
+        ddf["split"] = "train"  # Default assignment
+        ddf["split"] = ddf["split"].mask(test_mask, "test")
+        ddf["split"] = ddf["split"].mask(val_mask, "valid")
 
     for file in tqdm(as_sequence_yaml_files):
         print(f"Processing {file}")
-
+        as_seq_cols = get_columns_of_type(file, "AS_SEQUENCE")
         ddf = dd.read_csv(os.path.join(os.path.dirname(file), "data_clean.csv"))
-        meta = ("split", "object")
 
-        ddf["split"] = ddf.apply(
-            assign_split,
-            axis=1,
-            meta=meta,
-        )
+        ddf = assign_split(ddf, as_seq_cols, test, val)
+
         split_counts = ddf["split"].value_counts().compute()
 
         print(f"Dataset {file} has {len(ddf)} datapoints. Split sizes: {split_counts}")
