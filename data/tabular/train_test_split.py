@@ -237,15 +237,18 @@ def remaining_split(
     if debug:
         non_smiles_yaml_files = non_smiles_yaml_files[:5]
 
-    def assign_split(train_frac, val_frac, test_frac, random_state):
-        # Assign random number for train/remaining split using the random state
-        random_value = random_state.random_sample()
-        if random_value < train_frac:
-            return "train"
-        elif random_value < train_frac + test_frac:
-            return "test"
-        else:
-            return "valid"
+    def assign_random_split(ddf, train_frac, test_frac, dask_random_state):
+        # Create a random array of the same length as the DataFrame
+        random_values = dask_random_state.random(ddf.index.size)
+
+        # Determine the split based on random values and fractions
+        ddf["split"] = da.where(
+            random_values < train_frac,
+            "train",
+            da.where(random_values < train_frac + test_frac, "test", "valid"),
+        )
+
+        return ddf
 
     # we run random splitting for each dataset
     for file in tqdm(non_smiles_yaml_files):
@@ -254,13 +257,7 @@ def remaining_split(
             run_transform(file)
 
         ddf = dd.read_csv(os.path.join(os.path.dirname(file), "data_clean.csv"))
-        meta = ("split", "object")  # Meta defines the structure of the new column
-        ddf["split"] = ddf.apply(
-            assign_split,
-            axis=1,
-            meta=meta,
-            args=(train_frac, val_frac, test_frac, dask_random_state),
-        )
+        ddf = assign_random_split(ddf, train_frac, test_frac, dask_random_state)
         split_counts = ddf["split"].value_counts().compute()
 
         print(f"Dataset {file} has {len(ddf)} datapoints. Split sizes: {split_counts}")
@@ -435,33 +432,30 @@ def smiles_split(
     random.seed(seed)
     dask_random_state = da.random.RandomState(seed)
 
-    def assign_split(
-        row,
-        smiles_columns: List[str],
-        test_smiles: List[str],
-        val_smiles: List[str],
-        train_frac: float,
-        test_frac: float,
-        random_state=dask_random_state,
+    def assign_splits(
+        ddf, smiles_columns, test_smiles, val_smiles, train_frac, test_frac, seed
     ):
-        """Assigns a split to a row based on the SMILES columns."""
-        # if there are no SMILES columns, we assign a random split
-        all_smiles_for_row = row[smiles_columns].tolist()
-        # if any smiles in the row is in the test smiles, we assign it to the test set
-        if any(smiles in test_smiles for smiles in all_smiles_for_row):
-            return "test"
-        # if any smiles in the row is in the val smiles, we assign it to the val set
-        elif any(smiles in val_smiles for smiles in all_smiles_for_row):
-            return "valid"
-        else:
-            # Assign random number for train/remaining split using the random state
-            random_value = random_state.random_sample()
-            if random_value < train_frac:
-                return "train"
-            elif random_value < train_frac + test_frac:
-                return "test"
-            else:
-                return "valid"
+        # Create masks for test and validation based on SMILES columns
+        test_mask = da.isin(ddf[smiles_columns].values, test_smiles).any(axis=1)
+        val_mask = da.isin(ddf[smiles_columns].values, val_smiles).any(axis=1)
+
+        # Generate random splits for the rest
+        random_values = dask_random_state.random(ddf.index.size)
+        train_mask = (random_values < train_frac) & ~test_mask & ~val_mask
+        test_mask = (
+            (random_values >= train_frac)
+            & (random_values < train_frac + test_frac)
+            & ~val_mask
+        )
+
+        # Combine masks into a single column
+        ddf["split"] = da.where(
+            test_mask,
+            "test",
+            da.where(val_mask, "valid", da.where(train_mask, "train", "valid")),
+        )
+
+        return ddf
 
     # we err toward doing more I/O but having simpler code to ensure we don't make anything stupid
     all_yaml_files = get_yaml_files(data_dir)
@@ -505,20 +499,11 @@ def smiles_split(
         if run_transform_py:
             run_transform(file)
         ddf = dd.read_csv(os.path.join(os.path.dirname(file), "data_clean.csv"))
-        meta = ("split", "object")  # Meta defines the structure of the new column
         smiles_columns = get_columns_of_type(file, "SMILES")
-        ddf["split"] = ddf.apply(
-            assign_split,
-            axis=1,
-            meta=meta,
-            args=(
-                smiles_columns,
-                test_smiles,
-                val_smiles,
-                train_frac,
-                test_frac,
-                dask_random_state,
-            ),
+
+        # Assign splits using the revised function
+        ddf = assign_splits(
+            ddf, smiles_columns, test_smiles, val_smiles, train_frac, test_frac, seed
         )
         split_counts = ddf["split"].value_counts().compute()
 
