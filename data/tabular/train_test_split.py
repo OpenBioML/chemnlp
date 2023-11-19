@@ -129,7 +129,7 @@ def split_for_smiles(
 
 
 def yaml_file_has_column_of_type(
-    yaml_file: Union[str, Path], data_type: Literal["AS_SEQUENCE", "SMILE"]
+    yaml_file: Union[str, Path], data_type: Literal["AS_SEQUENCE", "SMILES"]
 ) -> bool:
     """Returns True if the yaml file has a SMILES column.
 
