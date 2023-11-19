@@ -274,6 +274,7 @@ def remaining_split(
         ddf.to_csv(
             os.path.join(os.path.dirname(file), "data_clean.csv"),
             index=False,
+            single_file=True,
         )
 
 
@@ -524,6 +525,7 @@ def smiles_split(
         ddf.to_csv(
             os.path.join(os.path.dirname(file), "data_clean.csv"),
             index=False,
+            single_file=True,
         )
 
 
