@@ -1,5 +1,5 @@
 ---
-name: compound_chebi
+name: drug_protein_hpo_disease
 description: Knowledgegraph data samples.
 targets:
     - id: node1_type
@@ -38,12 +38,66 @@ targets:
       units: node2_name
       names:
           - noun: node2_name
+    - id: node2_protein_names
+      description: node2_protein_names
+      type: Other
+      units: node2_protein_names
+      names:
+          - noun: node2_protein_names
     - id: node2_id
       description: node2_id
       type: Other
       units: node2_id
       names:
           - noun: node2_id
+    - id: rel2_type
+      description: rel2_type
+      type: Other
+      units: rel2_type
+      names:
+          - noun: rel2_type
+    - id: node3_type
+      description: node3_type
+      type: Other
+      units: node3_type
+      names:
+          - noun: node3_type
+    - id: node3_name
+      description: node3_name
+      type: Other
+      units: node3_name
+      names:
+          - noun: node3_name
+    - id: node3_id
+      description: node3_id
+      type: Other
+      units: node3_id
+      names:
+          - noun: node3_id
+    - id: rel3_type
+      description: rel3_type
+      type: Other
+      units: rel3_type
+      names:
+          - noun: rel3_type
+    - id: node4_type
+      description: node4_type
+      type: Other
+      units: node4_type
+      names:
+          - noun: node4_type
+    - id: node4_name
+      description: node4_name
+      type: Other
+      units: node4_name
+      names:
+          - noun: node4_name
+    - id: node4_id
+      description: node4_id
+      type: Other
+      units: node4_id
+      names:
+          - noun: node4_id
 identifiers:
     - id: SMILES
       description: SMILES
@@ -52,7 +106,7 @@ license: CC BY 4.0
 links:
     - url: https://crossbar.kansil.org
       description: original knowledge graph web GUI link
-num_points: 6754
+num_points: 293872
 bibtex:
     - "@article{10.1093/nar/gkab543,\nauthor = {Doğan, Tunca and Atas, Heval and Joshi, Vishal and Atakan, Ahmet and Rifaioglu, Ahmet Sureyya and Nalbat,\
       \ Esra and Nightingale, Andrew and Saidi, Rabie and Volynkin, Vladimir and Zellner, Hermann and Cetin-Atalay, Rengul and Martin, Maria and Atalay,\
@@ -60,10 +114,5 @@ bibtex:
       \ Research},\nvolume = {49},\nnumber = {16},\npages = {e96-e96},\nyear = {2021},\nmonth = {06},\nissn = {0305-1048},\ndoi = {10.1093/nar/gkab543},\n\
       url = {https://doi.org/10.1093/nar/gkab543},\n}"
 templates:
-    - The {node1_type#} {SMILES__description} {SMILES#} {rel1_type#} {node2_name#}.
-    - |-
-      Task: Please {#create|generate!} {#a compound |a !}{SMILES__description} that {rel1_type#} {node2_name#}.
-      Result: {SMILES#}
-    - |-
-      Task: Please {#create|generate!} {#a compound |a !}{SMILES__description} that {rel1_type#} {node2_name#}.
-      Result:<EOI> {SMILES#}
+    - The {node1_type#} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#}. The {node2_type#} {node2_protein_names#} {rel2_type#} {node3_name#}.
+      The {node3_name#} {rel3_type#} the {node4_type#} {node4_name#}.
