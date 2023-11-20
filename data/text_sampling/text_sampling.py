@@ -167,12 +167,12 @@ exclude_from_standard_tabular_text_templates = [
     "mol_repr_transl_canonical_inchi",
     "mol_repr_transl_canonical_iupac_name",
     "mol_repr_transl_inchi_iupac_name",
-    "iupac_smiles"  # translation from IUPAC name to SMILES
-    # "h2_storage_materials",  # only IUPAC identifier, more than one target, LOW PRIO: has only 30 samples
+    "iupac_smiles",  # translation from IUPAC name to SMILES
     "uniprot_binding_sites",
     "uniprot_organisms",
     "uniprot_reactions",
     "uniprot_sentences",
+    # "h2_storage_materials",  # only IUPAC identifier, more than one target, LOW PRIO: has only 30 samples
 ]
 
 
