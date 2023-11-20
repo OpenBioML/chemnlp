@@ -11,6 +11,9 @@ def clean_up_sentences(text: str) -> str:
     updated_text = re.sub(r"\s*\((?:By\.? similarity)\)\s*", "", text)
     updated_text = updated_text.replace(" . ", ". ")
     updated_text = updated_text.replace(" .", ".")
+    updated_text = updated_text.strip()
+    if not (updated_text.endswith(".")):
+        updated_text += "."
     return updated_text
 
 
