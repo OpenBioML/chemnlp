@@ -441,8 +441,8 @@ def smiles_split(
         ddf, smiles_columns, test_smiles, val_smiles, train_frac, test_frac, seed
     ):
         # Create masks for test and validation based on SMILES columns
-        test_mask = da.isin(ddf[smiles_columns].values, test_smiles).any(axis=1)
-        val_mask = da.isin(ddf[smiles_columns].values, val_smiles).any(axis=1)
+        test_mask = da.isin(ddf[smiles_columns].values, test_smiles).any(axis=1).compute()
+        val_mask = da.isin(ddf[smiles_columns].values, val_smiles).any(axis=1).compute()
 
         # Generate random splits for the rest
         index_size = ddf.index.size.compute()
@@ -659,17 +659,17 @@ def run_all_split(
     run_transform_py: bool = False,
 ):
     """Runs all splitting steps on the datasets in the data_dir directory."""
-    print('Running "as_sequence" split...')
-    as_sequence_split(
-        data_dir,
-        override,
-        seed,
-        debug,
-        train_frac,
-        val_frac,
-        test_frac,
-        run_transform_py,
-    )
+    # print('Running "as_sequence" split...')
+    # as_sequence_split(
+    #     data_dir,
+    #     override,
+    #     seed,
+    #     debug,
+    #     train_frac,
+    #     val_frac,
+    #     test_frac,
+    #     run_transform_py,
+    # )
     print("Running scaffold split...")
     scaffold_split(
         data_dir,
