@@ -467,7 +467,7 @@ def smiles_split(
         file
         for file in all_yaml_files
         if (
-            yaml_file_has_column_of_type(file)
+            yaml_file_has_column_of_type(file, "SMILES")
             and not yaml_file_has_column_of_type(file, "AS_SEQUENCE")
         )  # noqa: E501
     ]
