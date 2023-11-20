@@ -26,7 +26,6 @@ from glob import glob
 from pathlib import Path
 from typing import List, Literal, Union
 
-import dask
 import dask.array as da
 import dask.dataframe as dd
 import fire
@@ -160,9 +159,9 @@ def is_in_scaffold_split_list(yaml_file: Union[str, Path]) -> bool:
     return meta["name"] in to_scaffold_split
 
 
-def get_yaml_files(data_dir: Union[str, Path]) -> List[str]:
+def get_meta_yaml_files(data_dir: Union[str, Path]) -> List[str]:
     """Returns all yaml files in the data_dir directory."""
-    return glob(os.path.join(data_dir, "**", "**", "*.yaml"), recursive=True)
+    return glob(os.path.join(data_dir, "**", "**", "meta.yaml"), recursive=True)
 
 
 def run_transform(file: Union[str, Path]) -> None:
@@ -225,7 +224,7 @@ def remaining_split(
     random.seed(seed)
     dask_random_state = da.random.RandomState(seed)
 
-    yaml_files = get_yaml_files(data_dir)
+    yaml_files = get_meta_yaml_files(data_dir)
     non_smiles_yaml_files = [
         file
         for file in yaml_files
@@ -305,7 +304,7 @@ def as_sequence_split(
     Returns:
         None
     """
-    all_yaml_files = get_yaml_files(data_dir)
+    all_yaml_files = get_meta_yaml_files(data_dir)
     as_sequence_yaml_files = [
         file
         for file in all_yaml_files
@@ -461,7 +460,7 @@ def smiles_split(
         return ddf
 
     # we err toward doing more I/O but having simpler code to ensure we don't make anything stupid
-    all_yaml_files = get_yaml_files(data_dir)
+    all_yaml_files = get_meta_yaml_files(data_dir)
     smiles_yaml_files = [
         file
         for file in all_yaml_files
@@ -566,7 +565,7 @@ def scaffold_split(
     np.random.seed(seed)
     random.seed(seed)
 
-    all_yaml_files = get_yaml_files(data_dir)
+    all_yaml_files = get_meta_yaml_files(data_dir)
     if debug:
         all_yaml_files = all_yaml_files[:5]
     transformed_files = []
