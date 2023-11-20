@@ -228,7 +228,7 @@ def remaining_split(
     non_smiles_yaml_files = [
         file
         for file in yaml_files
-        if not yaml_file_has_column_of_type(file)
+        if not yaml_file_has_column_of_type(file, "SMILES")
         or yaml_file_has_column_of_type(file, "AS_SEQUENCE")
     ]
 
