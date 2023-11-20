@@ -240,7 +240,8 @@ def remaining_split(
 
     def assign_random_split(ddf, train_frac, test_frac, dask_random_state):
         # Create a random array of the same length as the DataFrame
-        random_values = dask_random_state.random(ddf.index.size)
+        index_size = ddf.index.size.compute()
+        random_values = dask_random_state.random(index_size)
 
         # Determine the split based on random values and fractions
         ddf["split"] = da.where(
@@ -444,7 +445,8 @@ def smiles_split(
         val_mask = da.isin(ddf[smiles_columns].values, val_smiles).any(axis=1)
 
         # Generate random splits for the rest
-        random_values = dask_random_state.random(ddf.index.size)
+        index_size = ddf.index.size.compute()
+        random_values = dask_random_state.random(index_size)
         train_mask = (random_values < train_frac) & ~test_mask & ~val_mask
         test_mask = (
             (random_values >= train_frac)
