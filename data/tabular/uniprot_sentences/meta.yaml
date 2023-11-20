@@ -34,14 +34,22 @@ bibtex:
 templates:
     - |-
       User: {#Please describe|Describe|Please briefly describe|Briefly describe!} the {#biological |biochemical |!}function of {#the|this!} {#protein|amino acid sequence|AA sequence|polypeptide!}: {sequence#}
-      Assistant: {sentences#}.
+      Assistant: {sentences#}
     - |-
-      User: What {#protein|amino acid sequence|AA sequence|polypeptide!} fits the {#biological |biochemical |!}description {#in the next sentence(s) |below |!}best?\n{sentences#}
-      Assistant: A {#protein|amino acid sequence|AA sequence|polypeptide!} that fits the {#description|sentences!} is:\n{sequence#}
+      User: What {#protein|amino acid sequence|AA sequence|polypeptide!} fits the {#biological |biochemical |!}description {#in the next sentences |below |!}best?\n{sentences#}
+      Assistant: A {#protein|amino acid sequence|AA sequence|polypeptide!} that fits the {#description|points|sentences!} is:\n{sequence#}
+    - |-
+      Task: {#Generate|Create|Come up with!} a description {#of a few sentences |!}for the {#protein|amino acid sequence|AA sequence|polypeptide!}{# below|!}.
+      {#Protein|Amino acid sequence|AA sequence|Polypeptide!}: {sequence#}
+      {#Output|Result!}: {sentences#}
     - |-
       Task: {#Generate|Create|Come up with!} a {#protein|amino acid sequence|AA sequence|polypeptide!} based on the description.
       Description: {sentences#}
       {#Output|Result!}: {sequence#}
+    - |-
+      Task: {#Generate|Create|Come up with!} a description {#of a few sentences |!}for the {#protein|amino acid sequence|AA sequence|polypeptide!}{# below|!}.
+      {#Protein|Amino acid sequence|AA sequence|Polypeptide!}: {sequence#}
+      {#Output|Result!}:<EOI> {sentences#}
     - |-
       Task: {#Generate|Create|Come up with!} a {#protein|amino acid sequence|AA sequence|polypeptide!} based on the description.
       Description: {sentences#}
