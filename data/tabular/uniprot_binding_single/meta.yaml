@@ -10,7 +10,6 @@ targets:
           - noun: start binding site
     - id: end_binding_site
       description: index for end of the binding sites of a protein
-      type: text
       names:
 identifiers:
     - id: sequence
