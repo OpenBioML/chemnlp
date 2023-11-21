@@ -17,6 +17,8 @@ amino acid sequences.
 Warning:
     - Note that the logic assumes that the SMILES columns only contain valid SMILES.
     - The current script does not set up a dask client. If distributed computing is needed, please set up.
+    - Some CSV files contain complicated strings. We cannot parse them in a chunked manner. 
+        In this case, we set blocksize=None and read the whole file into memory.
 """
 import os
 import random
@@ -25,9 +27,10 @@ from functools import partial
 from glob import glob
 from pathlib import Path
 from typing import List, Literal, Union
-
+from pandas.errors import ParserError
 import dask.array as da
 import dask.dataframe as dd
+from dask.distributed import Client, LocalCluster
 import fire
 import numpy as np
 import pandas as pd
@@ -38,6 +41,10 @@ from tqdm import tqdm
 from chemnlp.data.split import _create_scaffold_split
 
 pandarallel.initialize(progress_bar=True)
+import logging
+
+# Set up logging
+logging.basicConfig(level=logging.INFO)
 
 # see issue https://github.com/OpenBioML/chemnlp/issues/498 for the list of datasets
 # mostly those from TDC/moleculenet that have scaffold split as recommended method
@@ -239,26 +246,39 @@ def remaining_split(
         non_smiles_yaml_files = non_smiles_yaml_files[:5]
 
     def assign_random_split(ddf, train_frac, test_frac, dask_random_state):
-        # Create a random array of the same length as the DataFrame
-        index_size = ddf.index.size.compute()
-        random_values = dask_random_state.random(index_size)
+        # Define a function to generate random values for each partition
+        def random_values_partition(partition, random_state):
+            # Generate random values for this partition's length
+            partition_random_values = random_state.random(len(partition))
+            return partition_random_values
 
-        # Determine the split based on random values and fractions
-        ddf["split"] = da.where(
-            random_values < train_frac,
-            "train",
-            da.where(random_values < train_frac + test_frac, "test", "valid"),
+        # Use map_partitions to apply the function to each partition of the DataFrame
+        # This ensures that the generated random values have the same partitioning as `ddf`
+        random_values = ddf.map_partitions(
+            random_values_partition,
+            random_state=dask_random_state,
+            meta=(
+                "random_values",
+                "f8",
+            ),  # Specify the meta for the new column, 'f8' is float64
         )
+
+        # Calculate the train, valid, and test masks based on the random values
+        train_mask = random_values < train_frac
+        valid_mask = (random_values >= train_frac) & (
+            random_values < train_frac + test_frac
+        )
+        test_mask = random_values >= (train_frac + test_frac)
+
+        # Assign the 'split' column based on the masks
+        # Note: 'where' is not a standalone function in dask.dataframe, it's a method of DataFrame and Series
+        ddf["split"] = "train"  # Default assignment
+        ddf["split"] = ddf["split"].mask(valid_mask, "valid")
+        ddf["split"] = ddf["split"].mask(test_mask, "test")
 
         return ddf
 
-    # we run random splitting for each dataset
-    for file in tqdm(non_smiles_yaml_files):
-        print(f"Processing {file}")
-        if run_transform_py:
-            run_transform(file)
-
-        ddf = dd.read_csv(os.path.join(os.path.dirname(file), "data_clean.csv"))
+    def split_and_save(file, ddf):
         ddf = assign_random_split(ddf, train_frac, test_frac, dask_random_state)
         split_counts = ddf["split"].value_counts().compute()
 
@@ -278,6 +298,27 @@ def remaining_split(
             index=False,
             single_file=True,
         )
+
+    # we run random splitting for each dataset
+    for file in tqdm(non_smiles_yaml_files):
+        print(f"Processing {file}")
+        if run_transform_py:
+            run_transform(file)
+        if os.path.exists(os.path.join(os.path.dirname(file), "data_clean.csv")):
+            try:
+                ddf = dd.read_csv(
+                    os.path.join(os.path.dirname(file), "data_clean.csv"),
+                    low_memory=False,
+                )
+                split_and_save(file, ddf)
+            except ParserError:
+                print(f"Could not parse {file}. Using blocksize=None.")
+                ddf = dd.read_csv(
+                    os.path.join(os.path.dirname(file), "data_clean.csv"),
+                    low_memory=False,
+                    blocksize=None,
+                )
+                split_and_save(file, ddf)
 
 
 def as_sequence_split(
@@ -435,30 +476,76 @@ def smiles_split(
     # make deterministic
     np.random.seed(seed)
     random.seed(seed)
-    dask_random_state = da.random.RandomState(seed)
 
-    def assign_splits(
-        ddf, smiles_columns, test_smiles, val_smiles, train_frac, test_frac, seed
+    def assign_split(
+        partition,
+        smiles_columns,
+        test_smiles,
+        val_smiles,
+        train_frac,
+        val_frac,
+        test_frac,
+        seed,
     ):
-        # Create masks for test and validation based on SMILES columns
-        test_mask = da.isin(ddf[smiles_columns].values, test_smiles).any(axis=1).compute()
-        val_mask = da.isin(ddf[smiles_columns].values, val_smiles).any(axis=1).compute()
+        # Create a random number generator with a unique seed for each partition
+        rng = np.random.default_rng(seed + partition.index[0])
 
-        # Generate random splits for the rest
-        index_size = ddf.index.size.compute()
-        random_values = dask_random_state.random(index_size)
-        train_mask = (random_values < train_frac) & ~test_mask & ~val_mask
-        test_mask = (
-            (random_values >= train_frac)
-            & (random_values < train_frac + test_frac)
-            & ~val_mask
+        # Generate random values for rows in the partition
+        random_values = rng.random(len(partition))
+
+        # Create masks for test and validation SMILES within the partition
+        is_test_smiles = partition[smiles_columns].isin(test_smiles).any(axis=1)
+        is_val_smiles = partition[smiles_columns].isin(val_smiles).any(axis=1)
+
+        # Initialize the 'split' column with 'train'
+        partition["split"] = "train"
+
+        # Update the 'split' column based on conditions
+        partition.loc[is_test_smiles, "split"] = "test"
+        partition.loc[is_val_smiles, "split"] = "valid"
+
+        # Assign 'train', 'valid', or 'test' to remaining rows based on adjusted fractions
+        train_mask = (partition["split"] == "train") & (random_values < train_frac)
+        val_mask = (
+            (partition["split"] == "train")
+            & (random_values >= train_frac)
+            & (random_values < train_frac + val_frac)
+        )
+        test_mask = (partition["split"] == "train") & (
+            random_values >= train_frac + val_frac
         )
 
-        # Combine masks into a single column
-        ddf["split"] = da.where(
-            test_mask,
-            "test",
-            da.where(val_mask, "valid", da.where(train_mask, "train", "valid")),
+        partition.loc[train_mask, "split"] = "train"
+        partition.loc[val_mask, "split"] = "valid"
+        partition.loc[test_mask, "split"] = "test"
+
+        return partition
+
+    def assign_splits(
+        ddf,
+        smiles_columns,
+        test_smiles,
+        val_smiles,
+        train_frac,
+        val_frac,
+        test_frac,
+        seed,
+    ):
+        # Ensure that the fractions sum to 1 or less
+        assert (
+            train_frac + val_frac + test_frac <= 1
+        ), "Fractions must sum to 1.0 or less"
+
+        # Apply 'assign_split' function to each partition of the DataFrame
+        ddf = ddf.map_partitions(
+            assign_split,
+            smiles_columns,
+            test_smiles,
+            val_smiles,
+            train_frac,
+            val_frac,
+            test_frac,
+            seed,
         )
 
         return ddf
@@ -480,7 +567,9 @@ def smiles_split(
 
     # if we debug, we only run split on the first 5 datasets
     if debug:
-        not_scaffold_split_yaml_files = not_scaffold_split_yaml_files[:5]
+        not_scaffold_split_yaml_files = [
+            f for f in not_scaffold_split_yaml_files if "zinc" in f
+        ]
 
     # we run random splitting for each dataset but ensure that the validation and test sets
     # do not contain any SMILES that are in the validation and test sets of the scaffold split
@@ -500,17 +589,21 @@ def smiles_split(
     # if the is no data_clean.csv file, we run the transform.py script
     # in the directory of the yaml file
     # we will then read the data_clean.csv file and do the split
-    for file in tqdm(not_scaffold_split_yaml_files):
-        print(f"Processing {file}")
-        if run_transform_py:
-            run_transform(file)
-        ddf = dd.read_csv(os.path.join(os.path.dirname(file), "data_clean.csv"))
+    def split_and_save(file, ddf):
         smiles_columns = get_columns_of_type(file, "SMILES")
 
         # Assign splits using the revised function
         ddf = assign_splits(
-            ddf, smiles_columns, test_smiles, val_smiles, train_frac, test_frac, seed
+            ddf,
+            smiles_columns,
+            test_smiles,
+            val_smiles,
+            train_frac,
+            val_frac,
+            test_frac,
+            seed,
         )
+
         split_counts = ddf["split"].value_counts().compute()
 
         print(
@@ -531,6 +624,25 @@ def smiles_split(
             index=False,
             single_file=True,
         )
+
+    for file in tqdm(not_scaffold_split_yaml_files):
+        print(f"Processing {file}")
+        if run_transform_py:
+            run_transform(file)
+        try:
+            ddf = dd.read_csv(
+                os.path.join(os.path.dirname(file), "data_clean.csv"), low_memory=False
+            )
+            split_and_save(file, ddf)
+
+        except ParserError:
+            print(f"Could not parse {file}. Using blocksize=None.")
+            ddf = dd.read_csv(
+                os.path.join(os.path.dirname(file), "data_clean.csv"),
+                low_memory=False,
+                blocksize=None,
+            )
+            split_and_save(file, ddf)
 
 
 def scaffold_split(
@@ -659,6 +771,10 @@ def run_all_split(
     run_transform_py: bool = False,
 ):
     """Runs all splitting steps on the datasets in the data_dir directory."""
+    cluster = LocalCluster(memory_limit="64GB")
+    client = Client(cluster)
+    logging.info(f"Dashboard available at: {client.dashboard_link}")
+
     # print('Running "as_sequence" split...')
     # as_sequence_split(
     #     data_dir,
@@ -670,17 +786,17 @@ def run_all_split(
     #     test_frac,
     #     run_transform_py,
     # )
-    print("Running scaffold split...")
-    scaffold_split(
-        data_dir,
-        override,
-        train_frac,
-        val_frac,
-        test_frac,
-        seed,
-        debug,
-        run_transform_py,
-    )
+    # print("Running scaffold split...")
+    # scaffold_split(
+    #     data_dir,
+    #     override,
+    #     train_frac,
+    #     val_frac,
+    #     test_frac,
+    #     seed,
+    #     debug,
+    #     run_transform_py,
+    # )
     print("Running SMILES split...")
     smiles_split(
         data_dir,
@@ -692,17 +808,17 @@ def run_all_split(
         test_frac,
         run_transform_py=run_transform_py,
     )
-    print("Running remaining split...")
-    remaining_split(
-        data_dir,
-        override,
-        seed,
-        debug,
-        train_frac=train_frac,
-        val_frac=val_frac,
-        test_frac=test_frac,
-        run_transform_py=run_transform_py,
-    )
+    # print("Running remaining split...")
+    # remaining_split(
+    #     data_dir,
+    #     override,
+    #     seed,
+    #     debug,
+    #     train_frac=train_frac,
+    #     val_frac=val_frac,
+    #     test_frac=test_frac,
+    #     run_transform_py=run_transform_py,
+    # )
 
 
 if __name__ == "__main__":
