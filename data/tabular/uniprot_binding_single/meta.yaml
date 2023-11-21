@@ -12,7 +12,6 @@ targets:
       description: index for end of the binding sites of a protein
       type: text
       names:
-          - noun: end binding site
 identifiers:
     - id: sequence
       type: AS_SEQUENCE
