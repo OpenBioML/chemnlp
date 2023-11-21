@@ -322,11 +322,20 @@ def remaining_split(
             except ValueError as e:
                 if "Mismatched dtypes" in str(e):
                     print(f"Could not parse {file}. Inferring dtypes via pandas.")
-                    df = pd.read_csv(
+                    chunk = pd.read_csv(
                         os.path.join(os.path.dirname(file), "data_clean.csv"),
                         low_memory=False,
+                        nrows=10000,
                     )
-                    ddf = dd.from_pandas(df)
+                    d = dict(
+                        zip(chunk.dtypes.index, [str(t) for t in chunk.dtypes.values])
+                    )
+                    ddf = dd.read_csv(
+                        os.path.join(os.path.dirname(file), "data_clean.csv"),
+                        low_memory=False,
+                        dtype=d,
+                        assume_missing=True,
+                    )
                     split_and_save(file, ddf)
 
 
@@ -574,6 +583,10 @@ def smiles_split(
         file for file in smiles_yaml_files if not is_in_scaffold_split_list(file)
     ]
 
+    # not_scaffold_split_yaml_files = [
+    #     f for f in not_scaffold_split_yaml_files if "rdkit" not in f
+    # ]
+
     # if we debug, we only run split on the first 5 datasets
     if debug:
         not_scaffold_split_yaml_files = [
@@ -652,6 +665,34 @@ def smiles_split(
                 blocksize=None,
             )
             split_and_save(file, ddf)
+
+        except ValueError as e:
+            if "mona" in file:
+                df = pd.read_csv(
+                    os.path.join(os.path.dirname(file), "data_clean.csv"),
+                    low_memory=False,
+                )
+                ddf = dd.from_pandas(df, npartitions=1)
+                split_and_save(file, ddf)
+
+            elif "Mismatched dtypes" in str(e):
+                print(f"Could not parse {file}. Inferring dtypes via pandas.")
+                chunk = pd.read_csv(
+                    os.path.join(os.path.dirname(file), "data_clean.csv"),
+                    low_memory=False,
+                    nrows=10000,
+                )
+
+                dtype_dict = dict(
+                    zip(chunk.dtypes.index, [str(t) for t in chunk.dtypes.values])
+                )
+                ddf = dd.read_csv(
+                    os.path.join(os.path.dirname(file), "data_clean.csv"),
+                    low_memory=False,
+                    dtype=dtype_dict,
+                    assume_missing=True,
+                )
+                split_and_save(file, ddf)
 
 
 def scaffold_split(
@@ -780,9 +821,9 @@ def run_all_split(
     run_transform_py: bool = False,
 ):
     """Runs all splitting steps on the datasets in the data_dir directory."""
-    cluster = LocalCluster(memory_limit="64GB")
-    client = Client(cluster)
-    logging.info(f"Dashboard available at: {client.dashboard_link}")
+    # cluster = LocalCluster(memory_limit="64GB")
+    # client = Client(cluster)
+    # logging.info(f"Dashboard available at: {client.dashboard_link}")
 
     # print('Running "as_sequence" split...')
     # as_sequence_split(
