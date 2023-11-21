@@ -9,7 +9,7 @@ targets:
       names:
           - noun: start binding site
     - id: end_binding_site
-      description: index for emd of the binding sites of a protein
+      description: index for end of the binding sites of a protein
       type: text
       names:
           - noun: end binding site
@@ -45,7 +45,7 @@ templates:
 #    - |-
 #      The {#molecule|chemical|compound!} with the {SMILES__description}{# representation|!} {SMILES#} binds to the {#AA sequence|amino acid sequence|peptide sequence|protein!} {sequence#} at the {#site|binding site|position!} {start_binding_site#}{#-| to !}{end_binding_site#}.
     - |-
-      Task: {#Find|Identify|Come up with!} a binding site in the {#AA sequence|amino acid sequence|peptide sequence|protein!} for the {#molecule|chemical|compound!}.
+      Task: {#Find|Identify|Come up with!} a binding site for the {#molecule|chemical|compound!} in the {#AA sequence|amino acid sequence|peptide sequence|protein!}.
       {#AA sequence|Amino acid sequence|Peptide sequence|Protein!}: {sequence#}
       {SMILES__description}{# representation|!}: {SMILES#}
       {#Output|Result!}: {start_binding_site#}.
