@@ -319,6 +319,15 @@ def remaining_split(
                     blocksize=None,
                 )
                 split_and_save(file, ddf)
+            except ValueError as e:
+                if "Mismatched dtypes" in str(e):
+                    print(f"Could not parse {file}. Inferring dtypes via pandas.")
+                    df = pd.read_csv(
+                        os.path.join(os.path.dirname(file), "data_clean.csv"),
+                        low_memory=False,
+                    )
+                    ddf = dd.from_pandas(df)
+                    split_and_save(file, ddf)
 
 
 def as_sequence_split(
