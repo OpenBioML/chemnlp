@@ -17,7 +17,7 @@ amino acid sequences.
 Warning:
     - Note that the logic assumes that the SMILES columns only contain valid SMILES.
     - The current script does not set up a dask client. If distributed computing is needed, please set up.
-    - Some CSV files contain complicated strings. We cannot parse them in a chunked manner. 
+    - Some CSV files contain complicated strings. We cannot parse them in a chunked manner.
         In this case, we set blocksize=None and read the whole file into memory.
 """
 import os
@@ -27,15 +27,15 @@ from functools import partial
 from glob import glob
 from pathlib import Path
 from typing import List, Literal, Union
-from pandas.errors import ParserError
+
 import dask.array as da
 import dask.dataframe as dd
-from dask.distributed import Client, LocalCluster
 import fire
 import numpy as np
 import pandas as pd
 import yaml
 from pandarallel import pandarallel
+from pandas.errors import ParserError
 from tqdm import tqdm
 
 from chemnlp.data.split import _create_scaffold_split
