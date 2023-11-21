@@ -1,6 +1,7 @@
 import pandas as pd
 import yaml
 from rdkit import Chem
+from huggingface_hub import hf_hub_download
 
 
 def is_valid_smiles(smiles: str) -> bool:
@@ -15,10 +16,13 @@ def is_valid_smiles(smiles: str) -> bool:
 
 
 def read_dataset():
-    hf_data = pd.read_csv(
-        "https://huggingface.co/datasets/chemNLP/RedDB/raw/main/RedDBv2.csv"
+    # hf_data = pd.read_csv(
+    #     "https://huggingface.co/datasets/chemNLP/RedDB/raw/main/RedDBv2.csv"
+    # )
+    file = hf_hub_download(
+        repo_id="chemNLP/RedDB", filename="RedDBv2.csv", repo_type="dataset"
     )
-
+    hf_data = pd.read_csv(file)
     assert hf_data.SMILES.apply(is_valid_smiles).to_list() == [True] * len(hf_data)
     assert not hf_data.duplicated().sum()
 
