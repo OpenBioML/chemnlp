@@ -15,6 +15,7 @@ def load_dataset() -> pd.DataFrame:
     uniprot.drop_duplicates(
         inplace=True,
     )
+    uniprot = uniprot[uniprot.end_binding_site == uniprot.start_binding_site]
     print(f"Successfully loaded {DATA}! {len(uniprot)} rows")
     uniprot.to_csv("data_clean.csv", index=False)
     print(f"Successfully loaded {DATA}!")

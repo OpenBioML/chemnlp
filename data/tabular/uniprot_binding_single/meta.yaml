@@ -1,5 +1,5 @@
 ---
-name: uniprot_binding_sites
+name: uniprot_binding_single
 description: |-
     Binding sites of a molecule in protein sequences.
 targets:
@@ -26,7 +26,7 @@ license: MIT
 links:
     - url: https://www.uniprot.org/
       description: data source
-num_points: 780449
+num_points: 604383
 bibtex:
     - |-
       @article{10.1093/nar/gkac1052,
@@ -48,28 +48,26 @@ templates:
       Task: {#Find|Identify|Come up with!} a binding site in the {#AA sequence|amino acid sequence|peptide sequence|protein!} for the {#molecule|chemical|compound!}.
       {#AA sequence|Amino acid sequence|Peptide sequence|Protein!}: {sequence#}
       {SMILES__description}{# representation|!}: {SMILES#}
-      Constraint: Please {#always |!}{#indicate|show!} the {#site|binding site|position!} with a range without any additional words. When {#the range is of length one|the length is one!} please use the same {#index|position!} for the {#start|beginning!} and the end{# position|!}.
-      {#Output|Result!}: {start_binding_site#}-{end_binding_site#}
+      {#Output|Result!}: {start_binding_site#}.
     - |-
       Task: {#Create|Design|Come up with!} a {#molecule|chemical|compound!} that binds to the given {#binding site|site|position|!} in the {#AA sequence|amino acid sequence|peptide sequence|protein!}.
       {#AA sequence|Amino acid sequence|Peptide sequence|Protein!}: {sequence#}
-      Binding site{# position|!}: {start_binding_site#}{#-| to !}{end_binding_site#}
+      Binding {#site|position!}: {start_binding_site#}
       {#Output|Result!}: {SMILES#}
     - |-
       Question: Can you {#give me one example of a|find one!} binding site of the {#molecule|chemical|compound!} with the {SMILES__description}{# representation|!} {SMILES#} in this {#AA sequence|amino acid sequence|peptide sequence|protein!} {sequence#}?
-      Answer: One {#possible |!}{#binding |!}site for the {#chemical|molecule|compound!} is {start_binding_site#}{#-| to !}{end_binding_site#}.
+      Answer: One {#possible |!}{#binding |!}site for the {#chemical|molecule|compound!} is {start_binding_site#}.
     - |-
-      Question: What {#molecule|chemical|compound!} can {#possibly |!}bind to the {#binding |!}site {#at |at the position !}{start_binding_site#}{#-| to !}{end_binding_site#} in the {#given |!}{#AA|amino acid|protein!} sequence{# below|!}?
+      Question: What {#molecule|chemical|compound!} can {#possibly |!}bind to the {#binding |!}site {#at |at the position !}{start_binding_site#} in the {#given |!}{#AA|amino acid|protein!} sequence{# below|!}?
       Sequence: {sequence#}
       Answer: {SMILES#}
     - |-
       Task: {#Find|Identify|Come up with!} a binding site in the {#AA sequence|amino acid sequence|peptide sequence|protein!} for the {#molecule|chemical|compound!}.
       {#AA sequence|Amino acid sequence|Peptide sequence|Protein!}: {sequence#}
       {SMILES__description}{# representation|!}: {SMILES#}
-      Constraint: Please {#always |!}{#indicate|show!} the {#site|binding site|position!} with a range without any additional words. When {#the range is of length one|the length is one!} please use the same {#index|position!} for the {#start|beginning!} and the end{# position|!}.
-      {#Output|Result!}:<EOI> {start_binding_site#}-{end_binding_site#}
+      {#Output|Result!}:<EOI> {start_binding_site#}
     - |-
       Task: {#Create|Design|Come up with!} a {#molecule|chemical|compound!} that binds to the given {#binding site|site|position|!} in the {#AA sequence|amino acid sequence|peptide sequence|protein!}.
       {#AA sequence|Amino acid sequence|Peptide sequence|Protein!}: {sequence#}
-      Binding site{# position|!}: {start_binding_site#}{#-| to !}{end_binding_site#}
+      Binding site{# position|!}: {start_binding_site#}
       {#Output|Result!}:<EOI> {SMILES#}
