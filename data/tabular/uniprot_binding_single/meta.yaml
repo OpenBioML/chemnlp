@@ -8,7 +8,6 @@ targets:
       type: text
       names:
           - noun: start binding site
-    - id: end_binding_site
 identifiers:
     - id: sequence
       type: AS_SEQUENCE
