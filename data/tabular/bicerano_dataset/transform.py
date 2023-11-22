@@ -1,10 +1,15 @@
 import pandas as pd
 from canonicalize_psmiles.canonicalize import canonicalize
+from huggingface_hub import hf_hub_download
 
 
 def transform_data():
-    url = "https://huggingface.co/datasets/chemNLP/bicerano_polymers/raw/main/HT_MD_polymer_properties.csv"
-    original_data = pd.read_csv(url)
+    file = hf_hub_download(
+        repo_id="chemNLP/bicerano_polymers",
+        filename="HT_MD_polymer_properties.csv",
+        repo_type="dataset",
+    )
+    original_data = pd.read_csv(file)
     clean_data = original_data.drop("sl_num", axis=1)
 
     assert not clean_data.duplicated().sum()

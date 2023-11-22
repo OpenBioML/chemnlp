@@ -1,11 +1,14 @@
 import pandas as pd
+from huggingface_hub import hf_hub_download
 
 
 def process():
-    df = pd.read_json("core_mofid.json")
-    # df = pd.read_json(
-    #     "https://huggingface.co/datasets/kjappelbaum/chemnlp-core-mof/resolve/main/core_mofid.json"
-    # )
+    file = hf_hub_download(
+        repo_id="kjappelbaum/chemnlp-core-mof",
+        filename="core_mofid.json",
+        repo_type="dataset",
+    )
+    df = pd.read_json(file)
     df = df.query("is_longer_than_allowed==False").dropna(
         subset=[
             "outputs.pure_CO2_kH",
