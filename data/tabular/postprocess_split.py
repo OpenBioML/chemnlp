@@ -64,12 +64,7 @@ def get_all_identifier_columns(yaml_file: Union[str, Path]) -> List[str]:
         for identifier in meta["identifiers"]:
             if (
                 identifier["type"]
-                in [
-                    "SMILES",
-                    "AS_SEQUENCE",
-                    "COMPOSITION",
-                    "RXNSMILES",
-                ]
+                in ["SMILES", "AS_SEQUENCE", "COMPOSITION", "RXNSMILES", "PSMILES"]
                 or identifier["id"] in relevant_ids
             ):
                 if identifier["id"] not in non_relevant_ids:
