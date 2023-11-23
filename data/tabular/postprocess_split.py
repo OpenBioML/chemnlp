@@ -119,28 +119,45 @@ def process_file(file: Union[str, Path], id_cols):
         test_smiles = set(test_smiles)
         val_smiles = set(val_smiles)
 
-        df["split"] = (
-            df[id_cols]
-            .isin(val_smiles)
-            .any(axis=1)
-            .map({True: "valid", False: df["split"]})
+        df["split"] = df.apply(
+            lambda x: "valid"
+            if any([s in val_smiles for s in x[id_cols]])
+            else x["split"],
+            axis=1,
         )
-        df["split"] = (
-            df[id_cols]
-            .isin(test_smiles)
-            .any(axis=1)
-            .map({True: "test", False: df["split"]})
+        df["split"] = df.apply(
+            lambda x: "test"
+            if any([s in test_smiles for s in x[id_cols]])
+            else x["split"],
+            axis=1,
         )
+
+        for id in id_cols:
+            print(df["split"].value_counts())
+            this_test_smiles = set(df[df["split"] == "test"][id].to_list())
+            this_val_smiles = set(df[df["split"] == "valid"][id].to_list())
+            this_train_smiles = set(df[df["split"] == "train"][id].to_list())
+            assert (
+                len(this_test_smiles.intersection(this_train_smiles)) == 0
+            ), f"Smiles in test and train for {id}"
+            assert (
+                len(this_val_smiles.intersection(this_train_smiles)) == 0
+            ), f"Smiles in valid and train for {id}"
+            assert (
+                len(this_test_smiles.intersection(this_val_smiles)) == 0
+            ), f"Smiles in test and valid for {id}"
 
         df.to_csv("data_clean.csv", index=False)
 
 
 def process_all_files(data_dir):
     all_yaml_files = glob(os.path.join(data_dir, "**", "meta.yaml"))
+    all_yaml_files = [f for f in all_yaml_files if "rhea_db_masked" in f]
     for yaml_file in tqdm(all_yaml_files):
         print(f"Processing {yaml_file}")
 
         id_cols = get_all_identifier_columns(yaml_file)
+        print(id_cols)
         smiles_columns = get_columns_of_type(yaml_file)
         if smiles_columns:
             id_cols = smiles_columns
