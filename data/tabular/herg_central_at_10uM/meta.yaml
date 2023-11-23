@@ -1,0 +1,37 @@
+---
+name: herg_central_at_10uM
+description: "Human ether-à-go-go related gene (hERG) is crucial for the coordination\nof the heart's beating. Thus, if a drug blocks the hERG, it could\
+    \ lead to severe\nadverse effects. Therefore, reliable prediction of hERG liability in the early\nstages of drug design is quite important to reduce\
+    \ the risk of cardiotoxicity-related\nattritions in the later development stages. There are three targets: hERG_at_1microM,\nhERG_at_10microM, and herg_inhib."
+targets:
+    - id: herg_central_at_10uM
+      description: the percent inhibition of hERG at a 10uM concentration
+      units: '%'
+      type: continuous
+      names:
+          - noun: hERG inhibition at a concentration of 10uM
+          - noun: hERG inhibition at a concentration of 10uM
+          - noun: hERG inhibition at 10uM
+          - noun: human ether-à-go-go related gene (hERG) inhibition at a concentration of 10uM
+          - noun: human ether-à-go-go related gene (hERG) inhibition at 10uM
+          - noun: human ether-à-go-go related gene (hERG) inhibition at 10uM
+      uris:
+          - http://purl.obolibrary.org/obo/MI_2136
+identifiers:
+    - id: SMILES
+      type: SMILES
+      description: SMILES
+license: CC BY 4.0
+links:
+    - url: https://doi.org/10.1089/adt.2011.0425
+      description: corresponding publication
+    - url: https://bbirnbaum.com/
+      description: TDC Contributer
+    - url: https://tdcommons.ai/single_pred_tasks/tox/#herg-central
+      description: Data source
+num_points: 306893
+bibtex:
+    - "@article{Du2011,\ndoi = {10.1089/adt.2011.0425},\nurl = {https://doi.org/10.1089/adt.2011.0425},\nyear = {2011},\nmonth = dec,\npublisher = {Mary\
+      \ Ann Liebert Inc},\nvolume = {9},\nnumber = {6},\npages = {580--588},\nauthor = {Fang Du and Haibo Yu and Beiyan Zou and Joseph Babcock\nand Shunyou\
+      \ Long and Min Li},\ntitle = {hERGCentral: A Large Database to Store,  Retrieve,  and Analyze Compound Human\nEther-à-go-go Related Gene Channel Interactions\
+      \ to Facilitate Cardiotoxicity Assessment in Drug Development},\njournal = {ASSAY and Drug Development Technologies}"

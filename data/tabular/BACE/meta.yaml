@@ -1,0 +1,70 @@
+---
+name: BACE
+description: |-
+    The BACE dataset provides quantitative pIC50 and qualitative (binary label) binding results for
+    a set of inhibitors of human beta-secretase 1 (BACE-1). All data are experimental values reported
+    in scientific literature over the past decade, some with detailed crystal structures available.
+targets:
+    - id: BACE_inhibition
+      description: binary labels for inhibition of the human beta-secretase 1 (BACE-1)
+      type: boolean
+      names:
+          - noun: inhibition of the human beta-secretase 1 (BACE-1)
+          - adjective: inhibitory of the human beta-secretase 1
+          - adjective: inhibitory of BACE-1
+    - id: pIC50
+      description: pIC50 values for inhibition of human beta-secretase 1 (BACE-1)
+      units: M
+      type: continuous
+      names:
+          - noun: pIC50 of the human beta-secretase 1 (BACE-1)
+          - noun: negative log10 of the 50% inhibitory concentration of BACE-1
+identifiers:
+    - id: SMILES
+      type: SMILES
+      description: SMILES
+license: CC BY 4.0
+links:
+    - url: https://pubs.rsc.org/en/content/articlehtml/2018/sc/c7sc02664a
+      description: corresponding publication
+    - url:
+          - https://deepchemdata.s3-us-west-1.amazonaws.com/datasets/bace.csv
+      description: data source
+num_points: 1513
+bibtex:
+    - |-
+      @article{Wu2018,
+      doi = {10.1039/c7sc02664a},
+      url = {https://doi.org/10.1039/c7sc02664a},
+      year = {2018},
+      publisher = {Royal Society of Chemistry (RSC)},
+      volume = {9},
+      number = {2},
+      pages = {513--530},
+      author = {Zhenqin Wu and Bharath Ramsundar and Evan~N. Feinberg and Joseph Gomes
+      and Caleb Geniesse and Aneesh S. Pappu and Karl Leswing and Vijay Pande},
+      title = {MoleculeNet: a benchmark for molecular machine learning},
+      journal = {Chemical Science}
+templates:
+    - The {#compound|chemical!} with the {SMILES__description} of {SMILES#} {#shows|exhibits|displays!} {BACE_inhibition#no &NULL}{BACE_inhibition__names__noun}.
+    - Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule is {BACE_inhibition#not &NULL}{BACE_inhibition__names__adjective}.
+    - The {SMILES__description} {SMILES#} represents a molecule that is {BACE_inhibition#not&NULL}identified as {BACE_inhibition__names__adjective}.
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {BACE_inhibition__names__adjective}.
+      {#Molecule |!}{SMILES__description}: {SMILES#}
+      Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|extra!} words.
+      Result: {BACE_inhibition#False&True}
+    - |-
+      Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+      Description: A molecule that is {BACE_inhibition__names__adjective}.
+      Result: {SMILES#}
+    - |-
+      User: Can you {#tell me|derive|estimate!} if the molecule with the {SMILES__description} {SMILES#} is {BACE_inhibition__names__adjective}?
+      Assistant: {BACE_inhibition#No&Yes}, this molecule is {BACE_inhibition#not &NULL}{BACE_inhibition__names__adjective}.
+    - |-
+      User: Is the molecule with the {SMILES__description} {SMILES#} {BACE_inhibition__names__adjective}?
+      Assistant: {BACE_inhibition#No&Yes}, it is {BACE_inhibition#not &NULL}{BACE_inhibition__names__adjective}.
+    - The compound with the {SMILES__description} {SMILES#} has a {pIC50__names__noun} of {pIC50#} {pIC50__units}.
+    - Based on the {SMILES__description} {SMILES#}, the molecule has a {pIC50__names__noun} of {pIC50#} {pIC50__units}.
+    - The {SMILES__description}{SMILES#} represents a molecule that has a {pIC50__names__noun} of {pIC50#} {pIC50__units}.

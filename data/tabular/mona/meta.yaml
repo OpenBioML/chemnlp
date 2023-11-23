@@ -1,0 +1,90 @@
+---
+name: mona
+description: MassBank of North America, public repository of mass spectra for small molecules
+targets:
+    - id: spectral_entropy
+      type: continuous
+      units: nat
+      names:
+          - noun: spectral entropy
+      description: The entropy of the spectrum.
+    - id: normalized_entropy
+      type: continuous
+      units:
+      names:
+          - noun: normalized entropy
+      description: The normalized entropy of the spectrum (ratio of spectral entropy to maximum possible entropy for a spectrum with the same number of
+          peaks).
+identifiers:
+    - id: SMILES
+      type: SMILES
+      description: SMILES
+    - id: inchi
+      type: InChI
+      description: InChI
+    - id: inchikey
+      type: InChIKey
+      description: InChIKey
+    - id: id
+      type: Other
+      description: MassBank ID
+      sample: 'False'
+license: CC BY 4.0
+links:
+    - name: MassBank of North America
+      url: https://mona.fiehnlab.ucdavis.edu/
+      description: original repository
+    - name: HuggingFace dataset upload
+      url: https://huggingface.co/datasets/adamoyoung/mona
+      description: HuggingFace dataset upload
+benchmarks: []
+num_points: 194721
+bibtex: []
+templates:
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} has a {spectral_entropy__names__noun} of {spectral_entropy#} {spectral_entropy__units}.
+    - Based on the {SMILES__description} {#representation of |!}{SMILES#}, the molecule has a {spectral_entropy__names__noun} of {spectral_entropy#} {spectral_entropy__units}.
+    - The {SMILES__description} {SMILES#} {#represents|is representing!} a molecule {#that has a|with a!} {spectral_entropy__names__noun} of {spectral_entropy#}
+      {spectral_entropy__units}.
+    - The molecule with the {SMILES__description} {SMILES#} has a {spectral_entropy__names__noun} of {spectral_entropy#} {spectral_entropy__units}.
+    - |-
+      Task: Please predict a molecule feature based on the description.
+      Description: Predict the {spectral_entropy__names__noun} in {spectral_entropy__units}.
+      {#Molecule |!}{SMILES__description}: {SMILES#}
+      Constraint: Even if you are {#uncertain|not sure!}, you must answer with a numeric value in {spectral_entropy__units} without using any {#other|additional!} words.
+      Result: {spectral_entropy#} {spectral_entropy__units}
+    - |-
+      Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+      Description: A molecule that has a {spectral_entropy__names__noun} of {spectral_entropy#} {spectral_entropy__units}.
+      Result: {SMILES#}
+    - |-
+      User: Can you {#tell me|derive|estimate!} the {spectral_entropy__names__noun} in {spectral_entropy__units} of the molecule with the {SMILES__description} {SMILES#}?
+      Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, this molecule has a {spectral_entropy__names__noun} of {spectral_entropy#} {spectral_entropy__units}.
+    - |-
+      User: Can you {#give me|create|generate!} the {SMILES__description} of a molecule that has a {spectral_entropy__names__noun} of {spectral_entropy#} {spectral_entropy__units}?
+      Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}
+    - |-
+      User: I'm {#searching|looking!} for the {SMILES__description} of a molecule that has a {spectral_entropy__names__noun} of {spectral_entropy#} {spectral_entropy__units}.
+      Assistant: This is a molecule that has a {spectral_entropy__names__noun} of {spectral_entropy#} {spectral_entropy__units}: {SMILES#}
+    - |-
+      User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+      Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
+      User: Yes, please. The molecule should have a {spectral_entropy__names__noun} of {spectral_entropy#} {spectral_entropy__units}.
+      Assistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} represents a molecule that has a {spectral_entropy__names__noun} of {spectral_entropy#} {spectral_entropy__units}: {SMILES#}
+    - |-
+      User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+      Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
+      User: Yes, the molecule should have a {spectral_entropy__names__noun} of {spectral_entropy#} {spectral_entropy__units}.
+      Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} represents a molecule that has a {spectral_entropy__names__noun} of {spectral_entropy#} {spectral_entropy__units}: {SMILES#}
+    - The {spectral_entropy__names__noun} of the molecule with the {SMILES__description} {SMILES#} is:<EOI> {spectral_entropy#} {spectral_entropy__units}
+    - The {spectral_entropy__names__noun} of the {SMILES__description} {SMILES#} is:<EOI> {spectral_entropy#} {spectral_entropy__units}
+    - The {spectral_entropy__names__noun} of the molecule {SMILES__description} {SMILES#} is:<EOI> {spectral_entropy#} {spectral_entropy__units}
+    - |-
+      Task: Please predict a molecule feature based on the description.
+      Description: Predict the {spectral_entropy__names__noun} in {spectral_entropy__units} of a molecule.
+      {#Molecule |!}{SMILES__description}: {SMILES#}
+      Constraint: Even if you are {#uncertain|not sure!}, you must answer with a numeric value in {spectral_entropy__units} without using any {#other|additional!} words.
+      Result:<EOI> {spectral_entropy#} {spectral_entropy__units}
+    - |-
+      Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+      Description: A molecule that has {spectral_entropy__names__noun} of {spectral_entropy#} {spectral_entropy__units}.
+      Result:<EOI> {SMILES#}

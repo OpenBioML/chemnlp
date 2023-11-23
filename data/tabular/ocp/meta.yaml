@@ -1,0 +1,46 @@
+---
+name: ocp
+description: |-
+    CatBerta training data.
+targets:
+    - id: target
+      description: target
+      type: continuous
+      units: eV
+      significant_digits: 4
+      names:
+          - noun: adsorption energy
+identifiers:
+    - id: text
+      type: text
+      description: description
+license: MIT (based on ocp)
+links:
+    - url: https://drive.google.com/drive/folders/1puiJ9FbLEA3QIHmZromecEndlemag9hg?usp=sharing
+      description: original data source
+num_points: 125000
+bibtex:
+    - |-
+      @article{ock2023catalyst,
+        title={Catalyst Property Prediction with CatBERTa: Unveiling Feature Exploration Strategies through Large Language Models},
+        author={Ock, Janghoon and Guntuboina, Chakradhar and Farimani, Amir Barati},
+        journal={arXiv preprint arXiv:2309.00563},
+        year={2023}
+      }
+    - |-
+      @article{ocp_dataset,
+          author = {Chanussot*, Lowik and Das*, Abhishek and Goyal*, Siddharth and Lavril*, Thibaut and Shuaibi*, Muhammed and Riviere, Morgane and Tran, Kevin and Heras-Domingo, Javier and Ho, Caleb and Hu, Weihua and Palizhati, Aini and Sriram, Anuroop and Wood, Brandon and Yoon, Junwoong and Parikh, Devi and Zitnick, C. Lawrence and Ulissi, Zachary},
+          title = {Open Catalyst 2020 (OC20) Dataset and Community Challenges},
+          journal = {ACS Catalysis},
+          year = {2021},
+          doi = {10.1021/acscatal.0c04525},
+      }
+templates:
+    - |-
+      Question: What is the adsorption energy of the following adsorbate-adsorbent pair?
+      Text: {text#}
+      Answer: {target#} {target__units}
+    - |-
+      Task: {#Predict|Estimate|Calculate|Compute|Determine!} the adsorption energy of the following adsorbate-adsorbent pair.
+      Text: {text#}
+      Answer: {target#} {target__units}

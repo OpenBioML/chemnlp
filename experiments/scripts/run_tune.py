@@ -10,21 +10,23 @@ import pathlib
 from typing import Dict, Optional, Union
 
 import datasets
+import torch
 import transformers
 import wandb
 from peft import PromptTuningConfig, PromptTuningInit, TaskType, get_peft_model
 from transformers import (
     AutoTokenizer,
     DataCollatorForLanguageModeling,
-    Trainer,
     TrainingArguments,
 )
 
 from chemnlp.data_val.config import TrainPipelineConfig
+from chemnlp.trainer import LLcheMTrainer
 from chemnlp.utils import (
     collect_cpu_memory,
     collect_gpu_memory,
     get_local_ip_address,
+    load_and_split,
     load_config,
 )
 
@@ -79,7 +81,13 @@ def run(config_path: str, config_overrides: Optional[Dict] = None) -> None:
 
     local_rank = int(os.environ.get("LOCAL_RANK", -1))
     global_rank = int(os.environ.get("RANK", -1))
+    ip_add = get_local_ip_address()
+    num_devices = torch.cuda.device_count()
+    visible_devices = os.environ.get("CUDA_VISIBLE_DEVICES")
     print_zero_rank(local_rank, config)
+    print(
+        f"IP: {ip_add} Local: {local_rank} Global: {global_rank}, # GPUs: {num_devices} CUDA_VISIBLE: {visible_devices}"
+    )
 
     tokenizer = AutoTokenizer.from_pretrained(
         pretrained_model_name_or_path=config.model.name,
@@ -111,12 +119,54 @@ def run(config_path: str, config_overrides: Optional[Dict] = None) -> None:
         f"Total Parameters: {model.num_parameters()} Trainable Parameters: {total_trainables}",
     )
 
-    dataset = datasets.load_from_disk(config.data.path)
-    split_dataset = dataset.train_test_split(
-        test_size=config.data.validation_size, shuffle=False
-    )
-    data_collator = DataCollatorForLanguageModeling(tokenizer, mlm=False)
+    if isinstance(config.data.path, list):
+        # set validation size per dataset or constant
+        validation_sizes = (
+            [config.data.validation_size] * len(config.data.path)
+            if isinstance(config.data.validation_size, float)
+            else config.data.validation_size
+        )
+        assert len(config.data.path) == len(
+            validation_sizes
+        ), "you must specify an equal number of datasets and validation sizes"
 
+        # collect all datasets
+        data_sources = {
+            source: load_and_split(source, val_size)
+            for source, val_size in zip(config.data.path, validation_sizes)
+        }
+        train_ds = [d["train"] for d in data_sources.values()]
+        if config.data.interleave_probs:
+            # interleaving with specific probabilities and stopping criterion
+            assert (
+                config.data.interleave_probs and config.data.sampling_criterion
+            ), "both interleaving probabilities and strategy must be set"
+            assert len(config.data.interleave_probs) == len(
+                config.data.path
+            ), "you must specify an equal number of datasets and probabilities"
+            train_dataset = datasets.interleave_datasets(
+                train_ds,
+                probabilities=config.data.interleave_probs,
+                stopping_strategy=config.data.sampling_criterion,
+            )
+        else:
+            # do full random concatenation of training data
+            train_dataset = datasets.concatenate_datasets(train_ds)
+        # NOTE validation set is independent of the mixing strategy
+        val_dataset = datasets.concatenate_datasets(
+            [d["test"] for d in data_sources.values()]
+        )
+
+    else:
+        # load single dataset
+        loaded_dataset = load_and_split(config.data.path, config.data.validation_size)
+        train_dataset, val_dataset = loaded_dataset["train"], loaded_dataset["test"]
+    print_zero_rank(
+        local_rank,
+        f"{train_dataset.num_rows} / {val_dataset.num_rows} samples for training / validation",
+    )
+
+    data_collator = DataCollatorForLanguageModeling(tokenizer, mlm=False)
     training_args = TrainingArguments(
         **config.trainer.dict(exclude={"deepspeed_config", "restart_checkpoint"}),
         report_to="wandb" if config.wandb.enabled else "none",
@@ -132,17 +182,17 @@ def run(config_path: str, config_overrides: Optional[Dict] = None) -> None:
         wandb.init(**config.wandb.dict(exclude={"enabled"}), config=config.dict())
 
         # custom logging at start of training
-        wandb.log({"Node IP Address": get_local_ip_address()})
+        wandb.log({"Node IP Address": ip_add})
         wandb.log(
             {"CPU_start": collect_cpu_memory(), "GPU_start": collect_gpu_memory()}
         )
 
     # start train or auto-restart
-    trainer = Trainer(
+    trainer = LLcheMTrainer(
         model=model,
         args=training_args,
-        train_dataset=split_dataset["train"],
-        eval_dataset=split_dataset["test"],
+        train_dataset=train_dataset,
+        eval_dataset=val_dataset,
         tokenizer=tokenizer,
         data_collator=data_collator,
     )
@@ -151,7 +201,8 @@ def run(config_path: str, config_overrides: Optional[Dict] = None) -> None:
             training_args.output_dir, config.trainer.restart_checkpoint
         )
     )
-    trainer.save_model(config.trainer.output_dir + "/checkpoint-final")
+    if config.trainer.save_strategy == "steps":
+        trainer.save_model(config.trainer.output_dir + "/checkpoint-final")
 
     if config.wandb.enabled:
         # custom logging at end of training

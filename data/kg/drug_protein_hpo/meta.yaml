@@ -1,0 +1,98 @@
+---
+name: drug_protein_hpo
+description: Knowledgegraph data samples.
+targets:
+    - id: node1_type
+      description: node1_type
+      type: Other
+      units: node1_type
+      names:
+          - noun: node1_type
+    - id: node1_name
+      description: node1_name
+      type: Other
+      units: node1_name
+      names:
+          - noun: node1_name
+    - id: node1_id
+      description: node1_id
+      type: Other
+      units: node1_id
+      names:
+          - noun: node1_id
+    - id: rel1_type
+      description: rel1_type
+      type: Other
+      units: rel1_type
+      names:
+          - noun: rel1_type
+    - id: node2_type
+      description: node2_type
+      type: Other
+      units: node2_type
+      names:
+          - noun: node2_type
+    - id: node2_protein_names
+      description: node2_protein_names
+      type: Other
+      units: node2_protein_names
+      names:
+          - noun: node2_protein_names
+    - id: node2_name
+      description: node2_name
+      type: Other
+      units: node2_name
+      names:
+          - noun: node2_name
+    - id: node2_id
+      description: node2_id
+      type: Other
+      units: node2_id
+      names:
+          - noun: node2_id
+    - id: rel2_type
+      description: rel2_type
+      type: Other
+      units: rel2_type
+      names:
+          - noun: rel2_type
+    - id: node3_type
+      description: node3_type
+      type: Other
+      units: node3_type
+      names:
+          - noun: node3_type
+    - id: node3_name
+      description: node3_name
+      type: Other
+      units: node3_name
+      names:
+          - noun: node3_name
+    - id: node3_id
+      description: node3_id
+      type: Other
+      units: node3_id
+      names:
+          - noun: node3_id
+identifiers:
+    - id: SMILES
+      description: SMILES
+      type: SMILES
+license: CC BY 4.0
+links:
+    - url: https://crossbar.kansil.org
+      description: original knowledge graph web GUI link
+num_points: 71321
+bibtex:
+    - "@article{10.1093/nar/gkab543,\nauthor = {Doğan, Tunca and Atas, Heval and Joshi, Vishal and Atakan, Ahmet and Rifaioglu, Ahmet Sureyya and Nalbat,\
+      \ Esra and Nightingale, Andrew and Saidi, Rabie and Volynkin, Vladimir and Zellner, Hermann and Cetin-Atalay, Rengul and Martin, Maria and Atalay,\
+      \ Volkan},\ntitle = \"{CROssBAR: comprehensive resource of biomedical relations with knowledge graph representations}\",\njournal = {Nucleic Acids\
+      \ Research},\nvolume = {49},\nnumber = {16},\npages = {e96-e96},\nyear = {2021},\nmonth = {06},\nissn = {0305-1048},\ndoi = {10.1093/nar/gkab543},\n\
+      url = {https://doi.org/10.1093/nar/gkab543},\n}"
+templates:
+    - The {node1_type#} {SMILES#|node1_name#} {rel1_type#} the {node2_type#} {node2_protein_names#} and {rel2_type#} {node3_name#}.
+    - The {node1_type#} {SMILES#|node1_name#} {rel1_type#} the {node2_type#} {node2_protein_names#}. The {node2_type#} {node2_protein_names#} {rel2_type#}
+      {node3_name#}.
+    - The {node1_type#} {SMILES#|node1_name#} {rel1_type#} the {node2_type#} {node2_protein_names#}. The {node2_type#} {node2_protein_names#} {rel2_type#}
+      the human phenotype represented by {node3_name#}.
+    - The {node1_type#} {SMILES#|node1_name#} {rel1_type#} the {node2_type#} {node2_protein_names#}. This {node2_type#} {rel2_type#} the {node3_name#}.

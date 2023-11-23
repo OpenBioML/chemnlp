@@ -1,0 +1,106 @@
+---
+name: freesolv
+description: Experimental and calculated small molecule hydration free energies
+targets:
+    - id: exp_value
+      description: experimental hydration free energy value
+      units: kcal/mol
+      type: continuous
+      names:
+          - noun: hydration free energy
+    - id: exp_uncertainty
+      description: experimental hydration free energy uncertainty
+      units: kcal/mol
+      type: continuous
+      names:
+          - noun: hydration free energy uncertainty
+    - id: GAFF
+      description: mobley group calculated value
+      units: kcal/mol
+      type: continuous
+      names:
+          - noun: hydration free energy computed using the GAFF force field
+    - id: calc_uncertainty
+      description: mobley group calculated value calculated uncertainty
+      units: kcal/mol
+      type: continuous
+      names:
+          - noun: uncertainty in hydration free energy computed using the GAFF force field
+identifiers:
+    - id: SMILES
+      type: SMILES
+      description: SMILES
+    - id: iupac_name
+      type: IUPAC
+      description: IUPAC
+license: CC BY-NC-SA 4.0
+links:
+    - url: https://github.com/MobleyLab/FreeSolv
+      description: issue tracker and source data
+    - url: https://escholarship.org/uc/item/6sd403pz
+      description: repository with data
+num_points: 642
+bibtex:
+    - "@article{mobley2013experimental,\ntitle={Experimental and calculated small molecule hydration free energies},\nauthor={Mobley, David L},\nyear={2013}"
+templates:
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} has a {exp_value__names__noun} of {exp_value#} {exp_value__units}.
+    - Based on the {SMILES__description} {#representation of |!}{SMILES#}, the molecule has a {exp_value__names__noun} of {exp_value#} {exp_value__units}.
+    - The {SMILES__description} {SMILES#} {#represents|is representing!} a molecule {#that has a|with a!} {exp_value__names__noun} of {exp_value#} {exp_value__units}.
+    - The molecule with the {SMILES__description} {SMILES#} has a {exp_value__names__noun} of {exp_value#} {exp_value__units}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} has a {GAFF__names__noun} of {GAFF#} {GAFF__units}.
+    - Based on the {SMILES__description} {#representation of |!}{SMILES#}, the molecule has a {GAFF__names__noun} of {GAFF#} {GAFF__units}.
+    - The {SMILES__description} {SMILES#} {#represents|is representing!} a molecule {#that has a|with a!} {GAFF__names__noun} of {GAFF#} {GAFF__units}.
+    - The molecule with the {SMILES__description} {SMILES#} has a {GAFF__names__noun} of {GAFF#} {GAFF__units}.
+    - "Task: Please predict a molecule feature based on the description.\nDescription: Predict the {exp_value__names__noun} in {exp_value__units}.\n{#Molecule\
+      \ |!}{SMILES__description}: {SMILES#}\nConstraint: Even if you are {#uncertain|not sure!}, you must answer with a numeric value in {exp_value__units}\
+      \ without using any {#other|additional!} words.\nResult: {exp_value#} {exp_value__units}"
+    - "Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.\nDescription: A molecule\
+      \ that has {exp_value__names__noun} of {exp_value#} {exp_value__units}.\nResult: {SMILES#}"
+    - "Task: Please predict a molecule feature based on the description.\nDescription: Predict the {GAFF__names__noun} in {GAFF__units}.\n{#Molecule |!}{SMILES__description}:\
+      \ {SMILES#}\nConstraint: Even if you are {#uncertain|not sure!}, you must answer with a numeric value in {GAFF__units} without using any {#other|additional!}\
+      \ words.\nResult: {GAFF#} {GAFF__units}"
+    - "Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.\nDescription: A molecule\
+      \ that has {GAFF__names__noun} of {GAFF#} {GAFF__units}.\nResult: {SMILES#}"
+    - "User: Can you {#tell me|derive|estimate!} the {exp_value__names__noun} in {exp_value__units} of the molecule with the {SMILES__description} {SMILES#}?\n\
+      Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, this molecule has a {exp_value__names__noun} of {exp_value#} {exp_value__units}."
+    - "User: Can you {#give me|create|generate!} the {SMILES__description} of a molecule that has a {exp_value__names__noun} of {exp_value#} {exp_value__units}?\n\
+      Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}"
+    - "User: I'm {#searching|looking!} for the {SMILES__description} of a molecule that has a {exp_value__names__noun} of {exp_value#} {exp_value__units}.\n\
+      Assistant: This is a molecule that has a {exp_value__names__noun} of {exp_value#} {exp_value__units}: {SMILES#}"
+    - "User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.\nAssistant: {#This sounds very exciting. |This sounds very\
+      \ interesting. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?\nUser: Yes, please. The molecule should have\
+      \ a {exp_value__names__noun} of {exp_value#} {exp_value__units}.\nAssistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} represents\
+      \ a molecule that has a {exp_value__names__noun} of {exp_value#} {exp_value__units}: {SMILES#}"
+    - "User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.\nAssistant: {#This sounds very exciting. |This sounds very\
+      \ interesting. !}Should it be a special {#molecule|one!}?\nUser: Yes, the molecule should have a {exp_value__names__noun} of {exp_value#} {exp_value__units}.\n\
+      Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} represents a molecule that has a {exp_value__names__noun} of {exp_value#} {exp_value__units}:\
+      \ {SMILES#}"
+    - "User: Can you {#tell me|derive|estimate!} the {GAFF__names__noun} in {GAFF__units} of the molecule with the {SMILES__description} {SMILES#}?\nAssistant:\
+      \ {#Yes|Of course|Sure|Yes, I'm happy to help!}, this molecule has a {GAFF__names__noun} of {GAFF#} {GAFF__units}."
+    - "User: Can you {#give me|create|generate!} the {SMILES__description} of a molecule that has a {GAFF__names__noun} of {GAFF#} {GAFF__units}?\nAssistant:\
+      \ {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}"
+    - "User: I'm {#searching|looking!} for the {SMILES__description} of a molecule that has a {GAFF__names__noun} of {GAFF#} {GAFF__units}.\nAssistant:\
+      \ This is a molecule that has a {GAFF__names__noun} of {GAFF#} {GAFF__units}: {SMILES#}"
+    - "User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.\nAssistant: {#This sounds very exciting. |This sounds very\
+      \ interesting. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?\nUser: Yes, please. The molecule should have\
+      \ a {GAFF__names__noun} of {GAFF#} {GAFF__units}.\nAssistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} represents a molecule that\
+      \ has a {GAFF__names__noun} of {GAFF#} {GAFF__units}: {SMILES#}"
+    - "User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.\nAssistant: {#This sounds very exciting. |This sounds very\
+      \ interesting. !}Should it be a special {#molecule|one!}?\nUser: Yes, the molecule should have a {GAFF__names__noun} of {GAFF#} {GAFF__units}.\nAssistant:\
+      \ {#Understood|Got it|Ok!}, this {SMILES__description} represents a molecule that has a {GAFF__names__noun} of {GAFF#} {GAFF__units}: {SMILES#}"
+    - The {exp_value__names__noun} of the molecule with the {SMILES__description} {SMILES#} is:<EOI> {exp_value#} {exp_value__units}
+    - The {exp_value__names__noun} of the {SMILES__description} {SMILES#} is:<EOI> {exp_value#} {exp_value__units}
+    - The {exp_value__names__noun} of the molecule {SMILES__description} {SMILES#} is:<EOI> {exp_value#} {exp_value__units}
+    - "Task: Please predict a molecule feature based on the description.\nDescription: Predict the {exp_value__names__noun} in {exp_value__units} of a molecule.\n\
+      {#Molecule |!}{SMILES__description}: {SMILES#}\nConstraint: Even if you are {#uncertain|not sure!}, you must answer with a numeric value in {exp_value__units}\
+      \ without using any {#other|additional!} words.\nResult:<EOI> {exp_value#} {exp_value__units}"
+    - "Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.\nDescription: A molecule\
+      \ that has {exp_value__names__noun} of {exp_value#} {exp_value__units}.\nResult:<EOI> {SMILES#}"
+    - The {GAFF__names__noun} of the molecule with the {SMILES__description} {SMILES#} is:<EOI> {GAFF#} {GAFF__units}
+    - The {GAFF__names__noun} of the {SMILES__description} {SMILES#} is:<EOI> {GAFF#} {GAFF__units}
+    - The {GAFF__names__noun} of the molecule {SMILES__description} {SMILES#} is:<EOI> {GAFF#} {GAFF__units}
+    - "Task: Please predict a molecule feature based on the description.\nDescription: Predict the {GAFF__names__noun} in {GAFF__units} of a molecule.\n\
+      {#Molecule |!}{SMILES__description}: {SMILES#}\nConstraint: Even if you are {#uncertain|not sure!}, you must answer with a numeric value in {GAFF__units}\
+      \ without using any {#other|additional!} words.\nResult:<EOI> {GAFF#} {GAFF__units}"
+    - "Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.\nDescription: A molecule\
+      \ that has {GAFF__names__noun} of {GAFF#} {GAFF__units}.\nResult:<EOI> {SMILES#}"

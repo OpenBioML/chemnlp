@@ -1,0 +1,56 @@
+---
+name: uniprot_sentences
+description: |-
+    Descriptions of the function of a protein.
+targets:
+    - id: sentences
+      description: sentences describing the function of a protein
+      type: text
+      names:
+          - noun: function
+identifiers:
+    - id: sequence
+      type: AS_SEQUENCE
+      description: other
+license: MIT
+links:
+    - url: https://www.uniprot.org/
+      description: data source
+num_points: 396241
+bibtex:
+    - |-
+      @article{10.1093/nar/gkac1052,
+      author = {The UniProt Consortium},
+      title = {UniProt - the Universal Protein Knowledgebase in 2023},
+      journal = {Nucleic Acids Research},
+      volume = {51},
+      number = {D1},
+      pages = {D523-D531},
+      year = {2022},
+      month = {11},
+      issn = {0305-1048},
+      doi = {10.1093/nar/gkac1052},
+      url = {https://doi.org/10.1093/nar/gkac1052}}
+templates:
+    - |-
+      User: {#Please describe|Describe|Please briefly describe|Briefly describe!} the {#biological |biochemical |!}function of {#the|this!} {#protein|amino acid sequence|AA sequence|polypeptide!}: {sequence#}
+      Assistant: {sentences#}
+    - |-
+      User: What {#protein|amino acid sequence|AA sequence|polypeptide!} fits the {#biological |biochemical |!}description {#in the next sentences |below |!}best?\n{sentences#}
+      Assistant: A {#protein|amino acid sequence|AA sequence|polypeptide!} that fits the {#description|points|sentences!} is:\n{sequence#}
+    - |-
+      Task: {#Generate|Create|Come up with!} a description {#of a few sentences |!}for the {#protein|amino acid sequence|AA sequence|polypeptide!}{# below|!}.
+      {#Protein|Amino acid sequence|AA sequence|Polypeptide!}: {sequence#}
+      {#Output|Result!}: {sentences#}
+    - |-
+      Task: {#Generate|Create|Come up with!} a {#protein|amino acid sequence|AA sequence|polypeptide!} based on the description.
+      Description: {sentences#}
+      {#Output|Result!}: {sequence#}
+    - |-
+      Task: {#Generate|Create|Come up with!} a description {#of a few sentences |!}for the {#protein|amino acid sequence|AA sequence|polypeptide!}{# below|!}.
+      {#Protein|Amino acid sequence|AA sequence|Polypeptide!}: {sequence#}
+      {#Output|Result!}:<EOI> {sentences#}
+    - |-
+      Task: {#Generate|Create|Come up with!} a {#protein|amino acid sequence|AA sequence|polypeptide!} based on the description.
+      Description: {sentences#}
+      {#Output|Result!}:<EOI> {sequence#}

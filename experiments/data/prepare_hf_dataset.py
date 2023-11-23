@@ -30,13 +30,20 @@ def run(config_path: str):
     if not tokenizer.pad_token:
         tokenizer.add_special_tokens({"pad_token": "<|padding|>"})
 
-    dataset = datasets.load_dataset(
-        config.dataset_name, **config.dataset_args, num_proc=os.cpu_count()
-    )
+    if config.from_disk:
+        dataset = datasets.load_from_disk(config.dataset_name, **config.dataset_args)
+    else:
+        dataset = datasets.load_dataset(
+            config.dataset_name, **config.dataset_args, num_proc=os.cpu_count()
+        )
 
     tokenised_data = dataset.map(
         lambda batch: tokenise(
-            batch, tokenizer, config.context_length, config.string_key
+            batch,
+            tokenizer,
+            config.context_length,
+            config.string_key,
+            config.keep_columns,
         ),
         batched=True,
         batch_size=config.batch_size,
@@ -44,6 +51,7 @@ def run(config_path: str):
         num_proc=os.cpu_count(),
         load_from_cache_file=False,
     )
+
     summary_stats = {
         "model_name": config.model_name,
         "dataset_name": config.dataset_name,

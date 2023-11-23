@@ -1,0 +1,90 @@
+---
+name: melting_points
+description: |-
+    Literature mined data on melting points of organic compounds.
+targets:
+    - id: mp
+      description: mean melting point
+      units: deg C
+      type: continuous
+      names:
+          - noun: mean melting point
+      uris:
+    - id: mp_range
+      description: melting point range
+      units: deg C
+      type: continuous
+      names:
+          - noun: melting point range
+benchmarks: []
+identifiers:
+    - id: SMILES
+      type: text
+      description: SMILES
+    - id: NAME
+      type: text
+      description: name
+license: CC BY 4.0
+links:
+    - url: https://ochem.eu/home/show.do?render-mode=popup
+      description: original data source
+num_points: 274983
+bibtex:
+    - |-
+      @article{Tetko_2014,
+        doi = {10.1021/ci5005288},
+        url = {https://doi.org/10.1021%2Fci5005288},
+        year = 2014,
+        month = {dec},
+        publisher = {American Chemical Society ({ACS})},
+        volume = {54},
+        number = {12},
+        pages = {3320--3329},
+        author = {Igor V. Tetko and Yurii Sushko and Sergii Novotarskyi and Luc Patiny and Ivan Kondratov and Alexander E. Petrenko and Larisa Charochkina and Abdullah M. Asiri},
+        title = {How Accurately Can We Predict the Melting Points of Drug-like Compounds?},
+        journal = {J. Chem. Inf. Model.}
+      }
+templates:
+    - |-
+      {#Task: |Task: |!}{#Predict|Estimate!} the melting point of {NAME#}.
+      {#Answer: |A: |!}The melting point is {mp#} deg C.
+    - |-
+      {#Task: |Task: |!}{#Predict|Estimate!} the melting point of a {#molecule|compound!} with the {SMILES__description} {SMILES#}?
+      {#Answer: |A: |!}{#The melting point is |!}{mp#} deg C.
+    - |-
+      {#Question: |Q: !}What is the melting point of {NAME#}?
+      {#Answer: |A: |!}{#The melting point is |!}{mp#} deg C.
+    - |-
+      {#Question: |Q: !}What is the melting point of a {#molecule|compound!} with the {SMILES__description} {SMILES#}?
+      {#Answer: |A: |!}{#The melting point is |!}{mp#} deg C.
+    - |-
+      {#Question: |Q: !}What is the melting point of {NAME#}?
+      {#Answer: |A: |!}{#The melting point is in the range|!}{mp_range#} deg C.
+    - |-
+      {#Question: |Q: !}What is the melting point of a {#molecule|compound!} with the {SMILES__description} {SMILES#}?
+      {#Answer: |A: |!}{#The melting point is in the range|!}{mp_range#} deg C.
+    - |-
+      {#Question: |Q: !}What is a compound with a melting point of {mp#} deg C?
+      {#Answer: |A: |!}{NAME#}
+    - |-
+      {#Question: |Q: !}What is a compound with a melting point in the range {mp_range#} deg C?
+      {#Answer: |A: |!}{NAME#}
+    - |-
+      User: I have a question about {NAME#}.
+      Assistant: {#Sure, what is your question?|How can I help?|That sounds interesting, how can I help?|Interesting, how can I help?!}
+      User: What is the melting point of {#this compound|this molecule!}?
+      Assistant: {#The melting point is |!}{mp#} deg C.
+    - |-
+      User: I have a question about a {#compound|molecule!} with the {SMILES__description} {SMILES#}.
+      Assistant: {#Sure, what is your question?|How can I help?|That sounds interesting, how can I help?|Interesting, how can I help?!}
+      User: What is the melting point of {#this compound|this molecule!}?
+      Assistant: {#The melting point is |!}{mp#} deg C. {#Is there anything else I can help you with?|Do you have any other questions?|Do you have any other questions for me?|Is there anything else I can help you with today?|Do you have any other questions for me today?!}
+      User: {#Yes,|Indeed,!} what is the name of {#this compound|this molecule!}?
+      Assistant: {NAME#}
+    - |-
+      User: I have a question about {NAME#}.
+      Assistant: {#Sure, what is your question?|How can I help?|That sounds interesting, how can I help?|Interesting, how can I help?!}
+      User: What is the melting point of {#this compound|this molecule!}?
+      Assistant: {#The melting point is |!}{mp_range#} deg C. {#Is there anything else I can help you with?|Do you have any other questions?|Do you have any other questions for me?|Is there anything else I can help you with today?|Do you have any other questions for me today?!}
+      User: {#Yes,|Indeed,!} what is the {SMILES__description} of {#this compound|this molecule!}?
+      Assistant: {SMILES#}

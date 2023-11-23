@@ -1,0 +1,137 @@
+---
+name: herg_blockers
+description: "Human ether-à-go-go related gene (hERG) is crucial for the coordination\nof the heart's beating. Thus, if a drug blocks the hERG, it could\
+    \ lead to severe\nadverse effects. Therefore, reliable prediction of hERG liability in the early\nstages of drug design is quite important to reduce\
+    \ the risk of cardiotoxicity\nrelated attritions in the later development stages."
+targets:
+    - id: herg_blocker
+      description: whether it blocks hERG (1) or not (0)
+      units:
+      type: boolean
+      names:
+          - noun: hERG blocker
+          - noun: hERG blocking compound
+          - noun: hERG blocking compound (<10uM)
+          - noun: human ether-à-go-go related gene (hERG) blocker
+          - noun: human ether-à-go-go related gene (hERG) blocking compound
+          - verb: blocks hERG
+          - verb: blocks the human ether-à-go-go related gene (hERG)
+          - verb: is active against hERG (<10uM)
+          - verb: is active against the human ether-à-go-go related gene (hERG)
+      uris:
+          - http://purl.obolibrary.org/obo/MI_2136
+benchmarks:
+    - name: TDC
+      link: https://tdcommons.ai/
+      split_column: split
+identifiers:
+    - id: SMILES
+      type: SMILES
+      description: SMILES
+    - id: compound_name
+      type: Other
+      description: compound name
+      names:
+          - noun: compound
+          - noun: compound name
+          - noun: drug
+license: CC BY 4.0
+links:
+    - url: https://doi.org/10.1021/acs.molpharmaceut.6b00471
+      description: corresponding publication
+    - url: https://tdcommons.ai/single_pred_tasks/tox/#herg-blockers
+      description: Data source
+num_points: 655
+bibtex:
+    - |-
+      @article{Wang2016,
+      doi = {10.1021/acs.molpharmaceut.6b00471},
+      url = {https://doi.org/10.1021/acs.molpharmaceut.6b00471},
+      year = {2016},
+      month = jul,
+      publisher = {American Chemical Society (ACS)},
+      volume = {13},
+      number = {8},
+      pages = {2855--2866},
+      author = {Shuangquan Wang and Huiyong Sun and Hui Liu and Dan Li and
+      Youyong Li and Tingjun Hou},
+      title = {ADMET Evaluation in Drug Discovery. 16. Predicting hERG Blockers
+      by Combining Multiple Pharmacophores and Machine Learning Approaches},
+      journal = {Molecular Pharmaceutics}
+templates:
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {herg_blocker#not &NULL}a {herg_blocker__names__noun}.
+    - Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule is {herg_blocker#not &NULL}a {herg_blocker__names__noun}.
+    - The {SMILES__description} {SMILES#} {#represents|is from!} a molecule that is {herg_blocker#not &NULL}a {herg_blocker__names__noun}.
+    - The {#molecule |!}{SMILES__description} {SMILES#} is {herg_blocker#not &NULL}a {herg_blocker__names__noun}.
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that {herg_blocker__names__verb}.
+      {#Molecule |!}{SMILES__description}: {SMILES#}
+      Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
+      Result: {herg_blocker#False&True}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is a {herg_blocker__names__noun}.
+      {#Molecule |!}{SMILES__description}: {SMILES#}
+      Constraint: Answer the question in a {#full|complete!} sentence.
+      Result: This molecule is {herg_blocker#no &NULL}{herg_blocker__names__noun}.
+    - |-
+      Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+      Description: A molecule that is a {herg_blocker__names__noun}.
+      Result: {SMILES#}
+    - |-
+      User: Can you {#tell me|derive|estimate!} if the molecule with the {SMILES__description} {SMILES#} is a {herg_blocker__names__noun}?
+      Assistant: {herg_blocker#No&Yes}, this molecule is {herg_blocker#not &NULL}a {herg_blocker__names__noun}.
+    - |-
+      User: Is the molecule with the {SMILES__description} {SMILES#} a {herg_blocker__names__noun}?
+      Assistant: {herg_blocker#No&Yes}, it is {herg_blocker#not &NULL}a {herg_blocker__names__noun}.
+    - |-
+      User: Can you {#give me|create|generate!} the {SMILES__description} of a molecule that is {herg_blocker#not &NULL}a {herg_blocker__names__noun}?
+      Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}
+    - |-
+      User: I'm {#searching|looking!} for the {SMILES__description} of a molecule that {herg_blocker#not &NULL}{herg_blocker__names__verb}?
+      Assistant: This is a molecule that is {herg_blocker#not &NULL}a {herg_blocker__names__noun}: {SMILES#}
+    - |-
+      User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+      Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
+      User: Yes, please. The molecule should {herg_blocker#not &NULL}be a {herg_blocker__names__noun}.
+      Assistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} is {herg_blocker#not &NULL}a {herg_blocker__names__noun}: {SMILES#}
+    - |-
+      User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+      Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
+      User: Yes, the molecule should {herg_blocker#not &NULL}be a {herg_blocker__names__noun}.
+      Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {herg_blocker#not &NULL}a {herg_blocker__names__noun}: {SMILES#}
+    - Is the {SMILES__description} {SMILES#} a {herg_blocker__names__noun}:<EOI> {herg_blocker#no&yes}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is a {herg_blocker__names__noun}.
+      {#Molecule |!}{SMILES__description}: {SMILES#}
+      Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
+      Result:<EOI> {herg_blocker#False&True}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is a {herg_blocker__names__noun}.
+      {#Molecule |!}{SMILES__description}: {SMILES#}
+      Constraint: Answer the question in a {#full|complete!} sentence.
+      Result:<EOI> This molecule is {herg_blocker#not &NULL}a {herg_blocker__names__noun}.
+    - |-
+      Task: Please answer the multiple choice question.
+      Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} a {herg_blocker__names__noun}?
+      Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
+      Options:
+      {herg_blocker%}
+      Answer:<EOI> {%multiple_choice_result}
+    - |-
+      Task: Please answer the multiple choice question.
+      Question: Which molecules are {herg_blocker#not &NULL}a {herg_blocker__names__noun}?
+      Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
+      Options:
+      {SMILES%herg_blocker%}
+      Answer: {%multiple_choice_result}
+    - |-
+      Task: Please answer the multiple choice question.
+      Question: Which molecules are {herg_blocker#not &NULL}a {herg_blocker__names__noun}?
+      Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
+      Options:
+      {SMILES%herg_blocker%}
+      Answer:<EOI> {%multiple_choice_result}

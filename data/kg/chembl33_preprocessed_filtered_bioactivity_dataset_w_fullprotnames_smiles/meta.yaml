@@ -1,0 +1,107 @@
+---
+name: chembl33_preprocessed_filtered_bioactivity_dataset_w_fullprotnames_smiles
+description: Knowledgegraph data samples.
+targets:
+    - id: protein_name
+      description: protein_name
+      type: Other
+      units: protein_name
+      names:
+          - noun: protein_name
+    - id: pchembl_value
+      description: pchembl_value
+      type: Other
+      units: pchembl_value
+      names:
+          - noun: pchembl_value
+    - id: standard_type
+      description: standard_type
+      type: Other
+      units: standard_type
+      names:
+          - noun: standard_type
+    - id: standard_value
+      description: standard_value
+      type: Other
+      units: standard_value
+      names:
+          - noun: standard_value
+    - id: standard_units
+      description: standard_units
+      type: Other
+      units: standard_units
+      names:
+          - noun: standard_units
+    - id: description
+      description: description
+      type: Other
+      units: description
+      names:
+          - noun: description
+identifiers:
+    - id: SMILES
+      description: SMILES
+      type: SMILES
+license: CC BY 4.0
+links:
+    - url: https://crossbar.kansil.org
+      description: original knowledge graph web GUI link
+num_points: 1059070
+bibtex:
+    - "@article{10.1093/nar/gkab543,\nauthor = {Doğan, Tunca and Atas, Heval and Joshi, Vishal and Atakan, Ahmet and Rifaioglu, Ahmet Sureyya and Nalbat,\
+      \ Esra and Nightingale, Andrew and Saidi, Rabie and Volynkin, Vladimir and Zellner, Hermann and Cetin-Atalay, Rengul and Martin, Maria and Atalay,\
+      \ Volkan},\ntitle = \"{CROssBAR: comprehensive resource of biomedical relations with knowledge graph representations}\",\njournal = {Nucleic Acids\
+      \ Research},\nvolume = {49},\nnumber = {16},\npages = {e96-e96},\nyear = {2021},\nmonth = {06},\nissn = {0305-1048},\ndoi = {10.1093/nar/gkab543},\n\
+      url = {https://doi.org/10.1093/nar/gkab543},\n}"
+templates:
+    - The {#molecule with the |!}{SMILES__description} {#representation of |!}{SMILES#} {#shows|exhibits|displays!} a {#bioaffinity|affinity!} for {#the
+      protein |!}{protein_name#} with a {standard_type#} {#value |!}of {standard_value#} {standard_units#}.
+    - |-
+      Task: Please {#derive|estimate|approximate!} {#the bioaffinity|the affinity!} of a {#molecule to a protein|protein to a molecule!}.
+      Protein{# name|!}: {protein_name#}
+      {#Molecule |!}{SMILES__description}: {SMILES#}
+      Constraint{#s|!}: The {#resulting|derived|calculated!} {standard_type#} {#value |!}should be in {standard_units#}. Even if you are {#uncertain|not sure!}, you must {#derive|estimate|come up with!} a {standard_type#} {#value |!}without using any {#other|additional!} words.
+      Result: {standard_value#} {standard_units#}
+    - |-
+      Task: Please {#create|generate!} {#a molecule |a !}{SMILES__description} that has a {#bioaffinity|affinity!} to {#the protein |!}{protein_name#} with a {standard_type#} {#value |!}of {standard_value#} {standard_units#}.
+      Result: {SMILES#}
+    - |-
+      User: Can you {#give me|come up with!} {#one|an!} example of a protein that has a {#bioaffinity|affinity!} to the {SMILES__description} {SMILES#}?
+      Assistant: {#For example, the protein |For example, |!}{protein_name#} has a {#bioaffinity|affinity!} to the {SMILES__description} {SMILES#}.
+      User: Can you {#derive|estimate|approximate!} the {standard_type#} {#of this molecule|of this molecule for me|for me!}?
+      Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, the {standard_type#} {#value |!}is {standard_value#} {standard_units#}.
+    - |-
+      User: Can you {#give me|come up with!} {#one|an!} example of a protein that has a {#bioaffinity|affinity!} to the {SMILES__description} {SMILES#}?
+      Assistant: {#The protein |!}{protein_name#} has for example a {#bioaffinity|affinity!} to the {SMILES__description} {SMILES#}.
+      User: Can you {#derive|estimate|approximate!} the {standard_type#} {#of this molecule|of this molecule for me|for me!}?
+      Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, the {standard_type#} {#value |!}is {standard_value#} {standard_units#}.
+      User: Can you give {#me |!}{#additional|more!} {#information|details!} {#on|about!} the assay{# used| used for this estimation!}?
+      Assistant: {#Sure|Yes|Of course!}, here you go:
+      {description#}
+    - |-
+      Task: Please {#derive|estimate|approximate!} {#the bioaffinity|the affinity!} of a {#molecule to a protein|protein to a molecule!}.
+      Protein{# name|!}: {protein_name#}
+      {#Molecule |!}{SMILES__description}: {SMILES#}
+      Constraint{#s|!}: The {#resulting|derived|calculated!} {standard_type#} {#value |!}should be in {standard_units#}. Even if you are {#uncertain|not sure!}, you must {#derive|estimate|come up with!} a {standard_type#} {#value |!}without using any {#other|additional!} words.
+      Result:<EOI> {standard_value#} {standard_units#}
+    - |-
+      Task: Please {#create|generate!} a {#molecule |!}{SMILES__description} that has a {#bioaffinity|affinity!} to {#the protein |!}{protein_name#} with a {standard_type#} {#value |!}of {standard_value#} {standard_units#}.
+      Result:<EOI> {SMILES#}
+    - |-
+      Task: Please answer the multiple choice question.
+      Question: What is the {#the bioaffinity|the affinity!} of a {#molecule to a protein|protein to a molecule!}?
+      Protein{# name|!}: {protein_name#}
+      {#Molecule |!}{SMILES__description}: {SMILES#}
+      Constraint: The {#shown|listed!} {standard_type#} values {#below |!}are in {standard_units#}. Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%3-5%aA1} without using any other words.
+      Options:
+      {standard_value%}
+      Answer: {%multiple_choice_result}
+    - |-
+      Task: Please answer the multiple choice question.
+      Question: What is the {#the bioaffinity|the affinity!} of a {#molecule to a protein|protein to a molecule!}?
+      Protein{# name|!}: {protein_name#}
+      {#Molecule |!}{SMILES__description}: {SMILES#}
+      Constraint: The {#shown|listed!} {standard_type#} values {#below |!}are in {standard_units#}. Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%3-5%aA1} without using any other words.
+      Options:
+      {standard_value%}
+      Answer:<EOI> {%multiple_choice_result}

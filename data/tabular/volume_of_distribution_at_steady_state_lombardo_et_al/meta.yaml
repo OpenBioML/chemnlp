@@ -1,0 +1,54 @@
+---
+name: volume_of_distribution_at_steady_state_lombardo_et_al
+description: |-
+    The volume of distribution at steady state (VDss) measures the degree
+    of a drug's concentration in the body tissue compared to concentration in the blood.
+    Higher VD indicates a higher distribution in the tissue and usually indicates
+    the drug with high lipid solubility, low plasma protein binidng rate.
+targets:
+    - id: VDss_Lombardo
+      description: volume of distribution at steady state (VDss)
+      units: L/kg
+      type: continuous
+      names:
+          - noun: volume of distribution at steady state (VDss)
+          - noun: VDss
+      uris:
+          - http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C85538
+benchmarks:
+    - name: TDC
+      link: https://tdcommons.ai/
+      split_column: split
+identifiers:
+    - id: SMILES
+      type: SMILES
+      description: SMILES
+    - id: compound_name
+      type: Other
+      names:
+          - noun: compound name
+          - noun: drug name
+          - noun: generic drug name
+      description: mix of drug name and ids
+license: CC BY 4.0
+links:
+    - url: https://doi.org/10.1021/acs.jcim.6b00044
+      description: corresponding publication
+    - url: https://tdcommons.ai/single_pred_tasks/adme/#vdss-volumn-of-distribution-at-steady-state-lombardo-et-al
+      description: data source
+num_points: 1130
+bibtex:
+    - |-
+      @article{Lombardo2016,
+      doi = {10.1021/acs.jcim.6b00044},
+      url = {https://doi.org/10.1021/acs.jcim.6b00044},
+      year = {2016},
+      month = sep,
+      publisher = {merican Chemical Society (ACS)},
+      volume = {56},
+      number = {10},
+      pages = {2042--2052},
+      author = {Franco Lombardo and Yankang Jing},
+      title = {In Silico Prediction of Volume of Distribution in Humans. Extensive Data Set and the
+      Exploration of Linear and Nonlinear Methods Coupled with Molecular Interaction Fields Descriptors},
+      journal = {Journal of Chemical Information and Modeling}
