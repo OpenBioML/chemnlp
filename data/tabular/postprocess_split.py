@@ -8,6 +8,7 @@ import fire
 import pandas as pd
 import yaml
 from pandas.errors import ParserError
+from tqdm import tqdm
 
 
 def merge_files(dir):
@@ -98,6 +99,9 @@ def process_file(file: Union[str, Path], id_cols):
     df_file = os.path.join(dir, "data_clean.csv")
     size = os.path.getsize(df_file) / (1024**3)
     if size > 30:  # 120 GB pandas memory assuming factor 4
+        # note that this assumes that we know that the data in the large files
+        # is such that it does not make sense for the same identifier to
+        # appear multiple times
         ddf = read_ddf(file)
         ddf = ddf.drop_duplicates(subset=id_cols)
         ddf.to_csv("data_clean-{*}.csv", index=False)
@@ -133,7 +137,7 @@ def process_file(file: Union[str, Path], id_cols):
 
 def process_all_files(data_dir):
     all_yaml_files = glob(os.path.join(data_dir, "**", "meta.yaml"))
-    for yaml_file in all_yaml_files:
+    for yaml_file in tqdm(all_yaml_files):
         print(f"Processing {yaml_file}")
 
         id_cols = get_all_identifier_columns(yaml_file)
