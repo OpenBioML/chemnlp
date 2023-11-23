@@ -4,6 +4,7 @@ from glob import glob
 from pathlib import Path
 import yaml
 from typing import List, Union, Literal
+import os
 
 
 def get_all_yamls(data_dir):
@@ -49,7 +50,10 @@ def check_general_data_leakage(
 ):
     identifier_columns = get_all_identifier_columns(data_path)
     # check if train/valid/test splits have the same identifiers
-    data = dd.read_csv(data_path)
+    data_dir = Path(data_path).parent
+    table = os.path.join(data_dir, "data_clean.csv")
+
+    data = dd.read_csv(table)
     train = data[data["split"] == "train"]
     valid = data[data["split"] == "valid"]
     test = data[data["split"] == "test"]
@@ -68,15 +72,15 @@ def check_general_data_leakage(
 
     if not train_valid.empty:
         raise ValueError(
-            "Data leakage detected: There are identifiers that appear in both train and valid splits."
+            f"Data leakage detected in {data_path}: There are identifiers that appear in both train and valid splits."
         )
     if not train_test.empty:
         raise ValueError(
-            "Data leakage detected: There are identifiers that appear in both train and test splits."
+            f"Data leakage detected in {data_path}: There are identifiers that appear in both train and test splits."
         )
     if not valid_test.empty:
         raise ValueError(
-            "Data leakage detected: There are identifiers that appear in both valid and test splits."
+            f"Data leakage detected in {data_path}: There are identifiers that appear in both valid and test splits."
         )
 
 
@@ -89,7 +93,9 @@ def check_data_leakage(
     col_type="SMILES",
 ):
     # Load the data with Dask
-    data = dd.read_csv(data_path)
+    data_dir = Path(data_path).parent
+    table = os.path.join(data_dir, "data_clean.csv")
+    data = dd.read_csv(table)
 
     columns = get_columns_of_type(data_path, col_type)
 
@@ -148,10 +154,10 @@ def check_data_leakage(
 
         if not merged_splits.empty:
             raise ValueError(
-                "Data leakage detected: There are SMILES that appear in multiple splits."
+                f"Data leakage detected in {data_path}: There are SMILES that appear in multiple splits."
             )
 
-        print("No data leakage detected.")
+        print(f"No data leakage detected in {data_path}.")
 
 
 if __name__ == "__main__":
