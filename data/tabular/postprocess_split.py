@@ -152,7 +152,7 @@ def process_file(file: Union[str, Path], id_cols):
 
 def process_all_files(data_dir):
     all_yaml_files = glob(os.path.join(data_dir, "**", "meta.yaml"))
-    all_yaml_files = [f for f in all_yaml_files if "rhea_db_masked" in f]
+
     for yaml_file in tqdm(all_yaml_files):
         print(f"Processing {yaml_file}")
 
