@@ -7,6 +7,7 @@ import dask.dataframe as dd
 import fire
 import pandas as pd
 import yaml
+from pandas.errors import ParserError
 
 
 def merge_files(dir):
@@ -55,17 +56,49 @@ def get_all_identifier_columns(yaml_file: Union[str, Path]) -> List[str]:
     return identifier_columns
 
 
+def read_ddf(file):
+    try:
+        ddf = dd.read_csv(
+            os.path.join(os.path.dirname(file), "data_clean.csv"),
+            low_memory=False,
+        )
+    except ParserError:
+        print(f"Could not parse {file}. Using blocksize=None.")
+        ddf = dd.read_csv(
+            os.path.join(os.path.dirname(file), "data_clean.csv"),
+            low_memory=False,
+            blocksize=None,
+        )
+    except ValueError as e:
+        if "Mismatched dtypes" in str(e):
+            print(f"Could not parse {file}. Inferring dtypes via pandas.")
+            chunk = pd.read_csv(
+                os.path.join(os.path.dirname(file), "data_clean.csv"),
+                low_memory=False,
+                nrows=10000,
+            )
+            d = dict(zip(chunk.dtypes.index, [str(t) for t in chunk.dtypes.values]))
+            ddf = dd.read_csv(
+                os.path.join(os.path.dirname(file), "data_clean.csv"),
+                low_memory=False,
+                dtype=d,
+                assume_missing=True,
+            )
+    return ddf
+
+
 def process_file(file: Union[str, Path], id_cols):
     # if file does not fit in memory, use dask to drop duplicates, based on identifiers
     dir = Path(file).parent
+    # check if there is any csv file
+    if not glob(os.path.join(dir, "*.csv")):
+        return
     if os.path.exists(os.path.join(dir, "data_clean_0.csv")):
         merge_files(dir)
     df_file = os.path.join(dir, "data_clean.csv")
     size = os.path.getsize(df_file) / (1024**3)
     if size > 30:  # 120 GB pandas memory assuming factor 4
-        ddf = dd.read_csv(
-            df_file, low_memory=False
-        )  # perhaps we still need fallbacks for datatypes
+        ddf = read_ddf(file)
         ddf = ddf.drop_duplicates(subset=id_cols)
         ddf.to_csv("data_clean-{*}.csv", index=False)
         merge_files(dir)
@@ -76,17 +109,23 @@ def process_file(file: Union[str, Path], id_cols):
         val_smiles = []
 
         for id in id_cols:
-            test_smiles.append(df[df["split"] == "test"][id])
-            val_smiles.append(df[df["split"] == "valid"][id])
+            test_smiles.extend(df[df["split"] == "test"][id].to_list())
+            val_smiles.extend(df[df["split"] == "valid"][id].to_list())
 
         test_smiles = set(test_smiles)
         val_smiles = set(val_smiles)
 
         df["split"] = (
-            df[id_cols].isin(val_smiles).any(1).map({True: "valid", False: df["split"]})
+            df[id_cols]
+            .isin(val_smiles)
+            .any(axis=1)
+            .map({True: "valid", False: df["split"]})
         )
         df["split"] = (
-            df[id_cols].isin(test_smiles).any(1).map({True: "test", False: df["split"]})
+            df[id_cols]
+            .isin(test_smiles)
+            .any(axis=1)
+            .map({True: "test", False: df["split"]})
         )
 
         df.to_csv("data_clean.csv", index=False)
