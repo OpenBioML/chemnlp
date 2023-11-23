@@ -3,7 +3,10 @@ import fire
 
 
 def check_data_leakage(
-    data_path, test_smiles_path="test_smiles.txt", val_smiles_path="val_smiles.txt"
+    data_path,
+    test_smiles_path="test_smiles.txt",
+    val_smiles_path="val_smiles.txt",
+    smi_col="SMILES",
 ):
     # Load the data with Dask
     data = dd.read_csv(data_path)
@@ -21,8 +24,8 @@ def check_data_leakage(
     print(split_counts)
 
     # Check that all predefined test SMILES are only in the test set
-    test_smiles_in_data = data[data["SMILES"].isin(test_smiles_list)].compute()
-    val_smiles_in_data = data[data["SMILES"].isin(val_smiles_list)].compute()
+    test_smiles_in_data = data[data[smi_col].isin(test_smiles_list)].compute()
+    val_smiles_in_data = data[data[smi_col].isin(val_smiles_list)].compute()
 
     # Check for overlaps between predefined SMILES and splits
     test_in_val_or_train = test_smiles_in_data["split"] != "test"
@@ -39,15 +42,15 @@ def check_data_leakage(
 
     # Check for overlaps between splits by merging on SMILES and checking for multiple split assignments
     merged_splits = dd.merge(
-        data[data["split"] == "train"][["SMILES"]],
-        data[data["split"] == "valid"][["SMILES"]],
-        on="SMILES",
+        data[data["split"] == "train"][[smi_col]],
+        data[data["split"] == "valid"][[smi_col]],
+        on=smi_col,
         how="inner",
     )
     merged_splits = dd.merge(
         merged_splits,
-        data[data["split"] == "test"][["SMILES"]],
-        on="SMILES",
+        data[data["split"] == "test"][[smi_col]],
+        on=smi_col,
         how="inner",
     ).compute()
 
