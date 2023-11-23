@@ -1,13 +1,16 @@
-import dask.dataframe as dd
-import fire
+"""This script checks for data leakage in the splits of a tabular dataset."""
+import os
 from glob import glob
 from pathlib import Path
+from typing import List, Literal, Union
+
+import dask.dataframe as dd
+import fire
 import yaml
-from typing import List, Union, Literal
-import os
 
 
 def get_all_yamls(data_dir):
+    """Returns all yaml files in the data directory"""
     return glob(str(Path(data_dir) / "**" / "*.yaml"), recursive=True)
 
 
@@ -48,6 +51,10 @@ def get_all_identifier_columns(yaml_file: Union[str, Path]) -> List[str]:
 def check_general_data_leakage(
     data_path,
 ):
+    """Checks for data leakage in the splits of a tabular dataset.
+    Only checks for overlaps in identifiers (all identifier columns need
+    to be the same to count as a data leak).
+    """
     identifier_columns = get_all_identifier_columns(data_path)
     # check if train/valid/test splits have the same identifiers
     data_dir = Path(data_path).parent
@@ -92,6 +99,9 @@ def check_data_leakage(
     val_as_path="val_as.txt",
     col_type="SMILES",
 ):
+    """Checks for data leakage in the splits of a tabular dataset.
+    This function checks for overlaps between predefined test and validation
+    SMILES/Amino acid sequences and the splits in the dataset."""
     # Load the data with Dask
     data_dir = Path(data_path).parent
     table = os.path.join(data_dir, "data_clean.csv")
@@ -158,6 +168,25 @@ def check_data_leakage(
             )
 
         print(f"No data leakage detected in {data_path}.")
+
+
+def run_check(file):
+    has_as_columns = len(get_columns_of_type(file, "AS_SEQUENCE")) > 0
+    has_smiles_columns = len(get_columns_of_type(file, "SMILES")) > 0
+
+    if has_as_columns:
+        check_data_leakage(file, col_type="AS_SEQUENCE")
+
+    if has_smiles_columns:
+        check_data_leakage(file, col_type="SMILES")
+
+    check_general_data_leakage(file)
+
+
+def check_all_data_leakage(data_dir):
+    yamls = get_all_yamls(data_dir)
+    for file in yamls:
+        run_check(file)
 
 
 if __name__ == "__main__":
