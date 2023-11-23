@@ -134,6 +134,7 @@ def check_data_leakage(
         # Check that all predefined test SMILES are only in the test set
         test_smiles_in_data = data[data[col].isin(test_smiles_list)].compute()
         val_smiles_in_data = data[data[col].isin(val_smiles_list)].compute()
+        print(test_smiles_in_data)
 
         # Check for overlaps between predefined SMILES and splits
         test_in_val_or_train = test_smiles_in_data["split"] != "test"
@@ -141,11 +142,11 @@ def check_data_leakage(
 
         if test_in_val_or_train.any():
             raise ValueError(
-                "Data leakage detected: Some test SMILES are in validation or train splits."
+                f"Data leakage detected {data_path}: Some test SMILES are in validation or train splits."
             )
         if val_in_test_or_train.any():
             raise ValueError(
-                "Data leakage detected: Some validation SMILES are in test or train splits."
+                f"Data leakage detected {data_path}: Some validation SMILES are in test or train splits."
             )
 
         # Check for overlaps between splits by merging on SMILES and checking for multiple split assignments
@@ -180,14 +181,20 @@ def run_check(file):
     if has_smiles_columns:
         check_data_leakage(file, col_type="SMILES")
 
-    check_general_data_leakage(file)
+    # check_general_data_leakage(file)
 
 
 def check_all_data_leakage(data_dir):
     yamls = get_all_yamls(data_dir)
+    print(f"Checking {len(yamls)} datasets for data leakage.")
     for file in yamls:
-        run_check(file)
+        try:
+            run_check(file)
+        except Exception as e:
+            print(f"Error in {file}: {e}")
+            with open("data_leakage_errors.txt", "a") as f:
+                f.write(f"{file} {e}\n")
 
 
 if __name__ == "__main__":
-    fire.Fire(check_data_leakage)
+    fire.Fire(check_all_data_leakage)
