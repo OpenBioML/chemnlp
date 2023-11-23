@@ -44,6 +44,16 @@ def get_columns_of_type(
     return smiles_columns
 
 
+relevant_ids = ["info.mofid.mofid"]  # deduplication based on this makes sense
+
+# these are not relevant for deduplication
+non_relevant_ids = [
+    "info.mofid.smiles_nodes",
+    "info.mofid.smiles_linkers",
+    "info.mofid.smiles",
+]
+
+
 def get_all_identifier_columns(yaml_file: Union[str, Path]) -> List[str]:
     """Returns the id for all columns with type SMILES"""
     with open(yaml_file, "r") as f:
@@ -52,8 +62,25 @@ def get_all_identifier_columns(yaml_file: Union[str, Path]) -> List[str]:
     identifier_columns = []
     if "identifiers" in meta:
         for identifier in meta["identifiers"]:
-            identifier_columns.append(identifier["id"])
+            if (
+                identifier["type"]
+                in [
+                    "SMILES",
+                    "AS_SEQUENCE",
+                    "COMPOSITION",
+                    "RXNSMILES",
+                ]
+                or identifier["id"] in relevant_ids
+            ):
+                if identifier["id"] not in non_relevant_ids:
+                    identifier_columns.append(identifier["id"])
 
+    # if there are no identifiers, we simply append
+    if len(identifier_columns) == 0:
+        if "identifiers" in meta:
+            for identifier in meta["identifiers"]:
+                identifier_columns.append(identifier["id"])
+                break
     return identifier_columns
 
 
