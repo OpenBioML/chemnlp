@@ -35,11 +35,13 @@ def get_columns_of_type(
     if "targets" in meta:
         for target in meta["targets"]:
             if target["type"] == column_type:
-                smiles_columns.append(target["id"])
+                if target["id"] not in non_relevant_ids:
+                    smiles_columns.append(target["id"])
     if "identifiers" in meta:
         for identifier in meta["identifiers"]:
             if identifier["type"] == column_type:
-                smiles_columns.append(identifier["id"])
+                if identifier["id"] not in non_relevant_ids:
+                    smiles_columns.append(identifier["id"])
 
     return smiles_columns
 
@@ -51,6 +53,11 @@ non_relevant_ids = [
     "info.mofid.smiles_nodes",
     "info.mofid.smiles_linkers",
     "info.mofid.smiles",
+    "odd_one_out_mol",
+    "biggest_sim_0",
+    "biggest_sim_1",
+    "most_diff_0",
+    "most_diff_1",
 ]
 
 
@@ -141,21 +148,19 @@ def process_file(file: Union[str, Path], id_cols):
         test_smiles = set(test_smiles)
         val_smiles = set(val_smiles)
 
-        df["split"] = df.apply(
-            lambda x: "valid"
-            if any([s in val_smiles for s in x[id_cols]])
-            else x["split"],
-            axis=1,
-        )
-        df["split"] = df.apply(
-            lambda x: "test"
-            if any([s in test_smiles for s in x[id_cols]])
-            else x["split"],
-            axis=1,
+        is_in_test = df.apply(
+            lambda x: any([s in test_smiles for s in x[id_cols]]), axis=1
         )
 
+        is_in_val = df.apply(
+            lambda x: any([s in val_smiles for s in x[id_cols]]), axis=1
+        )
+        df.loc[is_in_test, "split"] = "test"
+        df.loc[is_in_val, "split"] = "valid"
+
+        print(df["split"].value_counts())
+
         for id in id_cols:
-            print(df["split"].value_counts())
             this_test_smiles = set(df[df["split"] == "test"][id].to_list())
             this_val_smiles = set(df[df["split"] == "valid"][id].to_list())
             this_train_smiles = set(df[df["split"] == "train"][id].to_list())
@@ -174,16 +179,16 @@ def process_file(file: Union[str, Path], id_cols):
 
 def process_all_files(data_dir):
     all_yaml_files = glob(os.path.join(data_dir, "**", "meta.yaml"))
-
     for yaml_file in tqdm(all_yaml_files):
         print(f"Processing {yaml_file}")
-
-        id_cols = get_all_identifier_columns(yaml_file)
-        print(id_cols)
-        smiles_columns = get_columns_of_type(yaml_file)
-        if smiles_columns:
-            id_cols = smiles_columns
-        process_file(yaml_file, id_cols)
+        try:
+            id_cols = get_all_identifier_columns(yaml_file)
+            smiles_columns = get_columns_of_type(yaml_file)
+            if smiles_columns:
+                id_cols = smiles_columns
+            process_file(yaml_file, id_cols)
+        except Exception as e:
+            print(f"Could not process {yaml_file}: {e}")
 
 
 if __name__ == "__main__":
