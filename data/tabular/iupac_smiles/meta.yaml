@@ -52,13 +52,13 @@ bibtex:
       and Zhang, Jian and Bolton, Evan E},
       year={2022}, month=oct, pages={D1373–D1380} }
 templates:
-    - The {Traditional__names__noun} of the {#molecule|chemical|compound!} with {SMILES__names__noun} {SMILES#} is {Traditional#}.
-    - The {CAS_like_Style__names__noun} of the {#molecule|chemical|compound!} with {SMILES__names__noun} {SMILES#} is {CAS_like_Style#}.
-    - The {Preferred__names__noun} of the {#molecule|chemical|compound!} with {SMILES__names__noun} {SMILES#} is {Preferred#}.
-    - The {SMILES__names__noun} of the {#molecule|chemical|compound!} with {Traditional__names__noun} {Traditional#} is {SMILES#}.
-    - The {SMILES__names__noun} of the {#molecule|chemical|compound!} with {Systematic__names__noun} {Systematic#} is {SMILES#}.
-    - The {SMILES__names__noun} of the {#molecule|chemical|compound!} with {CAS_like_Style__names__noun} {CAS_like_Style#} is {SMILES#}.
-    - The {SMILES__names__noun} of the {#molecule|chemical|compound!} with {Preferred__names__noun} {Preferred#} is {SMILES#}.
+    - The {Traditional__names__noun} of the {#molecule|chemical|compound!} with {SMILES__description} {SMILES#} is {Traditional#}.
+    - The {CAS_like_Style__names__noun} of the {#molecule|chemical|compound!} with {SMILES__description} {SMILES#} is {CAS_like_Style#}.
+    - The {Preferred__names__noun} of the {#molecule|chemical|compound!} with {SMILES__description} {SMILES#} is {Preferred#}.
+    - The {SMILES__description} of the {#molecule|chemical|compound!} with {Traditional__names__noun} {Traditional#} is {SMILES#}.
+    - The {SMILES__description} of the {#molecule|chemical|compound!} with {Systematic__names__noun} {Systematic#} is {SMILES#}.
+    - The {SMILES__description} of the {#molecule|chemical|compound!} with {CAS_like_Style__names__noun} {CAS_like_Style#} is {SMILES#}.
+    - The {SMILES__description} of the {#molecule|chemical|compound!} with {Preferred__names__noun} {Preferred#} is {SMILES#}.
     - |-
       Task: Please {#give me|create|generate!} the {#SMILES|SMILES representation!} of a {#molecule|chemical|compound!} {#given the|based on the!} {Traditional__names__noun}.
       IUPAC name: {Traditional#}
