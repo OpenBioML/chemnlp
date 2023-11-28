@@ -38,6 +38,7 @@ from pandarallel import pandarallel
 from pandas.errors import ParserError
 from tqdm import tqdm
 
+
 from chemnlp.data.split import _create_scaffold_split
 
 pandarallel.initialize(progress_bar=True)
@@ -119,7 +120,65 @@ to_scaffold_split = [
     "MUV_852",
     "MUV_858",
     "MUV_859",
+    # kg datasets
+    # "chebi_chebi",
+    "chembl33_preprocessed_filtered_bioactivity_dataset_w_fullprotnames_smiles",
+    "compound_chebi",
+    "compound_chebi_chebi",
+    "compound_chebi_chebi_chebi_1",
+    "compound_chebi_chebi_chebi_2",
+    "compound_protein",
+    "compound_protein_compound_1",
+    "compound_protein_compound_2",
+    "compound_protein_compound_3",
+    "compound_protein_disease",
+    "compound_protein_domain",
+    "compound_protein_ec_number",
+    "compound_protein_go_term_1",
+    "compound_protein_go_term_2",
+    "compound_protein_go_term_3",
+    "compound_protein_go_term_4",
+    "compound_protein_hpo",
+    "compound_protein_hpo_disease_1",
+    "compound_protein_hpo_disease_2",
+    "compound_protein_pathway",
+    "compound_protein_pathway_disease_1",
+    "compound_protein_pathway_disease_2",
+    "compound_protein_pathway_disease_3",
+    "compound_protein_protein",
+    "drug_chebi",
+    "drug_chebi_chebi",
+    "drug_chebi_chebi_chebi",
+    "drug_disease_pathway",
+    "drug_disease_pathway_protein",
+    "drug_protein",
+    "drug_protein_disease",
+    "drug_protein_domain",
+    "drug_protein_drug",
+    "drug_protein_ec_number",
+    "drug_protein_go_term",
+    "drug_protein_hpo",
+    "drug_protein_hpo_disease",
+    "drug_protein_pathway",
+    "drug_protein_pathway_disease",
+    "drug_protein_protein",
 ]
+
+
+def cull_empty_partitions(df):
+    ll = list(df.map_partitions(len).compute())
+    df_delayed = df.to_delayed()
+    df_delayed_new = list()
+    pempty = None
+    for ix, n in enumerate(ll):
+        if 0 == n:
+            print("culled")
+            pempty = df.get_partition(ix)
+        else:
+            df_delayed_new.append(df_delayed[ix])
+    if pempty is not None:
+        df = dd.from_delayed(df_delayed_new, meta=pempty)
+    return df
 
 
 def split_for_smiles(
@@ -168,7 +227,9 @@ def is_in_scaffold_split_list(yaml_file: Union[str, Path]) -> bool:
 
 def get_meta_yaml_files(data_dir: Union[str, Path]) -> List[str]:
     """Returns all yaml files in the data_dir directory."""
-    return glob(os.path.join(data_dir, "**", "**", "meta.yaml"), recursive=True)
+    return sorted(
+        glob(os.path.join(data_dir, "**", "**", "meta.yaml"))
+    )  # , recursive=True)
 
 
 def run_transform(file: Union[str, Path]) -> None:
@@ -235,10 +296,10 @@ def remaining_split(
     non_smiles_yaml_files = [
         file
         for file in yaml_files
-        if not (
-            yaml_file_has_column_of_type(file, "SMILES")
-            or yaml_file_has_column_of_type(file, "AS_SEQUENCE")
-        )
+        # if not (
+        #    yaml_file_has_column_of_type(file, "SMILES")
+        #    or yaml_file_has_column_of_type(file, "AS_SEQUENCE")
+        # )
     ]
 
     # if we debug, we only run split on the first 5 datasets
@@ -570,6 +631,7 @@ def smiles_split(
 
     # we err toward doing more I/O but having simpler code to ensure we don't make anything stupid
     all_yaml_files = get_meta_yaml_files(data_dir)
+    # all_yaml_files = ["/fsx/proj-chemnlp/micpie/chemnlp/data/kg/chembl33_preprocessed_filtered_bioactivity_dataset_w_fullprotnames_smiles/meta.yaml"]
     smiles_yaml_files = [
         file
         for file in all_yaml_files
@@ -583,9 +645,26 @@ def smiles_split(
         file for file in smiles_yaml_files if not is_in_scaffold_split_list(file)
     ]
 
-    # not_scaffold_split_yaml_files = [
-    #     f for f in not_scaffold_split_yaml_files if "rdkit" not in f
-    # ]
+    # not_scaffold_split_yaml_files = list(set( [
+    #    f
+    #    for f in not_scaffold_split_yaml_files
+    #    if Path(f).parts[-2]
+    #    in [
+    #         "rdkit_features",
+    #         #"orbnet_denali",
+    #         #"smiles_to_3d",
+    #         #"iupac_smiles",
+    #         #"fda_adverse_reactions",
+    #    ]
+    # ]))
+    # index = [
+    #     i
+    #     for i, x in enumerate(not_scaffold_split_yaml_files)
+    #     if str(x).find("orbnet_denali") != -1
+    # ][0]
+    # # not_scaffold_split_yaml_files = not_scaffold_split_yaml_files[index:]
+    # # not_scaffold_split_yaml_files = not_scaffold_split_yaml_files[index+1:]
+    # not_scaffold_split_yaml_files = [not_scaffold_split_yaml_files[index]]
 
     # if we debug, we only run split on the first 5 datasets
     if debug:
@@ -626,11 +705,11 @@ def smiles_split(
             seed,
         )
 
-        split_counts = ddf["split"].value_counts().compute()
+        # split_counts = ddf["split"].value_counts().compute()
 
-        print(
-            f"Dataset {file} has {len(ddf)} datapoints. Split sizes: {split_counts['train']} train, {split_counts['valid']} valid, {split_counts['test']} test."  # noqa: E501
-        )
+        # print(
+        #    f"Dataset {file} has {len(ddf)} datapoints. Split sizes: {split_counts['train']} train, {split_counts['valid']} valid, {split_counts['test']} test."  # noqa: E501
+        # )
 
         # we then write the new data_clean.csv file
         # if the override option is true, we write this new file to `data_clean.csv` in the same directory
@@ -641,20 +720,19 @@ def smiles_split(
                 os.path.join(os.path.dirname(file), "data_clean.csv"),
                 os.path.join(os.path.dirname(file), "data_clean_old.csv"),
             )
-        ddf.to_csv(
-            os.path.join(os.path.dirname(file), "data_clean.csv"),
-            index=False,
-            single_file=True,
-        )
+        ddf.to_csv(os.path.join(os.path.dirname(file), "data_clean-*.csv"))
 
     for file in tqdm(not_scaffold_split_yaml_files):
-        print(f"Processing {file}")
+        print(f"\nProcessing {file}")
         if run_transform_py:
             run_transform(file)
         try:
             ddf = dd.read_csv(
                 os.path.join(os.path.dirname(file), "data_clean.csv"), low_memory=False
             )
+            # print(len(ddf))
+            # s ddf = cull_empty_partitions(ddf)
+            # print(partition_sizes)
             split_and_save(file, ddf)
 
         except ParserError:
@@ -821,32 +899,29 @@ def run_all_split(
     run_transform_py: bool = False,
 ):
     """Runs all splitting steps on the datasets in the data_dir directory."""
-    # cluster = LocalCluster(memory_limit="64GB")
-    # client = Client(cluster)
-    # logging.info(f"Dashboard available at: {client.dashboard_link}")
 
-    # print('Running "as_sequence" split...')
-    # as_sequence_split(
-    #     data_dir,
-    #     override,
-    #     seed,
-    #     debug,
-    #     train_frac,
-    #     val_frac,
-    #     test_frac,
-    #     run_transform_py,
-    # )
-    # print("Running scaffold split...")
-    # scaffold_split(
-    #     data_dir,
-    #     override,
-    #     train_frac,
-    #     val_frac,
-    #     test_frac,
-    #     seed,
-    #     debug,
-    #     run_transform_py,
-    # )
+    print('Running "as_sequence" split...')
+    as_sequence_split(
+        data_dir,
+        override,
+        seed,
+        debug,
+        train_frac,
+        val_frac,
+        test_frac,
+        run_transform_py=run_transform_py,
+    )
+    print("Running scaffold split...")
+    scaffold_split(
+        data_dir,
+        override,
+        train_frac,
+        val_frac,
+        test_frac,
+        seed,
+        debug,
+        run_transform_py=run_transform_py,
+    )
     print("Running SMILES split...")
     smiles_split(
         data_dir,
@@ -858,17 +933,17 @@ def run_all_split(
         test_frac,
         run_transform_py=run_transform_py,
     )
-    # print("Running remaining split...")
-    # remaining_split(
-    #     data_dir,
-    #     override,
-    #     seed,
-    #     debug,
-    #     train_frac=train_frac,
-    #     val_frac=val_frac,
-    #     test_frac=test_frac,
-    #     run_transform_py=run_transform_py,
-    # )
+    print("Running remaining split...")
+    remaining_split(
+        data_dir,
+        override,
+        seed,
+        debug,
+        train_frac=train_frac,
+        val_frac=val_frac,
+        test_frac=test_frac,
+        run_transform_py=run_transform_py,
+    )
 
 
 if __name__ == "__main__":

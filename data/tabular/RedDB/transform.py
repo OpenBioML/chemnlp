@@ -1,7 +1,7 @@
 import pandas as pd
 import yaml
-from rdkit import Chem
 from huggingface_hub import hf_hub_download
+from rdkit import Chem
 
 
 def is_valid_smiles(smiles: str) -> bool:
