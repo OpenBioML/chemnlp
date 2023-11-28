@@ -104,7 +104,7 @@ def leakage_check(file, outdir="out"):
 
 
 def check_all_files(data_dir):
-    all_csv_files = glob(os.path.join(data_dir, "**", "data_clean.csv"))
+    all_csv_files = sorted(glob(os.path.join(data_dir, "**", "**", "data_clean.csv")))
     for csv_file in tqdm(all_csv_files):
         if Path(csv_file).parts[-2] not in [
             "odd_one_out",
