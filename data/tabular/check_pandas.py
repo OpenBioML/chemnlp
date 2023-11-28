@@ -1,10 +1,10 @@
-import pandas as pd
-import fire
 import os
 from glob import glob
-from tqdm import tqdm
 from pathlib import Path
 
+import fire
+import pandas as pd
+from tqdm import tqdm
 
 with open("test_smiles.txt", "r") as f:
     test_smiles_ref = f.readlines()

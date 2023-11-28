@@ -38,11 +38,11 @@ from pandarallel import pandarallel
 from pandas.errors import ParserError
 from tqdm import tqdm
 
-
 from chemnlp.data.split import _create_scaffold_split
+import logging
 
 pandarallel.initialize(progress_bar=True)
-import logging
+
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -325,7 +325,6 @@ def remaining_split(
         )
 
         # Calculate the train, valid, and test masks based on the random values
-        train_mask = random_values < train_frac
         valid_mask = (random_values >= train_frac) & (
             random_values < train_frac + test_frac
         )
@@ -631,7 +630,6 @@ def smiles_split(
 
     # we err toward doing more I/O but having simpler code to ensure we don't make anything stupid
     all_yaml_files = get_meta_yaml_files(data_dir)
-    # all_yaml_files = ["/fsx/proj-chemnlp/micpie/chemnlp/data/kg/chembl33_preprocessed_filtered_bioactivity_dataset_w_fullprotnames_smiles/meta.yaml"]
     smiles_yaml_files = [
         file
         for file in all_yaml_files
