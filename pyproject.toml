@@ -41,6 +41,7 @@ dataset_creation = [
       #  "safe-mol",
         "backoff",
         "givemeconformer",
+        "chembl_webresource_client"
 ]
 
 training = [
