@@ -41,7 +41,8 @@ dataset_creation = [
         "backoff",
         "givemeconformer",
         "chembl_webresource_client", 
-        "dask"
+        "dask",
+        "pandarallel"
 ]
 
 training = [
