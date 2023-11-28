@@ -28,9 +28,8 @@ dev = [
 
 dataset_creation = [
         "PyTDC",
-        "rdkit-pypi",
+        "rdkit",
         "ruamel.yaml",
-        "modin[all]",
         "selfies",
         "deepsmiles",
         "pubchempy",
@@ -41,7 +40,8 @@ dataset_creation = [
       #  "safe-mol",
         "backoff",
         "givemeconformer",
-        "chembl_webresource_client"
+        "chembl_webresource_client", 
+        "dask"
 ]
 
 training = [
