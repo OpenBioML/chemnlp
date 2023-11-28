@@ -20,6 +20,7 @@ Warning:
     - Some CSV files contain complicated strings. We cannot parse them in a chunked manner.
         In this case, we set blocksize=None and read the whole file into memory.
 """
+import logging
 import os
 import random
 import subprocess
@@ -39,7 +40,6 @@ from pandas.errors import ParserError
 from tqdm import tqdm
 
 from chemnlp.data.split import _create_scaffold_split
-import logging
 
 pandarallel.initialize(progress_bar=True)
 
