@@ -90,16 +90,16 @@ def get_and_transform_data():
         path_csv,
         delimiter=",",
     )
-    df["smiles_with_hydrogens"] = df["smiles"].apply(smiles_with_hydrogens)
+    # df["SMILES_with_H"] = df["SMILES"].apply(smiles_with_hydrogens)
 
-    if "split" in df.columns:
-        assert df.columns[-1] == "split", "Split column needs to be the last column."
-        col_len = len(df.columns) - 1
-    else:
-        print(
-            "CAUTION: No split information found, maybe you need to rerun the train_test_split.py script over extend_tabular_processed.csv?"  # noqa: E501
-        )
-        col_len = len(df.columns)
+    # if "split" in df.columns:
+    assert df.columns[-1] == "split", "Split column needs to be the last column."
+    col_len = len(df.columns) - 1
+    # else:
+    #    print(
+    #        "CAUTION: No split information found, maybe you need to rerun the train_test_split.py script over extend_tabular_processed.csv?"  # noqa: E501
+    #    )
+    #    col_len = len(df.columns)
 
     for i in range(col_len):
         for j in range(i + 1, col_len):
@@ -112,13 +112,13 @@ def get_and_transform_data():
 
             # df export
             col_suffix = "_text"  # to exclude from other preprocessing steps
-            if "split" in df.columns:
-                df_subset = df[subset_cols + ["split"]].dropna()
-            else:
-                df_subset = df[subset_cols].dropna()
+            # if "split" in df.columns:
+            df_subset = df[subset_cols + ["split"]].dropna()
+            # else:
+            #    df_subset = df[subset_cols].dropna()
             df_subset.columns = [
                 x + col_suffix if x != "split" else x for x in subset_cols
-            ]
+            ] + ["split"]
             df_subset.to_csv(path_export + "/data_clean.csv", index=False)
 
             # meta yaml export
