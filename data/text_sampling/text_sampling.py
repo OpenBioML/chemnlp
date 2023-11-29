@@ -168,7 +168,8 @@ exclude_from_standard_tabular_text_templates = [
     "mol_repr_transl_canonical_iupac_name",
     "mol_repr_transl_inchi_iupac_name",
     "iupac_smiles",  # translation from IUPAC name to SMILES
-    "uniprot_binding_sites",
+    "uniprot_binding_single",
+    "uniprot_binding_sites_multiple",
     "uniprot_organisms",
     "uniprot_reactions",
     "uniprot_sentences",
