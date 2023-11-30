@@ -175,6 +175,7 @@ exclude_from_standard_tabular_text_templates = [
     "uniprot_reactions",
     "uniprot_sentences",
     "zinc",  # SMILES only, has no target
+    "rdkit_features",
     # "h2_storage_materials",  # only IUPAC identifier, more than one target, LOW PRIO: has only 30 samples
 ]
 
