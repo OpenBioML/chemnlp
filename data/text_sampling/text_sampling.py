@@ -69,70 +69,6 @@ Result:<EOI> {SMILES#}""",  # noqa: E501
 
 exclude_from_standard_tabular_text_templates = [
     "BBBP",  # because it is boolean target data
-    "ames_mutagenicity",  # because it is boolean target data
-    "bio_ner",
-    "bioavailability_ma_et_al",  # because it is boolean target data
-    "blood_brain_barrier_martins_et_al",  # because it is boolean target data
-    "carcinogens",  # because it is boolean target data
-    "core_mof_no_topo",
-    "qmof_gcmc",
-    "qmof_quantum",
-    "cav3_t-type_calcium_channels_butkiewicz",  # because it is boolean target data
-    "chebi_20",  # target is text description
-    "chembl_v29",  # text only, no SMILES
-    "chemcaption_rdkit",  # text only, no SMILES
-    "choline_transporter_butkiewicz",  # because it is boolean target data
-    "clintox",  # because it is boolean target data
-    "chemcaption_fragments",
-    "cyp2c9_substrate_carbonmangels",  # boolean target data
-    "cyp2d6_substrate_carbonmangels",  # boolean target data
-    "cyp3a4_substrate_carbonmangels",  # boolean target data
-    "cyp_p450_1a2_inhibition_veith_et_al",  # boolean target data
-    "cyp_p450_2c19_inhibition_veith_et_al",  # boolean target data
-    "cyp_p450_2c9_inhibition_veith_et_al",  # boolean target data
-    "cyp_p450_2d6_inhibition_veith_et_al",  # boolean target data
-    "cyp_p450_3a4_inhibition_veith_et_al",  # boolean target data
-    "drug_induced_liver_injury",  # boolean target data
-    "drugchat_liang_zhang_et_al",  # text
-    "freesolv",  # more than one target
-    "herg_blockers",  # more than one target
-    "herg_central_inhib",  # boolean target data
-    "herg_karim_et_al",  # boolean target data
-    "hiv",  # boolean target data
-    "human_intestinal_absorption",  # boolean target data
-    "iupac_goldbook",  # text only, no SMILES
-    "kcnq2_potassium_channel_butkiewicz",  # boolean target data
-    "m1_muscarinic_receptor_agonists_butkiewicz",  # boolean target data
-    "m1_muscarinic_receptor_antagonists_butkiewicz",  # boolean target data
-    "mona",  # more than one target
-    "moses",  # SMILES only, has no target
-    "nlmchem",  # text only, no SMILES
-    "nr_ahr_tox21",  # boolean target data
-    "nr_ar_lbd_tox21",  # boolean target data
-    "nr_ar_tox21",  # boolean target data
-    "nr_aromatase_tox21",  # boolean target data
-    "nr_er_lbd_tox21",  # boolean target data
-    "nr_er_tox21",  # boolean target data
-    "nr_ppar_gamma_tox21",  # boolean target data
-    "orexin1_receptor_butkiewicz",  # boolean target data
-    "p_glycoprotein_inhibition_broccatelli_et_al",  # boolean target data
-    "pampa_ncats",  # boolean target data
-    "peptides_hemolytic",  # boolean target data
-    "peptides_soluble",  # boolean target data
-    "peptides_nonfouling",  # boolean target data
-    "potassium_ion_channel_kir2_1_butkiewicz",  # boolean target data
-    "sarscov2_3clpro_diamond",  # boolean target data
-    "sarscov2_vitro_touret",  # boolean target data
-    "serine_threonine_kinase_33_butkiewicz",  # boolean target data
-    "skin_reaction",  # boolean target data
-    "sr_are_tox21",  # boolean target data
-    "sr_atad5_tox21",  # boolean target data
-    "sr_hse_tox21",  # boolean target data
-    "sr_mmp_tox21",  # boolean target data
-    "sr_p53_tox21",  # boolean target data
-    "tyrosyl-dna_phosphodiesterase_butkiewicz",  # boolean target data
-    "zinc",  # SMILES only, has no target
-    "smiles_to_3d",
     "MUV_466",  # boolean target data
     "MUV_548",  # boolean target data
     "MUV_600",  # boolean target data
@@ -150,29 +86,95 @@ exclude_from_standard_tabular_text_templates = [
     "MUV_852",  # boolean target data
     "MUV_858",  # boolean target data
     "MUV_859",  # boolean target data
-    "orbnet_denali",  # only makes sense for the structure files
-    "odd_one_out",
-    "mol_repr_transl_smiles_selfies",
-    "mol_repr_transl_smiles_deepsmiles",
-    "mol_repr_transl_smiles_canonical",
-    "mol_repr_transl_smiles_inchi",
-    "mol_repr_transl_smiles_iupac_name",
-    "mol_repr_transl_selfies_deepsmiles",
-    "mol_repr_transl_selfies_canonical",
-    "mol_repr_transl_selfies_inchi",
-    "mol_repr_transl_selfies_iupac_name",
+    "ames_mutagenicity",  # because it is boolean target data
+    "bio_ner",
+    "bioavailability_ma_et_al",  # because it is boolean target data
+    "blood_brain_barrier_martins_et_al",  # because it is boolean target data
+    "carcinogens",  # because it is boolean target data
+    "cav3_t-type_calcium_channels_butkiewicz",  # because it is boolean target data
+    "chebi_20",  # target is text description
+    "chembl_v29",  # text only, no SMILES
+    "chemcaption_fragments",
+    "chemcaption_rdkit",  # text only, no SMILES
+    "choline_transporter_butkiewicz",  # because it is boolean target data
+    "clintox",  # because it is boolean target data
+    "core_mof_no_topo",
+    "cyp2c9_substrate_carbonmangels",  # boolean target data
+    "cyp2d6_substrate_carbonmangels",  # boolean target data
+    "cyp3a4_substrate_carbonmangels",  # boolean target data
+    "cyp_p450_1a2_inhibition_veith_et_al",  # boolean target data
+    "cyp_p450_2c19_inhibition_veith_et_al",  # boolean target data
+    "cyp_p450_2c9_inhibition_veith_et_al",  # boolean target data
+    "cyp_p450_2d6_inhibition_veith_et_al",  # boolean target data
+    "cyp_p450_3a4_inhibition_veith_et_al",  # boolean target data
+    "drug_induced_liver_injury",  # boolean target data
+    "drugchat_liang_zhang_et_al",  # text
+    "freesolv",  # more than one target
+    "herg_blockers",  # more than one target
+    "herg_central_inhib",  # boolean target data
+    "herg_karim_et_al",  # boolean target data
+    "hiv",  # boolean target data
+    "human_intestinal_absorption",  # boolean target data
+    "iupac_goldbook",  # text only, no SMILES
+    "iupac_smiles",  # translation from IUPAC name to SMILES
+    "kcnq2_potassium_channel_butkiewicz",  # boolean target data
+    "m1_muscarinic_receptor_agonists_butkiewicz",  # boolean target data
+    "m1_muscarinic_receptor_antagonists_butkiewicz",  # boolean target data
+    "mol_repr_transl_canonical_inchi",
+    "mol_repr_transl_canonical_iupac_name",
     "mol_repr_transl_deepsmiles_canonical",
     "mol_repr_transl_deepsmiles_inchi",
     "mol_repr_transl_deepsmiles_iupac_name",
-    "mol_repr_transl_canonical_inchi",
-    "mol_repr_transl_canonical_iupac_name",
     "mol_repr_transl_inchi_iupac_name",
-    "iupac_smiles",  # translation from IUPAC name to SMILES
+    "mol_repr_transl_selfies_canonical",
+    "mol_repr_transl_selfies_deepsmiles",
+    "mol_repr_transl_selfies_inchi",
+    "mol_repr_transl_selfies_iupac_name",
+    "mol_repr_transl_smiles_canonical",
+    "mol_repr_transl_smiles_deepsmiles",
+    "mol_repr_transl_smiles_inchi",
+    "mol_repr_transl_smiles_iupac_name",
+    "mol_repr_transl_smiles_selfies",
+    "mona",  # more than one target
+    "moses",  # SMILES only, has no target
+    "nlmchem",  # text only, no SMILES
+    "nr_ahr_tox21",  # boolean target data
+    "nr_ar_lbd_tox21",  # boolean target data
+    "nr_ar_tox21",  # boolean target data
+    "nr_aromatase_tox21",  # boolean target data
+    "nr_er_lbd_tox21",  # boolean target data
+    "nr_er_tox21",  # boolean target data
+    "nr_ppar_gamma_tox21",  # boolean target data
+    "odd_one_out",
+    "orbnet_denali",  # only makes sense for the structure files
+    "orexin1_receptor_butkiewicz",  # boolean target data
+    "p_glycoprotein_inhibition_broccatelli_et_al",  # boolean target data
+    "pampa_ncats",  # boolean target data
+    "peptides_hemolytic",  # boolean target data
+    "peptides_nonfouling",  # boolean target data
+    "peptides_soluble",  # boolean target data
+    "potassium_ion_channel_kir2_1_butkiewicz",  # boolean target data
+    "qmof_gcmc",
+    "qmof_quantum",
+    "rhea_db_masked",
+    "rhea_db_predictions",
+    "sarscov2_3clpro_diamond",  # boolean target data
+    "sarscov2_vitro_touret",  # boolean target data
+    "serine_threonine_kinase_33_butkiewicz",  # boolean target data
+    "skin_reaction",  # boolean target data
+    "smiles_to_3d",
+    "sr_are_tox21",  # boolean target data
+    "sr_atad5_tox21",  # boolean target data
+    "sr_hse_tox21",  # boolean target data
+    "sr_mmp_tox21",  # boolean target data
+    "sr_p53_tox21",  # boolean target data
+    "tyrosyl-dna_phosphodiesterase_butkiewicz",  # boolean target data
     "uniprot_binding_single",
     "uniprot_binding_sites_multiple",
     "uniprot_organisms",
     "uniprot_reactions",
     "uniprot_sentences",
+    "zinc",  # SMILES only, has no target
     # "h2_storage_materials",  # only IUPAC identifier, more than one target, LOW PRIO: has only 30 samples
 ]
 
