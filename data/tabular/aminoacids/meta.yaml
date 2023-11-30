@@ -27,7 +27,7 @@ num_points: 20
 templates:
     - The {#essential amino acid|amino acid|amino acid (AA)|AA!} with the {SMILES__description} {SMILES#} has a one-letter code {one_letter_code#} and a
       three-letter code {three_letter_code#}.
-    - The {#essential amino acid|amino acid|amino acid (AA)|AA!} {amino acid_name#} has a one-letter code {one_letter_code#} and a three-letter code {three_letter_code#}.
+    - The {#essential amino acid|amino acid|amino acid (AA)|AA!} {aminoacid_name#} has a one-letter code {one_letter_code#} and a three-letter code {three_letter_code#}.
     - |-
       Question: What is the one-letter code of the {#essential amino acid|amino acid|amino acid (AA)|AA!} with the {SMILES__description} {SMILES#}?
       Answer: {one_letter_code#}.
