@@ -1,5 +1,5 @@
 ---
-name: chem_caption_smarts
+name: mol2svg
 description: |-
     This dataset contains SVG images of molecules, including some with substructures
     highlighted.
@@ -11,7 +11,7 @@ identifiers:
     - id: prompt
       type: text
       description: prompt
-    - id: smiles
+    - id: SMILES
       type: SMILES
       description: SMILES
 license: CC BY 4.0
