@@ -13,7 +13,7 @@ targets:
     - id: mp_range
       description: melting point range
       units: deg C
-      type: continuous
+      type: text
       names:
           - noun: melting point range
 benchmarks: []
