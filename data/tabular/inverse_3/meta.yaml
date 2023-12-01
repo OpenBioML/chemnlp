@@ -1,0 +1,223 @@
+---
+name: inverse_3
+description: |-
+    Inverse design task constructed by merging kcnq2_potassium_channel_butkiewicz and
+    choline_transporter_butkiewicz and augmenting it with molecular descriptors.
+targets:
+    - id: activity_kcnq2_potassium_channel
+      description: whether it is active against kcnq2 potassium channel receptor (1) or not (0).
+      units:
+      type: boolean
+      names:
+          - adjective: kcnq2 potassium channel inhibiting
+      pubchem_aids:
+          - 2239
+          - 2287
+          - 2282
+          - 2283
+          - 2558
+      uris: []
+    - id: activity_choline_transporter
+      description: inhibition of choline transporter receptor (1) or not (0).
+      units:
+      type: boolean
+      names:
+          - adjective: choline transporter activity inhibiting
+      pubchem_aids:
+          - 488975
+          - 493221
+          - 504840
+          - 588401
+          - 493222
+          - 602208
+    - id: carboxyl_count
+      description: number of carboxyl groups
+      type: ordinal
+      names:
+          - noun: carboxyl groups
+    - id: carbonyl_count
+      description: number of carbonyl groups
+      type: ordinal
+      names:
+          - noun: carbonyl groups
+    - id: ether_count
+      description: number of ether groups
+      type: ordinal
+      names:
+          - noun: ether groups
+    - id: alkanol_count
+      description: number of alkanol groups
+      type: ordinal
+      names:
+          - noun: alkanol groups
+    - id: thiol_count
+      description: number of thiol groups
+      type: ordinal
+      names:
+          - noun: thiol groups
+    - id: halogen_count
+      description: number of halogen groups
+      type: ordinal
+      names:
+          - noun: halogen groups
+    - id: amine_count
+      description: number of amine groups
+      type: ordinal
+      names:
+          - noun: amine groups
+    - id: amide_count
+      description: number of amide groups
+      type: ordinal
+      names:
+          - noun: amide groups
+    - id: ketone_count
+      description: number of ketone groups
+      type: ordinal
+      names:
+          - noun: ketone group count
+    - id: num_valence_electrons
+      description: number of valence electrons
+      type: ordinal
+      names:
+          - noun: valence electrons
+    - id: molecular_formula
+      description: molecular formula
+      type: text
+      names:
+          - noun: molecular formula
+    - id: monoisotopic_molecular_mass
+      description: monoisotopic molecular mass
+      type: continuous
+      units: g/mol
+      names:
+          - noun: monoisotopic molecular mass
+    - id: carbon_mass
+      description: carbon mass
+      type: continuous
+      units: g/mol
+      names:
+          - noun: carbon mass
+    - id: hydrogen_mass
+      description: hydrogen mass
+      type: continuous
+      units: g/mol
+      names:
+          - noun: hydrogen mass
+    - id: nitrogen_mass
+      description: nitrogen mass
+      type: continuous
+      units: g/mol
+      names:
+          - noun: nitrogen mass
+    - id: oxygen_mass
+      description: oxygen mass
+      units: g/mol
+      type: continuous
+      names:
+          - noun: oxygen mass
+    - id: num_carbon_atoms
+      description: number of carbon atoms
+      type: ordinal
+      names:
+          - noun: carbon atoms
+    - id: num_hydrogen_atoms
+      type: ordinal
+      description: number of hydrogen atoms
+      names:
+          - noun: hydrogen atoms
+    - id: num_nitrogen_atoms
+      description: number of nitrogen atoms
+      type: ordinal
+      names:
+          - noun: nitrogen atoms
+    - id: num_oxygen_atoms
+      description: number of oxygen atoms
+      type: ordinal
+      names:
+          - noun: oxygen atoms
+    - id: num_hydrogen_bond_acceptors
+      description: number of hydrogen bond acceptors
+      type: ordinal
+      names:
+          - noun: hydrogen bond acceptors
+    - id: num_hydrogen_bond_donors
+      description: number of hydrogen bond donors
+      type: ordinal
+      names:
+          - noun: hydrogen bond donors
+    - id: num_lipinski_violations
+      description: number of Lipinski violations
+      type: ordinal
+      names:
+          - noun: Lipinski violations
+          - noun: Lipinski rule of five violations
+    - id: num_chiral_centers
+      description: number of chiral centers
+      type: ordinal
+      names:
+          - noun: chiral center count
+benchmarks:
+    - name: TDC
+      link: https://tdcommons.ai/
+      split_column: split
+identifiers:
+    - id: SMILES
+      type: SMILES
+      description: SMILES
+license: CC BY 4.0
+links:
+    - url: https://doi.org/10.1038/s41597-019-0151-1
+      description: corresponding publication
+    - url: https://tdcommons.ai/single_pred_tasks/adme/#aqeuous_solubility-aqsoldb
+      description: data source
+    - url: https://github.com/lamalab-org/chem-caption
+      description: software used to generate features
+num_points: 2517
+bibtex:
+    - |-
+      @article{Sorkun_2019,
+      doi = {10.1038/s41597-019-0151-1},
+      url = {https://doi.org/10.1038%2Fs41597-019-0151-1},
+      year = {2019},
+      month = aug,
+      publisher = {Springer Science and Business Media LLC},
+      volume = {6},
+      number = {1},
+      author = {Murat Cihan Sorkun and Abhishek Khetan and
+      Suleyman Er},
+      title = {AqSolDB, a curated reference set of aqueous aqeuous_solubility
+      and 2D descriptors for a diverse set of compounds},
+      journal = {Scientific Data}
+templates:
+  - |-
+      User: I {#need|want!} a {#molecule|chemical|drug|chemical structure!} that is {activity_kcnq2_potassium_channel#not &NULL}{activity_kcnq2_potassium_channel__names__adjective} and {activity_choline_transporter#not &NULL}{activity_choline_transporter__names__adjective}. {#Can you|Could you!} suggest something with a specific number of carbon atoms?
+      Assistant: What is the desired {#count for|number of!} {num_carbon_atoms__names__noun} in the molecule?
+      User: {#Preferably |!}{num_carbon_atoms#}.
+      Assistant: For a count of {num_carbon_atoms#} {num_carbon_atoms__names__noun}, a {#molecule|chemical|drug|chemical structure!} with {SMILES__description} {SMILES#} {#would be suitable|would satisfy the constraints!}.
+  - |-
+      User: I {#need|want!} a {#molecule|chemical|drug|chemical structure!} that is {activity_kcnq2_potassium_channel#not &NULL}{activity_kcnq2_potassium_channel__names__adjective} and {activity_choline_transporter#not &NULL}{activity_choline_transporter__names__adjective}. {#Can you|Could you!} suggest something with a specific number of hydrogen atoms?
+      Assistant: What is the desired {#count for|number of!} {num_hydrogen_atoms__names__noun} in the molecule?
+      User: {#Preferably |!}{num_hydrogen_atoms#}.
+      Assistant: For a count of {num_hydrogen_atoms#} {num_hydrogen_atoms__names__noun}, a {#molecule|chemical|drug|chemical structure!} with {SMILES__description} {SMILES#} {#would be suitable|would satisfy the constraints!}.
+  - |-
+      User: I {#need|want!} a {#molecule|chemical|drug|chemical structure!} that is {activity_kcnq2_potassium_channel#not &NULL}{activity_kcnq2_potassium_channel__names__adjective} and {activity_choline_transporter#not &NULL}{activity_choline_transporter__names__adjective}. {#Can you|Could you!} suggest something with a specific number of nitrogen atoms and molecular formula?
+      Assistant: What is the desired {molecular_formula__names__noun}?
+      User: {#Preferably |!}{molecular_formula#}.
+      Assistant: {#In this case, |!}I {#recommend|suggest|propose!} a {#molecule|chemical|drug|chemical structure!} with {SMILES__description} {SMILES#}.
+  - |-
+      User: I {#need|want!} a {#molecule|chemical|drug|chemical structure!} that is {activity_kcnq2_potassium_channel#not &NULL}{activity_kcnq2_potassium_channel__names__adjective} and {activity_choline_transporter#not &NULL}{activity_choline_transporter__names__adjective}. {#Can you|Could you!} suggest something with {num_chiral_centers__names__noun} and a specific molecular formula?
+      Assistant: What is the desired {molecular_formula__names__noun}?
+      User: {#Preferably |Ideally |!}{molecular_formula#}.
+      Assistant: {#In this case, |!}I {#recommend|suggest|propose!} a {#molecule|chemical|drug|chemical structure!} with {SMILES__description} {SMILES#}.
+  - |-
+      User: I {#need|want!} a {#molecule|chemical|drug|chemical structure!} that is {activity_kcnq2_potassium_channel#not &NULL}{activity_kcnq2_potassium_channel__names__adjective} and {activity_choline_transporter#not &NULL}{activity_choline_transporter__names__adjective}. {#Can you|Could you!} suggest something with a {num_hydrogen_bond_acceptors#} {num_hydrogen_bond_acceptors__names__noun} and a {molecular_formula__names__noun} of {molecular_formula#}?
+      Assistant: {#In this case, |!}I {#recommend|suggest|propose!} a {#molecule|chemical|drug|chemical structure!} with {SMILES__description} {SMILES#}.
+  - |-
+      User: I {#need|want!} a {#molecule|chemical|drug|chemical structure!} that is {activity_kcnq2_potassium_channel#not &NULL}{activity_kcnq2_potassium_channel__names__adjective} and {activity_choline_transporter#not &NULL}{activity_choline_transporter__names__adjective}. {#Can you|Could you!} suggest something with a {num_hydrogen_bond_donors#} {num_hydrogen_bond_donors__names__noun} and a {molecular_formula__names__noun} of {molecular_formula#}?
+      Assistant: {#In this case, |!}I {#recommend|suggest|propose!} a {#molecule|chemical|drug|chemical structure!} with {SMILES__description} {SMILES#}.
+  - |-
+      User: I {#need|want!} a {#molecule|chemical|drug|chemical structure!} that is {activity_kcnq2_potassium_channel#not &NULL}{activity_kcnq2_potassium_channel__names__adjective} and {activity_choline_transporter#not &NULL}{activity_choline_transporter__names__adjective}. {#Can you|Could you!} suggest something with a {num_lipinski_violations#} {num_lipinski_violations__names__noun} and a {monoisotopic_molecular_mass__names__noun} of {monoisotopic_molecular_mass#} {monoisotopic_molecular_mass__units}? 
+      Assistant: {#In this case, |!}I {#recommend|suggest|propose!} a {#molecule|chemical|drug|chemical structure!} with {SMILES__description} {SMILES#}.
+  - |- 
+      User: I {#need|want!} a {#molecule|chemical|drug|chemical structure!} that is {activity_kcnq2_potassium_channel#not &NULL}{activity_kcnq2_potassium_channel__names__adjective} and {activity_choline_transporter#not &NULL}{activity_choline_transporter__names__adjective}. {#Can you|Could you!} suggest something with a {num_carbon_atoms#} {num_carbon_atoms__names__noun}, {num_hydrogen_atoms#} {num_hydrogen_atoms__names__noun} and {num_nitrogen_atoms#} {num_nitrogen_atoms__names__noun}?
+      Assistant: {#In this case, |!}I {#recommend|suggest|propose!} a {#molecule|chemical|drug|chemical structure!} with {SMILES__description} {SMILES#}.
