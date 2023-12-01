@@ -173,7 +173,8 @@ exclude_from_standard_tabular_text_templates = [
     "uniprot_reactions",
     "uniprot_sentences",
     "inverse_1",
-    "inverse_2"
+    "inverse_2",
+    "inverse_3"
     # "h2_storage_materials",  # only IUPAC identifier, more than one target, LOW PRIO: has only 30 samples
 ]
 
@@ -336,6 +337,7 @@ def get_target_from_string(meta: dict, string: str) -> str:
     """Gets a target string from the meta dict based on the variable string.
     (A variable string is what is between the curly brackets in the text template.)"""
     keys = string.split("__")
+    print(keys)
 
     def get_with_nested_keys(d: dict, keys: list) -> str:
         t = d.copy()
@@ -1023,8 +1025,8 @@ if __name__ == "__main__":
 
     for path in path_data_dir:
         # subselect one path
-        if not "inverse" in path:
-            continue
+        # if not "kcnq2_potassium_channel_butkiewicz" in path:
+        #     continue
         # if path.find("data/tabular/") == -1: continue
         # if path.find("data/kg/") == -1: continue
         # if path.find("chembl33") != -1: continue
