@@ -1,13 +1,9 @@
 import concurrent.futures
 
+import numpy as np
 import pandas as pd
 from chemcaption.featurize.adaptor import ValenceElectronCountAdaptor
 from chemcaption.featurize.base import MultipleFeaturizer
-from chemcaption.featurize.bonds import (
-    BondTypeCountFeaturizer,
-    BondTypeProportionFeaturizer,
-    RotableBondCountFeaturizer,
-)
 from chemcaption.featurize.composition import (
     ElementCountFeaturizer,
     ElementMassFeaturizer,
@@ -20,22 +16,17 @@ from chemcaption.featurize.electronicity import (
     HydrogenDonorCountFeaturizer,
 )
 from chemcaption.featurize.rules import LipinskiViolationCountFeaturizer
-from chemcaption.featurize.spatial import (
-    AsphericityFeaturizer,
-    EccentricityFeaturizer,
-    InertialShapeFactorFeaturizer,
-    NPRFeaturizer,
-    PMIFeaturizer,
-)
 from chemcaption.featurize.stereochemistry import ChiralCenterCountFeaturizer
 from chemcaption.featurize.substructure import SMARTSFeaturizer
-from chemcaption.molecules import InChIMolecule, SELFIESMolecule, SMILESMolecule
-from chemcaption.presets import ALL_SMARTS
+from chemcaption.molecules import SMILESMolecule
+from chemcaption.presets import ORGANIC
+
+ORGANIC = dict(zip(ORGANIC["names"], ORGANIC["smarts"]))
 
 
 def get_smarts_featurizers():
     featurizers = []
-    for name, smarts in ALL_SMARTS.items():
+    for name, smarts in ORGANIC.items():
         featurizers.append(SMARTSFeaturizer([smarts], names=[name]))
     return featurizers
 
@@ -44,9 +35,6 @@ FEATURIZER = MultipleFeaturizer(
     get_smarts_featurizers()
     + [
         ValenceElectronCountAdaptor(),
-        RotableBondCountFeaturizer(),
-        BondTypeCountFeaturizer(),
-        BondTypeProportionFeaturizer(),
         MolecularFormulaFeaturizer(),
         MonoisotopicMolecularMassFeaturizer(),
         ElementMassFeaturizer(),
@@ -83,12 +71,22 @@ def transform():
         for feature in executor.map(featurize_smiles, merged["SMILES"]):
             features.append(feature)
 
-    feature_names = FEATURIZER.feature_names()
-
+    feature_names = FEATURIZER.feature_labels()
+    print(feature_names)
+    features = np.concatenate(features)
+    print(features.shape)
     # add features to dataframe
     for i, name in enumerate(feature_names):
         merged[name] = features[:, i]
-
+    merged.dropna(
+        subset=[
+            "SMILES",
+        ]
+        + FEATURIZER.feature_names()
+        + ["aqeuous_solubility", "toxicity_NR-AR"],
+        inplace=True,
+    )
+    print(len(merged))
     merged.to_csv("merged.csv", index=False)
 
 

@@ -1,7 +1,7 @@
 ---
 name: inverse_1
 description: |-
-    Inverse design task constructed by merging solubility_aqsoldb and 
+    Inverse design task constructed by merging solubility_aqsoldb and
     nr_ar_tox21 and augmenting it with molecular descriptors.
 targets:
     - id: aqeuous_solubility
@@ -29,6 +29,107 @@ targets:
           - gerund: exhibiting toxicity in the NR-androgen assay
           - gerund: demonstrating toxicity in the NR-androgen assay
       uris:
+    - id: carboxyl_count
+      description: number of carboxyl groups
+      names:
+          - noun: carboxyl groups
+    - id: carbonyl_count
+      description: number of carbonyl groups
+      names:
+          - noun: carbonyl groups
+    - id: ether_count
+      description: number of ether groups
+      names:
+          - noun: ether groups
+    - id: alkanol_count
+      description: number of alkanol groups
+      names:
+          - noun: alkanol groups
+    - id: thiol_count
+      description: number of thiol groups
+      names:
+          - noun: thiol groups
+    - id: halogen_count
+      description: number of halogen groups
+      names:
+          - noun: halogen groups
+    - id: amine_count
+      description: number of amine groups
+      names:
+          - noun: amine groups
+    - id: amide_count
+      description: number of amide groups
+      names:
+          - noun: amide groups
+    - id: ketone_count
+      description: number of ketone groups
+      names:
+          - noun: ketone group count
+    - id: num_valence_electrons
+      description: number of valence electrons
+      names:
+          - noun: valence electrons
+    - id: molecular_formula
+      description: molecular formula
+      names:
+          - noun: molecular formula
+    - id: monoisotopic_molecular_mass
+      description: monoisotopic molecular mass
+      names:
+          - noun: monoisotopic molecular mass
+    - id: carbon_mass
+      description: carbon mass
+      units: g/mol
+      names:
+          - noun: carbon mass
+    - id: hydrogen_mass
+      description: hydrogen mass
+      units: g/mol
+      names:
+          - noun: hydrogen mass
+    - id: nitrogen_mass
+      description: nitrogen mass
+      units: g/mol
+      names:
+          - noun: nitrogen mass
+    - id: oxygen_mass
+      description:
+      units: g/mol
+      names:
+          - noun: oxygen mass
+    - id: num_carbon_atoms
+      description: number of carbon atoms
+      names:
+          - noun: carbon atoms
+    - id: num_hydrogen_atoms
+      description: number of hydrogen atoms
+      names:
+          - noun: hydrogen atoms
+    - id: num_nitrogen_atoms
+      description: number of nitrogen atoms
+      names:
+          - noun: nitrogen atoms
+    - id: num_oxygen_atoms
+      description: number of oxygen atoms
+      names:
+          - noun: oxygen atoms
+    - id: num_hydrogen_bond_acceptors
+      description: number of hydrogen bond acceptors
+      names:
+          - noun: hydrogen bond acceptors
+    - id: num_hydrogen_bond_donors
+      description: number of hydrogen bond donors
+      names:
+          - noun: hydrogen bond donors
+    - id: num_lipinski_violations
+      description: number of Lipinski violations
+      names:
+          - noun: Lipinski violations
+          - noun: Lipinski rule of five violations
+    - id: num_chiral_center
+      description: number of chiral centers
+      names:
+          - noun: chiral center count
 benchmarks:
     - name: TDC
       link: https://tdcommons.ai/
@@ -45,7 +146,7 @@ links:
       description: data source
     - url: https://github.com/lamalab-org/chem-caption
       description: software used to generate features
-num_points: 302306
+num_points: 2525
 bibtex:
     - |-
       @article{Sorkun_2019,
@@ -62,8 +163,11 @@ bibtex:
       and 2D descriptors for a diverse set of compounds},
       journal = {Scientific Data}
 templates:
-  - |- 
-    User: {#I want|I must|I have to|I need to!} {#design|synthesize|create|make|generate!} a {#molecule|compound|chemical structure!} that is has {solubility__names__noun} of {solubility#} {solubility__units} and is {toxicity_NR-AR#not &NULL}{toxicity_NR-AR__names__adjective}.
-    Assistant: {#There might be multiple compounds that match these criteria. Do you have additional constraints?|Do you have additional constraints?|Is there anything else I should consider?|Is there anything else I should know?!}
-    User: {#No|No, there are no additional constraints.|No, there are no other constraints.|No, there are no other criteria.|No, there are no other requirements.|No, there are none.!}
-    Assistant: {#In this case, |OK, |Alright, |Understood, |Got it, |I see, !} the {#molecule|compound|chemical structure!} with {SMILES__description} {SMILES#} {#should|will|is expected to!} fit your criteria.
+    - |-
+      User: {#I want|I must|I have to|I need to!} {#design|synthesize|create|make|generate!} a {#molecule|compound|chemical structure!} that is has {solubility__names__noun} of {solubility#} {solubility__units} and is {toxicity_NR-AR#not &NULL}{toxicity_NR-AR__names__adjective}.
+      Assistant: {#There might be multiple compounds that match these criteria. Do you have additional constraints?|Do you have additional constraints?|Is there anything else I should consider?|Is there anything else I should know?!}
+      User: {#No|No, there are no additional constraints.|No, there are no other constraints.|No, there are no other criteria.|No, there are no other requirements.|No, there are none.!}
+      Assistant: {#In this case, |OK, |Alright, |Understood, |Got it, |I see, !} the {#molecule|compound|chemical structure!} with {SMILES__description} {SMILES#} {#should|will|is expected to!} fit your criteria.
+    - |-
+      User: {#I am a medicinal chemist.|I work in drug-discovery.|!} {#I want|I must|I have to|I need to!} {#design|synthesize|create|make|generate!} a {#molecule|compound|chemical structure!} that is has {solubility__names__noun} of {solubility#} {solubility__units} and is {toxicity_NR-AR#not &NULL}{toxicity_NR-AR__names__adjective}. {#Additionally, |Moreover, |On top of that, |In addition, |Furthermore, !} {#I|we} {#want|need|require|would like|would prefer!} the {#molecule|compound|chemical structure!} to have a {monoiosotopic_molecular_mass__names__noun} of {monoiosotopic_molecular_mass#} {monoiosotopic_molecular_mass__units}. {#I|we!} {#want|would like to|need to!} ensure that {#there are|the molecule contains|the compound contains!} {carboxyl_count#} {carbonyl_count__names__noun}.
+      Assistant: {#Thanks for the detailed description. |Thanks. |!}{#I suggest|I recommend|I propose|I would suggest|I would recommend|I would propose!} the {#molecule|compound|chemical structure!} with {SMILES__description} {SMILES#} {#should|will|is expected to!} fit your criteria.
