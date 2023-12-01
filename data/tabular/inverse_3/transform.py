@@ -57,7 +57,7 @@ def featurize_smiles(smiles: str):
     try:
         molecule = to_smiles_molecule(smiles)
         return FEATURIZER.featurize(molecule)
-    except Exception as e:
+    except Exception:
         return np.array([np.nan] * len(FEATURIZER.feature_labels())).reshape(1, -1)
 
 
@@ -78,7 +78,6 @@ def transform():
         ):
             features.append(feature)
 
-    print(feature_names)
     features = np.concatenate(features)
     print(features.shape)
     # add features to dataframe
