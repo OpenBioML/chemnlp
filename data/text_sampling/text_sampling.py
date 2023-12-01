@@ -172,6 +172,8 @@ exclude_from_standard_tabular_text_templates = [
     "uniprot_organisms",
     "uniprot_reactions",
     "uniprot_sentences",
+    "inverse_1",
+    "inverse_2"
     # "h2_storage_materials",  # only IUPAC identifier, more than one target, LOW PRIO: has only 30 samples
 ]
 
@@ -1021,8 +1023,8 @@ if __name__ == "__main__":
 
     for path in path_data_dir:
         # subselect one path
-        # if not "iupac" in path:
-        #     continue
+        if not "inverse" in path:
+            continue
         # if path.find("data/tabular/") == -1: continue
         # if path.find("data/kg/") == -1: continue
         # if path.find("chembl33") != -1: continue
