@@ -87,7 +87,7 @@ def transform():
         inplace=True,
     )
     print(len(merged))
-    merged.to_csv("merged.csv", index=False)
+    merged.to_csv("data_clean.csv", index=False)
 
 
 if __name__ == "__main__":
