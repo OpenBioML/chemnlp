@@ -1,0 +1,69 @@
+---
+name: inverse_1
+description: |-
+    Inverse design task constructed by merging solubility_aqsoldb and 
+    nr_ar_tox21 and augmenting it with molecular descriptors.
+targets:
+    - id: aqeuous_solubility
+      description: aqueous solubility
+      units: log(mol/L)
+      type: continuous
+      names:
+          - noun: aqeuous solubility
+          - noun: water solubility
+          - adjective: dissolves in a water
+      uris:
+          - http://purl.jp/bio/4/id/200906006880450101
+          - http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C60821
+    - id: toxicity_NR-AR
+      description: whether it toxic in a androgen receptor toxicity assay (1) or not (0)
+      units:
+      type: boolean
+      names:
+          - noun: NR-AR toxicity
+          - noun: NR-androgen receptor toxicity
+          - verb: is toxic in a androgen receptor toxicity assay
+          - adjective: toxic in the NR-AR assay
+          - adjective: toxic in the NR-androgen receptor assay
+          - gerund: displaying toxicity in the NR-AR assay
+          - gerund: exhibiting toxicity in the NR-androgen assay
+          - gerund: demonstrating toxicity in the NR-androgen assay
+      uris:
+benchmarks:
+    - name: TDC
+      link: https://tdcommons.ai/
+      split_column: split
+identifiers:
+    - id: SMILES
+      type: SMILES
+      description: SMILES
+license: CC BY 4.0
+links:
+    - url: https://doi.org/10.1038/s41597-019-0151-1
+      description: corresponding publication
+    - url: https://tdcommons.ai/single_pred_tasks/adme/#solubility-aqsoldb
+      description: data source
+    - url: https://github.com/lamalab-org/chem-caption
+      description: software used to generate features
+num_points: 302306
+bibtex:
+    - |-
+      @article{Sorkun_2019,
+      doi = {10.1038/s41597-019-0151-1},
+      url = {https://doi.org/10.1038%2Fs41597-019-0151-1},
+      year = {2019},
+      month = aug,
+      publisher = {Springer Science and Business Media LLC},
+      volume = {6},
+      number = {1},
+      author = {Murat Cihan Sorkun and Abhishek Khetan and
+      Suleyman Er},
+      title = {AqSolDB, a curated reference set of aqueous solubility
+      and 2D descriptors for a diverse set of compounds},
+      journal = {Scientific Data}
+templates:
+  - |- 
+    User: {#I want|I must|I have to|I need to!} {#design|synthesize|create|make|generate!} a {#molecule|compound|chemical structure!} that is has {solubility__names__noun} of {solubility#} {solubility__units} and is {toxicity_NR-AR#not &NULL}{toxicity_NR-AR__names__adjective}.
+    Assistant: {#There might be multiple compounds that match these criteria. Do you have additional constraints?|Do you have additional constraints?|Is there anything else I should consider?|Is there anything else I should know?!}
+    User: {#No|No, there are no additional constraints.|No, there are no other constraints.|No, there are no other criteria.|No, there are no other requirements.|No, there are none.!}
+    Assistant: {#In this case, |OK, |Alright, |Understood, |Got it, |I see, !} the {#molecule|compound|chemical structure!} with {SMILES__description} {SMILES#} {#should|will|is expected to!} fit your criteria.

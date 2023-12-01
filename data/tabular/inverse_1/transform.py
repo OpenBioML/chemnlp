@@ -55,12 +55,6 @@ FEATURIZER = MultipleFeaturizer(
         HydrogenAcceptorCountFeaturizer(),
         HydrogenDonorCountFeaturizer(),
         LipinskiViolationCountFeaturizer(),
-        InertialShapeFactorFeaturizer(),
-        EccentricityFeaturizer(),
-        AsphericityFeaturizer(),
-        InertialShapeFactorFeaturizer(),
-        NPRFeaturizer(),
-        PMIFeaturizer(),
         ChiralCenterCountFeaturizer(),
     ]
 )
