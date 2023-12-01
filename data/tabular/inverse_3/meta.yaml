@@ -189,35 +189,35 @@ bibtex:
       and 2D descriptors for a diverse set of compounds},
       journal = {Scientific Data}
 templates:
-  - |-
+    - |-
       User: I {#need|want!} a {#molecule|chemical|drug|chemical structure!} that is {activity_kcnq2_potassium_channel#not &NULL}{activity_kcnq2_potassium_channel__names__adjective} and {activity_choline_transporter#not &NULL}{activity_choline_transporter__names__adjective}. {#Can you|Could you!} suggest something with a specific number of carbon atoms?
       Assistant: What is the desired {#count for|number of!} {num_carbon_atoms__names__noun} in the molecule?
       User: {#Preferably |!}{num_carbon_atoms#}.
       Assistant: For a count of {num_carbon_atoms#} {num_carbon_atoms__names__noun}, a {#molecule|chemical|drug|chemical structure!} with {SMILES__description} {SMILES#} {#would be suitable|would satisfy the constraints!}.
-  - |-
+    - |-
       User: I {#need|want!} a {#molecule|chemical|drug|chemical structure!} that is {activity_kcnq2_potassium_channel#not &NULL}{activity_kcnq2_potassium_channel__names__adjective} and {activity_choline_transporter#not &NULL}{activity_choline_transporter__names__adjective}. {#Can you|Could you!} suggest something with a specific number of hydrogen atoms?
       Assistant: What is the desired {#count for|number of!} {num_hydrogen_atoms__names__noun} in the molecule?
       User: {#Preferably |!}{num_hydrogen_atoms#}.
       Assistant: For a count of {num_hydrogen_atoms#} {num_hydrogen_atoms__names__noun}, a {#molecule|chemical|drug|chemical structure!} with {SMILES__description} {SMILES#} {#would be suitable|would satisfy the constraints!}.
-  - |-
+    - |-
       User: I {#need|want!} a {#molecule|chemical|drug|chemical structure!} that is {activity_kcnq2_potassium_channel#not &NULL}{activity_kcnq2_potassium_channel__names__adjective} and {activity_choline_transporter#not &NULL}{activity_choline_transporter__names__adjective}. {#Can you|Could you!} suggest something with a specific number of nitrogen atoms and molecular formula?
       Assistant: What is the desired {molecular_formula__names__noun}?
       User: {#Preferably |!}{molecular_formula#}.
       Assistant: {#In this case, |!}I {#recommend|suggest|propose!} a {#molecule|chemical|drug|chemical structure!} with {SMILES__description} {SMILES#}.
-  - |-
+    - |-
       User: I {#need|want!} a {#molecule|chemical|drug|chemical structure!} that is {activity_kcnq2_potassium_channel#not &NULL}{activity_kcnq2_potassium_channel__names__adjective} and {activity_choline_transporter#not &NULL}{activity_choline_transporter__names__adjective}. {#Can you|Could you!} suggest something with {num_chiral_centers__names__noun} and a specific molecular formula?
       Assistant: What is the desired {molecular_formula__names__noun}?
       User: {#Preferably |Ideally |!}{molecular_formula#}.
       Assistant: {#In this case, |!}I {#recommend|suggest|propose!} a {#molecule|chemical|drug|chemical structure!} with {SMILES__description} {SMILES#}.
-  - |-
+    - |-
       User: I {#need|want!} a {#molecule|chemical|drug|chemical structure!} that is {activity_kcnq2_potassium_channel#not &NULL}{activity_kcnq2_potassium_channel__names__adjective} and {activity_choline_transporter#not &NULL}{activity_choline_transporter__names__adjective}. {#Can you|Could you!} suggest something with a {num_hydrogen_bond_acceptors#} {num_hydrogen_bond_acceptors__names__noun} and a {molecular_formula__names__noun} of {molecular_formula#}?
       Assistant: {#In this case, |!}I {#recommend|suggest|propose!} a {#molecule|chemical|drug|chemical structure!} with {SMILES__description} {SMILES#}.
-  - |-
+    - |-
       User: I {#need|want!} a {#molecule|chemical|drug|chemical structure!} that is {activity_kcnq2_potassium_channel#not &NULL}{activity_kcnq2_potassium_channel__names__adjective} and {activity_choline_transporter#not &NULL}{activity_choline_transporter__names__adjective}. {#Can you|Could you!} suggest something with a {num_hydrogen_bond_donors#} {num_hydrogen_bond_donors__names__noun} and a {molecular_formula__names__noun} of {molecular_formula#}?
       Assistant: {#In this case, |!}I {#recommend|suggest|propose!} a {#molecule|chemical|drug|chemical structure!} with {SMILES__description} {SMILES#}.
-  - |-
-      User: I {#need|want!} a {#molecule|chemical|drug|chemical structure!} that is {activity_kcnq2_potassium_channel#not &NULL}{activity_kcnq2_potassium_channel__names__adjective} and {activity_choline_transporter#not &NULL}{activity_choline_transporter__names__adjective}. {#Can you|Could you!} suggest something with a {num_lipinski_violations#} {num_lipinski_violations__names__noun} and a {monoisotopic_molecular_mass__names__noun} of {monoisotopic_molecular_mass#} {monoisotopic_molecular_mass__units}? 
+    - |-
+      User: I {#need|want!} a {#molecule|chemical|drug|chemical structure!} that is {activity_kcnq2_potassium_channel#not &NULL}{activity_kcnq2_potassium_channel__names__adjective} and {activity_choline_transporter#not &NULL}{activity_choline_transporter__names__adjective}. {#Can you|Could you!} suggest something with a {num_lipinski_violations#} {num_lipinski_violations__names__noun} and a {monoisotopic_molecular_mass__names__noun} of {monoisotopic_molecular_mass#} {monoisotopic_molecular_mass__units}?
       Assistant: {#In this case, |!}I {#recommend|suggest|propose!} a {#molecule|chemical|drug|chemical structure!} with {SMILES__description} {SMILES#}.
-  - |- 
+    - |-
       User: I {#need|want!} a {#molecule|chemical|drug|chemical structure!} that is {activity_kcnq2_potassium_channel#not &NULL}{activity_kcnq2_potassium_channel__names__adjective} and {activity_choline_transporter#not &NULL}{activity_choline_transporter__names__adjective}. {#Can you|Could you!} suggest something with a {num_carbon_atoms#} {num_carbon_atoms__names__noun}, {num_hydrogen_atoms#} {num_hydrogen_atoms__names__noun} and {num_nitrogen_atoms#} {num_nitrogen_atoms__names__noun}?
       Assistant: {#In this case, |!}I {#recommend|suggest|propose!} a {#molecule|chemical|drug|chemical structure!} with {SMILES__description} {SMILES#}.
