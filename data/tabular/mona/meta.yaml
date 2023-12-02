@@ -22,9 +22,6 @@ identifiers:
     - id: inchi
       type: InChI
       description: InChI
-    - id: inchikey
-      type: InChIKey
-      description: InChIKey
     - id: id
       type: Other
       description: MassBank ID
