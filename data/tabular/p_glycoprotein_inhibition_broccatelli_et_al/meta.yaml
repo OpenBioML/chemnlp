@@ -75,7 +75,7 @@ templates:
       Constraint: Answer the question in a {#full|complete!} sentence.
       Result: This molecule is {Pgp_inhibition#not &NULL}{Pgp_inhibition__names__adjective}.
     - |-
-      Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+      Task: Please {#give me|create|generate!} a {SMILES__description} of a {#molecule|chemical|chemical compound!} based on the {#text |!}description{# below|!}.
       Description: A molecule that is {Pgp_inhibition__names__adjective}.
       Result: {SMILES#}
     - |-
@@ -91,12 +91,12 @@ templates:
       User: I'm {#searching|looking!} for the {SMILES__description} of a molecule that is {Pgp_inhibition#not &NULL}{Pgp_inhibition__names__adjective}?
       Assistant: This is a molecule that is {Pgp_inhibition#not &NULL}{Pgp_inhibition__names__adjective}: {SMILES#}
     - |-
-      User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+      User: I want to {#come up with|create|generate!} a {SMILES__description} of a {#molecule|chemical|chemical compound!}.
       Assistant: This sounds {#very exciting. |very interesting. | very curious. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
       User: Yes, please. The molecule should {Pgp_inhibition#not &NULL}be {Pgp_inhibition__names__adjective}.
       Assistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} is {Pgp_inhibition#not &NULL}{Pgp_inhibition__names__adjective}: {SMILES#}
     - |-
-      User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+      User: I want to {#come up with|create|generate!} a {SMILES__description} of a {#molecule|chemical|chemical compound!}.
       Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
       User: Yes, the molecule should {Pgp_inhibition#not &NULL}be {Pgp_inhibition__names__adjective}.
       Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {Pgp_inhibition#not &NULL}{Pgp_inhibition__names__adjective}: {SMILES#}
@@ -108,7 +108,7 @@ templates:
       Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
       Result:<EOI> {Pgp_inhibition#False&True}
     - |-
-      Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+      Task: Please {#give me|create|generate!} a {SMILES__description} of a {#molecule|chemical|chemical compound!} based on the {#text |!}description{# below|!}.
       Description: A molecule that is {Pgp_inhibition__names__adjective}.
       Result:<EOI> {SMILES#}
     - |-
