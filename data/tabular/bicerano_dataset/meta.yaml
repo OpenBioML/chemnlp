@@ -58,9 +58,9 @@ templates:
     - The polymer with the {PSMILES__description} of {PSMILES#} has an experimental glass transition temperature of {Tg_exp#} K.
     - The polymer with the {PSMILES__description} of {PSMILES#} has a computed glass transition temperature of {Tg_calc#} K.
     - The polymer with the {PSMILES__description} of {PSMILES#} has a computed density at 300 K of {rho_300K_calc#} g/cc.
-    - The polymer with the {compound_name__id} of {compound_name#} has an experimental glass transition temperature of {Tg_exp#} K.
-    - The polymer with the {compound_name__id} of {compound_name#} has a computed glass transition temperature of {Tg_calc#} K.
-    - The polymer with the {compound_name__id} of {compound_name#} has a computed density at 300 K of {rho_300K_calc#} g/cc.
+    - The polymer with the {compound_name__names__noun} of {compound_name#} has an experimental glass transition temperature of {Tg_exp#} K.
+    - The polymer with the {compound_name__names__noun} of {compound_name#} has a computed glass transition temperature of {Tg_calc#} K.
+    - The polymer with the {compound_name__names__noun} of {compound_name#} has a computed density at 300 K of {rho_300K_calc#} g/cc.
     - |-
       Question: What is a polymer with an experimental glass transition temperature of {Tg_exp#} K and experimental density at 300 K of {rho_300K_exp#}
       g/cc.
