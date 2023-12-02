@@ -157,7 +157,7 @@ Description: A molecule that is {penetrate_BBB__names__adjective}.
 {#Molecule |!}{SMILES__description}: {SMILES#}
 Constraint: Answer the question in a {#full|complete!} sentence.
 Result: This molecule is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.""",  # noqa: E501
-            """Task: Please {#give me|create|generate!} a molecule {SMILES__description} based on the {#text |!}description{# below|!}.
+            """Task: Please {#give me|create|generate!} the {SMILES__description} of {#molecule|chemical|chemical structure!} based on the {#text |!}description{# below|!}.
 Description: A molecule that is {penetrate_BBB__names__adjective}.
 Result: {SMILES#}""",  # noqa: E501
             # Conversational text templates
@@ -169,7 +169,7 @@ Assistant: {penetrate_BBB#No&Yes}, it is {penetrate_BBB#not &NULL}{penetrate_BBB
 Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}""",  # noqa: E501
             """User: I'm {#searching|looking!} for the {SMILES__description} of a molecule that is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}?
 Assistant: This is a molecule that is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}: {SMILES#}""",  # noqa: E501
-            """User: I want to {#come up with|create|generate!} a molecule {SMILES__description}.
+            """User: I want to {#come up with|create|generate!} the {SMILES__description} of a molecule.
 Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
 User: Yes, please. The molecule should {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.
 Assistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}: {SMILES#}""",  # noqa: E501
