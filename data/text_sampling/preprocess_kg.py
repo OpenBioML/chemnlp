@@ -87,10 +87,10 @@ Assistant: The {node2_type#} {node2_protein_names#} {rel2_type#} a {node3_name#}
         """The {node1_type#} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#}. The {node2_type#} {node2_protein_names#} {rel2_type#} {node3_name#}. The {node3_name#} is {rel3_type#} the {node4_type#} {node4_name#}.""",  # noqa E501
     ],
     "compound_protein_protein": [
-        """The {node1_type#} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#} which {rel2_type#} the {node3_type#} {node3_protein_names#}.""",  # noqa E501
-        """The {node2_type#} {node2_protein_names#} is targeted by {SMILES#}. The {node2_type#} {node2_protein_names#} {rel2_type#} {node3_protein_names#}.""",  # noqa E501
-        """User: {#Can you give me|Can you come up with!} {#an|one!} example for a protein that binds the {node1_type#} {SMILES#}?
-Assistant: The {node1_type#} {SMILES#} {rel1_type#} for example the {node2_type#} {node2_protein_names#}.
+        """The {node1_type#} with {SMILES__description} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#} which {rel2_type#} the {node3_type#} {node3_prote  in_names#}.""",  # noqa E501
+        """The {node2_type#} {node2_protein_names#} is targeted by {node1_type#} with {SMILES__description} {SMILES#}. The {node2_type#} {node2_protein_names#} {rel2_typ  e#} {node3_protein_names#}.""",  # noqa E501
+        """User: {#Can you give me|Can you come up with!} {#an|one!} example for a protein that binds the {node1_type#} with {SMILES__description} {SMILES#}?
+Assistant: The {node1_type#} with {SMILES__description} {SMILES#} {rel1_type#} for example the {node2_type#} {node2_protein_names#}.
 User: Can you tell me a {node3_type#} that {rel2_type#} {node2_type#} {node2_protein_names#}?
 Assistant: {#Yes|Of course|Yes, of course|Sure!}, the {node2_type#} {node2_protein_names#} {rel2_type#} {node3_protein_names#}.""",  # noqa E501
     ],
