@@ -26,10 +26,10 @@ Constraint: Even if you are {#uncertain|not sure!}, you must answer with a numer
 Result: {TARGET#} {TARGET__units}""",  # noqa: E501
     """Task: Please predict a molecule feature based on the description.
 Description: Predict the {TARGET__names__noun} in {TARGET__units}.
-{#Molecule |!}{SMILES__description}: {SMILES#}
+{SMILES__description}: {SMILES#}
 Constraint: Even if you are {#uncertain|not sure!}, you must answer with a numeric value in {TARGET__units} without the unit and without using any {#other|additional!} words.
 Result: {TARGET#}""",  # noqa: E501
-    """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+    """Task: Please {#give me|create|generate!} a {#molecule|chemical|compound!} with {SMILES__description} based on the {#text |!}description{# below|!}.
 Description: A molecule that has a {TARGET__names__noun} of {TARGET#} {TARGET__units}.
 Result: {SMILES#}""",  # noqa: E501
     # Conversational text templates
@@ -39,18 +39,17 @@ Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, this molecule has a {T
 Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}""",  # noqa: E501
     """User: I'm {#searching|looking!} for the {SMILES__description} of a molecule that has a {TARGET__names__noun} of {TARGET#} {TARGET__units}.
 Assistant: This is a molecule that has a {TARGET__names__noun} of {TARGET#} {TARGET__units}: {SMILES#}""",  # noqa: E501
-    """User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+    """User: I want to {#come up with|create|generate!} the {SMILES__description} of a {#molecule|chemical|chemical compound!}.
 Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
 User: Yes, please. The molecule should have a {TARGET__names__noun} of {TARGET#} {TARGET__units}.
 Assistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} represents a molecule that has a {TARGET__names__noun} of {TARGET#} {TARGET__units}: {SMILES#}""",  # noqa: E501
-    """User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+    """User: I want to {#come up with|create|generate!} a {SMILES__description} of a {#molecule|chemical|chemical structure!}.
 Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
 User: Yes, the molecule should have a {TARGET__names__noun} of {TARGET#} {TARGET__units}.
 Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} represents a molecule that has a {TARGET__names__noun} of {TARGET#} {TARGET__units}: {SMILES#}""",  # noqa: E501
     # Benchmarking text templates
     "The {TARGET__names__noun} of the molecule with the {SMILES__description} {SMILES#} is:<EOI> {TARGET#} {TARGET__units}",  # noqa: E501
-    "The {TARGET__names__noun} of the {SMILES__description} {SMILES#} is:<EOI> {TARGET#} {TARGET__units}",  # noqa: E501
-    "The {TARGET__names__noun} of the molecule {SMILES__description} {SMILES#} is:<EOI> {TARGET#} {TARGET__units}",  # noqa: E501
+    "The {TARGET__names__noun} of the molecule with {SMILES__description} {SMILES#} is:<EOI> {TARGET#} {TARGET__units}",  # noqa: E501
     """Task: Please predict a molecule feature based on the description.
 Description: Predict the {TARGET__names__noun} in {TARGET__units} of a molecule.
 {#Molecule |!}{SMILES__description}: {SMILES#}
@@ -61,7 +60,7 @@ Description: Predict the {TARGET__names__noun} in {TARGET__units} of a molecule.
 {#Molecule |!}{SMILES__description}: {SMILES#}
 Constraint: Even if you are {#uncertain|not sure!}, you must answer with a numeric value in {TARGET__units} without the unit and without using any {#other|additional!} words.
 Result:<EOI> {TARGET#}""",  # noqa: E501
-    """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+    """Task: Please {#give me|create|generate!} a {SMILES__description} of a {#molecule|chemical|chemical compound!} based on the {#text |!}description{# below|!}.
 Description: A molecule that has a {TARGET__names__noun} of {TARGET#} {TARGET__units}.
 Result:<EOI> {SMILES#}""",  # noqa: E501
 ]
@@ -176,6 +175,7 @@ exclude_from_standard_tabular_text_templates = [
     "uniprot_sentences",
     "zinc",  # SMILES only, has no target
     "rdkit_features",
+    "RedDB"
     # "h2_storage_materials",  # only IUPAC identifier, more than one target, LOW PRIO: has only 30 samples
 ]
 
@@ -1025,8 +1025,6 @@ if __name__ == "__main__":
 
     for path in path_data_dir:
         # subselect one path
-        # if not "iupac" in path:
-        #     continue
         # if path.find("data/tabular/") == -1: continue
         # if path.find("data/kg/") == -1: continue
         # if path.find("chembl33") != -1: continue
