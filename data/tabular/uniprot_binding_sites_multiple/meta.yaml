@@ -50,7 +50,7 @@ templates:
       {SMILES__description}{# representation|!}: {SMILES#}
       {#Output|Result!}: {start_binding_site#}-{end_binding_site#}
     - |-
-      Task: {#Create|Design|Come up with!} a {#molecule|chemical|compound!} that binds to the given {#binding site|site|position|!} in the {#AA sequence|amino acid sequence|peptide sequence|protein!}.
+      Task: {#Create|Design|Come up with!} a {#molecule|chemical|compound!} that binds to the given {#binding site|site|position!} in the {#AA sequence|amino acid sequence|peptide sequence|protein!}.
       {#AA sequence|Amino acid sequence|Peptide sequence|Protein!}: {sequence#}
       Binding site{# position|!}: {start_binding_site#}{#-| to !}{end_binding_site#}
       {#Output|Result!}: {SMILES#}

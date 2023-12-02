@@ -28,4 +28,4 @@ templates:
     - |-
       {#Task: Generate a title for this question.|Task: Create a meaningful title for this question.|Task: Summarize the question in a title.!}
       {#Question: |Inquiry: |\n!}{#q}
-      {#Assistant: |Title: |Answer: |!}{#title}
+      {#Assistant: |Title: |Answer: !}{#title}
