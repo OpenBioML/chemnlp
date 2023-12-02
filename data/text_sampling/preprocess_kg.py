@@ -134,7 +134,7 @@ Assistant: The {node2_type#} {node2_protein_names#} {rel2_type#} a {node3_name#}
         """User: {#Can you give me|Can you come up with!} {#an|one!} example for a {node1_type#} that {rel1_type#} the {node2_type#} {node2_protein_names#}?
 Assistant: {#Sure|Yes|Of course|Yes, of course!}, the {node1_type#} {rel1_type#} the {node2_type#} {node2_protein_names#}.
 User: Can you tell me another {node1_type#} that {rel1_type#} the {node2_type#} {node2_protein_names#}?
-Assistant: {#Yes|Of course|Yes, of course|Sure!}, the {node1_type#} {SMILES#|node1_name#} {rel1_type#} the {node3_type#} {node3_name#|node3_smiles#}.""",  # noqa E501
+Assistant: {#Yes|Of course|Yes, of course|Sure!}, the {node3_type#} {node3_name#|node3_smiles#} also {rel1_type#} the {node2_type#} {node2_protein_names#}.""",  # noqa E501
     ],
     "drug_protein_ec_number": [
         """The {node1_type#} {SMILES#|node1_name#} {rel1_type#} the {node2_type#} {node2_name#} which {rel2_type#} the {node3_name#} (EC {node3_id#}) reaction.""",  # noqa E501
