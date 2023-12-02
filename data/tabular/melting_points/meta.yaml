@@ -59,10 +59,10 @@ templates:
       {#Answer: |A: |!}{#The melting point is |!}{mp#} deg C.
     - |-
       {#Question: |Q: !}What is the melting point of {NAME#}?
-      {#Answer: |A: |!}{#The melting point is in the range|!}{mp_range#} deg C.
+      {#Answer: |A: |!}{#The melting point is in the range |!}{mp_range#} deg C.
     - |-
       {#Question: |Q: !}What is the melting point of a {#molecule|compound!} with the {SMILES__description} {SMILES#}?
-      {#Answer: |A: |!}{#The melting point is in the range|!}{mp_range#} deg C.
+      {#Answer: |A: |!}{#The melting point is in the range |!}{mp_range#} deg C.
     - |-
       {#Question: |Q: !}What is a compound with a melting point of {mp#} deg C?
       {#Answer: |A: |!}{NAME#}
