@@ -1,10 +1,12 @@
 import pandas as pd
+from huggingface_hub import hf_hub_download
 
 
 def extract_data():
-    aminoacids = pd.read_csv(
-        "https://huggingface.co/datasets/chemNLP/uniprot/raw/main/aminoacid_seq.csv"
+    file = hf_hub_download(
+        repo_id="chemNLP/uniprot", filename="aminoacid_seq.csv", repo_type="dataset"
     )
+    aminoacids = pd.read_csv(file)
     aminoacids.to_csv("data_clean.csv", index=False)
     return aminoacids
 

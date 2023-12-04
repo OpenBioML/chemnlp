@@ -34,6 +34,7 @@ def get_and_transform_data():
 
     # save to csv
     fn_data_csv = "data_clean.csv"
+    df.rename(columns={"smiles": "SMILES"}, inplace=True)
     df.to_csv(fn_data_csv, index=False)
 
     # create meta yaml
