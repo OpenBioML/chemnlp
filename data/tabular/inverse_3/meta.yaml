@@ -33,11 +33,13 @@ targets:
     - id: carboxyl_count
       description: number of carboxyl groups
       type: ordinal
+      significant_digits: 0
       names:
           - noun: carboxyl groups
     - id: carbonyl_count
       description: number of carbonyl groups
       type: ordinal
+      significant_digits: 0
       names:
           - noun: carbonyl groups
     - id: ether_count
@@ -47,36 +49,43 @@ targets:
           - noun: ether groups
     - id: alkanol_count
       description: number of alkanol groups
+      significant_digits: 0
       type: ordinal
       names:
           - noun: alkanol groups
     - id: thiol_count
       description: number of thiol groups
       type: ordinal
+      significant_digits: 0
       names:
           - noun: thiol groups
     - id: halogen_count
       description: number of halogen groups
       type: ordinal
+      significant_digits: 0
       names:
           - noun: halogen groups
     - id: amine_count
       description: number of amine groups
       type: ordinal
+      significant_digits: 0
       names:
           - noun: amine groups
     - id: amide_count
       description: number of amide groups
       type: ordinal
+      significant_digits: 0
       names:
           - noun: amide groups
     - id: ketone_count
       description: number of ketone groups
+      significant_digits: 0
       type: ordinal
       names:
           - noun: ketone group count
     - id: num_valence_electrons
       description: number of valence electrons
+      significant_digits: 0
       type: ordinal
       names:
           - noun: valence electrons
@@ -118,24 +127,29 @@ targets:
     - id: num_carbon_atoms
       description: number of carbon atoms
       type: ordinal
+      significant_digits: 0
       names:
           - noun: carbon atoms
     - id: num_hydrogen_atoms
       type: ordinal
+      significant_digits: 0
       description: number of hydrogen atoms
       names:
           - noun: hydrogen atoms
     - id: num_nitrogen_atoms
+      significant_digits: 0
       description: number of nitrogen atoms
       type: ordinal
       names:
           - noun: nitrogen atoms
     - id: num_oxygen_atoms
+      significant_digits: 0
       description: number of oxygen atoms
       type: ordinal
       names:
           - noun: oxygen atoms
     - id: num_hydrogen_bond_acceptors
+      significant_digits: 0
       description: number of hydrogen bond acceptors
       type: ordinal
       names:
@@ -143,16 +157,19 @@ targets:
     - id: num_hydrogen_bond_donors
       description: number of hydrogen bond donors
       type: ordinal
+      significant_digits: 0
       names:
           - noun: hydrogen bond donors
     - id: num_lipinski_violations
       description: number of Lipinski violations
       type: ordinal
+      significant_digits: 0
       names:
           - noun: Lipinski violations
           - noun: Lipinski rule of five violations
     - id: num_chiral_centers
       description: number of chiral centers
+      significant_digits: 0
       type: ordinal
       names:
           - noun: chiral center count
@@ -172,7 +189,7 @@ links:
       description: data source
     - url: https://github.com/lamalab-org/chem-caption
       description: software used to generate features
-num_points: 2517
+num_points: 299452
 bibtex:
     - |-
       @article{Sorkun_2019,
