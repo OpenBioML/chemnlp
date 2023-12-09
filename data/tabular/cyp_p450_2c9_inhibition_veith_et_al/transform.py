@@ -150,20 +150,20 @@ Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should 
 User: Yes, the molecule should {CYP2C9_inhibition#not &NULL}be {CYP2C9_inhibition__names__gerund}.
 Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {CYP2C9_inhibition#not &NULL}{CYP2C9_inhibition__names__gerund}: {SMILES#}""",  # noqa: E501
             # Benchmarking text templates
-            "Is the {SMILES__description} {SMILES#} {CYP2C9_inhibition__names__gerund}:<EOI> {CYP2C9_inhibition#no&yes}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
+            "Is the {SMILES__description} {SMILES#} {CYP2C9_inhibition__names__gerund}:<EOI>{CYP2C9_inhibition#no&yes}",  # noqa: E501 for the benchmarking setup <EOI>separates input and output
             """Task: Please classify a molecule based on the description.
 Description: A molecule that is {CYP2C9_inhibition__names__gerund}.
 {#Molecule |!}{SMILES__description}: {SMILES#}
 Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
-Result:<EOI> {CYP2C9_inhibition#False&True}""",  # noqa: E501
+Result:<EOI>{CYP2C9_inhibition#False&True}""",  # noqa: E501
             """Task: Please classify a molecule based on the description.
 Description: A molecule that is {CYP2C9_inhibition__names__gerund}.
 {#Molecule |!}{SMILES__description}: {SMILES#}
 Constraint: Answer the question in a {#full|complete!} sentence.
-Result:<EOI> This molecule is {CYP2C9_inhibition#not &NULL}{CYP2C9_inhibition__names__gerund}.""",  # noqa: E501
+Result:<EOI>This molecule is {CYP2C9_inhibition#not &NULL}{CYP2C9_inhibition__names__gerund}.""",  # noqa: E501
             # noqa: E501"""Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
             # Description: A molecule that is {CYP2C9_inhibition__names__gerund}.
-            # Result:<EOI> {SMILES#}""",  # noqa: E501
+            # Result:<EOI>{SMILES#}""",  # noqa: E501
             """Task: Please answer the multiple choice question.
 Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} {CYP2C9_inhibition__names__gerund}?
 Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
@@ -175,7 +175,7 @@ Question: Is the molecule with the {SMILES__description} {#representation of |!}
 Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
 Options:
 {CYP2C9_inhibition%}
-Answer:<EOI> {%multiple_choice_result}""",  # noqa: E501
+Answer:<EOI>{%multiple_choice_result}""",  # noqa: E501
             """Task: Please answer the multiple choice question.
 Question: Which molecules are {CYP2C9_inhibition#not &NULL}{CYP2C9_inhibition__names__gerund}?
 Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
@@ -187,7 +187,7 @@ Question: Which molecules are {CYP2C9_inhibition#not &NULL}{CYP2C9_inhibition__n
 Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
 Options:
 {SMILES%CYP2C9_inhibition%}
-Answer:<EOI> {%multiple_choice_result}""",  # noqa: E501
+Answer:<EOI>{%multiple_choice_result}""",  # noqa: E501
         ],
     }
 

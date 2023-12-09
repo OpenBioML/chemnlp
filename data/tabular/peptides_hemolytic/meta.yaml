@@ -105,17 +105,17 @@ templates:
       Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#amino acid sequence|one!}?
       User: Yes, the amino acid sequence should {hemolytic#not &NULL}be {hemolytic__names__adjective}.
       Assistant: {#Understood|Got it|Ok!}, this {sequence__description} is {hemolytic#not &NULL}{hemolytic__names__adjective}: {sequence#}
-    - Is the {sequence__description} {sequence#} {hemolytic__names__adjective}:<EOI> {hemolytic#no&yes}
+    - Is the {sequence__description} {sequence#} {hemolytic__names__adjective}:<EOI>{hemolytic#no&yes}
     - |-
       Task: Please classify a {#amino acid sequence|sequence of amino acids|peptide!} based on the description.
       Description: A amino acid sequence that is {hemolytic__names__adjective}.
       {#amino acid sequence|sequence of amino acids!}: {sequence#}
       Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
-      Result:<EOI> {hemolytic#False&True}
+      Result:<EOI>{hemolytic#False&True}
     - |-
       Task: Please {#give me|create|generate!} a {#amino acid sequence|sequence of amino acids|peptide!} based on the {#text |!}description{# below|!}.
       Description: A {#amino acid sequence|sequence of amino acids|peptide!} that is {hemolytic__names__adjective}.
-      Result:<EOI> {sequence#}
+      Result:<EOI>{sequence#}
     - |-
       Task: Please answer the multiple choice question.
       Question: Is the peptide with the {sequence__description} {#representation of |!}{sequence#} {hemolytic__names__adjective}?
@@ -129,7 +129,7 @@ templates:
       Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
       Options:
       {hemolytic%}
-      Answer:<EOI> {%multiple_choice_result}
+      Answer:<EOI>{%multiple_choice_result}
     - |-
       Task: Please answer the multiple choice question.
       Question: Which amino acid sequences are {hemolytic#not &NULL}{hemolytic__names__adjective}?
@@ -143,4 +143,4 @@ templates:
       Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
       Options:
       {sequence%hemolytic%}
-      Answer:<EOI> {%multiple_choice_result}
+      Answer:<EOI>{%multiple_choice_result}

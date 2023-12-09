@@ -114,7 +114,7 @@ Answer: {%multiple_choice_result}""",
 Question: What is the {exp__names__noun} of the {SMILES__description} {SMILES#}?
 Options:
 {exp%}
-Answer:<EOI> {%multiple_choice_result}""",
+Answer:<EOI>{%multiple_choice_result}""",
         ],
     }
 

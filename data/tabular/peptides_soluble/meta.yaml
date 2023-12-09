@@ -97,17 +97,17 @@ templates:
       Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#amino acid sequence|one!}?
       User: Yes, the amino acid sequence should {soluble#not &NULL}be {soluble__names__adjective}.
       Assistant: {#Understood|Got it|Ok!}, this {sequence__description} is {soluble#not &NULL}{soluble__names__adjective}: {sequence#}
-    - Is the {sequence__description} {sequence#} {soluble__names__adjective}:<EOI> {soluble#no&yes}
+    - Is the {sequence__description} {sequence#} {soluble__names__adjective}:<EOI>{soluble#no&yes}
     - |-
       Task: Please classify a amino acid sequence based on the description.
       Description: A amino acid sequence that is {soluble__names__adjective}.
       {#amino acid sequence |sequence|AA sequence!}: {sequence#}
       Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
-      Result:<EOI> {soluble#False&True}
+      Result:<EOI>{soluble#False&True}
     - |-
       Task: Please {#give me|create|generate!} a {#amino acid sequence |sequence|AA sequence!} based on the {#text |!}description{# below|!}.
       Description: A amino acid sequence that is {soluble__names__adjective}.
-      Result:<EOI> {sequence#}
+      Result:<EOI>{sequence#}
     - |-
       Task: Please answer the multiple choice question.
       Question: Is the peptide with the {sequence__description} {#representation of |!}{sequence#} {soluble__names__adjective}?
@@ -121,7 +121,7 @@ templates:
       Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
       Options:
       {soluble%}
-      Answer:<EOI> {%multiple_choice_result}
+      Answer:<EOI>{%multiple_choice_result}
     - |-
       Task: Please answer the multiple choice question.
       Question: Which amino acid sequences are {soluble#not &NULL}{soluble__names__adjective}?
@@ -135,4 +135,4 @@ templates:
       Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
       Options:
       {sequence%soluble%}
-      Answer:<EOI> {%multiple_choice_result}
+      Answer:<EOI>{%multiple_choice_result}

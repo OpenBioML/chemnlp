@@ -184,26 +184,26 @@ Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should 
 User: Yes, the molecule should {activity_choline_transporter#not &NULL}be {activity_choline_transporter__names__gerund}.
 Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {activity_choline_transporter#not &NULL}{activity_choline_transporter__names__gerund}: {SMILES#}""",  # noqa: E501
             # Benchmarking text templates
-            "Is the {SMILES__description} {SMILES#} {activity_choline_transporter__names__gerund}:<EOI> {activity_choline_transporter#no&yes}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
+            "Is the {SMILES__description} {SMILES#} {activity_choline_transporter__names__gerund}:<EOI>{activity_choline_transporter#no&yes}",  # noqa: E501 for the benchmarking setup <EOI>separates input and output
             """Task: Please classify a molecule based on the description.
 Description: A molecule that is {activity_choline_transporter__names__gerund}.
 {#Molecule |!}{SMILES__description}: {SMILES#}
 Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
-Result:<EOI> {activity_choline_transporter#False&True}""",  # noqa: E501
+Result:<EOI>{activity_choline_transporter#False&True}""",  # noqa: E501
             """Task: Please classify a molecule based on the description.
 Description: A molecule that is {activity_choline_transporter__names__gerund}.
 {#Molecule |!}{SMILES__description}: {SMILES#}
 Constraint: Answer the question in a {#full|complete!} sentence.
-Result:<EOI> This molecule is {activity_choline_transporter#not &NULL}{activity_choline_transporter__names__gerund}.""",  # noqa: E501
+Result:<EOI>This molecule is {activity_choline_transporter#not &NULL}{activity_choline_transporter__names__gerund}.""",  # noqa: E501
             # noqa: E501 """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
             # Description: A molecule that is {activity_choline_transporter__names__gerund}.
-            # Result:<EOI> {SMILES#}""",  # noqa: E501
+            # Result:<EOI>{SMILES#}""",  # noqa: E501
             """Task: Please answer the multiple choice question.
 Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} {activity_choline_transporter__names__gerund}?
 Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
 Options:
 {activity_choline_transporter%}
-Answer:<EOI> {%multiple_choice_result}""",  # noqa: E501
+Answer:<EOI>{%multiple_choice_result}""",  # noqa: E501
             """Task: Please answer the multiple choice question.
 Question: Which molecules are {activity_choline_transporter#not &NULL}{activity_choline_transporter__names__gerund}?
 Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
@@ -215,7 +215,7 @@ Question: Which molecules are {activity_choline_transporter#not &NULL}{activity_
 Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
 Options:
 {SMILES%activity_choline_transporter%}
-Answer:<EOI> {%multiple_choice_result}""",  # noqa: E501
+Answer:<EOI>{%multiple_choice_result}""",  # noqa: E501
         ],
     }
 

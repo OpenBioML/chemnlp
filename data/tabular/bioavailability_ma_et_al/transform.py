@@ -156,15 +156,15 @@ Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should 
 User: Yes, the molecule should have a {bioavailable#low&high} {bioavailable__names__noun}.
 Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} has a {bioavailable#low&high} {bioavailable__names__noun}: {SMILES#}""",  # noqa: E501
             # Benchmarking text templates
-            "Is the {SMILES__description} {SMILES#} {bioavailable__names__adjective}?<EOI> {bioavailable#no&yes}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
+            "Is the {SMILES__description} {SMILES#} {bioavailable__names__adjective}?<EOI>{bioavailable#no&yes}",  # noqa: E501 for the benchmarking setup <EOI>separates input and output
             """Task: Please classify a molecule based on the description.
 Description: Predict if the molecule has a low or high {bioavailable__names__noun}?
 {#Molecule |!}{SMILES__description}: {SMILES#}
 Constraint: Even if you are {#uncertain|not sure!}, you must pick either "low" or "high" without using any {#other|additional!} words.
-Result:<EOI> {bioavailable#low&high}""",  # noqa: E501
+Result:<EOI>{bioavailable#low&high}""",  # noqa: E501
             # noqa: E501 """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
             # Description: A molecule that has a {bioavailable#low&high} {bioavailable__names__noun}.
-            # Result:<EOI> {SMILES#}""",  # noqa: E501
+            # Result:<EOI>{SMILES#}""",  # noqa: E501
             """Task: Please answer the multiple choice question.
 Question: Has the molecule with the {SMILES__description} {#representation of |!}{SMILES#} a high {bioavailable__names__noun}?
 Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
@@ -176,7 +176,7 @@ Question: Has the molecule with the {SMILES__description} {#representation of |!
 Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
 Options:
 {bioavailable%}
-Answer:<EOI> {%multiple_choice_result}""",  # noqa: E501
+Answer:<EOI>{%multiple_choice_result}""",  # noqa: E501
             """Task: Please answer the multiple choice question.
 Question: Which molecules have a high {bioavailable__names__noun}?
 Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
@@ -188,7 +188,7 @@ Question: Which molecules have a high {bioavailable__names__noun}?
 Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
 Options:
 {SMILES%bioavailable%}
-Answer:<EOI> {%multiple_choice_result}""",  # noqa: E501
+Answer:<EOI>{%multiple_choice_result}""",  # noqa: E501
         ],
     }
 
