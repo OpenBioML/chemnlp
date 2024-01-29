@@ -68,37 +68,23 @@ Result:<EOI> {SMILES#}""",  # noqa: E501
 
 
 exclude_from_standard_tabular_text_templates = [
+    "BACE",
     "BBBP",  # because it is boolean target data
-    "MUV_466",  # boolean target data
-    "MUV_548",  # boolean target data
-    "MUV_600",  # boolean target data
-    "MUV_644",  # boolean target data
-    "MUV_652",  # boolean target data
-    "MUV_689",  # boolean target data
-    "MUV_692",  # boolean target data
-    "MUV_712",  # boolean target data
-    "MUV_713",  # boolean target data
-    "MUV_733",  # boolean target data
-    "MUV_737",  # boolean target data
-    "MUV_810",  # boolean target data
-    "MUV_832",  # boolean target data
-    "MUV_846",  # boolean target data
-    "MUV_852",  # boolean target data
-    "MUV_858",  # boolean target data
-    "MUV_859",  # boolean target data
     "ames_mutagenicity",  # because it is boolean target data
     "bio_ner",
     "bioavailability_ma_et_al",  # because it is boolean target data
     "blood_brain_barrier_martins_et_al",  # because it is boolean target data
     "carcinogens",  # because it is boolean target data
+    "core_mof_no_topo",
+    "qmof_gcmc",
+    "qmof_quantum",
     "cav3_t-type_calcium_channels_butkiewicz",  # because it is boolean target data
     "chebi_20",  # target is text description
     "chembl_v29",  # text only, no SMILES
-    "chemcaption_fragments",
     "chemcaption_rdkit",  # text only, no SMILES
     "choline_transporter_butkiewicz",  # because it is boolean target data
     "clintox",  # because it is boolean target data
-    "core_mof_no_topo",
+    "chemcaption_fragments",
     "cyp2c9_substrate_carbonmangels",  # boolean target data
     "cyp2d6_substrate_carbonmangels",  # boolean target data
     "cyp3a4_substrate_carbonmangels",  # boolean target data
@@ -116,25 +102,9 @@ exclude_from_standard_tabular_text_templates = [
     "hiv",  # boolean target data
     "human_intestinal_absorption",  # boolean target data
     "iupac_goldbook",  # text only, no SMILES
-    "iupac_smiles",  # translation from IUPAC name to SMILES
     "kcnq2_potassium_channel_butkiewicz",  # boolean target data
     "m1_muscarinic_receptor_agonists_butkiewicz",  # boolean target data
     "m1_muscarinic_receptor_antagonists_butkiewicz",  # boolean target data
-    "mol_repr_transl_canonical_inchi",
-    "mol_repr_transl_canonical_iupac_name",
-    "mol_repr_transl_deepsmiles_canonical",
-    "mol_repr_transl_deepsmiles_inchi",
-    "mol_repr_transl_deepsmiles_iupac_name",
-    "mol_repr_transl_inchi_iupac_name",
-    "mol_repr_transl_selfies_canonical",
-    "mol_repr_transl_selfies_deepsmiles",
-    "mol_repr_transl_selfies_inchi",
-    "mol_repr_transl_selfies_iupac_name",
-    "mol_repr_transl_smiles_canonical",
-    "mol_repr_transl_smiles_deepsmiles",
-    "mol_repr_transl_smiles_inchi",
-    "mol_repr_transl_smiles_iupac_name",
-    "mol_repr_transl_smiles_selfies",
     "mona",  # more than one target
     "moses",  # SMILES only, has no target
     "nlmchem",  # text only, no SMILES
@@ -145,40 +115,112 @@ exclude_from_standard_tabular_text_templates = [
     "nr_er_lbd_tox21",  # boolean target data
     "nr_er_tox21",  # boolean target data
     "nr_ppar_gamma_tox21",  # boolean target data
-    "odd_one_out",
-    "orbnet_denali",  # only makes sense for the structure files
     "orexin1_receptor_butkiewicz",  # boolean target data
     "p_glycoprotein_inhibition_broccatelli_et_al",  # boolean target data
     "pampa_ncats",  # boolean target data
     "peptides_hemolytic",  # boolean target data
-    "peptides_nonfouling",  # boolean target data
     "peptides_soluble",  # boolean target data
+    "peptides_nonfouling",  # boolean target data
     "potassium_ion_channel_kir2_1_butkiewicz",  # boolean target data
-    "qmof_gcmc",
-    "qmof_quantum",
-    "rhea_db_masked",
-    "rhea_db_predictions",
     "sarscov2_3clpro_diamond",  # boolean target data
     "sarscov2_vitro_touret",  # boolean target data
     "serine_threonine_kinase_33_butkiewicz",  # boolean target data
     "skin_reaction",  # boolean target data
-    "smiles_to_3d",
     "sr_are_tox21",  # boolean target data
     "sr_atad5_tox21",  # boolean target data
     "sr_hse_tox21",  # boolean target data
     "sr_mmp_tox21",  # boolean target data
     "sr_p53_tox21",  # boolean target data
     "tyrosyl-dna_phosphodiesterase_butkiewicz",  # boolean target data
+    "zinc",  # SMILES only, has no target
+    "smiles_to_3d",
+    "MUV_466",  # boolean target data
+    "MUV_548",  # boolean target data
+    "MUV_600",  # boolean target data
+    "MUV_644",  # boolean target data
+    "MUV_652",  # boolean target data
+    "MUV_689",  # boolean target data
+    "MUV_692",  # boolean target data
+    "MUV_712",  # boolean target data
+    "MUV_713",  # boolean target data
+    "MUV_733",  # boolean target data
+    "MUV_737",  # boolean target data
+    "MUV_810",  # boolean target data
+    "MUV_832",  # boolean target data
+    "MUV_846",  # boolean target data
+    "MUV_852",  # boolean target data
+    "MUV_858",  # boolean target data
+    "MUV_859",  # boolean target data
+    "orbnet_denali",  # only makes sense for the structure files
+    "odd_one_out",
+    "mol_repr_transl_smiles_selfies",
+    "mol_repr_transl_smiles_deepsmiles",
+    "mol_repr_transl_smiles_canonical",
+    "mol_repr_transl_smiles_inchi",
+    "mol_repr_transl_smiles_iupac_name",
+    "mol_repr_transl_selfies_deepsmiles",
+    "mol_repr_transl_selfies_canonical",
+    "mol_repr_transl_selfies_inchi",
+    "mol_repr_transl_selfies_iupac_name",
+    "mol_repr_transl_deepsmiles_canonical",
+    "mol_repr_transl_deepsmiles_inchi",
+    "mol_repr_transl_deepsmiles_iupac_name",
+    "mol_repr_transl_canonical_inchi",
+    "mol_repr_transl_canonical_iupac_name",
+    "mol_repr_transl_inchi_iupac_name",
+    "iupac_smiles",  # translation from IUPAC name to SMILES
     "uniprot_binding_single",
     "uniprot_binding_sites_multiple",
     "uniprot_organisms",
     "uniprot_reactions",
     "uniprot_sentences",
-    "zinc",  # SMILES only, has no target
-    "rdkit_features",
-    "inverse_1",
-    "inverse_2",
-    "inverse_3"
+    "rhea_db_predictions",
+    "rhea_db_masked",
+    'RedDB',
+    'SIDER',
+    'aminoacids',
+    'bc5chem',
+    'bc5disease',
+    'bicerano_dataset',
+    'block_polymers_morphology',
+    'buchwald_hartwig',
+    'chem_caption_smarts',
+    'chemdner',
+    'chemistry_stackexchange',
+    'compound_chebi_chebi_chebi_1',
+    'compound_chebi_chebi_chebi_2',
+    'drug_chebi_chebi_chebi',
+    'fda_adverse_reactions',
+    'formation_energies',
+    'h2_storage_materials',
+    'mattermodeling_stackexchange',
+    'melting_points',
+    'mofdscribe',
+    'mol2svg',
+    'moses',
+    'mp_anisotropy',
+    'mp_bulk_modulus',
+    'mp_descriptions',
+    'mp_self_supervised',
+    'mp_shear_modulus',
+    'ncbi_disease',
+    'nomad_structure',
+    'ocp',
+    'opv',
+    'oqmd',
+    'ord_masked',
+    'ord_predictions',
+    'ord_procedure_steps',
+    'ord_rxn_smiles_procedure',
+    'ord_rxn_smiles_yield_pred',
+    'ord_steps_yield',
+    'perovskite_db',
+    'physics_stackexchange',
+    'qm8',
+    'qm9',
+    'suzuki_miyaura_sach',
+    'uspto',
+    'uspto_yield',
     # "h2_storage_materials",  # only IUPAC identifier, more than one target, LOW PRIO: has only 30 samples
 ]
 
@@ -341,7 +383,6 @@ def get_target_from_string(meta: dict, string: str) -> str:
     """Gets a target string from the meta dict based on the variable string.
     (A variable string is what is between the curly brackets in the text template.)"""
     keys = string.split("__")
-    print(keys)
 
     def get_with_nested_keys(d: dict, keys: list) -> str:
         t = d.copy()
@@ -417,6 +458,7 @@ class TemplateSampler:
     def __init__(
         self,
         path_data_dir: str,
+        df: pd.DataFrame,
         path_lm_eval_data_dir: str,
         multiple_choice_rnd_symbols: list,  # = ["", ".", ".)", ")", ":", "()", "[]"],
         additional_templates: list = None,
@@ -429,16 +471,15 @@ class TemplateSampler:
         # paths
         self.path_data_dir = path_data_dir
         self.path_data_meta = self.path_data_dir + "/meta.yaml"
-        self.path_data_csv = self.path_data_dir + "/data_clean.csv"
+        #self.path_data_csv = self.path_data_dir + "/data_clean.csv"
         self.path_lm_eval_data_dir = path_lm_eval_data_dir
 
         # meta from yaml
         self.meta = load_yaml(self.path_data_meta)
 
         # dataframe from csv
-        df = pd.read_csv(self.path_data_csv, low_memory=False).replace(
-            "REPLACENULL", ""
-        )
+        #df = pd.read_csv(self.path_data_csv, low_memory=False)
+        df = df.replace("REPLACENULL", "")
 
         def check_targets_and_identifiers(meta: dict, df: pd.DataFrame):
             all_identifiers = [x["id"] for x in meta["identifiers"]] + [
@@ -1023,13 +1064,62 @@ if __name__ == "__main__":
     )
     path_lm_eval_data_dir = path_base + "text_sampling/export"
 
-    # index = [i for i, x in enumerate(path_data_dir) if x.find("data/tabular/sr_are_tox21") != -1][0]
-    # print(index)
-    # path_data_dir = path_data_dir[index:]
+    #index = [i for i, x in enumerate(path_data_dir) if x.find("RedDB") != -1][0]
+    #print(index)
+    #path_data_dir = path_data_dir[index:]
+    #path_data_dir = [path_data_dir[index]]
+    #path_data_dir = [
+    #        '/weka/proj-chemnlp/micpie/chemnlp/data/tabular/bioavailability_ma_et_al',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/RedDB',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/SIDER',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/aminoacids',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/bc5chem',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/bc5disease',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/bicerano_dataset',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/block_polymers_morphology',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/buchwald_hartwig',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/chem_caption_smarts',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/chemdner',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/chemistry_stackexchange',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/compound_chebi_chebi_chebi_1',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/compound_chebi_chebi_chebi_2',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/drug_chebi_chebi_chebi',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/fda_adverse_reactions',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/formation_energies',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/h2_storage_materials',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/mattermodeling_stackexchange',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/melting_points',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/mofdscribe',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/mol2svg',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/moses',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/mp_anisotropy',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/mp_bulk_modulus',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/mp_descriptions',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/mp_self_supervised',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/mp_shear_modulus',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/ncbi_disease',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/nomad_structure',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/ocp',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/opv',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/oqmd',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/ord_masked',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/ord_predictions',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/ord_procedure_steps',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/ord_rxn_smiles_procedure',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/ord_rxn_smiles_yield_pred',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/ord_steps_yield',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/perovskite_db',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/physics_stackexchange',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/qm8',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/qm9',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/suzuki_miyaura_sach',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/uspto',
+    #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/uspto_yield',
+    #        ]
 
     for path in path_data_dir:
         # subselect one path
-        # if not "kcnq2_potassium_channel_butkiewicz" in path:
+        # if not "iupac" in path:
         #     continue
         # if path.find("data/tabular/") == -1: continue
         # if path.find("data/kg/") == -1: continue
@@ -1037,6 +1127,7 @@ if __name__ == "__main__":
         # if path.find("data/kg/compound_chebi") == -1: continue
         # if path.find("data/tabular/cyp3a4_substrate_carbonmangels") == -1: continue
         # if path.find("data/tabular/bio_ner") == -1: continue
+        # if path.find("rdkit_features") != -1: continue
 
         print(f"\n###### {path}")
         path_meta = path + "/meta.yaml"
@@ -1101,72 +1192,96 @@ if __name__ == "__main__":
                 #    multiple_choice_benchmarking_templates=False,
                 # ).apply_sampling_and_export()
 
-                tempsamp = TemplateSampler(
-                    path,
-                    path_lm_eval_data_dir,
-                    multiple_choice_rnd_symbols=multiple_choice_rnd_symbols,
-                    additional_templates=additional_templates,
-                    benchmarking_templates=False,
-                    multiple_choice_benchmarking_templates=False,
-                )
-                for i, template in enumerate(
-                    [t for t in meta["templates"] if "<EOI>" not in t]
-                ):
-                    print(f"\nRunning sampling for template {i}:\n{template}")
-                    tempsamp.apply_sampling_and_export(
-                        template_idx=i,
-                        fn_suffix=i,
-                    )
+                #tempsamp = TemplateSampler(
+                #    path,
+                #    path_lm_eval_data_dir,
+                #    multiple_choice_rnd_symbols=multiple_choice_rnd_symbols,
+                #    additional_templates=additional_templates,
+                #    benchmarking_templates=False,
+                #    multiple_choice_benchmarking_templates=False,
+                #)
+                #for i, template in enumerate(
+                #    [t for t in meta["templates"] if "<EOI>" not in t]
+                #):
+                #    print(f"\nRunning sampling for template {i}:\n{template}")
+                #    tempsamp.apply_sampling_and_export(
+                #        template_idx=i,
+                #        fn_suffix=i,
+                #    )
 
-                if any(["<EOI>" in t for t in meta["templates"]]):
-                    # uncomment to randomly sample from all templates and save the output to a single file
-                    # TemplateSampler(
-                    #     path,
-                    #     path_lm_eval_data_dir,
-                    #     multiple_choice_rnd_symbols=multiple_choice_rnd_symbols,
-                    #     additional_templates=additional_templates,
-                    #     benchmarking_templates=True,
-                    #     multiple_choice_benchmarking_templates=False,
-                    # ).apply_sampling_and_export()
-
-                    tempsamp = TemplateSampler(
-                        path,
-                        path_lm_eval_data_dir,
-                        multiple_choice_rnd_symbols=multiple_choice_rnd_symbols,
-                        additional_templates=additional_templates,
-                        benchmarking_templates=True,
-                        multiple_choice_benchmarking_templates=False,
-                    )
-                    for i, template in enumerate(
-                        [
-                            t
-                            for t in meta["templates"]
-                            if "<EOI>" in t and "%multiple_choice_" not in t
-                        ]
-                    ):
-                        print(f"\nRunning sampling for template {i}:\n{template}")
-                        tempsamp.apply_sampling_and_export(
-                            template_idx=i,
-                            fn_suffix=i,
-                        )
-
-                    if any(["%multiple_choice_" in t for t in meta["templates"]]):
-                        TemplateSampler(
+                chunksize = 1_000_000
+                path_data_csv = path + "/data_clean.csv"
+                with pd.read_csv(path_data_csv, chunksize=chunksize, low_memory=False) as reader:
+                    chunk_idx = 0
+                    for df_chunk in reader:
+                        tempsamp = TemplateSampler(
                             path,
+                            df_chunk,
                             path_lm_eval_data_dir,
                             multiple_choice_rnd_symbols=multiple_choice_rnd_symbols,
                             additional_templates=additional_templates,
-                            benchmarking_templates=True,
-                            multiple_choice_benchmarking_templates=True,
-                        ).apply_sampling_and_export()
+                            benchmarking_templates=False,
+                            multiple_choice_benchmarking_templates=False,
+                        )
+                        for i, template in enumerate(
+                            [t for t in meta["templates"] if "<EOI>" not in t]
+                        ):
+                            print(f"\nRunning sampling for template {i}:\n{template}")
+                            tempsamp.apply_sampling_and_export(
+                                template_idx=i,
+                                fn_suffix=f"{chunk_idx}-{i}",
+                            )
+                        chunk_idx += 1
 
-                        # for i, s in enumerate(multiple_choice_rnd_symbols):
-                        #    TemplateSampler(
-                        #        path,
-                        #        path_lm_eval_data_dir,
-                        #        multiple_choice_rnd_symbols=[s],
-                        #        additional_templates=additional_templates,
-                        #        benchmarking_templates=True,
-                        #        multiple_choice_benchmarking_templates=True,
-                        #        multiple_choice_benchmarking_format=i,
-                        #    ).apply_sampling_and_export()
+                #if any(["<EOI>" in t for t in meta["templates"]]):
+                #    # uncomment to randomly sample from all templates and save the output to a single file
+                #    # TemplateSampler(
+                #    #     path,
+                #    #     path_lm_eval_data_dir,
+                #    #     multiple_choice_rnd_symbols=multiple_choice_rnd_symbols,
+                #    #     additional_templates=additional_templates,
+                #    #     benchmarking_templates=True,
+                #    #     multiple_choice_benchmarking_templates=False,
+                #    # ).apply_sampling_and_export()
+
+                #    tempsamp = TemplateSampler(
+                #        path,
+                #        path_lm_eval_data_dir,
+                #        multiple_choice_rnd_symbols=multiple_choice_rnd_symbols,
+                #        additional_templates=additional_templates,
+                #        benchmarking_templates=True,
+                #        multiple_choice_benchmarking_templates=False,
+                #    )
+                #    for i, template in enumerate(
+                #        [
+                #            t
+                #            for t in meta["templates"]
+                #            if "<EOI>" in t and "%multiple_choice_" not in t
+                #        ]
+                #    ):
+                #        print(f"\nRunning sampling for template {i}:\n{template}")
+                #        tempsamp.apply_sampling_and_export(
+                #            template_idx=i,
+                #            fn_suffix=i,
+                #        )
+
+                #    if any(["%multiple_choice_" in t for t in meta["templates"]]):
+                #        TemplateSampler(
+                #            path,
+                #            path_lm_eval_data_dir,
+                #            multiple_choice_rnd_symbols=multiple_choice_rnd_symbols,
+                #            additional_templates=additional_templates,
+                #            benchmarking_templates=True,
+                #            multiple_choice_benchmarking_templates=True,
+                #        ).apply_sampling_and_export()
+
+                #        # for i, s in enumerate(multiple_choice_rnd_symbols):
+                #        #    TemplateSampler(
+                #        #        path,
+                #        #        path_lm_eval_data_dir,
+                #        #        multiple_choice_rnd_symbols=[s],
+                #        #        additional_templates=additional_templates,
+                #        #        benchmarking_templates=True,
+                #        #        multiple_choice_benchmarking_templates=True,
+                #        #        multiple_choice_benchmarking_format=i,
+                #        #    ).apply_sampling_and_export()
