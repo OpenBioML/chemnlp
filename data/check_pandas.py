@@ -1,10 +1,11 @@
-import pandas as pd
-import fire
 import os
 from glob import glob
-from tqdm import tqdm
-from pandarallel import pandarallel
 from pathlib import Path
+
+import fire
+import pandas as pd
+from pandarallel import pandarallel
+from tqdm import tqdm
 
 pandarallel.initialize(progress_bar=False)
 
@@ -118,7 +119,7 @@ def check_all_files(data_dir):
             "melting_points",
             "fda_adverse_reactions",
             "drugchat_liang_zhang_et_al",
-            "herg_central"
+            "herg_central",
         ]:
             # if filesize < 35 GB:
             if os.path.getsize(csv_file) < 35 * 1024 * 1024 * 1024:

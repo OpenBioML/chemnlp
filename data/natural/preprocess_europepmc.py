@@ -107,12 +107,11 @@ def clean_jsonl(path_jsonl_in):
 
 
 if __name__ == "__main__":
-    #path_base = ""
     paths = [
-            "/scratch/micpie/ft_results_test.jsonl",
-            "/scratch/micpie/ft_results_valid.jsonl",
-            "/scratch/micpie/ft_results_train.jsonl",
-            ]
+        "/scratch/micpie/ft_results_test.jsonl",
+        "/scratch/micpie/ft_results_valid.jsonl",
+        "/scratch/micpie/ft_results_train.jsonl",
+    ]
     for path_base in paths:
         print(path_base)
         clean_jsonl(path_base)

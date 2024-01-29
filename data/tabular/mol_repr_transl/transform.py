@@ -78,7 +78,7 @@ def smiles_with_hydrogens(smiles):
         mol = Chem.MolFromSmiles(smiles)
         mol = Chem.AddHs(mol)
         return Chem.MolToSmiles(mol)
-    except:
+    except BaseException:  # noqa: E722
         return pd.NA
 
 
@@ -93,12 +93,12 @@ def get_and_transform_data():
         path_csv,
         delimiter=",",
     )
-    #df["SMILES_with_H"] = df["SMILES"].apply(smiles_with_hydrogens)
+    # df["SMILES_with_H"] = df["SMILES"].apply(smiles_with_hydrogens)
 
-    #if "split" in df.columns:
+    # if "split" in df.columns:
     assert df.columns[-1] == "split", "Split column needs to be the last column."
     col_len = len(df.columns) - 1
-    #else:
+    # else:
     #    print(
     #        "CAUTION: No split information found, maybe you need to rerun the train_test_split.py script over extend_tabular_processed.csv?"  # noqa: E501
     #    )
@@ -116,9 +116,9 @@ def get_and_transform_data():
 
             # df export
             col_suffix = "_text"  # to exclude from other preprocessing steps
-            #if "split" in df.columns:
+            # if "split" in df.columns:
             df_subset = df[subset_cols + ["split"]].dropna()
-            #elif "split" not in df.columns:
+            # elif "split" not in df.columns:
             #    df_subset = df[subset_cols].dropna()
             df_subset.columns = [
                 x + col_suffix if x != "split" else x for x in subset_cols

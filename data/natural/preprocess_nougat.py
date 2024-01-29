@@ -206,7 +206,6 @@ exclude_headers = [
 def create_jsonl_from_dir(path):
     print(f"{path=}")
     paths = sorted(glob.glob(path + "/*.mmd"))
-    #path_jsonl = path + "/out.jsonl"
     path_jsonl = path.replace("rxiv/", "rxiv_clean.jsonl")
     if os.path.isfile(path_jsonl):
         print(f"Output file already exists, please check: {path_jsonl}")
@@ -241,14 +240,8 @@ def create_jsonl_from_dir(path):
 
 if __name__ == "__main__":
     for path_base in [
-            "/fsx/proj-chemnlp/data/nougat_processed_chemrxiv/",
-            "/fsx/proj-chemnlp/data/nougat_processed_biorxiv/",
-            "/fsx/proj-chemnlp/data/nougat_processed_medrxiv/",
-            ]:
+        "/fsx/proj-chemnlp/data/nougat_processed_chemrxiv/",
+        "/fsx/proj-chemnlp/data/nougat_processed_biorxiv/",
+        "/fsx/proj-chemnlp/data/nougat_processed_medrxiv/",
+    ]:
         create_jsonl_from_dir(path_base)
-
-    #path_jsonl = "/fsx/proj-chemnlp/micpie/chemnlp/data/natural/nougat_processed_chemrxiv.jsonl"
-    #path_base = "/fsx/proj-chemnlp/data/nougat_processed_chemrxiv/"
-
-    #path_base = "/fsx/proj-chemnlp/data/nougat_processed_biorxiv/"
-    #path_jsonl = "/fsx/proj-chemnlp/micpie/chemnlp/data/natural/nougat_processed_biorxiv.jsonl"

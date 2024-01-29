@@ -3,18 +3,18 @@ import multiprocessing as mp
 import os
 import random
 import time
-from functools import partial
 
 import pandas as pd
 from utils import load_yaml
 
-from chemnlp.data.reprs import (  # smiles_to_safe,
+from chemnlp.data.reprs import (  # smiles_to_safe,; smiles_to_iupac_name,
     smiles_to_canoncial,
     smiles_to_deepsmiles,
     smiles_to_inchi,
-    smiles_to_iupac_name,
     smiles_to_selfies,
 )
+
+# from functools import partial
 
 
 def _try_except_none(func, *args, **kwargs):
@@ -36,13 +36,13 @@ def line_reps_from_smiles(
     """
 
     # This makes it only super slow. It is faster to always process from scratch than have the look-up.
-    #if smiles in unique_smiles_processed:
+    # if smiles in unique_smiles_processed:
     #    # print("SMILES was already previously processed.")
     #    representations = df_processed[df_processed.SMILES == smiles].to_dict(
     #        orient="records"
     #    )[0]
-    #else:
-        # print("Process SMILES.")
+    # else:
+    # print("Process SMILES.")
     representations = {
         "smiles": smiles,
         "selfies": _try_except_none(smiles_to_selfies, smiles),
@@ -53,10 +53,10 @@ def line_reps_from_smiles(
         # "safe": _try_except_none(smiles_to_safe, smiles),  # not used
     }
 
-        # Note: This needs proper filelocking to work.
-        # if path_processed_smiles:
-        #    pd.DataFrame(representations, index=[0]).to_csv(path_processed_smiles, mode="a", header=False, index=False)
-        #    print("Added processed SMILES to extend_tabular_processed.csv file.")
+    # Note: This needs proper filelocking to work.
+    # if path_processed_smiles:
+    #    pd.DataFrame(representations, index=[0]).to_csv(path_processed_smiles, mode="a", header=False, index=False)
+    #    print("Added processed SMILES to extend_tabular_processed.csv file.")
 
     return representations
 
@@ -67,12 +67,12 @@ if __name__ == "__main__":
     path_data_dir = sorted(
         [p for p in glob.glob(path_base + "kg/*") if os.path.isdir(p)]
     )
-    #index = [i for i, x in enumerate(path_data_dir) if x.find("herg_karim_et_al") != -1][0]
-    #index = [i for i, x in enumerate(path_data_dir) if x.find("rdkit_features") != -1][0]
-    #path_data_dir = path_data_dir[index:]
-    #path_data_dir = path_data_dir[index+1:]
-    #path_data_dir = [path_data_dir[index]]
-    #path_data_dir = [
+    # index = [i for i, x in enumerate(path_data_dir) if x.find("herg_karim_et_al") != -1][0]
+    # index = [i for i, x in enumerate(path_data_dir) if x.find("rdkit_features") != -1][0]
+    # path_data_dir = path_data_dir[index:]
+    # path_data_dir = path_data_dir[index+1:]
+    # path_data_dir = [path_data_dir[index]]
+    # path_data_dir = [
     #        "/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/elsevier_oa_cc-by_corpus",
     #        "/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/aminoacids",
     #        "/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/qmof_gcmc",
@@ -90,7 +90,7 @@ if __name__ == "__main__":
 
     path_processed_smiles = path_base + "text_sampling/extend_tabular_processed.csv"
 
-    #if os.path.isfile(path_processed_smiles):
+    # if os.path.isfile(path_processed_smiles):
     #    df_processed = pd.read_csv(path_processed_smiles, low_memory=False)
     #    unique_smiles_processed = df_processed.SMILES.unique().tolist()
     #    process_func = partial(
@@ -100,7 +100,7 @@ if __name__ == "__main__":
     #        path_processed_smiles=path_processed_smiles,
     #    )
     #    print("Using preprocessed SMILES.")
-    #else:
+    # else:
     process_func = line_reps_from_smiles
 
     for path in path_data_dir:

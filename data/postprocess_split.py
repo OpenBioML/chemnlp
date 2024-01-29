@@ -181,7 +181,9 @@ def process_file(file: Union[str, Path], id_cols):
 
 def process_all_files(data_dir):
     all_yaml_files = sorted(glob(os.path.join(data_dir, "**", "**", "meta.yaml")))
-    index = [i for i, x in enumerate(all_yaml_files) if str(x).find("orbnet_denali") != -1][0]
+    index = [
+        i for i, x in enumerate(all_yaml_files) if str(x).find("orbnet_denali") != -1
+    ][0]
     all_yaml_files = [all_yaml_files[index]]
     for yaml_file in tqdm(all_yaml_files):
         print(f"Processing {yaml_file}")

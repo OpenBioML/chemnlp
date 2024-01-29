@@ -6,6 +6,7 @@ from typing import List, Literal, Union
 
 import dask.dataframe as dd
 import fire
+import pandas as pd
 import yaml
 from pandas.errors import ParserError
 
@@ -59,16 +60,17 @@ def check_general_data_leakage(
     identifier_columns = get_all_identifier_columns(data_path)
     # check if train/valid/test splits have the same identifiers
     data_dir = Path(data_path).parent
-    table = os.path.join(data_dir, "data_clean.csv")
-
-    #data = dd.read_csv(table)
+    # table = os.path.join(data_dir, "data_clean.csv")
+    # data = dd.read_csv(table)
     try:
         data = dd.read_csv(
             os.path.join(data_dir, "data_clean.csv"),
             low_memory=False,
         )
     except ParserError:
-        print(f"Could not parse {file}. Using blocksize=None.")
+        print(
+            f"Could not parse {os.path.join(data_dir, 'data_clean.csv')}. Using blocksize=None."
+        )
         data = dd.read_csv(
             os.path.join(data_dir, "data_clean.csv"),
             low_memory=False,
@@ -76,15 +78,15 @@ def check_general_data_leakage(
         )
     except ValueError as e:
         if "Mismatched dtypes" in str(e):
-            print(f"Could not parse {file}. Inferring dtypes via pandas.")
+            print(
+                f"Could not parse {os.path.join(data_dir, 'data_clean.csv')}. Inferring dtypes via pandas."
+            )
             chunk = pd.read_csv(
                 os.path.join(data_dir, "data_clean.csv"),
                 low_memory=False,
                 nrows=10000,
             )
-            d = dict(
-                zip(chunk.dtypes.index, [str(t) for t in chunk.dtypes.values])
-            )
+            d = dict(zip(chunk.dtypes.index, [str(t) for t in chunk.dtypes.values]))
             if "iupac_name" in d:
                 d["iupac_name"] = "object"
                 print(d)
@@ -138,15 +140,17 @@ def check_data_leakage(
     SMILES/Amino acid sequences and the splits in the dataset."""
     # Load the data with Dask
     data_dir = Path(data_path).parent
-    table = os.path.join(data_dir, "data_clean.csv")
-    #data = dd.read_csv(table)
+    # table = os.path.join(data_dir, "data_clean.csv")
+    # data = dd.read_csv(table)
     try:
         data = dd.read_csv(
             os.path.join(data_dir, "data_clean.csv"),
             low_memory=False,
         )
     except ParserError:
-        print(f"Could not parse {file}. Using blocksize=None.")
+        print(
+            f"Could not parse {os.path.join(data_dir, 'data_clean.csv')}. Using blocksize=None."
+        )
         data = dd.read_csv(
             os.path.join(data_dir, "data_clean.csv"),
             low_memory=False,
@@ -154,15 +158,15 @@ def check_data_leakage(
         )
     except ValueError as e:
         if "Mismatched dtypes" in str(e):
-            print(f"Could not parse {file}. Inferring dtypes via pandas.")
+            print(
+                f"Could not parse {os.path.join(data_dir, 'data_clean.csv')}. Inferring dtypes via pandas."
+            )
             chunk = pd.read_csv(
                 os.path.join(data_dir, "data_clean.csv"),
                 low_memory=False,
                 nrows=10000,
             )
-            d = dict(
-                zip(chunk.dtypes.index, [str(t) for t in chunk.dtypes.values])
-            )
+            d = dict(zip(chunk.dtypes.index, [str(t) for t in chunk.dtypes.values]))
             if "iupac_name" in d:
                 d["iupac_name"] = "object"
             data = dd.read_csv(
@@ -171,7 +175,7 @@ def check_data_leakage(
                 dtype=d,
                 assume_missing=True,
             )
-    #chunksize = 1_000_000
+    # chunksize = 1_000_000
     #    with pd.read_csv(fn, chunksize=chunksize, low_memory=False) as reader:
     #        for chunk in reader:
     #            process(fn, chunk, file)

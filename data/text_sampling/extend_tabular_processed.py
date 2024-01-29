@@ -7,7 +7,7 @@ if __name__ == "__main__":
     path_base = __file__.replace("text_sampling/extend_tabular_processed.py", "")
     path_data_dir = sorted(glob.glob(path_base + "tabular/**/data_clean.csv"))
     path_data_dir += sorted(glob.glob(path_base + "kg/**/data_clean.csv"))
-    #print(len(path_data_dir))
+    # print(len(path_data_dir))
     path_processed_smiles = path_base + "text_sampling/extend_tabular_processed.csv"
 
     cols = [

@@ -20,6 +20,7 @@ Warning:
     - Some CSV files contain complicated strings. We cannot parse them in a chunked manner.
         In this case, we set blocksize=None and read the whole file into memory.
 """
+import logging
 import os
 import random
 import subprocess
@@ -34,17 +35,16 @@ import fire
 import numpy as np
 import pandas as pd
 import yaml
+
+# import localcluster and client
+# from dask.distributed import Client, LocalCluster
 from pandarallel import pandarallel
 from pandas.errors import ParserError
 from tqdm import tqdm
 
-# import localcluster and client
-from dask.distributed import Client, LocalCluster
-
 from chemnlp.data.split import _create_scaffold_split
 
 pandarallel.initialize(progress_bar=True)
-import logging
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -166,6 +166,7 @@ to_scaffold_split = [
     "drug_protein_protein",
 ]
 
+
 def cull_empty_partitions(df):
     ll = list(df.map_partitions(len).compute())
     df_delayed = df.to_delayed()
@@ -173,13 +174,14 @@ def cull_empty_partitions(df):
     pempty = None
     for ix, n in enumerate(ll):
         if 0 == n:
-            print('culled')
+            print("culled")
             pempty = df.get_partition(ix)
         else:
             df_delayed_new.append(df_delayed[ix])
     if pempty is not None:
         df = dd.from_delayed(df_delayed_new, meta=pempty)
     return df
+
 
 def split_for_smiles(
     smiles: str, train_smiles: List[str], val_smiles: List[str]
@@ -227,7 +229,9 @@ def is_in_scaffold_split_list(yaml_file: Union[str, Path]) -> bool:
 
 def get_meta_yaml_files(data_dir: Union[str, Path]) -> List[str]:
     """Returns all yaml files in the data_dir directory."""
-    return sorted(glob(os.path.join(data_dir, "**", "**", "meta.yaml")))#, recursive=True)
+    return sorted(
+        glob(os.path.join(data_dir, "**", "**", "meta.yaml"))
+    )  # , recursive=True)
 
 
 def run_transform(file: Union[str, Path]) -> None:
@@ -294,10 +298,10 @@ def remaining_split(
     non_smiles_yaml_files = [
         file
         for file in yaml_files
-        #if not (
+        # if not (
         #    yaml_file_has_column_of_type(file, "SMILES")
         #    or yaml_file_has_column_of_type(file, "AS_SEQUENCE")
-        #)
+        # )
     ]
 
     # if we debug, we only run split on the first 5 datasets
@@ -323,7 +327,7 @@ def remaining_split(
         )
 
         # Calculate the train, valid, and test masks based on the random values
-        train_mask = random_values < train_frac
+        # train_mask = random_values < train_frac  # Never used?
         valid_mask = (random_values >= train_frac) & (
             random_values < train_frac + test_frac
         )
@@ -629,7 +633,7 @@ def smiles_split(
 
     # we err toward doing more I/O but having simpler code to ensure we don't make anything stupid
     all_yaml_files = get_meta_yaml_files(data_dir)
-    #all_yaml_files = ["/fsx/proj-chemnlp/micpie/chemnlp/data/kg/chembl33_preprocessed_filtered_bioactivity_dataset_w_fullprotnames_smiles/meta.yaml"]
+    # all_yaml_files = [".../kg/chembl33_preprocessed_filtered_bioactivity_dataset_w_fullprotnames_smiles/meta.yaml"]
     smiles_yaml_files = [
         file
         for file in all_yaml_files
@@ -643,7 +647,7 @@ def smiles_split(
         file for file in smiles_yaml_files if not is_in_scaffold_split_list(file)
     ]
 
-    #not_scaffold_split_yaml_files = list(set( [
+    # not_scaffold_split_yaml_files = list(set( [
     #    f
     #    for f in not_scaffold_split_yaml_files
     #    if Path(f).parts[-2]
@@ -654,10 +658,14 @@ def smiles_split(
     #         #"iupac_smiles",
     #         #"fda_adverse_reactions",
     #    ]
-    #]))
-    index = [i for i, x in enumerate(not_scaffold_split_yaml_files) if str(x).find("orbnet_denali") != -1][0]
-    #not_scaffold_split_yaml_files = not_scaffold_split_yaml_files[index:]
-    #not_scaffold_split_yaml_files = not_scaffold_split_yaml_files[index+1:]
+    # ]))
+    index = [
+        i
+        for i, x in enumerate(not_scaffold_split_yaml_files)
+        if str(x).find("orbnet_denali") != -1
+    ][0]
+    # not_scaffold_split_yaml_files = not_scaffold_split_yaml_files[index:]
+    # not_scaffold_split_yaml_files = not_scaffold_split_yaml_files[index+1:]
     not_scaffold_split_yaml_files = [not_scaffold_split_yaml_files[index]]
 
     # if we debug, we only run split on the first 5 datasets
@@ -699,11 +707,11 @@ def smiles_split(
             seed,
         )
 
-        #split_counts = ddf["split"].value_counts().compute()
+        # split_counts = ddf["split"].value_counts().compute()
 
-        #print(
+        # print(
         #    f"Dataset {file} has {len(ddf)} datapoints. Split sizes: {split_counts['train']} train, {split_counts['valid']} valid, {split_counts['test']} test."  # noqa: E501
-        #)
+        # )
 
         # we then write the new data_clean.csv file
         # if the override option is true, we write this new file to `data_clean.csv` in the same directory
@@ -714,10 +722,7 @@ def smiles_split(
                 os.path.join(os.path.dirname(file), "data_clean.csv"),
                 os.path.join(os.path.dirname(file), "data_clean_old.csv"),
             )
-        ddf.to_csv(
-            os.path.join(os.path.dirname(file), "data_clean-*.csv")
-            )
-        
+        ddf.to_csv(os.path.join(os.path.dirname(file), "data_clean-*.csv"))
 
     for file in tqdm(not_scaffold_split_yaml_files):
         print(f"\nProcessing {file}")
@@ -727,9 +732,9 @@ def smiles_split(
             ddf = dd.read_csv(
                 os.path.join(os.path.dirname(file), "data_clean.csv"), low_memory=False
             )
-           # print(len(ddf))
-           #s ddf = cull_empty_partitions(ddf)
-           # print(partition_sizes)
+            # print(len(ddf))
+            # s ddf = cull_empty_partitions(ddf)
+            # print(partition_sizes)
             split_and_save(file, ddf)
 
         except ParserError:

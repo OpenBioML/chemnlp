@@ -176,51 +176,51 @@ exclude_from_standard_tabular_text_templates = [
     "uniprot_sentences",
     "rhea_db_predictions",
     "rhea_db_masked",
-    'RedDB',
-    'SIDER',
-    'aminoacids',
-    'bc5chem',
-    'bc5disease',
-    'bicerano_dataset',
-    'block_polymers_morphology',
-    'buchwald_hartwig',
-    'chem_caption_smarts',
-    'chemdner',
-    'chemistry_stackexchange',
-    'compound_chebi_chebi_chebi_1',
-    'compound_chebi_chebi_chebi_2',
-    'drug_chebi_chebi_chebi',
-    'fda_adverse_reactions',
-    'formation_energies',
-    'h2_storage_materials',
-    'mattermodeling_stackexchange',
-    'melting_points',
-    'mofdscribe',
-    'mol2svg',
-    'moses',
-    'mp_anisotropy',
-    'mp_bulk_modulus',
-    'mp_descriptions',
-    'mp_self_supervised',
-    'mp_shear_modulus',
-    'ncbi_disease',
-    'nomad_structure',
-    'ocp',
-    'opv',
-    'oqmd',
-    'ord_masked',
-    'ord_predictions',
-    'ord_procedure_steps',
-    'ord_rxn_smiles_procedure',
-    'ord_rxn_smiles_yield_pred',
-    'ord_steps_yield',
-    'perovskite_db',
-    'physics_stackexchange',
-    'qm8',
-    'qm9',
-    'suzuki_miyaura_sach',
-    'uspto',
-    'uspto_yield',
+    "RedDB",
+    "SIDER",
+    "aminoacids",
+    "bc5chem",
+    "bc5disease",
+    "bicerano_dataset",
+    "block_polymers_morphology",
+    "buchwald_hartwig",
+    "chem_caption_smarts",
+    "chemdner",
+    "chemistry_stackexchange",
+    "compound_chebi_chebi_chebi_1",
+    "compound_chebi_chebi_chebi_2",
+    "drug_chebi_chebi_chebi",
+    "fda_adverse_reactions",
+    "formation_energies",
+    "h2_storage_materials",
+    "mattermodeling_stackexchange",
+    "melting_points",
+    "mofdscribe",
+    "mol2svg",
+    "moses",
+    "mp_anisotropy",
+    "mp_bulk_modulus",
+    "mp_descriptions",
+    "mp_self_supervised",
+    "mp_shear_modulus",
+    "ncbi_disease",
+    "nomad_structure",
+    "ocp",
+    "opv",
+    "oqmd",
+    "ord_masked",
+    "ord_predictions",
+    "ord_procedure_steps",
+    "ord_rxn_smiles_procedure",
+    "ord_rxn_smiles_yield_pred",
+    "ord_steps_yield",
+    "perovskite_db",
+    "physics_stackexchange",
+    "qm8",
+    "qm9",
+    "suzuki_miyaura_sach",
+    "uspto",
+    "uspto_yield",
     # "h2_storage_materials",  # only IUPAC identifier, more than one target, LOW PRIO: has only 30 samples
 ]
 
@@ -471,14 +471,14 @@ class TemplateSampler:
         # paths
         self.path_data_dir = path_data_dir
         self.path_data_meta = self.path_data_dir + "/meta.yaml"
-        #self.path_data_csv = self.path_data_dir + "/data_clean.csv"
+        # self.path_data_csv = self.path_data_dir + "/data_clean.csv"
         self.path_lm_eval_data_dir = path_lm_eval_data_dir
 
         # meta from yaml
         self.meta = load_yaml(self.path_data_meta)
 
         # dataframe from csv
-        #df = pd.read_csv(self.path_data_csv, low_memory=False)
+        # df = pd.read_csv(self.path_data_csv, low_memory=False)
         df = df.replace("REPLACENULL", "")
 
         def check_targets_and_identifiers(meta: dict, df: pd.DataFrame):
@@ -1064,11 +1064,11 @@ if __name__ == "__main__":
     )
     path_lm_eval_data_dir = path_base + "text_sampling/export"
 
-    #index = [i for i, x in enumerate(path_data_dir) if x.find("RedDB") != -1][0]
-    #print(index)
-    #path_data_dir = path_data_dir[index:]
-    #path_data_dir = [path_data_dir[index]]
-    #path_data_dir = [
+    # index = [i for i, x in enumerate(path_data_dir) if x.find("RedDB") != -1][0]
+    # print(index)
+    # path_data_dir = path_data_dir[index:]
+    # path_data_dir = [path_data_dir[index]]
+    # path_data_dir = [
     #        '/weka/proj-chemnlp/micpie/chemnlp/data/tabular/bioavailability_ma_et_al',
     #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/RedDB',
     #        '/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/SIDER',
@@ -1192,17 +1192,17 @@ if __name__ == "__main__":
                 #    multiple_choice_benchmarking_templates=False,
                 # ).apply_sampling_and_export()
 
-                #tempsamp = TemplateSampler(
+                # tempsamp = TemplateSampler(
                 #    path,
                 #    path_lm_eval_data_dir,
                 #    multiple_choice_rnd_symbols=multiple_choice_rnd_symbols,
                 #    additional_templates=additional_templates,
                 #    benchmarking_templates=False,
                 #    multiple_choice_benchmarking_templates=False,
-                #)
-                #for i, template in enumerate(
+                # )
+                # for i, template in enumerate(
                 #    [t for t in meta["templates"] if "<EOI>" not in t]
-                #):
+                # ):
                 #    print(f"\nRunning sampling for template {i}:\n{template}")
                 #    tempsamp.apply_sampling_and_export(
                 #        template_idx=i,
@@ -1211,7 +1211,9 @@ if __name__ == "__main__":
 
                 chunksize = 1_000_000
                 path_data_csv = path + "/data_clean.csv"
-                with pd.read_csv(path_data_csv, chunksize=chunksize, low_memory=False) as reader:
+                with pd.read_csv(
+                    path_data_csv, chunksize=chunksize, low_memory=False
+                ) as reader:
                     chunk_idx = 0
                     for df_chunk in reader:
                         tempsamp = TemplateSampler(
@@ -1233,7 +1235,7 @@ if __name__ == "__main__":
                             )
                         chunk_idx += 1
 
-                #if any(["<EOI>" in t for t in meta["templates"]]):
+                # if any(["<EOI>" in t for t in meta["templates"]]):
                 #    # uncomment to randomly sample from all templates and save the output to a single file
                 #    # TemplateSampler(
                 #    #     path,
