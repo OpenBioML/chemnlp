@@ -50,6 +50,6 @@ templates:
       {#Sentence|Description!}: {sentence#}
       Answer: {matched_words#}
     - |-
-      User: Does the following text contain mentions of {#chemicals|chemical compounds|chemical substances!}?{# Can you return matches?| Can you output matches?|Please return matches!}
+      User: Does the following text contain mentions of {#chemicals|chemical compounds|chemical substances!}?{# Can you return matches?| Can you output matches?| Please return matches.!}
       {#Text: |!}{sentence#}
       Assistant: {#I found|There is!} {matched_words#}.

@@ -106,9 +106,9 @@ templates:
     - The {MolLogP__names__noun} of the {#molecule|compound|chemical!} with {SMILES__description} {SMILES#} is {MolLogP#}.
     - |-
       User: I want to {#design|create|make|synthesize|analyze!} a {#molecule|compound|chemical!} with a {formula__names__noun} of {formula#}.
-      Assistant: {#Cool, do|Nice, do|Interesting, do|That's interesting, do|That is a very interesting question, do|Do!} you have some additional {#constraints|requirements|conditions|limitations|!}{# I should take into account| that help me narrow down the search| that I should consider| I should consider| I should take into account|!}?
+      Assistant: {#Cool, do|Nice, do|Interesting, do|That's interesting, do|That is a very interesting question, do|Do!} you have some additional {#constraints|requirements|conditions|limitations!}{# I should take into account| that help me narrow down the search| that I should consider| I should consider| I should take into account|!}?
       User: {#Yes, |Indeed, |Yeah, |Yea, |Yep, |!}I want the {NumHDonors__names__noun} to be {NumHDonors#}, the {NumHAcceptors__names__noun} to be {NumHAcceptors#}.
-      Assistant: {#Then, |In that case, |In that situation, |In that scenario, |!}I {#recommend|suggest|propose|advise|!} the {#molecule|compound|chemical!} with {SMILES__description} {SMILES#}.
+      Assistant: {#Then, |In that case, |In that situation, |In that scenario, |!}I {#recommend|suggest|propose|advise!} the {#molecule|compound|chemical!} with {SMILES__description} {SMILES#}.
     - |-
       Question: What is the {formula__names__noun} of the {#molecule|compound|chemical!} with {SMILES__description} {SMILES#}?
       Answer: {formula#}
@@ -141,11 +141,11 @@ templates:
       Answer: {Apol#}
     - |-
       User: I want to {#design|create|make|synthesize|analyze!} a {#molecule|compound|chemical!} with a {NumHDonors__names__noun} of {NumHDonors#} and a {NumHAcceptors__names__noun} of {NumHAcceptors#}.
-      Assistant: {#Cool, do|Nice, do|Interesting, do|That's interesting, do|That is a very interesting question, do|Do!} you have some additional {#constraints|requirements|conditions|limitations|!}{# I should take into account| that help me narrow down the search| that I should consider| I should consider| I should take into account|!}?
+      Assistant: {#Cool, do|Nice, do|Interesting, do|That's interesting, do|That is a very interesting question, do|Do!} you have some additional {#constraints|requirements|conditions|limitations!}{# I should take into account| that help me narrow down the search| that I should consider| I should consider| I should take into account|!}?
       User: {#Yes, |Indeed, |Yeah, |Yea, |Yep, |!}I want the {NumHeteroatoms__names__noun} to be {NumHeteroatoms#}.
-      Assistant: {#Then, |In that case, |In that situation, |In that scenario, |!}I {#recommend|suggest|propose|advise|!} the {#molecule|compound|chemical!} with {SMILES__description} {SMILES#}.
+      Assistant: {#Then, |In that case, |In that situation, |In that scenario, |!}I {#recommend|suggest|propose|advise!} the {#molecule|compound|chemical!} with {SMILES__description} {SMILES#}.
     - |-
       User: I want to {#design|create|make|synthesize|analyze!} a {#molecule|compound|chemical!} with a {NumHDonors__names__noun} of {NumHDonors#}, a {NumHAcceptors__names__noun} of {NumHAcceptors#} and a {MolLogP__names__noun} of {MolLogP#}.
-      Assistant: {#Cool, do|Nice, do|Interesting, do|That's interesting, do|That is a very interesting question, do|Do!} you have some additional {#constraints|requirements|conditions|limitations|!}{# I should take into account| that help me narrow down the search| that I should consider| I should consider| I should take into account|!}?
+      Assistant: {#Cool, do|Nice, do|Interesting, do|That's interesting, do|That is a very interesting question, do|Do!} you have some additional {#constraints|requirements|conditions|limitations!}{# I should take into account| that help me narrow down the search| that I should consider| I should consider| I should take into account|!}?
       User: {#Yes, |Indeed, |Yeah, |Yea, |Yep, |!}I want the {formula__names__noun} to be {formula#}.
-      Assistant: {#Then, |In that case, |In that situation, |In that scenario, |!}I {#recommend|suggest|propose|advise|!} the {#molecule|compound|chemical!} with {SMILES__description} {SMILES#}.
+      Assistant: {#Then, |In that case, |In that situation, |In that scenario, |!}I {#recommend|suggest|propose|advise!} the {#molecule|compound|chemical!} with {SMILES__description} {SMILES#}.

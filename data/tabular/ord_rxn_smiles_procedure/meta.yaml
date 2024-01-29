@@ -47,7 +47,9 @@ templates:
     - |-
       The {RXNSMILES__names__noun} of a reaction with the {procedure__names__noun} below is {RXNSMILES#}.
       Procedure: {procedure#}
-    - The {procedure__names__noun} of a reaction with the {RXNSMILES__names__noun} {RXNSMILES#} is {procedure#}
+    - |-
+      The {procedure__names__noun} of a reaction with the {RXNSMILES__names__noun} {RXNSMILES#} is:
+      {procedure#}
     - |-
       User: {#I want|I need|I would like!} to run a reaction with the {RXNSMILES__names__noun} {RXNSMILES#}.
       Assistant: {#Cool, is|That's interesting, is|Great, is|Is!} there anything else I can do for you?

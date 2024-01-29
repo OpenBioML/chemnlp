@@ -79,11 +79,11 @@ bibtex:
       }
 templates:
     - |-
-      Task: {Please design|Design!} a {#crystal structure|material|compound|material structure|structure!} based on the {cifstr__names__noun}.
+      Task: {#Please design|Design!} a {#crystal structure|material|compound|material structure|structure!} based on the {cifstr__names__noun}.
       CIF: {cifstr#}
       {#Description|Answer!}: {description#}
     - |-
-      Task: {Please design|Design!} a {cifstr__names__noun} that matches the description below.
+      Task: {#Please design|Design!} a {cifstr__names__noun} that matches the description below.
       Description: {description#}
       {#Answer|CIF!}: {cifstr#}
     - |-

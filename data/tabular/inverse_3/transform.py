@@ -47,6 +47,7 @@ FEATURIZER = MultipleFeaturizer(
         ChiralCenterCountFeaturizer(),
     ]
 )
+print(FEATURIZER.feature_labels())
 
 
 def to_smiles_molecule(smiles: str):
@@ -67,7 +68,7 @@ def transform():
 
     # merge on SMILES, keep where we have SMILES in both datasets
     merged = pd.merge(df_1, df_2, on="SMILES", how="inner")
-    print(len(merged))
+    print(len(merged))  
 
     features = []
     feature_names = FEATURIZER.feature_labels()
@@ -79,10 +80,31 @@ def transform():
             features.append(feature)
 
     features = np.concatenate(features)
-    print(features.shape)
     # add features to dataframe
     for i, name in enumerate(feature_names):
-        merged[name] = features[:, i]
+        if name in [
+            "carboxyl_count",
+            "carbonyl_count",
+            "ether_count",
+            "alkanol_count",
+            "thiol_count",
+            "halogen_count",
+            "amine_count",
+            "amide_count",
+            "ketone_count",
+            "num_valence_electrons",
+            "num_carbon_atoms",
+            "num_hydrogen_atoms",
+            "num_nitrogen_atoms",
+            "num_oxygen_atoms",
+            "num_hydrogen_bond_acceptors",
+            "num_hydrogen_bond_donors",
+            "num_lipinski_violations",
+            "num_chiral_centers",
+        ]:
+            merged[name] = features[:, i].astype(float)
+        else:
+            merged[name] = features[:, i]
     merged.dropna(
         subset=[
             "SMILES",
@@ -91,7 +113,75 @@ def transform():
         + ["activity_choline_transporter", "activity_kcnq2_potassium_channel"],
         inplace=True,
     )
+    merged = merged.dropna(
+        subset=[
+            "carboxyl_count",
+            "carbonyl_count",
+            "ether_count",
+            "alkanol_count",
+            "thiol_count",
+            "halogen_count",
+            "amine_count",
+            "amide_count",
+            "ketone_count",
+            "num_valence_electrons",
+            "num_carbon_atoms",
+            "num_hydrogen_atoms",
+            "num_nitrogen_atoms",
+            "num_oxygen_atoms",
+            "num_hydrogen_bond_acceptors",
+            "num_hydrogen_bond_donors",
+            "num_lipinski_violations",
+            "num_chiral_centers",
+        ]
+    )
+    merged[
+        [
+            "carboxyl_count",
+            "carbonyl_count",
+            "ether_count",
+            "alkanol_count",
+            "thiol_count",
+            "halogen_count",
+            "amine_count",
+            "amide_count",
+            "ketone_count",
+            "num_valence_electrons",
+            "num_carbon_atoms",
+            "num_hydrogen_atoms",
+            "num_nitrogen_atoms",
+            "num_oxygen_atoms",
+            "num_hydrogen_bond_acceptors",
+            "num_hydrogen_bond_donors",
+            "num_lipinski_violations",
+            "num_chiral_centers",
+        ]
+    ] = merged[
+        [
+            "carboxyl_count",
+            "carbonyl_count",
+            "ether_count",
+            "alkanol_count",
+            "thiol_count",
+            "halogen_count",
+            "amine_count",
+            "amide_count",
+            "ketone_count",
+            "num_valence_electrons",
+            "num_carbon_atoms",
+            "num_hydrogen_atoms",
+            "num_nitrogen_atoms",
+            "num_oxygen_atoms",
+            "num_hydrogen_bond_acceptors",
+            "num_hydrogen_bond_donors",
+            "num_lipinski_violations",
+            "num_chiral_centers",
+        ]
+    ].astype(
+        int
+    )
     print(len(merged))
+    merged["split"] = merged["split_x"]
     merged.to_csv("data_clean.csv", index=False)
 
 

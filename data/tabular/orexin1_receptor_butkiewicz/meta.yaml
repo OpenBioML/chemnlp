@@ -126,12 +126,12 @@ templates:
       User: I'm {#searching|looking!} for the {SMILES__description} of a molecule that is {activity_orexin1#not &NULL}{activity_orexin1__names__adjective}?
       Assistant: This is a molecule that is {activity_orexin1#not &NULL}{activity_orexin1__names__adjective}: {SMILES#}
     - |-
-      User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+      User: I want to {#come up with|create|generate!} the {SMILES__description} of a {#molecule|chemical|chemical structure!}.
       Assistant: This sounds {#very exciting. |very interesting. | very curious. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
       User: Yes, please. The molecule should {activity_orexin1#not &NULL}be {activity_orexin1__names__adjective}.
       Assistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} is {activity_orexin1#not &NULL}{activity_orexin1__names__adjective}: {SMILES#}
     - |-
-      User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+      User: I want to {#come up with|create|generate!} the {SMILES__description} of a {#molecule|chemical|chemical structure!}.
       Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
       User: Yes, the molecule should {activity_orexin1#not &NULL}be {activity_orexin1__names__adjective}.
       Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {activity_orexin1#not &NULL}{activity_orexin1__names__adjective}: {SMILES#}
@@ -143,7 +143,7 @@ templates:
       Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
       Result:<EOI> {activity_orexin1#False&True}
     - |-
-      Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+      Task: Please {#give me|create|generate!} the {SMILES__description} of a {#molecule|chemical|chemical structure!} based on the {#text |!}description{# below|!}.
       Description: A molecule that is {activity_orexin1__names__adjective}.
       Result:<EOI> {SMILES#}
     - |-

@@ -38,7 +38,7 @@ targets:
       type: text
       names:
           - noun: geometry in V3000 Molfile format (after optimization on B3LYP/6-31G(2df,p) level of theory)
-          - noun: 3D-structure in V3000 Molfile format format (after optimization on B3LYP/6-31G(2df,p) level of theory)
+          - noun: 3D-structure in V3000 Molfile format (after optimization on B3LYP/6-31G(2df,p) level of theory)
           - noun: three-dimensional structure in MOLV3000 Molfile format3000 format (after optimization on B3LYP/6-31G(2df,p) level of theory)
           - noun: content of a V3000 Molfile format file with the geometry (after optimization on B3LYP/6-31G(2df,p) level of theory)
           - noun: molecular geometry in V3000 Molfile format (optimized with B3LYP/6-31G(2df,p) level of theory)
@@ -99,6 +99,6 @@ templates:
       User: I need to generate {#conformers|3D geometries|3D structures!} of a {#molecule|compound|chemical!}.
       Assistant: {#What is|Can you provide!} the {SMILES__description} of the {#molecule|compound|chemical!}?
       User: {SMILES#}
-      Assistant: The {xyz__names__noun} of the #molecule|compound|chemical!} is {xyz#}.
+      Assistant: The {xyz__names__noun} of the {#molecule|compound|chemical!} is {xyz#}.
       User: {#Can you give me the|What is the|And how about the!} {mol2000__names__noun}?
       Assistant: The {mol2000__names__noun} of the {#molecule|compound|chemical!} is {mol2000#}.

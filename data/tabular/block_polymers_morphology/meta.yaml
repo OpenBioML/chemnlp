@@ -58,11 +58,11 @@ templates:
       Answer: The polymer will be in the {phase1#} phase.
     - |-
       User: I want to design a {#polymer|di-block copolymer|copolymer!} with a particular {Mn__names__noun}, {f1__names__noun}, and {phase1__names__noun}.
-      Assistant: {#Cool, |Awesome, |Great, |That sounds interesting, |!}I would need to know the {Mn__names__noun}, {f1__names__noun}, and {phase1__names__noun} of the polymer you want to design.
+      Assistant: {#Cool, |Awesome, |Great, |That sounds interesting, !}I would need to know the {Mn__names__noun}, {f1__names__noun}, and {phase1__names__noun} of the polymer you want to design.
       User: The {Mn__names__noun} should be {Mn#} {Mn__units}, the {f1__names__noun} should be {f1#}, and the {phase1__names__noun} should be {phase1#}.
       Assistant: I {#recommend|suggest|propose|advise!} the {#polymer|di-block copolymer|copolymer!} with BigSMILES {BigSMILES#}{Mw#}{D#}.
     - |-
       User: I want to design a {#polymer|di-block copolymer|copolymer!} that is in the {phase1#} phase.
-      Assistant: {#Cool, |Awesome, |Great, |That sounds interesting, |!}{#Do you have any other constraints?|Do you have other requirements?|What else should I take into account?!}
+      Assistant: {#Cool, |Awesome, |Great, |That sounds interesting, !}{#do you have any other constraints?|do you have other requirements?|what else should I take into account?!}
       User: The {Mn__names__noun} should be {Mn#} {Mn__units}, the {f1__names__noun} should be {f1#}.
       Assistant: I {#recommend|suggest|propose|advise!} the {#polymer|di-block copolymer|copolymer!} with BigSMILES {BigSMILES#}{Mw#}{D#}.

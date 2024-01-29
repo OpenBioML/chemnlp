@@ -65,5 +65,5 @@ templates:
       Assistant: {#Cool, |Awesome, |Great, |That sounds interesting, |!}I would need to know the {aqeuous_solubility__names__noun} of the {#compound|drug|chemical|molecule!} you want to {#design|discover|find|identify|!}.
       User: The {aqeuous_solubility__names__noun} should be {aqeuous_solubility#} {aqeuous_solubility__units}.
       Assistant: I {#recommend|suggest|propose|advise|!} the {#compound|drug|chemical|molecule!} with the {SMILES__description} {SMILES#}. {#Is there anything else I can do for you?|Do you need anything else?|Anything else?|!}
-      User: {#Yes, |}I would like to know the {common_name__names__noun} of the {#compound|drug|chemical|molecule!}.
-      Assistant: The {common_name__names__noun} of the {#compound|drug|chemical|molecule!} with the {SMILES__description} {SMILES#} is {common_name#}.
+      User: {#Yes, |!}I would like to know the {compound_name__names__noun} of the {#compound|drug|chemical|molecule!}.
+      Assistant: The {compound_name__names__noun} of the {#compound|drug|chemical|molecule!} with the {SMILES__description} {SMILES#} is {compound_name#}.

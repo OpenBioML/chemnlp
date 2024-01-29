@@ -90,7 +90,7 @@ Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} represents a mol
         # Benchmarking text templates
         "The {spectral_entropy__names__noun} of the molecule with the {SMILES__description} {SMILES#} is:<EOI> {spectral_entropy#} {spectral_entropy__units}",  # noqa: E501
         "The {spectral_entropy__names__noun} of the {SMILES__description} {SMILES#} is:<EOI> {spectral_entropy#} {spectral_entropy__units}",  # noqa: E501
-        "The {spectral_entropy__names__noun} of the molecule {SMILES__description} {SMILES#} is:<EOI> {spectral_entropy#} {spectral_entropy__units}",  # noqa: E501
+        "The {spectral_entropy__names__noun} of the molecule with {SMILES__description} {SMILES#} is:<EOI> {spectral_entropy#} {spectral_entropy__units}",  # noqa: E501
         """Task: Please predict a molecule feature based on the description.
 Description: Predict the {spectral_entropy__names__noun} in {spectral_entropy__units} of a molecule.
 {#Molecule |!}{SMILES__description}: {SMILES#}

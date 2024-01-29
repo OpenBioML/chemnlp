@@ -74,7 +74,7 @@ templates:
       Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}
     - |-
       User: I'm {#searching|looking!} for the {SMILES__description} of a molecule that does {herg_inhib#not &NULL}{herg_inhib__names__verb}?
-      #Assistant: This is a molecule that is {herg_inhib#not &NULL}a {herg_inhib__names__noun}: {SMILES#}
+      Assistant: This is a molecule that is {herg_inhib#not &NULL}a {herg_inhib__names__noun}: {SMILES#}
     - |-
       User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
       Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?

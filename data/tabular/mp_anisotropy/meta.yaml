@@ -78,17 +78,17 @@ bibtex:
         journal = {Sci Data}
       }
 templates:
-    - The {elastic_anisotropy__names__noun} of {#the compound|the solid|!} {formula#} is {elastic_anisotropy#}.
+    - The {elastic_anisotropy__names__noun} of {#the compound|the solid!} {formula#} is {elastic_anisotropy#}.
     - |-
-      Question: How large is the {elastic_anisotropy__names__noun} of {#the compound|the solid|!} {formula#}?
-      Answer: The {elastic_anisotropy__names__noun} of {#the compound|the solid|!} {formula#} is {elastic_anisotropy#}.
+      Question: How large is the {elastic_anisotropy__names__noun} of {#the compound|the solid!} {formula#}?
+      Answer: The {elastic_anisotropy__names__noun} of {#the compound|the solid!} {formula#} is {elastic_anisotropy#}.
     - |-
-      User: {#I would like to|I want to!} know the {elastic_anisotropy__names__noun} of {#the compound|the solid|!} {formula#}.
-      Assistant: The {elastic_anisotropy__names__noun} of {#the compound|the solid|!} {formula#} is {elastic_anisotropy#}.
+      User: {#I would like to|I want to!} know the {elastic_anisotropy__names__noun} of {#the compound|the solid!} {formula#}.
+      Assistant: The {elastic_anisotropy__names__noun} of {#the compound|the solid!} {formula#} is {elastic_anisotropy#}.
     - |-
-      User: {#I would like to|I want to!} design a {#compound|material|solid|!} with a {elastic_anisotropy__names__noun} of {elastic_anisotropy#}.
-      Assistant: {#I found|Here is|I have found|Here is!} a {#compound|material|solid|!} with a {elastic_anisotropy__names__noun} of {elastic_anisotropy#}: {formula#}.
-    - A {#compound|material|solid|!} with a {elastic_anisotropy__names__noun} of {elastic_anisotropy#} is {formula#}.
+      User: {#I would like to|I want to!} design a {#compound|material|solid!} with a {elastic_anisotropy__names__noun} of {elastic_anisotropy#}.
+      Assistant: {#I found|Here is|I have found|Here is!} a {#compound|material|solid!} with a {elastic_anisotropy__names__noun} of {elastic_anisotropy#}: {formula#}.
+    - A {#compound|material|solid!} with a {elastic_anisotropy__names__noun} of {elastic_anisotropy#} is {formula#}.
     - |-
-      Task: Please {#give me|create|generate!} a {#compound|material|solid|!} with a {elastic_anisotropy__names__noun} of {elastic_anisotropy#}.
+      Task: Please {#give me|create|generate!} a {#compound|material|solid!} with a {elastic_anisotropy__names__noun} of {elastic_anisotropy#}.
       Result: {formula#}

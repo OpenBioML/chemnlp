@@ -33,20 +33,12 @@ Result:<EOI> {SMILES#}""",  # noqa E501
 Assistant: {#Yes|Of course|Yes, of course|Sure!}, the {node1_type#} {SMILES__description} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#}.""",  # noqa E501
     ],
     "compound_protein_compound": [
-        """The {node1_type#} {SMILES__description} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#} and {rel2_type#} the {node3_type#} {node3_smiles#}.""",  # noqa E501
+        """The {node1_type#} with the {SMILES__description} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#} and {rel2_type#} the {node3_type#} {node3_smiles#}.""",  # noqa E501
         """The {node2_type#} {node2_protein_names#} is targeted by the compound with the {SMILES__description} {SMILES#} and {node3_smiles#}.""",  # noqa E501
-        """User: Can you {#give me|come up with!} {#one|an!} example for a {node1_type#} {SMILES__description} that {rel1_type#} the {node2_type#} {node2_protein_names#}?
-Assistant: {#Yes|Of course|Yes, of course|Sure!}, the {node1_type#} {SMILES__description} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#}.
-User: Can you {#tell|create|generate!} another {node1_type#} {SMILES__description} that {rel1_type#} the {node2_type#} {node2_protein_names#}?
-Assistant: {#Sure|Yes|Of course|Yes, of course!}, the {node1_type#} {SMILES__description} {SMILES#} {rel1_type#} the {node3_type#} {SMILES__description} {node3_smiles#}.""",  # noqa E501
-    ],
-    "compound_protein_compound_3": [
-        """The {node1_type#} {SMILES__description} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#} and {rel2_type#} the {node3_type#} {node3_smiles#}.""",  # noqa E501
-        """The {node2_type#} {node2_protein_names#} is targeted by the compound with the {SMILES__description} {SMILES#} and {node3_smiles#}.""",  # noqa E501
-        """User: Can you {#give me|come up with!} {#one|an!} example for a {node1_type#} {SMILES__description} that {rel1_type#} the {node2_type#} {node2_protein_names#}?
-Assistant: {#Yes|Of course|Yes, of course|Sure!}, the {node1_type#} {SMILES__description} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#}.
-User: Can you {#tell|create|generate!} another {node1_type#} {SMILES__description} that {rel1_type#} the {node2_type#} {node2_protein_names#}?
-Assistant: {#Sure|Yes|Of course|Yes, of course!}, the {node1_type#} {SMILES__description} {SMILES#} {rel1_type#} the {node3_type#} {SMILES__description} {node3_smiles#}.""",  # noqa E501
+        """User: Can you {#give me|come up with!} {#one|an!} example for a {node1_type#} with the {SMILES__description} that {rel1_type#} the {node2_type#} {node2_protein_names#}?
+Assistant: {#Yes|Of course|Yes, of course|Sure!}, the {node1_type#} with the {SMILES__description} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#}.
+User: Can you {#tell me|create|generate!} {#another|a!} {node1_type#} {SMILES__description} that {rel1_type#} the {node2_type#} {node2_protein_names#}?
+Assistant: {#Sure|Yes|Of course|Yes, of course!}, the SMILES{# representation|!} {node3_smiles#} {#also |!}{rel1_type#} the {node2_type#} {node2_protein_names#}.""",  # noqa E501
     ],
     "compound_protein_disease": [
         """The {node1_type#} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#} which {rel2_type#} the {node3_type#} {node3_name#}.""",  # noqa E501
@@ -75,8 +67,8 @@ Assistant: The {node2_type#} {node2_protein_names#} {rel2_type#} a {node3_name#}
     # todo: There are some entries that have the EC number under node3_name and node3_id
     # and this is not handled yet properly.
     "compound_protein_go_term": [
-        """The {node1_type#} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#} which {rel2_type#} the {node3_name#}.""",  # noqa E501
-        """The {node1_type#} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#}. The {node2_type#} {node2_protein_names#} {rel2_type#} the {node3_name#}.""",  # noqa E501
+        """The {node1_type#} with {SMILES__description} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#} which {rel2_type#} the {node3_name#}.""",  # noqa E501
+        """The {node1_type#} with {SMILES__description} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#}. The {node2_type#} {node2_protein_names#} {rel2_type#} the {node3_name#}.""",  # noqa E501
     ],
     "compound_protein_hpo": [
         """The {node1_type#} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#} and {rel2_type#} {node3_name#}.""",  # noqa E501
@@ -95,10 +87,10 @@ Assistant: The {node2_type#} {node2_protein_names#} {rel2_type#} a {node3_name#}
         """The {node1_type#} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#}. The {node2_type#} {node2_protein_names#} {rel2_type#} {node3_name#}. The {node3_name#} is {rel3_type#} the {node4_type#} {node4_name#}.""",  # noqa E501
     ],
     "compound_protein_protein": [
-        """The {node1_type#} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#} which {rel2_type#} the {node3_type#} {node3_protein_names#}.""",  # noqa E501
-        """The {node2_type#} {node2_protein_names#} is targeted by {SMILES#}. The {node2_type#} {node2_protein_names#} {rel2_type#} {node3_protein_names#}.""",  # noqa E501
-        """User: {#Can you give me|Can you come up with!} {#an|one!} example for a protein that binds the {node1_type#} {SMILES#}?
-Assistant: The {node1_type#} {SMILES#} {rel1_type#} for example the {node2_type#} {node2_protein_names#}.
+        """The {node1_type#} with {SMILES__description} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#} which {rel2_type#} the {node3_type#} {node3_prote  in_names#}.""",  # noqa E501
+        """The {node2_type#} {node2_protein_names#} is targeted by {node1_type#} with {SMILES__description} {SMILES#}. The {node2_type#} {node2_protein_names#} {rel2_typ  e#} {node3_protein_names#}.""",  # noqa E501
+        """User: {#Can you give me|Can you come up with!} {#an|one!} example for a protein that binds the {node1_type#} with {SMILES__description} {SMILES#}?
+Assistant: The {node1_type#} with {SMILES__description} {SMILES#} {rel1_type#} for example the {node2_type#} {node2_protein_names#}.
 User: Can you tell me a {node3_type#} that {rel2_type#} {node2_type#} {node2_protein_names#}?
 Assistant: {#Yes|Of course|Yes, of course|Sure!}, the {node2_type#} {node2_protein_names#} {rel2_type#} {node3_protein_names#}.""",  # noqa E501
     ],
@@ -142,7 +134,7 @@ Assistant: The {node2_type#} {node2_protein_names#} {rel2_type#} a {node3_name#}
         """User: {#Can you give me|Can you come up with!} {#an|one!} example for a {node1_type#} that {rel1_type#} the {node2_type#} {node2_protein_names#}?
 Assistant: {#Sure|Yes|Of course|Yes, of course!}, the {node1_type#} {rel1_type#} the {node2_type#} {node2_protein_names#}.
 User: Can you tell me another {node1_type#} that {rel1_type#} the {node2_type#} {node2_protein_names#}?
-Assistant: {#Yes|Of course|Yes, of course|Sure!}, the {node1_type#} {SMILES#|node1_name#} {rel1_type#} the {node3_type#} {node3_name#|node3_smiles#}.""",  # noqa E501
+Assistant: {#Yes|Of course|Yes, of course|Sure!}, the {node3_type#} {node3_name#|node3_smiles#} also {rel1_type#} the {node2_type#} {node2_protein_names#}.""",  # noqa E501
     ],
     "drug_protein_ec_number": [
         """The {node1_type#} {SMILES#|node1_name#} {rel1_type#} the {node2_type#} {node2_name#} which {rel2_type#} the {node3_name#} (EC {node3_id#}) reaction.""",  # noqa E501
@@ -167,7 +159,7 @@ Assistant: {#Sure|Yes|Of course|Yes, of course!}, the {node2_type#} {node2_name#
         """The {node1_type#} {SMILES#|node1_name#} {rel1_type#} the {node2_type#} {node2_protein_names#}. This {node2_type#} {rel2_type#} the {node3_name#}.""",  # noqa E501
     ],
     "drug_protein_hpo_disease": [
-        """The {node1_type#} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#}. The {node2_type#} {node2_protein_names#} {rel2_type#} {node3_name#}. The {node3_name#} {rel3_type#} the {node4_type#} {node4_name#}.""",  # noqa E501
+        """The {node1_type#} with {SMILES__description} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#}. The {node2_type#} {node2_protein_names#} {rel2_type#} {node3_name#}. The {node3_name#} {rel3_type#} the {node4_type#} {node4_name#}.""",  # noqa E501
     ],
     "drug_protein_pathway": [
         """The {node1_type#} {SMILES#|node1_name#} {rel1_type#} the {node2_type#} {node2_protein_names#} which {rel2_type#} the {node3_name#}.""",  # noqa E501

@@ -243,17 +243,17 @@ journal = {Nature Scientific Data}""",
             """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {InChI__description} {#representation of |!}{InChI#} has a {optGasHomo__names__noun} of {optGasHomo#} {optGasHomo__units}.""",  # noqa: E501
             """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {InChI__description} {#representation of |!}{InChI#} has a {optGasLumo__names__noun} of {optGasLumo#} {optGasLumo__units}.""",  # noqa: E501
             """Task: Please {#give me|create|generate!} a {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} based on the {#text |!}description{# below|!}.
-      Description: It has an {solubilityAqSolPred__names__noun} {solubilityAqSolPred#} {solubilityAqSolPred__units} and a {cavityEnergy__names__noun} of {cavityEnergy#} {cavityEnergy__units}.
+Description: It has an {solubilityAqSolPred__names__noun} {solubilityAqSolPred#} {solubilityAqSolPred__units} and a {cavityEnergy__names__noun} of {cavityEnergy#} {cavityEnergy__units}.
       Result: {SMILES#}""",  # noqa: E501
             """Task: Please {#give me|create|generate!} a {#molecule|compound|chemical|molecular species|chemical compound!} with the {InChI__description} based on the {#text |!}description{# below|!}.
-      Description: It has an {solubilityAqSolPred__names__noun} {solubilityAqSolPred#} {solubilityAqSolPred__units} and a {cavityEnergy__names__noun} of {cavityEnergy#} {cavityEnergy__units}.
+Description: It has an {solubilityAqSolPred__names__noun} {solubilityAqSolPred#} {solubilityAqSolPred__units} and a {cavityEnergy__names__noun} of {cavityEnergy#} {cavityEnergy__units}.
       Result: {InChI#}""",  # noqa: E501
             """Task: Please {#give me|create|generate!} a {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} based on the {#text |!}description{# below|!}.
-      Description: It has an {solutionLumo__names__noun} {solutionLumo#} {solutionLumo__units} and a {solutionHomo__names__noun} of {solutionHomo#} {solutionHomo__units}.
-      Result: {SMILES#}""",  # noqa: E501
+Description: It has an {solutionLumo__names__noun} {solutionLumo#} {solutionLumo__units} and a {solutionHomo__names__noun} of {solutionHomo#} {solutionHomo__units}.
+Result: {SMILES#}""",  # noqa: E501
             """Task: Please {#give me|create|generate!} a {#molecule|compound|chemical|molecular species|chemical compound!} with the {InChI__description} based on the {#text |!}description{# below|!}.
-      Description: It has an {solutionLumo__names__noun} {solutionLumo#} {solutionLumo__units} and a {solutionHomo__names__noun} of {solutionHomo#} {solutionHomo__units}.
-      Result: {InChI#}""",  # noqa: E501
+Description: It has an {solutionLumo__names__noun} {solutionLumo#} {solutionLumo__units} and a {solutionHomo__names__noun} of {solutionHomo#} {solutionHomo__units}.
+Result: {InChI#}""",  # noqa: E501
         ],
     }
 

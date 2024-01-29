@@ -62,16 +62,16 @@ templates:
       Assistant: I {#recommend|suggest|propose|advise|!} the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}.
     - |-
       Question: What is the {density__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}?
-      Answer: {density#} {density__units}.
+      Answer: {density#} {density__units}
     - |-
       Question: What is the {spacegroup__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}?
-      Answer: {spacegroup#}.
+      Answer: {spacegroup#}
     - |-
       Question: What is the {#chemical formula|composition|reduced formula!} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}?
-      Answer: {formula#}.
+      Answer: {formula#}
     - |-
       Question: What is the {spacegroup_number__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}?
-      Answer: {spacegroup_number#}.
+      Answer: {spacegroup_number#}
     - |-
       User: I want to design a {#material|compound|solid!} with a {density__names__noun} of {density#} {density__units}, and a {#chemical formula|composition|reduced formula!} of {formula#}.
       Assistant: {#Cool, |Awesome, |Great, |That sounds interesting, |!}I suggest the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}. {#Is there anything else I can do for you?|Do you need anything else?|Anything else?|!}

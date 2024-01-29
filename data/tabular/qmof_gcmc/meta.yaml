@@ -429,14 +429,14 @@ templates:
       User: I {#want|would like|have|need|must!} to {#design|synthesize|find!} a {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with specific gas adsorption properties.
       Assistant: {#How can I help you?|How can I be of assistance?|What can I do for you?|That's cool, how can I help?|Interesting, can I be of any help?|Seems interesting, how can I support you?!}
       User: I {#want|would like!} the {outputs.H2S--H2O-selectivity_298_K-__names__noun} to be {outputs.H2S--H2O-selectivity_298_K-#} and the {outputs.CH4--N2-selectivity_298_K-__names__noun} to be {outputs.CH4--N2-selectivity_298_K-#}.
-      Assistant: {#In this case, I would recommend the following MOF:|I found the following MOF for you:|I suggest|I recommend} {info.mofid.mofid#}.
+      Assistant: {#In this case, I would recommend the following MOF:|I found the following MOF for you:|I suggest|I recommend!} {info.mofid.mofid#}.
     - |-
       User: I {#want|would like|have|need|must!} to {#design|synthesize|find!} a {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with specific gas adsorption properties.
       Assistant: {#How can I help you?|How can I be of assistance?|What can I do for you?|That's cool, how can I help?|Interesting, can I be of any help?|Seems interesting, how can I support you?!}
       User: I {#want|would like!} the {outputs.CH4--N2-selectivity_298_K-__names__noun} to be {outputs.CH4--N2-selectivity_298_K-#}, the {outputs.H2S--H2O-selectivity_298_K-__names__noun} to be {outputs.H2S--H2O-selectivity_298_K-#}, and the {outputs.CH4-working_capacity_vol_58_to_65_bar_298_K-cm3_STP--cm3__names__noun} to be {outputs.CH4-working_capacity_vol_58_to_65_bar_298_K-cm3_STP--cm3#}.
-      Assistant: {#In this case, I would recommend the following MOF:|I found the following MOF for you:|I suggest|I recommend} {info.mofid.mofid#}.
+      Assistant: {#In this case, I would recommend the following MOF:|I found the following MOF for you:|I suggest|I recommend!} {info.mofid.mofid#}.
     - |-
       User: I {#want|would like|have|need|must!} to {#design|synthesize|find!} a {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with specific gas adsorption properties.
       Assistant: {#How can I help you?|How can I be of assistance?|What can I do for you?|That's cool, how can I help?|Interesting, can I be of any help?|Seems interesting, how can I support you?!}
       User: I {#want|would like!} the {outputs.CO2-adsorption_energy-kJ--mol__names__noun} to be {outputs.CO2-adsorption_energy-kJ--mol#}, the {outputs.N2-adsorption_energy-kJ--mol__names__noun} to be {outputs.N2-adsorption_energy-kJ--mol#}, and the {outputs.CH4-adsorption_energy-kJ--mol__names__noun} to be {outputs.CH4-adsorption_energy-kJ--mol#}.
-      Assistant: {#In this case, I would recommend the following MOF:|I found the following MOF for you:|I suggest|I recommend} {info.mofid.mofid#}.
+      Assistant: {#In this case, I would recommend the following MOF:|I found the following MOF for you:|I suggest|I recommend!} {info.mofid.mofid#}.

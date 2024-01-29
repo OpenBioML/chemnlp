@@ -86,7 +86,53 @@ def transform():
         + ["aqeuous_solubility", "toxicity_NR-AR"],
         inplace=True,
     )
+    merged[
+        [
+            "carboxyl_count",
+            "carbonyl_count",
+            "ether_count",
+            "alkanol_count",
+            "thiol_count",
+            "halogen_count",
+            "amine_count",
+            "amide_count",
+            "ketone_count",
+            "num_valence_electrons",
+            "num_carbon_atoms",
+            "num_hydrogen_atoms",
+            "num_nitrogen_atoms",
+            "num_oxygen_atoms",
+            "num_hydrogen_bond_acceptors",
+            "num_hydrogen_bond_donors",
+            "num_lipinski_violations",
+            "num_chiral_centers",
+        ]
+    ] = merged[
+        [
+            "carboxyl_count",
+            "carbonyl_count",
+            "ether_count",
+            "alkanol_count",
+            "thiol_count",
+            "halogen_count",
+            "amine_count",
+            "amide_count",
+            "ketone_count",
+            "num_valence_electrons",
+            "num_carbon_atoms",
+            "num_hydrogen_atoms",
+            "num_nitrogen_atoms",
+            "num_oxygen_atoms",
+            "num_hydrogen_bond_acceptors",
+            "num_hydrogen_bond_donors",
+            "num_lipinski_violations",
+            "num_chiral_centers",
+        ]
+    ].astype(
+        int
+    )
     print(len(merged))
+    merged["split"] = merged["split_x"]
     merged.to_csv("data_clean.csv", index=False)
 
 
