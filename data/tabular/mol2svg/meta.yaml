@@ -1,5 +1,5 @@
 ---
-name: mol2svg
+name: chem_caption_smarts
 description: |-
     This dataset contains SVG images of molecules, including some with substructures
     highlighted.

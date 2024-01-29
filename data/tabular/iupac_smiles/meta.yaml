@@ -60,14 +60,14 @@ templates:
     - The {SMILES__description} of the {#molecule|chemical|compound!} with {CAS_like_Style__names__noun} {CAS_like_Style#} is {SMILES#}.
     - The {SMILES__description} of the {#molecule|chemical|compound!} with {Preferred__names__noun} {Preferred#} is {SMILES#}.
     - |-
-      Task: Please {#give me|create|generate!} the {#SMILES|SMILES representation!} of a {#molecule|chemical|compound!} {#given the|based on the!} {Traditional__names__noun}.
+      Task: Please {#give me|create|generate!} the {SMILES__description} of a {#molecule|chemical|compound!} {#given the|based on the!} {Traditional__names__noun}.
       IUPAC name: {Traditional#}
       Result: {SMILES#}
     - |-
-      Task: Please {#give me|create|generate!} the {#SMILES|SMILES representation!} of a {#molecule|chemical|compound!} {#given the|based on the!} {Systematic__names__noun}.
+      Task: Please {#give me|create|generate!} the {SMILES__description} of a {#molecule|chemical|compound!} {#given the|based on the!} {Systematic__names__noun}.
       IUPAC name: {Systematic#}
       Result: {SMILES#}
     - |-
-      Task: Please {#give me|create|generate!} the {#SMILES|SMILES representation!} of a {#molecule|chemical|compound!} {#given the|based on the!} {CAS_like_Style__names__noun}.
+      Task: Please {#give me|create|generate!} the {SMILES__description} of a {#molecule|chemical|compound!} {#given the|based on the!} {CAS_like_Style__names__noun}.
       IUPAC name: {CAS_like_Style#}
       Result: {SMILES#}
