@@ -56,7 +56,7 @@ templates:
     - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {toxicity_SR-p53#not &NULL}{toxicity_SR-p53__names__gerund}.
     - Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule has {toxicity_SR-p53#no &NULL}{toxicity_SR-p53__names__noun} {#properties|characteristics|features!}.
     - The {#molecule|chemical!} with {SMILES__description} {SMILES#} {#represents|is from!} a molecule that is {toxicity_SR-p53#not &NULL}identified as {toxicity_SR-p53__names__adjective}.
-    - The {#molecule|chemical!} with {SMILES__description} {SMILES#} is {toxicity_SR-p53#not &NULL}{toxicity_SR-p53__names__adjective}.
+    - The {#molecule|chemical!} with the {SMILES__description} {SMILES#} is {toxicity_SR-p53#not &NULL}{toxicity_SR-p53__names__adjective}.
     - |-
       Task: Please classify a molecule based on the description.
       Description: A molecule that is {toxicity_SR-p53__names__adjective}.
