@@ -32,21 +32,21 @@ Result:<EOI> {SMILES#}""",  # noqa E501
         """User: Can you {#give me|come up with!} {#one|an!} example for a {node1_type#} {SMILES__description} that {rel1_type#} the {node2_type#} {node2_protein_names#}?
 Assistant: {#Yes|Of course|Yes, of course|Sure!}, the {node1_type#} {SMILES__description} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#}.""",  # noqa E501
     ],
-    "compound_protein_compound": [
-        """The {node1_type#} {SMILES__description} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#} and {rel2_type#} the {node3_type#} {node3_smiles#}.""",  # noqa E501
-        """The {node2_type#} {node2_protein_names#} is targeted by the compound with the {SMILES__description} {SMILES#} and {node3_smiles#}.""",  # noqa E501
-        """User: Can you {#give me|come up with!} {#one|an!} example for a {node1_type#} {SMILES__description} that {rel1_type#} the {node2_type#} {node2_protein_names#}?
-Assistant: {#Yes|Of course|Yes, of course|Sure!}, the {node1_type#} {SMILES__description} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#}.
-User: Can you {#tell|create|generate!} another {node1_type#} {SMILES__description} that {rel1_type#} the {node2_type#} {node2_protein_names#}?
-Assistant: {#Sure|Yes|Of course|Yes, of course!}, the {node1_type#} {SMILES__description} {SMILES#} {rel1_type#} the {node3_type#} {SMILES__description} {node3_smiles#}.""",  # noqa E501
-    ],
-    "compound_protein_compound_3": [
-        """The {node1_type#} {SMILES__description} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#} and {rel2_type#} the {node3_type#} {node3_smiles#}.""",  # noqa E501
-        """The {node2_type#} {node2_protein_names#} is targeted by the compound with the {SMILES__description} {SMILES#} and {node3_smiles#}.""",  # noqa E501
-        """User: Can you {#give me|come up with!} {#one|an!} example for a {node1_type#} {SMILES__description} that {rel1_type#} the {node2_type#} {node2_protein_names#}?
-Assistant: {#Yes|Of course|Yes, of course|Sure!}, the {node1_type#} {SMILES__description} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#}.
-User: Can you {#tell|create|generate!} another {node1_type#} {SMILES__description} that {rel1_type#} the {node2_type#} {node2_protein_names#}?
-Assistant: {#Sure|Yes|Of course|Yes, of course!}, the {node1_type#} {SMILES__description} {SMILES#} {rel1_type#} the {node3_type#} {SMILES__description} {node3_smiles#}.""",  # noqa E501
+    #    "compound_protein_compound": [
+    #        """The {node1_type#} {SMILES__description} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#} and {rel2_type#} the {node3_type#} {node3_smiles#}.""",  # noqa E501
+    #        """The {node2_type#} {node2_protein_names#} is targeted by the compound with the {SMILES__description} {SMILES#} and {node3_smiles#}.""",  # noqa E501
+    #        """User: Can you {#give me|come up with!} {#one|an!} example for a {node1_type#} {SMILES__description} that {rel1_type#} the {node2_type#} {node2_protein_names#}?
+    #Assistant: {#Yes|Of course|Yes, of course|Sure!}, the {node1_type#} {SMILES__description} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#}.
+    #User: Can you {#tell|create|generate!} another {node1_type#} {SMILES__description} that {rel1_type#} the {node2_type#} {node2_protein_names#}?
+    #Assistant: {#Sure|Yes|Of course|Yes, of course!}, the {node1_type#} {SMILES__description} {SMILES#} {rel1_type#} the {node3_type#} {SMILES__description} {node3_smiles#}.""",  # noqa E501
+    #    ],
+    #    "compound_protein_compound_3": [
+    #        """The {node1_type#} {SMILES__description} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#} and {rel2_type#} the {node3_type#} {node3_smiles#}.""",  # noqa E501
+    #        """The {node2_type#} {node2_protein_names#} is targeted by the compound with the {SMILES__description} {SMILES#} and {node3_smiles#}.""",  # noqa E501
+    #        """User: Can you {#give me|come up with!} {#one|an!} example for a {node1_type#} {SMILES__description} that {rel1_type#} the {node2_type#} {node2_protein_names#}?
+    #Assistant: {#Yes|Of course|Yes, of course|Sure!}, the {node1_type#} {SMILES__description} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#}.
+    #User: Can you {#tell|create|generate!} another {node1_type#} {SMILES__description} that {rel1_type#} the {node2_type#} {node2_protein_names#}?
+    #Assistant: {#Sure|Yes|Of course|Yes, of course!}, the {node1_type#} {SMILES__description} {SMILES#} {rel1_type#} the {node3_type#} {SMILES__description} {node3_smiles#}.""",  # noqa E501
     ],
     "compound_protein_disease": [
         """The {node1_type#} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#} which {rel2_type#} the {node3_type#} {node3_name#}.""",  # noqa E501
@@ -74,9 +74,9 @@ Assistant: The {node2_type#} {node2_protein_names#} {rel2_type#} a {node3_name#}
     ],
     # todo: There are some entries that have the EC number under node3_name and node3_id
     # and this is not handled yet properly.
-    "compound_protein_go_term": [
-        """The {node1_type#} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#} which {rel2_type#} the {node3_name#}.""",  # noqa E501
-        """The {node1_type#} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#}. The {node2_type#} {node2_protein_names#} {rel2_type#} the {node3_name#}.""",  # noqa E501
+#    "compound_protein_go_term": [
+#        """The {node1_type#} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#} which {rel2_type#} the {node3_name#}.""",  # noqa E501
+#        """The {node1_type#} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#}. The {node2_type#} {node2_protein_names#} {rel2_type#} the {node3_name#}.""",  # noqa E501
     ],
     "compound_protein_hpo": [
         """The {node1_type#} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#} and {rel2_type#} {node3_name#}.""",  # noqa E501
