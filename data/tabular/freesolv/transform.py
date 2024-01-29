@@ -207,7 +207,7 @@ Result:<EOI> {SMILES#}""",  # noqa: E501
             # GAFF
             "The {GAFF__names__noun} of the molecule with the {SMILES__description} {SMILES#} is:<EOI> {GAFF#} {GAFF__units}",  # noqa: E501
             "The {GAFF__names__noun} of the {SMILES__description} {SMILES#} is:<EOI> {GAFF#} {GAFF__units}",  # noqa: E501
-            "The {GAFF__names__noun} of the molecule with {SMILES__description} {SMILES#} is:<EOI> {GAFF#} {GAFF__units}",  # noqa: E501
+            "The {GAFF__names__noun} of the molecule with the {SMILES__description} {SMILES#} is:<EOI> {GAFF#} {GAFF__units}",  # noqa: E501
             """Task: Please predict a molecule feature based on the description.
 Description: Predict the {GAFF__names__noun} in {GAFF__units} of a molecule.
 {#Molecule |!}{SMILES__description}: {SMILES#}
