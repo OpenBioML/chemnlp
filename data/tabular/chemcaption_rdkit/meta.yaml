@@ -320,7 +320,7 @@ templates:
       User: {#In addition,|Additionally,|Moreover,!} I {#want|would like!} the {#molecule|chemical|compound|drug|chemical structure!} to have a {npr1_value__names__noun} of {npr1_value#} and a {molecular_formula__names__noun} of {molecular_formula#}.
       Assistant: {#Given those requirements, |In that case, |!}I recommend the {#molecule|chemical|compound|drug|chemical structure!} with {representation_type#} {representation#}.
     - |-
-      User: I {#want to|must|would like tp|need to!} {#design|create|synthesize|make!} a {#molecule|chemical|compound|drug|chemical structure!} with {eccentricity__names__noun} of {eccentricity#}.
+      User: I {#want to|must|would like to|need to!} {#design|create|synthesize|make!} a {#molecule|chemical|compound|drug|chemical structure!} with {eccentricity__names__noun} of {eccentricity#}.
       Assistant: {#That's interesting, do you have|Do you have|Cool, do you have|Awesome, do you have!} any other {#constraints|requirements|conditions|limitations!}?
       User: {#In addition,|Additionally,|Moreover,!} I {#want|would like!} the {#molecule|chemical|compound|drug|chemical structure!} to have a {asphericity__names__noun} of {asphericity#}.
       Assistant: {#Is there anything else I should know?|Is there anything else I should be aware of?|Is there anything else I should take into account?|Is there anything else I should consider?|Is there anything else I should take into consideration?|Is there anything else I should take into account?|Is there anything else I should take into consideration?|Is there anything else I should consider?!}
