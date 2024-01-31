@@ -74,9 +74,12 @@ def str_presenter(dumper, data: str):
 def smiles_with_hydrogens(smiles):
     """Add hydrogens to smiles string"""
 
-    mol = Chem.MolFromSmiles(smiles)
-    mol = Chem.AddHs(mol)
-    return Chem.MolToSmiles(mol)
+    try:
+        mol = Chem.MolFromSmiles(smiles)
+        mol = Chem.AddHs(mol)
+        return Chem.MolToSmiles(mol)
+    except BaseException:  # noqa: E722
+        return pd.NA
 
 
 def get_and_transform_data():
@@ -104,6 +107,7 @@ def get_and_transform_data():
     for i in range(col_len):
         for j in range(i + 1, col_len):
             subset_cols = [df.columns[i], df.columns[j]]
+            print(subset_cols)
             dataset_name = "mol_repr_transl_" + "_".join(subset_cols)
             dataset_name = dataset_name.lower()
 
@@ -115,6 +119,7 @@ def get_and_transform_data():
             # if "split" in df.columns:
             df_subset = df[subset_cols + ["split"]].dropna()
             # else:
+            # elif "split" not in df.columns:
             #    df_subset = df[subset_cols].dropna()
             df_subset.columns = [
                 x + col_suffix if x != "split" else x for x in subset_cols

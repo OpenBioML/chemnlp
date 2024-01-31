@@ -35,6 +35,9 @@ import fire
 import numpy as np
 import pandas as pd
 import yaml
+
+# import localcluster and client
+# from dask.distributed import Client, LocalCluster
 from pandarallel import pandarallel
 from pandas.errors import ParserError
 from tqdm import tqdm
@@ -42,7 +45,6 @@ from tqdm import tqdm
 from chemnlp.data.split import _create_scaffold_split
 
 pandarallel.initialize(progress_bar=True)
-
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -325,6 +327,7 @@ def remaining_split(
         )
 
         # Calculate the train, valid, and test masks based on the random values
+        # train_mask = random_values < train_frac  # Never used?
         valid_mask = (random_values >= train_frac) & (
             random_values < train_frac + test_frac
         )
@@ -630,6 +633,7 @@ def smiles_split(
 
     # we err toward doing more I/O but having simpler code to ensure we don't make anything stupid
     all_yaml_files = get_meta_yaml_files(data_dir)
+    # all_yaml_files = [".../kg/chembl33_preprocessed_filtered_bioactivity_dataset_w_fullprotnames_smiles/meta.yaml"]
     smiles_yaml_files = [
         file
         for file in all_yaml_files
@@ -655,14 +659,14 @@ def smiles_split(
     #         #"fda_adverse_reactions",
     #    ]
     # ]))
-    # index = [
-    #     i
-    #     for i, x in enumerate(not_scaffold_split_yaml_files)
-    #     if str(x).find("orbnet_denali") != -1
-    # ][0]
-    # # not_scaffold_split_yaml_files = not_scaffold_split_yaml_files[index:]
-    # # not_scaffold_split_yaml_files = not_scaffold_split_yaml_files[index+1:]
-    # not_scaffold_split_yaml_files = [not_scaffold_split_yaml_files[index]]
+    index = [
+        i
+        for i, x in enumerate(not_scaffold_split_yaml_files)
+        if str(x).find("orbnet_denali") != -1
+    ][0]
+    # not_scaffold_split_yaml_files = not_scaffold_split_yaml_files[index:]
+    # not_scaffold_split_yaml_files = not_scaffold_split_yaml_files[index+1:]
+    not_scaffold_split_yaml_files = [not_scaffold_split_yaml_files[index]]
 
     # if we debug, we only run split on the first 5 datasets
     if debug:
@@ -897,6 +901,9 @@ def run_all_split(
     run_transform_py: bool = False,
 ):
     """Runs all splitting steps on the datasets in the data_dir directory."""
+    # cluster = LocalCluster(memory_limit="64GB")
+    # client = Client(cluster)
+    # logging.info(f"Dashboard available at: {client.dashboard_link}")
 
     print('Running "as_sequence" split...')
     as_sequence_split(

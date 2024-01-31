@@ -1,0 +1,223 @@
+---
+name: inverse_1
+description: |-
+    Inverse design task constructed by merging solubility_aqsoldb and
+    nr_ar_tox21 and augmenting it with molecular descriptors.
+targets:
+    - id: aqeuous_solubility
+      description: aqueous solubility
+      units: log(mol/L)
+      type: continuous
+      names:
+          - noun: aqueous solubility (logarithmic)
+          - noun: water solubility (measured in log(mol/L))
+          - noun: water solubility (logarithmic)
+          - adjective: dissolves in a water
+      uris:
+          - http://purl.jp/bio/4/id/200906006880450101
+          - http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C60821
+    - id: toxicity_NR-AR
+      description: whether it toxic in a androgen receptor toxicity assay (1) or not (0)
+      units:
+      type: boolean
+      names:
+          - noun: NR-AR toxicity
+          - noun: NR-androgen receptor toxicity
+          - verb: is toxic in a androgen receptor toxicity assay
+          - adjective: toxic in the NR-AR assay
+          - adjective: toxic in the NR-androgen receptor assay
+          - gerund: displaying toxicity in the NR-AR assay
+          - gerund: exhibiting toxicity in the NR-androgen assay
+          - gerund: demonstrating toxicity in the NR-androgen assay
+      uris:
+    - id: carboxyl_count
+      description: number of carboxyl groups
+      type: ordinal
+      names:
+          - noun: carboxyl groups
+    - id: carbonyl_count
+      description: number of carbonyl groups
+      type: ordinal
+      names:
+          - noun: carbonyl groups
+    - id: ether_count
+      description: number of ether groups
+      type: ordinal
+      names:
+          - noun: ether groups
+    - id: alkanol_count
+      description: number of alkanol groups
+      type: ordinal
+      names:
+          - noun: alkanol groups
+    - id: thiol_count
+      description: number of thiol groups
+      type: ordinal
+      names:
+          - noun: thiol groups
+    - id: halogen_count
+      description: number of halogen groups
+      type: ordinal
+      names:
+          - noun: halogen groups
+    - id: amine_count
+      description: number of amine groups
+      type: ordinal
+      names:
+          - noun: amine groups
+    - id: amide_count
+      description: number of amide groups
+      type: ordinal
+      names:
+          - noun: amide groups
+    - id: ketone_count
+      description: number of ketone groups
+      type: ordinal
+      names:
+          - noun: ketone group count
+    - id: num_valence_electrons
+      description: number of valence electrons
+      type: ordinal
+      names:
+          - noun: valence electrons
+    - id: molecular_formula
+      description: molecular formula
+      type: text
+      names:
+          - noun: molecular formula
+    - id: monoisotopic_molecular_mass
+      description: monoisotopic molecular mass
+      type: continuous
+      units: g/mol
+      names:
+          - noun: monoisotopic molecular mass
+    - id: carbon_mass
+      description: carbon mass
+      type: continuous
+      units: g/mol
+      names:
+          - noun: carbon mass
+    - id: hydrogen_mass
+      description: hydrogen mass
+      type: continuous
+      units: g/mol
+      names:
+          - noun: hydrogen mass
+    - id: nitrogen_mass
+      description: nitrogen mass
+      type: continuous
+      units: g/mol
+      names:
+          - noun: nitrogen mass
+    - id: oxygen_mass
+      description: oxygen mass
+      units: g/mol
+      type: continuous
+      names:
+          - noun: oxygen mass
+    - id: num_carbon_atoms
+      description: number of carbon atoms
+      type: ordinal
+      names:
+          - noun: carbon atoms
+    - id: num_hydrogen_atoms
+      type: ordinal
+      description: number of hydrogen atoms
+      names:
+          - noun: hydrogen atoms
+    - id: num_nitrogen_atoms
+      description: number of nitrogen atoms
+      type: ordinal
+      names:
+          - noun: nitrogen atoms
+    - id: num_oxygen_atoms
+      description: number of oxygen atoms
+      type: ordinal
+      names:
+          - noun: oxygen atoms
+    - id: num_hydrogen_bond_acceptors
+      description: number of hydrogen bond acceptors
+      type: ordinal
+      names:
+          - noun: hydrogen bond acceptors
+    - id: num_hydrogen_bond_donors
+      description: number of hydrogen bond donors
+      type: ordinal
+      names:
+          - noun: hydrogen bond donors
+    - id: num_lipinski_violations
+      description: number of Lipinski violations
+      type: ordinal
+      names:
+          - noun: Lipinski violations
+          - noun: Lipinski rule of five violations
+    - id: num_chiral_centers
+      description: number of chiral centers
+      type: ordinal
+      names:
+          - noun: chiral center count
+benchmarks:
+    - name: TDC
+      link: https://tdcommons.ai/
+      split_column: split
+identifiers:
+    - id: SMILES
+      type: SMILES
+      description: SMILES
+license: CC BY 4.0
+links:
+    - url: https://doi.org/10.1038/s41597-019-0151-1
+      description: corresponding publication
+    - url: https://tdcommons.ai/single_pred_tasks/adme/#aqeuous_solubility-aqsoldb
+      description: data source
+    - url: https://github.com/lamalab-org/chem-caption
+      description: software used to generate features
+num_points: 2525
+bibtex:
+    - |-
+      @article{Sorkun_2019,
+      doi = {10.1038/s41597-019-0151-1},
+      url = {https://doi.org/10.1038%2Fs41597-019-0151-1},
+      year = {2019},
+      month = aug,
+      publisher = {Springer Science and Business Media LLC},
+      volume = {6},
+      number = {1},
+      author = {Murat Cihan Sorkun and Abhishek Khetan and
+      Suleyman Er},
+      title = {AqSolDB, a curated reference set of aqueous aqeuous_solubility
+      and 2D descriptors for a diverse set of compounds},
+      journal = {Scientific Data}
+templates:
+    - |-
+      User: {#I want to|I must|I have to|I need to!} {#design|synthesize|create|make|generate!} a {#molecule|compound|chemical structure!} that has {aqeuous_solubility__names__noun} of {aqeuous_solubility#} {aqeuous_solubility__units} and is {toxicity_NR-AR#not &NULL}{toxicity_NR-AR__names__adjective}.
+      Assistant: {#There might be multiple compounds that match these criteria. Do you have additional constraints?|Do you have additional constraints?|Is there anything else I should consider?|Is there anything else I should know?!}
+      User: {#No|No, there are no additional constraints.|No, there are no other constraints.|No, there are no other criteria.|No, there are no other requirements.!}
+      Assistant: {#In this case, |OK, |Alright, |Understood, |Got it, |I see, !}the {#molecule|compound|chemical structure!} with {SMILES__description} {SMILES#} {#should|will|is expected to!} fit your criteria.
+    - |-
+      User: {#I am a medicinal chemist. |I work in drug-discovery. |!}{#I want to|I must|I have to|I need to!} {#design|synthesize|create|make|generate!} a {#molecule|compound|chemical structure!} that has {aqeuous_solubility__names__noun} of {aqeuous_solubility#} {aqeuous_solubility__units} and is {toxicity_NR-AR#not &NULL}{toxicity_NR-AR__names__adjective}. {#Additionally, |Moreover, |On top of that, |In addition, |Furthermore, !}{#I|we!} {#want|need|require|would like|would prefer!} the {#molecule|compound|chemical structure!} to have a {monoisotopic_molecular_mass__names__noun} of {monoisotopic_molecular_mass#} {monoisotopic_molecular_mass__units}. {#I|We!} {#want|would like to|need to!} ensure that {#there are|the molecule contains|the compound contains!} {carboxyl_count#} {carbonyl_count__names__noun}.
+      Assistant: {#Thanks for the detailed description. |Thanks. |!}{#I suggest|I recommend|I propose|I would suggest|I would recommend|I would propose!} the {#molecule|compound|chemical structure!} with {SMILES__description} {SMILES#}.{# This compound should fulfill your needs.| This chemical should satisfy your constrains|!}
+    - |-
+      User: {#I am a medicinal chemist. |I work in drug-discovery. |!}{#I want to|I must|I have to|I need to!} {#design|synthesize|create|make|generate!} a {#molecule|compound|chemical structure!} that is {toxicity_NR-AR#not &NULL}{toxicity_NR-AR__names__adjective} and has {aqeuous_solubility__names__noun} of {aqeuous_solubility#} {aqeuous_solubility__units}. {#Additionally, |Moreover, |On top of that, |In addition, |Furthermore, !}{#I|we!} {#want|need|require|would like|would prefer!} the {#molecule|compound|chemical structure!} to have a {carbon_mass__names__noun} of {carbon_mass#} {carbon_mass__units}. {#I|We!} {#want|would like to|need to!} ensure that {#there are|the molecule contains|the compound contains!} {carboxyl_count#} {carbonyl_count__names__noun} and {ether_count#} {ether_count__names__noun} as well as {alkanol_count#} {alkanol_count__names__noun} and {thiol_count#} {thiol_count__names__noun}.
+      Assistant: {#Thanks for the detailed description. |Thanks. |!}{#I suggest|I recommend|I propose|I would suggest|I would recommend|I would propose!} the {#molecule|compound|chemical structure!} with {SMILES__description} {SMILES#}.{# This compound should fulfill your needs.| This chemical should satisfy your constrains|!}
+    - |-
+      User: {#I am researching|I am investigating|I am studying!} {#pharmaceuticals|medicinal compounds|drug molecules!} and {#need|require|am looking for!} a {#molecule|compound|chemical structure!} with a {aqeuous_solubility__names__noun} of {aqeuous_solubility#} {aqeuous_solubility__units}. It should also be {toxicity_NR-AR#not &NULL}{toxicity_NR-AR__names__adjective}. {#Additionally,|Moreover,|Furthermore,!} it {#must|should|needs to!} have {amine_count#} {amine_count__names__noun}.
+      Assistant: {#To meet these requirements, |Considering your specifications, |Taking into account your needs, !}I {#recommend|suggest|propose!} a {#molecule|compound|chemical structure!} with {SMILES__description} {SMILES#}. {#This should match your criteria.|This fits your described parameters.|This aligns with your requirements.!}
+    - |-
+      User: {#As a chemist|Being a chemical researcher,|In my chemical research,!} I {#am looking for|require|need!} a {#molecule|compound|chemical structure!} with {num_hydrogen_bond_acceptors#} {num_hydrogen_bond_acceptors__names__noun} and {num_hydrogen_bond_donors#} {num_hydrogen_bond_donors__names__noun}. It {#also needs|should also!} to be {toxicity_NR-AR#not &NULL}{toxicity_NR-AR__names__adjective} and have a {oxygen_mass__names__noun} of {oxygen_mass#} {oxygen_mass__units}.
+      Assistant: {#I've got the ideal compound for you.|I have a compound that fits these specifications.|I suggest a molecule that meets your needs.!} The {#molecule|compound|chemical structure!} with {SMILES__description} {SMILES#} {#should work perfectly.|is exactly what you're looking for.|matches your requirements.!}
+    - |-
+      User: {#In my pharmaceutical research,|For my current drug discovery project,|In my medicinal chemistry studies,!} I {#require|need|am looking for!} a {#molecule|compound|chemical structure!} with {num_chiral_centers#} {num_chiral_centers__names__noun} and {num_lipinski_violations#} {num_lipinski_violations__names__noun}. It should {#also have|also possess|also contain!} a {nitrogen_mass__names__noun} of {nitrogen_mass#} {nitrogen_mass__units} and be {toxicity_NR-AR#not &NULL}{toxicity_NR-AR__names__adjective}.
+      Assistant: {#After considering your needs,|Based on your requirements,|Taking your specifications into account,!} the {#molecule|compound|chemical structure!} with {SMILES__description} {SMILES#} {#would be a great fit.|seems to be a perfect match.|should meet all your criteria.!}
+    - |-
+      User: {#In my research on|For my study of|While investigating!} {#non-toxic chemicals|safe compounds|environment-friendly substances!}, I {#need|require|am looking for!} a {#molecule|compound|chemical structure!} that is {toxicity_NR-AR#not &NULL}{toxicity_NR-AR__names__adjective} with {num_carbon_atoms#} {num_carbon_atoms__names__noun}. {#Additionally,|Furthermore,|Moreover,!} it {#should have|must have|needs to have!} {num_nitrogen_atoms#} {num_nitrogen_atoms__names__noun}.
+      Assistant: {#I have a compound in mind|I can suggest a molecule|I've identified a chemical structure!} that {#fits|meets|aligns with!} these requirements. The {#molecule|compound|chemical structure!} with {SMILES__description} {SMILES#} {#is suitable for your needs.|meets your specified criteria.|should work well for your research.!}
+    - |-
+      User: {#As a pharmacologist,|In my pharmacological studies,|For my drug development work,!} I {#require|need|am in need of!} a {#molecule|compound|chemical structure!} that is {toxicity_NR-AR#not &NULL}{toxicity_NR-AR__names__adjective} and has {num_oxygen_atoms#} {num_oxygen_atoms__names__noun}. {#Also,|In addition,|Moreover,!} it {#must|should!} have a {molecular_formula__names__noun} of {molecular_formula#}.
+      Assistant: {#I recommend|I suggest|I propose!} a {#molecule|compound|chemical structure!} with {SMILES__description} {SMILES#} that {#satisfies these conditions.|meets these criteria.|is aligned with your requirements.!}
+    - |-
+      User: {#In my environmental chemistry work,|For my eco-friendly compound research,|As part of my sustainable chemical studies,!} I {#am looking for|require|need!} a {#molecule|compound|chemical structure!} that is {toxicity_NR-AR#not &NULL}{toxicity_NR-AR__names__adjective} with a {monoisotopic_molecular_mass__names__noun} of {monoisotopic_molecular_mass#} {monoisotopic_molecular_mass__units}. {#Also,|Additionally,|Moreover,!} it {#should possess|must contain|needs to have!} {num_hydrogen_bond_acceptors#} {num_hydrogen_bond_acceptors__names__noun}.
+      Assistant: {#Considering your needs,|Based on your specifications,|With your requirements in mind,!} the {#molecule|compound|chemical structure!} with {SMILES__description} {SMILES#} {#would be ideal.|seems perfect.|is a great match.!}
+    - |-
+      User: {#For my bioactive molecule research,|In my study of pharmacologically active substances,|As I explore biologically active compounds,!} I {#need|require|am searching for!} a {#molecule|compound|chemical structure!} that is {toxicity_NR-AR#not &NULL}{toxicity_NR-AR__names__adjective}. It {#should also have|must also feature|also needs to have!}  {num_hydrogen_bond_donors#} {num_hydrogen_bond_donors__names__noun} and {halogen_count#} {halogen_count__names__noun}.
+      Assistant: {#I've found a compound|I have a molecule|I suggest a chemical structure!} that {#fulfills|meets|matches!} these criteria. The {#molecule|compound|chemical structure!} with {SMILES__description} {SMILES#} {#would suit your research.|is in line with your needs.|fits your specifications perfectly.!}
