@@ -118,6 +118,7 @@ def get_and_transform_data():
             col_suffix = "_text"  # to exclude from other preprocessing steps
             # if "split" in df.columns:
             df_subset = df[subset_cols + ["split"]].dropna()
+            # else:
             # elif "split" not in df.columns:
             #    df_subset = df[subset_cols].dropna()
             df_subset.columns = [

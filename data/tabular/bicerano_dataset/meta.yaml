@@ -58,13 +58,29 @@ templates:
     - The polymer with the {PSMILES__description} of {PSMILES#} has an experimental glass transition temperature of {Tg_exp#} K.
     - The polymer with the {PSMILES__description} of {PSMILES#} has a computed glass transition temperature of {Tg_calc#} K.
     - The polymer with the {PSMILES__description} of {PSMILES#} has a computed density at 300 K of {rho_300K_calc#} g/cc.
-    - The polymer with the {compound_name__names__noun} of {compound_name#} has an experimental glass transition temperature of {Tg_exp#} K.
-    - The polymer with the {compound_name__names__noun} of {compound_name#} has a computed glass transition temperature of {Tg_calc#} K.
-    - The polymer with the {compound_name__names__noun} of {compound_name#} has a computed density at 300 K of {rho_300K_calc#} g/cc.
+    - The polymer with the {PSMILES__description} of {PSMILES#} has a computed glass coefficient of thermal expansion (CTE) at 300 K of {glass_CTE_calc#}
+      1/K.
+    - The polymer with the {PSMILES__description} of {PSMILES#} has a computed rubber coefficient of thermal expansion (CTE) at 300 K of {rubber_CTE_calc#}
+      1/K.
+    - The polymer with the {compound_name__description} of {compound_name#} has an experimental glass transition temperature of {Tg_exp#} K.
+    - The polymer with the {compound_name__description} of {compound_name#} has a computed glass transition temperature of {Tg_calc#} K.
+    - The polymer with the {compound_name__description} of {compound_name#} has an experimental density at 300 K of {rho_300K_exp#} g/cc.
+    - The polymer with the {compound_name__description} of {compound_name#} has a computed density at 300 K of {rho_300K_calc#} g/cc.
+    - The polymer with the {compound_name__description} of {compound_name#} has a computed glass coefficient of thermal expansion (CTE) at 300 K of {glass_CTE_calc#}
+      1/K.
+    - The polymer with the {compound_name__description} of {compound_name#} has a computed rubber coefficient of thermal expansion (CTE) at 300 K of {rubber_CTE_calc#}
+      1/K.
     - |-
       Question: What is a polymer with an experimental glass transition temperature of {Tg_exp#} K and experimental density at 300 K of {rho_300K_exp#}
       g/cc.
       Answer: A polymer with {PSMILES__description} {PSMILES#}
     - |-
+      Question: What is a polymer with a computed glass coefficient of thermal expansion (CTE) at 300 K of {glass_CTE_calc#} and a computed rubber coefficient
+      of thermal expansion (CTE) at 300 K of {rubber_CTE_calc#} 1/K.
+      Answer: A polymer with {PSMILES__description} {PSMILES#}
+    - |-
       Question: What is a polymer with a computed glass transition temperature of {Tg_calc#} K and a computed density at 300 K of {rho_300K_calc#} g/cc.
       Answer: A polymer with {PSMILES__description} {PSMILES#}
+    - |-
+      Question: What is a polymer with a computed glass transition temperature of {Tg_calc#} K and a computed glass coefficient of thermal expansion (CTE)
+      at 300 K of {glass_CTE_calc#} 1/K. Answer: A polymer with {PSMILES__description} {PSMILES#}

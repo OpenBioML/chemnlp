@@ -90,7 +90,7 @@ templates:
       \ {#Understood|Got it|Ok!}, this {SMILES__description} represents a molecule that has a {GAFF__names__noun} of {GAFF#} {GAFF__units}: {SMILES#}"
     - The {exp_value__names__noun} of the molecule with the {SMILES__description} {SMILES#} is:<EOI> {exp_value#} {exp_value__units}
     - The {exp_value__names__noun} of the {SMILES__description} {SMILES#} is:<EOI> {exp_value#} {exp_value__units}
-    - The {exp_value__names__noun} of the molecule with {SMILES__description} {SMILES#} is:<EOI> {exp_value#} {exp_value__units}
+    - The {exp_value__names__noun} of the molecule with the {SMILES__description} {SMILES#} is:<EOI> {exp_value#} {exp_value__units}
     - "Task: Please predict a molecule feature based on the description.\nDescription: Predict the {exp_value__names__noun} in {exp_value__units} of a molecule.\n\
       {#Molecule |!}{SMILES__description}: {SMILES#}\nConstraint: Even if you are {#uncertain|not sure!}, you must answer with a numeric value in {exp_value__units}\
       \ without using any {#other|additional!} words.\nResult:<EOI> {exp_value#} {exp_value__units}"
@@ -98,7 +98,7 @@ templates:
       \ that has {exp_value__names__noun} of {exp_value#} {exp_value__units}.\nResult:<EOI> {SMILES#}"
     - The {GAFF__names__noun} of the molecule with the {SMILES__description} {SMILES#} is:<EOI> {GAFF#} {GAFF__units}
     - The {GAFF__names__noun} of the {SMILES__description} {SMILES#} is:<EOI> {GAFF#} {GAFF__units}
-    - The {GAFF__names__noun} of the molecule with {SMILES__description} {SMILES#} is:<EOI> {GAFF#} {GAFF__units}
+    - The {GAFF__names__noun} of the molecule with the {SMILES__description} {SMILES#} is:<EOI> {GAFF#} {GAFF__units}
     - "Task: Please predict a molecule feature based on the description.\nDescription: Predict the {GAFF__names__noun} in {GAFF__units} of a molecule.\n\
       {#Molecule |!}{SMILES__description}: {SMILES#}\nConstraint: Even if you are {#uncertain|not sure!}, you must answer with a numeric value in {GAFF__units}\
       \ without using any {#other|additional!} words.\nResult:<EOI> {GAFF#} {GAFF__units}"
