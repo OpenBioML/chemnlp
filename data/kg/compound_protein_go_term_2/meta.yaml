@@ -91,4 +91,4 @@ bibtex:
       url = {https://doi.org/10.1093/nar/gkab543},\n}"
 templates:
     - The {node1_type#} {SMILES__description} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#} which {rel2_type#} the {node3_name#}.
-    - The {node1_type#} with {SMILES__description} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#}. The {node2_type#} {node2_protein_names#} {rel2_type#} the {node3_name#}.
+    - The {node1_type#} {SMILES__description} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#}. The {node2_type#} {node2_protein_names#} {rel2_type#} the {node3_name#}.
