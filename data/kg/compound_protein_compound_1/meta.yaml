@@ -101,5 +101,5 @@ templates:
     - |-
       User: Can you {#give me|come up with!} {#one|an!} example for a {node1_type#} {SMILES__description} that {rel1_type#} the {node2_type#} {node2_protein_names#}?
       Assistant: {#Yes|Of course|Yes, of course|Sure!}, the {node1_type#} {SMILES__description} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#}.
-      User: Can you {#tell|create|generate!} another {node1_type#} with {SMILES__description} that {rel1_type#} the {node2_type#} {node2_protein_names#}?
+      User: Can you {#tell|create|generate!} another {node1_type#} {SMILES__description} that {rel1_type#} the {node2_type#} {node2_protein_names#}?
       Assistant: {#Sure|Yes|Of course|Yes, of course!}, the {node1_type#} with {SMILES__description} {SMILES#} {rel1_type#} the {node3_type#} {SMILES__description} {node3_smiles#}.
