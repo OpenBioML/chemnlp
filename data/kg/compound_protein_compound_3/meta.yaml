@@ -96,7 +96,7 @@ bibtex:
       \ Research},\nvolume = {49},\nnumber = {16},\npages = {e96-e96},\nyear = {2021},\nmonth = {06},\nissn = {0305-1048},\ndoi = {10.1093/nar/gkab543},\n\
       url = {https://doi.org/10.1093/nar/gkab543},\n}"
 templates:
-    - The {node1_type#} with {SMILES__description} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#} and {rel2_type#} the {node3_type#} {node3_smiles#}.
+    - The {node1_type#} {SMILES__description} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#} and {rel2_type#} the {node3_type#} {node3_smiles#}.
     - The {node2_type#} {node2_protein_names#} is targeted by the compound with the {SMILES__description} {SMILES#} and {node3_smiles#}.
     - |-
       User: Can you {#give me|come up with!} {#one|an!} example for a {SMILES__description} of a {node1_type#} that {rel1_type#} the {node2_type#} {node2_protein_names#}?
