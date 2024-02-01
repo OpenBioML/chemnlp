@@ -1,3 +1,11 @@
+"""
+This check performs a basic check for data leakage. The checks in this script only focus on SMILES.
+Train/test split needs to be run before running this script. This script assumes that `test_smiles.txt` and `val_smiles.txt` exist in the current working directory. 
+
+If leakage is detected, an `AssertionError` will be thrown.
+
+This script has a command line interface. You can run it using `python check_pandas <data_dir>`, where `<data_dir>` points to a nested set of directories with `data_clean.csv` files.
+"""
 import os
 from glob import glob
 from pathlib import Path
