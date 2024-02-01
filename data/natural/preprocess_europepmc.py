@@ -1,3 +1,9 @@
+"""This script performs cleaning of the EuroPMC natural text dataset. 
+
+For this it reads `.jsonl` files, which have `text` keys with the content and then uses heuristics
+encoded in regular expression to find references, authors, captions, etc. 
+
+Before running this scripts, the filepaths need to be changed.
 import json
 import os
 import re
