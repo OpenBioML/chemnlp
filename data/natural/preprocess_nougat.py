@@ -1,3 +1,10 @@
+"""This script processes *.mmd files created by running the Nougat model
+on PDFs of scientific articles. 
+
+The processing removes sections that are typically unwanted for the training of models (e.g. captions, references, authors, acknowledgments).
+
+The filepaths need to be updated before running the script.
+""" 
 import glob
 import json
 import os
