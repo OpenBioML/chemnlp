@@ -124,7 +124,6 @@ def check_all_files(data_dir):
             "uniprot_organisms",
             "uniprot_reactions",
             "uniprot_sentences",
-            "melting_points",
             "fda_adverse_reactions",
             "drugchat_liang_zhang_et_al",
             "herg_central",
