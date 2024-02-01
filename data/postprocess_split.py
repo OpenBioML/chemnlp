@@ -1,3 +1,9 @@
+"""This script checks again for leakage and also attempts to fix potential leakage by assigning all "test" SMILES to the test fold in the `csv`.
+
+It also merges files that have been created by `dask` if they are chunks of one large dataset.
+
+This script needs to be run after the splitting script. 
+"""
 import os
 from glob import glob
 from pathlib import Path
