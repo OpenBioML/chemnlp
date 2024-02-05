@@ -57,7 +57,7 @@ templates:
       Result: {BACE_inhibition#False&True}
     - |-
       Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
-      Description: A molecule that is {BACE_inhibition__names__adjective}.
+      Description: A molecule that is {BACE_inhibition#not &NULL}{BACE_inhibition__names__adjective}.
       Result: {SMILES#}
     - |-
       User: Can you {#tell me|derive|estimate!} if the molecule with the {SMILES__description} {SMILES#} is {BACE_inhibition__names__adjective}?

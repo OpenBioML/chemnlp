@@ -55,7 +55,7 @@ templates:
       Result: {p_np#False&True}
     - |-
       Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
-      Description: A molecule that is {p_np__names__adjective}.
+      Description: A molecule that is {p_np#not &NULL}{p_np__names__adjective}.
       Result: {SMILES#}
     - |-
       User: Can you {#tell me|derive|estimate!} if the molecule with the {SMILES__description} {SMILES#} is {p_np__names__adjective}?
