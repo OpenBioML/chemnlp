@@ -1,9 +1,10 @@
 """This script checks for data leakage in the splits of a tabular dataset.
 
-The checks in this script are more general and focus on the `identifier` defined in the `meta.yaml` files. 
+The checks in this script are more general and focus on the `identifier` defined in the `meta.yaml` files.
 Errors will be thrown if there are identical identifier values in train/val train/test or val/test sets.
 
-This script uses dask. This might cause some errors with mismatching data types, for which there are currently a few fallbacks. 
+This script uses dask. This might cause some errors with mismatching data types,
+for which there are currently a few fallbacks.
 """
 import os
 from glob import glob
