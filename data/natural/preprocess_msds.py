@@ -1,4 +1,5 @@
-"""This script parses MSDS data parsed from Sigma Aldrich (https://huggingface.co/datasets/chemNLP/MSDS/tree/main) and flattens it. 
+"""This script parses MSDS data parsed from Sigma Aldrich
+(https://huggingface.co/datasets/chemNLP/MSDS/tree/main) and flattens it.
 
 You need to change filepaths before running this script
 """
