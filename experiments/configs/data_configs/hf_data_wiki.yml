@@ -1,8 +1,0 @@
-model_name: "EleutherAI/pythia-1b"
-context_length: 2048
-dataset_name: "wikipedia"
-dataset_args:
-  { "name": "20220301.en", "split": "train", "beam_runner": "DirectRunner" }
-batch_size: 1000
-out_dir: "/fsx/proj-chemnlp/data"
-string_key: "text"
