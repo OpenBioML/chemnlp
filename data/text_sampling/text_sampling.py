@@ -1186,6 +1186,7 @@ if __name__ == "__main__":
         # if path.find("data/kg/compound_chebi") == -1: continue
         # if path.find("data/tabular/cyp3a4_substrate_carbonmangels") == -1: continue
         # if path.find("data/tabular/bio_ner") == -1: continue
+        # if path.find("rdkit_features") != -1: continue
 
         # exclude data_clean.csv files with more than 1GB
         if path.find("rdkit_features") != -1:

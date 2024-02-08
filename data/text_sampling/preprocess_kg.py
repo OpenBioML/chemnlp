@@ -75,8 +75,8 @@ Assistant: The {node2_type#} {node2_protein_names#} {rel2_type#} a {node3_name#}
     # todo: There are some entries that have the EC number under node3_name and node3_id
     # and this is not handled yet properly.
     #    "compound_protein_go_term": [
-    #        """The {node1_type#} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#} which {rel2_type#} the {node3_name#}.""",  # noqa E501
-    #        """The {node1_type#} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#}. The {node2_type#} {node2_protein_names#} {rel2_type#} the {node3_name#}.""",  # noqa E501
+    #        """The {node1_type#} {SMILES__description} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#} which {rel2_type#} the {node3_name#}.""",  # noqa E501
+    #        """The {node1_type#} {SMILES__description} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#}. The {node2_type#} {node2_protein_names#} {rel2_type#} the {node3_name#}.""",  # noqa E501
     # ],
     "compound_protein_hpo": [
         """The {node1_type#} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#} and {rel2_type#} {node3_name#}.""",  # noqa E501
@@ -167,7 +167,7 @@ Assistant: {#Sure|Yes|Of course|Yes, of course!}, the {node2_type#} {node2_name#
         """The {node1_type#} {SMILES#|node1_name#} {rel1_type#} the {node2_type#} {node2_protein_names#}. This {node2_type#} {rel2_type#} the {node3_name#}.""",  # noqa E501
     ],
     "drug_protein_hpo_disease": [
-        """The {node1_type#} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#}. The {node2_type#} {node2_protein_names#} {rel2_type#} {node3_name#}. The {node3_name#} {rel3_type#} the {node4_type#} {node4_name#}.""",  # noqa E501
+        """The {node1_type#} {SMILES__description} {SMILES#} {rel1_type#} the {node2_type#} {node2_protein_names#}. The {node2_type#} {node2_protein_names#} {rel2_type#} {node3_name#}. The {node3_name#} {rel3_type#} the {node4_type#} {node4_name#}.""",  # noqa E501
     ],
     "drug_protein_pathway": [
         """The {node1_type#} {SMILES#|node1_name#} {rel1_type#} the {node2_type#} {node2_protein_names#} which {rel2_type#} the {node3_name#}.""",  # noqa E501
