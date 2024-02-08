@@ -1,0 +1,365 @@
+---
+name: sigma_aldrich_safety_data
+description: |-
+    "H-statements parsed from the safety datasheets (SDS) coming from Sigma-Aldrich. This dataset refers only to pure compounds."
+targets:
+    - id: H206
+      description: fire, blast or projection hazard
+      type: boolean
+      names:
+          - noun: a fire, blast or projection hazard
+    - id: H208
+      description: fire hazard
+      type: boolean
+      names:
+          - noun: a fire hazard
+    - id: H211
+      description: may be sensitive
+      type: boolean
+      names:
+          - adjective: potentially sensitive
+    - id: H220
+      description: extremely flammable gas
+      type: boolean
+      names:
+          - noun: an extremely flammable gas
+    - id: H221
+      description: flammable gas
+      type: boolean
+      names:
+          - adjective: flammable gas
+    - id: H224
+      description: extremely flammable liquid or vapor
+      type: boolean
+      names:
+          - noun: an extremely flammable liquid or vapor
+    - id: H225
+      description: highly flammable liquid and vapor
+      type: boolean
+      names:
+          - noun: a highly flammable liquid or vapor
+    - id: H226
+      description: flammable liquid and vapor
+      type: boolean
+      names:
+          - noun: a flammable liquid or vapor
+    - id: H228
+      description: flammable solid
+      type: boolean
+      names:
+          - noun: a flammable solid
+    - id: H240
+      description: heating may cause an explosion
+      type: boolean
+      names:
+          - noun: potential cause for an explosion
+    - id: H241
+      description: heating may cause a fire or explosion
+      type: boolean
+      names:
+          - adjective: potentially explosive when heated
+    - id: H242
+      description: heating may cause a fire
+      type: boolean
+      names:
+          - adjective: potentially can cause a fire when heated
+    - id: H250
+      description: catches fire spontaneously if exposed to air
+      type: boolean
+      names:
+          - adjective: spontaneously catches fire if exposed to air
+    - id: H251
+      description: self-heating; may catch fire
+      type: boolean
+      names:
+          - adjective: self-heating
+          - adjective: potentially going to catch fire
+    - id: H252
+      description: self-heating in large quantities; may catch fire
+      type: boolean
+      names:
+          - adjective: self-heating in large quantities
+          - adjective: potentially going to catch fire
+    - id: H260
+      description: in contact with water releases flammable gases which may ignite spontaneously
+      type: boolean
+      names:
+          - adjective: releasing flammable gases that may ignite spontaneously when in contact with water
+    - id: H261
+      description: in contact with water releases flammable gas
+      type: boolean
+      names:
+          - adjective: releasing flammable gas when in contact with water
+    - id: H270
+      description: may cause or intensify fire; oxidizer
+      type: boolean
+      names:
+          - noun: potential cause or intensifier for fire
+          - noun: an oxidizer
+    - id: H271
+      description: may cause fire or explosion; strong oxidizer
+      type: boolean
+      names:
+          - noun: potential cause for fire or explosion
+          - noun: strong oxidizer
+    - id: H272
+      description: may intensify fire; oxidizer
+      type: boolean
+      names:
+          - noun: potential fire intensifier fire
+          - noun: an oxidizer
+    - id: H280
+      description: contains gas under pressure; may explode if heated
+      type: boolean
+      names:
+          - adjective: contains gas under pressure and may explode if heated
+    - id: H282
+      description: is an extremely flammable chemical under pressure, may explode if heated
+      type: boolean
+      names:
+          - adjective: is an extremely flammable chemical under pressure, may explode if heated
+    - id: H284
+      description: chemical under pressure, may explode if heated
+      type: boolean
+      names:
+          - adjective: is a chemical under pressure, may explode if heated
+    - id: H290
+      description: may be corrosive to metals
+      type: boolean
+      names:
+          - adjective: potenttially corrosive to metals
+    - id: H300
+      description: fatal if swallowed
+      type: boolean
+      names:
+          - adjective: fatal if swallowed
+    - id: H301
+      description: toxic if swallowed
+      type: boolean
+      names:
+          - adjective: toxic if swallowed
+    - id: H302
+      description: harmful if swallowed
+      type: boolean
+      names:
+          - adjective: harmful if swallowed
+    - id: H304
+      description: may be fatal if swallowed and enters airways
+      type: boolean
+      names:
+          - adjective: probably fatal if swallowed and enters airways
+    - id: H310
+      description: fatal in contact with skin
+      type: boolean
+      names:
+          - adjective: fatal in contact with skin
+    - id: H311
+      description: toxic in contact with skin
+      type: boolean
+      names:
+          - adjective: is toxic in contact with skin
+    - id: H312
+      description: harmful in contact with skin
+      type: boolean
+      names:
+          - adjective: is harmful in contact with skin
+    - id: H314
+      description: causes severe skin burns and eye damage
+      type: boolean
+      names:
+          - adjective: causing severe skin burns and eye damage
+    - id: H315
+      description: causes skin irritation
+      type: boolean
+      names:
+          - adjective: causing skin irritation
+    - id: H317
+      description: may cause an allergic skin reaction
+      type: boolean
+      names:
+          - noun: potential cause for an allergic skin reaction
+    - id: H318
+      description: causes serious eye damage
+      type: boolean
+      names:
+          - adjective: causing serious eye damage
+    - id: H319
+      description: causes serious eye irritation
+      type: boolean
+      names:
+          - adjective: causing serious eye irritation
+    - id: H330
+      description: fatal if inhaled
+      type: boolean
+      names:
+          - adjective: fatal if inhaled
+    - id: H331
+      description: toxic if inhaled
+      type: boolean
+      names:
+          - adjective: toxic if inhaled
+    - id: H332
+      description: harmful if inhaled
+      type: boolean
+      names:
+          - adjective: harmful if inhaled
+    - id: H334
+      description: may cause allergy or asthma symptoms or breathing difficulties if inhaled
+      type: boolean
+      names:
+          - adjective: may cause allergy or asthma symptoms or breathing difficulties if inhaled
+    - id: H335
+      description: may cause respiratory irritation
+      type: boolean
+      names:
+          - noun: potential cause for respiratory irritation
+    - id: H336
+      description: may cause drowsiness or dizziness
+      type: boolean
+      names:
+          - noun: potential cause for drowsiness or dizziness
+    - id: H340
+      description: may cause genetic defects
+      type: boolean
+      names:
+          - noun: potential cause for genetic defects
+    - id: H341
+      description: suspected of causing genetic defects
+      type: boolean
+      names:
+          - adjective: suspected of causing genetic defects
+          - adjective: suspected of causing genetic alterations
+          - adjective: suspected of causing mutations
+    - id: H350
+      description: may cause cancer
+      type: boolean
+      names:
+          - noun: potential cause for cancer
+    - id: H351
+      description: suspected of causing cancer
+      type: boolean
+      names:
+          - adjective: suspected of causing cancer
+    - id: H360
+      description: may damage fertility or the unborn child
+      type: boolean
+      names:
+          - noun: potential cause for fertility damage or the unborn child
+    - id: H361
+      description: suspected of damaging fertility or the unborn child
+      type: boolean
+      names:
+          - adjective: suspected of damaging fertility or the unborn child
+    - id: H370
+      description: causes damage to organs
+      type: boolean
+      names:
+          - adjective: causing damage to organs
+    - id: H371
+      description: may cause damage to organs
+      type: boolean
+      names:
+          - noun: potential cause for damage to organs
+          - adjective: potentially causing organ damage
+    - id: H372
+      description: causes damage to organs through prolonged or repeated exposure
+      type: boolean
+      names:
+          - adjective: causing damage to organs through prolonged or repeated exposure
+          - adjective: causing damage to organs
+    - id: H373
+      description: may cause damage to organs through prolonged or repeated exposure
+      type: boolean
+      names:
+          - noun: potential cause for damage to organs through prolonged or repeated exposure
+    - id: H400
+      description: very toxic to aquatic life
+      type: boolean
+      names:
+          - adjective: very toxic to aquatic life
+    - id: H410
+      description: very toxic to aquatic life with long lasting effects
+      type: boolean
+      names:
+          - adjective: very toxic to aquatic life with long lasting effects
+    - id: H411
+      description: toxic to aquatic life with long lasting effects
+      type: boolean
+      names:
+          - adjective: toxic to aquatic life with long lasting effects
+          - adjective: toxic to aquatic life
+          - adjective: inducing long lasting effects on aquatic life
+    - id: H420
+      description: harms public health and the environment by destroying ozone in the upper atmosphere
+      type: boolean
+      names:
+          - adjective: harming public health and the environment by destroying the ozone in the upper atmosphere
+          - adjective: destroying the ozone in the upper atmosphere
+          - adjective: harming public health and the environment
+identifiers:
+    - id: SMILES
+      type: SMILES
+      description: SMILES
+links:
+    - url: https://www.sigmaaldrich.com/DE/de
+      description: corresponding source for the safety datasheets
+num_points: 6420
+bibtex: []
+templates:
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H206#not &NULL}{H206__names__noun}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H208#not &NULL}{H208__names__noun}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H211#not &NULL}{H211__names__adjective}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H220#not &NULL}{H220__names__noun}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H221#not &NULL}{H221__names__adjective}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H224#not &NULL}{H224__names__noun}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H225#not &NULL}{H225__names__noun}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H226#not &NULL}{H226__names__noun}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H228#not &NULL}{H228__names__noun}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H240#not &NULL}{H240__names__noun}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H241#not &NULL}{H241__names__adjective}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H242#not &NULL}{H242__names__adjective}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H250#not &NULL}{H250__names__adjective}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H251#not &NULL}{H251__names__adjective}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H252#not &NULL}{H252__names__adjective}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H260#not &NULL}{H260__names__adjective}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H261#not &NULL}{H261__names__adjective}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H270#not &NULL}{H270__names__noun}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H271#not &NULL}{H271__names__noun}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H272#not &NULL}{H272__names__noun}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H280#not &NULL}{H280__names__adjective}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H282#not &NULL}{H282__names__adjective}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H284#not &NULL}{H284__names__adjective}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H290#not &NULL}{H290__names__adjective}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H300#not &NULL}{H300__names__adjective}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H301#not &NULL}{H301__names__adjective}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H302#not &NULL}{H302__names__adjective}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H304#not &NULL}{H304__names__adjective}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H310#not &NULL}{H310__names__adjective}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H311#not &NULL}{H311__names__adjective}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H312#not &NULL}{H312__names__adjective}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H314#not &NULL}{H314__names__adjective}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H315#not &NULL}{H315__names__adjective}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H317#not &NULL}{H317__names__noun}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H318#not &NULL}{H318__names__adjective}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H319#not &NULL}{H319__names__adjective}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H330#not &NULL}{H330__names__adjective}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H331#not &NULL}{H331__names__adjective}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H332#not &NULL}{H332__names__adjective}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H334#not &NULL}{H334__names__adjective}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H335#not &NULL}{H335__names__noun}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H336#not &NULL}{H336__names__noun}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H340#not &NULL}{H340__names__noun}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H341#not &NULL}{H341__names__adjective}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H350#not &NULL}{H350__names__noun}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H351#not &NULL}{H351__names__adjective}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H360#not &NULL}{H360__names__noun}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H361#not &NULL}{H361__names__adjective}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H370#not &NULL}{H370__names__adjective}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H371#not &NULL}{H371__names__noun}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H371#not &NULL}{H371__names__adjective}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H372#not &NULL}{H372__names__adjective}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H373#not &NULL}{H373__names__noun}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H400#not &NULL}{H400__names__adjective}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H410#not &NULL}{H410__names__adjective}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H411#not &NULL}{H411__names__adjective}.
+    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H420#not &NULL}{H420__names__adjective}.
