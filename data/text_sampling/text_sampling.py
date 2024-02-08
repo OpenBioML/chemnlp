@@ -911,7 +911,9 @@ class TemplateSampler:
         sample = self.df.iloc[sample_idx]
         return self.sample(sample, template_idx)
 
-    def apply_sampling(self, template_idx: int = None, class_balanced: bool = True): ## todo: set class_balanced to False !!!
+    def apply_sampling(
+        self, template_idx: int = None, class_balanced: bool = True
+    ):  ## todo: set class_balanced to False !!!
         """Applies the sampling to the entire data frame."""
         if template_idx is not None and class_balanced is True:
             # create a copy of the original self.df to restore self.df after class balanced sampling
@@ -923,8 +925,10 @@ class TemplateSampler:
             target_to_balance = []
             for target in self.meta["targets"]:
                 for var in template.input_variables:
-                    if (target["id"] in var.replace("#", "")) or (target["id"] in var.replace("%", "")):
-                        #print(f"{target['id']=}")
+                    if (target["id"] in var.replace("#", "")) or (
+                        target["id"] in var.replace("%", "")
+                    ):
+                        # print(f"{target['id']=}")
                         target_to_balance.append(target["id"])
             target_to_balance = list(set(target_to_balance))
 
@@ -945,13 +949,17 @@ class TemplateSampler:
                 dfs = []
                 # cycle through all values and get a sample of size vc_min
                 for values in df_vc.index.tolist():
-                    dfs.append(self.df_orig[self.df_orig[target_to_balance] == values].sample(vc_min))
+                    dfs.append(
+                        self.df_orig[self.df_orig[target_to_balance] == values].sample(
+                            vc_min
+                        )
+                    )
                 self.df = pd.concat(dfs)
             else:
                 self.df = self.df_orig
             print(self.df[target_to_balance].value_counts())
-        #else:
-        #    assert template_idx is None and class_balanced is True, "class_balanced sampling is only supported with template_idx."
+        # else:
+        #    assert template_idx is None and class_balanced is True, "class_balanced sampling is only supported with template_idx."  # noqa: E501
 
         self.df["sample"] = self.df.apply(
             lambda sample: self.sample(sample, template_idx), axis=1
@@ -1088,7 +1096,10 @@ class TemplateSampler:
         return pd.DataFrame(print_data)
 
     def apply_sampling_and_export(
-        self, template_idx: int = None, fn_suffix: str = None, class_balanced = True,
+        self,
+        template_idx: int = None,
+        fn_suffix: str = None,
+        class_balanced=True,
     ):
         """Applies the sampling and exports the data."""
         self.apply_sampling(template_idx=template_idx, class_balanced=class_balanced)
@@ -1109,10 +1120,10 @@ if __name__ == "__main__":
     )
     path_lm_eval_data_dir = path_base + "text_sampling/export"
 
-    index = [i for i, x in enumerate(path_data_dir) if x.find("odd_one_out") != -1][0]
-    print(index)
-    #path_data_dir = path_data_dir[index:]
-    path_data_dir = path_data_dir[index+1:]
+    # index = [i for i, x in enumerate(path_data_dir) if x.find("odd_one_out") != -1][0]
+    # print(index)
+    # path_data_dir = path_data_dir[index:]
+    # path_data_dir = path_data_dir[index + 1 :]
     # path_data_dir = [path_data_dir[index]]
     # path_data_dir = [
     #        '/weka/proj-chemnlp/micpie/chemnlp/data/tabular/ames_mutagenicity',
@@ -1167,8 +1178,9 @@ if __name__ == "__main__":
 
     for path in path_data_dir:
         # subselect one path
-        #if path.find("data/kg/") == -1: continue
-        if path.find("data/tabular/") == -1: continue
+        # if path.find("data/kg/") == -1: continue
+        # if path.find("data/tabular/") == -1:
+        #     continue
         # if path.find("data/kg/") == -1: continue
         # if path.find("chembl33") != -1: continue
         # if path.find("data/kg/compound_chebi") == -1: continue
@@ -1176,19 +1188,18 @@ if __name__ == "__main__":
         # if path.find("data/tabular/bio_ner") == -1: continue
 
         # exclude data_clean.csv files with more than 1GB
-        if path.find("rdkit_features") != -1: continue
-        if path.find("iupac_smiles") != -1: continue
-        if path.find("orbnet_denali") != -1: continue
-        if path.find("ord_masked") != -1: continue
-        if path.find("ord_predictions") != -1: continue
-        if path.find("chembl_v29") != -1: continue
-
-        # needs fix
-        if path.find("bicerano_dataset") != -1: continue
-        #if path.find("BACE") != -1: continue
-        #if path.find("BBBP") != -1: continue
-        #if path.find("ames_mutagenicity") == -1: continue
-        #if path.find("bio_ner") == -1: continue
+        if path.find("rdkit_features") != -1:
+            continue
+        if path.find("iupac_smiles") != -1:
+            continue
+        if path.find("orbnet_denali") != -1:
+            continue
+        if path.find("ord_masked") != -1:
+            continue
+        if path.find("ord_predictions") != -1:
+            continue
+        if path.find("chembl_v29") != -1:
+            continue
 
         print(f"\n###### {path}")
         path_meta = path + "/meta.yaml"
