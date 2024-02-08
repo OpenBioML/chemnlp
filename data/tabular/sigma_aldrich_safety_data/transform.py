@@ -13,5 +13,6 @@ def transform_data():
     df = df.drop(columns=["h_statements"])
     df.to_csv("data_clean.csv")
 
+
 if __name__ == "__main__":
     transform_data()
