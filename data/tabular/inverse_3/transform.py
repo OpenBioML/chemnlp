@@ -68,7 +68,7 @@ def transform():
 
     # merge on SMILES, keep where we have SMILES in both datasets
     merged = pd.merge(df_1, df_2, on="SMILES", how="inner")
-    print(len(merged))  
+    print(len(merged))
 
     features = []
     feature_names = FEATURIZER.feature_labels()

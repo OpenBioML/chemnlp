@@ -31,9 +31,9 @@ meta_template = {
     "bibtex": ["???"],
     "templates": [
         """Task: Please carry out the {#named entity recognition (NER)|named entity recognition|NER!} task for the the text below.
-Text: {#Sentence}.
+Text: {Sentence#}.
 Constrain: Please, {#only |!}list the entities in the form NER entity, span start, span end, and type {#in separate lines |!}with a high probability of being in the text.
-Result: {#entity_1}""",  # noqa: E501
+Result: {entity_1#}""",  # noqa: E501
     ],
 }
 
@@ -141,10 +141,10 @@ def get_and_transform_data():
         # adapt templates for more entities than 1
         if entity_count > 1:
             entity_str = "\n".join(
-                ["{#entity_" + str(i + 1) + "}" for i in range(entity_count)]
+                ["{entity_" + str(i + 1) + "#}" for i in range(entity_count)]
             )
             meta_copy["templates"] = [
-                t.replace("{#entity_1}", entity_str) for t in meta_copy["templates"]
+                t.replace("{entity_1#}", entity_str) for t in meta_copy["templates"]
             ]
 
         yaml.add_representer(str, str_presenter)

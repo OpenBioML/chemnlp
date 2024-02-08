@@ -54,9 +54,9 @@ This dataset deposited version under CHEMBL assay 1614674.""",
                 "units": "hours",  # units of the values in this column (leave empty if unitless)
                 "type": "continuous",
                 "names": [  # names for the property (to sample from for building the prompts)
-                    {"noun": "half life"},
-                    {"noun": "half life time"},
-                    {"noun": "drug half life time"},
+                    {"noun": "half life in humans after IV administration"},
+                    {"noun": "half life time in humans after IV administration"},
+                    {"noun": "drug half life time in humans after IV administration"},
                     # {
                     #    "noun": "the duration by which the concentration of the drug in the body is reduced by half"
                     # },

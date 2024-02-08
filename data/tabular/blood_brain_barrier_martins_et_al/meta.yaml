@@ -94,7 +94,7 @@ templates:
       Result: This molecule is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.
     - |-
       Task: Please {#give me|create|generate!} the {SMILES__description} of a {#molecule|chemical|chemical compound!} based on the {#text |!}description{# below|!}.
-      Description: A molecule that is {penetrate_BBB__names__adjective}.
+      Description: A molecule that is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.
       Result: {SMILES#}
     - |-
       User: Can you {#tell me|derive|estimate!} if the molecule with the {SMILES__description} {SMILES#} is {penetrate_BBB__names__adjective}?

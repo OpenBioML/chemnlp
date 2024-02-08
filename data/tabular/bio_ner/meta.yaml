@@ -1,6 +1,6 @@
 ---
 name: bio_ner
-description: NER task on bio-related text.
+description: NER data.
 identifiers:
     - id: Sentence
       description: Sentence
@@ -19,17 +19,19 @@ targets:
       names:
           - noun: JSON output
 benchmarks:
-    - name: bio_ner
-      link: https://github.com/ML4LitS/bio-datasets
+    - name: ???
+      link: ???
       split_column: split
-license: unknown
+license: NEEDS TO BE DEFINED
 links:
     - url: https://github.com/ML4LitS/bio-datasets
-      description: original data source
-num_points: 144675
+      description: ???
+num_points: 123509
+bibtex:
+    - ???
 templates:
     - |-
-      Task: Please carry out the {#named entity recognition (NER)|named entity recognition|NER!} task for the text below.
-      Text: {#Sentence}.
+      Task: Please carry out the {#named entity recognition (NER)|named entity recognition|NER!} task for the the text below.
+      Text: {Sentence#}.
       Constrain: Please, {#only |!}list the entities in the form NER entity, span start, span end, and type {#in separate lines |!}with a high probability of being in the text.
-      Result: {#entity_1}
+      Result: {entity_1#}

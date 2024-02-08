@@ -7,6 +7,7 @@ if __name__ == "__main__":
     path_base = __file__.replace("text_sampling/extend_tabular_processed.py", "")
     path_data_dir = sorted(glob.glob(path_base + "tabular/**/data_clean.csv"))
     path_data_dir += sorted(glob.glob(path_base + "kg/**/data_clean.csv"))
+    # print(len(path_data_dir))
     path_processed_smiles = path_base + "text_sampling/extend_tabular_processed.csv"
 
     cols = [
@@ -15,8 +16,9 @@ if __name__ == "__main__":
         "deepsmiles",
         "canonical",
         "inchi",
-        "iupac_name",
+        # "iupac_name",
         # "safe",
+        "split",
     ]
 
     if not os.path.isfile(path_processed_smiles):
@@ -28,6 +30,9 @@ if __name__ == "__main__":
         # if path.find("data/kg/compound_chebi/data_clean.csv") == -1: continue
         # if path.find("data/kg/compound_protein_compound/data_clean.csv") == -1: continue
         # if path.find("data/tabular/h2_storage_materials") == -1: continue
+        # if path.find("rdkit") != -1: continue
+        # if path.find("qmof") != -1: continue
+        # if path.find("iupac_smiles") != -1: continue
         print(f"\n###### {path}")
 
         if not os.path.isfile(path):
@@ -36,6 +41,11 @@ if __name__ == "__main__":
 
         # check cols are there
         df = pd.read_csv(path, index_col=False, nrows=0)  # only get columns
+
+        if "split" not in df.columns:
+            print(f"No split column in: {path}")
+            continue
+
         if set(cols).issubset(df.columns):
             df = pd.read_csv(path, low_memory=False)
             df_append = df[cols].copy()

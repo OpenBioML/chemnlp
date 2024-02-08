@@ -55,7 +55,7 @@ bibtex:
       and 2D descriptors for a diverse set of compounds},
       journal = {Scientific Data}
 templates:
-    - The name of the {#compound|drug|chemical|molecule!} with the {#SMILES|SMILES string|!} {SMILES#} is {compound_name#}.
+    #- The name of the {#compound|drug|chemical|molecule!} with the {#SMILES|SMILES string|!} {SMILES#} is {compound_name#}.  # doesn't work with class-balanced sampling
     - The {aqeuous_solubility__names__noun} of the {#compound|drug|chemical|molecule!} with the {SMILES__description} {SMILES#} is {aqeuous_solubility#}
       {aqeuous_solubility__units}.
     - The {aqeuous_solubility__names__noun} of the {#compound|drug|chemical|molecule!} with the {compound_name__names__noun} {compound_name#} is {aqeuous_solubility#}

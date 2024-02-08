@@ -158,7 +158,7 @@ Description: A molecule that is {penetrate_BBB__names__adjective}.
 Constraint: Answer the question in a {#full|complete!} sentence.
 Result: This molecule is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.""",  # noqa: E501
             """Task: Please {#give me|create|generate!} the {SMILES__description} of {#molecule|chemical|chemical structure!} based on the {#text |!}description{# below|!}.
-Description: A molecule that is {penetrate_BBB__names__adjective}.
+Description: A molecule that is {penetrate_BBB#not &NULL}{penetrate_BBB__names__adjective}.
 Result: {SMILES#}""",  # noqa: E501
             # Conversational text templates
             """User: Can you {#tell me|derive|estimate!} if the molecule with the {SMILES__description} {SMILES#} is {penetrate_BBB__names__adjective}?

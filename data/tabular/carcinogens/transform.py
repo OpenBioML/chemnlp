@@ -153,7 +153,7 @@ Description: A molecule that is {carcinogen__names__adjective}.
 Constraint: Answer the question in a {#full|complete!} sentence.
 Result: This molecule is {carcinogen#not &NULL}{carcinogen__names__adjective}.""",
             """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
-Description: A molecule that is {carcinogen__names__adjective}.
+Description: A molecule that is {carcinogen#not &NULL}{carcinogen__names__adjective}.
 Result: {SMILES#}""",  # noqa: E501
             # Conversational text templates
             """User: Can you {#tell me|derive|estimate!} if the molecule with the {SMILES__description} {SMILES#} is {carcinogen__names__adjective}?

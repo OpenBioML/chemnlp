@@ -313,28 +313,28 @@ templates:
       User: {#What is|I want to know|I need to know!} the {asphericity__names__noun} of this {#molecule|chemical|compound|drug|chemical structure!}.
       Assistant: The {#molecule|chemical|compound|drug|chemical structure!} has an {asphericity__names__noun} of {asphericity#}.
     - |-
-      User: I {#want|must|would like|need!} to {#design|create|synthesize|make!} a {#molecule|chemical|compound|drug|chemical structure!} with {asphericity__names__noun} of {asphericity#}.
+      User: I {#want to|must|would like to|need to!} {#design|create|synthesize|make!} a {#molecule|chemical|compound|drug|chemical structure!} with {asphericity__names__noun} of {asphericity#}.
       Assistant: {#That's interesting, do you have|Do you have|Cool, do you have|Awesome, do you have!} any other {#constraints|requirements|conditions|limitations!}?
       User: {#In addition,|Additionally,|Moreover,!} I {#want|would like!} the {#molecule|chemical|compound|drug|chemical structure!} to have a {eccentricity__names__noun} of {eccentricity#}.
       Assistant: {#Is there anything else I should know?|Is there anything else I should be aware of?|Is there anything else I should take into account?|Is there anything else I should consider?|Is there anything else I should take into consideration?|Is there anything else I should take into account?|Is there anything else I should take into consideration?|Is there anything else I should consider?!}
       User: {#In addition,|Additionally,|Moreover,!} I {#want|would like!} the {#molecule|chemical|compound|drug|chemical structure!} to have a {npr1_value__names__noun} of {npr1_value#} and a {molecular_formula__names__noun} of {molecular_formula#}.
       Assistant: {#Given those requirements, |In that case, |!}I recommend the {#molecule|chemical|compound|drug|chemical structure!} with {representation_type#} {representation#}.
     - |-
-      User: I {#want|must|would like|need!} to {#design|create|synthesize|make!} a {#molecule|chemical|compound|drug|chemical structure!} with {eccentricity__names__noun} of {eccentricity#}.
+      User: I {#want to|must|would like to|need to!} {#design|create|synthesize|make!} a {#molecule|chemical|compound|drug|chemical structure!} with {eccentricity__names__noun} of {eccentricity#}.
       Assistant: {#That's interesting, do you have|Do you have|Cool, do you have|Awesome, do you have!} any other {#constraints|requirements|conditions|limitations!}?
       User: {#In addition,|Additionally,|Moreover,!} I {#want|would like!} the {#molecule|chemical|compound|drug|chemical structure!} to have a {asphericity__names__noun} of {asphericity#}.
       Assistant: {#Is there anything else I should know?|Is there anything else I should be aware of?|Is there anything else I should take into account?|Is there anything else I should consider?|Is there anything else I should take into consideration?|Is there anything else I should take into account?|Is there anything else I should take into consideration?|Is there anything else I should consider?!}
       User: {#In addition,|Additionally,|Moreover,!} I {#want|would like!} the {#molecule|chemical|compound|drug|chemical structure!} to have a {num_lipinski_violations#} {num_lipinski_violations__names__only_name} and a {molecular_formula__names__noun} of {molecular_formula#}.
       Assistant: {#Given those requirements, |In that case, |!}I recommend the {#molecule|chemical|compound|drug|chemical structure!} with {representation_type#} {representation#}.
     - |-
-      User: I {#want|must|would like|need!} to {#design|create|synthesize|make!} a {#molecule|chemical|compound|drug|chemical structure!} with {npr1_value__names__noun} of {npr1_value#}.
+      User: I {#want to|must|would like to|need to!} {#design|create|synthesize|make!} a {#molecule|chemical|compound|drug|chemical structure!} with {npr1_value__names__noun} of {npr1_value#}.
       Assistant: {#That's interesting, do you have|Do you have|Cool, do you have|Awesome, do you have!} any other {#constraints|requirements|conditions|limitations!}?
       User: {#In addition,|Additionally,|Moreover,!} I {#want|would like!} the {#molecule|chemical|compound|drug|chemical structure!} to have a {npr2_value__names__noun} of {npr2_value#}.
       Assistant: {#Is there anything else I should know?|Is there anything else I should be aware of?|Is there anything else I should take into account?|Is there anything else I should consider?|Is there anything else I should take into consideration?|Is there anything else I should take into account?|Is there anything else I should take into consideration?|Is there anything else I should consider?!}
       User: {#In addition,|Additionally,|Moreover,!} I {#want|would like!} the {#molecule|chemical|compound|drug|chemical structure!} to have a {molecular_formula__names__noun} of {molecular_formula#}.
       Assistant: {#Given those requirements, |In that case, |!}I recommend the {#molecule|chemical|compound|drug|chemical structure!} with {representation_type#} {representation#}.
     - |-
-      User: I {#want|must|would like|need!} to {#design|create|synthesize|make!} a {#molecule|chemical|compound|drug|chemical structure!} with {pmi1_value__names__noun} of {pmi1_value#}.
+      User: I {#want to|must|would like to|need to!} {#design|create|synthesize|make!} a {#molecule|chemical|compound|drug|chemical structure!} with {pmi1_value__names__noun} of {pmi1_value#}.
       Assistant: {#That's interesting, do you have|Do you have|Cool, do you have|Awesome, do you have!} any other {#constraints|requirements|conditions|limitations!}?
       User: {#In addition,|Additionally,|Moreover,!} I {#want|would like!} the {#molecule|chemical|compound|drug|chemical structure!} to have a {pmi2_value__names__noun} of {pmi2_value#}.
       Assistant: {#Is there anything else I should know?|Is there anything else I should be aware of?|Is there anything else I should take into account?|Is there anything else I should consider?|Is there anything else I should take into consideration?|Is there anything else I should take into account?|Is there anything else I should take into consideration?|Is there anything else I should consider?!}
