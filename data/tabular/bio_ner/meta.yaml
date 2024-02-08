@@ -1,6 +1,6 @@
 ---
 name: bio_ner
-description: NER data.
+description: NER task on bio-related text.
 identifiers:
     - id: Sentence
       description: Sentence
@@ -19,10 +19,10 @@ targets:
       names:
           - noun: JSON output
 benchmarks:
-    - name: ???
-      link: ???
+    - name: bio_ner
+      link: https://github.com/ML4LitS/bio-datasets
       split_column: split
-license: NEEDS TO BE DEFINED
+license: unknown
 links:
     - url: https://github.com/ML4LitS/bio-datasets
       description: ???
