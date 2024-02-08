@@ -913,7 +913,7 @@ class TemplateSampler:
 
     def apply_sampling(
         self, template_idx: int = None, class_balanced: bool = True
-    ):  ## todo: set class_balanced to False !!!
+    ):  # TODO: set class_balanced to False !!!
         """Applies the sampling to the entire data frame."""
         if template_idx is not None and class_balanced is True:
             # create a copy of the original self.df to restore self.df after class balanced sampling
