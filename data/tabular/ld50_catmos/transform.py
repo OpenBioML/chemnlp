@@ -10,7 +10,25 @@ def process():
     )
     df = pd.read_csv(file)
     print(len(df))
-    df[['num_ghose_violations', 'num_lead_likeness_violations', 'num_lipinski_violations', 'num_carbon_atoms', 'num_oxygen_atoms']] = df[['num_ghose_violations', 'num_lead_likeness_violations', 'num_lipinski_violations', 'num_carbon_atoms', 'num_oxygen_atoms']].astype(int)
+    df[
+        [
+            "num_ghose_violations",
+            "num_lead_likeness_violations",
+            "num_lipinski_violations",
+            "num_carbon_atoms",
+            "num_oxygen_atoms",
+        ]
+    ] = df[
+        [
+            "num_ghose_violations",
+            "num_lead_likeness_violations",
+            "num_lipinski_violations",
+            "num_carbon_atoms",
+            "num_oxygen_atoms",
+        ]
+    ].astype(
+        int
+    )
     df.to_csv("data_clean.csv", index=False)
 
 
