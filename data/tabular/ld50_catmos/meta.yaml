@@ -1,0 +1,145 @@
+---
+name: ld50_catmos
+description: |-
+    Acute toxicity LD50 measures
+    the most conservative dose that can lead to lethal adverse effects.
+    The higher the dose, the more lethal of a drug.
+    We aggregated the data from multiple SMILES by computing the mean.
+targets:
+    - id: CATMoS_LD50_mgkg
+      description: Acute Toxicity LD50.
+      units: mg/kg
+      type: continuous
+      names:
+          - noun: acute oral toxicity rat LD50
+          - noun: acute oral toxicity (LD50 in rats)
+      uris:
+          - http://www.bioassayontology.org/bao#BAO_0002117
+      significant_digits: 1
+    - id: log10_LD50
+      description: Acute Toxicity LD50.
+      units: log10(mg/kg)
+      type: continuous
+      names:
+          - noun: log10 acute oral toxicity rat LD50
+          - noun: log10 acute oral toxicity (LD50 in rats)
+          - noun: log10 LD50 in rats (oral exposure)
+          - noun: log10 rat LD50 (oral exposure)
+      significant_digits: 2
+    - id: num_ghose_violations
+      description: Ghose filter violations
+      type: ordinal
+      significant_digits: 0
+      names:
+          - noun: Ghose filter violations
+          - noun: violations of the Ghose filter
+    - id: num_lead_likeness_violations
+      description: Lead likeness filter violations
+      type: ordinal
+      significant_digits: 0
+      names:
+          - noun: lead likeness filter violations
+          - noun: violations of the lead likeness filter
+    - id: num_lipinski_violations
+      description: Lipinski filter violations
+      type: ordinal
+      significant_digits: 0
+      names:
+          - noun: Lipinski rule violations
+          - noun: violations of the Lipinski rules
+    - id: molecular_mass
+      description: Molecular mass
+      type: continuous
+      units: g/mol
+      names: 
+          - noun: molecular mass
+          - noun: molecular weight
+    - id: num_carbon_atoms
+      description: Number of carbon atoms
+      type: ordinal
+      significant_digits: 0
+      names:
+          - noun: carbon atoms
+    - id: num_oxygen_atoms
+      description: Number of oxygen atoms
+      type: ordinal
+      significant_digits: 0
+      names:
+          - noun: oxygen atoms
+identifiers:
+    - id: SMILES
+      type: SMILES
+      description: SMILES
+license: CC BY 4.0
+links:
+    - url: https://ehp.niehs.nih.gov/doi/full/10.1289/EHP8495#supplementary-materials
+      description: corresponding publication
+num_points: 9032
+bibtex:
+    - |-
+       @article{Mansouri_2021, title={CATMoS: Collaborative Acute Toxicity Modeling Suite}, 
+       volume={129}, 
+       ISSN={1552-9924}, 
+       url={http://dx.doi.org/10.1289/EHP8495}, 
+       DOI={10.1289/ehp8495}, 
+       number={4}, 
+       journal={Environmental Health Perspectives}, 
+       publisher={Environmental Health Perspectives}, 
+       author={Mansouri, Kamel and Karmaus, Agnes L. and Fitzpatrick, Jeremy 
+       and Patlewicz, Grace and Pradeep, Prachi and Alberga, Domenico and 
+       Alepee, Nathalie and Allen, Timothy E.H. and Allen, Dave and Alves, Vinicius M. 
+       and Andrade, Carolina H. and Auernhammer, Tyler R. and Ballabio, Davide and 
+       Bell, Shannon and Benfenati, Emilio and Bhattacharya, Sudin and 
+       Bastos, Joyce V. and Boyd, Stephen and Brown, J.B. and Capuzzi, Stephen J. and 
+       Chushak, Yaroslav and Ciallella, Heather and Clark, Alex M. and 
+       Consonni, Viviana and Daga, Pankaj R. and Ekins, Sean and Farag, Sherif and 
+       Fedorov, Maxim and Fourches, Denis and Gadaleta, Domenico and Gao, Feng and 
+       Gearhart, Jeffery M. and Goh, Garett and Goodman, Jonathan M. and 
+       Grisoni, Francesca and Grulke, Christopher M. and Hartung, Thomas and 
+       Hirn, Matthew and Karpov, Pavel and Korotcov, Alexandru and 
+       Lavado, Giovanna J. and Lawless, Michael and Li, Xinhao and 
+       Luechtefeld, Thomas and Lunghini, Filippo and Mangiatordi, Giuseppe F. and 
+       Marcou, Gilles and Marsh, Dan and Martin, Todd and Mauri, Andrea and 
+       Muratov, Eugene N. and Myatt, Glenn J. and Nguyen, Dac-Trung and 
+       Nicolotti, Orazio and Note, Reine and Pande, Paritosh and 
+       Parks, Amanda K. and Peryea, Tyler and Polash, Ahsan H. and 
+       Rallo, Robert and Roncaglioni, Alessandra and Rowlands, Craig and 
+       Ruiz, Patricia and Russo, Daniel P. and Sayed, Ahmed and Sayre, Risa and 
+       Sheils, Timothy and Siegel, Charles and Silva, Arthur C. and Simeonov, Anton and 
+       Sosnin, Sergey and Southall, Noel and Strickland, Judy and Tang, Yun and 
+       Teppen, Brian and Tetko, Igor V. and Thomas, Dennis and Tkachenko, Valery and 
+       Todeschini, Roberto and Toma, Cosimo and Tripodi, Ignacio and 
+       Trisciuzzi, Daniela and Tropsha, Alexander and Varnek, Alexandre and 
+       Vukovic, Kristijan and Wang, Zhongyu and Wang, Liguo and 
+       Waters, Katrina M. and Wedlake, Andrew J. and Wijeyesakere, Sanjeeva J. and 
+       Wilson, Dan and Xiao, Zijun and Yang, Hongbin and Zahoranszky-Kohalmi, Gergely and 
+       Zakharov, Alexey V. and Zhang, Fagen F. and Zhang, Zhen and Zhao, Tongan and 
+       Zhu, Hao and Zorn, Kimberley M. and Casey, Warren and Kleinstreuer, Nicole C.},
+       year={2021}, month=apr }
+templates: 
+  - The {#molecule|chemical|compound!} with the {SMILES__description} {#representation of |!}{SMILES#} {#shows|exhibits|displays!} an {CATMoS_LD50_mgkg__names__noun} of {CATMoS_LD50_mgkg#} {CATMoS_LD50_mgkg__units}.
+  - The {#molecule|chemical|compound!} with the {SMILES__description} {#representation of |!}{SMILES#} {#shows|exhibits|displays!} a {log10_LD50__names__noun} of {log10_LD50#} {log10_LD50__units}.
+  - |
+    Task: Determine the acute oral toxicity and molecular properties of a {#molecule|chemical|compound!} given the {SMILES__description}.
+    Input: {SMILES#}
+    Desired Output: {CATMoS_LD50_mgkg__names__noun}, {log10_LD50__names__noun}, {num_ghose_violations__names__noun}, {num_lead_likeness_violations__names__noun}, {num_lipinski_violations__names__noun}, {molecular_mass__names__noun}, {num_carbon_atoms__names__noun}, {num_oxygen_atoms__names__noun}
+    Output: {CATMoS_LD50_mgkg#} {CATMoS_LD50_mgkg__units}, {log10_LD50#} {log10_LD50__units}, {num_ghose_violations#}, {num_lead_likeness_violations#}, {num_lipinski_violations#}, {molecular_mass#} {molecular_mass__units}, {num_carbon_atoms#}, {num_oxygen_atoms#}
+  - | 
+    Context: You are {#an assistant|researcher|scientist!} in a pharmaceutical company. Your {#boss|superior|department head!} has asked you to {#design|create|synthesize!} a new drug.
+    User: The {#drug|compound|chemical!} should have a {CATMoS_LD50_mgkg__names__noun} of {CATMoS_LD50_mgkg#} {CATMoS_LD50_mgkg__units}, {num_ghose_violations#} {num_ghose_violations__names__noun}, {num_lead_likeness_violations#} {num_lead_likeness_violations__names__noun}, {num_lipinski_violations#} {num_lipinski_violations__names__noun}, {molecular_mass#} {molecular_mass__names__noun} {molecular_mass__units}, {num_carbon_atoms#} {num_carbon_atoms__names__noun}, and {num_oxygen_atoms#} {num_oxygen_atoms__names__noun}.
+    Assistant: {#Happy to help!|Sure!|Of course!} The {#molecule|chemical|compound!} with the {SMILES__description} {#representation of |!}{SMILES#} {#shows|exhibits|displays!} the desired properties.
+  - |
+    User: I need a {#drug|compound|chemical!} with a {log10_LD50__names__noun} of {log10_LD50#} {log10_LD50__units}.
+    Assistant: {#Happy to help!|Sure!|Of course!} Can you provide me with more {#constraints|details|information!}?
+    User: The {#drug|compound|chemical!} should have {num_ghose_violations#} {num_ghose_violations__names__noun}, {num_lead_likeness_violations#} {num_lead_likeness_violations__names__noun}, {num_lipinski_violations#} {num_lipinski_violations__names__noun}, {num_carbon_atoms#} {num_carbon_atoms__names__noun}, and {num_oxygen_atoms#} {num_oxygen_atoms__names__noun}.
+    Assistant: The {#molecule|chemical|compound!} with the {SMILES__description} {#representation of |!}{SMILES#} {#shows|exhibits|displays!} the desired properties.
+  - |
+    User: I need a {#drug|compound|chemical!} with a {CATMoS_LD50_mgkg__names__noun} of {CATMoS_LD50_mgkg#} {CATMoS_LD50_mgkg__units}.
+    Assistant: {#Happy to help!|Sure!|Of course!} Can you provide me with more {#constraints|details|information!}?
+    User: The {#drug|compound|chemical!} should have a {num_carbon_atoms#} {num_carbon_atoms__names__noun}, {num_oxygen_atoms#} {num_oxygen_atoms__names__noun}, and a {molecular_mass__names__noun} of {molecular_mass#} {molecular_mass__units}. Could you please only provide me with the {SMILES__description} and return no other information?
+    Assistant: {SMILES#}
+  - |
+    User: I am looking for a {#drug|compound|chemical!} with a {log10_LD50__names__noun} of {log10_LD50#} {log10_LD50__units}.
+    Assistant: {#That's interesting!|Interesting!|I see!} Can you provide me with more {#constraints|details|information!}?
+    User: The {#drug|compound|chemical!} should have {num_ghose_violations#} {num_ghose_violations__names__noun}, {num_lead_likeness_violations#} {num_lead_likeness_violations__names__noun}, {num_lipinski_violations#} {num_lipinski_violations__names__noun}, {num_carbon_atoms#} {num_carbon_atoms__names__noun}, and {num_oxygen_atoms#} {num_oxygen_atoms__names__noun}. Please return only the {SMILES__description} wrapped as follows [ANSWER]<SMILES>[/ANSWER].
+    Assistant: [ANSWER]{SMILES#}[/ANSWER]
