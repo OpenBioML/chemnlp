@@ -5,7 +5,8 @@ It also merges files that have been created by `dask` if they are chunks of one 
 
 This script needs to be run after the splitting script.
 
-An independent check (that does not rewrite files is `check_smiles_split.py` this checks also for compliance with the predetermined files)
+An independent check (that does not rewrite files is `check_smiles_split.py`;
+this checks also for compliance with the predetermined files)
 """
 
 import os
