@@ -15,9 +15,9 @@ from chemcaption.featurize.electronicity import (
     HydrogenAcceptorCountFeaturizer,
     HydrogenDonorCountFeaturizer,
 )
-from chemcaption.featurize.rules import LipinskiViolationCountFeaturizer
+from chemcaption.featurize.rules import LipinskiFilterFeaturizer
 from chemcaption.featurize.stereochemistry import ChiralCenterCountFeaturizer
-from chemcaption.featurize.substructure import SMARTSFeaturizer
+from chemcaption.featurize.substructure import FragmentSearchFeaturizer
 from chemcaption.molecules import SMILESMolecule
 from chemcaption.presets import ORGANIC
 
@@ -27,7 +27,7 @@ ORGANIC = dict(zip(ORGANIC["names"], ORGANIC["smarts"]))
 def get_smarts_featurizers():
     featurizers = []
     for name, smarts in ORGANIC.items():
-        featurizers.append(SMARTSFeaturizer([smarts], names=[name]))
+        featurizers.append(FragmentSearchFeaturizer([smarts], names=[name]))
     return featurizers
 
 
@@ -42,7 +42,7 @@ FEATURIZER = MultipleFeaturizer(
         ElementMassProportionFeaturizer(),
         HydrogenAcceptorCountFeaturizer(),
         HydrogenDonorCountFeaturizer(),
-        LipinskiViolationCountFeaturizer(),
+        LipinskiFilterFeaturizer(),
         ChiralCenterCountFeaturizer(),
     ]
 )

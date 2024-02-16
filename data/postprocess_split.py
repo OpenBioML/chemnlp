@@ -5,6 +5,7 @@ It also merges files that have been created by `dask` if they are chunks of one 
 
 This script needs to be run after the splitting script.
 """
+
 import os
 from glob import glob
 from pathlib import Path
