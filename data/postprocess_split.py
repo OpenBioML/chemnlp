@@ -142,7 +142,7 @@ def process_file(file: Union[str, Path], id_cols):
         # appear multiple times
         ddf = read_ddf(file)
         ddf = ddf.drop_duplicates(subset=id_cols)
-        ddf.to_csv("data_clean-{*}.csv", index=False)
+        ddf.to_csv(os.path.join(dir, "data_clean-{*}.csv"), index=False)
         merge_files(dir)
 
     else:
@@ -183,7 +183,7 @@ def process_file(file: Union[str, Path], id_cols):
                 len(this_test_smiles.intersection(this_val_smiles)) == 0
             ), f"Smiles in test and valid for {id}"
 
-        df.to_csv("data_clean.csv", index=False)
+        df.to_csv(os.path.join(dir,"data_clean.csv"), index=False)
 
 
 def process_all_files(data_dir):
