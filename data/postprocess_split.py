@@ -7,6 +7,7 @@ This script needs to be run after the splitting script.
 
 An independent check (that does not rewrite files is `check_smiles_split.py` this checks also for compliance with the predetermined files)
 """
+
 import os
 from glob import glob
 from pathlib import Path
@@ -185,7 +186,7 @@ def process_file(file: Union[str, Path], id_cols):
                 len(this_test_smiles.intersection(this_val_smiles)) == 0
             ), f"Smiles in test and valid for {id}"
 
-        df.to_csv(os.path.join(dir,"data_clean.csv"), index=False)
+        df.to_csv(os.path.join(dir, "data_clean.csv"), index=False)
 
 
 def process_all_files(data_dir):
