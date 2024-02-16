@@ -4,6 +4,8 @@ by assigning all "test" SMILES to the test fold in the `csv`.
 It also merges files that have been created by `dask` if they are chunks of one large dataset.
 
 This script needs to be run after the splitting script.
+
+An independent check (that does not rewrite files is `check_smiles_split.py` this checks also for compliance with the predetermined files)
 """
 import os
 from glob import glob
@@ -153,7 +155,7 @@ def process_file(file: Union[str, Path], id_cols):
         for id in id_cols:
             test_smiles.extend(df[df["split"] == "test"][id].to_list())
             val_smiles.extend(df[df["split"] == "valid"][id].to_list())
-
+            df.drop_duplicates(subset=[id], inplace=True)
         test_smiles = set(test_smiles)
         val_smiles = set(val_smiles)
 
