@@ -307,6 +307,184 @@ num_points: 6420
 bibtex: []
 templates:
     - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H206#not &NULL}{H206__names__noun}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H208#not &NULL}{H206__names__noun}.
+      Assistant: Here is a molecule that is {H206#not &NULL}{H206__names__noun}: {SMILES#}.
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H206#not &NULL}{H206__names__noun}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      User: I need a molecule that is {H206#not &NULL}{H206__names__noun}.
+      Assistant: Here is a molecule that is {H206#not &NULL}{H206__names__noun}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H208#not &NULL}{H208__names__noun}.
+      Assistant: Here is a molecule that is {H208#not &NULL}{H208__names__noun}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H211#not &NULL}{H211__names__adjective}.
+      Assistant: Here is a molecule that is {H211#not &NULL}{H211__names__adjective}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H220#not &NULL}{H220__names__noun}.
+      Assistant: Here is a molecule that is {H220#not &NULL}{H220__names__noun}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H221#not &NULL}{H221__names__adjective}.
+      Assistant: Here is a molecule that is {H221#not &NULL}{H221__names__adjective}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H224#not &NULL}{H224__names__noun}.
+      Assistant: Here is a molecule that is {H224#not &NULL}{H224__names__noun}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H225#not &NULL}{H225__names__noun}.
+      Assistant: Here is a molecule that is {H225#not &NULL}{H225__names__noun}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H226#not &NULL}{H226__names__noun}.
+      Assistant: Here is a molecule that is {H226#not &NULL}{H226__names__noun}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H228#not &NULL}{H228__names__noun}.
+      Assistant: Here is a molecule that is {H228#not &NULL}{H228__names__noun}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H240#not &NULL}{H240__names__noun}.
+      Assistant: Here is a molecule that is {H240#not &NULL}{H240__names__noun}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H241#not &NULL}{H241__names__adjective}.
+      Assistant: Here is a molecule that is {H241#not &NULL}{H241__names__adjective}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H242#not &NULL}{H242__names__adjective}.
+      Assistant: Here is a molecule that is {H242#not &NULL}{H242__names__adjective}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H250#not &NULL}{H250__names__adjective}.
+      Assistant: Here is a molecule that is {H250#not &NULL}{H250__names__adjective}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H251#not &NULL}{H251__names__adjective}.
+      Assistant: Here is a molecule that is {H251#not &NULL}{H251__names__adjective}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H252#not &NULL}{H252__names__adjective}.
+      Assistant: Here is a molecule that is {H252#not &NULL}{H252__names__adjective}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H260#not &NULL}{H260__names__adjective}.
+      Assistant: Here is a molecule that is {H260#not &NULL}{H260__names__adjective}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H261#not &NULL}{H261__names__adjective}.
+      Assistant: Here is a molecule that is {H261#not &NULL}{H261__names__adjective}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H270#not &NULL}{H270__names__noun}.
+      Assistant: Here is a molecule that is {H270#not &NULL}{H270__names__noun}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H271#not &NULL}{H271__names__noun}.
+      Assistant: Here is a molecule that is {H271#not &NULL}{H271__names__noun}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H272#not &NULL}{H272__names__noun}.
+      Assistant: Here is a molecule that is {H272#not &NULL}{H272__names__noun}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H280#not &NULL}{H280__names__adjective}.
+      Assistant: Here is a molecule that is {H280#not &NULL}{H280__names__adjective}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H282#not &NULL}{H282__names__adjective}.
+      Assistant: Here is a molecule that is {H282#not &NULL}{H282__names__adjective}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H284#not &NULL}{H284__names__adjective}.
+      Assistant: Here is a molecule that is {H284#not &NULL}{H284__names__adjective}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H290#not &NULL}{H290__names__adjective}.
+      Assistant: Here is a molecule that is {H290#not &NULL}{H290__names__adjective}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H300#not &NULL}{H300__names__adjective}.
+      Assistant: Here is a molecule that is {H300#not &NULL}{H300__names__adjective}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H301#not &NULL}{H301__names__adjective}.
+      Assistant: Here is a molecule that is {H301#not &NULL}{H301__names__adjective}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H302#not &NULL}{H302__names__adjective}.
+      Assistant: Here is a molecule that is {H302#not &NULL}{H302__names__adjective}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H304#not &NULL}{H304__names__adjective}.
+      Assistant: Here is a molecule that is {H304#not &NULL}{H304__names__adjective}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H310#not &NULL}{H310__names__adjective}.
+      Assistant: Here is a molecule that is {H310#not &NULL}{H310__names__adjective}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H311#not &NULL}{H311__names__adjective}.
+      Assistant: Here is a molecule that is {H311#not &NULL}{H311__names__adjective}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H312#not &NULL}{H312__names__adjective}.
+      Assistant: Here is a molecule that is {H312#not &NULL}{H312__names__adjective}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H314#not &NULL}{H314__names__adjective}.
+      Assistant: Here is a molecule that is {H314#not &NULL}{H314__names__adjective}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H315#not &NULL}{H315__names__adjective}.
+      Assistant: Here is a molecule that is {H315#not &NULL}{H315__names__adjective}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H317#not &NULL}{H317__names__noun}.
+      Assistant: Here is a molecule that is {H317#not &NULL}{H317__names__noun}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H318#not &NULL}{H318__names__adjective}.
+      Assistant: Here is a molecule that is {H318#not &NULL}{H318__names__adjective}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H319#not &NULL}{H319__names__adjective}.
+      Assistant: Here is a molecule that is {H319#not &NULL}{H319__names__adjective}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H330#not &NULL}{H330__names__adjective}.
+      Assistant: Here is a molecule that is {H330#not &NULL}{H330__names__adjective}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H331#not &NULL}{H331__names__adjective}.
+      Assistant: Here is a molecule that is {H331#not &NULL}{H331__names__adjective}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H332#not &NULL}{H332__names__adjective}.
+      Assistant: Here is a molecule that is {H332#not &NULL}{H332__names__adjective}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H334#not &NULL}{H334__names__adjective}.
+      Assistant: Here is a molecule that is {H334#not &NULL}{H334__names__adjective}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H335#not &NULL}{H335__names__noun}.
+      Assistant: Here is a molecule that is {H335#not &NULL}{H335__names__noun}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H336#not &NULL}{H336__names__noun}.
+      Assistant: Here is a molecule that is {H336#not &NULL}{H336__names__noun}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H340#not &NULL}{H340__names__noun}.
+      Assistant: Here is a molecule that is {H340#not &NULL}{H340__names__noun}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H341#not &NULL}{H341__names__adjective}.
+      Assistant: Here is a molecule that is {H341#not &NULL}{H341__names__adjective}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H350#not &NULL}{H350__names__noun}.
+      Assistant: Here is a molecule that is {H350#not &NULL}{H350__names__noun}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H351#not &NULL}{H351__names__adjective}.
+      Assistant: Here is a molecule that is {H351#not &NULL}{H351__names__adjective}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H360#not &NULL}{H360__names__noun}.
+      Assistant: Here is a molecule that is {H360#not &NULL}{H360__names__noun}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H361#not &NULL}{H361__names__adjective}.
+      Assistant: Here is a molecule that is {H361#not &NULL}{H361__names__adjective}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H370#not &NULL}{H370__names__adjective}.
+      Assistant: Here is a molecule that is {H370#not &NULL}{H370__names__adjective}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H371#not &NULL}{H371__names__noun}.
+      Assistant: Here is a molecule that is {H371#not &NULL}{H371__names__noun}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H371#not &NULL}{H371__names__adjective}.
+      Assistant: Here is a molecule that is {H371#not &NULL}{H371__names__adjective}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H372#not &NULL}{H372__names__adjective}.
+      Assistant: Here is a molecule that is {H372#not &NULL}{H372__names__adjective}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H373#not &NULL}{H373__names__noun}.
+      Assistant: Here is a molecule that is {H373#not &NULL}{H373__names__noun}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H400#not &NULL}{H400__names__adjective}.
+      Assistant: Here is a molecule that is {H400#not &NULL}{H400__names__adjective}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H410#not &NULL}{H410__names__adjective}.
+      Assistant: Here is a molecule that is {H410#not &NULL}{H410__names__adjective}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H411#not &NULL}{H411__names__adjective}.
+      Assistant: Here is a molecule that is {H411#not &NULL}{H411__names__adjective}: {SMILES#}.
+    - |-
+      User: I need a molecule that is {H420#not &NULL}{H420__names__adjective}.
+      Assistant: Here is a molecule that is {H420#not &NULL}{H420__names__adjective}: {SMILES#}.
     - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H208#not &NULL}{H208__names__noun}.
     - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H211#not &NULL}{H211__names__adjective}.
     - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H220#not &NULL}{H220__names__noun}.
@@ -363,3 +541,395 @@ templates:
     - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H410#not &NULL}{H410__names__adjective}.
     - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H411#not &NULL}{H411__names__adjective}.
     - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {H420#not &NULL}{H420__names__adjective}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H208#not &NULL}{H208__names__noun}.
+      Assistant: Here is a molecule that is {H208#not &NULL}{H208__names__noun}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H211#not &NULL}{H211__names__adjective}.
+      Assistant: Here is a molecule that is {H211#not &NULL}{H211__names__adjective}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H220#not &NULL}{H220__names__noun}.
+      Assistant: Here is a molecule that is {H220#not &NULL}{H220__names__noun}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H221#not &NULL}{H221__names__adjective}.
+      Assistant: Here is a molecule that is {H221#not &NULL}{H221__names__adjective}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H224#not &NULL}{H224__names__noun}.
+      Assistant: Here is a molecule that is {H224#not &NULL}{H224__names__noun}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H225#not &NULL}{H225__names__noun}.
+      Assistant: Here is a molecule that is {H225#not &NULL}{H225__names__noun}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H226#not &NULL}{H226__names__noun}.
+      Assistant: Here is a molecule that is {H226#not &NULL}{H226__names__noun}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H228#not &NULL}{H228__names__noun}.
+      Assistant: Here is a molecule that is {H228#not &NULL}{H228__names__noun}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H240#not &NULL}{H240__names__noun}.
+      Assistant: Here is a molecule that is {H240#not &NULL}{H240__names__noun}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H241#not &NULL}{H241__names__adjective}.
+      Assistant: Here is a molecule that is {H241#not &NULL}{H241__names__adjective}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H242#not &NULL}{H242__names__adjective}.
+      Assistant: Here is a molecule that is {H242#not &NULL}{H242__names__adjective}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H250#not &NULL}{H250__names__adjective}.
+      Assistant: Here is a molecule that is {H250#not &NULL}{H250__names__adjective}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H251#not &NULL}{H251__names__adjective}.
+      Assistant: Here is a molecule that is {H251#not &NULL}{H251__names__adjective}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H252#not &NULL}{H252__names__adjective}.
+      Assistant: Here is a molecule that is {H252#not &NULL}{H252__names__adjective}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H260#not &NULL}{H260__names__adjective}.
+      Assistant: Here is a molecule that is {H260#not &NULL}{H260__names__adjective}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H261#not &NULL}{H261__names__adjective}.
+      Assistant: Here is a molecule that is {H261#not &NULL}{H261__names__adjective}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H270#not &NULL}{H270__names__noun}.
+      Assistant: Here is a molecule that is {H270#not &NULL}{H270__names__noun}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H271#not &NULL}{H271__names__noun}.
+      Assistant: Here is a molecule that is {H271#not &NULL}{H271__names__noun}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H272#not &NULL}{H272__names__noun}.
+      Assistant: Here is a molecule that is {H272#not &NULL}{H272__names__noun}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H280#not &NULL}{H280__names__adjective}.
+      Assistant: Here is a molecule that is {H280#not &NULL}{H280__names__adjective}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H282#not &NULL}{H282__names__adjective}.
+      Assistant: Here is a molecule that is {H282#not &NULL}{H282__names__adjective}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H284#not &NULL}{H284__names__adjective}.
+      Assistant: Here is a molecule that is {H284#not &NULL}{H284__names__adjective}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H290#not &NULL}{H290__names__adjective}.
+      Assistant: Here is a molecule that is {H290#not &NULL}{H290__names__adjective}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H300#not &NULL}{H300__names__adjective}.
+      Assistant: Here is a molecule that is {H300#not &NULL}{H300__names__adjective}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H301#not &NULL}{H301__names__adjective}.
+      Assistant: Here is a molecule that is {H301#not &NULL}{H301__names__adjective}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H302#not &NULL}{H302__names__adjective}.
+      Assistant: Here is a molecule that is {H302#not &NULL}{H302__names__adjective}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H304#not &NULL}{H304__names__adjective}.
+      Assistant: Here is a molecule that is {H304#not &NULL}{H304__names__adjective}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H310#not &NULL}{H310__names__adjective}.
+      Assistant: Here is a molecule that is {H310#not &NULL}{H310__names__adjective}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H311#not &NULL}{H311__names__adjective}.
+      Assistant: Here is a molecule that is {H311#not &NULL}{H311__names__adjective}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H312#not &NULL}{H312__names__adjective}.
+      Assistant: Here is a molecule that is {H312#not &NULL}{H312__names__adjective}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H314#not &NULL}{H314__names__adjective}.
+      Assistant: Here is a molecule that is {H314#not &NULL}{H314__names__adjective}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H315#not &NULL}{H315__names__adjective}.
+      Assistant: Here is a molecule that is {H315#not &NULL}{H315__names__adjective}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H317#not &NULL}{H317__names__noun}.
+      Assistant: Here is a molecule that is {H317#not &NULL}{H317__names__noun}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H318#not &NULL}{H318__names__adjective}.
+      Assistant: Here is a molecule that is {H318#not &NULL}{H318__names__adjective}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H319#not &NULL}{H319__names__adjective}.
+      Assistant: Here is a molecule that is {H319#not &NULL}{H319__names__adjective}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H330#not &NULL}{H330__names__adjective}.
+      Assistant: Here is a molecule that is {H330#not &NULL}{H330__names__adjective}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H331#not &NULL}{H331__names__adjective}.
+      Assistant: Here is a molecule that is {H331#not &NULL}{H331__names__adjective}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H332#not &NULL}{H332__names__adjective}.
+      Assistant: Here is a molecule that is {H332#not &NULL}{H332__names__adjective}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H334#not &NULL}{H334__names__adjective}.
+      Assistant: Here is a molecule that is {H334#not &NULL}{H334__names__adjective}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H335#not &NULL}{H335__names__noun}.
+      Assistant: Here is a molecule that is {H335#not &NULL}{H335__names__noun}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H336#not &NULL}{H336__names__noun}.
+      Assistant: Here is a molecule that is {H336#not &NULL}{H336__names__noun}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H340#not &NULL}{H340__names__noun}.
+      Assistant: Here is a molecule that is {H340#not &NULL}{H340__names__noun}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H341#not &NULL}{H341__names__adjective}.
+      Assistant: Here is a molecule that is {H341#not &NULL}{H341__names__adjective}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H350#not &NULL}{H350__names__noun}.
+      Assistant: Here is a molecule that is {H350#not &NULL}{H350__names__noun}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H351#not &NULL}{H351__names__adjective}.
+      Assistant: Here is a molecule that is {H351#not &NULL}{H351__names__adjective}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H360#not &NULL}{H360__names__noun}.
+      Assistant: Here is a molecule that is {H360#not &NULL}{H360__names__noun}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H361#not &NULL}{H361__names__adjective}.
+      Assistant: Here is a molecule that is {H361#not &NULL}{H361__names__adjective}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H370#not &NULL}{H370__names__adjective}.
+      Assistant: Here is a molecule that is {H370#not &NULL}{H370__names__adjective}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H371#not &NULL}{H371__names__noun}.
+      Assistant: Here is a molecule that is {H371#not &NULL}{H371__names__noun}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H371#not &NULL}{H371__names__adjective}.
+      Assistant: Here is a molecule that is {H371#not &NULL}{H371__names__adjective}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H372#not &NULL}{H372__names__adjective}.
+      Assistant: Here is a molecule that is {H372#not &NULL}{H372__names__adjective}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H373#not &NULL}{H373__names__noun}.
+      Assistant: Here is a molecule that is {H373#not &NULL}{H373__names__noun}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H400#not &NULL}{H400__names__adjective}.
+      Assistant: Here is a molecule that is {H400#not &NULL}{H400__names__adjective}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H410#not &NULL}{H410__names__adjective}.
+      Assistant: Here is a molecule that is {H410#not &NULL}{H410__names__adjective}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H411#not &NULL}{H411__names__adjective}.
+      Assistant: Here is a molecule that is {H411#not &NULL}{H411__names__adjective}: {SMILES#}.
+    - |-
+      Chemist: {#Give me|Propose|Come up with!} a molecule that is {H420#not &NULL}{H420__names__adjective}.
+      Assistant: Here is a molecule that is {H420#not &NULL}{H420__names__adjective}: {SMILES#}.
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H206#not &NULL}{H208__names__noun}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H211#not &NULL}{H211__names__adjective}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H220#not &NULL}{H220__names__noun}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H221#not &NULL}{H221__names__adjective}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H224#not &NULL}{H224__names__noun}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H225#not &NULL}{H225__names__noun}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H226#not &NULL}{H226__names__noun}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H228#not &NULL}{H228__names__noun}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H240#not &NULL}{H240__names__noun}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H241#not &NULL}{H241__names__adjective}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H242#not &NULL}{H242__names__adjective}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H250#not &NULL}{H250__names__adjective}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H251#not &NULL}{H251__names__adjective}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H252#not &NULL}{H252__names__adjective}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H260#not &NULL}{H260__names__adjective}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H261#not &NULL}{H261__names__adjective}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H270#not &NULL}{H270__names__noun}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H271#not &NULL}{H271__names__noun}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H272#not &NULL}{H272__names__noun}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H280#not &NULL}{H280__names__adjective}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H282#not &NULL}{H282__names__adjective}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H284#not &NULL}{H284__names__adjective}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H290#not &NULL}{H290__names__adjective}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H300#not &NULL}{H300__names__adjective}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H301#not &NULL}{H301__names__adjective}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H302#not &NULL}{H302__names__adjective}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H304#not &NULL}{H304__names__adjective}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H310#not &NULL}{H310__names__adjective}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H311#not &NULL}{H311__names__adjective}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H312#not &NULL}{H312__names__adjective}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H314#not &NULL}{H314__names__adjective}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H315#not &NULL}{H315__names__adjective}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H317#not &NULL}{H317__names__noun}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H318#not &NULL}{H318__names__adjective}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H319#not &NULL}{H319__names__adjective}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H330#not &NULL}{H330__names__adjective}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H331#not &NULL}{H331__names__adjective}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H332#not &NULL}{H332__names__adjective}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H334#not &NULL}{H334__names__adjective}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H335#not &NULL}{H335__names__noun}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H336#not &NULL}{H336__names__noun}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H340#not &NULL}{H340__names__noun}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H341#not &NULL}{H341__names__adjective}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H350#not &NULL}{H350__names__noun}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H351#not &NULL}{H351__names__adjective}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H360#not &NULL}{H360__names__noun}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H361#not &NULL}{H361__names__adjective}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H370#not &NULL}{H370__names__adjective}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H371#not &NULL}{H371__names__noun}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H371#not &NULL}{H371__names__adjective}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H372#not &NULL}{H372__names__adjective}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H373#not &NULL}{H373__names__noun}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H400#not &NULL}{H400__names__adjective}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H410#not &NULL}{H410__names__adjective}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H411#not &NULL}{H411__names__adjective}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}
+    - |-
+      Task: Please classify a molecule based on the description.
+      Description: A molecule that is {H420#not &NULL}{H420__names__adjective}.
+      Result: {#Molecule |!}{SMILES__description}: {SMILES#}

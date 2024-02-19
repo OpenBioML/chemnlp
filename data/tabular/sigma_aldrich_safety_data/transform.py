@@ -11,6 +11,7 @@ def transform_data():
 
     df = pd.read_csv(file)
     df = df.drop(columns=["h_statements"])
+    df = df.dropna()
     df.to_csv("data_clean.csv")
 
 
