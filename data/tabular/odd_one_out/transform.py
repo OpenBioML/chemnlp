@@ -104,9 +104,11 @@ def transform_dataset(dataset, n_permutations):
         "smi_4": smis[smi_idx_arr[:, 3]],
         "odd_one_out_idx": odd_one_out_idx,
         "odd_one_out_mol": [
-            smis[smi_idx_arr[i, int(odd_one_out_idx[i])]]
-            if not np.isnan(odd_one_out_idx[i])
-            else np.nan
+            (
+                smis[smi_idx_arr[i, int(odd_one_out_idx[i])]]
+                if not np.isnan(odd_one_out_idx[i])
+                else np.nan
+            )
             for i in range(len(odd_one_out_idx))
         ],
         # "similarity_list": similarity_list,

@@ -21,13 +21,13 @@ repos:
             exclude: ^experiments/configs
 
     - repo: https://github.com/psf/black
-      rev: 23.12.1
+      rev: 24.3.0
       hooks:
           - id: black
             language_version: python3 # Should be a command that runs python3.6+
 
     - repo: https://github.com/PyCQA/flake8
-      rev: 6.1.0
+      rev: 7.0.0
       hooks:
           - id: flake8
             args: [--count, --show-source, --statistics]

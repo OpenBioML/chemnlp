@@ -8,6 +8,7 @@ If leakage is detected, an `AssertionError` will be thrown.
 This script has a command line interface. You can run it using `python check_pandas <data_dir>`,
 where `<data_dir>` points to a nested set of directories with `data_clean.csv` files.
 """
+
 import os
 from glob import glob
 from pathlib import Path

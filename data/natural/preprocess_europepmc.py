@@ -5,6 +5,7 @@ encoded in regular expression to find references, authors, captions, etc.
 
 Before running this scripts, the filepaths need to be changed.
 """
+
 import json
 import os
 import re

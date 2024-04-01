@@ -6,6 +6,7 @@ of models (e.g. captions, references, authors, acknowledgments).
 
 The filepaths need to be updated before running the script.
 """
+
 import glob
 import json
 import os
