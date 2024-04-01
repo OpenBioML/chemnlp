@@ -5,6 +5,7 @@ NOTE this needs to be run from the root of this repository directory
 Example usage:
     python experiments/chem_data_prep.py /fsx/proj-chemnlp/data/ chemnlp/gpt-neox/
 """
+
 import argparse
 import os
 

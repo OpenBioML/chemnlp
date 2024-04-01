@@ -942,9 +942,9 @@ class TemplateSampler:
                     inplace=True,
                 )
                 if self.multiple_choice_benchmarking_templates:
-                    df_out[
-                        ["output", "answer_choices", "correct_output_index"]
-                    ] = df_out["output"].str.split(pat="<MC>", n=2, expand=True)
+                    df_out[["output", "answer_choices", "correct_output_index"]] = (
+                        df_out["output"].str.split(pat="<MC>", n=2, expand=True)
+                    )
                     df_out["answer_choices"] = df_out["answer_choices"].apply(
                         lambda x: x.split("|")
                     )
@@ -982,15 +982,15 @@ class TemplateSampler:
                     os.makedirs(output_path_dir, exist_ok=True)
                     output_path = output_path_dir + f"{split}.jsonl"
 
-                    lm_eval_yaml_template_multiple_choice[
-                        "task"
-                    ] = self.path_data_dir.split("/")[-1]
-                    lm_eval_yaml_template_multiple_choice[
-                        "dataset_path"
-                    ] = output_path_dir
-                    lm_eval_yaml_template_multiple_choice[
-                        "dataset_name"
-                    ] = self.path_data_dir.split("/")[-1]
+                    lm_eval_yaml_template_multiple_choice["task"] = (
+                        self.path_data_dir.split("/")[-1]
+                    )
+                    lm_eval_yaml_template_multiple_choice["dataset_path"] = (
+                        output_path_dir
+                    )
+                    lm_eval_yaml_template_multiple_choice["dataset_name"] = (
+                        self.path_data_dir.split("/")[-1]
+                    )
 
                     fn_lm_eval_yaml = output_path_dir + "/config.yaml"
                     with open(fn_lm_eval_yaml, "w") as f:
@@ -1005,15 +1005,15 @@ class TemplateSampler:
                     os.makedirs(output_path_dir, exist_ok=True)
                     output_path = output_path_dir + f"{split}_{fn_suffix}.jsonl"
 
-                    lm_eval_yaml_template_loglikelihood[
-                        "task"
-                    ] = self.path_data_dir.split("/")[-1]
-                    lm_eval_yaml_template_loglikelihood[
-                        "dataset_path"
-                    ] = output_path_dir
-                    lm_eval_yaml_template_loglikelihood[
-                        "dataset_name"
-                    ] = self.path_data_dir.split("/")[-1]
+                    lm_eval_yaml_template_loglikelihood["task"] = (
+                        self.path_data_dir.split("/")[-1]
+                    )
+                    lm_eval_yaml_template_loglikelihood["dataset_path"] = (
+                        output_path_dir
+                    )
+                    lm_eval_yaml_template_loglikelihood["dataset_name"] = (
+                        self.path_data_dir.split("/")[-1]
+                    )
 
                     fn_lm_eval_yaml = output_path_dir + "/config.yaml"
                     with open(fn_lm_eval_yaml, "w") as f:

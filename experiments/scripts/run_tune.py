@@ -3,6 +3,7 @@ A Python script for finetuning language models.
 
     Usage: python run_tune.py <path-to-config-yml>
 """
+
 import argparse
 import json
 import os
@@ -98,9 +99,9 @@ def run(config_path: str, config_overrides: Optional[Dict] = None) -> None:
     model_ref = getattr(transformers, config.model.base)
     model = model_ref.from_pretrained(
         pretrained_model_name_or_path=config.model.checkpoint_path or config.model.name,
-        revision=config.model.revision
-        if config.model.checkpoint_path is None
-        else None,
+        revision=(
+            config.model.revision if config.model.checkpoint_path is None else None
+        ),
     )
 
     if config.prompt_tuning.enabled:
@@ -171,9 +172,11 @@ def run(config_path: str, config_overrides: Optional[Dict] = None) -> None:
         **config.trainer.dict(exclude={"deepspeed_config", "restart_checkpoint"}),
         report_to="wandb" if config.wandb.enabled else "none",
         local_rank=local_rank,
-        deepspeed=CONFIG_DIR / f"deepspeed/{config.trainer.deepspeed_config}"
-        if config.trainer.deepspeed_config
-        else None,
+        deepspeed=(
+            CONFIG_DIR / f"deepspeed/{config.trainer.deepspeed_config}"
+            if config.trainer.deepspeed_config
+            else None
+        ),
     )
     print_zero_rank(local_rank, training_args)
 

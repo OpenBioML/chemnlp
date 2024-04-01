@@ -1,4 +1,5 @@
 """This script checks for data leakage in the splits of a tabular dataset."""
+
 import os
 from glob import glob
 from pathlib import Path

@@ -20,9 +20,9 @@ def run(
     ]
 
     for model_name in model_names:
-        raw_config[
-            "model_args"
-        ] = f"pretrained={root_models_path}/{model_name}/{CHECKPOINT_DIR}"
+        raw_config["model_args"] = (
+            f"pretrained={root_models_path}/{model_name}/{CHECKPOINT_DIR}"
+        )
         raw_config["wandb_run_name"] = model_name
 
         with open(

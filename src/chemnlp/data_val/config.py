@@ -10,9 +10,9 @@ class Data(BaseModel):
     path: Union[List[str], str]  # can be local or S3 directory
     validation_size: Union[List[float], float] = 0.05
     interleave_probs: Optional[List[float]] = None
-    sampling_criterion: Optional[
-        Literal["first_exhausted", "all_exhausted"]
-    ] = None  # as of v2.10.1
+    sampling_criterion: Optional[Literal["first_exhausted", "all_exhausted"]] = (
+        None  # as of v2.10.1
+    )
 
     @validator("validation_size")
     def small_positive_validation_sizes(cls, value_orig):
