@@ -169,7 +169,9 @@ def run(config_path: str, config_overrides: Optional[Dict] = None) -> None:
 
     data_collator = DataCollatorForLanguageModeling(tokenizer, mlm=False)
     training_args = TrainingArguments(
-        **config.trainer.dict(exclude={"deepspeed_config", "restart_checkpoint"}),
+        **config.trainer.dict(
+            exclude={"deepspeed_config", "restart_checkpoint", "train_sampler_cls"}
+        ),
         report_to="wandb" if config.wandb.enabled else "none",
         local_rank=local_rank,
         deepspeed=(
@@ -192,6 +194,7 @@ def run(config_path: str, config_overrides: Optional[Dict] = None) -> None:
 
     # start train or auto-restart
     trainer = LLcheMTrainer(
+        train_sampler=config.trainer.train_sampler_cls,
         model=model,
         args=training_args,
         train_dataset=train_dataset,
