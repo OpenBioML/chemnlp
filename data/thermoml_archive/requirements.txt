@@ -1,0 +1,3 @@
+git+https://github.com/sustainable-processes/thermopyl
+tqdm
+pyyaml
