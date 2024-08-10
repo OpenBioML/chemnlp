@@ -1,0 +1,73 @@
+---
+name: uniprot_binding_sites_multiple
+description: |-
+    Binding sites of a molecule in protein sequences.
+targets:
+    - id: start_binding_site
+      description: index for start of the binding sites of a protein
+      type: text
+      names:
+          - noun: start binding site
+    - id: end_binding_site
+      description: index for end of the binding sites of a protein
+      type: text
+      names:
+          - noun: end binding site
+identifiers:
+    - id: sequence
+      type: AS_SEQUENCE
+      description: other
+    - id: SMILES
+      description: SMILES
+      type: SMILES
+      names:
+          - noun: SMILES
+license: MIT
+links:
+    - url: https://www.uniprot.org/
+      description: data source
+num_points: 176066
+bibtex:
+    - |-
+      @article{10.1093/nar/gkac1052,
+      author = {The UniProt Consortium},
+      title = {UniProt - the Universal Protein Knowledgebase in 2023},
+      journal = {Nucleic Acids Research},
+      volume = {51},
+      number = {D1},
+      pages = {D523-D531},
+      year = {2022},
+      month = {11},
+      issn = {0305-1048},
+      doi = {10.1093/nar/gkac1052},
+      url = {https://doi.org/10.1093/nar/gkac1052}}
+templates:
+#    - |-
+#      The {#molecule|chemical|compound!} with the {SMILES__description}{# representation|!} {SMILES#} binds to the {#AA sequence|amino acid sequence|peptide sequence|protein!} {sequence#} at the {#site|binding site|position!} {start_binding_site#}{#-| to !}{end_binding_site#}.
+    - |-
+      Task: {#Find|Identify|Come up with!} a binding site for the {#molecule|chemical|compound!} in the {#AA sequence|amino acid sequence|peptide sequence|protein!}.
+      {#AA sequence|Amino acid sequence|Peptide sequence|Protein!}: {sequence#}
+      {SMILES__description}{# representation|!}: {SMILES#}
+      {#Output|Result!}: {start_binding_site#}-{end_binding_site#}
+    - |-
+      Task: {#Create|Design|Come up with!} a {#molecule|chemical|compound!} that binds to the given {#binding site|site|position!} in the {#AA sequence|amino acid sequence|peptide sequence|protein!}.
+      {#AA sequence|Amino acid sequence|Peptide sequence|Protein!}: {sequence#}
+      Binding site{# position|!}: {start_binding_site#}{#-| to !}{end_binding_site#}
+      {#Output|Result!}: {SMILES#}
+    - |-
+      Question: Can you {#give me one example of a|find one!} binding site of the {#molecule|chemical|compound!} with the {SMILES__description}{# representation|!} {SMILES#} in this {#AA sequence|amino acid sequence|peptide sequence|protein!} {sequence#}?
+      Answer: One {#possible |!}{#binding |!}site for the {#chemical|molecule|compound!} is {start_binding_site#}{#-| to !}{end_binding_site#}.
+    - |-
+      Question: What {#molecule|chemical|compound!} can {#possibly |!}bind to the {#binding |!}site {#at |at the position !}{start_binding_site#}{#-| to !}{end_binding_site#} in the {#given |!}{#AA|amino acid|protein!} sequence{# below|!}?
+      Sequence: {sequence#}
+      Answer: {SMILES#}
+    - |-
+      Task: {#Find|Identify|Come up with!} a binding site in the {#AA sequence|amino acid sequence|peptide sequence|protein!} for the {#molecule|chemical|compound!}.
+      {#AA sequence|Amino acid sequence|Peptide sequence|Protein!}: {sequence#}
+      {SMILES__description}{# representation|!}: {SMILES#}
+      {#Output|Result!}:<EOI> {start_binding_site#}-{end_binding_site#}
+    - |-
+      Task: {#Create|Design|Come up with!} a {#molecule|chemical|compound!} that binds to the given {#binding site|site|position|!} in the {#AA sequence|amino acid sequence|peptide sequence|protein!}.
+      {#AA sequence|Amino acid sequence|Peptide sequence|Protein!}: {sequence#}
+      Binding site{# position|!}: {start_binding_site#}{#-| to !}{end_binding_site#}
+      {#Output|Result!}:<EOI> {SMILES#}

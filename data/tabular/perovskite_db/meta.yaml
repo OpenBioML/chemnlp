@@ -46,7 +46,7 @@ targets:
 benchmarks: []
 identifiers:
     - id: reduced_formulas
-      type: Other
+      type: COMPOSITION
       description: reduced chemical formula
     - id: iupac_formulas
       type: Other

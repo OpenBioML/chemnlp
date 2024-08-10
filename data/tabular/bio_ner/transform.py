@@ -5,6 +5,8 @@ import subprocess
 import pandas as pd
 import yaml
 
+from chemnlp.data.ner import cleaner
+
 # create meta yaml
 meta_template = {
     "name": None,
@@ -29,9 +31,9 @@ meta_template = {
     "bibtex": ["???"],
     "templates": [
         """Task: Please carry out the {#named entity recognition (NER)|named entity recognition|NER!} task for the the text below.
-Text: {#Sentence}.
+Text: {Sentence#}.
 Constrain: Please, {#only |!}list the entities in the form NER entity, span start, span end, and type {#in separate lines |!}with a high probability of being in the text.
-Result: {#entity_1}""",  # noqa: E501
+Result: {entity_1#}""",  # noqa: E501
     ],
 }
 
@@ -75,6 +77,12 @@ def get_and_transform_data():
     # create dict with entity count as key
     data = {}
     for path in paths:
+        if "BC5CDR-chem" in path:
+            continue  # treated separately
+        if "BC5CDR-disease" in path:
+            continue  # treated separately
+        if "NCBI-disease" in path:
+            continue  # treated separately
         entity_count = get_entity_count(path)
         if entity_count in data:
             data[entity_count].append(path)
@@ -97,6 +105,7 @@ def get_and_transform_data():
             )
             os.makedirs(path_export, exist_ok=True)
 
+        df["Sentence"] = df["Sentence"].apply(cleaner)
         fn_data_clean = path_export + "/data_clean.csv"
         df.to_csv(fn_data_clean, index=False)
 
@@ -132,10 +141,10 @@ def get_and_transform_data():
         # adapt templates for more entities than 1
         if entity_count > 1:
             entity_str = "\n".join(
-                ["{#entity_" + str(i + 1) + "}" for i in range(entity_count)]
+                ["{entity_" + str(i + 1) + "#}" for i in range(entity_count)]
             )
             meta_copy["templates"] = [
-                t.replace("{#entity_1}", entity_str) for t in meta_copy["templates"]
+                t.replace("{entity_1#}", entity_str) for t in meta_copy["templates"]
             ]
 
         yaml.add_representer(str, str_presenter)

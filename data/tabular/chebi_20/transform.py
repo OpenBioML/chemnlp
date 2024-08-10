@@ -87,8 +87,8 @@ META_TEMPLATE = {
             }""",  # noqa
     ],
     "templates": [
-        "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} can be described {#by|as!}:\n{#description}",  # noqa
-        "Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule can be described {#by|as!}:\n{#description}",  # noqa
+        "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} can be described {#by|as!}:\n{description#}",  # noqa
+        "Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule can be described {#by|as!}:\n{description#}",  # noqa
         """Task: Please create a {#text |!}description for a molecule{# based on its representation|!}.
 {#Molecule |!}{SMILES__description}: {SMILES#}
 Constraint: Answer the question with {#full|complete!} sentences.
@@ -97,20 +97,20 @@ Result: {description#}""",  # noqa
 Description: {description#}
 Result: {SMILES#}""",  # noqa
         """User: Can you {#give me|create|generate!} the {SMILES__description} of a molecule based in this description:
-{#description}
+{description#}
 Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}""",  # noqa
         """User: I'm {#searching|looking!} for the {SMILES__description} of a molecule that can be described {#by|as!}:
-{#description}
+{description#}
 Assistant: This is a molecule that fits {#your|this!} description: {SMILES#}""",  # noqa
         """User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
 Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
 User: Yes, please. The molecule can be described {#by|as!}:
-{#description}
+{description#}
 Assistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} fits {#your|this!} description: {SMILES#}""",  # noqa
         """User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
 Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
 User: Yes, the molecule can be described {#by|as!}:
-{#description}
+{description#}
 Assistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} fits {#your|this!} description: {SMILES#}""",  # noqa
         """Task: Please create a {#text |!}description for a molecule{# based on its representation|!}.
 {#Molecule |!}{SMILES__description}: {SMILES#}

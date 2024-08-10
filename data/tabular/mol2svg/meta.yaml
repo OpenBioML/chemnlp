@@ -1,0 +1,25 @@
+---
+name: mol2svg
+description: |-
+    This dataset contains SVG images of molecules, including some with substructures
+    highlighted.
+targets:
+    - id: completion
+      type: text
+      description: completion
+identifiers:
+    - id: prompt
+      type: text
+      description: prompt
+    - id: SMILES
+      type: SMILES
+      description: SMILES
+license: CC BY 4.0
+num_points: 16019
+links:
+    - url: https://github.com/lamalab-org/chem-caption
+      description: Original codebase used to generate this dataset
+templates:
+    - |-
+      {prompt#}
+      {completion#}

@@ -1,11 +1,41 @@
 from pathlib import Path
 from typing import Optional, Union
 
+import numpy as np
 from givemeconformer.api import _get_conformer
 from pymatgen.core import Molecule, Structure
 from pymatgen.io.cif import CifWriter
 from pymatgen.io.xyz import XYZ
 from rdkit import Chem
+
+
+def remove_composition_rows(cif_string: str) -> str:
+    rows = cif_string.split("\n")
+    new_rows = []
+    for row in rows:
+        if "chemical_formula" in row:
+            continue
+        new_rows.append(row)
+    return "\n".join(new_rows)
+
+
+def mask_cif_lines(
+    cif_string: str, mask_min_ratio: float = 0.1, mask_max_ratio: float = 0.4
+) -> str:
+    # chose a random number of lines to mask. don't mask the first line and the last line
+    rows = cif_string.split("\n")
+    num_rows = len(rows)
+    num_rows_to_mask = int(num_rows * np.random.uniform(mask_min_ratio, mask_max_ratio))
+    rows_to_mask = np.random.choice(
+        np.arange(1, num_rows - 1), size=num_rows_to_mask, replace=False
+    )
+    new_rows = []
+    for i, row in enumerate(rows):
+        if i in rows_to_mask:
+            new_rows.append("[MASK]]")
+        else:
+            new_rows.append(row)
+    return "\n".join(new_rows)
 
 
 def cif_file_to_string(
@@ -22,15 +52,19 @@ def cif_file_to_string(
         symprec (float, optional): If not None, symmetrizes the structure with the given
             symmetry tolerance. In this case, the space group (and other symmetry info)
             will be in the CIF. Defaults to None.
-        significant_figures (int, optional): No. of significant figures to write. Defaults to 3.
+        significant_figures (int, optional): No. of significant figures to write.
+            Defaults to 3.
 
     Returns:
         str: String representation of the cif file
     """
     s = Structure.from_file(path)
+    return _structure_to_cif(s, primitive, symprec, significant_figures)
+
+
+def _structure_to_cif(s, primitive, symprec, significant_figures):
     if primitive:
         s = s.get_primitive_structure()
-
     return (
         "[CIF]\n"
         + str(
@@ -75,13 +109,17 @@ def smiles_to_3Dstring(
         conformer_kwargs = {}
     mol, _conformer = _get_conformer(smiles, **conformer_kwargs)
     if outformat == "xyz":
-        return "[XYZ]\n" + Chem.MolToXYZBlock(mol, confId=-1) + "[\XYZ]"  # noqa
+        return _write_xyz(mol)
     elif outformat == "V2000MolBlock":
         return _write_mol2000(mol)
     elif outformat == "V3000MolBlock":
         return _write_mol3000(mol)
     else:
         raise ValueError(f"outformat {outformat} not supported")
+
+
+def _write_xyz(mol):
+    return "[XYZ]\n" + Chem.MolToXYZBlock(mol, confId=-1) + "[\XYZ]"  # noqa
 
 
 def _write_mol2000(mol):
@@ -96,7 +134,8 @@ def get_token_count(string):
     from transformers import GPTNeoXTokenizerFast
 
     tokenizer = GPTNeoXTokenizerFast.from_pretrained("EleutherAI/gpt-neox-20b")
-    return len(tokenizer(string))
+    tokenized = tokenizer(string)
+    return len(tokenized["input_ids"])
 
 
 def is_longer_than_allowed(string, tolerance=0.8, window=2000):

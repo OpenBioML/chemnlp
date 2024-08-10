@@ -78,17 +78,17 @@ bibtex:
         journal = {Sci Data}
       }
 templates:
-    - The {bulk_modulus__names__noun} of {#the compound|the solid|!} {formula#} is {bulk_modulus#} {bulk_modulus__units}.
+    - The {bulk_modulus__names__noun} of {#the compound|the solid!} {formula#} is {bulk_modulus#} {bulk_modulus__units}.
     - |-
-      Question: How large is the {bulk_modulus__names__noun} of {#the compound|the solid|!} {formula#}?
-      Answer: The {bulk_modulus__names__noun} of {#the compound|the solid|!} {formula#} is {bulk_modulus#} {bulk_modulus__units}.
+      Question: How large is the {bulk_modulus__names__noun} of {#the compound|the solid!} {formula#}?
+      Answer: The {bulk_modulus__names__noun} of {#the compound|the solid!} {formula#} is {bulk_modulus#} {bulk_modulus__units}.
     - |-
-      User: {#I would like to|I want to!} know the {bulk_modulus__names__noun} of {#the compound|the solid|!} {formula#}.
-      Assistant: The {bulk_modulus__names__noun} of {#the compound|the solid|!} {formula#} is {bulk_modulus#} {bulk_modulus__units}.
+      User: {#I would like to|I want to!} know the {bulk_modulus__names__noun} of {#the compound|the solid!} {formula#}.
+      Assistant: The {bulk_modulus__names__noun} of {#the compound|the solid!} {formula#} is {bulk_modulus#} {bulk_modulus__units}.
     - |-
-      User: {#I would like to|I want to!} design a {#compound|material|solid|!} with a {bulk_modulus__names__noun} of {bulk_modulus#} {bulk_modulus__units}.
-      Assistant: {#I found|Here is|I have found|Here is!} a {#compound|material|solid|!} with a {bulk_modulus__names__noun} of {bulk_modulus#} {bulk_modulus__units}: {formula#}.
-    - A {#compound|material|solid|!} with a {bulk_modulus__names__noun} of {bulk_modulus#} {bulk_modulus__units} is {formula#}.
+      User: {#I would like to|I want to!} design a {#compound|material|solid!} with a {bulk_modulus__names__noun} of {bulk_modulus#} {bulk_modulus__units}.
+      Assistant: {#I found|Here is|I have found|Here is!} a {#compound|material|solid!} with a {bulk_modulus__names__noun} of {bulk_modulus#} {bulk_modulus__units}: {formula#}.
+    - A {#compound|material|solid!} with a {bulk_modulus__names__noun} of {bulk_modulus#} {bulk_modulus__units} is {formula#}.
     - |-
-      Task: Please {#give me|create|generate!} a {#compound|material|solid|!} with a {bulk_modulus__names__noun} of {bulk_modulus#} {bulk_modulus__units}.
+      Task: Please {#give me|create|generate!} a {#compound|material|solid!} with a {bulk_modulus__names__noun} of {bulk_modulus#} {bulk_modulus__units}.
       Result: {formula#}

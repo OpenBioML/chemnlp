@@ -3,111 +3,18 @@ import multiprocessing as mp
 import os
 import random
 import time
-from functools import partial
 
-import deepsmiles
 import pandas as pd
-import pubchempy as pcp
-import requests
-import selfies
-from rdkit import Chem
-
-# tucan needs very likely python 3.10
-# from tucan.canonicalization import canonicalize_molecule
-# from tucan.io import graph_from_molfile_text
-# from tucan.serialization import serialize_molecule
 from utils import load_yaml
 
-# not used yet
-# def augment_smiles(smiles: str, int_aug: int = 50, deduplicate: bool = True) -> str:
-#    """
-#    Takes a SMILES (not necessarily canonical) and returns `int_aug` random variations of this SMILES.
-#    """
-#
-#    mol = Chem.MolFromSmiles(smiles)
-#
-#    if mol is None:
-#        return None
-#    else:
-#        if int_aug > 0:
-#            augmented = [
-#                Chem.MolToSmiles(mol, canonical=False, doRandom=True)
-#                for _ in range(int_aug)
-#            ]
-#            if deduplicate:
-#                augmented = list(set(augmented))
-#            return augmented
-#        else:
-#            raise ValueError("int_aug must be greater than zero.")
+from chemnlp.data.reprs import (  # smiles_to_safe,; smiles_to_iupac_name,
+    smiles_to_canoncial,
+    smiles_to_deepsmiles,
+    smiles_to_inchi,
+    smiles_to_selfies,
+)
 
-
-def smiles_to_selfies(smiles: str) -> str:
-    """
-    Takes a SMILES and return the selfies encoding.
-    """
-
-    return selfies.encoder(smiles)
-
-
-def smiles_to_deepsmiles(smiles: str) -> str:
-    """
-    Takes a SMILES and return the DeepSMILES encoding.
-    """
-    converter = deepsmiles.Converter(rings=True, branches=True)
-    return converter.encode(smiles)
-
-
-def smiles_to_canoncial(smiles: str) -> str:
-    """
-    Takes a SMILES and return the canoncial SMILES.
-    """
-    mol = Chem.MolFromSmiles(smiles)
-    return Chem.MolToSmiles(mol)
-
-
-def smiles_to_inchi(smiles: str) -> str:
-    """
-    Takes a SMILES and return the InChI.
-    """
-    mol = Chem.MolFromSmiles(smiles)
-    return Chem.MolToInchi(mol)
-
-
-# def smiles_to_tucan(smiles: str) -> str:
-#    """
-#    Takes a SMILES and return the Tucan encoding.
-#    For this, create a molfile as StringIO, read it with graph_from_file,
-#    canonicalize it and serialize it.
-#    """
-#    molfile = Chem.MolToMolBlock(Chem.MolFromSmiles(smiles), forceV3000=True)
-#    mol = graph_from_molfile_text(molfile)
-#    mol = canonicalize_molecule(mol)
-#    return serialize_molecule(mol)
-
-
-CACTUS = "https://cactus.nci.nih.gov/chemical/structure/{0}/{1}"
-
-
-def smiles_to_iupac_name(smiles: str) -> str:
-    """Use the chemical name resolver https://cactus.nci.nih.gov/chemical/structure.
-    If this does not work, use pubchem.
-    """
-    try:
-        time.sleep(0.001)
-        rep = "iupac_name"
-        url = CACTUS.format(smiles, rep)
-        response = requests.get(url, allow_redirects=True, timeout=10)
-        response.raise_for_status()
-        name = response.text
-        if "html" in name:
-            return None
-        return name
-    except Exception:
-        try:
-            compound = pcp.get_compounds(smiles, "smiles")
-            return compound[0].iupac_name
-        except Exception:
-            return None
+# from functools import partial
 
 
 def _try_except_none(func, *args, **kwargs):
@@ -128,27 +35,28 @@ def line_reps_from_smiles(
     Use None if some representation cannot be computed.
     """
 
-    if smiles in unique_smiles_processed:
-        # print("SMILES was already previously processed.")
-        representations = df_processed[df_processed.SMILES == smiles].to_dict(
-            orient="records"
-        )[0]
-    else:
-        # print("Process SMILES.")
-        representations = {
-            "smiles": smiles,
-            "selfies": _try_except_none(smiles_to_selfies, smiles),
-            "deepsmiles": _try_except_none(smiles_to_deepsmiles, smiles),
-            "canonical": _try_except_none(smiles_to_canoncial, smiles),
-            "inchi": _try_except_none(smiles_to_inchi, smiles),
-            # "tucan": _try_except_none(smiles_to_tucan, smiles),
-            "iupac_name": _try_except_none(smiles_to_iupac_name, smiles),
-        }
+    # This makes it only super slow. It is faster to always process from scratch than have the look-up.
+    # if smiles in unique_smiles_processed:
+    #    # print("SMILES was already previously processed.")
+    #    representations = df_processed[df_processed.SMILES == smiles].to_dict(
+    #        orient="records"
+    #    )[0]
+    # else:
+    # print("Process SMILES.")
+    representations = {
+        "smiles": smiles,
+        "selfies": _try_except_none(smiles_to_selfies, smiles),
+        "deepsmiles": _try_except_none(smiles_to_deepsmiles, smiles),
+        "canonical": _try_except_none(smiles_to_canoncial, smiles),
+        "inchi": _try_except_none(smiles_to_inchi, smiles),
+        # "iupac_name": _try_except_none(smiles_to_iupac_name, smiles),  # not used
+        # "safe": _try_except_none(smiles_to_safe, smiles),  # not used
+    }
 
-        # Note: This needs proper filelocking to work.
-        # if path_processed_smiles:
-        #    pd.DataFrame(representations, index=[0]).to_csv(path_processed_smiles, mode="a", header=False, index=False)
-        #    print("Added processed SMILES to extend_tabular_processed.csv file.")
+    # Note: This needs proper filelocking to work.
+    # if path_processed_smiles:
+    #    pd.DataFrame(representations, index=[0]).to_csv(path_processed_smiles, mode="a", header=False, index=False)
+    #    print("Added processed SMILES to extend_tabular_processed.csv file.")
 
     return representations
 
@@ -156,28 +64,49 @@ def line_reps_from_smiles(
 if __name__ == "__main__":
     path_base = __file__.replace("text_sampling/extend_tabular.py", "")
     path_data_dir = sorted(glob.glob(path_base + "tabular/*"))
-    path_data_dir += sorted(
+    path_data_dir = sorted(
         [p for p in glob.glob(path_base + "kg/*") if os.path.isdir(p)]
     )
+    # index = [i for i, x in enumerate(path_data_dir) if x.find("herg_karim_et_al") != -1][0]
+    # index = [i for i, x in enumerate(path_data_dir) if x.find("rdkit_features") != -1][0]
+    # path_data_dir = path_data_dir[index:]
+    # path_data_dir = path_data_dir[index+1:]
+    # path_data_dir = [path_data_dir[index]]
+    # path_data_dir = [
+    #        "/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/elsevier_oa_cc-by_corpus",
+    #        "/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/aminoacids",
+    #        "/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/qmof_gcmc",
+    #        "/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/orbnet_denali",
+    #        "/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/smiles_to_3d",
+    #        "/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/nomad_structure",
+    #        "/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/drugchat_liang_zhang_et_al",
+    #        "/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/uniprot_binding_sites_multiple",
+    #        "/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/chembl_v29",
+    #        "/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/uniprot_binding_single",
+    #        "/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/orbnet_denali",
+    #        "/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/iupac_smiles",
+    #        "/fsx/proj-chemnlp/micpie/chemnlp/data/tabular/rdkit_features",
+    #        ]
+
     path_processed_smiles = path_base + "text_sampling/extend_tabular_processed.csv"
 
-    if os.path.isfile(path_processed_smiles):
-        df_processed = pd.read_csv(path_processed_smiles, low_memory=False)
-        unique_smiles_processed = df_processed.SMILES.unique().tolist()
-        process_func = partial(
-            line_reps_from_smiles,
-            df_processed=df_processed,
-            unique_smiles_processed=unique_smiles_processed,
-            path_processed_smiles=path_processed_smiles,
-        )
-        print("Using preprocessed SMILES.")
-    else:
-        process_func = line_reps_from_smiles
+    # if os.path.isfile(path_processed_smiles):
+    #    df_processed = pd.read_csv(path_processed_smiles, low_memory=False)
+    #    unique_smiles_processed = df_processed.SMILES.unique().tolist()
+    #    process_func = partial(
+    #        line_reps_from_smiles,
+    #        df_processed=df_processed,
+    #        unique_smiles_processed=unique_smiles_processed,
+    #        path_processed_smiles=path_processed_smiles,
+    #    )
+    #    print("Using preprocessed SMILES.")
+    # else:
+    process_func = line_reps_from_smiles
 
     for path in path_data_dir:
         # subselect one path
         # if path.find("data/kg/compound_protein_compound") == -1: continue
-        # if path.find("data/tabular/h2_storage_materials") == -1: continue
+        # if path.find("data/tabular/uniprot_") == -1: continue
         if not os.path.isdir(path):
             continue
 
@@ -247,7 +176,8 @@ if __name__ == "__main__":
             "canonical": [],
             "inchi": [],
             # "tucan": [],
-            "iupac_name": [],
+            # "iupac_name": [],
+            # "safe": [],
         }
 
         for entry in parsed:

@@ -1,0 +1,53 @@
+---
+name: ord_rxn_smiles_yield_pred
+description: |-
+    The open reaction database is a database of chemical reactions and their conditions
+targets:
+    - id: yield
+      type: continuous
+      significant_digits: 0
+      description: reaction yield
+      units: \%
+      names:
+          - noun: yield
+          - noun: reaction yield
+identifiers:
+    - id: RXNSMILES
+      type: RXNSMILES
+      description: reaction SMILES
+      names:
+          - noun: reaction SMILES
+          - noun: reaction SMILES string
+          - noun: RXNSMILES
+          - noun: reaction SMILES (RXNSMILES)
+license: CC BY SA 4.0
+links:
+    - url: https://github.com/open-reaction-database/ord-data
+      description: original data source
+num_points: 28
+bibtex:
+    - |-
+      @article{Kearnes_2021,
+        doi = {10.1021/jacs.1c09820},
+        url = {https://doi.org/10.1021%2Fjacs.1c09820},
+        year = 2021,
+        month = {nov},
+        publisher = {American Chemical Society ({ACS})},
+        volume = {143},
+        number = {45},
+        pages = {18820--18826},
+        author = {Steven M. Kearnes and Michael R. Maser
+        and Michael Wleklinski and Anton Kast and Abigail G. Doyle
+        and Spencer D. Dreher and Joel M. Hawkins
+        and Klavs F. Jensen and Connor W. Coley},
+        title = {The Open Reaction Database},
+        journal = {J. Am. Chem. Soc.}
+      }
+templates:
+    - The {yield__names__noun} of a reaction with the {RXNSMILES__names__noun} {RXNSMILES#} is {yield#}{yield__units}.
+    - |-
+      User: {#I need|I want|I would like!} to run a reaction with the {RXNSMILES__names__noun} {RXNSMILES#}. What is the {yield__names__noun} {#I can expect|I should expect|I should get|I can get!}?
+      Assistant: {#The|The expected|The predicted|The estimated!} {yield__names__noun} is {yield#}{yield__units}.
+    - |-
+      Question: {#What is|What's|What is the|What's the!} {yield__names__noun} of a reaction with the {RXNSMILES__names__noun} {RXNSMILES#}?
+      Answer: {yield#}{yield__units}.

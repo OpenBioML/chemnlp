@@ -1,10 +1,11 @@
 import concurrent.futures
 import os
-from xml.etree import ElementTree
 
 import pandas as pd
-import requests
 import yaml
+from chembl_webresource_client.new_client import new_client
+
+molecule = new_client.molecule
 
 DATASET_URL = "ftp://ftp.ebi.ac.uk/pub/databases/opentargets/platform/23.02/output/etl/json/fda/significantAdverseDrugReactions"  # noqa
 DOWNLOAD_FOLDER = "./fda/significantAdverseDrugReactions"
@@ -102,9 +103,8 @@ def parallelise_smiles_retrieval(df: pd.DataFrame) -> dict:
 
 def get_smiles_from_chembl_id(id: str) -> str:
     try:
-        xml_content = requests.get(EBI_URL.format(id))
-        xml_tree = ElementTree.fromstring(xml_content.content)
-        smile = xml_tree[17][0].text
+        record_via_client = molecule.get(id)
+        smile = record_via_client["molecule_structures"]["canonical_smiles"]
         return smile
     except Exception:
         print(f"Could not find SMILES for CHEMBL ID {id}.")

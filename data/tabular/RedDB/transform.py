@@ -1,6 +1,6 @@
-import fire
 import pandas as pd
 import yaml
+from huggingface_hub import hf_hub_download
 from rdkit import Chem
 
 
@@ -16,10 +16,13 @@ def is_valid_smiles(smiles: str) -> bool:
 
 
 def read_dataset():
-    hf_data = pd.read_csv(
-        "https://huggingface.co/datasets/AdrianM0/RedDB/resolve/main/RedDBv2.csv"
+    # hf_data = pd.read_csv(
+    #     "https://huggingface.co/datasets/chemNLP/RedDB/raw/main/RedDBv2.csv"
+    # )
+    file = hf_hub_download(
+        repo_id="chemNLP/RedDB", filename="RedDBv2.csv", repo_type="dataset"
     )
-
+    hf_data = pd.read_csv(file)
     assert hf_data.SMILES.apply(is_valid_smiles).to_list() == [True] * len(hf_data)
     assert not hf_data.duplicated().sum()
 
@@ -44,35 +47,35 @@ RedDBs development steps, including:
                 "id": "solubilityAqSolPred",
                 "description": "Aqueous solubility prediction using machine learning",
                 "units": "logS",
-                "type": "continous",
+                "type": "continuous",
                 "names": [{"noun": "ML-predicted aqueous solubility"}],
             },
             {
                 "id": "molecularSurface",
                 "description": "Total surface area of a molecule",
                 "units": "\\AA^2",
-                "type": "continous",
+                "type": "continuous",
                 "names": [{"noun": "molecular surface area"}],
             },
             {
                 "id": "reactionFieldEnergy",
                 "description": "Energy associated with the interaction during a chemical reaction",
                 "units": "kT",
-                "type": "continous",
+                "type": "continuous",
                 "names": [{"noun": "chemical reaction field energy"}],
             },
             {
                 "id": "solventAccessSurface",
                 "description": "Surface area of a molecule accessible to a solvent",
                 "units": "\\AA^2",
-                "type": "continous",
+                "type": "continuous",
                 "names": [{"noun": "solvent-accessible surface area"}],
             },
             {
                 "id": "cavityEnergy",
                 "description": "Energy associated with the formation of cavities in a molecular structure",
                 "units": "kT",
-                "type": "continous",
+                "type": "continuous",
                 "names": [
                     {"noun": "cavity formation energy at the PBE level of theory"}
                 ],
@@ -81,7 +84,7 @@ RedDBs development steps, including:
                 "id": "gasEnergy",
                 "description": "Total energy of a molecule in the gas phase",
                 "units": "Hartree",
-                "type": "continous",
+                "type": "continuous",
                 "names": [
                     {"noun": "gas-phase molecular energy at the PBE level of theory"}
                 ],
@@ -90,7 +93,7 @@ RedDBs development steps, including:
                 "id": "gasHomo",
                 "description": "Highest Occupied Molecular Orbital (HOMO) energy of a gas-phase molecule",
                 "units": "Hartree",
-                "type": "continous",
+                "type": "continuous",
                 "names": [
                     {"noun": "gaseous phase HOMO energy at the PBE level of theory"}
                 ],
@@ -99,7 +102,7 @@ RedDBs development steps, including:
                 "id": "gasLumo",
                 "description": "Lowest Unoccupied Molecular Orbital (LUMO) energy of a gas-phase molecule",
                 "units": "Hartree",
-                "type": "continous",
+                "type": "continuous",
                 "names": [
                     {"noun": "gaseous phase LUMO energy at the PBE level of theory"}
                 ],
@@ -108,7 +111,7 @@ RedDBs development steps, including:
                 "id": "solutionEnergy",
                 "description": "Total energy of a molecule in a solution",
                 "units": "Hartree",
-                "type": "continous",
+                "type": "continuous",
                 "names": [
                     {
                         "noun": "aqueous phase molecular energy at the PBE level of theory"
@@ -119,7 +122,7 @@ RedDBs development steps, including:
                 "id": "solutionHomo",
                 "description": "Highest Occupied Molecular Orbital (HOMO) energy in a solution",
                 "units": "Hartree",
-                "type": "continous",
+                "type": "continuous",
                 "names": [
                     {"noun": "aqueous phase HOMO energy at the PBE level of theory"}
                 ],
@@ -128,7 +131,7 @@ RedDBs development steps, including:
                 "id": "solutionLumo",
                 "description": "Lowest Unoccupied Molecular Orbital (LUMO) energy in a solution",
                 "units": "Hartree",
-                "type": "continous",
+                "type": "continuous",
                 "names": [
                     {"noun": "aqueous phase LUMO energy at the PBE level of theory"}
                 ],
@@ -137,7 +140,7 @@ RedDBs development steps, including:
                 "id": "nuclearRepulsionEnergy",
                 "description": "Electrostatic repulsion energy between atomic nuclei in a molecule",
                 "units": "Hartree",
-                "type": "continous",
+                "type": "continuous",
                 "names": [
                     {"noun": "nuclear repulsion energy at the PBE level of theory"}
                 ],
@@ -146,7 +149,7 @@ RedDBs development steps, including:
                 "id": "optGasEnergy",
                 "description": "Total energy of an optimized gas-phase molecule",
                 "units": "Hartree",
-                "type": "continous",
+                "type": "continuous",
                 "names": [
                     {
                         "noun": "optimized gas-phase molecular energy at the PBE level of theory"
@@ -157,7 +160,7 @@ RedDBs development steps, including:
                 "id": "optGasHomo",
                 "description": "Highest Occupied Molecular Orbital (HOMO) energy of an optimized gas-phase molecule",
                 "units": "Hartree",
-                "type": "continous",
+                "type": "continuous",
                 "names": [
                     {
                         "noun": "optimized gas-phase HOMO energy at the PBE level of theory"
@@ -168,7 +171,7 @@ RedDBs development steps, including:
                 "id": "optGasLumo",
                 "description": "Lowest Unoccupied Molecular Orbital (LUMO) energy of an optimized gas-phase molecule",
                 "units": "Hartree",
-                "type": "continous",
+                "type": "continuous",
                 "names": [
                     {
                         "noun": "optimized gas-phase LUMO energy calculated at the PBE level of theory"
@@ -240,17 +243,17 @@ journal = {Nature Scientific Data}""",
             """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {InChI__description} {#representation of |!}{InChI#} has a {optGasHomo__names__noun} of {optGasHomo#} {optGasHomo__units}.""",  # noqa: E501
             """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {InChI__description} {#representation of |!}{InChI#} has a {optGasLumo__names__noun} of {optGasLumo#} {optGasLumo__units}.""",  # noqa: E501
             """Task: Please {#give me|create|generate!} a {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} based on the {#text |!}description{# below|!}.
-      Description: It has an {solubilityAqSolPred__names__noun} {solubilityAqSolPred#} {solubilityAqSolPred__units} and a {cavityEnergy__names__noun} of {cavityEnergy#} {cavityEnergy__units}.
+Description: It has an {solubilityAqSolPred__names__noun} {solubilityAqSolPred#} {solubilityAqSolPred__units} and a {cavityEnergy__names__noun} of {cavityEnergy#} {cavityEnergy__units}.
       Result: {SMILES#}""",  # noqa: E501
             """Task: Please {#give me|create|generate!} a {#molecule|compound|chemical|molecular species|chemical compound!} with the {InChI__description} based on the {#text |!}description{# below|!}.
-      Description: It has an {solubilityAqSolPred__names__noun} {solubilityAqSolPred#} {solubilityAqSolPred__units} and a {cavityEnergy__names__noun} of {cavityEnergy#} {cavityEnergy__units}.
+Description: It has an {solubilityAqSolPred__names__noun} {solubilityAqSolPred#} {solubilityAqSolPred__units} and a {cavityEnergy__names__noun} of {cavityEnergy#} {cavityEnergy__units}.
       Result: {InChI#}""",  # noqa: E501
             """Task: Please {#give me|create|generate!} a {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} based on the {#text |!}description{# below|!}.
-      Description: It has an {solutionLumo__names__noun} {solutionLumo#} {solutionLumo__units} and a {solutionHomo__names__noun} of {solutionHomo#} {solutionHomo__units}.
-      Result: {SMILES#}""",  # noqa: E501
+Description: It has an {solutionLumo__names__noun} {solutionLumo#} {solutionLumo__units} and a {solutionHomo__names__noun} of {solutionHomo#} {solutionHomo__units}.
+Result: {SMILES#}""",  # noqa: E501
             """Task: Please {#give me|create|generate!} a {#molecule|compound|chemical|molecular species|chemical compound!} with the {InChI__description} based on the {#text |!}description{# below|!}.
-      Description: It has an {solutionLumo__names__noun} {solutionLumo#} {solutionLumo__units} and a {solutionHomo__names__noun} of {solutionHomo#} {solutionHomo__units}.
-      Result: {InChI#}""",  # noqa: E501
+Description: It has an {solutionLumo__names__noun} {solutionLumo#} {solutionLumo__units} and a {solutionHomo__names__noun} of {solutionHomo#} {solutionHomo__units}.
+Result: {InChI#}""",  # noqa: E501
         ],
     }
 
@@ -274,4 +277,4 @@ journal = {Nature Scientific Data}""",
 
 
 if __name__ == "__main__":
-    fire.Fire(read_dataset)
+    read_dataset()

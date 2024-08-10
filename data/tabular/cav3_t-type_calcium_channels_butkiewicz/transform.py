@@ -154,7 +154,7 @@ Description: A molecule that is {activity_cav3_t_type_calcium_channels__names__g
 Constraint: Answer the question in a {#full|complete!} sentence.
 Result: This molecule is {activity_cav3_t_type_calcium_channels#not &NULL}{activity_cav3_t_type_calcium_channels__names__gerund}.""",  # noqa: E501
             """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
-Description: A molecule that is {activity_cav3_t_type_calcium_channels__names__gerund}.
+Description: A molecule that is {activity_cav3_t_type_calcium_channels#not &NULL}{activity_cav3_t_type_calcium_channels__names__gerund}.
 Result: {SMILES#}""",  # noqa: E501
             # Conversational text templates
             """User: Can you {#tell me|derive|estimate!} if the molecule with the {SMILES__description} {SMILES#} is {activity_cav3_t_type_calcium_channels__names__gerund}?

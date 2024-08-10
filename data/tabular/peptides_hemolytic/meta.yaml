@@ -24,7 +24,7 @@ targets:
 benchmarks: []
 identifiers:
     - id: sequence
-      type: Other
+      type: AS_SEQUENCE
       description: amino acid sequence
 license: CC BY 4.0
 links:

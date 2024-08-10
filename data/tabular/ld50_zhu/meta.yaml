@@ -7,13 +7,13 @@ description: |-
 targets:
     - id: acute_toxicity
       description: Acute Toxicity LD50.
-      units: log(1/(mol/kg))
+      units: log10(1/(mol/kg))
       type: continuous
       names:
-          - noun: acute toxicity rat LD50
-          - noun: acute toxicity (LD50 in rats)
-          - noun: LD50 in rats
-          - noun: rat LD50
+          - noun: acute oral toxicity rat LD50
+          - noun: acute oral toxicity (LD50 in rats)
+          - noun: LD50 in rats (oral exposure)
+          - noun: rat LD50 (oral exposure)
       uris:
           - http://www.bioassayontology.org/bao#BAO_0002117
 identifiers:

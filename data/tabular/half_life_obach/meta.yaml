@@ -9,10 +9,11 @@ targets:
       description: the time it takes for the plasma concentration of a drug in the body to be reduced by half
       units: hours
       type: continuous
+      significant_digits: 2
       names:
-          - noun: half life
-          - noun: half life time
-          - noun: drug half life time
+          - noun: half life in humans after IV administration
+          - noun: half life time in humans after IV administration
+          - noun: drug half life time in humans after IV administration
       uris:
           - http://purl.bioontology.org/ontology/MESH/D006207
 benchmarks:
