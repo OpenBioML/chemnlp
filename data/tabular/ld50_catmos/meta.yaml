@@ -117,8 +117,7 @@ bibtex:
       Zhu, Hao and Zorn, Kimberley M. and Casey, Warren and Kleinstreuer, Nicole C.},
       year={2021}, month=apr }
 templates:
-    - The {#molecule|chemical|compound!} with the {SMILES__description} {#representation of |!}{SMILES#} {#shows|exhibits|displays!} an {CATMoS_LD50_mgkg__names__noun}
-      of {CATMoS_LD50_mgkg#} {CATMoS_LD50_mgkg__units}.
+    - The {#molecule|chemical|compound!} with the {SMILES__description} {#representation of |!}{SMILES#} {#shows|exhibits|displays!} an {CATMoS_LD50_mgkg__names__noun} of {CATMoS_LD50_mgkg#} {CATMoS_LD50_mgkg__units}.
     - The {#molecule|chemical|compound!} with the {SMILES__description} {#representation of |!}{SMILES#} {#shows|exhibits|displays!} a {log10_LD50__names__noun} of {log10_LD50#} {log10_LD50__units}.
     - |
       Task: Determine the acute oral toxicity and molecular properties of a {#molecule|chemical|compound!} given the {SMILES__description}.
