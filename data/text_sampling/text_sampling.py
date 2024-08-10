@@ -929,7 +929,7 @@ class TemplateSampler:
                     lm_eval_yaml["training_split"] = "train"
                 if split_out == "valid":
                     lm_eval_yaml["validation_split"] = "validation"
-                if split_out == "valid":
+                if split_out == "test":
                     lm_eval_yaml["test_split"] = "test"
 
             fn_lm_eval_yaml = output_path_dir + "/config.yaml"
