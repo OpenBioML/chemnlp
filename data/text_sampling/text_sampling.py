@@ -942,7 +942,6 @@ class TemplateSampler:
                 # unwrap list of length 1
                 target_to_balance = target_to_balance[0]
             df_vc = self.df_orig[target_to_balance].value_counts()
-            print(df_vc)
             vc_min = df_vc.min()
             vc_max = df_vc.max()
             if vc_max > 1:
