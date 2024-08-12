@@ -5,7 +5,7 @@ description: |-
   response pathways.
 targets:
   - id: toxicity_SR-ATAD5
-    description: whether it shows activitiy in the SR-ATAD5 assay (1) or not (0)
+    description: whether it shows activity in the SR-ATAD5 assay (1) or not (0)
     units:
     type: boolean
     names:
