@@ -27,7 +27,35 @@ sampler = TemplateSampler(df: pd.DataFrame, meta: Dict, config: Dict, column_dat
 
 #### Main Methods
 
-(... other methods remain the same ...)
+##### `sample`
+
+```python
+def sample(self, sample: Optional[pd.Series], template: str) -> str
+```
+
+Generates a text sample based on a template and a data sample.
+
+- `sample`: A row from the dataset. If None, a random sample is chosen.
+- `template`: The template string to be filled.
+- Returns: The completed text sample with all variables replaced by their values.
+
+##### `enable_class_balancing`
+
+```python
+def enable_class_balancing(self, column: str)
+```
+
+Enables class-balanced sampling for a specified column.
+
+- `column`: The column to use for balancing.
+
+##### `disable_class_balancing`
+
+```python
+def disable_class_balancing(self)
+```
+
+Disables class-balanced sampling and reverts to the original dataset.
 
 #### Identifier Wrapping
 
