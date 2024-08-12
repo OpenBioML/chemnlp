@@ -9,6 +9,8 @@ from chemnlp.data.random_variable import RandomVariable
 from functools import partial
 from functools import lru_cache
 
+
+# ToDo: handle somewhere that the meta contains multiple templates
 class TemplateSampler:
     """
     A class for sampling and generating text based on templates and data.
@@ -165,7 +167,7 @@ class TemplateSampler:
 
         return out
 
-    def get_sample_dict(self, sample: pd.Series, template: str) -> Dict[str, str]:
+    def  get_sample_dict(self, sample: pd.Series, template: str) -> Dict[str, str]:
         """
         Extract and process all target values from a sample row based on a template.
         """
@@ -266,10 +268,10 @@ class TemplateSampler:
 
     def _get_choices_without_indicator(self, multiple_choice_var: str, symbols: List[str], correct_choice: str) -> Tuple[List[str], int]:
         cutoff_full_unique = 100
-        if len(self.df[multiple_choice_var].unique()) < cutoff_full_unique:
-            all_choices = sorted([str(x) for x in self.df[multiple_choice_var].unique()])
-        else:
-            all_choices = sorted([str(x) for x in self.df[multiple_choice_var].sample(cutoff_full_unique).unique()])
+        all_choices = self.df[multiple_choice_var].unique()
+        if len(all_choices) > cutoff_full_unique:
+            all_choices = self.df[multiple_choice_var].sample(cutoff_full_unique).unique()
+        all_choices = sorted([str(x) for x in all_choices])
 
         if all_choices == ["0", "1"]:
             all_choices = ["False", "True"]
@@ -295,7 +297,7 @@ class TemplateSampler:
         multiple_choices, multiple_choices_indicators = zip(*multiple_choices_combined)
 
         correct_choice_idx = [i for i, (choice, indicator) in enumerate(zip(multiple_choices, multiple_choices_indicators))
-                                if indicator == correct_choice_indicator]
+                              if indicator == correct_choice_indicator]
 
         return list(multiple_choices), correct_choice_idx
 
@@ -411,7 +413,10 @@ class TemplateSampler:
         sample_dict = self.get_sample_dict(sample, template)
         return self._fill_template(template, sample_dict)
 
-    def _fill_template(self, template: str, sample_dict: Dict[str, str]) -> str:
+    def _fill_template(self, template: str, sample_dict: Dict[str, Union[str, List[str]]]) -> str:
         for key, value in sample_dict.items():
-            template = template.replace('{' + key + '}', value)
+            if isinstance(value, list):
+                # Handle list values (e.g., for multiple-choice options)
+                value = '\n'.join(value)
+            template = template.replace('{' + key + '}', str(value))
         return template
