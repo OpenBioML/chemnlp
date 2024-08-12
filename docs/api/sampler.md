@@ -119,7 +119,12 @@ print(mc_result)
 
 ## Notes
 
-- The `TemplateSampler` class now supports wrapping of identifiers with tags when the `wrap_identifiers` option is enabled in the configuration.
+- The `TemplateSampler` class supports various types of templates, including those with multiple choice questions.
+- Class balancing can be useful for creating balanced datasets for machine learning tasks.
+- The sampler can handle both categorical and continuous data types, with proper formatting for continuous values.
+- Custom sampling functions can be provided for more control over how values are selected from multiple options.
+
+- The `TemplateSampler` class supports wrapping of identifiers with tags when the `wrap_identifiers` option is enabled in the configuration.
 - Wrapped identifiers use the format `[BEGIN_IDENTIFIER_TYPE]value[END_IDENTIFIER_TYPE]`.
 - Identifier types are based on the `IdentifierEnum` class, which includes common chemical identifiers like SMILES, InChI, and others.
 
