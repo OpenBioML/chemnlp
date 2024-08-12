@@ -1,168 +1,155 @@
----
 name: RedDB
 description: |-
-    RedDB: a computational database that contains 30861 molecules
-    from two prominent classes of organic electroactive compounds, quinones and aza-aromatics,
-    has been presented. RedDB incorporates miscellaneous physicochemical property information
-    of the compounds that can potentially be employed as battery performance descriptors.
-    RedDBs development steps, including:
-    (i) chemical library generation,
-    (ii) molecular property prediction based on quantum chemical calculations,
-    (iii) aqueous solubility prediction using machine learning,
-    (iv) data processing and database creation, have been described.
+  RedDB: a computational database that contains 30861 molecules
+  from two prominent classes of organic electroactive compounds, quinones and aza-aromatics,
+  has been presented. RedDB incorporates miscellaneous physicochemical property information
+  of the compounds that can potentially be employed as battery performance descriptors.
+  RedDBs development steps, including:
+  (i) chemical library generation,
+  (ii) molecular property prediction based on quantum chemical calculations,
+  (iii) aqueous solubility prediction using machine learning,
+  (iv) data processing and database creation, have been described.
 targets:
-    - id: molecularSurface
-      description: Total surface area of a molecule
-      units: \AA^2
-      type: continuous
-      names:
-          - noun: molecular surface area
-    - id: reactionFieldEnergy
-      description: Energy associated with the interaction during a chemical reaction
-      units: kT
-      type: continuous
-      significant_digits: 5
-      names:
-          - noun: chemical reaction field energy
-    - id: solventAccessSurface
-      description: Surface area of a molecule accessible to a solvent
-      units: \AA^2
-      type: continuous
-      names:
-          - noun: solvent-accessible surface area
-    - id: cavityEnergy
-      description: Energy associated with the formation of cavities in a molecular structure
-      units: kT
-      type: continuous
-      names:
-          - noun: cavity formation energy at the PBE level of theory
-    - id: gasEnergy
-      description: Total energy of a molecule in the gas phase
-      units: Hartree
-      significant_digits: 5
-      type: continuous
-      names:
-          - noun: gas-phase molecular energy at the PBE level of theory
-    - id: gasHomo
-      description: Highest Occupied Molecular Orbital (HOMO) energy of a gas-phase molecule
-      units: Hartree
-      type: continuous
-      significant_digits: 5
-      names:
-          - noun: gaseous phase HOMO energy at the PBE level of theory
-          - noun: gaseous phase highest occupied molecular orbital energy at the PBE level of theory
-          - noun: gaseous phase highest occupied molecular orbital (HOMO) energy at the PBE level of theory
-    - id: gasLumo
-      description: Lowest Unoccupied Molecular Orbital (LUMO) energy of a gas-phase molecule
-      units: Hartree
-      type: continuous
-      significant_digits: 5
-      names:
-          - noun: gaseous phase LUMO energy at the PBE level of theory
-          - noun: gaseous phase lowest unoccupied molecular orbital energy at the PBE level of theory
-          - noun: gaseous phase lowest unoccupied molecular orbital energy (LUMO) at the PBE level of theory
-    - id: solutionEnergy
-      description: Total energy of a molecule in a solution
-      units: Hartree
-      type: continuous
-      significant_digits: 5
-      names:
-          - noun: aqueous phase molecular energy at the PBE level of theory
-    - id: solutionHomo
-      description: Highest Occupied Molecular Orbital (HOMO) energy in a solution
-      units: Hartree
-      type: continuous
-      significant_digits: 5
-      names:
-          - noun: aqueous phase HOMO energy at the PBE level of theory
-          - noun: aqueous phase energy of the highest occupied molecular orbital at the PBE level of theory
-          - noun: aqueous phase energy of the highest occupied molecular orbital (HOMO) at the PBE level of theory
-    - id: solutionLumo
-      description: Lowest Unoccupied Molecular Orbital (LUMO) energy in a solution
-      units: Hartree
-      type: continuous
-      significant_digits: 5
-      names:
-          - noun: aqueous phase LUMO energy at the PBE level of theory
-          - noun: aqueous phase energy of the lowest unoccupied molecular orbital at the PBE level of theory
-          - noun: aqueous phase energy of the lowest unoccupied molecular orbital (LUMO) at the PBE level of theory
-    - id: nuclearRepulsionEnergy
-      description: Electrostatic repulsion energy between atomic nuclei in a molecule
-      units: Hartree
-      type: continuous
-      significant_digits: 5
-      names:
-          - noun: nuclear repulsion energy at the PBE level of theory
-    - id: optGasEnergy
-      description: Total energy of an optimized gas-phase molecule
-      units: Hartree
-      type: continuous
-      significant_digits: 5
-      names:
-          - noun: optimized gas-phase molecular energy at the PBE level of theory
-    - id: optGasHomo
-      description: Highest Occupied Molecular Orbital (HOMO) energy of an optimized gas-phase molecule
-      units: Hartree
-      type: continuous
-      significant_digits: 5
-      names:
-          - noun: optimized gas-phase HOMO energy at the PBE level of theory
-    - id: optGasLumo
-      description: Lowest Unoccupied Molecular Orbital (LUMO) energy of an optimized gas-phase molecule
-      units: Hartree
-      significant_digits: 5
-      type: continuous
-      names:
-          - noun: optimized gas-phase LUMO energy calculated at the PBE level of theory
-          - noun: optimized gas-phase LUMO energy calculated with DFT at the PBE level of theory
+  - id: molecularSurface
+    description: Total surface area of a molecule
+    units: \AA^2
+    type: continuous
+    names:
+      - noun: molecular surface area
+  - id: reactionFieldEnergy
+    description: Energy associated with the interaction during a chemical reaction
+    units: kT
+    type: continuous
+    significant_digits: 5
+    names:
+      - noun: chemical reaction field energy
+  - id: solventAccessSurface
+    description: Surface area of a molecule accessible to a solvent
+    units: \AA^2
+    type: continuous
+    names:
+      - noun: solvent-accessible surface area
+  - id: cavityEnergy
+    description: Energy associated with the formation of cavities in a molecular structure
+    units: kT
+    type: continuous
+    names:
+      - noun: cavity formation energy at the PBE level of theory
+  - id: gasEnergy
+    description: Total energy of a molecule in the gas phase
+    units: Hartree
+    significant_digits: 5
+    type: continuous
+    names:
+      - noun: gas-phase molecular energy at the PBE level of theory
+  - id: gasHomo
+    description: Highest Occupied Molecular Orbital (HOMO) energy of a gas-phase molecule
+    units: Hartree
+    type: continuous
+    significant_digits: 5
+    names:
+      - noun: gaseous phase HOMO energy at the PBE level of theory
+      - noun: gaseous phase highest occupied molecular orbital energy at the PBE level of theory
+      - noun: gaseous phase highest occupied molecular orbital (HOMO) energy at the PBE level of theory
+  - id: gasLumo
+    description: Lowest Unoccupied Molecular Orbital (LUMO) energy of a gas-phase molecule
+    units: Hartree
+    type: continuous
+    significant_digits: 5
+    names:
+      - noun: gaseous phase LUMO energy at the PBE level of theory
+      - noun: gaseous phase lowest unoccupied molecular orbital energy at the PBE level of theory
+      - noun: gaseous phase lowest unoccupied molecular orbital energy (LUMO) at the PBE level of theory
+  - id: solutionEnergy
+    description: Total energy of a molecule in a solution
+    units: Hartree
+    type: continuous
+    significant_digits: 5
+    names:
+      - noun: aqueous phase molecular energy at the PBE level of theory
+  - id: solutionHomo
+    description: Highest Occupied Molecular Orbital (HOMO) energy in a solution
+    units: Hartree
+    type: continuous
+    significant_digits: 5
+    names:
+      - noun: aqueous phase HOMO energy at the PBE level of theory
+      - noun: aqueous phase energy of the highest occupied molecular orbital at the PBE level of theory
+      - noun: aqueous phase energy of the highest occupied molecular orbital (HOMO) at the PBE level of theory
+  - id: solutionLumo
+    description: Lowest Unoccupied Molecular Orbital (LUMO) energy in a solution
+    units: Hartree
+    type: continuous
+    significant_digits: 5
+    names:
+      - noun: aqueous phase LUMO energy at the PBE level of theory
+      - noun: aqueous phase energy of the lowest unoccupied molecular orbital at the PBE level of theory
+      - noun: aqueous phase energy of the lowest unoccupied molecular orbital (LUMO) at the PBE level of theory
+  - id: nuclearRepulsionEnergy
+    description: Electrostatic repulsion energy between atomic nuclei in a molecule
+    units: Hartree
+    type: continuous
+    significant_digits: 5
+    names:
+      - noun: nuclear repulsion energy at the PBE level of theory
+  - id: optGasEnergy
+    description: Total energy of an optimized gas-phase molecule
+    units: Hartree
+    type: continuous
+    significant_digits: 5
+    names:
+      - noun: optimized gas-phase molecular energy at the PBE level of theory
+  - id: optGasHomo
+    description: Highest Occupied Molecular Orbital (HOMO) energy of an optimized gas-phase molecule
+    units: Hartree
+    type: continuous
+    significant_digits: 5
+    names:
+      - noun: optimized gas-phase HOMO energy at the PBE level of theory
+  - id: optGasLumo
+    description: Lowest Unoccupied Molecular Orbital (LUMO) energy of an optimized gas-phase molecule
+    units: Hartree
+    significant_digits: 5
+    type: continuous
+    names:
+      - noun: optimized gas-phase LUMO energy calculated at the PBE level of theory
+      - noun: optimized gas-phase LUMO energy calculated with DFT at the PBE level of theory
 identifiers:
-    - id: SMILES
-      type: SMILES
-      description: SMILES
+  - id: SMILES
+    type: SMILES
+    description: SMILES
 license: CC BY 4.0
 links:
-    - url: https://doi.org/10.1038/s41597-022-01832-2
-      description: corresponding publication
-    - url: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/F3QFSQ
-      description: Data source
+  - url: https://doi.org/10.1038/s41597-022-01832-2
+    description: corresponding publication
+  - url: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/F3QFSQ
+    description: Data source
 num_points: 30861
 bibtex:
-    - |-
-      @article{Elif2022,
-      doi = {10.1021/ci300400a},
-      url = {https://doi.org/10.1038/s41597-022-01832-2},
-      year = {2022},
-      volume = {9},
-      number = {1},
-      author = {Elif Sorkun and Qi Zhang and Abhishek Khetan and Murat Cihan Sorkun and
-      Suleyman Er},
-      journal = {Nature Scientific Data}
+  - |-
+    @article{Elif2022,
+    doi = {10.1021/ci300400a},
+    url = {https://doi.org/10.1038/s41597-022-01832-2},
+    year = {2022},
+    volume = {9},
+    number = {1},
+    author = {Elif Sorkun and Qi Zhang and Abhishek Khetan and Murat Cihan Sorkun and
+    Suleyman Er},
+    journal = {Nature Scientific Data}
 templates:
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {molecularSurface__names__noun}
-      of {molecularSurface#} {molecularSurface__units}.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {reactionFieldEnergy__names__noun}
-      of {reactionFieldEnergy#} {reactionFieldEnergy__units}.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {solventAccessSurface__names__noun}
-      of {solventAccessSurface#} {solventAccessSurface__units}.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {cavityEnergy__names__noun}
-      of {cavityEnergy#} {cavityEnergy__units}.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {gasEnergy__names__noun}
-      of {gasEnergy#} {gasEnergy__units}.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {gasHomo__names__noun}
-      of {gasHomo#} {gasHomo__units}.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {gasLumo__names__noun}
-      of {gasLumo#} {gasLumo__units}.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has an {solutionEnergy__names__noun}
-      of {solutionEnergy#} {solutionEnergy__units}.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {solutionLumo__names__noun}
-      of {solutionLumo#} {solutionLumo__units}.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {nuclearRepulsionEnergy__names__noun}
-      of {nuclearRepulsionEnergy#} {nuclearRepulsionEnergy__units}.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {optGasEnergy__names__noun}
-      of {optGasEnergy#} {optGasEnergy__units}.
-    - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {optGasHomo__names__noun}
-      of {optGasHomo#} {optGasHomo__units}.
-    - |-
-      Task: Please {#give me|create|generate!} a {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} based on the {#text |!}description{# below|!}.
-      Description: It has an {solutionLumo__names__noun} {solutionLumo#} {solutionLumo__units} and an {solutionHomo__names__noun} of {solutionHomo#} {solutionHomo__units}.
-      Result: {SMILES#}
+  - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {molecularSurface__names__noun} of {molecularSurface#} {molecularSurface__units}.
+  - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {reactionFieldEnergy__names__noun} of {reactionFieldEnergy#} {reactionFieldEnergy__units}.
+  - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {solventAccessSurface__names__noun} of {solventAccessSurface#} {solventAccessSurface__units}.
+  - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {cavityEnergy__names__noun} of {cavityEnergy#} {cavityEnergy__units}.
+  - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {gasEnergy__names__noun} of {gasEnergy#} {gasEnergy__units}.
+  - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {gasHomo__names__noun} of {gasHomo#} {gasHomo__units}.
+  - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {gasLumo__names__noun} of {gasLumo#} {gasLumo__units}.
+  - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has an {solutionEnergy__names__noun} of {solutionEnergy#} {solutionEnergy__units}.
+  - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {solutionLumo__names__noun} of {solutionLumo#} {solutionLumo__units}.
+  - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {nuclearRepulsionEnergy__names__noun} of {nuclearRepulsionEnergy#} {nuclearRepulsionEnergy__units}.
+  - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {optGasEnergy__names__noun} of {optGasEnergy#} {optGasEnergy__units}.
+  - The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {optGasHomo__names__noun} of {optGasHomo#} {optGasHomo__units}.
+  - |-
+    Task: Please {#give me|create|generate!} a {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} based on the {#text |!}description{# below|!}.
+    Description: It has an {solutionLumo__names__noun} {solutionLumo#} {solutionLumo__units} and an {solutionHomo__names__noun} of {solutionHomo#} {solutionHomo__units}.
+    Result: {SMILES#}

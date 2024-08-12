@@ -1,7 +1,6 @@
 DEFAULT_SIGNIFICANT_DIGITS = 3
 
 
-
 STANDARD_TABULAR_TEXT_TEMPLATES = [
     "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} has a {TARGET__names__noun} of {TARGET#} {TARGET__units}.",  # noqa: E501
     "Based on the {SMILES__description} {#representation of |!}{SMILES#}, the molecule has a {TARGET__names__noun} of {TARGET#} {TARGET__units}.",  # noqa: E501

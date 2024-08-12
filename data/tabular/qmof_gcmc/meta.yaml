@@ -1,442 +1,369 @@
----
 name: qmof_gcmc
 description: |-
-    QMOF is a database of electronic properties of MOFs, assembled by Rosen et al.
-    Jablonka et al. added gas adsorption properties.
+  QMOF is a database of electronic properties of MOFs, assembled by Rosen et al.
+  Jablonka et al. added gas adsorption properties.
 targets:
-    - id: lg10_CO2_Henry
-      description: CO2 Henry coefficient
-      type: continuous
-      units: mol/kg/Pa
-      significant_digits: 3
-      names:
-          - noun: 10-based logarithm of CO2 Henry coefficient (computed using grand canonical Monte Carlo)
-          - noun: 10-based logarithm of carbon dioxide Henry coefficient (computed using grand canonical Monte Carlo)
-    - id: lg10_N2_Henry
-      description: N2 Henry coefficient
-      type: continuous
-      units: mol/kg/Pa
-      significant_digits: 3
-      names:
-          - noun: 10-based logarithm of N2 Henry coefficient (computed using grand canonical Monte Carlo)
-          - noun: 10-based logarithm of nitrogen Henry coefficient (computed using grand canonical Monte Carlo)
-    - id: lg10_CH4_Henry
-      description: CH4 Henry coefficient
-      type: continuous
-      units: mol/kg/Pa
-      significant_digits: 3
-      names:
-          - noun: 10-based logarithm of CH4 Henry coefficient (computed using grand canonical Monte Carlo)
-          - noun: 10-based logarithm of methane Henry coefficient (computed using grand canonical Monte Carlo)
-    - id: lg10_O2_Henry
-      description: O2 Henry coefficient
-      type: continuous
-      units: mol/kg/Pa
-      significant_digits: 3
-      names:
-          - noun: 10-based logarithm of O2 Henry coefficient (computed using grand canonical Monte Carlo)
-          - noun: 10-based logarithm of oxygen Henry coefficient using grand canonical Monte Carlo
-    - id: lg10_Xe_Henry
-      description: Xe Henry coefficient
-      type: continuous
-      units: mol/kg/Pa
-      significant_digits: 3
-      names:
-          - noun: 10-based logarithm of Xe Henry coefficient (computed using grand canonical Monte Carlo)
-          - noun: 10-based logarithm of xenon Henry coefficient (computed using grand canonical Monte Carlo)
-    - id: lg10_Kr_Henry
-      description: Kr Henry coefficient
-      type: continuous
-      units: mol/kg/Pa
-      significant_digits: 3
-      names:
-          - noun: 10-based logarithm of Kr Henry coefficient (computed using grand canonical Monte Carlo)
-          - noun: 10-based logarithm of krypton Henry coefficient (computed using grand canonical Monte Carlo)
-    - id: lg10_H2S_Henry
-      description: H2S Henry coefficient
-      type: continuous
-      units: mol/kg/Pa
-      significant_digits: 3
-      names:
-          - noun: 10-based logarithm of H2S Henry coefficient (computed using grand canonical Monte Carlo)
-          - noun: 10-based logarithm of hydrogen sulfide Henry coefficient (computed using grand canonical Monte Carlo)
-    - id: lg10_H2O_Henry
-      description: H2O Henry coefficient
-      type: continuous
-      units: mol/kg/Pa
-      significant_digits: 3
-      names:
-          - noun: 10-based logarithm of H2O Henry coefficient (computed using grand canonical Monte Carlo)
-          - noun: 10-based logarithm of water Henry coefficient (computed using grand canonical Monte Carlo)
-    - id: outputs.CO2-adsorption_energy-kJ--mol
-      description: CO2 adsorption energy
-      type: continuous
-      units: kJ/mol
-      significant_digits: 3
-      names:
-          - noun: CO2 adsorption energy (computed using grand canonical Monte Carlo)
-          - noun: carbon dioxide adsorption energy (computed using grand canonical Monte Carlo)
-    - id: outputs.N2-adsorption_energy-kJ--mol
-      description: N2 adsorption energy
-      type: continuous
-      units: kJ/mol
-      significant_digits: 3
-      names:
-          - noun: N2 adsorption energy (computed using grand canonical Monte Carlo)
-          - noun: nitrogen adsorption energy (computed using grand canonical Monte Carlo)
-    - id: outputs.CH4-adsorption_energy-kJ--mol
-      description: CH4 adsorption energy
-      type: continuous
-      units: kJ/mol
-      significant_digits: 3
-      names:
-          - noun: CH4 adsorption energy (computed using grand canonical Monte Carlo)
-          - noun: methane adsorption energy (computed using grand canonical Monte Carlo)
-    - id: outputs.O2-adsorption_energy-kJ--mol
-      description: O2 adsorption energy
-      type: continuous
-      units: kJ/mol
-      significant_digits: 3
-      names:
-          - noun: O2 adsorption energy (computed using grand canonical Monte Carlo)
-          - noun: oxygen adsorption energy (computed using grand canonical Monte Carlo)
-    - id: outputs.Xe-adsorption_energy-kJ--mol
-      description: Xe adsorption energy
-      type: continuous
-      units: kJ/mol
-      significant_digits: 3
-      names:
-          - noun: Xe adsorption energy (computed using grand canonical Monte Carlo)
-          - noun: xenon adsorption energy (computed using grand canonical Monte Carlo)
-    - id: outputs.Kr-adsorption_energy-kJ--mol
-      description: Kr adsorption energy
-      type: continuous
-      units: kJ/mol
-      significant_digits: 3
-      names:
-          - noun: Kr adsorption energy (computed using grand canonical Monte Carlo)
-          - noun: krypton adsorption energy (computed using grand canonical Monte Carlo)
-    - id: outputs.H2S-adsorption_energy-kJ--mol
-      description: H2S adsorption energy
-      type: continuous
-      units: kJ/mol
-      significant_digits: 3
-      names:
-          - noun: H2S adsorption energy (computed using grand canonical Monte Carlo)
-          - noun: hydrogen sulfide adsorption energy (computed using grand canonical Monte Carlo)
-    - id: outputs.H2O-adsorption_energy-kJ--mol
-      description: H2O adsorption energy
-      type: continuous
-      units: kJ/mol
-      significant_digits: 3
-      names:
-          - noun: H2O adsorption energy (computed using grand canonical Monte Carlo)
-          - noun: water adsorption energy (computed using grand canonical Monte Carlo)
-    - id: outputs.H2S--H2O-selectivity_298_K-
-      description: H2S/H2O selectivity
-      type: continuous
-      units: dimensionless
-      significant_digits: 3
-      names:
-          - noun: H2S/H2O selectivity (computed using grand canonical Monte Carlo)
-          - noun: hydrogen sulfide/water selectivity (computed using grand canonical Monte Carlo)
-    - id: outputs.CH4--N2-selectivity_298_K-
-      description: CH4/N2 selectivity
-      type: continuous
-      units: dimensionless
-      significant_digits: 3
-      names:
-          - noun: CH4/N2 selectivity (computed using grand canonical Monte Carlo)
-          - noun: methane/nitrogen selectivity (computed using grand canonical Monte Carlo)
-    - id: outputs.Xe--Kr-selectivity_298_K-
-      description: Xe/Kr selectivity
-      type: continuous
-      units: dimensionless
-      significant_digits: 3
-      names:
-          - noun: Xe/Kr selectivity (computed using grand canonical Monte Carlo)
-          - noun: xenon/krypton selectivity (computed using grand canonical Monte Carlo)
-    - id: outputs.CH4-working_capacity_vol_58_to_65_bar_298_K-cm3_STP--cm3
-      description: CH4 working capacity
-      type: continuous
-      units: cm^3 STP/cm^3
-      significant_digits: 3
-      names:
-          - noun: CH4 working capacity between 58 and 65 bar at 298 K (computed using grand canonical Monte Carlo)
-          - noun: methane working capacity between 58 and 65 bar at 298 K (computed using grand canonical Monte Carlo)
-    - id: outputs.CH4-working_capacity_mol_58_to_65_bar_298_K-mol--kg
-      description: CH4 working capacity
-      type: continuous
-      units: mol/kg
-      significant_digits: 3
-      names:
-          - noun: CH4 working capacity between 58 and 65 bar at 298 K (computed using grand canonical Monte Carlo)
-          - noun: methane working capacity between 58 and 65 bar at 298 K (computed using grand canonical Monte Carlo)
-    - id: outputs.O2-working_capacity_vol_5_to_140_bar_298_K-cm3_STP--cm3
-      description: O2 working capacity
-      type: continuous
-      units: cm^3 STP/cm^3
-      significant_digits: 3
-      names:
-          - noun: O2 working capacity between 5 and 140 bar at 298 K (computed using grand canonical Monte Carlo)
-          - noun: oxygen working capacity between 5 and 140 bar at 298 K (computed using grand canonical Monte Carlo)
-    - id: outputs.O2-working_capacity_mol_5_to_140_bar_298_K-mol--kg
-      description: O2 working capacity
-      type: continuous
-      units: mol/kg
-      significant_digits: 3
-      names:
-          - noun: O2 working capacity between 5 and 140 bar at 298 K (computed using grand canonical Monte Carlo)
-          - noun: oxygen working capacity between 5 and 140 bar at 298 K (computed using grand canonical Monte Carlo)
-    - id: outputs.H2-working_capacity_5_to_100_bar_298_to_198_K-g--L
-      description: H2 working capacity
-      type: continuous
-      units: g/L
-      significant_digits: 3
-      names:
-          - noun: H2 working capacity between 5 and 100 bar at 298 K (computed using grand canonical Monte Carlo)
-          - noun: hydrogen working capacity between 5 and 100 bar at 298 K (computed using grand canonical Monte Carlo)
-    - id: outputs.H2-working_capacity_5_to_100_bar_77_K-g--L
-      description: H2 working capacity
-      type: continuous
-      units: g/L
-      significant_digits: 3
-      names:
-          - noun: H2 working capacity between 5 and 100 bar at 77 K (computed using grand canonical Monte Carlo)
-          - noun: hydrogen working capacity between 5 and 100 bar at 77 K (computed using grand canonical Monte Carlo)
-    - id: outputs.H2-working_capacity_1_to_100_bar_77_K-g--L
-      description: H2 working capacity
-      type: continuous
-      units: g/L
-      significant_digits: 3
-      names:
-          - noun: H2 working capacity between 1 and 100 bar at 77 K (computed using grand canonical Monte Carlo)
-          - noun: hydrogen working capacity between 1 and 100 bar at 77 K (computed using grand canonical Monte Carlo)
-    - id: info.pld
-      type: continuous
-      units: \AA
-      significant_digits: 3
-      names:
-          - noun: pore limiting diameter
-          - noun: pore limiting diameter (PLD)
-    - id: info.lcd
-      type: continuous
-      units: \AA
-      significant_digits: 3
-      names:
-          - noun: largest cavity diameter
-          - noun: largest cavity diameter (LCD)
-    - id: info.density
-      type: continuous
-      units: g/cm^3
-      significant_digits: 3
-      names:
-          - noun: density
+  - id: lg10_CO2_Henry
+    description: CO2 Henry coefficient
+    type: continuous
+    units: mol/kg/Pa
+    significant_digits: 3
+    names:
+      - noun: 10-based logarithm of CO2 Henry coefficient (computed using grand canonical Monte Carlo)
+      - noun: 10-based logarithm of carbon dioxide Henry coefficient (computed using grand canonical Monte Carlo)
+  - id: lg10_N2_Henry
+    description: N2 Henry coefficient
+    type: continuous
+    units: mol/kg/Pa
+    significant_digits: 3
+    names:
+      - noun: 10-based logarithm of N2 Henry coefficient (computed using grand canonical Monte Carlo)
+      - noun: 10-based logarithm of nitrogen Henry coefficient (computed using grand canonical Monte Carlo)
+  - id: lg10_CH4_Henry
+    description: CH4 Henry coefficient
+    type: continuous
+    units: mol/kg/Pa
+    significant_digits: 3
+    names:
+      - noun: 10-based logarithm of CH4 Henry coefficient (computed using grand canonical Monte Carlo)
+      - noun: 10-based logarithm of methane Henry coefficient (computed using grand canonical Monte Carlo)
+  - id: lg10_O2_Henry
+    description: O2 Henry coefficient
+    type: continuous
+    units: mol/kg/Pa
+    significant_digits: 3
+    names:
+      - noun: 10-based logarithm of O2 Henry coefficient (computed using grand canonical Monte Carlo)
+      - noun: 10-based logarithm of oxygen Henry coefficient using grand canonical Monte Carlo
+  - id: lg10_Xe_Henry
+    description: Xe Henry coefficient
+    type: continuous
+    units: mol/kg/Pa
+    significant_digits: 3
+    names:
+      - noun: 10-based logarithm of Xe Henry coefficient (computed using grand canonical Monte Carlo)
+      - noun: 10-based logarithm of xenon Henry coefficient (computed using grand canonical Monte Carlo)
+  - id: lg10_Kr_Henry
+    description: Kr Henry coefficient
+    type: continuous
+    units: mol/kg/Pa
+    significant_digits: 3
+    names:
+      - noun: 10-based logarithm of Kr Henry coefficient (computed using grand canonical Monte Carlo)
+      - noun: 10-based logarithm of krypton Henry coefficient (computed using grand canonical Monte Carlo)
+  - id: lg10_H2S_Henry
+    description: H2S Henry coefficient
+    type: continuous
+    units: mol/kg/Pa
+    significant_digits: 3
+    names:
+      - noun: 10-based logarithm of H2S Henry coefficient (computed using grand canonical Monte Carlo)
+      - noun: 10-based logarithm of hydrogen sulfide Henry coefficient (computed using grand canonical Monte Carlo)
+  - id: lg10_H2O_Henry
+    description: H2O Henry coefficient
+    type: continuous
+    units: mol/kg/Pa
+    significant_digits: 3
+    names:
+      - noun: 10-based logarithm of H2O Henry coefficient (computed using grand canonical Monte Carlo)
+      - noun: 10-based logarithm of water Henry coefficient (computed using grand canonical Monte Carlo)
+  - id: outputs.CO2-adsorption_energy-kJ--mol
+    description: CO2 adsorption energy
+    type: continuous
+    units: kJ/mol
+    significant_digits: 3
+    names:
+      - noun: CO2 adsorption energy (computed using grand canonical Monte Carlo)
+      - noun: carbon dioxide adsorption energy (computed using grand canonical Monte Carlo)
+  - id: outputs.N2-adsorption_energy-kJ--mol
+    description: N2 adsorption energy
+    type: continuous
+    units: kJ/mol
+    significant_digits: 3
+    names:
+      - noun: N2 adsorption energy (computed using grand canonical Monte Carlo)
+      - noun: nitrogen adsorption energy (computed using grand canonical Monte Carlo)
+  - id: outputs.CH4-adsorption_energy-kJ--mol
+    description: CH4 adsorption energy
+    type: continuous
+    units: kJ/mol
+    significant_digits: 3
+    names:
+      - noun: CH4 adsorption energy (computed using grand canonical Monte Carlo)
+      - noun: methane adsorption energy (computed using grand canonical Monte Carlo)
+  - id: outputs.O2-adsorption_energy-kJ--mol
+    description: O2 adsorption energy
+    type: continuous
+    units: kJ/mol
+    significant_digits: 3
+    names:
+      - noun: O2 adsorption energy (computed using grand canonical Monte Carlo)
+      - noun: oxygen adsorption energy (computed using grand canonical Monte Carlo)
+  - id: outputs.Xe-adsorption_energy-kJ--mol
+    description: Xe adsorption energy
+    type: continuous
+    units: kJ/mol
+    significant_digits: 3
+    names:
+      - noun: Xe adsorption energy (computed using grand canonical Monte Carlo)
+      - noun: xenon adsorption energy (computed using grand canonical Monte Carlo)
+  - id: outputs.Kr-adsorption_energy-kJ--mol
+    description: Kr adsorption energy
+    type: continuous
+    units: kJ/mol
+    significant_digits: 3
+    names:
+      - noun: Kr adsorption energy (computed using grand canonical Monte Carlo)
+      - noun: krypton adsorption energy (computed using grand canonical Monte Carlo)
+  - id: outputs.H2S-adsorption_energy-kJ--mol
+    description: H2S adsorption energy
+    type: continuous
+    units: kJ/mol
+    significant_digits: 3
+    names:
+      - noun: H2S adsorption energy (computed using grand canonical Monte Carlo)
+      - noun: hydrogen sulfide adsorption energy (computed using grand canonical Monte Carlo)
+  - id: outputs.H2O-adsorption_energy-kJ--mol
+    description: H2O adsorption energy
+    type: continuous
+    units: kJ/mol
+    significant_digits: 3
+    names:
+      - noun: H2O adsorption energy (computed using grand canonical Monte Carlo)
+      - noun: water adsorption energy (computed using grand canonical Monte Carlo)
+  - id: outputs.H2S--H2O-selectivity_298_K-
+    description: H2S/H2O selectivity
+    type: continuous
+    units: dimensionless
+    significant_digits: 3
+    names:
+      - noun: H2S/H2O selectivity (computed using grand canonical Monte Carlo)
+      - noun: hydrogen sulfide/water selectivity (computed using grand canonical Monte Carlo)
+  - id: outputs.CH4--N2-selectivity_298_K-
+    description: CH4/N2 selectivity
+    type: continuous
+    units: dimensionless
+    significant_digits: 3
+    names:
+      - noun: CH4/N2 selectivity (computed using grand canonical Monte Carlo)
+      - noun: methane/nitrogen selectivity (computed using grand canonical Monte Carlo)
+  - id: outputs.Xe--Kr-selectivity_298_K-
+    description: Xe/Kr selectivity
+    type: continuous
+    units: dimensionless
+    significant_digits: 3
+    names:
+      - noun: Xe/Kr selectivity (computed using grand canonical Monte Carlo)
+      - noun: xenon/krypton selectivity (computed using grand canonical Monte Carlo)
+  - id: outputs.CH4-working_capacity_vol_58_to_65_bar_298_K-cm3_STP--cm3
+    description: CH4 working capacity
+    type: continuous
+    units: cm^3 STP/cm^3
+    significant_digits: 3
+    names:
+      - noun: CH4 working capacity between 58 and 65 bar at 298 K (computed using grand canonical Monte Carlo)
+      - noun: methane working capacity between 58 and 65 bar at 298 K (computed using grand canonical Monte Carlo)
+  - id: outputs.CH4-working_capacity_mol_58_to_65_bar_298_K-mol--kg
+    description: CH4 working capacity
+    type: continuous
+    units: mol/kg
+    significant_digits: 3
+    names:
+      - noun: CH4 working capacity between 58 and 65 bar at 298 K (computed using grand canonical Monte Carlo)
+      - noun: methane working capacity between 58 and 65 bar at 298 K (computed using grand canonical Monte Carlo)
+  - id: outputs.O2-working_capacity_vol_5_to_140_bar_298_K-cm3_STP--cm3
+    description: O2 working capacity
+    type: continuous
+    units: cm^3 STP/cm^3
+    significant_digits: 3
+    names:
+      - noun: O2 working capacity between 5 and 140 bar at 298 K (computed using grand canonical Monte Carlo)
+      - noun: oxygen working capacity between 5 and 140 bar at 298 K (computed using grand canonical Monte Carlo)
+  - id: outputs.O2-working_capacity_mol_5_to_140_bar_298_K-mol--kg
+    description: O2 working capacity
+    type: continuous
+    units: mol/kg
+    significant_digits: 3
+    names:
+      - noun: O2 working capacity between 5 and 140 bar at 298 K (computed using grand canonical Monte Carlo)
+      - noun: oxygen working capacity between 5 and 140 bar at 298 K (computed using grand canonical Monte Carlo)
+  - id: outputs.H2-working_capacity_5_to_100_bar_298_to_198_K-g--L
+    description: H2 working capacity
+    type: continuous
+    units: g/L
+    significant_digits: 3
+    names:
+      - noun: H2 working capacity between 5 and 100 bar at 298 K (computed using grand canonical Monte Carlo)
+      - noun: hydrogen working capacity between 5 and 100 bar at 298 K (computed using grand canonical Monte Carlo)
+  - id: outputs.H2-working_capacity_5_to_100_bar_77_K-g--L
+    description: H2 working capacity
+    type: continuous
+    units: g/L
+    significant_digits: 3
+    names:
+      - noun: H2 working capacity between 5 and 100 bar at 77 K (computed using grand canonical Monte Carlo)
+      - noun: hydrogen working capacity between 5 and 100 bar at 77 K (computed using grand canonical Monte Carlo)
+  - id: outputs.H2-working_capacity_1_to_100_bar_77_K-g--L
+    description: H2 working capacity
+    type: continuous
+    units: g/L
+    significant_digits: 3
+    names:
+      - noun: H2 working capacity between 1 and 100 bar at 77 K (computed using grand canonical Monte Carlo)
+      - noun: hydrogen working capacity between 1 and 100 bar at 77 K (computed using grand canonical Monte Carlo)
+  - id: info.pld
+    type: continuous
+    units: \AA
+    significant_digits: 3
+    names:
+      - noun: pore limiting diameter
+      - noun: pore limiting diameter (PLD)
+  - id: info.lcd
+    type: continuous
+    units: \AA
+    significant_digits: 3
+    names:
+      - noun: largest cavity diameter
+      - noun: largest cavity diameter (LCD)
+  - id: info.density
+    type: continuous
+    units: g/cm^3
+    significant_digits: 3
+    names:
+      - noun: density
 identifiers:
-    - id: info.mofid.mofid
-      type: Other
-      description: MOFId
-    - id: info.mofid.smiles_nodes
-      type: Other
-      description: SMILES of nodes
-    - id: info.mofid.smiles_linkers
-      type: Other
-      description: SMILES of linkers
-    - id: info.mofid.smiles
-      type: Other
-      description: SMILES
-    - id: info.mofid.topology
-      type: Other
-      description: Topology RCSR ID
-    - id: info.symmetry.spacegroup_number
-      type: Other
-      description: Spacegroup number
-      names:
-          - noun: space group number
+  - id: info.mofid.mofid
+    type: Other
+    description: MOFId
+  - id: info.mofid.smiles_nodes
+    type: Other
+    description: SMILES of nodes
+  - id: info.mofid.smiles_linkers
+    type: Other
+    description: SMILES of linkers
+  - id: info.mofid.smiles
+    type: Other
+    description: SMILES
+  - id: info.mofid.topology
+    type: Other
+    description: Topology RCSR ID
+  - id: info.symmetry.spacegroup_number
+    type: Other
+    description: Spacegroup number
+    names:
+      - noun: space group number
 license: CC-BY-4.0
 num_points: 88
 bibtex:
-    - |-
-      @article{Rosen_2021,
-        doi = {10.1016/j.matt.2021.02.015},
-        url = {https://doi.org/10.1016%2Fj.matt.2021.02.015},
-        year = 2021,
-        month = {may},
-        publisher = {Elsevier {BV}},
-        volume = {4},
-        number = {5},
-        pages = {1578--1597},
-        author = {Andrew S. Rosen and Shaelyn M. Iyer and Debmalya Ray and Zhenpeng Yao and Al{\'{a}}n Aspuru-Guzik and Laura Gagliardi and Justin M. Notestein and Randall Q. Snurr},
-        title = {Machine learning the quantum-chemical properties of metal{\textendash}organic frameworks for accelerated materials discovery},
-        journal = {Matter}
-      }
-    - |-
-      @article{Rosen_2022,
-        doi = {10.1038/s41524-022-00796-6},
-        url = {https://doi.org/10.1038%2Fs41524-022-00796-6},
-        year = 2022,
-        month = {may},
-        publisher = {Springer Science and Business Media {LLC}},
-        volume = {8},
-        number = {1},
-        author = {Andrew S. Rosen and Victor Fung and Patrick Huck and Cody T. O'Donnell and Matthew K. Horton and Donald G. Truhlar and Kristin A. Persson and Justin M. Notestein and Randall Q. Snurr},
-        title = {High-throughput predictions of metal{\textendash}organic framework electronic properties: theoretical challenges, graph neural networks, and data exploration},
-        journal = {npj Comput Mater}
-      }
-    - |-
-      @article{Jablonka_2023,
-        doi = {10.1021/acscentsci.2c01177},
-        url = {https://doi.org/10.1021%2Facscentsci.2c01177},
-        year = 2023,
-        month = {mar},
-        publisher = {American Chemical Society ({ACS})},
-        volume = {9},
-        number = {4},
-        pages = {563--581},
-        author = {Kevin Maik Jablonka and Andrew S. Rosen and Aditi S. Krishnapriyan and Berend Smit},
-        title = {An Ecosystem for Digital Reticular Chemistry},
-        journal = {ACS Cent. Sci.} Central Science}
-      }
+  - |-
+    @article{Rosen_2021,
+      doi = {10.1016/j.matt.2021.02.015},
+      url = {https://doi.org/10.1016%2Fj.matt.2021.02.015},
+      year = 2021,
+      month = {may},
+      publisher = {Elsevier {BV}},
+      volume = {4},
+      number = {5},
+      pages = {1578--1597},
+      author = {Andrew S. Rosen and Shaelyn M. Iyer and Debmalya Ray and Zhenpeng Yao and Al{\'{a}}n Aspuru-Guzik and Laura Gagliardi and Justin M. Notestein and Randall Q. Snurr},
+      title = {Machine learning the quantum-chemical properties of metal{\textendash}organic frameworks for accelerated materials discovery},
+      journal = {Matter}
+    }
+  - |-
+    @article{Rosen_2022,
+      doi = {10.1038/s41524-022-00796-6},
+      url = {https://doi.org/10.1038%2Fs41524-022-00796-6},
+      year = 2022,
+      month = {may},
+      publisher = {Springer Science and Business Media {LLC}},
+      volume = {8},
+      number = {1},
+      author = {Andrew S. Rosen and Victor Fung and Patrick Huck and Cody T. O'Donnell and Matthew K. Horton and Donald G. Truhlar and Kristin A. Persson and Justin M. Notestein and Randall Q. Snurr},
+      title = {High-throughput predictions of metal{\textendash}organic framework electronic properties: theoretical challenges, graph neural networks, and data exploration},
+      journal = {npj Comput Mater}
+    }
+  - |-
+    @article{Jablonka_2023,
+      doi = {10.1021/acscentsci.2c01177},
+      url = {https://doi.org/10.1021%2Facscentsci.2c01177},
+      year = 2023,
+      month = {mar},
+      publisher = {American Chemical Society ({ACS})},
+      volume = {9},
+      number = {4},
+      pages = {563--581},
+      author = {Kevin Maik Jablonka and Andrew S. Rosen and Aditi S. Krishnapriyan and Berend Smit},
+      title = {An Ecosystem for Digital Reticular Chemistry},
+      journal = {ACS Cent. Sci.} Central Science}
+    }
 templates:
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {lg10_CO2_Henry__names__noun} of {lg10_CO2_Henry#} {lg10_CO2_Henry__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {lg10_CO2_Henry__names__noun}
-      of {lg10_CO2_Henry#} {lg10_CO2_Henry__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {lg10_N2_Henry__names__noun} of {lg10_N2_Henry#} {lg10_N2_Henry__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {lg10_N2_Henry__names__noun}
-      of {lg10_N2_Henry#} {lg10_N2_Henry__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {lg10_CH4_Henry__names__noun} of {lg10_CH4_Henry#} {lg10_CH4_Henry__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {lg10_CH4_Henry__names__noun}
-      of {lg10_CH4_Henry#} {lg10_CH4_Henry__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {lg10_O2_Henry__names__noun} of {lg10_O2_Henry#} {lg10_O2_Henry__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {lg10_O2_Henry__names__noun}
-      of {lg10_O2_Henry#} {lg10_O2_Henry__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {lg10_Xe_Henry__names__noun} of {lg10_Xe_Henry#} {lg10_Xe_Henry__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {lg10_Xe_Henry__names__noun}
-      of {lg10_Xe_Henry#} {lg10_Xe_Henry__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {lg10_Kr_Henry__names__noun} of {lg10_Kr_Henry#} {lg10_Kr_Henry__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {lg10_Kr_Henry__names__noun}
-      of {lg10_Kr_Henry#} {lg10_Kr_Henry__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {lg10_H2S_Henry__names__noun} of {lg10_H2S_Henry#} {lg10_H2S_Henry__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {lg10_H2S_Henry__names__noun}
-      of {lg10_H2S_Henry#} {lg10_H2S_Henry__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {lg10_H2O_Henry__names__noun} of {lg10_H2O_Henry#} {lg10_H2O_Henry__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {lg10_H2O_Henry__names__noun}
-      of {lg10_H2O_Henry#} {lg10_H2O_Henry__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.CO2-adsorption_energy-kJ--mol__names__noun}
-      of {outputs.CO2-adsorption_energy-kJ--mol#} {outputs.CO2-adsorption_energy-kJ--mol__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.CO2-adsorption_energy-kJ--mol__names__noun}
-      of {outputs.CO2-adsorption_energy-kJ--mol#} {outputs.CO2-adsorption_energy-kJ--mol__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.N2-adsorption_energy-kJ--mol__names__noun}
-      of {outputs.N2-adsorption_energy-kJ--mol#} {outputs.N2-adsorption_energy-kJ--mol__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.N2-adsorption_energy-kJ--mol__names__noun}
-      of {outputs.N2-adsorption_energy-kJ--mol#} {outputs.N2-adsorption_energy-kJ--mol__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.CH4-adsorption_energy-kJ--mol__names__noun}
-      of {outputs.CH4-adsorption_energy-kJ--mol#} {outputs.CH4-adsorption_energy-kJ--mol__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.CH4-adsorption_energy-kJ--mol__names__noun}
-      of {outputs.CH4-adsorption_energy-kJ--mol#} {outputs.CH4-adsorption_energy-kJ--mol__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.O2-adsorption_energy-kJ--mol__names__noun}
-      of {outputs.O2-adsorption_energy-kJ--mol#} {outputs.O2-adsorption_energy-kJ--mol__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.O2-adsorption_energy-kJ--mol__names__noun}
-      of {outputs.O2-adsorption_energy-kJ--mol#} {outputs.O2-adsorption_energy-kJ--mol__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.Xe-adsorption_energy-kJ--mol__names__noun}
-      of {outputs.Xe-adsorption_energy-kJ--mol#} {outputs.Xe-adsorption_energy-kJ--mol__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.Xe-adsorption_energy-kJ--mol__names__noun}
-      of {outputs.Xe-adsorption_energy-kJ--mol#} {outputs.Xe-adsorption_energy-kJ--mol__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.Kr-adsorption_energy-kJ--mol__names__noun}
-      of {outputs.Kr-adsorption_energy-kJ--mol#} {outputs.Kr-adsorption_energy-kJ--mol__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.Kr-adsorption_energy-kJ--mol__names__noun}
-      of {outputs.Kr-adsorption_energy-kJ--mol#} {outputs.Kr-adsorption_energy-kJ--mol__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.H2S-adsorption_energy-kJ--mol__names__noun}
-      of {outputs.H2S-adsorption_energy-kJ--mol#} {outputs.H2S-adsorption_energy-kJ--mol__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.H2S-adsorption_energy-kJ--mol__names__noun}
-      of {outputs.H2S-adsorption_energy-kJ--mol#} {outputs.H2S-adsorption_energy-kJ--mol__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.H2O-adsorption_energy-kJ--mol__names__noun}
-      of {outputs.H2O-adsorption_energy-kJ--mol#} {outputs.H2O-adsorption_energy-kJ--mol__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.H2O-adsorption_energy-kJ--mol__names__noun}
-      of {outputs.H2O-adsorption_energy-kJ--mol#} {outputs.H2O-adsorption_energy-kJ--mol__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {outputs.H2S--H2O-selectivity_298_K-__names__noun} of
-      {outputs.H2S--H2O-selectivity_298_K-#}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {outputs.H2S--H2O-selectivity_298_K-__names__noun}
-      of {outputs.H2S--H2O-selectivity_298_K-#}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {outputs.CH4--N2-selectivity_298_K-__names__noun} of
-      {outputs.CH4--N2-selectivity_298_K-#}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {outputs.CH4--N2-selectivity_298_K-__names__noun}
-      of {outputs.CH4--N2-selectivity_298_K-#}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {outputs.Xe--Kr-selectivity_298_K-__names__noun} of {outputs.Xe--Kr-selectivity_298_K-#}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {outputs.Xe--Kr-selectivity_298_K-__names__noun}
-      of {outputs.Xe--Kr-selectivity_298_K-#}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {outputs.CH4-working_capacity_vol_58_to_65_bar_298_K-cm3_STP--cm3__names__noun}
-      of {outputs.CH4-working_capacity_vol_58_to_65_bar_298_K-cm3_STP--cm3#} {outputs.CH4-working_capacity_vol_58_to_65_bar_298_K-cm3_STP--cm3__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {outputs.CH4-working_capacity_vol_58_to_65_bar_298_K-cm3_STP--cm3__names__noun}
-      of {outputs.CH4-working_capacity_vol_58_to_65_bar_298_K-cm3_STP--cm3#} {outputs.CH4-working_capacity_vol_58_to_65_bar_298_K-cm3_STP--cm3__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {outputs.CH4-working_capacity_mol_58_to_65_bar_298_K-mol--kg__names__noun}
-      of {outputs.CH4-working_capacity_mol_58_to_65_bar_298_K-mol--kg#} {outputs.CH4-working_capacity_mol_58_to_65_bar_298_K-mol--kg__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {outputs.CH4-working_capacity_mol_58_to_65_bar_298_K-mol--kg__names__noun}
-      of {outputs.CH4-working_capacity_mol_58_to_65_bar_298_K-mol--kg#} {outputs.CH4-working_capacity_mol_58_to_65_bar_298_K-mol--kg__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.O2-working_capacity_vol_5_to_140_bar_298_K-cm3_STP--cm3__names__noun}
-      of {outputs.O2-working_capacity_vol_5_to_140_bar_298_K-cm3_STP--cm3#} {outputs.O2-working_capacity_vol_5_to_140_bar_298_K-cm3_STP--cm3__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.O2-working_capacity_vol_5_to_140_bar_298_K-cm3_STP--cm3__names__noun}
-      of {outputs.O2-working_capacity_vol_5_to_140_bar_298_K-cm3_STP--cm3#} {outputs.O2-working_capacity_vol_5_to_140_bar_298_K-cm3_STP--cm3__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.O2-working_capacity_mol_5_to_140_bar_298_K-mol--kg__names__noun}
-      of {outputs.O2-working_capacity_mol_5_to_140_bar_298_K-mol--kg#} {outputs.O2-working_capacity_mol_5_to_140_bar_298_K-mol--kg__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.O2-working_capacity_mol_5_to_140_bar_298_K-mol--kg__names__noun}
-      of {outputs.O2-working_capacity_mol_5_to_140_bar_298_K-mol--kg#} {outputs.O2-working_capacity_mol_5_to_140_bar_298_K-mol--kg__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.H2-working_capacity_5_to_100_bar_298_to_198_K-g--L__names__noun}
-      of {outputs.H2-working_capacity_5_to_100_bar_298_to_198_K-g--L#} {outputs.H2-working_capacity_5_to_100_bar_298_to_198_K-g--L__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.H2-working_capacity_5_to_100_bar_298_to_198_K-g--L__names__noun}
-      of {outputs.H2-working_capacity_5_to_100_bar_298_to_198_K-g--L#} {outputs.H2-working_capacity_5_to_100_bar_298_to_198_K-g--L__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.H2-working_capacity_5_to_100_bar_77_K-g--L__names__noun}
-      of {outputs.H2-working_capacity_5_to_100_bar_77_K-g--L#} {outputs.H2-working_capacity_5_to_100_bar_77_K-g--L__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.H2-working_capacity_5_to_100_bar_77_K-g--L__names__noun}
-      of {outputs.H2-working_capacity_5_to_100_bar_77_K-g--L#} {outputs.H2-working_capacity_5_to_100_bar_77_K-g--L__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#},
-      linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.H2-working_capacity_1_to_100_bar_77_K-g--L__names__noun}
-      of {outputs.H2-working_capacity_1_to_100_bar_77_K-g--L#} {outputs.H2-working_capacity_1_to_100_bar_77_K-g--L__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.H2-working_capacity_1_to_100_bar_77_K-g--L__names__noun}
-      of {outputs.H2-working_capacity_1_to_100_bar_77_K-g--L#} {outputs.H2-working_capacity_1_to_100_bar_77_K-g--L__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {info.pld__names__noun}
-      of {info.pld#} {info.pld__units}
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {info.lcd__names__noun}
-      of {info.lcd#} {info.lcd__units}.
-    - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {info.density__names__noun}
-      of {info.density#} {info.density__units}.
-    - |-
-      User: I {#want|would like|have|need|must!} to {#design|synthesize|find!} a {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with specific gas adsorption properties.
-      Assistant: {#How can I help you?|How can I be of assistance?|What can I do for you?|That's cool, how can I help?|Interesting, can I be of any help?|Seems interesting, how can I support you?!}
-      User: I {#want|would like!} the {outputs.H2S--H2O-selectivity_298_K-__names__noun} to be {outputs.H2S--H2O-selectivity_298_K-#} and the {outputs.CH4--N2-selectivity_298_K-__names__noun} to be {outputs.CH4--N2-selectivity_298_K-#}.
-      Assistant: {#In this case, I would recommend the following MOF:|I found the following MOF for you:|I suggest|I recommend!} {info.mofid.mofid#}.
-    - |-
-      User: I {#want|would like|have|need|must!} to {#design|synthesize|find!} a {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with specific gas adsorption properties.
-      Assistant: {#How can I help you?|How can I be of assistance?|What can I do for you?|That's cool, how can I help?|Interesting, can I be of any help?|Seems interesting, how can I support you?!}
-      User: I {#want|would like!} the {outputs.CH4--N2-selectivity_298_K-__names__noun} to be {outputs.CH4--N2-selectivity_298_K-#}, the {outputs.H2S--H2O-selectivity_298_K-__names__noun} to be {outputs.H2S--H2O-selectivity_298_K-#}, and the {outputs.CH4-working_capacity_vol_58_to_65_bar_298_K-cm3_STP--cm3__names__noun} to be {outputs.CH4-working_capacity_vol_58_to_65_bar_298_K-cm3_STP--cm3#}.
-      Assistant: {#In this case, I would recommend the following MOF:|I found the following MOF for you:|I suggest|I recommend!} {info.mofid.mofid#}.
-    - |-
-      User: I {#want|would like|have|need|must!} to {#design|synthesize|find!} a {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with specific gas adsorption properties.
-      Assistant: {#How can I help you?|How can I be of assistance?|What can I do for you?|That's cool, how can I help?|Interesting, can I be of any help?|Seems interesting, how can I support you?!}
-      User: I {#want|would like!} the {outputs.CO2-adsorption_energy-kJ--mol__names__noun} to be {outputs.CO2-adsorption_energy-kJ--mol#}, the {outputs.N2-adsorption_energy-kJ--mol__names__noun} to be {outputs.N2-adsorption_energy-kJ--mol#}, and the {outputs.CH4-adsorption_energy-kJ--mol__names__noun} to be {outputs.CH4-adsorption_energy-kJ--mol#}.
-      Assistant: {#In this case, I would recommend the following MOF:|I found the following MOF for you:|I suggest|I recommend!} {info.mofid.mofid#}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {lg10_CO2_Henry__names__noun} of {lg10_CO2_Henry#} {lg10_CO2_Henry__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {lg10_CO2_Henry__names__noun} of {lg10_CO2_Henry#} {lg10_CO2_Henry__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {lg10_N2_Henry__names__noun} of {lg10_N2_Henry#} {lg10_N2_Henry__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {lg10_N2_Henry__names__noun} of {lg10_N2_Henry#} {lg10_N2_Henry__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {lg10_CH4_Henry__names__noun} of {lg10_CH4_Henry#} {lg10_CH4_Henry__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {lg10_CH4_Henry__names__noun} of {lg10_CH4_Henry#} {lg10_CH4_Henry__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {lg10_O2_Henry__names__noun} of {lg10_O2_Henry#} {lg10_O2_Henry__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {lg10_O2_Henry__names__noun} of {lg10_O2_Henry#} {lg10_O2_Henry__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {lg10_Xe_Henry__names__noun} of {lg10_Xe_Henry#} {lg10_Xe_Henry__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {lg10_Xe_Henry__names__noun} of {lg10_Xe_Henry#} {lg10_Xe_Henry__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {lg10_Kr_Henry__names__noun} of {lg10_Kr_Henry#} {lg10_Kr_Henry__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {lg10_Kr_Henry__names__noun} of {lg10_Kr_Henry#} {lg10_Kr_Henry__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {lg10_H2S_Henry__names__noun} of {lg10_H2S_Henry#} {lg10_H2S_Henry__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {lg10_H2S_Henry__names__noun} of {lg10_H2S_Henry#} {lg10_H2S_Henry__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {lg10_H2O_Henry__names__noun} of {lg10_H2O_Henry#} {lg10_H2O_Henry__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {lg10_H2O_Henry__names__noun} of {lg10_H2O_Henry#} {lg10_H2O_Henry__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.CO2-adsorption_energy-kJ--mol__names__noun} of {outputs.CO2-adsorption_energy-kJ--mol#} {outputs.CO2-adsorption_energy-kJ--mol__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.CO2-adsorption_energy-kJ--mol__names__noun} of {outputs.CO2-adsorption_energy-kJ--mol#} {outputs.CO2-adsorption_energy-kJ--mol__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.N2-adsorption_energy-kJ--mol__names__noun} of {outputs.N2-adsorption_energy-kJ--mol#} {outputs.N2-adsorption_energy-kJ--mol__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.N2-adsorption_energy-kJ--mol__names__noun} of {outputs.N2-adsorption_energy-kJ--mol#} {outputs.N2-adsorption_energy-kJ--mol__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.CH4-adsorption_energy-kJ--mol__names__noun} of {outputs.CH4-adsorption_energy-kJ--mol#} {outputs.CH4-adsorption_energy-kJ--mol__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.CH4-adsorption_energy-kJ--mol__names__noun} of {outputs.CH4-adsorption_energy-kJ--mol#} {outputs.CH4-adsorption_energy-kJ--mol__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.O2-adsorption_energy-kJ--mol__names__noun} of {outputs.O2-adsorption_energy-kJ--mol#} {outputs.O2-adsorption_energy-kJ--mol__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.O2-adsorption_energy-kJ--mol__names__noun} of {outputs.O2-adsorption_energy-kJ--mol#} {outputs.O2-adsorption_energy-kJ--mol__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.Xe-adsorption_energy-kJ--mol__names__noun} of {outputs.Xe-adsorption_energy-kJ--mol#} {outputs.Xe-adsorption_energy-kJ--mol__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.Xe-adsorption_energy-kJ--mol__names__noun} of {outputs.Xe-adsorption_energy-kJ--mol#} {outputs.Xe-adsorption_energy-kJ--mol__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.Kr-adsorption_energy-kJ--mol__names__noun} of {outputs.Kr-adsorption_energy-kJ--mol#} {outputs.Kr-adsorption_energy-kJ--mol__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.Kr-adsorption_energy-kJ--mol__names__noun} of {outputs.Kr-adsorption_energy-kJ--mol#} {outputs.Kr-adsorption_energy-kJ--mol__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.H2S-adsorption_energy-kJ--mol__names__noun} of {outputs.H2S-adsorption_energy-kJ--mol#} {outputs.H2S-adsorption_energy-kJ--mol__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.H2S-adsorption_energy-kJ--mol__names__noun} of {outputs.H2S-adsorption_energy-kJ--mol#} {outputs.H2S-adsorption_energy-kJ--mol__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.H2O-adsorption_energy-kJ--mol__names__noun} of {outputs.H2O-adsorption_energy-kJ--mol#} {outputs.H2O-adsorption_energy-kJ--mol__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.H2O-adsorption_energy-kJ--mol__names__noun} of {outputs.H2O-adsorption_energy-kJ--mol#} {outputs.H2O-adsorption_energy-kJ--mol__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {outputs.H2S--H2O-selectivity_298_K-__names__noun} of {outputs.H2S--H2O-selectivity_298_K-#}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {outputs.H2S--H2O-selectivity_298_K-__names__noun} of {outputs.H2S--H2O-selectivity_298_K-#}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {outputs.CH4--N2-selectivity_298_K-__names__noun} of {outputs.CH4--N2-selectivity_298_K-#}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {outputs.CH4--N2-selectivity_298_K-__names__noun} of {outputs.CH4--N2-selectivity_298_K-#}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {outputs.Xe--Kr-selectivity_298_K-__names__noun} of {outputs.Xe--Kr-selectivity_298_K-#}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {outputs.Xe--Kr-selectivity_298_K-__names__noun} of {outputs.Xe--Kr-selectivity_298_K-#}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {outputs.CH4-working_capacity_vol_58_to_65_bar_298_K-cm3_STP--cm3__names__noun} of {outputs.CH4-working_capacity_vol_58_to_65_bar_298_K-cm3_STP--cm3#} {outputs.CH4-working_capacity_vol_58_to_65_bar_298_K-cm3_STP--cm3__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {outputs.CH4-working_capacity_vol_58_to_65_bar_298_K-cm3_STP--cm3__names__noun} of {outputs.CH4-working_capacity_vol_58_to_65_bar_298_K-cm3_STP--cm3#} {outputs.CH4-working_capacity_vol_58_to_65_bar_298_K-cm3_STP--cm3__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has a {outputs.CH4-working_capacity_mol_58_to_65_bar_298_K-mol--kg__names__noun} of {outputs.CH4-working_capacity_mol_58_to_65_bar_298_K-mol--kg#} {outputs.CH4-working_capacity_mol_58_to_65_bar_298_K-mol--kg__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {outputs.CH4-working_capacity_mol_58_to_65_bar_298_K-mol--kg__names__noun} of {outputs.CH4-working_capacity_mol_58_to_65_bar_298_K-mol--kg#} {outputs.CH4-working_capacity_mol_58_to_65_bar_298_K-mol--kg__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.O2-working_capacity_vol_5_to_140_bar_298_K-cm3_STP--cm3__names__noun} of {outputs.O2-working_capacity_vol_5_to_140_bar_298_K-cm3_STP--cm3#} {outputs.O2-working_capacity_vol_5_to_140_bar_298_K-cm3_STP--cm3__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.O2-working_capacity_vol_5_to_140_bar_298_K-cm3_STP--cm3__names__noun} of {outputs.O2-working_capacity_vol_5_to_140_bar_298_K-cm3_STP--cm3#} {outputs.O2-working_capacity_vol_5_to_140_bar_298_K-cm3_STP--cm3__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.O2-working_capacity_mol_5_to_140_bar_298_K-mol--kg__names__noun} of {outputs.O2-working_capacity_mol_5_to_140_bar_298_K-mol--kg#} {outputs.O2-working_capacity_mol_5_to_140_bar_298_K-mol--kg__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.O2-working_capacity_mol_5_to_140_bar_298_K-mol--kg__names__noun} of {outputs.O2-working_capacity_mol_5_to_140_bar_298_K-mol--kg#} {outputs.O2-working_capacity_mol_5_to_140_bar_298_K-mol--kg__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.H2-working_capacity_5_to_100_bar_298_to_198_K-g--L__names__noun} of {outputs.H2-working_capacity_5_to_100_bar_298_to_198_K-g--L#} {outputs.H2-working_capacity_5_to_100_bar_298_to_198_K-g--L__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.H2-working_capacity_5_to_100_bar_298_to_198_K-g--L__names__noun} of {outputs.H2-working_capacity_5_to_100_bar_298_to_198_K-g--L#} {outputs.H2-working_capacity_5_to_100_bar_298_to_198_K-g--L__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.H2-working_capacity_5_to_100_bar_77_K-g--L__names__noun} of {outputs.H2-working_capacity_5_to_100_bar_77_K-g--L#} {outputs.H2-working_capacity_5_to_100_bar_77_K-g--L__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.H2-working_capacity_5_to_100_bar_77_K-g--L__names__noun} of {outputs.H2-working_capacity_5_to_100_bar_77_K-g--L#} {outputs.H2-working_capacity_5_to_100_bar_77_K-g--L__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the {#topology|net|RCSR code|RCSR identifier!} {info.mofid.topology#}, linker SMILES {info.mofid.smiles_linkers#}, and node SMILES {info.mofid.smiles_nodes#} has an {outputs.H2-working_capacity_1_to_100_bar_77_K-g--L__names__noun} of {outputs.H2-working_capacity_1_to_100_bar_77_K-g--L#} {outputs.H2-working_capacity_1_to_100_bar_77_K-g--L__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has an {outputs.H2-working_capacity_1_to_100_bar_77_K-g--L__names__noun} of {outputs.H2-working_capacity_1_to_100_bar_77_K-g--L#} {outputs.H2-working_capacity_1_to_100_bar_77_K-g--L__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {info.pld__names__noun} of {info.pld#} {info.pld__units}
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {info.lcd__names__noun} of {info.lcd#} {info.lcd__units}.
+  - The {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with the MOFId {info.mofid.mofid#} has a {info.density__names__noun} of {info.density#} {info.density__units}.
+  - |-
+    User: I {#want|would like|have|need|must!} to {#design|synthesize|find!} a {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with specific gas adsorption properties.
+    Assistant: {#How can I help you?|How can I be of assistance?|What can I do for you?|That's cool, how can I help?|Interesting, can I be of any help?|Seems interesting, how can I support you?!}
+    User: I {#want|would like!} the {outputs.H2S--H2O-selectivity_298_K-__names__noun} to be {outputs.H2S--H2O-selectivity_298_K-#} and the {outputs.CH4--N2-selectivity_298_K-__names__noun} to be {outputs.CH4--N2-selectivity_298_K-#}.
+    Assistant: {#In this case, I would recommend the following MOF:|I found the following MOF for you:|I suggest|I recommend!} {info.mofid.mofid#}.
+  - |-
+    User: I {#want|would like|have|need|must!} to {#design|synthesize|find!} a {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with specific gas adsorption properties.
+    Assistant: {#How can I help you?|How can I be of assistance?|What can I do for you?|That's cool, how can I help?|Interesting, can I be of any help?|Seems interesting, how can I support you?!}
+    User: I {#want|would like!} the {outputs.CH4--N2-selectivity_298_K-__names__noun} to be {outputs.CH4--N2-selectivity_298_K-#}, the {outputs.H2S--H2O-selectivity_298_K-__names__noun} to be {outputs.H2S--H2O-selectivity_298_K-#}, and the {outputs.CH4-working_capacity_vol_58_to_65_bar_298_K-cm3_STP--cm3__names__noun} to be {outputs.CH4-working_capacity_vol_58_to_65_bar_298_K-cm3_STP--cm3#}.
+    Assistant: {#In this case, I would recommend the following MOF:|I found the following MOF for you:|I suggest|I recommend!} {info.mofid.mofid#}.
+  - |-
+    User: I {#want|would like|have|need|must!} to {#design|synthesize|find!} a {#MOF|metal-organic framework|metal-organic framework (MOF)|reticular material!} with specific gas adsorption properties.
+    Assistant: {#How can I help you?|How can I be of assistance?|What can I do for you?|That's cool, how can I help?|Interesting, can I be of any help?|Seems interesting, how can I support you?!}
+    User: I {#want|would like!} the {outputs.CO2-adsorption_energy-kJ--mol__names__noun} to be {outputs.CO2-adsorption_energy-kJ--mol#}, the {outputs.N2-adsorption_energy-kJ--mol__names__noun} to be {outputs.N2-adsorption_energy-kJ--mol#}, and the {outputs.CH4-adsorption_energy-kJ--mol__names__noun} to be {outputs.CH4-adsorption_energy-kJ--mol#}.
+    Assistant: {#In this case, I would recommend the following MOF:|I found the following MOF for you:|I suggest|I recommend!} {info.mofid.mofid#}.

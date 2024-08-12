@@ -1,104 +1,103 @@
----
 name: orbnet_denali
 description: |-
-    Structures (including conformers, protomers, ...) of structures.
-    Has been used for training of OrbNet Denali.
+  Structures (including conformers, protomers, ...) of structures.
+  Has been used for training of OrbNet Denali.
 targets:
-    - id: charge
-      type: ordinal
-      description: integer charge of the molecule
-      names:
-          - noun: charge
-    - id: xtb1_energy
-      type: continuous
-      description: XTB1 energy
-      units: Hartree
-      significant_digits: 5
-      names:
-          - noun: total energy computed at the GFN1-xTB level of theory
-    - id: dft_energy
-      type: continuous
-      description: DFT energy
-      units: Hartree
-      significant_digits: 5
-      names:
-          - noun: total energy computed at the {\omega}B97X-D3/def2-TZVP level of theory
-          - lot: the {\omega}B97X-D3/def2-TZVP
+  - id: charge
+    type: ordinal
+    description: integer charge of the molecule
+    names:
+      - noun: charge
+  - id: xtb1_energy
+    type: continuous
+    description: XTB1 energy
+    units: Hartree
+    significant_digits: 5
+    names:
+      - noun: total energy computed at the GFN1-xTB level of theory
+  - id: dft_energy
+    type: continuous
+    description: DFT energy
+    units: Hartree
+    significant_digits: 5
+    names:
+      - noun: total energy computed at the {\omega}B97X-D3/def2-TZVP level of theory
+      - lot: the {\omega}B97X-D3/def2-TZVP
 identifiers:
-    - id: SMILES
-      type: SMILES
-      description: SMILES
-    - id: xyz
-      type: XYZFILE
-      description: XYZ file
-      names:
-          - noun: XYZ file
-    - id: mol2000
-      type: MOL2000FILE
-      description: MOL2000 file
-      names:
-          - noun: MOL2000 file
-    - id: mol3000
-      type: MOL3000FILE
-      description: MOL3000 file
-      names:
-          - noun: MOL3000 file
+  - id: SMILES
+    type: SMILES
+    description: SMILES
+  - id: xyz
+    type: XYZFILE
+    description: XYZ file
+    names:
+      - noun: XYZ file
+  - id: mol2000
+    type: MOL2000FILE
+    description: MOL2000 file
+    names:
+      - noun: MOL2000 file
+  - id: mol3000
+    type: MOL3000FILE
+    description: MOL3000 file
+    names:
+      - noun: MOL3000 file
 license: CC BY 4.0
 links:
-    - url: https://arxiv.org/abs/2107.00299
-      description: corresponding publication
-    - url: https://figshare.com/ndownloader/files/28672287
-      description: structure download
-      md5: edd35e95a018836d5f174a3431a751df
-    - url: https://figshare.com/ndownloader/files/28672248
-      description: label download
-      md5: bc9b612f75373d1d191ce7493eebfd62
-    - url: https://figshare.com/articles/dataset/OrbNet_Denali_Training_Data/14883867?file=28672248
-      description: data source
+  - url: https://arxiv.org/abs/2107.00299
+    description: corresponding publication
+  - url: https://figshare.com/ndownloader/files/28672287
+    description: structure download
+    md5: edd35e95a018836d5f174a3431a751df
+  - url: https://figshare.com/ndownloader/files/28672248
+    description: label download
+    md5: bc9b612f75373d1d191ce7493eebfd62
+  - url: https://figshare.com/articles/dataset/OrbNet_Denali_Training_Data/14883867?file=28672248
+    description: data source
 num_points: 1050713
 bibtex:
-    - |-
-      @article{Christensen_2021,
-        doi = {10.1063/5.0061990},
-        url = {https://doi.org/10.1063%2F5.0061990},
-        year = 2021,
-        month = {nov},
-        publisher = {{AIP} Publishing},
-        volume = {155},
-        number = {20},
-        author = {Anders S. Christensen and Sai Krishna Sirumalla and Zhuoran Qiao and Michael B. O'Connor and Daniel G. A. Smith and Feizhi Ding and Peter J. Bygrave and Animashree Anandkumar and Matthew Welborn and Frederick R. Manby and Thomas F. Miller},
-        title = {{OrbNet} Denali: A machine learning potential for biological and organic chemistry with semi-empirical cost and {DFT} accuracy},
-        journal = {The Journal of Chemical Physics}
-      }
+  - |-
+    @article{Christensen_2021,
+      doi = {10.1063/5.0061990},
+      url = {https://doi.org/10.1063%2F5.0061990},
+      year = 2021,
+      month = {nov},
+      publisher = {{AIP} Publishing},
+      volume = {155},
+      number = {20},
+      author = {Anders S. Christensen and Sai Krishna Sirumalla and Zhuoran Qiao and Michael B. O'Connor and Daniel G. A. Smith and Feizhi Ding and Peter J. Bygrave and Animashree Anandkumar and Matthew Welborn and Frederick R. Manby and Thomas F. Miller},
+      title = {{OrbNet} Denali: A machine learning potential for biological and organic chemistry with semi-empirical cost and {DFT} accuracy},
+      journal = {The Journal of Chemical Physics}
+    }
 templates:
-    - The {#molecule|chemical|compound|chemical structure!} with {SMILES__description} {SMILES#} has a charge of {charge#}.
-    - |-
-      Question: {#What is the|What's the!} structure of a conformer of the {#molecule|chemical|compound|chemical structure!} with {SMILES__description} {SMILES#}?
-      Constraint: Return a {xyz__names__noun}.
-      Answer: {xyz#}
-    - |-
-      Question: {#What is the|What's the!} structure of a conformer of the {#molecule|chemical|compound|chemical structure!} with {SMILES__description} {SMILES#}?
-      Constraint: Return a {mol2000__names__noun}.
-      Answer: {mol2000#}
-    - |-
-      Question: {#What is the|What's the!} structure of a conformer of the {#molecule|chemical|compound|chemical structure!} with {SMILES__description} {SMILES#}?
-      Constraint: Return a {mol3000__names__noun}.
-      Answer: {mol3000#}
-    - |-
-      Task: Return the total energy of a {#molecule|chemical|compound|chemical structure!} computed at the GFN1-xTB level of theory.
-      Description: The {#molecule|chemical|compound|chemical structure!} has the {xyz__names__noun} {xyz#}.
-      Answer: {xtb1_energy#} {xtb1_energy__units}
-    - |-
-      Task: Return the total energy of a {#molecule|chemical|compound|chemical structure!} computed at {dft_energy__names__lot} level of theory.
-      Description: The {#molecule|chemical|compound|chemical structure!} has the {xyz__names__noun} {xyz#}.
-      Answer: {dft_energy#} {dft_energy__units}
-    - |-
-      User: {#I want to|I have to|I must|I would like to!} know the GFN1-xTB total energy of the {#molecule|chemical|compound|chemical structure!} with {SMILES__description} {SMILES#}.
-      Assistant: Do you have the {xyz__names__noun} file of a conformer of the {#molecule|chemical|compound|chemical structure!}?
-      User: {#Yes:|Here it is:|I have it:|I do:!} {xyz#}
-      Assistant: The GFN1-xTB total energy of the {#molecule|chemical|compound|chemical structure!} is {xtb1_energy#} {xtb1_energy__units}.
-    - |-
-      User: {#I want to|I have to|I must|I would like to!} know {dft_energy__names__lot} total energy of the {#molecule|chemical|compound|chemical structure!} with {SMILES__description} {SMILES#}.
-      Assistant: Do you have the {xyz__names__noun} file of a conformer of the {#molecule|chemical|compound|chemical structure!}?
-      User: {#Yes:|Here it is:|I have it:|I do:!} {xyz#}
-      Assistant: The total energy on {dft_energy__names__lot} level of theory of the {#molecule|chemical|compound|chemical structure!} is {dft_energy#} {dft_energy__units}.
+  - The {#molecule|chemical|compound|chemical structure!} with {SMILES__description} {SMILES#} has a charge of {charge#}.
+  - |-
+    Question: {#What is the|What's the!} structure of a conformer of the {#molecule|chemical|compound|chemical structure!} with {SMILES__description} {SMILES#}?
+    Constraint: Return a {xyz__names__noun}.
+    Answer: {xyz#}
+  - |-
+    Question: {#What is the|What's the!} structure of a conformer of the {#molecule|chemical|compound|chemical structure!} with {SMILES__description} {SMILES#}?
+    Constraint: Return a {mol2000__names__noun}.
+    Answer: {mol2000#}
+  - |-
+    Question: {#What is the|What's the!} structure of a conformer of the {#molecule|chemical|compound|chemical structure!} with {SMILES__description} {SMILES#}?
+    Constraint: Return a {mol3000__names__noun}.
+    Answer: {mol3000#}
+  - |-
+    Task: Return the total energy of a {#molecule|chemical|compound|chemical structure!} computed at the GFN1-xTB level of theory.
+    Description: The {#molecule|chemical|compound|chemical structure!} has the {xyz__names__noun} {xyz#}.
+    Answer: {xtb1_energy#} {xtb1_energy__units}
+  - |-
+    Task: Return the total energy of a {#molecule|chemical|compound|chemical structure!} computed at {dft_energy__names__lot} level of theory.
+    Description: The {#molecule|chemical|compound|chemical structure!} has the {xyz__names__noun} {xyz#}.
+    Answer: {dft_energy#} {dft_energy__units}
+  - |-
+    User: {#I want to|I have to|I must|I would like to!} know the GFN1-xTB total energy of the {#molecule|chemical|compound|chemical structure!} with {SMILES__description} {SMILES#}.
+    Assistant: Do you have the {xyz__names__noun} file of a conformer of the {#molecule|chemical|compound|chemical structure!}?
+    User: {#Yes:|Here it is:|I have it:|I do:!} {xyz#}
+    Assistant: The GFN1-xTB total energy of the {#molecule|chemical|compound|chemical structure!} is {xtb1_energy#} {xtb1_energy__units}.
+  - |-
+    User: {#I want to|I have to|I must|I would like to!} know {dft_energy__names__lot} total energy of the {#molecule|chemical|compound|chemical structure!} with {SMILES__description} {SMILES#}.
+    Assistant: Do you have the {xyz__names__noun} file of a conformer of the {#molecule|chemical|compound|chemical structure!}?
+    User: {#Yes:|Here it is:|I have it:|I do:!} {xyz#}
+    Assistant: The total energy on {dft_energy__names__lot} level of theory of the {#molecule|chemical|compound|chemical structure!} is {dft_energy#} {dft_energy__units}.

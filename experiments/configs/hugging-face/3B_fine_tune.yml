@@ -1,18 +1,14 @@
----
 # Dataset configuration (datasets.load_from_disk arguments)
 data:
   path: /fsx/proj-chemnlp/data/EleutherAI/pythia-1b/marianna13/chemrxiv
-
 # Model configuration (model.from_pretrained arguments)
 model:
   base: GPTNeoXForCausalLM
   name: EleutherAI/pythia-2.8b
   revision: main # latest model
-
 # Training strategies (PromptTuningConfig arguments)
 prompt_tuning:
   enabled: false
-
 # Training configuration (TrainerArguments from HF)
 trainer:
   output_dir: /fsx/proj-chemnlp/experiments/checkpoints/finetuned/full_3b
@@ -29,7 +25,6 @@ trainer:
   per_device_eval_batch_size: 1
   gradient_checkpointing: True
   deepspeed_config: deepspeed_S2.json
-
 # Logging configuration (WandB init arguments)
 wandb:
   enabled: true

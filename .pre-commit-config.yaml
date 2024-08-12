@@ -1,41 +1,90 @@
----
-ci:
-    autoupdate_schedule: quarterly
-    autofix_prs: false
-    submodules: false
-
+default_language_version:
+  python: python3
 repos:
-    - repo: https://github.com/pre-commit/pre-commit-hooks
-      rev: v4.5.0
-      hooks:
-          - id: check-json
-          - id: check-yaml
-          - id: end-of-file-fixer
-          - id: trailing-whitespace
-            exclude: miscellaneous/structures/SiO2.xyz
-
-    - repo: https://github.com/jumanjihouse/pre-commit-hook-yamlfmt
-      rev: 0.2.3
-      hooks:
-          - id: yamlfmt
-            exclude: ^experiments/configs
-
-    - repo: https://github.com/psf/black
-      rev: 24.3.0
-      hooks:
-          - id: black
-            language_version: python3 # Should be a command that runs python3.6+
-
-    - repo: https://github.com/PyCQA/flake8
-      rev: 7.0.0
-      hooks:
-          - id: flake8
-            args: [--count, --show-source, --statistics]
-            additional_dependencies:
-                - flake8-bugbear==22.7.1
-
-    - repo: https://github.com/pycqa/isort
-      rev: 5.13.2
-      hooks:
-          - id: isort
-            args: [--profile, black, --filter-files]
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-byte-order-marker
+      - id: check-case-conflict
+      - id: check-merge-conflict
+      - id: check-shebang-scripts-are-executable
+      - id: check-symlinks
+      - id: check-toml
+      - id: check-yaml
+        exclude: "kubernetes.yaml$" # This line excludes kubernetes.yaml from being checked as it is WIP
+      - id: debug-statements
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+        exclude: .gitignore
+      - id: trailing-whitespace
+        exclude: .gitignore
+  - repo: https://github.com/psf/black-pre-commit-mirror
+    rev: 24.4.2
+    hooks:
+      - id: black-jupyter
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.5.1
+    hooks:
+      - id: ruff
+        args: [--fix, --exit-non-zero-on-fix]
+  - repo: https://github.com/rbubley/mirrors-prettier
+    rev: v3.3.2
+    hooks:
+      - id: prettier
+  - repo: https://github.com/google/yamlfmt
+    rev: v0.13.0
+    hooks:
+      - id: yamlfmt
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.5.0
+    hooks:
+      - id: detect-secrets
+  - repo: https://github.com/pappasam/toml-sort
+    rev: v0.23.1
+    hooks:
+      - id: toml-sort-fix
+        exclude: poetry.lock
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.3.0
+    hooks:
+      - id: codespell
+        additional_dependencies: [".[toml]"]
+  - repo: https://github.com/sqlfluff/sqlfluff
+    rev: 3.1.0
+    hooks:
+      - id: sqlfluff-fix
+  - repo: https://github.com/hadolint/hadolint
+    rev: v2.13.0-beta
+    hooks:
+      - id: hadolint-docker
+  - repo: https://github.com/jsh9/markdown-toc-creator
+    rev: 0.0.6
+    hooks:
+      - id: markdown-toc-creator
+  - repo: https://github.com/jumanjihouse/pre-commit-hooks
+    rev: 3.0.0
+    hooks:
+      - id: check-mailmap
+  - repo: https://github.com/python-poetry/poetry
+    rev: 1.8.0
+    hooks:
+      - id: poetry-check
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.10.1
+    hooks:
+      - id: mypy
+        additional_dependencies:
+          - types-requests
+  - repo: https://github.com/srstevenson/nb-clean
+    rev: 3.3.0
+    hooks:
+      - id: nb-clean
+        args: [--preserve-cell-outputs, --remove-empty-cells]
+  - repo: https://github.com/abravalheri/validate-pyproject
+    rev: v0.18
+    hooks:
+      - id: validate-pyproject
+        additional_dependencies:
+          - "validate-pyproject-schema-store[all]>=2024.06.24" # Pin for Ruff's FURB154

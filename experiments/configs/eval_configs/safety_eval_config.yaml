@@ -3,7 +3,7 @@ model_args: "pretrained=/fsx/path/checkpoint" # update
 tasks: "crows_pairs_english_race_color,crows_pairs_english_socioeconomic,crows_pairs_english_gender,crows_pairs_english_age,crows_pairs_english_religion,crows_pairs_english_disability,crows_pairs_english_sexual_orientation,crows_pairs_english_nationality,crows_pairs_english_physical_appearance"
 num_fewshot: 0
 batch_size: 12
-device: 'cuda:0'
+device: "cuda:0"
 wandb_log: true
 wandb_project: LLCheM
 wandb_group: evaluation # update

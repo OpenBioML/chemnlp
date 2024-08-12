@@ -1,70 +1,69 @@
----
 name: ord_procedure_steps
 description: |-
-    The open reaction database is a database of chemical reactions and their conditions
+  The open reaction database is a database of chemical reactions and their conditions
 identifiers:
-    - id: masked_rxn_smiles
-      type: text
-      description: reaction SMILES with one element masked
-      names:
-          - noun: reaction SMILES with one element masked as `MASK`
-          - noun: reaction SMILES with one element hidden as `MASK`
-          - noun: masked reaction SMILES (one component masked as `MASK`)
-          - noun: masked reaction SMILES string (one component masked as `MASK`)
-          - noun: masked RXNSMILES (one component masked as `MASK`)
+  - id: masked_rxn_smiles
+    type: text
+    description: reaction SMILES with one element masked
+    names:
+      - noun: reaction SMILES with one element masked as `MASK`
+      - noun: reaction SMILES with one element hidden as `MASK`
+      - noun: masked reaction SMILES (one component masked as `MASK`)
+      - noun: masked reaction SMILES string (one component masked as `MASK`)
+      - noun: masked RXNSMILES (one component masked as `MASK`)
 targets:
-    - id: missing_component
-      type: text
-      description: masked element
+  - id: missing_component
+    type: text
+    description: masked element
 license: CC BY SA 4.0
 links:
-    - url: https://github.com/open-reaction-database/ord-data
-      description: original data source
+  - url: https://github.com/open-reaction-database/ord-data
+    description: original data source
 num_points: 31348
 bibtex:
-    - |-
-      @article{Bansal_2021,
-        doi = {10.1093/nar/gkab1016},
-        url = {https://doi.org/10.1093%2Fnar%2Fgkab1016},
-        year = 2021,
-        month = {nov},
-        publisher = {Oxford University Press ({OUP})},
-        volume = {50},
-        number = {D1},
-        pages = {D693--D700},
-        author = {Parit Bansal and Anne Morgat and Kristian B Axelsen
-        and Venkatesh Muthukrishnan and Elisabeth Coudert and Lucila Aimo
-        and Nevila Hyka-Nouspikel and Elisabeth Gasteiger and Arnaud Kerhornou
-        and Teresa Batista Neto and Monica Pozzato and Marie-Claude Blatter
-        and Alex Ignatchenko and Nicole Redaschi and Alan Bridge},
-        title = {Rhea, the reaction knowledgebase in 2022},
-        journal = {Nucleic Acids Research}
-      }
-    - |-
-      @article{Alc_ntara_2011,
-        doi = {10.1093/nar/gkr1126},
-        url = {https://doi.org/10.1093%2Fnar%2Fgkr1126},
-        year = 2011,
-        month = {nov},
-        publisher = {Oxford University Press ({OUP})},
-        volume = {40},
-        number = {D1},
-        pages = {D754--D760},
-        author = {Rafael Alc{\'{a}}ntara and Kristian B. Axelsen
-        and Anne Morgat and Eugeni Belda and Elisabeth Coudert
-        and Alan Bridge and Hong Cao and Paula de Matos and Marcus Ennis
-        and Steve Turner and Gareth Owen and Lydie Bougueleret
-        and Ioannis Xenarios and Christoph Steinbeck},
-        title = {Rhea{\textemdash}a manually curated resource of biochemical reactions},
-        journal = {Nucleic Acids Research}
-      }
+  - |-
+    @article{Bansal_2021,
+      doi = {10.1093/nar/gkab1016},
+      url = {https://doi.org/10.1093%2Fnar%2Fgkab1016},
+      year = 2021,
+      month = {nov},
+      publisher = {Oxford University Press ({OUP})},
+      volume = {50},
+      number = {D1},
+      pages = {D693--D700},
+      author = {Parit Bansal and Anne Morgat and Kristian B Axelsen
+      and Venkatesh Muthukrishnan and Elisabeth Coudert and Lucila Aimo
+      and Nevila Hyka-Nouspikel and Elisabeth Gasteiger and Arnaud Kerhornou
+      and Teresa Batista Neto and Monica Pozzato and Marie-Claude Blatter
+      and Alex Ignatchenko and Nicole Redaschi and Alan Bridge},
+      title = {Rhea, the reaction knowledgebase in 2022},
+      journal = {Nucleic Acids Research}
+    }
+  - |-
+    @article{Alc_ntara_2011,
+      doi = {10.1093/nar/gkr1126},
+      url = {https://doi.org/10.1093%2Fnar%2Fgkr1126},
+      year = 2011,
+      month = {nov},
+      publisher = {Oxford University Press ({OUP})},
+      volume = {40},
+      number = {D1},
+      pages = {D754--D760},
+      author = {Rafael Alc{\'{a}}ntara and Kristian B. Axelsen
+      and Anne Morgat and Eugeni Belda and Elisabeth Coudert
+      and Alan Bridge and Hong Cao and Paula de Matos and Marcus Ennis
+      and Steve Turner and Gareth Owen and Lydie Bougueleret
+      and Ioannis Xenarios and Christoph Steinbeck},
+      title = {Rhea{\textemdash}a manually curated resource of biochemical reactions},
+      journal = {Nucleic Acids Research}
+    }
 templates:
-    - The masked component in the {masked_rxn_smiles__names__noun} {masked_rxn_smiles#} is {missing_component#}.
-    - The {#chemical|compound!} with SMILES {missing_component#} is the masked component in the {masked_rxn_smiles__names__noun} {masked_rxn_smiles#}.
-    - |-
-      Question: What is the masked component in the {masked_rxn_smiles__names__noun} {masked_rxn_smiles#}?
-      Answer: {missing_component#}.
-    - |-
-      Task: Predict the masked component in a {masked_rxn_smiles__names__noun}.
-      Description: {masked_rxn_smiles#}
-      {#Answer|Solution!}: {missing_component#}
+  - The masked component in the {masked_rxn_smiles__names__noun} {masked_rxn_smiles#} is {missing_component#}.
+  - The {#chemical|compound!} with SMILES {missing_component#} is the masked component in the {masked_rxn_smiles__names__noun} {masked_rxn_smiles#}.
+  - |-
+    Question: What is the masked component in the {masked_rxn_smiles__names__noun} {masked_rxn_smiles#}?
+    Answer: {missing_component#}.
+  - |-
+    Task: Predict the masked component in a {masked_rxn_smiles__names__noun}.
+    Description: {masked_rxn_smiles#}
+    {#Answer|Solution!}: {missing_component#}

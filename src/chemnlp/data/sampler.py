@@ -10,6 +10,7 @@ from functools import partial
 from functools import lru_cache
 from chemnlp.data_val.model import IdentifierEnum
 
+
 # ToDo: handle somewhere that the meta contains multiple templates
 class TemplateSampler:
     """
@@ -39,30 +40,40 @@ class TemplateSampler:
             >>> print(result)
             The molecule with SMILES CC(=O)OC1=CC=CC=C1C(=O)O has a solubility of 3.142.
     """
+
     def __init__(
         self,
         df: pd.DataFrame,
         meta: Dict,
         config: Dict,
-        column_datafield_sampler: Optional[Callable] = None
+        column_datafield_sampler: Optional[Callable] = None,
     ):
         self.df_orig = df
         self.df = df
         self.meta = meta
         self.config = config
-        self.column_datafield_sampler = column_datafield_sampler or (lambda x: random.sample(x, k=1))
+        self.column_datafield_sampler = column_datafield_sampler or (
+            lambda x: random.sample(x, k=1)
+        )
         self.class_balanced = False
         self.balance_column = None
-        self.wrap_identifiers = config.get('wrap_identifiers', False)
+        self.wrap_identifiers = config.get("wrap_identifiers", False)
 
     def _wrap_identifier(self, identifier: str, value: str) -> str:
         """Wrap the identifier value with tags if wrap_identifiers is enabled."""
-        print('wrap_identifier', identifier, value, self.wrap_identifiers)
+        print("wrap_identifier", identifier, value, self.wrap_identifiers)
 
         if not self.wrap_identifiers:
             return value
 
-        identifier_type = next((item['type'] for item in self.meta['identifiers'] if item['id'] == identifier), None)
+        identifier_type = next(
+            (
+                item["type"]
+                for item in self.meta["identifiers"]
+                if item["id"] == identifier
+            ),
+            None,
+        )
 
         try:
             identifier_type = IdentifierEnum(identifier_type)
@@ -171,22 +182,31 @@ class TemplateSampler:
                 elif "_protein_names" in var:
                     out = sample[var.replace("_protein_names", "_name")]
 
-        var_dict = next(x for x in self.meta["identifiers"] + self.meta["targets"] if x["id"] == var)
+        var_dict = next(
+            x for x in self.meta["identifiers"] + self.meta["targets"] if x["id"] == var
+        )
         if var_dict["type"] == "continuous":
             if not isinstance(out, (float, int)):
                 raise ValueError(f"out is not a number (int or float): {out}")
-            significant_digits = var_dict.get("significant_digits", self.config.get("DEFAULT_SIGNIFICANT_DIGITS", DEFAULT_SIGNIFICANT_DIGITS))
+            significant_digits = var_dict.get(
+                "significant_digits",
+                self.config.get(
+                    "DEFAULT_SIGNIFICANT_DIGITS", DEFAULT_SIGNIFICANT_DIGITS
+                ),
+            )
             out = f"{round(out, significant_digits):.{significant_digits}f}"
         else:
             out = str(out)
 
         if "|" in out:
-            choices = [c for c in out.split("|") if isinstance(c, str) or not math.isnan(c)]
+            choices = [
+                c for c in out.split("|") if isinstance(c, str) or not math.isnan(c)
+            ]
             out = self.column_datafield_sampler(choices)[0]
 
         return out
 
-    def  get_sample_dict(self, sample: pd.Series, template: str) -> Dict[str, str]:
+    def get_sample_dict(self, sample: pd.Series, template: str) -> Dict[str, str]:
         """
         Extract and process all target values from a sample row based on a template.
         """
@@ -205,18 +225,18 @@ class TemplateSampler:
         return sample_dict
 
     def _get_symbols_from_multiple_choice_enum(self, enum_str: str) -> List[str]:
-        _, choice_count, symbol = enum_str.split('%')[1:]
-        if '-' in choice_count:
-            min_count, max_count = map(int, choice_count.split('-'))
+        _, choice_count, symbol = enum_str.split("%")[1:]
+        if "-" in choice_count:
+            min_count, max_count = map(int, choice_count.split("-"))
             count = random.randint(min_count, max_count)
         else:
             count = int(choice_count)
 
-        if 'a' in symbol:
+        if "a" in symbol:
             return list(ascii_lowercase[:count])
-        elif 'A' in symbol:
+        elif "A" in symbol:
             return list(ascii_uppercase[:count])
-        elif '1' in symbol:
+        elif "1" in symbol:
             return [str(i) for i in range(1, count + 1)]
 
     def _format_enum_string(self, symbols: List[str]) -> str:
@@ -246,26 +266,40 @@ class TemplateSampler:
         else:
             return ", ".join(symbols[:-1]) + f", or {symbols[-1]}"
 
-    def _handle_multiple_choice(self, sample: pd.Series, input_variables: List[str]) -> Dict[str, Union[str, List[str]]]:
+    def _handle_multiple_choice(
+        self, sample: pd.Series, input_variables: List[str]
+    ) -> Dict[str, Union[str, List[str]]]:
         multiple_choice_dict = {}
 
         # get multiple_choice_enum
-        multiple_choice_enum_idx = [i for i, x in enumerate(input_variables) if x.startswith("%multiple_choice_enum")]
+        multiple_choice_enum_idx = [
+            i
+            for i, x in enumerate(input_variables)
+            if x.startswith("%multiple_choice_enum")
+        ]
         assert len(multiple_choice_enum_idx) == 1
         multiple_choice_enum_idx = multiple_choice_enum_idx[0]
         multiple_choice_enum = input_variables[multiple_choice_enum_idx]
 
         # get multiple_choice_var
-        multiple_choice_var_idx = [i for i, x in enumerate(input_variables) if x.endswith("%")]
+        multiple_choice_var_idx = [
+            i for i, x in enumerate(input_variables) if x.endswith("%")
+        ]
         assert len(multiple_choice_var_idx) == 1
         multiple_choice_var_idx = multiple_choice_var_idx[0]
         multiple_choice_input = input_variables[multiple_choice_var_idx]
 
         if multiple_choice_input.count("%") > 1:
-            multiple_choice_var, multiple_choice_indicator, _ = multiple_choice_input.split("%")
+            multiple_choice_var, multiple_choice_indicator, _ = (
+                multiple_choice_input.split("%")
+            )
         else:
-            multiple_choice_var, multiple_choice_indicator = multiple_choice_input.split("%")
-            multiple_choice_indicator = ""  # multiple_choice_indicator is here an empty string
+            multiple_choice_var, multiple_choice_indicator = (
+                multiple_choice_input.split("%")
+            )
+            multiple_choice_indicator = (
+                ""  # multiple_choice_indicator is here an empty string
+            )
 
         symbols = self._get_symbols_from_multiple_choice_enum(multiple_choice_enum)
 
@@ -273,23 +307,39 @@ class TemplateSampler:
         correct_choice = self._get_target_from_row(sample, multiple_choice_var + "#")
 
         if multiple_choice_indicator == "":
-            multiple_choices, correct_choice_idx = self._get_choices_without_indicator(multiple_choice_var, symbols, correct_choice)
+            multiple_choices, correct_choice_idx = self._get_choices_without_indicator(
+                multiple_choice_var, symbols, correct_choice
+            )
         else:
-            multiple_choices, correct_choice_idx = self._get_choices_with_indicator(sample, multiple_choice_var, multiple_choice_indicator, symbols, correct_choice)
+            multiple_choices, correct_choice_idx = self._get_choices_with_indicator(
+                sample,
+                multiple_choice_var,
+                multiple_choice_indicator,
+                symbols,
+                correct_choice,
+            )
 
         multiple_choice_dict[multiple_choice_enum] = self._format_enum_string(symbols)
-        multiple_choice_dict[multiple_choice_input] = self._format_choices(symbols, multiple_choices)
-        multiple_choice_dict["%multiple_choice_result"] = self._format_result(symbols, correct_choice_idx)
+        multiple_choice_dict[multiple_choice_input] = self._format_choices(
+            symbols, multiple_choices
+        )
+        multiple_choice_dict["%multiple_choice_result"] = self._format_result(
+            symbols, correct_choice_idx
+        )
         multiple_choice_dict["%multiple_choice_symbols"] = symbols
         multiple_choice_dict["%multiple_choice_result_idx"] = correct_choice_idx
 
         return multiple_choice_dict
 
-    def _get_choices_without_indicator(self, multiple_choice_var: str, symbols: List[str], correct_choice: str) -> Tuple[List[str], int]:
+    def _get_choices_without_indicator(
+        self, multiple_choice_var: str, symbols: List[str], correct_choice: str
+    ) -> Tuple[List[str], int]:
         cutoff_full_unique = 100
         all_choices = self.df[multiple_choice_var].unique()
         if len(all_choices) > cutoff_full_unique:
-            all_choices = self.df[multiple_choice_var].sample(cutoff_full_unique).unique()
+            all_choices = (
+                self.df[multiple_choice_var].sample(cutoff_full_unique).unique()
+            )
         all_choices = sorted([str(x) for x in all_choices])
 
         if all_choices == ["0", "1"]:
@@ -304,19 +354,41 @@ class TemplateSampler:
         correct_choice_idx = multiple_choices.index(correct_choice)
         return multiple_choices, correct_choice_idx
 
-    def _get_choices_with_indicator(self, sample: pd.Series, multiple_choice_var: str, multiple_choice_indicator: str, symbols: List[str], correct_choice: str) -> Tuple[List[str], List[int]]:
-        correct_choice_indicator = self._get_target_from_row(sample, multiple_choice_indicator + "#")
-        df_sample = self.df.sample(len(symbols) - 1)[[multiple_choice_var, multiple_choice_indicator]]
+    def _get_choices_with_indicator(
+        self,
+        sample: pd.Series,
+        multiple_choice_var: str,
+        multiple_choice_indicator: str,
+        symbols: List[str],
+        correct_choice: str,
+    ) -> Tuple[List[str], List[int]]:
+        correct_choice_indicator = self._get_target_from_row(
+            sample, multiple_choice_indicator + "#"
+        )
+        df_sample = self.df.sample(len(symbols) - 1)[
+            [multiple_choice_var, multiple_choice_indicator]
+        ]
 
-        multiple_choices = df_sample[multiple_choice_var].astype(str).tolist() + [correct_choice]
-        multiple_choices_indicators = df_sample[multiple_choice_indicator].astype(str).tolist() + [correct_choice_indicator]
+        multiple_choices = df_sample[multiple_choice_var].astype(str).tolist() + [
+            correct_choice
+        ]
+        multiple_choices_indicators = df_sample[multiple_choice_indicator].astype(
+            str
+        ).tolist() + [correct_choice_indicator]
 
-        multiple_choices_combined = list(zip(multiple_choices, multiple_choices_indicators))
+        multiple_choices_combined = list(
+            zip(multiple_choices, multiple_choices_indicators)
+        )
         random.shuffle(multiple_choices_combined)
         multiple_choices, multiple_choices_indicators = zip(*multiple_choices_combined)
 
-        correct_choice_idx = [i for i, (choice, indicator) in enumerate(zip(multiple_choices, multiple_choices_indicators))
-                              if indicator == correct_choice_indicator]
+        correct_choice_idx = [
+            i
+            for i, (choice, indicator) in enumerate(
+                zip(multiple_choices, multiple_choices_indicators)
+            )
+            if indicator == correct_choice_indicator
+        ]
 
         return list(multiple_choices), correct_choice_idx
 
@@ -324,22 +396,34 @@ class TemplateSampler:
         rnd_symbol = self._get_random_symbol()
         rnd_symbol_prefix, rnd_symbol_suffix = self._get_symbol_affixes(rnd_symbol)
 
-        return "\n".join([f"{rnd_symbol_prefix}{s}{rnd_symbol_suffix} {c}" for s, c in zip(symbols, choices)])
+        return "\n".join(
+            [
+                f"{rnd_symbol_prefix}{s}{rnd_symbol_suffix} {c}"
+                for s, c in zip(symbols, choices)
+            ]
+        )
 
-    def _format_result(self, symbols: List[str], correct_choice_idx: Union[int, List[int]]) -> str:
+    def _format_result(
+        self, symbols: List[str], correct_choice_idx: Union[int, List[int]]
+    ) -> str:
         if isinstance(correct_choice_idx, list):
             return ", ".join([symbols[i] for i in correct_choice_idx])
         else:
             return symbols[correct_choice_idx]
 
     def _get_random_symbol(self) -> str:
-        if self.config.get('multiple_choice_benchmarking_templates') and self.config.get('multiple_choice_benchmarking_format') is not None:
-            if len(self.config['multiple_choice_rnd_symbols']) > 1:
-                return self.config['multiple_choice_rnd_symbols'][self.config['multiple_choice_benchmarking_format']]
+        if (
+            self.config.get("multiple_choice_benchmarking_templates")
+            and self.config.get("multiple_choice_benchmarking_format") is not None
+        ):
+            if len(self.config["multiple_choice_rnd_symbols"]) > 1:
+                return self.config["multiple_choice_rnd_symbols"][
+                    self.config["multiple_choice_benchmarking_format"]
+                ]
             else:
-                return self.config['multiple_choice_rnd_symbols'][0]
+                return self.config["multiple_choice_rnd_symbols"][0]
         else:
-            return random.choice(self.config['multiple_choice_rnd_symbols'])
+            return random.choice(self.config["multiple_choice_rnd_symbols"])
 
     def _get_symbol_affixes(self, symbol: str) -> Tuple[str, str]:
         if symbol in ["()", "[]"]:
@@ -348,7 +432,7 @@ class TemplateSampler:
             return "", symbol
 
     def _get_input_variables_from_template(self, template: str) -> List[str]:
-        return re.findall(r'\{([^}]+)\}', template)
+        return re.findall(r"\{([^}]+)\}", template)
 
     @lru_cache(maxsize=None)
     def _get_random_text_identifiers_and_targets(self) -> dict:
@@ -367,7 +451,9 @@ class TemplateSampler:
                     rnd_texts[e["id"]]["names"][name] = rnd_text
 
             if "description" in e:
-                rnd_texts[e["id"]]["description"] = partial(lambda x: x, e["description"])
+                rnd_texts[e["id"]]["description"] = partial(
+                    lambda x: x, e["description"]
+                )
 
             if "units" in e:
                 rnd_texts[e["id"]]["units"] = partial(lambda x: x, e["units"])
@@ -407,7 +493,9 @@ class TemplateSampler:
 
         if len(keys) == 1 and keys[0] in self.meta:
             return self.meta[keys[0]]
-        elif keys[0] in [x["id"] for x in self.meta["identifiers"] + self.meta["targets"]]:
+        elif keys[0] in [
+            x["id"] for x in self.meta["identifiers"] + self.meta["targets"]
+        ]:
             rnd_texts = self._get_random_text_identifiers_and_targets()
             return get_with_nested_keys(rnd_texts, keys)
         else:
@@ -432,12 +520,14 @@ class TemplateSampler:
         sample_dict = self.get_sample_dict(sample, template)
         return self._fill_template(template, sample_dict)
 
-    def _fill_template(self, template: str, sample_dict: Dict[str, Union[str, List[str]]]) -> str:
+    def _fill_template(
+        self, template: str, sample_dict: Dict[str, Union[str, List[str]]]
+    ) -> str:
         for key, value in sample_dict.items():
             if isinstance(value, list):
-                value = '\n'.join(value)
-            if '#' in key:  # This indicates it's an identifier
-                identifier = key.replace('#', '')
+                value = "\n".join(value)
+            if "#" in key:  # This indicates it's an identifier
+                identifier = key.replace("#", "")
                 value = self._wrap_identifier(identifier, str(value))
-            template = template.replace('{' + key + '}', str(value))
+            template = template.replace("{" + key + "}", str(value))
         return template

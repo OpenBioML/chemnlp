@@ -90,7 +90,6 @@ result = sampler.sample(df.iloc[0], template)
 print(result)
 ```
 
-
 Basic usage with identifier wrapping:
 
 ```python
@@ -116,7 +115,6 @@ result = sampler.sample(df.iloc[0], template)
 print(result)
 # Output: The molecule with SMILES [BEGIN_SMILES]CC(C)NCC(O)c1ccc(O)c(O)c1[END_SMILES] has a LogP of 1.23.
 ```
-
 
 Using class balancing:
 

@@ -1,60 +1,59 @@
----
 name: lipophilicity
 description: Experimental results of octanol/water distribution coefficient (logD at pH 7.4).
 targets:
-    - id: exp
-      description: experimental results of octanol/water distribution coefficient (logD at pH 7.4)
-      units: (dimensionless)
-      type: continuous
-      names:
-          - noun: octanol/water distribution coefficient (logD at pH 7.4)
-          - noun: logD at pH 7.4
-          - noun: octanol/water distribution coefficient
-      uris:
-          - http://www.bioassayontology.org/bao#BAO_0002129
-          - http://purl.obolibrary.org/obo/MI_2107
+  - id: exp
+    description: experimental results of octanol/water distribution coefficient (logD at pH 7.4)
+    units: (dimensionless)
+    type: continuous
+    names:
+      - noun: octanol/water distribution coefficient (logD at pH 7.4)
+      - noun: logD at pH 7.4
+      - noun: octanol/water distribution coefficient
+    uris:
+      - http://www.bioassayontology.org/bao#BAO_0002129
+      - http://purl.obolibrary.org/obo/MI_2107
 identifiers:
-    - id: SMILES
-      type: SMILES
-      description: SMILES
+  - id: SMILES
+    type: SMILES
+    description: SMILES
 license: CC BY-SA 3.0
 links:
-    - url: https://deepchemdata.s3-us-west-1.amazonaws.com/datasets/Lipophilicity.csv
-      description: original dataset link
-    - url: https://github.com/cheminfo/molecule-features/blob/main/data/lipophilicity/meta.yaml
-      description: original meta data
-    - url: https://deepchem.readthedocs.io/en/latest/api_reference/moleculenet.html#lipo-datasets
-      description: original dataset link from moleculenet
-    - url: https://www.ebi.ac.uk/chembl/document_report_card/CHEMBL3301361/
-      description: original report card
-    - url: https://chembl.gitbook.io/chembl-interface-documentation/about#data-licensing
-      description: original dataset license from chembl
-    - url: https://creativecommons.org/licenses/by-sa/3.0/
-      description: used dataset license
+  - url: https://deepchemdata.s3-us-west-1.amazonaws.com/datasets/Lipophilicity.csv
+    description: original dataset link
+  - url: https://github.com/cheminfo/molecule-features/blob/main/data/lipophilicity/meta.yaml
+    description: original meta data
+  - url: https://deepchem.readthedocs.io/en/latest/api_reference/moleculenet.html#lipo-datasets
+    description: original dataset link from moleculenet
+  - url: https://www.ebi.ac.uk/chembl/document_report_card/CHEMBL3301361/
+    description: original report card
+  - url: https://chembl.gitbook.io/chembl-interface-documentation/about#data-licensing
+    description: original dataset license from chembl
+  - url: https://creativecommons.org/licenses/by-sa/3.0/
+    description: used dataset license
 num_points: 4200
 bibtex:
-    - |-
-      @techreport{hersey2015chembl,
-      title={ChEMBL Deposited Data Set-AZ dataset},
-      author={Hersey, Anne},
-      year={2015},
-      institution={Technical Report, Technical report, EMBL-EBI, 2015. https://www. ebi. ac. uk}
-      }
+  - |-
+    @techreport{hersey2015chembl,
+    title={ChEMBL Deposited Data Set-AZ dataset},
+    author={Hersey, Anne},
+    year={2015},
+    institution={Technical Report, Technical report, EMBL-EBI, 2015. https://www. ebi. ac. uk}
+    }
 templates:
-    - |-
-      Task: Please answer the multiple choice question below with {%multiple_choice_enum%3-6%aA1}.
-      Question: What is the {exp__names__noun} of the {SMILES__description} {SMILES#}?
-      Options:
-      {exp%}
-      Answer: {%multiple_choice_result}
-    - |-
-      Question: Please estimate the {exp__names__noun} of {SMILES#} by picking one choice of {%multiple_choice_enum%3-6%aA1}.
-      Options:
-      {exp%}
-      Answer: {%multiple_choice_result}
-    - |-
-      Task: Please answer the multiple choice question below with {%multiple_choice_enum%3-6%aA1}.
-      Question: What is the {exp__names__noun} of the {SMILES__description} {SMILES#}?
-      Options:
-      {exp%}
-      Answer:<EOI>{%multiple_choice_result}
+  - |-
+    Task: Please answer the multiple choice question below with {%multiple_choice_enum%3-6%aA1}.
+    Question: What is the {exp__names__noun} of the {SMILES__description} {SMILES#}?
+    Options:
+    {exp%}
+    Answer: {%multiple_choice_result}
+  - |-
+    Question: Please estimate the {exp__names__noun} of {SMILES#} by picking one choice of {%multiple_choice_enum%3-6%aA1}.
+    Options:
+    {exp%}
+    Answer: {%multiple_choice_result}
+  - |-
+    Task: Please answer the multiple choice question below with {%multiple_choice_enum%3-6%aA1}.
+    Question: What is the {exp__names__noun} of the {SMILES__description} {SMILES#}?
+    Options:
+    {exp%}
+    Answer:<EOI>{%multiple_choice_result}

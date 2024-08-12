@@ -1,73 +1,72 @@
----
 name: iupac_to_smiles
 description: |-
-    PubChem is an open chemistry database at the National Institutes of Health (NIH).
-    This dataset contains the SMILES and different versions of the IUPAC names
+  PubChem is an open chemistry database at the National Institutes of Health (NIH).
+  This dataset contains the SMILES and different versions of the IUPAC names
 targets:
-    - id: Traditional
-      description: traditional IUPAC name
-      type: string
-      names:
-          - noun: traditional IUPAC name
-    - id: Systematic
-      description: systematic IUPAC name
-      type: string
-      names:
-          - noun: systematic IUPAC name
-    - id: CAS_like_Style
-      description: CAS-like name
-      type: string
-      names:
-          - noun: CAS-like IUPAC name
-          - noun: IUAPC name in CAS-like style
-    - id: Preferred
-      description: preferred IUPAC name
-      type: string
-      names:
-          - noun: preferred IUPAC name
-          - noun: IUPAC name
+  - id: Traditional
+    description: traditional IUPAC name
+    type: string
+    names:
+      - noun: traditional IUPAC name
+  - id: Systematic
+    description: systematic IUPAC name
+    type: string
+    names:
+      - noun: systematic IUPAC name
+  - id: CAS_like_Style
+    description: CAS-like name
+    type: string
+    names:
+      - noun: CAS-like IUPAC name
+      - noun: IUAPC name in CAS-like style
+  - id: Preferred
+    description: preferred IUPAC name
+    type: string
+    names:
+      - noun: preferred IUPAC name
+      - noun: IUPAC name
 identifiers:
-    - id: SMILES
-      type: SMILES
-      description: SMILES
-      names:
-          - noun: SMILES
+  - id: SMILES
+    type: SMILES
+    description: SMILES
+    names:
+      - noun: SMILES
 license: CC0 (Public Domain)
 links:
-    - url: https://pubchem.ncbi.nlm.nih.gov/
-      description: original data source
+  - url: https://pubchem.ncbi.nlm.nih.gov/
+    description: original data source
 num_points: 27224618
 bibtex:
-    - |-
-      @article{Kim_2022, title={PubChem 2023 update},
-      volume={51}, ISSN={1362-4962},
-      url={http://dx.doi.org/10.1093/nar/gkac956},
-      DOI={10.1093/nar/gkac956}, number={D1},
-      journal={Nucleic Acids Research},
-      publisher={Oxford University Press (OUP)},
-      author={Kim, Sunghwan and Chen, Jie and Cheng, Tiejun
-      and Gindulyte, Asta and He, Jia and He, Siqian
-      and Li, Qingliang and Shoemaker, Benjamin A
-      and Thiessen, Paul A and Yu, Bo and Zaslavsky, Leonid
-      and Zhang, Jian and Bolton, Evan E},
-      year={2022}, month=oct, pages={D1373–D1380} }
+  - |-
+    @article{Kim_2022, title={PubChem 2023 update},
+    volume={51}, ISSN={1362-4962},
+    url={http://dx.doi.org/10.1093/nar/gkac956},
+    DOI={10.1093/nar/gkac956}, number={D1},
+    journal={Nucleic Acids Research},
+    publisher={Oxford University Press (OUP)},
+    author={Kim, Sunghwan and Chen, Jie and Cheng, Tiejun
+    and Gindulyte, Asta and He, Jia and He, Siqian
+    and Li, Qingliang and Shoemaker, Benjamin A
+    and Thiessen, Paul A and Yu, Bo and Zaslavsky, Leonid
+    and Zhang, Jian and Bolton, Evan E},
+    year={2022}, month=oct, pages={D1373–D1380} }
 templates:
-    - The {Traditional__names__noun} of the {#molecule|chemical|compound!} with {SMILES__description} {SMILES#} is {Traditional#}.
-    - The {CAS_like_Style__names__noun} of the {#molecule|chemical|compound!} with {SMILES__description} {SMILES#} is {CAS_like_Style#}.
-    - The {Preferred__names__noun} of the {#molecule|chemical|compound!} with {SMILES__description} {SMILES#} is {Preferred#}.
-    - The {SMILES__description} of the {#molecule|chemical|compound!} with {Traditional__names__noun} {Traditional#} is {SMILES#}.
-    - The {SMILES__description} of the {#molecule|chemical|compound!} with {Systematic__names__noun} {Systematic#} is {SMILES#}.
-    - The {SMILES__description} of the {#molecule|chemical|compound!} with {CAS_like_Style__names__noun} {CAS_like_Style#} is {SMILES#}.
-    - The {SMILES__description} of the {#molecule|chemical|compound!} with {Preferred__names__noun} {Preferred#} is {SMILES#}.
-    - |-
-      Task: Please {#give me|create|generate!} the {SMILES__description} of a {#molecule|chemical|compound!} {#given the|based on the!} {Traditional__names__noun}.
-      IUPAC name: {Traditional#}
-      Result: {SMILES#}
-    - |-
-      Task: Please {#give me|create|generate!} the {SMILES__description} of a {#molecule|chemical|compound!} {#given the|based on the!} {Systematic__names__noun}.
-      IUPAC name: {Systematic#}
-      Result: {SMILES#}
-    - |-
-      Task: Please {#give me|create|generate!} the {SMILES__description} of a {#molecule|chemical|compound!} {#given the|based on the!} {CAS_like_Style__names__noun}.
-      IUPAC name: {CAS_like_Style#}
-      Result: {SMILES#}
+  - The {Traditional__names__noun} of the {#molecule|chemical|compound!} with {SMILES__description} {SMILES#} is {Traditional#}.
+  - The {CAS_like_Style__names__noun} of the {#molecule|chemical|compound!} with {SMILES__description} {SMILES#} is {CAS_like_Style#}.
+  - The {Preferred__names__noun} of the {#molecule|chemical|compound!} with {SMILES__description} {SMILES#} is {Preferred#}.
+  - The {SMILES__description} of the {#molecule|chemical|compound!} with {Traditional__names__noun} {Traditional#} is {SMILES#}.
+  - The {SMILES__description} of the {#molecule|chemical|compound!} with {Systematic__names__noun} {Systematic#} is {SMILES#}.
+  - The {SMILES__description} of the {#molecule|chemical|compound!} with {CAS_like_Style__names__noun} {CAS_like_Style#} is {SMILES#}.
+  - The {SMILES__description} of the {#molecule|chemical|compound!} with {Preferred__names__noun} {Preferred#} is {SMILES#}.
+  - |-
+    Task: Please {#give me|create|generate!} the {SMILES__description} of a {#molecule|chemical|compound!} {#given the|based on the!} {Traditional__names__noun}.
+    IUPAC name: {Traditional#}
+    Result: {SMILES#}
+  - |-
+    Task: Please {#give me|create|generate!} the {SMILES__description} of a {#molecule|chemical|compound!} {#given the|based on the!} {Systematic__names__noun}.
+    IUPAC name: {Systematic#}
+    Result: {SMILES#}
+  - |-
+    Task: Please {#give me|create|generate!} the {SMILES__description} of a {#molecule|chemical|compound!} {#given the|based on the!} {CAS_like_Style__names__noun}.
+    IUPAC name: {CAS_like_Style#}
+    Result: {SMILES#}

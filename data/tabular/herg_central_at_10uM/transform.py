@@ -96,7 +96,7 @@ hERG_at_10microM, and herg_inhib.""",
             },
             {
                 "url": "https://bbirnbaum.com/",
-                "description": "TDC Contributer",
+                "description": "TDC Contributor",
             },
             {
                 "url": "https://tdcommons.ai/single_pred_tasks/tox/#herg-central",

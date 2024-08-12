@@ -1,121 +1,115 @@
----
 name: herg_central_inhib
-description: "Human ether-à-go-go related gene (hERG) is crucial for the coordination\nof the heart's beating. Thus, if a drug blocks the hERG, it could\
-    \ lead to severe\nadverse effects. Therefore, reliable prediction of hERG liability in the early\nstages of drug design is quite important to reduce\
-    \ the risk of cardiotoxicity-related\nattritions in the later development stages. There are three targets: hERG_at_1microM,\nhERG_at_10microM, and herg_inhib."
+description: "Human ether-à-go-go related gene (hERG) is crucial for the coordination\nof the heart's beating. Thus, if a drug blocks the hERG, it could lead to severe\nadverse effects. Therefore, reliable prediction of hERG liability in the early\nstages of drug design is quite important to reduce the risk of cardiotoxicity-related\nattritions in the later development stages. There are three targets: hERG_at_1microM,\nhERG_at_10microM, and herg_inhib."
 targets:
-    - id: herg_inhib
-      description: |-
-          whether it blocks (1) or not blocks (0) hERG
-          (This is equivalent to whether hERG_at_10microM < -50, i.e.,
-          whether the compound has an IC50 of less than 10microM.)
-      units:
-      type: boolean
-      names:
-          - noun: hERG blocker
-          - noun: hERG blocking compound
-          - noun: hERG blocking compound (IC50 < 10uM)
-          - noun: hERG blocking compound (IC50 less than 10uM)
-          - noun: human ether-à-go-go related gene (hERG) blocker
-          - noun: human ether-à-go-go related gene (hERG) blocking compound
-          - verb: block hERG
-          - verb: block hERG (IC50 < 10uM)
-          - verb: block hERG (IC50 less than 10uM)
-          - verb: block the human ether-à-go-go related gene (hERG)
-      uris:
-          - http://purl.obolibrary.org/obo/MI_2136
+  - id: herg_inhib
+    description: |-
+      whether it blocks (1) or not blocks (0) hERG
+      (This is equivalent to whether hERG_at_10microM < -50, i.e.,
+      whether the compound has an IC50 of less than 10microM.)
+    units:
+    type: boolean
+    names:
+      - noun: hERG blocker
+      - noun: hERG blocking compound
+      - noun: hERG blocking compound (IC50 < 10uM)
+      - noun: hERG blocking compound (IC50 less than 10uM)
+      - noun: human ether-à-go-go related gene (hERG) blocker
+      - noun: human ether-à-go-go related gene (hERG) blocking compound
+      - verb: block hERG
+      - verb: block hERG (IC50 < 10uM)
+      - verb: block hERG (IC50 less than 10uM)
+      - verb: block the human ether-à-go-go related gene (hERG)
+    uris:
+      - http://purl.obolibrary.org/obo/MI_2136
 identifiers:
-    - id: SMILES
-      type: SMILES
-      description: SMILES
+  - id: SMILES
+    type: SMILES
+    description: SMILES
 license: CC BY 4.0
 links:
-    - url: https://doi.org/10.1089/adt.2011.0425
-      description: corresponding publication
-    - url: https://bbirnbaum.com/
-      description: TDC Contributer
-    - url: https://tdcommons.ai/single_pred_tasks/tox/#herg-central
-      description: Data source
+  - url: https://doi.org/10.1089/adt.2011.0425
+    description: corresponding publication
+  - url: https://bbirnbaum.com/
+    description: TDC Contributer
+  - url: https://tdcommons.ai/single_pred_tasks/tox/#herg-central
+    description: Data source
 num_points: 306893
 bibtex:
-    - "@article{Du2011,\ndoi = {10.1089/adt.2011.0425},\nurl = {https://doi.org/10.1089/adt.2011.0425},\nyear = {2011},\nmonth = dec,\npublisher = {Mary\
-      \ Ann Liebert Inc},\nvolume = {9},\nnumber = {6},\npages = {580--588},\nauthor = {Fang Du and Haibo Yu and Beiyan Zou and Joseph Babcock\nand Shunyou\
-      \ Long and Min Li},\ntitle = {hERGCentral: A Large Database to Store,  Retrieve,  and Analyze Compound Human\nEther-à-go-go Related Gene Channel Interactions\
-      \ to Facilitate Cardiotoxicity Assessment in Drug Development},\njournal = {ASSAY and Drug Development Technologies}"
+  - "@article{Du2011,\ndoi = {10.1089/adt.2011.0425},\nurl = {https://doi.org/10.1089/adt.2011.0425},\nyear = {2011},\nmonth = dec,\npublisher = {Mary Ann Liebert Inc},\nvolume = {9},\nnumber = {6},\npages = {580--588},\nauthor = {Fang Du and Haibo Yu and Beiyan Zou and Joseph Babcock\nand Shunyou Long and Min Li},\ntitle = {hERGCentral: A Large Database to Store,  Retrieve,  and Analyze Compound Human\nEther-à-go-go Related Gene Channel Interactions to Facilitate Cardiotoxicity Assessment in Drug Development},\njournal = {ASSAY and Drug Development Technologies}"
 templates:
-    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {herg_inhib#not &NULL}a {herg_inhib__names__noun}.
-    - Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule is {herg_inhib#not &NULL}a {herg_inhib__names__noun}.
-    - The {SMILES__description} {SMILES#} {#represents|is from!} a molecule that is {herg_inhib#not &NULL}a {herg_inhib__names__noun}.
-    - The {#molecule |!}{SMILES__description} {SMILES#} is {herg_inhib#not &NULL}a {herg_inhib__names__noun}.
-    - |-
-      Task: Please classify a molecule based on the description.
-      Description: A molecule that {herg_inhib__names__verb}.
-      {#Molecule |!}{SMILES__description}: {SMILES#}
-      Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
-      Result: {herg_inhib#False&True}
-    - |-
-      Task: Please classify a molecule based on the description.
-      Description: A molecule that is a {herg_inhib__names__noun}.
-      {#Molecule |!}{SMILES__description}: {SMILES#}
-      Constraint: Answer the question in a {#full|complete!} sentence.
-      Result: This molecule is {herg_inhib#no &NULL}{herg_inhib__names__noun}.
-    - |-
-      Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
-      Description: A molecule that is a {herg_inhib__names__noun}.
-      Result: {SMILES#}
-    - |-
-      User: Can you {#tell me|derive|estimate!} if the molecule with the {SMILES__description} {SMILES#} is a {herg_inhib__names__noun}?
-      Assistant: {herg_inhib#No&Yes}, this molecule is {herg_inhib#not &NULL}a {herg_inhib__names__noun}.
-    - |-
-      User: Is the molecule with the {SMILES__description} {SMILES#} a {herg_inhib__names__noun}?
-      Assistant: {herg_inhib#No&Yes}, it is {herg_inhib#not &NULL}a {herg_inhib__names__noun}.
-    - |-
-      User: Can you {#give me|create|generate!} the {SMILES__description} of a molecule that is {herg_inhib#not &NULL}a {herg_inhib__names__noun}?
-      Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}
-    - |-
-      User: I'm {#searching|looking!} for the {SMILES__description} of a molecule that does {herg_inhib#not &NULL}{herg_inhib__names__verb}?
-      Assistant: This is a molecule that is {herg_inhib#not &NULL}a {herg_inhib__names__noun}: {SMILES#}
-    - |-
-      User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
-      Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
-      User: Yes, please. The molecule should {herg_inhib#not &NULL}be a {herg_inhib__names__noun}.
-      Assistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} is {herg_inhib#not &NULL}a {herg_inhib__names__noun}: {SMILES#}
-    - |-
-      User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
-      Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
-      User: Yes, the molecule should {herg_inhib#not &NULL}be a {herg_inhib__names__noun}.
-      Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {herg_inhib#not &NULL}a {herg_inhib__names__noun}: {SMILES#}
-    - Is the {SMILES__description} {SMILES#} a {herg_inhib__names__noun}:<EOI>{herg_inhib#no&yes}
-    - |-
-      Task: Please classify a molecule based on the description.
-      Description: A molecule that is a {herg_inhib__names__noun}.
-      {#Molecule |!}{SMILES__description}: {SMILES#}
-      Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
-      Result:<EOI>{herg_inhib#False&True}
-    - |-
-      Task: Please classify a molecule based on the description.
-      Description: A molecule that is a {herg_inhib__names__noun}.
-      {#Molecule |!}{SMILES__description}: {SMILES#}
-      Constraint: Answer the question in a {#full|complete!} sentence.
-      Result:<EOI>This molecule is {herg_inhib#not &NULL}a {herg_inhib__names__noun}.
-    - |-
-      Task: Please answer the multiple choice question.
-      Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} a {herg_inhib__names__noun}?
-      Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
-      Options:
-      {herg_inhib%}
-      Answer:<EOI>{%multiple_choice_result}
-    - |-
-      Task: Please answer the multiple choice question.
-      Question: Which molecules are {herg_inhib#not &NULL}a {herg_inhib__names__noun}?
-      Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
-      Options:
-      {SMILES%herg_inhib%}
-      Answer: {%multiple_choice_result}
-    - |-
-      Task: Please answer the multiple choice question.
-      Question: Which molecules are {herg_inhib#not &NULL}a {herg_inhib__names__noun}?
-      Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
-      Options:
-      {SMILES%herg_inhib%}
-      Answer:<EOI>{%multiple_choice_result}
+  - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {herg_inhib#not &NULL}a {herg_inhib__names__noun}.
+  - Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule is {herg_inhib#not &NULL}a {herg_inhib__names__noun}.
+  - The {SMILES__description} {SMILES#} {#represents|is from!} a molecule that is {herg_inhib#not &NULL}a {herg_inhib__names__noun}.
+  - The {#molecule |!}{SMILES__description} {SMILES#} is {herg_inhib#not &NULL}a {herg_inhib__names__noun}.
+  - |-
+    Task: Please classify a molecule based on the description.
+    Description: A molecule that {herg_inhib__names__verb}.
+    {#Molecule |!}{SMILES__description}: {SMILES#}
+    Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
+    Result: {herg_inhib#False&True}
+  - |-
+    Task: Please classify a molecule based on the description.
+    Description: A molecule that is a {herg_inhib__names__noun}.
+    {#Molecule |!}{SMILES__description}: {SMILES#}
+    Constraint: Answer the question in a {#full|complete!} sentence.
+    Result: This molecule is {herg_inhib#no &NULL}{herg_inhib__names__noun}.
+  - |-
+    Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+    Description: A molecule that is a {herg_inhib__names__noun}.
+    Result: {SMILES#}
+  - |-
+    User: Can you {#tell me|derive|estimate!} if the molecule with the {SMILES__description} {SMILES#} is a {herg_inhib__names__noun}?
+    Assistant: {herg_inhib#No&Yes}, this molecule is {herg_inhib#not &NULL}a {herg_inhib__names__noun}.
+  - |-
+    User: Is the molecule with the {SMILES__description} {SMILES#} a {herg_inhib__names__noun}?
+    Assistant: {herg_inhib#No&Yes}, it is {herg_inhib#not &NULL}a {herg_inhib__names__noun}.
+  - |-
+    User: Can you {#give me|create|generate!} the {SMILES__description} of a molecule that is {herg_inhib#not &NULL}a {herg_inhib__names__noun}?
+    Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}
+  - |-
+    User: I'm {#searching|looking!} for the {SMILES__description} of a molecule that does {herg_inhib#not &NULL}{herg_inhib__names__verb}?
+    Assistant: This is a molecule that is {herg_inhib#not &NULL}a {herg_inhib__names__noun}: {SMILES#}
+  - |-
+    User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+    Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
+    User: Yes, please. The molecule should {herg_inhib#not &NULL}be a {herg_inhib__names__noun}.
+    Assistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} is {herg_inhib#not &NULL}a {herg_inhib__names__noun}: {SMILES#}
+  - |-
+    User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+    Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
+    User: Yes, the molecule should {herg_inhib#not &NULL}be a {herg_inhib__names__noun}.
+    Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {herg_inhib#not &NULL}a {herg_inhib__names__noun}: {SMILES#}
+  - Is the {SMILES__description} {SMILES#} a {herg_inhib__names__noun}:<EOI>{herg_inhib#no&yes}
+  - |-
+    Task: Please classify a molecule based on the description.
+    Description: A molecule that is a {herg_inhib__names__noun}.
+    {#Molecule |!}{SMILES__description}: {SMILES#}
+    Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
+    Result:<EOI>{herg_inhib#False&True}
+  - |-
+    Task: Please classify a molecule based on the description.
+    Description: A molecule that is a {herg_inhib__names__noun}.
+    {#Molecule |!}{SMILES__description}: {SMILES#}
+    Constraint: Answer the question in a {#full|complete!} sentence.
+    Result:<EOI>This molecule is {herg_inhib#not &NULL}a {herg_inhib__names__noun}.
+  - |-
+    Task: Please answer the multiple choice question.
+    Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} a {herg_inhib__names__noun}?
+    Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
+    Options:
+    {herg_inhib%}
+    Answer:<EOI>{%multiple_choice_result}
+  - |-
+    Task: Please answer the multiple choice question.
+    Question: Which molecules are {herg_inhib#not &NULL}a {herg_inhib__names__noun}?
+    Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
+    Options:
+    {SMILES%herg_inhib%}
+    Answer: {%multiple_choice_result}
+  - |-
+    Task: Please answer the multiple choice question.
+    Question: Which molecules are {herg_inhib#not &NULL}a {herg_inhib__names__noun}?
+    Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
+    Options:
+    {SMILES%herg_inhib%}
+    Answer:<EOI>{%multiple_choice_result}

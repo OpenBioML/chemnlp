@@ -1,144 +1,143 @@
----
 name: skin_reaction
 description: |-
-    Repetitive exposure to a chemical agent can induce an immune reaction
-    in inherently susceptible individuals that leads to skin sensitization. The
-    dataset used in this study was retrieved from the ICCVAM (Interagency Coordinating
-    Committee on the Validation of Alternative Methods) report on the rLLNA.
+  Repetitive exposure to a chemical agent can induce an immune reaction
+  in inherently susceptible individuals that leads to skin sensitization. The
+  dataset used in this study was retrieved from the ICCVAM (Interagency Coordinating
+  Committee on the Validation of Alternative Methods) report on the rLLNA.
 targets:
-    - id: skin_reaction
-      description: whether it can cause skin reaction (1) or not (0).
-      units:
-      type: boolean
-      names:
-          - noun: skin reaction
-          - noun: skin sensitization
-          - noun: agent induced skin reaction
-          - noun: drug induced skin immune reaction
-          - verb: causes a skin reaction
-          - verb: causes a skin sensitization
-          - verb: causes a drug induced skin immune reaction
-          - gerund: causing a skin reaction
-      uris:
-          - http://purl.bioontology.org/ontology/MEDDRA/10040914
+  - id: skin_reaction
+    description: whether it can cause skin reaction (1) or not (0).
+    units:
+    type: boolean
+    names:
+      - noun: skin reaction
+      - noun: skin sensitization
+      - noun: agent induced skin reaction
+      - noun: drug induced skin immune reaction
+      - verb: causes a skin reaction
+      - verb: causes a skin sensitization
+      - verb: causes a drug induced skin immune reaction
+      - gerund: causing a skin reaction
+    uris:
+      - http://purl.bioontology.org/ontology/MEDDRA/10040914
 benchmarks:
-    - name: TDC
-      link: https://tdcommons.ai/
-      split_column: split
+  - name: TDC
+    link: https://tdcommons.ai/
+    split_column: split
 identifiers:
-    - id: SMILES
-      type: SMILES
-      description: SMILES
-    - id: compound_name
-      type: Other
-      description: drug name
-      names:
-          - noun: compound
-          - noun: compound name
+  - id: SMILES
+    type: SMILES
+    description: SMILES
+  - id: compound_name
+    type: Other
+    description: drug name
+    names:
+      - noun: compound
+      - noun: compound name
 license: CC BY 4.0
 links:
-    - url: https://doi.org/10.1016/j.taap.2014.12.014
-      description: corresponding publication
-    - url: https://ntp.niehs.nih.gov/iccvam/docs/immunotox_docs/llna-ld/tmer.pdf
-      description: related publication
-    - url: https://tdcommons.ai/single_pred_tasks/tox/#skin-reaction
-      description: Data source
+  - url: https://doi.org/10.1016/j.taap.2014.12.014
+    description: corresponding publication
+  - url: https://ntp.niehs.nih.gov/iccvam/docs/immunotox_docs/llna-ld/tmer.pdf
+    description: related publication
+  - url: https://tdcommons.ai/single_pred_tasks/tox/#skin-reaction
+    description: Data source
 num_points: 404
 bibtex:
-    - |-
-      @article{Alves2015,
-      doi = {10.1016/j.taap.2014.12.014},
-      url = {https://doi.org/10.1016/j.taap.2014.12.014},
-      year = {2015},
-      month = apr,
-      publisher = {Elsevier BV},
-      volume = {284},
-      number = {2},
-      pages = {262--272},
-      author = {Vinicius M. Alves and Eugene Muratov and Denis Fourches and Judy Strickland
-      and Nicole Kleinstreuer and Carolina H. Andrade and Alexander Tropsha},
-      title = {Predicting chemically-induced skin reactions. Part I: QSAR models of skin sensitization
-      and their application to identify potentially hazardous compounds},
-      journal = {Toxicology and Applied Pharmacology}
+  - |-
+    @article{Alves2015,
+    doi = {10.1016/j.taap.2014.12.014},
+    url = {https://doi.org/10.1016/j.taap.2014.12.014},
+    year = {2015},
+    month = apr,
+    publisher = {Elsevier BV},
+    volume = {284},
+    number = {2},
+    pages = {262--272},
+    author = {Vinicius M. Alves and Eugene Muratov and Denis Fourches and Judy Strickland
+    and Nicole Kleinstreuer and Carolina H. Andrade and Alexander Tropsha},
+    title = {Predicting chemically-induced skin reactions. Part I: QSAR models of skin sensitization
+    and their application to identify potentially hazardous compounds},
+    journal = {Toxicology and Applied Pharmacology}
 templates:
-    - The {#molecule |!}{SMILES__description} {SMILES#} causes {skin_reaction#no &NULL}{skin_reaction__names__noun}.
-    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {skin_reaction#not &NULL}{skin_reaction__names__gerund}.
-    - Based on the {SMILES__description} {#representation |!}{SMILES#}, there is {skin_reaction#no &NULL}{skin_reaction__names__noun}.
-    - The {#molecule |!}{SMILES__description} {SMILES#} does {skin_reaction#not &NULL}{skin_reaction__names__verb}.
-    - |-
-      Task: Please classify a molecule based on the description.
-      Description: A molecule that is {skin_reaction__names__gerund}.
-      {#Molecule |!}{SMILES__description}: {SMILES#}
-      Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
-      Result: {skin_reaction#False&True}
-    - |-
-      Task: Please classify a molecule based on the description.
-      Description: A molecule that is {skin_reaction__names__gerund}.
-      {#Molecule |!}{SMILES__description}: {SMILES#}
-      Constraint: Answer the question in a {#full|complete|definite!} sentence.
-      Result: This molecule is {skin_reaction#not &NULL}{skin_reaction__names__gerund}.
-    - |-
-      Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
-      Description: A molecule that is {skin_reaction__names__gerund}.
-      Result: {SMILES#}
-    - |-
-      User: Can you {#tell me|derive|estimate!} if the molecule with the {SMILES__description} {SMILES#} is {skin_reaction__names__gerund}?
-      Assistant: {skin_reaction#No&Yes}, this molecule is {skin_reaction#not &NULL}{skin_reaction__names__gerund}.
-    - |-
-      User: Is the molecule with the {SMILES__description} {SMILES#} {skin_reaction__names__gerund}?
-      Assistant: {skin_reaction#No&Yes}, it is {skin_reaction#not &NULL}{skin_reaction__names__gerund}.
-    - |-
-      User: Can you {#give me|create|generate!} the {SMILES__description} of a molecule that is {skin_reaction#not &NULL}{skin_reaction__names__gerund}?
-      Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}
-    - |-
-      User: I'm {#searching|looking!} for the {SMILES__description} of a molecule that is {skin_reaction#not &NULL}{skin_reaction__names__gerund}?
-      Assistant: This is a molecule that is {skin_reaction#not &NULL}{skin_reaction__names__gerund}: {SMILES#}
-    - |-
-      User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
-      Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
-      User: Yes, please. The molecule should {skin_reaction#not &NULL}be {skin_reaction__names__gerund}.
-      Assistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} is {skin_reaction#not &NULL}{skin_reaction__names__gerund}: {SMILES#}
-    - |-
-      User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
-      Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
-      User: Yes, the molecule should {skin_reaction#not &NULL}be {skin_reaction__names__gerund}.
-      Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {skin_reaction#not &NULL}{skin_reaction__names__gerund}: {SMILES#}
-    - Is the {SMILES__description} {SMILES#} {skin_reaction__names__gerund}:<EOI>{skin_reaction#no&yes}
-    - |-
-      Task: Please classify a molecule based on the description.
-      Description: A molecule that is {skin_reaction__names__gerund}.
-      {#Molecule |!}{SMILES__description}: {SMILES#}
-      Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
-      Result:<EOI>{skin_reaction#False&True}
-    - |-
-      Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
-      Description: A molecule that is {skin_reaction__names__gerund}.
-      Result:<EOI>{SMILES#}
-    - |-
-      Task: Please answer the multiple choice question.
-      Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} {skin_reaction__names__gerund}?
-      Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
-      Options:
-      {skin_reaction%}
-      Answer: {%multiple_choice_result}
-    - |-
-      Task: Please answer the multiple choice question.
-      Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} {skin_reaction__names__gerund}?
-      Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
-      Options:
-      {skin_reaction%}
-      Answer:<EOI>{%multiple_choice_result}
-    - |-
-      Task: Please answer the multiple choice question.
-      Question: Which molecules are {skin_reaction#not &NULL}{skin_reaction__names__gerund}?
-      Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
-      Options:
-      {SMILES%skin_reaction%}
-      Answer: {%multiple_choice_result}
-    - |-
-      Task: Please answer the multiple choice question.
-      Question: Which molecules are {skin_reaction#not &NULL}{skin_reaction__names__gerund}?
-      Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
-      Options:
-      {SMILES%skin_reaction%}
-      Answer:<EOI>{%multiple_choice_result}
+  - The {#molecule |!}{SMILES__description} {SMILES#} causes {skin_reaction#no &NULL}{skin_reaction__names__noun}.
+  - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {skin_reaction#not &NULL}{skin_reaction__names__gerund}.
+  - Based on the {SMILES__description} {#representation |!}{SMILES#}, there is {skin_reaction#no &NULL}{skin_reaction__names__noun}.
+  - The {#molecule |!}{SMILES__description} {SMILES#} does {skin_reaction#not &NULL}{skin_reaction__names__verb}.
+  - |-
+    Task: Please classify a molecule based on the description.
+    Description: A molecule that is {skin_reaction__names__gerund}.
+    {#Molecule |!}{SMILES__description}: {SMILES#}
+    Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
+    Result: {skin_reaction#False&True}
+  - |-
+    Task: Please classify a molecule based on the description.
+    Description: A molecule that is {skin_reaction__names__gerund}.
+    {#Molecule |!}{SMILES__description}: {SMILES#}
+    Constraint: Answer the question in a {#full|complete|definite!} sentence.
+    Result: This molecule is {skin_reaction#not &NULL}{skin_reaction__names__gerund}.
+  - |-
+    Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+    Description: A molecule that is {skin_reaction__names__gerund}.
+    Result: {SMILES#}
+  - |-
+    User: Can you {#tell me|derive|estimate!} if the molecule with the {SMILES__description} {SMILES#} is {skin_reaction__names__gerund}?
+    Assistant: {skin_reaction#No&Yes}, this molecule is {skin_reaction#not &NULL}{skin_reaction__names__gerund}.
+  - |-
+    User: Is the molecule with the {SMILES__description} {SMILES#} {skin_reaction__names__gerund}?
+    Assistant: {skin_reaction#No&Yes}, it is {skin_reaction#not &NULL}{skin_reaction__names__gerund}.
+  - |-
+    User: Can you {#give me|create|generate!} the {SMILES__description} of a molecule that is {skin_reaction#not &NULL}{skin_reaction__names__gerund}?
+    Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}
+  - |-
+    User: I'm {#searching|looking!} for the {SMILES__description} of a molecule that is {skin_reaction#not &NULL}{skin_reaction__names__gerund}?
+    Assistant: This is a molecule that is {skin_reaction#not &NULL}{skin_reaction__names__gerund}: {SMILES#}
+  - |-
+    User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+    Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
+    User: Yes, please. The molecule should {skin_reaction#not &NULL}be {skin_reaction__names__gerund}.
+    Assistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} is {skin_reaction#not &NULL}{skin_reaction__names__gerund}: {SMILES#}
+  - |-
+    User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+    Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
+    User: Yes, the molecule should {skin_reaction#not &NULL}be {skin_reaction__names__gerund}.
+    Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {skin_reaction#not &NULL}{skin_reaction__names__gerund}: {SMILES#}
+  - Is the {SMILES__description} {SMILES#} {skin_reaction__names__gerund}:<EOI>{skin_reaction#no&yes}
+  - |-
+    Task: Please classify a molecule based on the description.
+    Description: A molecule that is {skin_reaction__names__gerund}.
+    {#Molecule |!}{SMILES__description}: {SMILES#}
+    Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
+    Result:<EOI>{skin_reaction#False&True}
+  - |-
+    Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+    Description: A molecule that is {skin_reaction__names__gerund}.
+    Result:<EOI>{SMILES#}
+  - |-
+    Task: Please answer the multiple choice question.
+    Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} {skin_reaction__names__gerund}?
+    Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
+    Options:
+    {skin_reaction%}
+    Answer: {%multiple_choice_result}
+  - |-
+    Task: Please answer the multiple choice question.
+    Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} {skin_reaction__names__gerund}?
+    Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
+    Options:
+    {skin_reaction%}
+    Answer:<EOI>{%multiple_choice_result}
+  - |-
+    Task: Please answer the multiple choice question.
+    Question: Which molecules are {skin_reaction#not &NULL}{skin_reaction__names__gerund}?
+    Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
+    Options:
+    {SMILES%skin_reaction%}
+    Answer: {%multiple_choice_result}
+  - |-
+    Task: Please answer the multiple choice question.
+    Question: Which molecules are {skin_reaction#not &NULL}{skin_reaction__names__gerund}?
+    Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
+    Options:
+    {SMILES%skin_reaction%}
+    Answer:<EOI>{%multiple_choice_result}

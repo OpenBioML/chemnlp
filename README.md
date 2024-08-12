@@ -32,13 +32,11 @@ ChemNLP is an open-source project - your involvement is warmly welcome! If you'r
 - Looking for ideas? See our [task board](https://github.com/orgs/OpenBioML/projects/5/views/1) to see what we may need help with.
 - Have an idea? Create an [issue](https://github.com/OpenBioML/chemnlp/issues)!
 
-
 Over the past months ChemNLP has received many contributions and a lot of feedback. We appreciate all contributions from community to make ChemNLP thrive.
 
 <a href="https://github.com/openbioml/chemnlp/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=openbioml/chemnlp" />
 </a>
-
 
 # Note on the "ChemNLP" name
 

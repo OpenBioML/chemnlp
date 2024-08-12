@@ -1,146 +1,144 @@
----
 name: nomad-structure
 description: |-
-    A subset from NOMAD dataset, which is a database of DFT computed results of materials.
-    This subset consists of cif structures of around 0.5 million bulk stable materials and their geometric and structural information.
-    All materials in this dataset are modeled using Density Functional Theory using GGA functional.
+  A subset from NOMAD dataset, which is a database of DFT computed results of materials.
+  This subset consists of cif structures of around 0.5 million bulk stable materials and their geometric and structural information.
+  All materials in this dataset are modeled using Density Functional Theory using GGA functional.
 targets:
-    - id: density
-      description: Density of the material
-      units: kg/m^3
-      type: continuous
-      significant_digits: 3
-      names:
-          - noun: density
-      uris:
-    - id: crystal_system
-      description: Geometric arrangement of atoms within a crystal
-      type: categorical
-      names:
-          - noun: crystal system
-      uris:
-    - id: spacegroup
-      description: Spacegroup of the material
-      type: categorical
-      names:
-          - noun: spacegroup
-      uris:
-    - id: pointgroup
-      description: Pointgroup of the material
-      type: categorical
-      names:
-          - noun: pointgroup
-      uris:
-    - id: spacegroup_number
-      description: Spacegroup number of the material
-      type: categorical
-      names:
-          - noun: spacegroup number
-          - noun: number of the spacegroup in the International Tables for Crystallography
-      uris:
-    - id: cif_masked
-      description: CIF file of the material
-      type: text
-      names:
-          - noun: CIF file with masked rows
-          - noun: CIF card with masked rows
+  - id: density
+    description: Density of the material
+    units: kg/m^3
+    type: continuous
+    significant_digits: 3
+    names:
+      - noun: density
+    uris:
+  - id: crystal_system
+    description: Geometric arrangement of atoms within a crystal
+    type: categorical
+    names:
+      - noun: crystal system
+    uris:
+  - id: spacegroup
+    description: Spacegroup of the material
+    type: categorical
+    names:
+      - noun: spacegroup
+    uris:
+  - id: pointgroup
+    description: Pointgroup of the material
+    type: categorical
+    names:
+      - noun: pointgroup
+    uris:
+  - id: spacegroup_number
+    description: Spacegroup number of the material
+    type: categorical
+    names:
+      - noun: spacegroup number
+      - noun: number of the spacegroup in the International Tables for Crystallography
+    uris:
+  - id: cif_masked
+    description: CIF file of the material
+    type: text
+    names:
+      - noun: CIF file with masked rows
+      - noun: CIF card with masked rows
 identifiers:
-    - id: cif
-      type: cif
-      description: CIF
-    - id: formula
-      type: COMPOSITION
-      description: reduced formula
-      names:
-          - noun: chemical formula
-          - noun: composition
-          - noun: reduced formula
+  - id: cif
+    type: cif
+    description: CIF
+  - id: formula
+    type: COMPOSITION
+    description: reduced formula
+    names:
+      - noun: chemical formula
+      - noun: composition
+      - noun: reduced formula
 license: CC BY 4.0
 num_points: 527984
 links:
-    - url: https://nomad-lab.eu/nomad-lab/
-      description: original data source
+  - url: https://nomad-lab.eu/nomad-lab/
+    description: original data source
 bibtex:
-    - |-
-      @article{scheidgen2023nomad,
-      title={NOMAD: A distributed web-based platform for managing materials science research data},
-      author={Scheidgen, Markus and Himanen, Lauri and Ladines, Alvin Noe and Sikter, David and Nakhaee, Mohammad and Fekete, {\'A}d{\'a}m and Chang, Theodore and Golparvar, Amir and M{\'a}rquez, Jos{\'e} A and Brockhauser, Sandor and others},
-      journal={Journal of Open Source Software},
-      volume={8},
-      number={90},
-      pages={5388},
-      year={2023}
-      }
+  - |-
+    @article{scheidgen2023nomad,
+    title={NOMAD: A distributed web-based platform for managing materials science research data},
+    author={Scheidgen, Markus and Himanen, Lauri and Ladines, Alvin Noe and Sikter, David and Nakhaee, Mohammad and Fekete, {\'A}d{\'a}m and Chang, Theodore and Golparvar, Amir and M{\'a}rquez, Jos{\'e} A and Brockhauser, Sandor and others},
+    journal={Journal of Open Source Software},
+    volume={8},
+    number={90},
+    pages={5388},
+    year={2023}
+    }
 templates:
-    - The {spacegroup__names__noun} of the symmetrized version of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#} is {spacegroup#}.
-    - The {crystal_system__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#} is {crystal_system#}.
-    - The {density__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#} is {density#} {density__units}.
-    - The {#chemical formula|composition|reduced formula!} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#} is {formula#}.
-    - The {spacegroup_number__names__noun} of the symmetrized version of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#} is {spacegroup_number#}.
-    - The {#CIF|CIF file|CIF card!} of the material with {#chemical formula|composition|reduced formula!} {formula#}, {spacegroup_number__names__noun} {spacegroup_number#}
-      and {density__names__noun} {density#} {density__units} is {cif#}.
-    - |-
-      Question: {#What is the|What's the!} structure of {#material|compound|solid!} with {#chemical formula|composition|reduced formula!} {formula#} and {spacegroup_number__names__noun} {spacegroup_number#}?
-      Constraint: Return a {#CIF|CIF file|CIF card!}.
-      Answer: {cif#}
-    - |-
-      User: In the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}, what is the {pointgroup__names__noun}?
-      Assistant: The {pointgroup__names__noun} of the symmetrized version of the {#material|compound|solid!} is {pointgroup#}.
-    - |-
-      Question: {#What is the|What's the!} {density__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}?
-      Answer: The {density__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#} is {density#} {density__units}.
-    - |-
-      User: I want to design a material with a particular {density__names__noun}, {spacegroup__names__noun}, and {#chemical formula|composition|reduced formula!}.
-      Assistant: {#Cool, |Awesome, |Great, |That sounds interesting, |!}I would need to know the {density__names__noun}, {spacegroup__names__noun}, and {#chemical formula|composition|reduced formula!} of the material you want to design.
-      User: The {density__names__noun} should be {density#} {density__units}, the {spacegroup__names__noun} should be {spacegroup#}, and the {#chemical formula|composition|reduced formula!} should be {formula#}.
-      Assistant: I {#recommend|suggest|propose|advise|!} the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}.
-    - |-
-      Question: What is the {density__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}?
-      Answer: {density#} {density__units}.
-    - |-
-      Question: What is the {spacegroup__names__noun} of the symmetrized version of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}?
-      Answer: {spacegroup#}.
-    - |-
-      Question: What is the {#chemical formula|composition|reduced formula!} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}?
-      Answer: {formula#}.
-    - |-
-      Question: What is the {spacegroup_number__names__noun} of the symmetrized version of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}?
-      Answer: {spacegroup_number#}.
-    - |-
-      User: The {#CIF|CIF file|CIF card!} of the {#material|compound|solid!} is {cif#}. {#Tell|Show|Give|!} me the {#chemical formula|composition|reduced formula!}.
-      Assistant: {#Certainly|Sure|Of course!}, the {formula__names__noun} is {formula#}
-    - |-
-      User: The {#CIF|CIF file|CIF card!} of the {#material|compound|solid!} is {cif#}. {#Tell|Show|Give|!} me the {density__names__noun}.
-      Assistant: {#Certainly|Sure|Of course!}, {density__names__noun} of the {#material|compound|solid!} is {density#} {density__units}
-    - |-
-      User: I want to design a {#material|compound|solid!} with a {density__names__noun} of {density#} {density__units}, and a {#chemical formula|composition|reduced formula!} of {formula#}.
-      Assistant: {#Cool, |Awesome, |Great, |That sounds interesting, |!}I suggest the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}. {#Is there anything else I can do for you?|Do you need anything else?|Anything else?!}
-      User: {#Yes, |Yeah, |Yep, |Indeed, |!}I also want to know the {spacegroup__names__noun} of the symmetrized version of this {#material|compound|solid!}.
-      Assistant: The {spacegroup__names__noun} of the {#material|compound|solid!} is {spacegroup#}.
-    - |-
-      User: I have a {#material|compound|solid|structure!} with the following {#CIF|CIF file|CIF card!} {cif#}. {#Can you tell me the density?|What is the density?!}
-      Assistant: The {density__names__noun} of the {#material|compound|solid!} is {density#} {density__units}. {#Is there anything else I can do for you?|Do you need anything else?|Anything else?!}
-      User: {#Yes, |Yeah, |Yep, |Indeed, |!}I also want to know the {spacegroup__names__noun} of the symmetrized version of this {#material|compound|solid!}.
-      Assistant: The {spacegroup__names__noun} of the {#material|compound|solid!} is {spacegroup#}.
-    - |-
-      User: For a {#material|compound|solid|structure!} with {spacegroup_number__names__noun} {spacegroup#}, can you estimate the {density__names__noun} in {density__units}, and the {pointgroup__names__noun}?
-      Assistant: Certainly, the {density__names__noun} is {density#} {density__units}, and the {pointgroup__names__noun} is {pointgroup#}.
-    - |-
-      User: I want you to {#write|tell|suggest!} the {#CIF|CIF file|CIF card!} of a {#material|compound|solid!} with a {density__names__noun} of {density#} {density__units}, and {#chemical formula|composition|reduced formula!} {formula#}. Also the {spacegroup__names__noun} of the {#material|compound|solid!} should be {spacegroup#}
-      Assistant: {#Certainly|Sure|Of course!}, the {#CIF|CIF file|CIF card!} is {cif#}.
-    - |-
-      Task: Fill the rows masked with `[MASK]` in this {#CIF|CIF file|CIF card!} to fulfill the given constraints. Return the {#CIF|CIF file|CIF card!} with the masked rows filled.
-      Masked {#CIF|CIF file|CIF card!}: {cif_masked#}
-      Constraint: The {density__names__noun} should be {density#} {density__units}, and the {#chemical formula|composition|reduced formula!} should be {formula#}.
-      Answer: {cif#}
-    - |-
-      Task: Fill the rows masked with `[MASK]` in this {#CIF|CIF file|CIF card!} to fulfill the given constraints. Return the {#CIF|CIF file|CIF card!} with the masked rows filled.
-      Masked {#CIF|CIF file|CIF card!}: {cif_masked#}
-      Constraint: The {density__names__noun} should be {density#} {density__units}, the {#chemical formula|composition|reduced formula!} should be {formula#}, and the {spacegroup__names__noun} should be {spacegroup#}.
-      Answer: {cif#}
-    - |-
-      Question: {#What is the|What's the!} complete {#CIF|CIF file|CIF card!} of the {#material|compound|solid!} with the masked {#CIF|CIF file|CIF card!} {cif_masked#} and {density__names__noun} {density#} {density__units}?
-      Answer: {cif#}
-    - |-
-      Question: {#What is the|What's the!} complete {#CIF|CIF file|CIF card!} of the {#material|compound|solid!} with the masked {#CIF|CIF file|CIF card!} {cif_masked#}, {density__names__noun} {density#} {density__units}, and {#chemical formula|composition|reduced formula!} {formula#}?
-      Answer: {cif#}
+  - The {spacegroup__names__noun} of the symmetrized version of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#} is {spacegroup#}.
+  - The {crystal_system__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#} is {crystal_system#}.
+  - The {density__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#} is {density#} {density__units}.
+  - The {#chemical formula|composition|reduced formula!} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#} is {formula#}.
+  - The {spacegroup_number__names__noun} of the symmetrized version of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#} is {spacegroup_number#}.
+  - The {#CIF|CIF file|CIF card!} of the material with {#chemical formula|composition|reduced formula!} {formula#}, {spacegroup_number__names__noun} {spacegroup_number#} and {density__names__noun} {density#} {density__units} is {cif#}.
+  - |-
+    Question: {#What is the|What's the!} structure of {#material|compound|solid!} with {#chemical formula|composition|reduced formula!} {formula#} and {spacegroup_number__names__noun} {spacegroup_number#}?
+    Constraint: Return a {#CIF|CIF file|CIF card!}.
+    Answer: {cif#}
+  - |-
+    User: In the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}, what is the {pointgroup__names__noun}?
+    Assistant: The {pointgroup__names__noun} of the symmetrized version of the {#material|compound|solid!} is {pointgroup#}.
+  - |-
+    Question: {#What is the|What's the!} {density__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}?
+    Answer: The {density__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#} is {density#} {density__units}.
+  - |-
+    User: I want to design a material with a particular {density__names__noun}, {spacegroup__names__noun}, and {#chemical formula|composition|reduced formula!}.
+    Assistant: {#Cool, |Awesome, |Great, |That sounds interesting, |!}I would need to know the {density__names__noun}, {spacegroup__names__noun}, and {#chemical formula|composition|reduced formula!} of the material you want to design.
+    User: The {density__names__noun} should be {density#} {density__units}, the {spacegroup__names__noun} should be {spacegroup#}, and the {#chemical formula|composition|reduced formula!} should be {formula#}.
+    Assistant: I {#recommend|suggest|propose|advise|!} the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}.
+  - |-
+    Question: What is the {density__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}?
+    Answer: {density#} {density__units}.
+  - |-
+    Question: What is the {spacegroup__names__noun} of the symmetrized version of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}?
+    Answer: {spacegroup#}.
+  - |-
+    Question: What is the {#chemical formula|composition|reduced formula!} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}?
+    Answer: {formula#}.
+  - |-
+    Question: What is the {spacegroup_number__names__noun} of the symmetrized version of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}?
+    Answer: {spacegroup_number#}.
+  - |-
+    User: The {#CIF|CIF file|CIF card!} of the {#material|compound|solid!} is {cif#}. {#Tell|Show|Give|!} me the {#chemical formula|composition|reduced formula!}.
+    Assistant: {#Certainly|Sure|Of course!}, the {formula__names__noun} is {formula#}
+  - |-
+    User: The {#CIF|CIF file|CIF card!} of the {#material|compound|solid!} is {cif#}. {#Tell|Show|Give|!} me the {density__names__noun}.
+    Assistant: {#Certainly|Sure|Of course!}, {density__names__noun} of the {#material|compound|solid!} is {density#} {density__units}
+  - |-
+    User: I want to design a {#material|compound|solid!} with a {density__names__noun} of {density#} {density__units}, and a {#chemical formula|composition|reduced formula!} of {formula#}.
+    Assistant: {#Cool, |Awesome, |Great, |That sounds interesting, |!}I suggest the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}. {#Is there anything else I can do for you?|Do you need anything else?|Anything else?!}
+    User: {#Yes, |Yeah, |Yep, |Indeed, |!}I also want to know the {spacegroup__names__noun} of the symmetrized version of this {#material|compound|solid!}.
+    Assistant: The {spacegroup__names__noun} of the {#material|compound|solid!} is {spacegroup#}.
+  - |-
+    User: I have a {#material|compound|solid|structure!} with the following {#CIF|CIF file|CIF card!} {cif#}. {#Can you tell me the density?|What is the density?!}
+    Assistant: The {density__names__noun} of the {#material|compound|solid!} is {density#} {density__units}. {#Is there anything else I can do for you?|Do you need anything else?|Anything else?!}
+    User: {#Yes, |Yeah, |Yep, |Indeed, |!}I also want to know the {spacegroup__names__noun} of the symmetrized version of this {#material|compound|solid!}.
+    Assistant: The {spacegroup__names__noun} of the {#material|compound|solid!} is {spacegroup#}.
+  - |-
+    User: For a {#material|compound|solid|structure!} with {spacegroup_number__names__noun} {spacegroup#}, can you estimate the {density__names__noun} in {density__units}, and the {pointgroup__names__noun}?
+    Assistant: Certainly, the {density__names__noun} is {density#} {density__units}, and the {pointgroup__names__noun} is {pointgroup#}.
+  - |-
+    User: I want you to {#write|tell|suggest!} the {#CIF|CIF file|CIF card!} of a {#material|compound|solid!} with a {density__names__noun} of {density#} {density__units}, and {#chemical formula|composition|reduced formula!} {formula#}. Also the {spacegroup__names__noun} of the {#material|compound|solid!} should be {spacegroup#}
+    Assistant: {#Certainly|Sure|Of course!}, the {#CIF|CIF file|CIF card!} is {cif#}.
+  - |-
+    Task: Fill the rows masked with `[MASK]` in this {#CIF|CIF file|CIF card!} to fulfill the given constraints. Return the {#CIF|CIF file|CIF card!} with the masked rows filled.
+    Masked {#CIF|CIF file|CIF card!}: {cif_masked#}
+    Constraint: The {density__names__noun} should be {density#} {density__units}, and the {#chemical formula|composition|reduced formula!} should be {formula#}.
+    Answer: {cif#}
+  - |-
+    Task: Fill the rows masked with `[MASK]` in this {#CIF|CIF file|CIF card!} to fulfill the given constraints. Return the {#CIF|CIF file|CIF card!} with the masked rows filled.
+    Masked {#CIF|CIF file|CIF card!}: {cif_masked#}
+    Constraint: The {density__names__noun} should be {density#} {density__units}, the {#chemical formula|composition|reduced formula!} should be {formula#}, and the {spacegroup__names__noun} should be {spacegroup#}.
+    Answer: {cif#}
+  - |-
+    Question: {#What is the|What's the!} complete {#CIF|CIF file|CIF card!} of the {#material|compound|solid!} with the masked {#CIF|CIF file|CIF card!} {cif_masked#} and {density__names__noun} {density#} {density__units}?
+    Answer: {cif#}
+  - |-
+    Question: {#What is the|What's the!} complete {#CIF|CIF file|CIF card!} of the {#material|compound|solid!} with the masked {#CIF|CIF file|CIF card!} {cif_masked#}, {density__names__noun} {density#} {density__units}, and {#chemical formula|composition|reduced formula!} {formula#}?
+    Answer: {cif#}

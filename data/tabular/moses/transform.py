@@ -69,7 +69,7 @@ It is processed from the ZINC Clean Leads dataset.""",
             },
             {
                 "url": "https://github.com/molecularsets/moses",
-                "description": "Github repository concering the datset",
+                "description": "Github repository concerning the dataset",
             },
         ],
         "num_points": len(df),  # number of datapoints in this dataset

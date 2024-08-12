@@ -1,84 +1,83 @@
----
 name: mp_self_supervised
 description: |-
-    The materials project is a dabase of computed properties of materials.
+  The materials project is a dabase of computed properties of materials.
 targets:
-    - id: density
-      description: Density of the material
-      units: g/cm^3
-      type: continuous
-      names:
-          - noun: density of the material
-          - noun: density
-      uris:
-      significant_digits: 2
-    - id: spacegroup
-      description: Spacegroup of the material
-      type: categorical
-      names:
-          - noun: spacegroup of the material
-          - noun: spacegroup
-      uris:
-      significant_digits: 2
-    - id: spacegroup_number
-      description: Spacegroup number of the material
-      type: categorical
-      names:
-          - noun: spacegroup number of the material
-          - noun: spacegroup number
-          - noun: number of the spacegroup in the International Tables for Crystallography
+  - id: density
+    description: Density of the material
+    units: g/cm^3
+    type: continuous
+    names:
+      - noun: density of the material
+      - noun: density
+    uris:
+    significant_digits: 2
+  - id: spacegroup
+    description: Spacegroup of the material
+    type: categorical
+    names:
+      - noun: spacegroup of the material
+      - noun: spacegroup
+    uris:
+    significant_digits: 2
+  - id: spacegroup_number
+    description: Spacegroup number of the material
+    type: categorical
+    names:
+      - noun: spacegroup number of the material
+      - noun: spacegroup number
+      - noun: number of the spacegroup in the International Tables for Crystallography
 identifiers:
-    - id: cif
-      type: cif
-      description: CIF
-    - id: formula
-      type: COMPOSITION
-      description: reduced formula
+  - id: cif
+    type: cif
+    description: CIF
+  - id: formula
+    type: COMPOSITION
+    description: reduced formula
 license: CC BY 4.0
 num_points: 130542
 links:
-    - url: https://materialsproject.org/
-      description: original data source
+  - url: https://materialsproject.org/
+    description: original data source
 bibtex:
-    - |-
-      @article{jain2013commentary,
-        title={Commentary: The Materials Project: A materials genome approach to accelerating materials innovation},
-        author={Jain, Anubhav and Ong, Shyue Ping and Hautier, Geoffroy and Chen, Wei and Richards, William Davidson and Dacek, Stephen and Cholia, Shreyas and Gunter, Dan and Skinner, David and Ceder, Gerbrand and others},
-        journal={APL materials},
-        volume={1},
-        number={1},
-        year={2013},
-        publisher={AIP Publishing}
-      }
+  - |-
+    @article{jain2013commentary,
+      title={Commentary: The Materials Project: A materials genome approach to accelerating materials innovation},
+      author={Jain, Anubhav and Ong, Shyue Ping and Hautier, Geoffroy and Chen, Wei and Richards, William Davidson and Dacek, Stephen and Cholia, Shreyas and Gunter, Dan and Skinner, David and Ceder, Gerbrand and others},
+      journal={APL materials},
+      volume={1},
+      number={1},
+      year={2013},
+      publisher={AIP Publishing}
+    }
 templates:
-    - The {spacegroup__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#} is {spacegroup#}.
-    - The {density__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#} is {density#} {density__units}.
-    - The {#chemical formula|composition|reduced formula!} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#} is {formula#}.
-    - The {spacegroup_number__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#} is {spacegroup_number#}.
-    - |-
-      User: I want to design a material with a particular {density__names__noun}, {spacegroup__names__noun}, and {#chemical formula|composition|reduced formula!}.
-      Assistant: {#Cool, |Awesome, |Great, |That sounds interesting, |!}I would need to know the {density__names__noun}, {spacegroup__names__noun}, and {#chemical formula|composition|reduced formula!} of the material you want to design.
-      User: The {density__names__noun} should be {density#} {density__units}, the {spacegroup__names__noun} should be {spacegroup#}, and the {#chemical formula|composition|reduced formula!} should be {formula#}.
-      Assistant: I {#recommend|suggest|propose|advise|!} the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}.
-    - |-
-      Question: What is the {density__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}?
-      Answer: {density#} {density__units}
-    - |-
-      Question: What is the {spacegroup__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}?
-      Answer: {spacegroup#}
-    - |-
-      Question: What is the {#chemical formula|composition|reduced formula!} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}?
-      Answer: {formula#}
-    - |-
-      Question: What is the {spacegroup_number__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}?
-      Answer: {spacegroup_number#}
-    - |-
-      User: I want to design a {#material|compound|solid!} with a {density__names__noun} of {density#} {density__units}, and a {#chemical formula|composition|reduced formula!} of {formula#}.
-      Assistant: {#Cool, |Awesome, |Great, |That sounds interesting, |!}I suggest the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}. {#Is there anything else I can do for you?|Do you need anything else?|Anything else?|!}
-      User: {#Yes, |Yeah, |Yep, |Indeed, |!}I also want to know the {spacegroup__names__noun} of this {#material|compound|solid!}.
-      Assistant: The {spacegroup__names__noun} of the {#material|compound|solid!} is {spacegroup#}.
-    - |-
-      User: I have a {#material|compound|solid|structure!} with the following {#CIF|CIF file|CIF card!} {cif#}. {#Can you tell me the density?|What is the density?|!}
-      Assistant: The {density__names__noun} of the {#material|compound|solid!} is {density#} {density__units}. {#Is there anything else I can do for you?|Do you need anything else?|Anything else?|!}
-      User: {#Yes, |Yeah, |Yep, |Indeed, |!}I also want to know the {spacegroup__names__noun} of this {#material|compound|solid!}.
-      Assistant: The {spacegroup__names__noun} of the {#material|compound|solid!} is {spacegroup#}.
+  - The {spacegroup__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#} is {spacegroup#}.
+  - The {density__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#} is {density#} {density__units}.
+  - The {#chemical formula|composition|reduced formula!} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#} is {formula#}.
+  - The {spacegroup_number__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#} is {spacegroup_number#}.
+  - |-
+    User: I want to design a material with a particular {density__names__noun}, {spacegroup__names__noun}, and {#chemical formula|composition|reduced formula!}.
+    Assistant: {#Cool, |Awesome, |Great, |That sounds interesting, |!}I would need to know the {density__names__noun}, {spacegroup__names__noun}, and {#chemical formula|composition|reduced formula!} of the material you want to design.
+    User: The {density__names__noun} should be {density#} {density__units}, the {spacegroup__names__noun} should be {spacegroup#}, and the {#chemical formula|composition|reduced formula!} should be {formula#}.
+    Assistant: I {#recommend|suggest|propose|advise|!} the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}.
+  - |-
+    Question: What is the {density__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}?
+    Answer: {density#} {density__units}
+  - |-
+    Question: What is the {spacegroup__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}?
+    Answer: {spacegroup#}
+  - |-
+    Question: What is the {#chemical formula|composition|reduced formula!} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}?
+    Answer: {formula#}
+  - |-
+    Question: What is the {spacegroup_number__names__noun} of the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}?
+    Answer: {spacegroup_number#}
+  - |-
+    User: I want to design a {#material|compound|solid!} with a {density__names__noun} of {density#} {density__units}, and a {#chemical formula|composition|reduced formula!} of {formula#}.
+    Assistant: {#Cool, |Awesome, |Great, |That sounds interesting, |!}I suggest the {#material|compound|solid!} with the {#CIF|CIF file|CIF card!} {cif#}. {#Is there anything else I can do for you?|Do you need anything else?|Anything else?|!}
+    User: {#Yes, |Yeah, |Yep, |Indeed, |!}I also want to know the {spacegroup__names__noun} of this {#material|compound|solid!}.
+    Assistant: The {spacegroup__names__noun} of the {#material|compound|solid!} is {spacegroup#}.
+  - |-
+    User: I have a {#material|compound|solid|structure!} with the following {#CIF|CIF file|CIF card!} {cif#}. {#Can you tell me the density?|What is the density?|!}
+    Assistant: The {density__names__noun} of the {#material|compound|solid!} is {density#} {density__units}. {#Is there anything else I can do for you?|Do you need anything else?|Anything else?|!}
+    User: {#Yes, |Yeah, |Yep, |Indeed, |!}I also want to know the {spacegroup__names__noun} of this {#material|compound|solid!}.
+    Assistant: The {spacegroup__names__noun} of the {#material|compound|solid!} is {spacegroup#}.

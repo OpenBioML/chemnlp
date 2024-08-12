@@ -1,47 +1,46 @@
----
 name: uniprot_organisms
 description: |-
-    Organisms in which a amino-acid sequence can be found.
+  Organisms in which a amino-acid sequence can be found.
 targets:
-    - id: organisms
-      description: organisms in which a protein can be found
-      type: text
-      names:
-          - noun: organisms
+  - id: organisms
+    description: organisms in which a protein can be found
+    type: text
+    names:
+      - noun: organisms
 identifiers:
-    - id: other
-      type: AS_SEQUENCE
-      description: other
+  - id: other
+    type: AS_SEQUENCE
+    description: other
 license: MIT
 links:
-    - url: https://www.uniprot.org/
-      description: data source
+  - url: https://www.uniprot.org/
+    description: data source
 num_points: 559428
 bibtex:
-    - |-
-      @article{10.1093/nar/gkac1052,
-      author = {The UniProt Consortium},
-      title = {UniProt - the Universal Protein Knowledgebase in 2023},
-      journal = {Nucleic Acids Research},
-      volume = {51},
-      number = {D1},
-      pages = {D523-D531},
-      year = {2022},
-      month = {11},
-      issn = {0305-1048},
-      doi = {10.1093/nar/gkac1052},
-      url = {https://doi.org/10.1093/nar/gkac1052}}
+  - |-
+    @article{10.1093/nar/gkac1052,
+    author = {The UniProt Consortium},
+    title = {UniProt - the Universal Protein Knowledgebase in 2023},
+    journal = {Nucleic Acids Research},
+    volume = {51},
+    number = {D1},
+    pages = {D523-D531},
+    year = {2022},
+    month = {11},
+    issn = {0305-1048},
+    doi = {10.1093/nar/gkac1052},
+    url = {https://doi.org/10.1093/nar/gkac1052}}
 templates:
-    - |-
-      The protein with the {#amino acid sequence|AA sequence!} {other#} can be found in {#the organism |!}{organisms#}.
-    - |-
-      Task: {#Predict|Identify!} the organism in which {#the below|this!} {#protein|amino acid sequence|AA sequence|polypeptide!} can be found.
-      {#Amino acid sequence |Sequence|AA sequence!}: {other#}
-      Result: {organisms#}
-    - |-
-      User: In what organism can you find the following {#protein|amino acid sequence|AA sequence|polypeptide!}:\n{other#}
-      Assistant: The given {#protein|amino acid sequence|AA sequence|polypeptide!} can be found in {organisms#}.
-    - |-
-      Task: {#Predict|Identify!} the organism in which {#the below|this!} {#protein|amino acid sequence|AA sequence|polypeptide!} can be found.
-      {#Amino acid sequence|Sequence|AA sequence!}: {other#}
-      Result:<EOI> {organisms#}
+  - |-
+    The protein with the {#amino acid sequence|AA sequence!} {other#} can be found in {#the organism |!}{organisms#}.
+  - |-
+    Task: {#Predict|Identify!} the organism in which {#the below|this!} {#protein|amino acid sequence|AA sequence|polypeptide!} can be found.
+    {#Amino acid sequence |Sequence|AA sequence!}: {other#}
+    Result: {organisms#}
+  - |-
+    User: In what organism can you find the following {#protein|amino acid sequence|AA sequence|polypeptide!}:\n{other#}
+    Assistant: The given {#protein|amino acid sequence|AA sequence|polypeptide!} can be found in {organisms#}.
+  - |-
+    Task: {#Predict|Identify!} the organism in which {#the below|this!} {#protein|amino acid sequence|AA sequence|polypeptide!} can be found.
+    {#Amino acid sequence|Sequence|AA sequence!}: {other#}
+    Result:<EOI> {organisms#}

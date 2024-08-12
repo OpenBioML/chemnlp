@@ -1,136 +1,134 @@
----
 name: nr_ppar_gamma_tox21
 description: |-
-    Tox21 is a data challenge which contains qualitative toxicity measurements
-    for 7,831 compounds on 12 different targets, such as nuclear receptors and stress
-    response pathways.
+  Tox21 is a data challenge which contains qualitative toxicity measurements
+  for 7,831 compounds on 12 different targets, such as nuclear receptors and stress
+  response pathways.
 targets:
-    - id: toxicity_NR-PPAR-gamma
-      description: whether it shows activity in NR-PPAR-gamma toxicity assay (1) or not (0)
-      units:
-      type: boolean
-      names:
-          - noun: NR-PPAR-gamma toxicity
-          - noun: NR-peroxisome proliferator-activated receptor gamma toxicity
-          - noun: peroxisome proliferator-activated receptor gamma toxicity
-          - adjective: toxic in the NR-PPAR-gamma assay
-          - adjective: toxic in the NR-peroxisome proliferator-activated receptor gamma assay
-          - adjective: toxic in the peroxisome proliferator-activated receptor gamma assay
-          - gerund: showing toxicity in the NR-PPAR-gamma assay
-          - gerund: displaying toxicity in the NR-PPAR-gamma assay
-          - gerund: exhibiting toxicity in the NR-PPAR-gamma assay
-      uris:
+  - id: toxicity_NR-PPAR-gamma
+    description: whether it shows activity in NR-PPAR-gamma toxicity assay (1) or not (0)
+    units:
+    type: boolean
+    names:
+      - noun: NR-PPAR-gamma toxicity
+      - noun: NR-peroxisome proliferator-activated receptor gamma toxicity
+      - noun: peroxisome proliferator-activated receptor gamma toxicity
+      - adjective: toxic in the NR-PPAR-gamma assay
+      - adjective: toxic in the NR-peroxisome proliferator-activated receptor gamma assay
+      - adjective: toxic in the peroxisome proliferator-activated receptor gamma assay
+      - gerund: showing toxicity in the NR-PPAR-gamma assay
+      - gerund: displaying toxicity in the NR-PPAR-gamma assay
+      - gerund: exhibiting toxicity in the NR-PPAR-gamma assay
+    uris:
 benchmarks:
-    - name: TDC
-      link: https://tdcommons.ai/
-      split_column: split
+  - name: TDC
+    link: https://tdcommons.ai/
+    split_column: split
 identifiers:
-    - id: SMILES
-      type: SMILES
-      description: SMILES
+  - id: SMILES
+    type: SMILES
+    description: SMILES
 license: CC BY 4.0
 links:
-    - url: http://dx.doi.org/10.3389/fenvs.2017.00003
-      description: corresponding publication
-    - url: https://tdcommons.ai/single_pred_tasks/tox/#tox21
-      description: data source
-    - url: https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-018-2523-5/tables/3
-      description: assay name
+  - url: http://dx.doi.org/10.3389/fenvs.2017.00003
+    description: corresponding publication
+  - url: https://tdcommons.ai/single_pred_tasks/tox/#tox21
+    description: data source
+  - url: https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-018-2523-5/tables/3
+    description: assay name
 num_points: 6450
 bibtex:
-    - |-
-      @article{Huang2017,
-      doi = {10.3389/fenvs.2017.00003},
-      url = {https://doi.org/10.3389/fenvs.2017.00003},
-      year = {2017},
-      month = jan,
-      publisher = {Frontiers Media SA},
-      volume = {5},
-      author = {Ruili Huang and Menghang Xia},
-      title = {Editorial: Tox21 Challenge to Build Predictive Models of Nuclear Receptor
-      and Stress Response Pathways As Mediated by Exposure to Environmental Toxicants and Drugs},
-      journal = {Frontiers in Environmental Science}
+  - |-
+    @article{Huang2017,
+    doi = {10.3389/fenvs.2017.00003},
+    url = {https://doi.org/10.3389/fenvs.2017.00003},
+    year = {2017},
+    month = jan,
+    publisher = {Frontiers Media SA},
+    volume = {5},
+    author = {Ruili Huang and Menghang Xia},
+    title = {Editorial: Tox21 Challenge to Build Predictive Models of Nuclear Receptor
+    and Stress Response Pathways As Mediated by Exposure to Environmental Toxicants and Drugs},
+    journal = {Frontiers in Environmental Science}
 templates:
-    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {toxicity_NR-PPAR-gamma#not &NULL}{toxicity_NR-PPAR-gamma__names__adjective}.
-    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {toxicity_NR-PPAR-gamma#not &NULL}{toxicity_NR-PPAR-gamma__names__gerund}.
-    - Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule has {toxicity_NR-PPAR-gamma#no &NULL}{toxicity_NR-PPAR-gamma__names__noun}
-      {#properties|characteristics|features!}.
-    - The {SMILES__description} {SMILES#} {#represents|is from!} a molecule that is {toxicity_NR-PPAR-gamma#not &NULL}identified as {toxicity_NR-PPAR-gamma__names__adjective}.
-    - The {#molecule |!}{SMILES__description} {SMILES#} is {toxicity_NR-PPAR-gamma#not &NULL}{toxicity_NR-PPAR-gamma__names__adjective}.
-    - |-
-      Task: Please classify a molecule based on the description.
-      Description: A molecule that is {toxicity_NR-PPAR-gamma__names__adjective}.
-      {#Molecule |!}{SMILES__description}: {SMILES#}
-      Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional|extra!} words.
-      Result: {toxicity_NR-PPAR-gamma#False&True}
-    - |-
-      Task: Please classify a molecule based on the description.
-      Description: A molecule that is {toxicity_NR-PPAR-gamma__names__adjective}.
-      {#Molecule |!}{SMILES__description}: {SMILES#}
-      Constraint: Answer the question in a {#full|complete!} sentence.
-      Result: This molecule is {toxicity_NR-PPAR-gamma#not &NULL}{toxicity_NR-PPAR-gamma__names__adjective}.
-    - |-
-      Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
-      Description: A molecule that is {toxicity_NR-PPAR-gamma__names__adjective}.
-      Result: {SMILES#}
-    - |-
-      User: Can you {#tell me|figure out|estimate!} if the molecule with the {SMILES__description} {SMILES#} is {toxicity_NR-PPAR-gamma__names__adjective}?
-      Assistant: {toxicity_NR-PPAR-gamma#No&Yes}, this molecule is {toxicity_NR-PPAR-gamma#not &NULL}{toxicity_NR-PPAR-gamma__names__adjective}.
-    - |-
-      User: Is the molecule with the {SMILES__description} {SMILES#} {toxicity_NR-PPAR-gamma__names__adjective}?
-      Assistant: {toxicity_NR-PPAR-gamma#No&Yes}, it is {toxicity_NR-PPAR-gamma#not &NULL}{toxicity_NR-PPAR-gamma__names__adjective}.
-    - |-
-      User: Can you {#give me|create|generate!} the {SMILES__description} of a molecule that is {toxicity_NR-PPAR-gamma#not &NULL}{toxicity_NR-PPAR-gamma__names__adjective}?
-      Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}
-    - |-
-      User: I'm {#searching|looking!} for the {SMILES__description} of a molecule that is {toxicity_NR-PPAR-gamma#not &NULL}{toxicity_NR-PPAR-gamma__names__adjective}?
-      Assistant: This is a molecule that is {toxicity_NR-PPAR-gamma#not &NULL}{toxicity_NR-PPAR-gamma__names__adjective}: {SMILES#}
-    - |-
-      User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
-      Assistant: This sounds {#very exciting. |very interesting. | very curious. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
-      User: Yes, please. The molecule should {toxicity_NR-PPAR-gamma#not &NULL}be {toxicity_NR-PPAR-gamma__names__adjective}.
-      Assistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} is {toxicity_NR-PPAR-gamma#not &NULL}{toxicity_NR-PPAR-gamma__names__adjective}: {SMILES#}
-    - |-
-      User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
-      Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
-      User: Yes, the molecule should {toxicity_NR-PPAR-gamma#not &NULL}be {toxicity_NR-PPAR-gamma__names__adjective}.
-      Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {toxicity_NR-PPAR-gamma#not &NULL}{toxicity_NR-PPAR-gamma__names__adjective}: {SMILES#}
-    - Is the {SMILES__description} {SMILES#} {toxicity_NR-PPAR-gamma__names__adjective}:<EOI>{toxicity_NR-PPAR-gamma#no&yes}
-    - |-
-      Task: Please classify a molecule based on the description.
-      Description: A molecule that is {toxicity_NR-PPAR-gamma__names__adjective}.
-      {#Molecule |!}{SMILES__description}: {SMILES#}
-      Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
-      Result:<EOI>{toxicity_NR-PPAR-gamma#False&True}
-    - |-
-      Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
-      Description: A molecule that is {toxicity_NR-PPAR-gamma__names__adjective}.
-      Result:<EOI>{SMILES#}
-    - |-
-      Task: Please answer the multiple choice question.
-      Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} {toxicity_NR-PPAR-gamma__names__adjective}?
-      Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
-      Options:
-      {toxicity_NR-PPAR-gamma%}
-      Answer: {%multiple_choice_result}
-    - |-
-      Task: Please answer the multiple choice question.
-      Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} {toxicity_NR-PPAR-gamma__names__adjective}?
-      Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
-      Options:
-      {toxicity_NR-PPAR-gamma%}
-      Answer:<EOI>{%multiple_choice_result}
-    - |-
-      Task: Please answer the multiple choice question.
-      Question: Which molecules are {toxicity_NR-PPAR-gamma#not &NULL}{toxicity_NR-PPAR-gamma__names__adjective}?
-      Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
-      Options:
-      {SMILES%toxicity_NR-PPAR-gamma%}
-      Answer: {%multiple_choice_result}
-    - |-
-      Task: Please answer the multiple choice question.
-      Question: Which molecules are {toxicity_NR-PPAR-gamma#not &NULL}{toxicity_NR-PPAR-gamma__names__adjective}?
-      Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
-      Options:
-      {SMILES%toxicity_NR-PPAR-gamma%}
-      Answer:<EOI>{%multiple_choice_result}
+  - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {toxicity_NR-PPAR-gamma#not &NULL}{toxicity_NR-PPAR-gamma__names__adjective}.
+  - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} is {toxicity_NR-PPAR-gamma#not &NULL}{toxicity_NR-PPAR-gamma__names__gerund}.
+  - Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule has {toxicity_NR-PPAR-gamma#no &NULL}{toxicity_NR-PPAR-gamma__names__noun} {#properties|characteristics|features!}.
+  - The {SMILES__description} {SMILES#} {#represents|is from!} a molecule that is {toxicity_NR-PPAR-gamma#not &NULL}identified as {toxicity_NR-PPAR-gamma__names__adjective}.
+  - The {#molecule |!}{SMILES__description} {SMILES#} is {toxicity_NR-PPAR-gamma#not &NULL}{toxicity_NR-PPAR-gamma__names__adjective}.
+  - |-
+    Task: Please classify a molecule based on the description.
+    Description: A molecule that is {toxicity_NR-PPAR-gamma__names__adjective}.
+    {#Molecule |!}{SMILES__description}: {SMILES#}
+    Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional|extra!} words.
+    Result: {toxicity_NR-PPAR-gamma#False&True}
+  - |-
+    Task: Please classify a molecule based on the description.
+    Description: A molecule that is {toxicity_NR-PPAR-gamma__names__adjective}.
+    {#Molecule |!}{SMILES__description}: {SMILES#}
+    Constraint: Answer the question in a {#full|complete!} sentence.
+    Result: This molecule is {toxicity_NR-PPAR-gamma#not &NULL}{toxicity_NR-PPAR-gamma__names__adjective}.
+  - |-
+    Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+    Description: A molecule that is {toxicity_NR-PPAR-gamma__names__adjective}.
+    Result: {SMILES#}
+  - |-
+    User: Can you {#tell me|figure out|estimate!} if the molecule with the {SMILES__description} {SMILES#} is {toxicity_NR-PPAR-gamma__names__adjective}?
+    Assistant: {toxicity_NR-PPAR-gamma#No&Yes}, this molecule is {toxicity_NR-PPAR-gamma#not &NULL}{toxicity_NR-PPAR-gamma__names__adjective}.
+  - |-
+    User: Is the molecule with the {SMILES__description} {SMILES#} {toxicity_NR-PPAR-gamma__names__adjective}?
+    Assistant: {toxicity_NR-PPAR-gamma#No&Yes}, it is {toxicity_NR-PPAR-gamma#not &NULL}{toxicity_NR-PPAR-gamma__names__adjective}.
+  - |-
+    User: Can you {#give me|create|generate!} the {SMILES__description} of a molecule that is {toxicity_NR-PPAR-gamma#not &NULL}{toxicity_NR-PPAR-gamma__names__adjective}?
+    Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}
+  - |-
+    User: I'm {#searching|looking!} for the {SMILES__description} of a molecule that is {toxicity_NR-PPAR-gamma#not &NULL}{toxicity_NR-PPAR-gamma__names__adjective}?
+    Assistant: This is a molecule that is {toxicity_NR-PPAR-gamma#not &NULL}{toxicity_NR-PPAR-gamma__names__adjective}: {SMILES#}
+  - |-
+    User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+    Assistant: This sounds {#very exciting. |very interesting. | very curious. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
+    User: Yes, please. The molecule should {toxicity_NR-PPAR-gamma#not &NULL}be {toxicity_NR-PPAR-gamma__names__adjective}.
+    Assistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} is {toxicity_NR-PPAR-gamma#not &NULL}{toxicity_NR-PPAR-gamma__names__adjective}: {SMILES#}
+  - |-
+    User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+    Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
+    User: Yes, the molecule should {toxicity_NR-PPAR-gamma#not &NULL}be {toxicity_NR-PPAR-gamma__names__adjective}.
+    Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {toxicity_NR-PPAR-gamma#not &NULL}{toxicity_NR-PPAR-gamma__names__adjective}: {SMILES#}
+  - Is the {SMILES__description} {SMILES#} {toxicity_NR-PPAR-gamma__names__adjective}:<EOI>{toxicity_NR-PPAR-gamma#no&yes}
+  - |-
+    Task: Please classify a molecule based on the description.
+    Description: A molecule that is {toxicity_NR-PPAR-gamma__names__adjective}.
+    {#Molecule |!}{SMILES__description}: {SMILES#}
+    Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
+    Result:<EOI>{toxicity_NR-PPAR-gamma#False&True}
+  - |-
+    Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+    Description: A molecule that is {toxicity_NR-PPAR-gamma__names__adjective}.
+    Result:<EOI>{SMILES#}
+  - |-
+    Task: Please answer the multiple choice question.
+    Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} {toxicity_NR-PPAR-gamma__names__adjective}?
+    Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
+    Options:
+    {toxicity_NR-PPAR-gamma%}
+    Answer: {%multiple_choice_result}
+  - |-
+    Task: Please answer the multiple choice question.
+    Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} {toxicity_NR-PPAR-gamma__names__adjective}?
+    Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
+    Options:
+    {toxicity_NR-PPAR-gamma%}
+    Answer:<EOI>{%multiple_choice_result}
+  - |-
+    Task: Please answer the multiple choice question.
+    Question: Which molecules are {toxicity_NR-PPAR-gamma#not &NULL}{toxicity_NR-PPAR-gamma__names__adjective}?
+    Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
+    Options:
+    {SMILES%toxicity_NR-PPAR-gamma%}
+    Answer: {%multiple_choice_result}
+  - |-
+    Task: Please answer the multiple choice question.
+    Question: Which molecules are {toxicity_NR-PPAR-gamma#not &NULL}{toxicity_NR-PPAR-gamma__names__adjective}?
+    Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
+    Options:
+    {SMILES%toxicity_NR-PPAR-gamma%}
+    Answer:<EOI>{%multiple_choice_result}

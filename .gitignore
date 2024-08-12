@@ -144,3 +144,5 @@ scratch/
 # vim
 *~
 *.swp
+
+.DS_Store

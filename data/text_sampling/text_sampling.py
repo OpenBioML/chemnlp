@@ -1,5 +1,4 @@
 import copy
-import glob
 import math
 import os.path
 import random
@@ -566,7 +565,7 @@ class TemplateSampler:
         self.templates = templates
         print(f"\n### templates\n{self.templates}")
         assert self.templates is not None
-        assert self.templates is not []
+        assert self.templates != []
         self.prompt_templates = [PromptTemplate(t) for t in self.templates]
 
         # create random variables for prompts and texts

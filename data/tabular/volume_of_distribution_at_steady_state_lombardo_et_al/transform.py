@@ -48,7 +48,7 @@ def get_and_transform_data():
         "description": """The volume of distribution at steady state (VDss) measures the degree
 of a drug's concentration in the body tissue compared to concentration in the blood.
 Higher VD indicates a higher distribution in the tissue and usually indicates
-the drug with high lipid solubility, low plasma protein binidng rate.""",
+the drug with high lipid solubility, low plasma protein binding rate.""",
         "targets": [
             {
                 "id": "VDss_Lombardo",  # name of the column in a tabular dataset

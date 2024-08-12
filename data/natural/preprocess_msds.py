@@ -11,7 +11,7 @@ import os
 def get_text(d, text="", level=1, linebreaks=2):
     for k in d:
         if k in [
-            "SECTION 6: Acidental release measures",  # always empty
+            "SECTION 6: Accidental release measures",  # always empty
             "SECTION 1: Toxicological information",  # always empty
             "SECTION 16: Other information",  # always the same information
         ]:

@@ -12,6 +12,7 @@ from chemnlp.data.constants import (
     DEFAULT_SIGNIFICANT_DIGITS,
 )
 
+
 def determine_balance_column(meta: dict, template: str) -> Optional[str]:
     """
     Determine which column to use for class balancing based on the template and metadata.
@@ -27,8 +28,11 @@ def determine_balance_column(meta: dict, template: str) -> Optional[str]:
         return matching_targets[0]
     else:
         chosen_target = random.choice(matching_targets)
-        warnings.warn(f"Multiple targets found in template. Randomly chose '{chosen_target}' for balancing.")
+        warnings.warn(
+            f"Multiple targets found in template. Randomly chose '{chosen_target}' for balancing."
+        )
         return chosen_target
+
 
 def process_dataset(
     data_dir: str,
@@ -55,8 +59,8 @@ def process_dataset(
         use_standard_templates (bool): Whether to use standard tabular text templates
         wrap_identifiers (bool): Whether to wrap identifiers in templates
     """
-    meta_path = os.path.join(data_dir, 'meta.yaml')
-    data_path = os.path.join(data_dir, 'data_clean.csv')
+    meta_path = os.path.join(data_dir, "meta.yaml")
+    data_path = os.path.join(data_dir, "data_clean.csv")
 
     meta = load_yaml(meta_path)
 
@@ -85,11 +89,11 @@ def process_dataset(
     multiple_choice_rnd_symbols = ["", ".", ".)", ")", ":", "()", "[]"]
 
     config = {
-        'DEFAULT_SIGNIFICANT_DIGITS': DEFAULT_SIGNIFICANT_DIGITS,
-        'multiple_choice_rnd_symbols': multiple_choice_rnd_symbols,
-        'multiple_choice_benchmarking_templates': multiple_choice,
-        'multiple_choice_benchmarking_format': None,
-        'wrap_identifiers': wrap_identifiers
+        "DEFAULT_SIGNIFICANT_DIGITS": DEFAULT_SIGNIFICANT_DIGITS,
+        "multiple_choice_rnd_symbols": multiple_choice_rnd_symbols,
+        "multiple_choice_benchmarking_templates": multiple_choice,
+        "multiple_choice_benchmarking_format": None,
+        "wrap_identifiers": wrap_identifiers,
     }
 
     with pd.read_csv(data_path, chunksize=chunksize, low_memory=False) as reader:
@@ -111,21 +115,29 @@ def process_dataset(
                 templates = [t for t in templates if "<EOI>" not in t]
 
             for template_idx, template in enumerate(templates):
-                print(f"\nProcessing chunk {chunk_idx}, template {template_idx}:\n{template}")
+                print(
+                    f"\nProcessing chunk {chunk_idx}, template {template_idx}:\n{template}"
+                )
 
                 # Determine balance column
-                balance_column = determine_balance_column(meta, template) if class_balanced else None
+                balance_column = (
+                    determine_balance_column(meta, template) if class_balanced else None
+                )
 
                 # Sampling step
                 if balance_column:
                     sampler.enable_class_balancing(balance_column)
                     print(f"Enabled class balancing on column: {balance_column}")
 
-                sampled_data = df_chunk.apply(lambda row: sampler.sample(row, template), axis=1)
+                sampled_data = df_chunk.apply(
+                    lambda row: sampler.sample(row, template), axis=1
+                )
 
                 # Export step
-                output_path = os.path.join(output_dir, f"chunk_{chunk_idx}_template_{template_idx}.jsonl")
-                with open(output_path, 'w') as f:
+                output_path = os.path.join(
+                    output_dir, f"chunk_{chunk_idx}_template_{template_idx}.jsonl"
+                )
+                with open(output_path, "w") as f:
                     for sample in sampled_data:
                         f.write(f"{sample}\n")
 
@@ -133,6 +145,7 @@ def process_dataset(
                     sampler.disable_class_balancing()
 
                 print(f"Exported samples to {output_path}")
+
 
 def main(
     data_dir: str,
@@ -170,6 +183,7 @@ def main(
         use_standard_templates,
         wrap_identifiers,
     )
+
 
 if __name__ == "__main__":
     fire.Fire(main)

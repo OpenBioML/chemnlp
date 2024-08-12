@@ -1,55 +1,54 @@
----
 name: bc5disease
 description: |-
-    BC5Disease is a named entity recognition dataset for disease mentions.
+  BC5Disease is a named entity recognition dataset for disease mentions.
 targets:
-    - id: matched_words
-      description: matched words
-      type: text
-      names:
-          - noun: entity
-          - noun: matched entity
+  - id: matched_words
+    description: matched words
+    type: text
+    names:
+      - noun: entity
+      - noun: matched entity
 identifiers:
-    - id: sentence
-      description: Sentence
-      type: text
-      names:
-          - noun: sentence
-          - noun: text
+  - id: sentence
+    description: Sentence
+    type: text
+    names:
+      - noun: sentence
+      - noun: text
 license: https://huggingface.co/datasets/bigbio/blurb/blob/main/LICENSE
 links:
-    - url: https://huggingface.co/datasets/bigbio/blurb
-      description: original dataset
+  - url: https://huggingface.co/datasets/bigbio/blurb
+    description: original dataset
 benchmarks:
-    - name: bc5chem
-      link: hhttps://huggingface.co/datasets/bigbio/blurb
-      split_column: split
+  - name: bc5chem
+    link: hhttps://huggingface.co/datasets/bigbio/blurb
+    split_column: split
 num_points: 13755
 bibtex:
-    - |-
-      @article{gu2021domain,
-          title = {
-              Domain-specific language model pretraining for biomedical natural
-              language processing
-          },
-          author = {
-              Gu, Yu and Tinn, Robert and Cheng, Hao and Lucas, Michael and
-              Usuyama, Naoto and Liu, Xiaodong and Naumann, Tristan and Gao,
-              Jianfeng and Poon, Hoifung
-          },
-          year = 2021,
-          journal = {ACM Transactions on Computing for Healthcare (HEALTH)},
-          publisher = {ACM New York, NY},
-          volume = 3,
-          number = 1,
-          pages = {1--23}
-      }
+  - |-
+    @article{gu2021domain,
+        title = {
+            Domain-specific language model pretraining for biomedical natural
+            language processing
+        },
+        author = {
+            Gu, Yu and Tinn, Robert and Cheng, Hao and Lucas, Michael and
+            Usuyama, Naoto and Liu, Xiaodong and Naumann, Tristan and Gao,
+            Jianfeng and Poon, Hoifung
+        },
+        year = 2021,
+        journal = {ACM Transactions on Computing for Healthcare (HEALTH)},
+        publisher = {ACM New York, NY},
+        volume = 3,
+        number = 1,
+        pages = {1--23}
+    }
 templates:
-    - |-
-      Task: Find all the mentions of diseases in the {#following|subsequent!} {#text|sentence!}. Return the matching {#words|entities!}. If there is no {#match|mention of a disease|matching entity!}, return `no match`.
-      {#Sentence|Description!}: {sentence#}
-      Answer: {matched_words#}
-    - |-
-      User: Does the following text contain mentions of diseases?{# Can you return matches?| Can you output matches?|Please return matches!}
-      {#Text: |!}{sentence#}
-      Assistant: {#I found|There is!} {matched_words#}.
+  - |-
+    Task: Find all the mentions of diseases in the {#following|subsequent!} {#text|sentence!}. Return the matching {#words|entities!}. If there is no {#match|mention of a disease|matching entity!}, return `no match`.
+    {#Sentence|Description!}: {sentence#}
+    Answer: {matched_words#}
+  - |-
+    User: Does the following text contain mentions of diseases?{# Can you return matches?| Can you output matches?|Please return matches!}
+    {#Text: |!}{sentence#}
+    Assistant: {#I found|There is!} {matched_words#}.

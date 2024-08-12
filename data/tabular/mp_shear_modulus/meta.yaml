@@ -1,94 +1,93 @@
----
 name: mp_shear_modulus
 description: |-
-    DFT-computed shear moduli of inorganic solids
+  DFT-computed shear moduli of inorganic solids
 targets:
-    - id: shear_modulus
-      description: shear modulus of materials
-      units: GPa
-      type: continuous
-      significant_figures: 3
-      names:
-          - noun: shear modulus computed using DFT with the PBE GGA functional
-          - noun: shear modulus computed using DFT with the PBE functional
-          - noun: shear modulus derived from DFT simulations with the PBE functional
-      uris:
+  - id: shear_modulus
+    description: shear modulus of materials
+    units: GPa
+    type: continuous
+    significant_figures: 3
+    names:
+      - noun: shear modulus computed using DFT with the PBE GGA functional
+      - noun: shear modulus computed using DFT with the PBE functional
+      - noun: shear modulus derived from DFT simulations with the PBE functional
+    uris:
 benchmarks:
-    - name: CrabNet
-      link: https://github.com/anthony-wang/CrabNet/tree/master/data/benchmark_data
-      split_column: split
+  - name: CrabNet
+    link: https://github.com/anthony-wang/CrabNet/tree/master/data/benchmark_data
+    split_column: split
 identifiers:
-    - id: formula
-      type: COMPOSITION
-      description: composition
+  - id: formula
+    type: COMPOSITION
+    description: composition
 license: CC BY 4.0
 links:
-    - url: https://next-gen.materialsproject.org/
-      description: original data source
+  - url: https://next-gen.materialsproject.org/
+    description: original data source
 num_points: 6307
 bibtex:
-    - |-
-      @article{Jain_2013,
-        doi = {10.1063/1.4812323},
-        url = {https://doi.org/10.1063%2F1.4812323},
-        year = 2013,
-        month = {jul},
-        publisher = {{AIP} Publishing},
-        volume = {1},
-        number = {1},
-        author = {Anubhav Jain and Shyue Ping Ong and Geoffroy Hautier
-        and Wei Chen and William Davidson Richards and Stephen Dacek
-        and Shreyas Cholia and Dan Gunter and David Skinner
-        and Gerbrand Ceder and Kristin A. Persson},
-        title = {Commentary: The Materials Project:
-        A materials genome approach to accelerating materials innovation},
-        journal = {{APL} Materials}
-      }
-    - |-
-      @article{Ong_2015,
-        doi = {10.1016/j.commatsci.2014.10.037},
-        url = {https://doi.org/10.1016%2Fj.commatsci.2014.10.037},
-        year = 2015,
-        month = {feb},
-        publisher = {Elsevier {BV}},
-        volume = {97},
-        pages = {209--215},
-        author = {Shyue Ping Ong and Shreyas Cholia and Anubhav Jain
-        and Miriam Brafman and Dan Gunter and Gerbrand Ceder and Kristin A. Persson},
-        title = {The Materials Application Programming Interface ({API}):
-        A simple, flexible and efficient {API} for materials data based
-        on {REpresentational} State Transfer ({REST}) principles},
-        journal = {Computational Materials Science}
-      }
-    - |-
-      @article{de_Jong_2015,
-        doi = {10.1038/sdata.2015.9},
-        url = {https://doi.org/10.1038%2Fsdata.2015.9},
-        year = 2015,
-        month = {mar},
-        publisher = {Springer Science and Business Media {LLC}},
-        volume = {2},
-        number = {1},
-        author = {Maarten de Jong and Wei Chen and Thomas Angsten
-        and Anubhav Jain and Randy Notestine and Anthony Gamst
-        and Marcel Sluiter and Chaitanya Krishna Ande
-        and Sybrand van der Zwaag and Jose J Plata and Cormac Toher
-        and Stefano Curtarolo and Gerbrand Ceder and Kristin A. Persson and Mark Asta},
-        title = {Charting the complete elastic properties of inorganic crystalline compounds},
-        journal = {Sci Data}
-      }
+  - |-
+    @article{Jain_2013,
+      doi = {10.1063/1.4812323},
+      url = {https://doi.org/10.1063%2F1.4812323},
+      year = 2013,
+      month = {jul},
+      publisher = {{AIP} Publishing},
+      volume = {1},
+      number = {1},
+      author = {Anubhav Jain and Shyue Ping Ong and Geoffroy Hautier
+      and Wei Chen and William Davidson Richards and Stephen Dacek
+      and Shreyas Cholia and Dan Gunter and David Skinner
+      and Gerbrand Ceder and Kristin A. Persson},
+      title = {Commentary: The Materials Project:
+      A materials genome approach to accelerating materials innovation},
+      journal = {{APL} Materials}
+    }
+  - |-
+    @article{Ong_2015,
+      doi = {10.1016/j.commatsci.2014.10.037},
+      url = {https://doi.org/10.1016%2Fj.commatsci.2014.10.037},
+      year = 2015,
+      month = {feb},
+      publisher = {Elsevier {BV}},
+      volume = {97},
+      pages = {209--215},
+      author = {Shyue Ping Ong and Shreyas Cholia and Anubhav Jain
+      and Miriam Brafman and Dan Gunter and Gerbrand Ceder and Kristin A. Persson},
+      title = {The Materials Application Programming Interface ({API}):
+      A simple, flexible and efficient {API} for materials data based
+      on {REpresentational} State Transfer ({REST}) principles},
+      journal = {Computational Materials Science}
+    }
+  - |-
+    @article{de_Jong_2015,
+      doi = {10.1038/sdata.2015.9},
+      url = {https://doi.org/10.1038%2Fsdata.2015.9},
+      year = 2015,
+      month = {mar},
+      publisher = {Springer Science and Business Media {LLC}},
+      volume = {2},
+      number = {1},
+      author = {Maarten de Jong and Wei Chen and Thomas Angsten
+      and Anubhav Jain and Randy Notestine and Anthony Gamst
+      and Marcel Sluiter and Chaitanya Krishna Ande
+      and Sybrand van der Zwaag and Jose J Plata and Cormac Toher
+      and Stefano Curtarolo and Gerbrand Ceder and Kristin A. Persson and Mark Asta},
+      title = {Charting the complete elastic properties of inorganic crystalline compounds},
+      journal = {Sci Data}
+    }
 templates:
-    - The {shear_modulus__names__noun} of {#the compound|the solid|!} {formula#} is {shear_modulus#} {shear_modulus__units}.
-    - |-
-      Question: How large is the {shear_modulus__names__noun} of {#the compound|the solid|!} {formula#}?
-      Answer: The {shear_modulus__names__noun} of {#the compound|the solid|!} {formula#} is {shear_modulus#} {shear_modulus__units}.
-    - |-
-      User: {#I would like to|I want to!} know the {shear_modulus__names__noun} of {#the compound|the solid|!} {formula#}.
-      Assistant: The {shear_modulus__names__noun} of {#the compound|the solid|!} {formula#} is {shear_modulus#} {shear_modulus__units}.
-    - |-
-      User: {#I would like to|I want to!} design a {#compound|material|solid|!} with a {shear_modulus__names__noun} of {shear_modulus#} {shear_modulus__units}.
-      Assistant: {#I found|Here is|I have found|Here is!} a {#compound|material|solid|!} with a {shear_modulus__names__noun} of {shear_modulus#} {shear_modulus__units}: {formula#}.
-    - A {#compound|material|solid|!} with a {shear_modulus__names__noun} of {shear_modulus#} {shear_modulus__units} is {formula#}.
-    - |-
-      Task: Please {#give me|create|generate!} a {#compound|material|solid|!} with a {shear_modulus__names__noun} of {shear_modulus#} {shear_modulus__units}.
-      Result: {formula#}
+  - The {shear_modulus__names__noun} of {#the compound|the solid|!} {formula#} is {shear_modulus#} {shear_modulus__units}.
+  - |-
+    Question: How large is the {shear_modulus__names__noun} of {#the compound|the solid|!} {formula#}?
+    Answer: The {shear_modulus__names__noun} of {#the compound|the solid|!} {formula#} is {shear_modulus#} {shear_modulus__units}.
+  - |-
+    User: {#I would like to|I want to!} know the {shear_modulus__names__noun} of {#the compound|the solid|!} {formula#}.
+    Assistant: The {shear_modulus__names__noun} of {#the compound|the solid|!} {formula#} is {shear_modulus#} {shear_modulus__units}.
+  - |-
+    User: {#I would like to|I want to!} design a {#compound|material|solid|!} with a {shear_modulus__names__noun} of {shear_modulus#} {shear_modulus__units}.
+    Assistant: {#I found|Here is|I have found|Here is!} a {#compound|material|solid|!} with a {shear_modulus__names__noun} of {shear_modulus#} {shear_modulus__units}: {formula#}.
+  - A {#compound|material|solid|!} with a {shear_modulus__names__noun} of {shear_modulus#} {shear_modulus__units} is {formula#}.
+  - |-
+    Task: Please {#give me|create|generate!} a {#compound|material|solid|!} with a {shear_modulus__names__noun} of {shear_modulus#} {shear_modulus__units}.
+    Result: {formula#}

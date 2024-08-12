@@ -30,44 +30,55 @@ python sampler_cli.py <data_dir> <output_dir> [OPTIONS]
 ## Detailed Option Descriptions
 
 ### `chunksize`
+
 Specifies the number of rows from the dataset to process at once. This is useful for managing memory usage when working with large datasets.
 
 ### `class_balanced`
+
 When enabled, the script will attempt to balance the classes in the dataset for each template. The balancing column is automatically determined based on the template and metadata.
 
 ### `benchmarking`
+
 If set to `True`, the script will only process templates that contain the `<EOI>` tag, which are typically used for benchmarking purposes.
 
 ### `multiple_choice`
+
 When `True`, the script will process only multiple-choice templates (those containing `%multiple_choice_` in the template).
 
 ### `additional_templates`
+
 Allows you to specify additional templates to be used in the sampling process. These templates will be added to any existing templates in the metadata.
 
 ### `use_standard_templates`
+
 If `True`, the script will include standard tabular text templates for applicable datasets. These templates are predefined in the `STANDARD_TABULAR_TEXT_TEMPLATES` constant.
 
 ### `wrap_identifiers`
+
 When enabled, the script will wrap identifiers in the templates with special tags.
 
 ## Examples
 
 1. Basic usage with default settings:
+
    ```
    python sampler_cli.py /path/to/data_dir /path/to/output_dir
    ```
 
 2. Process a dataset with class balancing and identifier wrapping:
+
    ```
    python sampler_cli.py /path/to/data_dir /path/to/output_dir --class_balanced=True --wrap_identifiers=True
    ```
 
 3. Generate benchmarking samples for multiple-choice questions:
+
    ```
    python sampler_cli.py /path/to/data_dir /path/to/output_dir --benchmarking=True --multiple_choice=True
    ```
 
 4. Process a large dataset in smaller chunks:
+
    ```
    python sampler_cli.py /path/to/data_dir /path/to/output_dir --chunksize=500000
    ```

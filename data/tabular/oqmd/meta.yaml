@@ -1,149 +1,143 @@
----
 name: oqmd
 description: |-
-    Open Quantum Materials Database (OQMD) is a database of DFT-computed thermodynamic and structural properties of materials.
-    We used a compilation of a prior version of this database.
+  Open Quantum Materials Database (OQMD) is a database of DFT-computed thermodynamic and structural properties of materials.
+  We used a compilation of a prior version of this database.
 targets:
-    - id: spacegroup
-      description: space group number
-      type: integer
-      names:
-          - noun: space group with the International Tables number
-          - noun: space group
-    - id: energy_per_atom
-      type: continuous
-      units: eV / atom
-      significant_digits: 4
-      names:
-          - noun: energy per atom computed using DFT (with the PAW method as implemented in VASP) using the PBE functional
-          - noun: energy per atom computed using the PBE GGA functional
-          - noun: energy per atom computed using PAW-PBE
-    - id: formation_energy_per_atom
-      type: continuous
-      units: eV / atom
-      significant_digits: 4
-      names:
-          - noun: formation energy per atom computed using DFT (with the PAW method as implemented in VASP) using the PBE functional
-          - noun: formation energy per atom computed using the PBE GGA functional
-          - noun: formation energy per atom computed using PAW-PBE
-    - id: band_gap
-      type: continuous
-      units: eV
-      significant_digits: 4
-      names:
-          - noun: band gap computed using DFT (with the PAW method as implemented in VASP) using the PBE functional
-          - noun: band gap computed using the PBE GGA functional
-          - noun: PBE-computed band gap
-          - noun: PAW-PBE-computed band gap
-          - noun: band gap computed using PAW-PBE
-    - id: volume_per_atom
-      type: continuous
-      units: \AA^3 / atom
-      significant_digits: 4
-      names:
-          - noun: volume per atom computed using DFT (with the PAW method as implemented in VASP) using the PBE functional
-          - noun: volume per atom computed using the PBE GGA functional
-          - noun: volume per atom computed using PAW-PBE
-    - id: magnetization_per_atom
-      type: continuous
-      units: \mu B
-      significant_digits: 4
-      names:
-          - noun: magnetization per atom computed using DFT (with the PAW method as implemented in VASP) using the PBE functional
-          - noun: magnetization per atom computed using the PBE GGA functional
-          - noun: magnetization per atom computed using PAW-PBE
+  - id: spacegroup
+    description: space group number
+    type: integer
+    names:
+      - noun: space group with the International Tables number
+      - noun: space group
+  - id: energy_per_atom
+    type: continuous
+    units: eV / atom
+    significant_digits: 4
+    names:
+      - noun: energy per atom computed using DFT (with the PAW method as implemented in VASP) using the PBE functional
+      - noun: energy per atom computed using the PBE GGA functional
+      - noun: energy per atom computed using PAW-PBE
+  - id: formation_energy_per_atom
+    type: continuous
+    units: eV / atom
+    significant_digits: 4
+    names:
+      - noun: formation energy per atom computed using DFT (with the PAW method as implemented in VASP) using the PBE functional
+      - noun: formation energy per atom computed using the PBE GGA functional
+      - noun: formation energy per atom computed using PAW-PBE
+  - id: band_gap
+    type: continuous
+    units: eV
+    significant_digits: 4
+    names:
+      - noun: band gap computed using DFT (with the PAW method as implemented in VASP) using the PBE functional
+      - noun: band gap computed using the PBE GGA functional
+      - noun: PBE-computed band gap
+      - noun: PAW-PBE-computed band gap
+      - noun: band gap computed using PAW-PBE
+  - id: volume_per_atom
+    type: continuous
+    units: \AA^3 / atom
+    significant_digits: 4
+    names:
+      - noun: volume per atom computed using DFT (with the PAW method as implemented in VASP) using the PBE functional
+      - noun: volume per atom computed using the PBE GGA functional
+      - noun: volume per atom computed using PAW-PBE
+  - id: magnetization_per_atom
+    type: continuous
+    units: \mu B
+    significant_digits: 4
+    names:
+      - noun: magnetization per atom computed using DFT (with the PAW method as implemented in VASP) using the PBE functional
+      - noun: magnetization per atom computed using the PBE GGA functional
+      - noun: magnetization per atom computed using PAW-PBE
 identifiers:
-    - id: name
-      description: OQMD identifier
-      sample: false
-      type: Other
-    - id: formula
-      description: composition
-      type: COMPOSITION
+  - id: name
+    description: OQMD identifier
+    sample: false
+    type: Other
+  - id: formula
+    description: composition
+    type: COMPOSITION
 license: CC-BY 4.0
 num_points: 561882
 links:
-    - url: https://oqmd.org/
-      description: raw data source
-    - urL: https://zenodo.org/records/7118055
-      description: original data source
+  - url: https://oqmd.org/
+    description: raw data source
+  - urL: https://zenodo.org/records/7118055
+    description: original data source
 bibtex:
-    - |-
-      @article{yamamoto2019crystal,
-       title={Crystal graph neural networks for data mining in materials science},
-       author={Yamamoto, Takenori},
-       journal={Research Institute for Mathematical and Computational Sciences, LLC},
-       year={2019}
-       }
-    - |-
-      @article{kirklin2015open,
-        title={The Open Quantum Materials Database (OQMD): assessing the accuracy of DFT formation energies},
-        author={Kirklin, Scott and Saal, James E and Meredig, Bryce and Thompson, Alex and Doak, Jeff W and Aykol, Muratahan and R{\"u}hl, Stephan and Wolverton, Chris},
-        journal={npj Computational Materials},
-        volume={1},
-        number={1},
-        pages={1--15},
-        year={2015},
-        publisher={Nature Publishing Group}
-      }{spa}
+  - |-
+    @article{yamamoto2019crystal,
+     title={Crystal graph neural networks for data mining in materials science},
+     author={Yamamoto, Takenori},
+     journal={Research Institute for Mathematical and Computational Sciences, LLC},
+     year={2019}
+     }
+  - |-
+    @article{kirklin2015open,
+      title={The Open Quantum Materials Database (OQMD): assessing the accuracy of DFT formation energies},
+      author={Kirklin, Scott and Saal, James E and Meredig, Bryce and Thompson, Alex and Doak, Jeff W and Aykol, Muratahan and R{\"u}hl, Stephan and Wolverton, Chris},
+      journal={npj Computational Materials},
+      volume={1},
+      number={1},
+      pages={1--15},
+      year={2015},
+      publisher={Nature Publishing Group}
+    }{spa}
 templates:
-    - The {#material|compound|structure!} with composition {formula#} has a {band_gap__names__noun} of {band_gap#} {band_gap__units}.
-    - The {#material|compound|structure!} with composition {formula#} and {spacegroup__names__noun} {spacegroup#} has a {band_gap__names__noun} of {band_gap#}
-      {band_gap__units}.
-    - The {#material|compound|structure!} with composition {formula#} has a {band_gap__names__noun} of {band_gap#} {band_gap__units} and a {energy_per_atom__names__noun}
-      of {energy_per_atom#} {energy_per_atom__units}.
-    - The {#material|compound|structure!} with composition {formula#} and {spacegroup__names__noun} {spacegroup#} has a {band_gap__names__noun} of {band_gap#}
-      {band_gap__units} and a {magnetization_per_atom__names__noun} of {magnetization_per_atom#} {magnetization_per_atom__units}.
-    - The {#material|compound|structure!} with composition {formula#} has a {band_gap__names__noun} of {band_gap#} {band_gap__units} and a {volume_per_atom__names__noun}
-      of {volume_per_atom#} {volume_per_atom__units}.
-    - The {#material|compound|structure!} with composition {formula#} {#can be found|occurs|crystallizes!} in the {spacegroup__names__noun} {spacegroup#}.
-    - The {#material|compound|structure!} with composition {formula#} {#can be found|occurs|crystallizes!} in the {spacegroup__names__noun} {spacegroup#}
-      and has a {band_gap__names__noun} of {band_gap#} {band_gap__units}.
-    - |-
-      Question: What is the {band_gap__names__noun} of the {#material|compound|structure!} with composition {formula#}?
-      Answer: The {band_gap__names__noun} of the {#material|compound|structure!} with composition {formula#} is {band_gap#} {band_gap__units}.
-    - |-
-      Question: What is the {band_gap__names__noun} of the {#material|compound|structure!} with composition {formula#} and {spacegroup__names__noun} {spacegroup#}?
-      Answer: The {band_gap__names__noun} of the {#material|compound|structure!} with composition {formula#} and {spacegroup__names__noun} {spacegroup#} is {band_gap#} {band_gap__units}.
-    - |-
-      Question: What is the {volume_per_atom__names__noun} of the {#material|compound|structure!} with composition {formula#}?
-      Answer: The {volume_per_atom__names__noun} of the {#material|compound|structure!} with composition {formula#} is {volume_per_atom#} {volume_per_atom__units}.
-    - |-
-      Question: What is the {formation_energy_per_atom__names__noun} of the {#material|compound|structure!} with composition {formula#}?
-      Answer: The {formation_energy_per_atom__names__noun} of the {#material|compound|structure!} with composition {formula#} is {formation_energy_per_atom#} {formation_energy_per_atom__units}.
-    - |-
-      Question: What is the {magnetization_per_atom__names__noun} of the {#material|compound|structure!} with composition {formula#}?
-      Answer: The {magnetization_per_atom__names__noun} of the {#material|compound|structure!} with composition {formula#} is {magnetization_per_atom#} {magnetization_per_atom__units}.
-    - |-
-      User: {#I am looking for|I need!} a {#material|compound|structure!} with a {band_gap__names__noun} of {band_gap#} {band_gap__units}.
-      Assistant: {#Do you have other constraints?|Are there are requirements?|Is there anything else you need the compound to have?!}
-      User: I would like it to have a {volume_per_atom__names__noun} of {volume_per_atom#} {volume_per_atom__units}.
-      Assistant: {#Do you have other constraints?|Are there are requirements?|Is there anything else you need the compound to have?!}
-      User: I would like it to {#crystallize|occur|be found!} in the {spacegroup__names__noun} {spacegroup#}.
-      Assistant: {#Okay|In this case|In that case!}, I {#recommend|suggest!} the {#material|compound|structure!} with composition {formula#}.
-    - |-
-      User: {#I am looking for|I need!} a {#material|compound|structure!} with a {band_gap__names__noun} of {band_gap#} {band_gap__units}.
-      Assistant: {#Do you have other constraints?|Are there are requirements?|Is there anything else you need the compound to have?!}
-      User: I would like it to {#crystallize|occur|be found!} in the {spacegroup__names__noun} {spacegroup#}.
-      Assistant: {#Great|Okay|In this case|In that case!}, I {#recommend|suggest!} the {#material|compound|structure!} with composition {formula#}.
-    - |-
-      User: {#I am looking for|I need!} a {#material|compound|structure!} with a {volume_per_atom__names__noun} of {volume_per_atom#} {volume_per_atom__units}.
-      Assistant: {#Do you have other constraints?|Are there are requirements?|Is there anything else you need the compound to have?!}
-      User: I would like it to {#crystallize|occur|be found!} in the {spacegroup__names__noun} {spacegroup#}.
-      Assistant: {#Great|Okay|In this case|In that case!}, I {#recommend|suggest!} the {#material|compound|structure!} with composition {formula#}.
-    - |-
-      User: {#I am looking for|I need!} a {#material|compound|structure!} with a {band_gap__names__noun} of {band_gap#} {band_gap__units}.
-      Assistant: {#Do you have other constraints?|Are there are requirements?|Is there anything else you need the compound to have?!}
-      User: {#No|Nope|None|Nothing|No other constraints|No other requirements|No other needs!}
-      Assistant: {#Okay|In this case|In that case!}, I {#recommend|suggest!} the {#material|compound|structure!} with composition {formula#} and {spacegroup__names__noun} {spacegroup#}.
-    - |-
-      User: {#I want to design|I need to design|I need a!} material with a {band_gap__names__noun} of {band_gap#} {band_gap__units} and a {volume_per_atom__names__noun} of {volume_per_atom#} {volume_per_atom__units}, {#what should I do?|what should I do?|what do you suggest?|what do you recommend?!}
-      Assistant: {#I found|Here is|I have found|Here is!} a {#material|compound|structure!} with a {band_gap__names__noun} of {band_gap#} {band_gap__units} and a {volume_per_atom__names__noun} of {volume_per_atom#} {volume_per_atom__units}: {formula#}.
-    - |-
-      Task: Predict a property of a material based on the description of the material.
-      Description: Predict the {band_gap__names__noun} of the {#material|compound|structure!} with composition {formula#}.
-      Result: {band_gap#} {band_gap__units}
-    - |-
-      Task: Predict a property of a material based on the description of the material.
-      Description: Predict the {band_gap__names__noun} of the {#material|compound|structure!} with composition {formula#} and {spacegroup__names__noun} {spacegroup#} and a {volume_per_atom__names__noun} of {volume_per_atom#} {volume_per_atom__units}.
-      Result: {band_gap#} {band_gap__units}
+  - The {#material|compound|structure!} with composition {formula#} has a {band_gap__names__noun} of {band_gap#} {band_gap__units}.
+  - The {#material|compound|structure!} with composition {formula#} and {spacegroup__names__noun} {spacegroup#} has a {band_gap__names__noun} of {band_gap#} {band_gap__units}.
+  - The {#material|compound|structure!} with composition {formula#} has a {band_gap__names__noun} of {band_gap#} {band_gap__units} and a {energy_per_atom__names__noun} of {energy_per_atom#} {energy_per_atom__units}.
+  - The {#material|compound|structure!} with composition {formula#} and {spacegroup__names__noun} {spacegroup#} has a {band_gap__names__noun} of {band_gap#} {band_gap__units} and a {magnetization_per_atom__names__noun} of {magnetization_per_atom#} {magnetization_per_atom__units}.
+  - The {#material|compound|structure!} with composition {formula#} has a {band_gap__names__noun} of {band_gap#} {band_gap__units} and a {volume_per_atom__names__noun} of {volume_per_atom#} {volume_per_atom__units}.
+  - The {#material|compound|structure!} with composition {formula#} {#can be found|occurs|crystallizes!} in the {spacegroup__names__noun} {spacegroup#}.
+  - The {#material|compound|structure!} with composition {formula#} {#can be found|occurs|crystallizes!} in the {spacegroup__names__noun} {spacegroup#} and has a {band_gap__names__noun} of {band_gap#} {band_gap__units}.
+  - |-
+    Question: What is the {band_gap__names__noun} of the {#material|compound|structure!} with composition {formula#}?
+    Answer: The {band_gap__names__noun} of the {#material|compound|structure!} with composition {formula#} is {band_gap#} {band_gap__units}.
+  - |-
+    Question: What is the {band_gap__names__noun} of the {#material|compound|structure!} with composition {formula#} and {spacegroup__names__noun} {spacegroup#}?
+    Answer: The {band_gap__names__noun} of the {#material|compound|structure!} with composition {formula#} and {spacegroup__names__noun} {spacegroup#} is {band_gap#} {band_gap__units}.
+  - |-
+    Question: What is the {volume_per_atom__names__noun} of the {#material|compound|structure!} with composition {formula#}?
+    Answer: The {volume_per_atom__names__noun} of the {#material|compound|structure!} with composition {formula#} is {volume_per_atom#} {volume_per_atom__units}.
+  - |-
+    Question: What is the {formation_energy_per_atom__names__noun} of the {#material|compound|structure!} with composition {formula#}?
+    Answer: The {formation_energy_per_atom__names__noun} of the {#material|compound|structure!} with composition {formula#} is {formation_energy_per_atom#} {formation_energy_per_atom__units}.
+  - |-
+    Question: What is the {magnetization_per_atom__names__noun} of the {#material|compound|structure!} with composition {formula#}?
+    Answer: The {magnetization_per_atom__names__noun} of the {#material|compound|structure!} with composition {formula#} is {magnetization_per_atom#} {magnetization_per_atom__units}.
+  - |-
+    User: {#I am looking for|I need!} a {#material|compound|structure!} with a {band_gap__names__noun} of {band_gap#} {band_gap__units}.
+    Assistant: {#Do you have other constraints?|Are there are requirements?|Is there anything else you need the compound to have?!}
+    User: I would like it to have a {volume_per_atom__names__noun} of {volume_per_atom#} {volume_per_atom__units}.
+    Assistant: {#Do you have other constraints?|Are there are requirements?|Is there anything else you need the compound to have?!}
+    User: I would like it to {#crystallize|occur|be found!} in the {spacegroup__names__noun} {spacegroup#}.
+    Assistant: {#Okay|In this case|In that case!}, I {#recommend|suggest!} the {#material|compound|structure!} with composition {formula#}.
+  - |-
+    User: {#I am looking for|I need!} a {#material|compound|structure!} with a {band_gap__names__noun} of {band_gap#} {band_gap__units}.
+    Assistant: {#Do you have other constraints?|Are there are requirements?|Is there anything else you need the compound to have?!}
+    User: I would like it to {#crystallize|occur|be found!} in the {spacegroup__names__noun} {spacegroup#}.
+    Assistant: {#Great|Okay|In this case|In that case!}, I {#recommend|suggest!} the {#material|compound|structure!} with composition {formula#}.
+  - |-
+    User: {#I am looking for|I need!} a {#material|compound|structure!} with a {volume_per_atom__names__noun} of {volume_per_atom#} {volume_per_atom__units}.
+    Assistant: {#Do you have other constraints?|Are there are requirements?|Is there anything else you need the compound to have?!}
+    User: I would like it to {#crystallize|occur|be found!} in the {spacegroup__names__noun} {spacegroup#}.
+    Assistant: {#Great|Okay|In this case|In that case!}, I {#recommend|suggest!} the {#material|compound|structure!} with composition {formula#}.
+  - |-
+    User: {#I am looking for|I need!} a {#material|compound|structure!} with a {band_gap__names__noun} of {band_gap#} {band_gap__units}.
+    Assistant: {#Do you have other constraints?|Are there are requirements?|Is there anything else you need the compound to have?!}
+    User: {#No|Nope|None|Nothing|No other constraints|No other requirements|No other needs!}
+    Assistant: {#Okay|In this case|In that case!}, I {#recommend|suggest!} the {#material|compound|structure!} with composition {formula#} and {spacegroup__names__noun} {spacegroup#}.
+  - |-
+    User: {#I want to design|I need to design|I need a!} material with a {band_gap__names__noun} of {band_gap#} {band_gap__units} and a {volume_per_atom__names__noun} of {volume_per_atom#} {volume_per_atom__units}, {#what should I do?|what should I do?|what do you suggest?|what do you recommend?!}
+    Assistant: {#I found|Here is|I have found|Here is!} a {#material|compound|structure!} with a {band_gap__names__noun} of {band_gap#} {band_gap__units} and a {volume_per_atom__names__noun} of {volume_per_atom#} {volume_per_atom__units}: {formula#}.
+  - |-
+    Task: Predict a property of a material based on the description of the material.
+    Description: Predict the {band_gap__names__noun} of the {#material|compound|structure!} with composition {formula#}.
+    Result: {band_gap#} {band_gap__units}
+  - |-
+    Task: Predict a property of a material based on the description of the material.
+    Description: Predict the {band_gap__names__noun} of the {#material|compound|structure!} with composition {formula#} and {spacegroup__names__noun} {spacegroup#} and a {volume_per_atom__names__noun} of {volume_per_atom#} {volume_per_atom__units}.
+    Result: {band_gap#} {band_gap__units}

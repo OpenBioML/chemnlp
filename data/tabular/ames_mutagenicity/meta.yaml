@@ -1,132 +1,130 @@
----
 name: ames_mutagenicity
 description: |-
-    Mutagenicity means the ability of a drug to induce genetic alterations.
-    Drugs that can cause damage to the DNA can result in cell death or other severe
-    adverse effects. Nowadays, the most widely used assay for testing the mutagenicity
-    of compounds is the Ames experiment which was invented by a professor named
-    Ames. The Ames test is a short term bacterial reverse mutation assay detecting
-    a large number of compounds which can induce genetic damage and frameshift mutations.
-    The dataset is aggregated from four papers.
+  Mutagenicity means the ability of a drug to induce genetic alterations.
+  Drugs that can cause damage to the DNA can result in cell death or other severe
+  adverse effects. Nowadays, the most widely used assay for testing the mutagenicity
+  of compounds is the Ames experiment which was invented by a professor named
+  Ames. The Ames test is a short term bacterial reverse mutation assay detecting
+  a large number of compounds which can induce genetic damage and frameshift mutations.
+  The dataset is aggregated from four papers.
 targets:
-    - id: mutagenic
-      description: whether it is mutagenic (1) or not mutagenic (0)
-      units:
-      type: boolean
-      names:
-          - noun: mutagenicity
-          - noun: Ames mutagenicity
-          - adjective: mutagenic
-          - adjective: Ames mutagenic
-          - verb: has the ability to induce genetic alterations
-          - gerund: having the potential to cause mutations
-          - gerund: having the potential to induce genetic alterations
+  - id: mutagenic
+    description: whether it is mutagenic (1) or not mutagenic (0)
+    units:
+    type: boolean
+    names:
+      - noun: mutagenicity
+      - noun: Ames mutagenicity
+      - adjective: mutagenic
+      - adjective: Ames mutagenic
+      - verb: has the ability to induce genetic alterations
+      - gerund: having the potential to cause mutations
+      - gerund: having the potential to induce genetic alterations
 benchmarks:
-    - name: TDC
-      link: https://tdcommons.ai/
-      split_column: split
+  - name: TDC
+    link: https://tdcommons.ai/
+    split_column: split
 identifiers:
-    - id: SMILES
-      type: SMILES
-      description: SMILES
+  - id: SMILES
+    type: SMILES
+    description: SMILES
 license: CC BY 4.0
 links:
-    - url: https://doi.org/10.1021/ci300400a
-      description: corresponding publication
-    - url: https://tdcommons.ai/single_pred_tasks/tox/#ames-mutagenicity
-      description: Data source
+  - url: https://doi.org/10.1021/ci300400a
+    description: corresponding publication
+  - url: https://tdcommons.ai/single_pred_tasks/tox/#ames-mutagenicity
+    description: Data source
 num_points: 7278
 bibtex:
-    - |-
-      @article{Xu2012,
-      doi = {10.1021/ci300400a},
-      url = {https://doi.org/10.1021/ci300400a},
-      year = {2012},
-      month = oct,
-      publisher = {American Chemical Society (ACS)},
-      volume = {52},
-      number = {11},
-      pages = {2840--2847},
-      author = {Congying Xu and Feixiong Cheng and Lei Chen and
-      Zheng Du and Weihua Li and Guixia Liu and Philip W. Lee and Yun Tang},
-      title = {In silico Prediction of Chemical Ames Mutagenicity},
-      journal = {Journal of Chemical Information and Modeling}
+  - |-
+    @article{Xu2012,
+    doi = {10.1021/ci300400a},
+    url = {https://doi.org/10.1021/ci300400a},
+    year = {2012},
+    month = oct,
+    publisher = {American Chemical Society (ACS)},
+    volume = {52},
+    number = {11},
+    pages = {2840--2847},
+    author = {Congying Xu and Feixiong Cheng and Lei Chen and
+    Zheng Du and Weihua Li and Guixia Liu and Philip W. Lee and Yun Tang},
+    title = {In silico Prediction of Chemical Ames Mutagenicity},
+    journal = {Journal of Chemical Information and Modeling}
 templates:
-    - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} {#shows|exhibits|displays!} {mutagenic#no &NULL}{mutagenic__names__adjective}
-      properties.
-    - Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule has {mutagenic#no &NULL}{mutagenic__names__adjective} {#properties|characteristics|features!}.
-    - The {SMILES__description} {SMILES#} {#represents|is from!} a molecule that is {mutagenic#not &NULL}identified as {mutagenic__names__adjective}.
-    - The {#molecule |!}{SMILES__description} {SMILES#} is {mutagenic#not &NULL}{mutagenic__names__adjective}.
-    - |-
-      Task: Please classify a molecule based on the description.
-      Description: A molecule that is {mutagenic__names__adjective}.
-      {#Molecule |!}{SMILES__description}: {SMILES#}
-      Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
-      Result: {mutagenic#False&True}
-    - |-
-      Task: Please classify a molecule based on the description.
-      Description: A molecule that is {mutagenic__names__adjective}.
-      {#Molecule |!}{SMILES__description}: {SMILES#}
-      Constraint: Answer the question in a {#full|complete!} sentence.
-      Result: This molecule is {mutagenic#not &NULL}{mutagenic__names__adjective}.
-    - |-
-      Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
-      Description: A molecule that is {mutagenic#not &NULL}{mutagenic__names__adjective}.
-      Result: {SMILES#}
-    - |-
-      User: Can you {#tell me|derive|estimate!} if the molecule with the {SMILES__description} {SMILES#} is {mutagenic__names__adjective}?
-      Assistant: {mutagenic#No&Yes}, this molecule is {mutagenic#not &NULL}{mutagenic__names__adjective}.
-    - |-
-      User: Is the molecule with the {SMILES__description} {SMILES#} {mutagenic__names__adjective}?
-      Assistant: {mutagenic#No&Yes}, it is {mutagenic#not &NULL}{mutagenic__names__adjective}.
-    - |-
-      User: Can you {#give me|create|generate!} the {SMILES__description} of a molecule that is {mutagenic#not &NULL}{mutagenic__names__adjective}?
-      Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}
-    - |-
-      User: I'm {#searching|looking!} for the {SMILES__description} of a molecule that is {mutagenic#not &NULL}{mutagenic__names__adjective}?
-      Assistant: This is a molecule that is {mutagenic#not &NULL}{mutagenic__names__adjective}: {SMILES#}
-    - |-
-      User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
-      Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
-      User: Yes, please. The molecule should {mutagenic#not &NULL}be {mutagenic__names__adjective}.
-      Assistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} is {mutagenic#not &NULL}{mutagenic__names__adjective}: {SMILES#}
-    - |-
-      User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
-      Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
-      User: Yes, the molecule should {mutagenic#not &NULL}be {mutagenic__names__adjective}.
-      Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {mutagenic#not &NULL}{mutagenic__names__adjective}: {SMILES#}
-    - Is the {SMILES__description} {SMILES#} {mutagenic__names__adjective}:<EOI>{mutagenic#no&yes}
-    - |-
-      Task: Please classify a molecule based on the description.
-      Description: A molecule that is {mutagenic__names__adjective}.
-      {#Molecule |!}{SMILES__description}: {SMILES#}
-      Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
-      Result:<EOI>{mutagenic#False&True}
-    - |-
-      Task: Please answer the multiple choice question.
-      Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} {mutagenic__names__adjective}?
-      Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
-      Options:
-      {mutagenic%}
-      Answer: {%multiple_choice_result}
-    - |-
-      Task: Please answer the multiple choice question.
-      Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} {mutagenic__names__adjective}?
-      Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
-      Options:
-      {mutagenic%}
-      Answer:<EOI>{%multiple_choice_result}
-    - |-
-      Task: Please answer the multiple choice question.
-      Question: Which molecules are {mutagenic#not &NULL}{mutagenic__names__adjective}?
-      Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
-      Options:
-      {SMILES%mutagenic%}
-      Answer: {%multiple_choice_result}
-    - |-
-      Task: Please answer the multiple choice question.
-      Question: Which molecules are {mutagenic#not &NULL}{mutagenic__names__adjective}?
-      Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
-      Options:
-      {SMILES%mutagenic%}
-      Answer:<EOI>{%multiple_choice_result}
+  - The molecule with the {SMILES__description} {#representation of |!}{SMILES#} {#shows|exhibits|displays!} {mutagenic#no &NULL}{mutagenic__names__adjective} properties.
+  - Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule has {mutagenic#no &NULL}{mutagenic__names__adjective} {#properties|characteristics|features!}.
+  - The {SMILES__description} {SMILES#} {#represents|is from!} a molecule that is {mutagenic#not &NULL}identified as {mutagenic__names__adjective}.
+  - The {#molecule |!}{SMILES__description} {SMILES#} is {mutagenic#not &NULL}{mutagenic__names__adjective}.
+  - |-
+    Task: Please classify a molecule based on the description.
+    Description: A molecule that is {mutagenic__names__adjective}.
+    {#Molecule |!}{SMILES__description}: {SMILES#}
+    Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
+    Result: {mutagenic#False&True}
+  - |-
+    Task: Please classify a molecule based on the description.
+    Description: A molecule that is {mutagenic__names__adjective}.
+    {#Molecule |!}{SMILES__description}: {SMILES#}
+    Constraint: Answer the question in a {#full|complete!} sentence.
+    Result: This molecule is {mutagenic#not &NULL}{mutagenic__names__adjective}.
+  - |-
+    Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+    Description: A molecule that is {mutagenic#not &NULL}{mutagenic__names__adjective}.
+    Result: {SMILES#}
+  - |-
+    User: Can you {#tell me|derive|estimate!} if the molecule with the {SMILES__description} {SMILES#} is {mutagenic__names__adjective}?
+    Assistant: {mutagenic#No&Yes}, this molecule is {mutagenic#not &NULL}{mutagenic__names__adjective}.
+  - |-
+    User: Is the molecule with the {SMILES__description} {SMILES#} {mutagenic__names__adjective}?
+    Assistant: {mutagenic#No&Yes}, it is {mutagenic#not &NULL}{mutagenic__names__adjective}.
+  - |-
+    User: Can you {#give me|create|generate!} the {SMILES__description} of a molecule that is {mutagenic#not &NULL}{mutagenic__names__adjective}?
+    Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}
+  - |-
+    User: I'm {#searching|looking!} for the {SMILES__description} of a molecule that is {mutagenic#not &NULL}{mutagenic__names__adjective}?
+    Assistant: This is a molecule that is {mutagenic#not &NULL}{mutagenic__names__adjective}: {SMILES#}
+  - |-
+    User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+    Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
+    User: Yes, please. The molecule should {mutagenic#not &NULL}be {mutagenic__names__adjective}.
+    Assistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} is {mutagenic#not &NULL}{mutagenic__names__adjective}: {SMILES#}
+  - |-
+    User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
+    Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
+    User: Yes, the molecule should {mutagenic#not &NULL}be {mutagenic__names__adjective}.
+    Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {mutagenic#not &NULL}{mutagenic__names__adjective}: {SMILES#}
+  - Is the {SMILES__description} {SMILES#} {mutagenic__names__adjective}:<EOI>{mutagenic#no&yes}
+  - |-
+    Task: Please classify a molecule based on the description.
+    Description: A molecule that is {mutagenic__names__adjective}.
+    {#Molecule |!}{SMILES__description}: {SMILES#}
+    Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
+    Result:<EOI>{mutagenic#False&True}
+  - |-
+    Task: Please answer the multiple choice question.
+    Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} {mutagenic__names__adjective}?
+    Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
+    Options:
+    {mutagenic%}
+    Answer: {%multiple_choice_result}
+  - |-
+    Task: Please answer the multiple choice question.
+    Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} {mutagenic__names__adjective}?
+    Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
+    Options:
+    {mutagenic%}
+    Answer:<EOI>{%multiple_choice_result}
+  - |-
+    Task: Please answer the multiple choice question.
+    Question: Which molecules are {mutagenic#not &NULL}{mutagenic__names__adjective}?
+    Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
+    Options:
+    {SMILES%mutagenic%}
+    Answer: {%multiple_choice_result}
+  - |-
+    Task: Please answer the multiple choice question.
+    Question: Which molecules are {mutagenic#not &NULL}{mutagenic__names__adjective}?
+    Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
+    Options:
+    {SMILES%mutagenic%}
+    Answer:<EOI>{%multiple_choice_result}

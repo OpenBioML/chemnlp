@@ -1,86 +1,84 @@
----
 name: formation_energies
 description: |-
-    Formation and decomposition energies of inorganic solids mined from the Materials Project database.
+  Formation and decomposition energies of inorganic solids mined from the Materials Project database.
 targets:
-    - id: rxn
-      description: decomposition reaction
-      type: text
-    - id: Ed
-      description: decomposition enthalpy
-      units: eV/atom
-      type: continuous
-      significant_digits: 3
-    - id: Ef
-      description: formation enthalpy
-      units: eV/atom
-      type: continuous
-      significant_digits: 3
-    - id: stability
-      description: thermodynamic stability of material
-      type: boolean
+  - id: rxn
+    description: decomposition reaction
+    type: text
+  - id: Ed
+    description: decomposition enthalpy
+    units: eV/atom
+    type: continuous
+    significant_digits: 3
+  - id: Ef
+    description: formation enthalpy
+    units: eV/atom
+    type: continuous
+    significant_digits: 3
+  - id: stability
+    description: thermodynamic stability of material
+    type: boolean
 benchmarks: []
 identifiers:
-    - id: composition
-      type: COMPOSITION
-      description: chemical formula
+  - id: composition
+    type: COMPOSITION
+    description: chemical formula
 license: CC BY 4.0
 links:
-    - url: https://github.com/CJBartel/TestStabilityML/tree/master
-      description: original data source
+  - url: https://github.com/CJBartel/TestStabilityML/tree/master
+    description: original data source
 num_points: 85014
 bibtex:
-    - |-
-      @article{Bartel_2020,
-        doi = {10.1038/s41524-020-00362-y},
-        url = {https://doi.org/10.1038%2Fs41524-020-00362-y},
-        year = 2020,
-        month = {jul},
-        publisher = {Springer Science and Business Media {LLC}},
-        volume = {6},
-        number = {1},
-        author = {Christopher J. Bartel and Amalie Trewartha and Qi Wang and Alexander Dunn and Anubhav Jain and Gerbrand Ceder},
-        title = {A critical examination of compound stability predictions from machine-learned formation energies},
-        journal = {npj Comput Mater}
-      }
+  - |-
+    @article{Bartel_2020,
+      doi = {10.1038/s41524-020-00362-y},
+      url = {https://doi.org/10.1038%2Fs41524-020-00362-y},
+      year = 2020,
+      month = {jul},
+      publisher = {Springer Science and Business Media {LLC}},
+      volume = {6},
+      number = {1},
+      author = {Christopher J. Bartel and Amalie Trewartha and Qi Wang and Alexander Dunn and Anubhav Jain and Gerbrand Ceder},
+      title = {A critical examination of compound stability predictions from machine-learned formation energies},
+      journal = {npj Comput Mater}
+    }
 templates:
-    - The decomposition enthalpy of {composition#} is {Ed#} {Ed__units}.
-    - The formation enthalpy of {composition#} is {Ef#} {Ef__units}.
-    - The decomposition enthalpy of {composition#} is {Ed#} {Ed__units}.
-    - The decomposition reaction of {composition#} is {rxn#}.
-    - The {#material|compound|crystal|solid|inorganic material!} with composition {composition#} is {stability#not &NULL}thermodynamically stable because
-      its decomposition enthalpy is {Ed#} {Ed__units}.
-    - |-
-      User: What is the decomposition enthalpy of {composition#}?
-      Assistant: {#The decomposition enthalpy of is |!}{Ed#} {Ed__units}.
-    - |-
-      User: What is the formation enthalpy of {composition#}?
-      Assistant: {#The formation enthalpy of is |!}{Ef#} {Ef__units}.
-    - |-
-      User: What is the decomposition enthalpy of {composition#}?
-      Assistant: {#The decomposition enthalpy is|!}is {Ed#} {Ed__units}.
-    - |-
-      User: {#I have a question about |I want to know something about| I need help with!}{composition#}.
-      Assistant: {#Sure.|How can I help?|How can I be of help?|How can I assist?|Happy to help.!} {#What is your question?|What do you want to know?|!}
-      User: {composition#} is {stability#not &NULL}thermodynamically stable because its decomposition enthalpy is {Ed#} {Ed__units}.
-    - |-
-      User: I want to design a {stability#not &NULL}thermodynamically stable {#material|structure|compound!} What {#chemical formula|composition!} should I use?
-      Assistant: {#I recommend using |I suggest using |I would use |I would recommend using !}{composition#}.
-    - |-
-      User: I want to design a {#material|structure|compound!} that is {stability#not &NULL}thermodynamically stable. What {#chemical formula|composition!} should I use?
-      Assistant: {#Do you have|Are there!} any other {#requirements|constraints|preferences!}?
-      User: The {#material|structure|compound!} should have a decomposition enthalpy of {Ed#} {Ed__units}.
-      Assistant: {#I recommend using |I suggest using |I would use |I would recommend using !}{composition#}.
-    - |-
-      User: I want to design a {#material|structure|compound!} that is {stability#not &NULL}thermodynamically stable. What {#chemical formula|composition!} should I use?
-      Assistant: {#Do you have|Are there!} any other {#requirements|constraints|preferences!}?
-      User: The {#material|structure|compound!} should have a formation enthalpy of {Ef#} {Ef__units}.
-      Assistant: {#I recommend using |I suggest using |I would use |I would recommend using !}{composition#}.
-    - |-
-      Task: Classify the stability of {composition#}.
-      Constraint: Give a reason for your answer.
-      Answer: {#The material is |The compound is |The crystal is |The solid is !}{stability#not &NULL}thermodynamically stable because its decomposition enthalpy is {Ed#} {Ed__units}.
-    - |-
-      Question: What is a compound with the following decomposition reaction?
-      Description: {rxn#}
-      Answer: {composition#}
+  - The decomposition enthalpy of {composition#} is {Ed#} {Ed__units}.
+  - The formation enthalpy of {composition#} is {Ef#} {Ef__units}.
+  - The decomposition enthalpy of {composition#} is {Ed#} {Ed__units}.
+  - The decomposition reaction of {composition#} is {rxn#}.
+  - The {#material|compound|crystal|solid|inorganic material!} with composition {composition#} is {stability#not &NULL}thermodynamically stable because its decomposition enthalpy is {Ed#} {Ed__units}.
+  - |-
+    User: What is the decomposition enthalpy of {composition#}?
+    Assistant: {#The decomposition enthalpy of is |!}{Ed#} {Ed__units}.
+  - |-
+    User: What is the formation enthalpy of {composition#}?
+    Assistant: {#The formation enthalpy of is |!}{Ef#} {Ef__units}.
+  - |-
+    User: What is the decomposition enthalpy of {composition#}?
+    Assistant: {#The decomposition enthalpy is|!}is {Ed#} {Ed__units}.
+  - |-
+    User: {#I have a question about |I want to know something about| I need help with!}{composition#}.
+    Assistant: {#Sure.|How can I help?|How can I be of help?|How can I assist?|Happy to help.!} {#What is your question?|What do you want to know?|!}
+    User: {composition#} is {stability#not &NULL}thermodynamically stable because its decomposition enthalpy is {Ed#} {Ed__units}.
+  - |-
+    User: I want to design a {stability#not &NULL}thermodynamically stable {#material|structure|compound!} What {#chemical formula|composition!} should I use?
+    Assistant: {#I recommend using |I suggest using |I would use |I would recommend using !}{composition#}.
+  - |-
+    User: I want to design a {#material|structure|compound!} that is {stability#not &NULL}thermodynamically stable. What {#chemical formula|composition!} should I use?
+    Assistant: {#Do you have|Are there!} any other {#requirements|constraints|preferences!}?
+    User: The {#material|structure|compound!} should have a decomposition enthalpy of {Ed#} {Ed__units}.
+    Assistant: {#I recommend using |I suggest using |I would use |I would recommend using !}{composition#}.
+  - |-
+    User: I want to design a {#material|structure|compound!} that is {stability#not &NULL}thermodynamically stable. What {#chemical formula|composition!} should I use?
+    Assistant: {#Do you have|Are there!} any other {#requirements|constraints|preferences!}?
+    User: The {#material|structure|compound!} should have a formation enthalpy of {Ef#} {Ef__units}.
+    Assistant: {#I recommend using |I suggest using |I would use |I would recommend using !}{composition#}.
+  - |-
+    Task: Classify the stability of {composition#}.
+    Constraint: Give a reason for your answer.
+    Answer: {#The material is |The compound is |The crystal is |The solid is !}{stability#not &NULL}thermodynamically stable because its decomposition enthalpy is {Ed#} {Ed__units}.
+  - |-
+    Question: What is a compound with the following decomposition reaction?
+    Description: {rxn#}
+    Answer: {composition#}

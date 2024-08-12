@@ -1,35 +1,34 @@
----
 name: moses
 description: |-
-    Molecular Sets (MOSES) is a benchmark platform
-    for distribution learning based molecule generation.
-    Within this benchmark, MOSES provides a cleaned dataset of molecules that are ideal of optimization.
-    It is processed from the ZINC Clean Leads dataset.
+  Molecular Sets (MOSES) is a benchmark platform
+  for distribution learning based molecule generation.
+  Within this benchmark, MOSES provides a cleaned dataset of molecules that are ideal of optimization.
+  It is processed from the ZINC Clean Leads dataset.
 benchmarks:
-    - name: TDC
-      link: https://tdcommons.ai/
-      split_column: split
+  - name: TDC
+    link: https://tdcommons.ai/
+    split_column: split
 identifiers:
-    - id: SMILES
-      type: SMILES
-      description: SMILES
+  - id: SMILES
+    type: SMILES
+    description: SMILES
 license: CC BY 4.0
 links:
-    - url: https://arxiv.org/abs/1811.12823
-      description: Article about original dataset
-    - url: https://pubs.acs.org/doi/abs/10.1021/acs.jcim.5b00559
-      description: Link to publication of associated dataset - zinc
-    - url: https://github.com/molecularsets/moses
-      description: Github repository concering the datset
+  - url: https://arxiv.org/abs/1811.12823
+    description: Article about original dataset
+  - url: https://pubs.acs.org/doi/abs/10.1021/acs.jcim.5b00559
+    description: Link to publication of associated dataset - zinc
+  - url: https://github.com/molecularsets/moses
+    description: Github repository concerning the dataset
 num_points: 1936962
 bibtex:
-    - |-
-      @article{10.3389/fphar.2020.565644,
-      title={{M}olecular {S}ets ({MOSES}): {A} {B}enchmarking {P}latform for {M}olecular {G}eneration {M}odels},
-      author={Polykovskiy, Daniil and Zhebrak, Alexander and Sanchez-Lengeling, Benjamin and Golovanov,
-      Sergey and Tatanov, Oktai and Belyaev, Stanislav and Kurbanov, Rauf and Artamonov,
-      Aleksey and Aladinskiy, Vladimir and Veselov, Mark and Kadurin, Artur and Johansson,
-      Simon and  Chen, Hongming and Nikolenko, Sergey and Aspuru-Guzik, Alan and Zhavoronkov, Alex},
-      journal={Frontiers in Pharmacology},
-      year={2020}
-      }
+  - |-
+    @article{10.3389/fphar.2020.565644,
+    title={{M}olecular {S}ets ({MOSES}): {A} {B}enchmarking {P}latform for {M}olecular {G}eneration {M}odels},
+    author={Polykovskiy, Daniil and Zhebrak, Alexander and Sanchez-Lengeling, Benjamin and Golovanov,
+    Sergey and Tatanov, Oktai and Belyaev, Stanislav and Kurbanov, Rauf and Artamonov,
+    Aleksey and Aladinskiy, Vladimir and Veselov, Mark and Kadurin, Artur and Johansson,
+    Simon and  Chen, Hongming and Nikolenko, Sergey and Aspuru-Guzik, Alan and Zhavoronkov, Alex},
+    journal={Frontiers in Pharmacology},
+    year={2020}
+    }

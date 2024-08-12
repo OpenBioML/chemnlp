@@ -1,165 +1,158 @@
----
 name: opv
 description: |-
-    Database of organic nonfullerene solar cells with their composition, device stacks, and performance.
+  Database of organic nonfullerene solar cells with their composition, device stacks, and performance.
 targets:
-    - id: PCE_max(%)
-      description: Maximum power conversion efficiency of devices with this polymer
-      units: '%'
-      type: continuous
-      names:
-          - noun: maximum power conversion efficiency of tested devices
-          - noun: maximum achievable power conversion efficiency
-      uris:
-      significant_digits: 2
-      sample: false
-    - id: PCE_ave
-      description: Average power conversion efficiency of devices with this polymer
-      units: '%'
-      names:
-          - noun: power conversion efficiency (PCE)
-          - noun: power conversion efficiency
-      type: continuous
-      significant_digits: 2
-    - id: Voc
-      description: Open-circuit voltage of devices with this polymer
-      units: V
-      type: continuous
-      names:
-          - noun: open-circuit voltage of tested devices
-          - noun: open-circuit voltage
-      uris:
-      significant_digits: 2
-    - id: Jsc
-      description: Short-circuit current density of devices with this polymer
-      units: mA/cm^2
-      type: continuous
-      names:
-          - noun: short-circuit current density of tested devices
-          - noun: short-circuit current density
-      uris:
-      significant_digits: 2
-    - id: FF
-      description: Fill factor of devices with this polymer
-      units: (dimensionless)
-      type: continuous
-      names:
-          - noun: fill factor of tested devices
-          - noun: fill factor
-      uris:
-      significant_digits: 2
-    - id: bandgap
-      description: Bandgap of the polymer
-      units: eV
-      type: continuous
-      names:
-          - noun: bandgap of the polymer
-          - noun: bandgap
-      uris:
-      significant_digits: 2
-    - id: HOMO
-      description: HOMO of the system, measured experimentally
-      type: continuous
-      units: eV
-      significant_digits: 2
-      names:
-          - noun: highest-occupied molecular orbital energy
-          - noun: HOMO energy
-          - noun: highest-occupied molecular orbital (HOMO) energy
-    - id: LUMO
-      description: LUMO of the system, measured experimentally
-      type: continuous
-      units: eV
-      significant_digits: 2
-      names:
-          - noun: lowest-unoccupied molecular orbital energy
-          - noun: LUMO energy
-          - noun: lowest-unoccupied molecular orbital (LUMO) energy
+  - id: PCE_max(%)
+    description: Maximum power conversion efficiency of devices with this polymer
+    units: "%"
+    type: continuous
+    names:
+      - noun: maximum power conversion efficiency of tested devices
+      - noun: maximum achievable power conversion efficiency
+    uris:
+    significant_digits: 2
+    sample: false
+  - id: PCE_ave
+    description: Average power conversion efficiency of devices with this polymer
+    units: "%"
+    names:
+      - noun: power conversion efficiency (PCE)
+      - noun: power conversion efficiency
+    type: continuous
+    significant_digits: 2
+  - id: Voc
+    description: Open-circuit voltage of devices with this polymer
+    units: V
+    type: continuous
+    names:
+      - noun: open-circuit voltage of tested devices
+      - noun: open-circuit voltage
+    uris:
+    significant_digits: 2
+  - id: Jsc
+    description: Short-circuit current density of devices with this polymer
+    units: mA/cm^2
+    type: continuous
+    names:
+      - noun: short-circuit current density of tested devices
+      - noun: short-circuit current density
+    uris:
+    significant_digits: 2
+  - id: FF
+    description: Fill factor of devices with this polymer
+    units: (dimensionless)
+    type: continuous
+    names:
+      - noun: fill factor of tested devices
+      - noun: fill factor
+    uris:
+    significant_digits: 2
+  - id: bandgap
+    description: Bandgap of the polymer
+    units: eV
+    type: continuous
+    names:
+      - noun: bandgap of the polymer
+      - noun: bandgap
+    uris:
+    significant_digits: 2
+  - id: HOMO
+    description: HOMO of the system, measured experimentally
+    type: continuous
+    units: eV
+    significant_digits: 2
+    names:
+      - noun: highest-occupied molecular orbital energy
+      - noun: HOMO energy
+      - noun: highest-occupied molecular orbital (HOMO) energy
+  - id: LUMO
+    description: LUMO of the system, measured experimentally
+    type: continuous
+    units: eV
+    significant_digits: 2
+    names:
+      - noun: lowest-unoccupied molecular orbital energy
+      - noun: LUMO energy
+      - noun: lowest-unoccupied molecular orbital (LUMO) energy
 benchmarks: []
 links:
-    - url: https://pubs.acs.org/doi/full/10.1021/acs.jpclett.8b00635
-      description: original data source
+  - url: https://pubs.acs.org/doi/full/10.1021/acs.jpclett.8b00635
+    description: original data source
 identifiers:
-    - id: SMILES
-      type: SMILES
-      description: SMILES
-    - id: Mw
-      type: Other
-      description: molecular weight
-      names:
-          - noun: molecular weight
-          - noun: molecular weight (Mw)
-          - noun: Mw
-    - id: PDI
-      type: Other
-      description: polydispersity index
-      names:
-          - noun: polydispersity index
-          - noun: polydispersity index (PDI)
-          - noun: PDI
+  - id: SMILES
+    type: SMILES
+    description: SMILES
+  - id: Mw
+    type: Other
+    description: molecular weight
+    names:
+      - noun: molecular weight
+      - noun: molecular weight (Mw)
+      - noun: Mw
+  - id: PDI
+    type: Other
+    description: polydispersity index
+    names:
+      - noun: polydispersity index
+      - noun: polydispersity index (PDI)
+      - noun: PDI
 license:
 num_points: 1098
 bibtex:
-    - |-
-      @article{Nagasawa_2018,
-        doi = {10.1021/acs.jpclett.8b00635},
-        url = {https://doi.org/10.1021%2Facs.jpclett.8b00635},
-        year = 2018,
-        month = {may},
-        publisher = {American Chemical Society ({ACS})},
-        volume = {9},
-        number = {10},
-        pages = {2639--2646},
-        author = {Shinji Nagasawa and Eman Al-Naamani and Akinori Saeki},
-        title = {Computer-Aided Screening of Conjugated Polymers for Organic Solar Cell:
-        Classification by Random Forest},
-        journal = {J. Phys. Chem. Lett.}
-      }
+  - |-
+    @article{Nagasawa_2018,
+      doi = {10.1021/acs.jpclett.8b00635},
+      url = {https://doi.org/10.1021%2Facs.jpclett.8b00635},
+      year = 2018,
+      month = {may},
+      publisher = {American Chemical Society ({ACS})},
+      volume = {9},
+      number = {10},
+      pages = {2639--2646},
+      author = {Shinji Nagasawa and Eman Al-Naamani and Akinori Saeki},
+      title = {Computer-Aided Screening of Conjugated Polymers for Organic Solar Cell:
+      Classification by Random Forest},
+      journal = {J. Phys. Chem. Lett.}
+    }
 templates:
-    - |-
-      Question: What is the {PCE_ave__names__noun} of a {#non-fullerene|PC71BM|PCBM!} {#organic photovoltaics|OPV|organic solar cell|organic photovoltaics (OPV)!} device with a donor polymer with monomer {SMILES__description} {SMILES#} and {#Mw|weight-average molecular weight|weight-average molecular weight (Mw)!} {Mw#} g/mol and {#PDI|polydispersity index|polydispersity index (PDI)!} of {PDI#}?
-      Answer: {#The power conversion efficiency is |The PCE is!}{PCE_ave#} %.
-    - |-
-      Question: What is the {Voc__names__noun} of a {#non-fullerene|PC71BM|PCBM!} {#organic photovoltaics|OPV|organic solar cell|organic photovoltaics (OPV)!} device with a donor polymer with monomer {SMILES__description} {SMILES#} and {#Mw|weight-average molecular weight|weight-average molecular weight (Mw)!} {Mw#} g/mol and {#PDI|polydispersity index|polydispersity index (PDI)!} of {PDI#}?
-      Answer: {#The open-circuit voltage is |The Voc is!}{Voc#} {Voc__units}.
-    - |-
-      Question: What is the {Jsc__names__noun} of a {#non-fullerene|PC71BM|PCBM!} {#organic photovoltaics|OPV|organic solar cell|organic photovoltaics (OPV)!} device with a donor polymer with monomer {SMILES__description} {SMILES#} and {#Mw|weight-average molecular weight|weight-average molecular weight (Mw)!} {Mw#} g/mol and {#PDI|polydispersity index|polydispersity index (PDI)!} of {PDI#}?
-      Answer: {#The short-circuit current density is |The Jsc is!}{Jsc#} {Jsc__units}.
-    - |-
-      Question: What is the {FF__names__noun} of a {#non-fullerene|PC71BM|PCBM!} {#organic photovoltaics|OPV|organic solar cell|organic photovoltaics (OPV)!} device with a donor polymer with monomer {SMILES__description} {SMILES#} and {#Mw|weight-average molecular weight|weight-average molecular weight (Mw)!} {Mw#} g/mol and {#PDI|polydispersity index|polydispersity index (PDI)!} of {PDI#}?
-      Answer: {#The fill factor is |The FF is !}{FF#}.
-    - |-
-      Question: What is the {bandgap__names__noun} of a polymer with monomer {SMILES__description} {SMILES#}?
-      Answer: {#The bandgap is |The bandgap of the polymer is!}{bandgap#} {bandgap__units}.
-    - |-
-      Question: What is the {HOMO__names__noun} of a polymer with monomer {SMILES__description} {SMILES#}?
-      Answer: The {HOMO__names__noun} {#of the polymer|!} is {HOMO#} {HOMO__units}.
-    - |-
-      Question: What is the {LUMO__names__noun} of a polymer with monomer {SMILES__description} {SMILES#}?
-      Answer: The {LUMO__names__noun} {#of the polymer|!} is {LUMO#} {LUMO__units}.
-    - The {#non-fullerene|PC71BM|PCBM!} {#organic photovoltaics|OPV|organic solar cell|organic photovoltaics (OPV)!} device with a donor polymer with monomer
-      {SMILES__description} {SMILES#} and {#Mw|weight-average molecular weight|weight-average molecular weight (Mw)!} {Mw#} g/mol and {#PDI|polydispersity
-      index|polydispersity index (PDI)!} of {PDI#} has a {PCE_ave__names__noun} of {PCE_ave#}%.
-    - The {#non-fullerene|PC71BM|PCBM!} {#organic photovoltaics|OPV|organic solar cell|organic photovoltaics (OPV)!} device with a donor polymer with monomer
-      {SMILES__description} {SMILES#} and {#Mw|weight-average molecular weight|weight-average molecular weight (Mw)!} {Mw#} g/mol and {#PDI|polydispersity
-      index|polydispersity index (PDI)!} of {PDI#} has a {Jsc__names__noun} of {Jsc#} {Jsc__units}.
-    - The {#non-fullerene|PC71BM|PCBM!} {#organic photovoltaics|OPV|organic solar cell|organic photovoltaics (OPV)!} device with a donor polymer with monomer
-      {SMILES__description} {SMILES#} and {#Mw|weight-average molecular weight|weight-average molecular weight (Mw)!} {Mw#} g/mol and {#PDI|polydispersity
-      index|polydispersity index (PDI)!} of {PDI#} has a {FF__names__noun} of {FF#}.
-    - |-
-      User: I {#want to|would like to|aim to|wish to!} {#design|create|build!} a {#non-fullerene|PC71BM|PCBM!} {#organic photovoltaics|OPV|organic solar cell|organic photovoltaics (OPV)!} device with a {PCE_ave__names__noun} of {PCE_ave#}%.
-      Assistant: {#That's interesting.|Cool.|!} Do you have a donor polymer in mind?
-      User: Yes, I would like to use a polymer with monomer {SMILES__description} {SMILES#} and {#would like to|need to|must!} know the {PDI__names__noun} and {Mw__names__noun} of the polymer I should use.
-      Assistant: {#I recommend|I suggest|I propose!} trying a {Mw__names__noun} of {Mw#} g/mol and a {PDI__names__noun} of {PDI#}.
-    - |-
-      User: I {#want to|would like to|aim to|wish to!} {#design|create|build!} a {#non-fullerene|PC71BM|PCBM!} {#organic photovoltaics|OPV|organic solar cell|organic photovoltaics (OPV)!} device with a {PCE_ave__names__noun} of {PCE_ave#}%.
-      Assistant: {#That's interesting.|Cool.|!} Do you have additional constraints?
-      User: {#Yes, |Yeah, |Indeed, |!}I would like to have a {Jsc__names__noun} of {Jsc#} {Jsc__units}.
-      Assistant: {#I recommend|I suggest|I propose!} trying a {Mw__names__noun} of {Mw#} g/mol and {PDI__names__noun} of {PDI#} of a polymer with monomer {SMILES__description} {SMILES#}.
-    - |-
-      User: Can you {#recommend|suggest|propose!} a donor polymer for a {#non-fullerene|PC71BM|PCBM!} {#organic photovoltaics|OPV|organic solar cell|organic photovoltaics (OPV)!} device with a {PCE_ave__names__noun} of {PCE_ave#}% and a {Jsc__names__noun} of {Jsc#} {Jsc__units}?
-      Assistant: {#I recommend|I suggest|I propose!} trying a {Mw__names__noun} of {Mw#} g/mol and {PDI__names__noun} of {PDI#} of a polymer with monomer {SMILES__description} {SMILES#}.
-    - |-
-      Task: Predict the {PCE_ave__names__noun} of a {#non-fullerene|PC71BM|PCBM!} {#organic photovoltaics|OPV|organic solar cell|organic photovoltaics (OPV)!} device based on a description of the donor polymer.
-      Description: The donor polymer has monomer {SMILES__description} {SMILES#} and {#Mw|weight-average molecular weight|weight-average molecular weight (Mw)!} {Mw#} g/mol and {#PDI|polydispersity index|polydispersity index (PDI)!} of {PDI#}.
-      Solution: {#The power conversion efficiency is |The PCE is !}{PCE_ave#} %.
+  - |-
+    Question: What is the {PCE_ave__names__noun} of a {#non-fullerene|PC71BM|PCBM!} {#organic photovoltaics|OPV|organic solar cell|organic photovoltaics (OPV)!} device with a donor polymer with monomer {SMILES__description} {SMILES#} and {#Mw|weight-average molecular weight|weight-average molecular weight (Mw)!} {Mw#} g/mol and {#PDI|polydispersity index|polydispersity index (PDI)!} of {PDI#}?
+    Answer: {#The power conversion efficiency is |The PCE is!}{PCE_ave#} %.
+  - |-
+    Question: What is the {Voc__names__noun} of a {#non-fullerene|PC71BM|PCBM!} {#organic photovoltaics|OPV|organic solar cell|organic photovoltaics (OPV)!} device with a donor polymer with monomer {SMILES__description} {SMILES#} and {#Mw|weight-average molecular weight|weight-average molecular weight (Mw)!} {Mw#} g/mol and {#PDI|polydispersity index|polydispersity index (PDI)!} of {PDI#}?
+    Answer: {#The open-circuit voltage is |The Voc is!}{Voc#} {Voc__units}.
+  - |-
+    Question: What is the {Jsc__names__noun} of a {#non-fullerene|PC71BM|PCBM!} {#organic photovoltaics|OPV|organic solar cell|organic photovoltaics (OPV)!} device with a donor polymer with monomer {SMILES__description} {SMILES#} and {#Mw|weight-average molecular weight|weight-average molecular weight (Mw)!} {Mw#} g/mol and {#PDI|polydispersity index|polydispersity index (PDI)!} of {PDI#}?
+    Answer: {#The short-circuit current density is |The Jsc is!}{Jsc#} {Jsc__units}.
+  - |-
+    Question: What is the {FF__names__noun} of a {#non-fullerene|PC71BM|PCBM!} {#organic photovoltaics|OPV|organic solar cell|organic photovoltaics (OPV)!} device with a donor polymer with monomer {SMILES__description} {SMILES#} and {#Mw|weight-average molecular weight|weight-average molecular weight (Mw)!} {Mw#} g/mol and {#PDI|polydispersity index|polydispersity index (PDI)!} of {PDI#}?
+    Answer: {#The fill factor is |The FF is !}{FF#}.
+  - |-
+    Question: What is the {bandgap__names__noun} of a polymer with monomer {SMILES__description} {SMILES#}?
+    Answer: {#The bandgap is |The bandgap of the polymer is!}{bandgap#} {bandgap__units}.
+  - |-
+    Question: What is the {HOMO__names__noun} of a polymer with monomer {SMILES__description} {SMILES#}?
+    Answer: The {HOMO__names__noun} {#of the polymer|!} is {HOMO#} {HOMO__units}.
+  - |-
+    Question: What is the {LUMO__names__noun} of a polymer with monomer {SMILES__description} {SMILES#}?
+    Answer: The {LUMO__names__noun} {#of the polymer|!} is {LUMO#} {LUMO__units}.
+  - The {#non-fullerene|PC71BM|PCBM!} {#organic photovoltaics|OPV|organic solar cell|organic photovoltaics (OPV)!} device with a donor polymer with monomer {SMILES__description} {SMILES#} and {#Mw|weight-average molecular weight|weight-average molecular weight (Mw)!} {Mw#} g/mol and {#PDI|polydispersity index|polydispersity index (PDI)!} of {PDI#} has a {PCE_ave__names__noun} of {PCE_ave#}%.
+  - The {#non-fullerene|PC71BM|PCBM!} {#organic photovoltaics|OPV|organic solar cell|organic photovoltaics (OPV)!} device with a donor polymer with monomer {SMILES__description} {SMILES#} and {#Mw|weight-average molecular weight|weight-average molecular weight (Mw)!} {Mw#} g/mol and {#PDI|polydispersity index|polydispersity index (PDI)!} of {PDI#} has a {Jsc__names__noun} of {Jsc#} {Jsc__units}.
+  - The {#non-fullerene|PC71BM|PCBM!} {#organic photovoltaics|OPV|organic solar cell|organic photovoltaics (OPV)!} device with a donor polymer with monomer {SMILES__description} {SMILES#} and {#Mw|weight-average molecular weight|weight-average molecular weight (Mw)!} {Mw#} g/mol and {#PDI|polydispersity index|polydispersity index (PDI)!} of {PDI#} has a {FF__names__noun} of {FF#}.
+  - |-
+    User: I {#want to|would like to|aim to|wish to!} {#design|create|build!} a {#non-fullerene|PC71BM|PCBM!} {#organic photovoltaics|OPV|organic solar cell|organic photovoltaics (OPV)!} device with a {PCE_ave__names__noun} of {PCE_ave#}%.
+    Assistant: {#That's interesting.|Cool.|!} Do you have a donor polymer in mind?
+    User: Yes, I would like to use a polymer with monomer {SMILES__description} {SMILES#} and {#would like to|need to|must!} know the {PDI__names__noun} and {Mw__names__noun} of the polymer I should use.
+    Assistant: {#I recommend|I suggest|I propose!} trying a {Mw__names__noun} of {Mw#} g/mol and a {PDI__names__noun} of {PDI#}.
+  - |-
+    User: I {#want to|would like to|aim to|wish to!} {#design|create|build!} a {#non-fullerene|PC71BM|PCBM!} {#organic photovoltaics|OPV|organic solar cell|organic photovoltaics (OPV)!} device with a {PCE_ave__names__noun} of {PCE_ave#}%.
+    Assistant: {#That's interesting.|Cool.|!} Do you have additional constraints?
+    User: {#Yes, |Yeah, |Indeed, |!}I would like to have a {Jsc__names__noun} of {Jsc#} {Jsc__units}.
+    Assistant: {#I recommend|I suggest|I propose!} trying a {Mw__names__noun} of {Mw#} g/mol and {PDI__names__noun} of {PDI#} of a polymer with monomer {SMILES__description} {SMILES#}.
+  - |-
+    User: Can you {#recommend|suggest|propose!} a donor polymer for a {#non-fullerene|PC71BM|PCBM!} {#organic photovoltaics|OPV|organic solar cell|organic photovoltaics (OPV)!} device with a {PCE_ave__names__noun} of {PCE_ave#}% and a {Jsc__names__noun} of {Jsc#} {Jsc__units}?
+    Assistant: {#I recommend|I suggest|I propose!} trying a {Mw__names__noun} of {Mw#} g/mol and {PDI__names__noun} of {PDI#} of a polymer with monomer {SMILES__description} {SMILES#}.
+  - |-
+    Task: Predict the {PCE_ave__names__noun} of a {#non-fullerene|PC71BM|PCBM!} {#organic photovoltaics|OPV|organic solar cell|organic photovoltaics (OPV)!} device based on a description of the donor polymer.
+    Description: The donor polymer has monomer {SMILES__description} {SMILES#} and {#Mw|weight-average molecular weight|weight-average molecular weight (Mw)!} {Mw#} g/mol and {#PDI|polydispersity index|polydispersity index (PDI)!} of {PDI#}.
+    Solution: {#The power conversion efficiency is |The PCE is !}{PCE_ave#} %.

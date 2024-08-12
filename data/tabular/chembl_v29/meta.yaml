@@ -1,48 +1,47 @@
----
 name: chembl_v29
 description: |-
-    ChEMBL is a manually curated database of bioactive molecules with drug-like properties.
-    It brings together chemical, bioactivity and genomic data
-    to aid the translation of genomic information into effective new drugs.
+  ChEMBL is a manually curated database of bioactive molecules with drug-like properties.
+  It brings together chemical, bioactivity and genomic data
+  to aid the translation of genomic information into effective new drugs.
 benchmarks:
-    - name: TDC
-      link: https://tdcommons.ai/
-      split_column: split
+  - name: TDC
+    link: https://tdcommons.ai/
+    split_column: split
 identifiers:
-    - id: SMILES
-      type: SMILES
-      description: SMILES
+  - id: SMILES
+    type: SMILES
+    description: SMILES
 license: CC BY-SA 3.0
 links:
-    - url: https://academic.oup.com/nar/article/47/D1/D930/5162468
-      description: Article about original dataset
-    - url: https://academic.oup.com/nar/article/43/W1/W612/2467881
-      description: Exemplary related article shown in tdc's website
+  - url: https://academic.oup.com/nar/article/47/D1/D930/5162468
+    description: Article about original dataset
+  - url: https://academic.oup.com/nar/article/43/W1/W612/2467881
+    description: Exemplary related article shown in tdc's website
 num_points: 2084637
 bibtex:
-    - |-
-      @article{10.1093/nar/gky1075,
-      author = {Mendez, David and Gaulton, Anna and Bento, A Patricia and Chambers, Jon and De Veij,
-      Marleen and Felix, Eloy and Magarinos, Maria Paula and Mosquera,
-      Juan F and Mutowo, Prudence and Nowotka, Michal and Gordillo-Maranon,
-      Maria and Hunter, Fiona and Junco, Laura and Mugumbate, Grace and Rodriguez-Lopez, Milagros and Atkinson,
-      Francis and Bosc, Nicolas and Radoux, Chris J and Segura-Cabrera, Aldo and Hersey, Anne and Leach, Andrew R},
-      title = {ChEMBL: towards direct deposition of bioassay data},
-      journal = {Nucleic Acids Research},
-      volume = {47},
-      number = {D1},
-      pages = {D930-D940},
-      year = {2018},
-      month = {11},
-      abstract = "{ChEMBL is a large, open-access bioactivity database
-      (https://www.ebi.ac.uk/chembl), previously described in the 2012,
-      2014 and 2017 Nucleic Acids Research Database Issues.
-      In the last two years, several important improvements have been made to the database and are described here.
-      These include more robust capture and representation of assay details;
-      a new data deposition system, allowing updating of data sets and deposition of supplementary data;
-      and a completely redesigned web interface, with enhanced search and filtering capabilities.}",
-      issn = {0305-1048},
-      doi = {10.1093/nar/gky1075},
-      url = {https://doi.org/10.1093/nar/gky1075},
-      eprint = {https://academic.oup.com/nar/article-pdf/47/D1/D930/27437436/gky1075.pdf},
-      }
+  - |-
+    @article{10.1093/nar/gky1075,
+    author = {Mendez, David and Gaulton, Anna and Bento, A Patricia and Chambers, Jon and De Veij,
+    Marleen and Felix, Eloy and Magarinos, Maria Paula and Mosquera,
+    Juan F and Mutowo, Prudence and Nowotka, Michal and Gordillo-Maranon,
+    Maria and Hunter, Fiona and Junco, Laura and Mugumbate, Grace and Rodriguez-Lopez, Milagros and Atkinson,
+    Francis and Bosc, Nicolas and Radoux, Chris J and Segura-Cabrera, Aldo and Hersey, Anne and Leach, Andrew R},
+    title = {ChEMBL: towards direct deposition of bioassay data},
+    journal = {Nucleic Acids Research},
+    volume = {47},
+    number = {D1},
+    pages = {D930-D940},
+    year = {2018},
+    month = {11},
+    abstract = "{ChEMBL is a large, open-access bioactivity database
+    (https://www.ebi.ac.uk/chembl), previously described in the 2012,
+    2014 and 2017 Nucleic Acids Research Database Issues.
+    In the last two years, several important improvements have been made to the database and are described here.
+    These include more robust capture and representation of assay details;
+    a new data deposition system, allowing updating of data sets and deposition of supplementary data;
+    and a completely redesigned web interface, with enhanced search and filtering capabilities.}",
+    issn = {0305-1048},
+    doi = {10.1093/nar/gky1075},
+    url = {https://doi.org/10.1093/nar/gky1075},
+    eprint = {https://academic.oup.com/nar/article-pdf/47/D1/D930/27437436/gky1075.pdf},
+    }
