@@ -1,0 +1,20 @@
+site_name: ChemNLP Documentation
+theme:
+  name: material
+  palette:
+    primary: teal
+nav:
+  - Home: index.md
+  - User Guide:
+      - Installation: user-guide/installation.md
+      - Quick Start: user-guide/quickstart.md
+  - API Reference:
+      - Sampler Module: api/sampler.md
+  - Examples:
+      - Basic Usage: examples/basic-usage.md
+      - Advanced Techniques: examples/advanced-techniques.md
+  - Contributing: contributing.md
+  - Changelog: changelog.md
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences
