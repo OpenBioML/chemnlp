@@ -8,7 +8,7 @@ from string import ascii_lowercase, ascii_uppercase
 from chemnlp.data.random_variable import RandomVariable
 from functools import partial
 from functools import lru_cache
-
+from chemnlp.data_val.model import IdentifierEnum
 
 # ToDo: handle somewhere that the meta contains multiple templates
 class TemplateSampler:
@@ -53,6 +53,25 @@ class TemplateSampler:
         self.column_datafield_sampler = column_datafield_sampler or (lambda x: random.sample(x, k=1))
         self.class_balanced = False
         self.balance_column = None
+        self.wrap_identifiers = config.get('wrap_identifiers', False)
+
+    def _wrap_identifier(self, identifier: str, value: str) -> str:
+        """Wrap the identifier value with tags if wrap_identifiers is enabled."""
+        print('wrap_identifier', identifier, value, self.wrap_identifiers)
+
+        if not self.wrap_identifiers:
+            return value
+
+        identifier_type = next((item['type'] for item in self.meta['identifiers'] if item['id'] == identifier), None)
+
+        try:
+            identifier_type = IdentifierEnum(identifier_type)
+        except ValueError:
+            identifier_type = None
+
+        if identifier_type:
+            return f"[BEGIN_{identifier_type}]{value}[END_{identifier_type}]"
+        return value
 
     def _balance_classes(self, column: str) -> pd.DataFrame:
         """
@@ -416,7 +435,9 @@ class TemplateSampler:
     def _fill_template(self, template: str, sample_dict: Dict[str, Union[str, List[str]]]) -> str:
         for key, value in sample_dict.items():
             if isinstance(value, list):
-                # Handle list values (e.g., for multiple-choice options)
                 value = '\n'.join(value)
+            if '#' in key:  # This indicates it's an identifier
+                identifier = key.replace('#', '')
+                value = self._wrap_identifier(identifier, str(value))
             template = template.replace('{' + key + '}', str(value))
         return template

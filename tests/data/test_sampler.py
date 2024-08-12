@@ -48,6 +48,16 @@ def sample_config():
     }
 
 
+@pytest.fixture
+def sample_config_with_wrapping():
+    return {
+        'DEFAULT_SIGNIFICANT_DIGITS': 2,
+        'multiple_choice_rnd_symbols': ["", ".)", ")"],
+        'multiple_choice_benchmarking_templates': False,
+        'multiple_choice_benchmarking_format': None,
+        'wrap_identifiers': True
+    }
+
 # Add these to your existing fixtures or create new ones as needed
 @pytest.fixture
 def large_sample_df():
@@ -72,6 +82,14 @@ def large_sample_meta(sample_meta):
     })
     return sample_meta
 
+
+def test_basic_identifier_wrapping(sample_df, sample_meta, sample_config_with_wrapping):
+    sampler = TemplateSampler(sample_df, sample_meta, sample_config_with_wrapping)
+    template = "SMILES: {SMILES#}, Name: {compound_name#}"
+    result = sampler.sample(sample_df.iloc[0], template)
+    print(result)
+    assert "[BEGIN_SMILES]" in result and "[END_SMILES]" in result
+    assert "[BEGIN_Other]" in result and "[END_Other]" in result
 
 def test_get_target_from_row(sample_df, sample_meta, sample_config):
     sampler = TemplateSampler(sample_df, sample_meta, sample_config)
@@ -169,3 +187,31 @@ def test_random_sampling(large_sample_df, large_sample_meta, sample_config):
 
     # Check if we have at least two different results (high probability)
     assert len(set(results)) > 1
+
+
+def test_multiple_identifier_types(sample_df, sample_meta, sample_config_with_wrapping):
+    sampler = TemplateSampler(sample_df, sample_meta, sample_config_with_wrapping)
+    template = "SMILES: {SMILES#}, Name: {compound_name#}"
+    result = sampler.sample(sample_df.iloc[0], template)
+    assert all(tag in result for tag in ["[BEGIN_SMILES]", "[END_SMILES]",  "[BEGIN_Other]", "[END_Other]"])
+
+
+def test_wrapping_with_multiple_choice(sample_df, sample_meta, sample_config_with_wrapping):
+    sampler = TemplateSampler(sample_df, sample_meta, sample_config_with_wrapping)
+    template = """
+    Which compound has this SMILES: {SMILES#}?
+    {%multiple_choice_enum%2%aA1}
+    {compound_name%}
+    Answer: {%multiple_choice_result}
+    """
+    result = sampler.sample(sample_df.iloc[0], template)
+    assert "[BEGIN_SMILES]" in result and "[END_SMILES]" in result
+    assert "A or B" in result or "a or b" in result or "1 or 2" in result
+
+
+def test_wrapping_with_continuous_value(large_sample_df, large_sample_meta, sample_config_with_wrapping):
+    sampler = TemplateSampler(large_sample_df, large_sample_meta, sample_config_with_wrapping)
+    template = "SMILES: {SMILES#}, LogP: {LogP#}"
+    result = sampler.sample(large_sample_df.iloc[0], template)
+    assert "[BEGIN_SMILES]" in result and "[END_SMILES]" in result
+    assert re.search(r"LogP: \d+\.\d{2}", result)  # Checks for 2 decimal places

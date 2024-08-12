@@ -1,6 +1,5 @@
 from typing import List, Optional
 
-import pubchempy as pcp
 import requests
 from pydantic import Extra, root_validator, validator
 from pydantic_yaml import YamlModel, YamlStrEnum
