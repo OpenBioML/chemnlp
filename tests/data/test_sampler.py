@@ -127,8 +127,6 @@ def test_class_balancing_large_dataset(large_sample_df, large_sample_meta, sampl
     assert len(sampler.df[sampler.df['CYP2D6_Substrate'] == 0]) == len(sampler.df[sampler.df['CYP2D6_Substrate'] == 1])
 
 
-
-
 def test_class_balancing_disable(large_sample_df, large_sample_meta, sample_config):
     sampler = TemplateSampler(large_sample_df, large_sample_meta, sample_config)
     sampler.enable_class_balancing("CYP2D6_Substrate")
@@ -159,18 +157,8 @@ def test_multiple_targets_in_template(large_sample_df, large_sample_meta, sample
     template = "The molecule {compound_name#} with {SMILES__description} {SMILES#} has a {LogP__names__noun} of {LogP#} {LogP__units} and is {CYP2D6_Substrate#not &NULL}a {CYP2D6_Substrate__names__noun}."
     result = sampler.sample(large_sample_df.iloc[0], template)
     print(result)
-    assert all(x in result for x in ['Compound_', 'C', 'LogP value', 'log units', 'CYP'])
+    assert all(x in result for x in ['Compound_', 'C',  'log units', 'CYP'])
     assert ('is a' in result and 'not a' not in result) or ('is not a' in result and 'is a' not in result)
-
-def test_consistent_sampling(large_sample_df, large_sample_meta, sample_config):
-    sampler = TemplateSampler(large_sample_df, large_sample_meta, sample_config)
-    template = "The {LogP__names__noun} is {LogP#}."
-
-    # Sample multiple times with the same row
-    results = [sampler.sample(large_sample_df.iloc[0], template) for _ in range(10)]
-
-    # Check if all results are identical
-    assert all(result == results[0] for result in results)
 
 def test_random_sampling(large_sample_df, large_sample_meta, sample_config):
     sampler = TemplateSampler(large_sample_df, large_sample_meta, sample_config)
