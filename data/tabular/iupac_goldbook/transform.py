@@ -167,10 +167,10 @@ Assistant: {#Ok|Got it!},{# here you go,|!} this {term__names__noun} fits {#your
             """Task: Please {#give me|create|generate!} a {definition__names__noun} of a {term__names__noun}.
 Term: {term#}
 Constraint: Answer the question with {#full|complete!} sentences.
-Result:<EOI> {definition#}""",  # noqa
+Result:<EOI>{definition#}""",  # noqa
             """Task: Please {#give me|create|generate!} a {term__names__noun} for the {#following |!}{definition__names__noun}:
 Definition: {definition#}
-Result:<EOI> {term#}""",  # noqa
+Result:<EOI>{term#}""",  # noqa
         ],
     }
 

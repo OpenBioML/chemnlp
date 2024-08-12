@@ -96,17 +96,17 @@ templates:
       Assistant: {#This sounds very exciting. |Nice. | Very interesting. |I would love to help you. |This sounds very interesting. !}Should it be a special {#amino acid sequence|one!}?
       User: Yes, the amino acid sequence should {nonfouling#not &NULL}be {nonfouling__names__adjective}.
       Assistant: {#Understood|Got it|Ok!}, this is {nonfouling#not &NULL}{nonfouling__names__adjective}: {sequence#}
-    - Is the {sequence#} {nonfouling__names__adjective}:<EOI> {nonfouling#no&yes}
+    - Is the {sequence#} {nonfouling__names__adjective}:<EOI>{nonfouling#no&yes}
     - |-
       Task: Please classify a amino acid sequence based on the description.
       Description: A amino acid sequence that is {nonfouling__names__adjective}.
       {#amino acid sequence |!}: {sequence#}
       Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
-      Result:<EOI> {nonfouling#False&True}
+      Result:<EOI>{nonfouling#False&True}
     - |-
       Task: Please {#give me|create|generate!} a {#amino acid sequence |!} based on the {#text |!}description{# below|!}.
       Description: A amino acid sequence that is {nonfouling__names__adjective}.
-      Result:<EOI> {sequence#}
+      Result:<EOI>{sequence#}
     - |-
       Task: Please answer the multiple choice question.
       Question: Is the amino acid sequence with the {#representation of |!}{sequence#} {nonfouling__names__adjective}?
@@ -120,7 +120,7 @@ templates:
       Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
       Options:
       {nonfouling%}
-      Answer:<EOI> {%multiple_choice_result}
+      Answer:<EOI>{%multiple_choice_result}
     - |-
       Task: Please answer the multiple choice question.
       Question: Which amino acid sequences are {nonfouling#not &NULL}{nonfouling__names__adjective}?
@@ -134,4 +134,4 @@ templates:
       Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
       Options:
       {sequence%nonfouling%}
-      Answer:<EOI> {%multiple_choice_result}
+      Answer:<EOI>{%multiple_choice_result}

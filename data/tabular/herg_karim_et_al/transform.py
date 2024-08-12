@@ -155,23 +155,23 @@ Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should 
 User: Yes, the molecule should {herg_blocker#not &NULL}be a {herg_blocker__names__noun}.
 Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {herg_blocker#not &NULL}a {herg_blocker__names__noun}: {SMILES#}""",  # noqa: E501
             # Benchmarking text templates
-            "Is the {SMILES__description} {SMILES#} a {herg_blocker__names__noun}:<EOI> {herg_blocker#no&yes}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
+            "Is the {SMILES__description} {SMILES#} a {herg_blocker__names__noun}:<EOI>{herg_blocker#no&yes}",  # noqa: E501 for the benchmarking setup <EOI>separates input and output
             """Task: Please classify a molecule based on the description.
 Description: A molecule that is a {herg_blocker__names__noun}.
 {#Molecule |!}{SMILES__description}: {SMILES#}
 Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
-Result:<EOI> {herg_blocker#False&True}""",  # noqa: E501
+Result:<EOI>{herg_blocker#False&True}""",  # noqa: E501
             """Task: Please classify a molecule based on the description.
 Description: A molecule that is a {herg_blocker__names__noun}.
 {#Molecule |!}{SMILES__description}: {SMILES#}
 Constraint: Answer the question in a {#full|complete!} sentence.
-Result:<EOI> This molecule is {herg_blocker#not &NULL}a {herg_blocker__names__noun}.""",  # noqa: E501
+Result:<EOI>This molecule is {herg_blocker#not &NULL}a {herg_blocker__names__noun}.""",  # noqa: E501
             """Task: Please answer the multiple choice question.
 Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} a {herg_blocker__names__noun}?
 Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
 Options:
 {herg_blocker%}
-Answer:<EOI> {%multiple_choice_result}""",  # noqa: E501
+Answer:<EOI>{%multiple_choice_result}""",  # noqa: E501
             """Task: Please answer the multiple choice question.
 Question: Which molecules are {herg_blocker#not &NULL}a {herg_blocker__names__noun}?
 Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
@@ -183,7 +183,7 @@ Question: Which molecules are {herg_blocker#not &NULL}a {herg_blocker__names__no
 Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
 Options:
 {SMILES%herg_blocker%}
-Answer:<EOI> {%multiple_choice_result}""",  # noqa: E501
+Answer:<EOI>{%multiple_choice_result}""",  # noqa: E501
         ],
     }
 

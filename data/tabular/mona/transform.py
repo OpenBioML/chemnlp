@@ -88,17 +88,17 @@ Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should 
 User: Yes, the molecule should have a {spectral_entropy__names__noun} of {spectral_entropy#} {spectral_entropy__units}.
 Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} represents a molecule that has a {spectral_entropy__names__noun} of {spectral_entropy#} {spectral_entropy__units}: {SMILES#}""",  # noqa: E501
         # Benchmarking text templates
-        "The {spectral_entropy__names__noun} of the molecule with the {SMILES__description} {SMILES#} is:<EOI> {spectral_entropy#} {spectral_entropy__units}",  # noqa: E501
-        "The {spectral_entropy__names__noun} of the {SMILES__description} {SMILES#} is:<EOI> {spectral_entropy#} {spectral_entropy__units}",  # noqa: E501
-        "The {spectral_entropy__names__noun} of the molecule with the {SMILES__description} {SMILES#} is:<EOI> {spectral_entropy#} {spectral_entropy__units}",  # noqa: E501
+        "The {spectral_entropy__names__noun} of the molecule with the {SMILES__description} {SMILES#} is:<EOI>{spectral_entropy#} {spectral_entropy__units}",  # noqa: E501
+        "The {spectral_entropy__names__noun} of the {SMILES__description} {SMILES#} is:<EOI>{spectral_entropy#} {spectral_entropy__units}",  # noqa: E501
+        "The {spectral_entropy__names__noun} of the molecule {SMILES__description} {SMILES#} is:<EOI>{spectral_entropy#} {spectral_entropy__units}",  # noqa: E501
         """Task: Please predict a molecule feature based on the description.
 Description: Predict the {spectral_entropy__names__noun} in {spectral_entropy__units} of a molecule.
 {#Molecule |!}{SMILES__description}: {SMILES#}
 Constraint: Even if you are {#uncertain|not sure!}, you must answer with a numeric value in {spectral_entropy__units} without using any {#other|additional!} words.
-Result:<EOI> {spectral_entropy#} {spectral_entropy__units}""",  # noqa: E501
+Result:<EOI>{spectral_entropy#} {spectral_entropy__units}""",  # noqa: E501
         """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
 Description: A molecule that has {spectral_entropy__names__noun} of {spectral_entropy#} {spectral_entropy__units}.
-Result:<EOI> {SMILES#}""",  # noqa: E501
+Result:<EOI>{SMILES#}""",  # noqa: E501
     ],
 }
 

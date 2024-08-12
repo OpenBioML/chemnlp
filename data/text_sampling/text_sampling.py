@@ -1,3 +1,4 @@
+import copy
 import glob
 import math
 import os.path
@@ -48,21 +49,22 @@ Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should 
 User: Yes, the molecule should have a {TARGET__names__noun} of {TARGET#} {TARGET__units}.
 Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} represents a molecule that has a {TARGET__names__noun} of {TARGET#} {TARGET__units}: {SMILES#}""",  # noqa: E501
     # Benchmarking text templates
-    "The {TARGET__names__noun} of the molecule with the {SMILES__description} {SMILES#} is:<EOI> {TARGET#} {TARGET__units}",  # noqa: E501
-    "The {TARGET__names__noun} of the molecule with {SMILES__description} {SMILES#} is:<EOI> {TARGET#} {TARGET__units}",  # noqa: E501
+    "The {TARGET__names__noun} of the molecule with the {SMILES__description} {SMILES#} is:<EOI>{TARGET#} {TARGET__units}",  # noqa: E501
+    "The {TARGET__names__noun} of the {SMILES__description} {SMILES#} is:<EOI>{TARGET#} {TARGET__units}",  # noqa: E501
+    "The {TARGET__names__noun} of the molecule {SMILES__description} {SMILES#} is:<EOI>{TARGET#} {TARGET__units}",  # noqa: E501
     """Task: Please predict a molecule feature based on the description.
 Description: Predict the {TARGET__names__noun} in {TARGET__units} of a molecule.
 {#Molecule |!}{SMILES__description}: {SMILES#}
 Constraint: Even if you are {#uncertain|not sure!}, you must answer with a numeric value in {TARGET__units} without using any {#other|additional!} words.
-Result:<EOI> {TARGET#} {TARGET__units}""",  # noqa: E501
+Result:<EOI>{TARGET#} {TARGET__units}""",  # noqa: E501
     """Task: Please predict a molecule feature based on the description.
 Description: Predict the {TARGET__names__noun} in {TARGET__units} of a molecule.
 {#Molecule |!}{SMILES__description}: {SMILES#}
 Constraint: Even if you are {#uncertain|not sure!}, you must answer with a numeric value in {TARGET__units} without the unit and without using any {#other|additional!} words.
-Result:<EOI> {TARGET#}""",  # noqa: E501
-    """Task: Please {#give me|create|generate!} a {SMILES__description} of a {#molecule|chemical|chemical compound!} based on the {#text |!}description{# below|!}.
+Result:<EOI>{TARGET#}""",  # noqa: E501
+    """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
 Description: A molecule that has a {TARGET__names__noun} of {TARGET#} {TARGET__units}.
-Result:<EOI> {SMILES#}""",  # noqa: E501
+Result:<EOI>{SMILES#}""",  # noqa: E501
 ]
 
 
@@ -226,18 +228,15 @@ exclude_from_standard_tabular_text_templates = [
 
 lm_eval_yaml_template_loglikelihood = {
     "group": [
+        "chemnlp",
         "loglikelihood",
     ],
     "task": None,
     "dataset_path": None,
     "dataset_name": None,
     "output_type": "loglikelihood",
-    "test_split": "test",
-    "template_aliases": "",
-    "doc_to_text": "{{input}}",
-    "doc_to_target": "{{output}}",
-    # "should_decontaminate": True,
-    # "doc_to_decontamination_query": "{{text}}",
+    "doc_to_text": "input",
+    "doc_to_target": "output",
     "metric_list": [
         {
             "metric": "perplexity",
@@ -254,19 +253,16 @@ lm_eval_yaml_template_loglikelihood = {
 
 lm_eval_yaml_template_multiple_choice = {
     "group": [
+        "chemnlp",
         "multiple_choice",
     ],
     "task": None,
     "dataset_path": None,
     "dataset_name": None,
     "output_type": "multiple_choice",
-    "test_split": "test",
-    "template_aliases": "{% set gold = correct_output_index %}",
-    "doc_to_text": "{{input}}",
-    "doc_to_target": "{{output}}",
-    "gold_alias": "{{gold}}",
-    # "should_decontaminate": True,
-    # "doc_to_decontamination_query": "{{text}}",
+    "doc_to_text": "input",
+    "doc_to_target": "output",
+    "doc_to_choice": "{{answer_choices}}",
     "metric_list": [
         {
             "metric": "acc",
@@ -964,7 +960,7 @@ class TemplateSampler:
             lambda sample: self.sample(sample, template_idx), axis=1
         )
 
-    def export(self, fn_suffix: str = None):
+    def export(self, dir_suffix: str = None):
         """Exports the sampled data as separate jsonl files based on the split and benchmarking templates."""
         assert "sample" in self.df.columns, "Run apply_sampling before running export."
         print_data = {
@@ -1015,18 +1011,25 @@ class TemplateSampler:
                     str, str_presenter
                 )  # to use with safe_dum
 
+                group_name = self.path_data_dir.split("/")[-1]
+
                 if self.multiple_choice_benchmarking_templates:
                     if self.multiple_choice_benchmarking_format:
-                        output_path_dir = (
-                            self.path_lm_eval_data_dir
-                            + f"/{self.path_data_dir.split('/')[-1]}_benchmark_multiple_choice_format-{self.multiple_choice_benchmarking_format}/"  # noqa: E501
+                        task_name = (
+                            group_name
+                            + f"_benchmark_multiple_choice_format-{self.multiple_choice_benchmarking_format}"
                         )
                     else:
-                        output_path_dir = (
-                            self.path_lm_eval_data_dir
-                            + f"/{self.path_data_dir.split('/')[-1]}_benchmark_multiple_choice_format/"  # noqa: E501
-                        )
+                        if dir_suffix:
+                            task_name = (
+                                group_name + f"_benchmark_multiple_choice_{dir_suffix}"
+                            )
+                        else:
+                            task_name = group_name + "_benchmark_multiple_choice"
 
+                    output_path_dir = os.path.abspath(
+                        self.path_lm_eval_data_dir + f"/{task_name}/"
+                    )
                     os.makedirs(output_path_dir, exist_ok=True)
                     output_path = output_path_dir + f"{split}.jsonl"
 
@@ -1046,9 +1049,16 @@ class TemplateSampler:
                             lm_eval_yaml_template_multiple_choice, f, sort_keys=False
                         )
                 else:
-                    output_path_dir = (
-                        self.path_lm_eval_data_dir
-                        + f"/{self.path_data_dir.split('/')[-1]}_benchmark/"
+                    if dir_suffix:
+                        task_name = (
+                            self.path_data_dir.split("/")[-1]
+                            + f"_benchmark_{dir_suffix}"
+                        )
+                    else:
+                        task_name = self.path_data_dir.split("/")[-1] + "_benchmark"
+
+                    output_path_dir = os.path.abspath(
+                        self.path_lm_eval_data_dir + f"/{task_name}/"
                     )
                     os.makedirs(output_path_dir, exist_ok=True)
                     output_path = output_path_dir + f"{split}_{fn_suffix}.jsonl"
@@ -1069,15 +1079,37 @@ class TemplateSampler:
                             lm_eval_yaml_template_loglikelihood, f, sort_keys=False
                         )
             else:
-                output_path_dir = (
-                    self.path_lm_eval_data_dir
-                    + f"/{self.path_data_dir.split('/')[-1]}/"
+                group_name = self.path_data_dir.split("/")[-1]
+
+                if dir_suffix:
+                    task_name = group_name + f"_{dir_suffix}"
+                else:
+                    task_name = group_name
+
+                output_path_dir = os.path.abspath(
+                    self.path_lm_eval_data_dir + f"/{task_name}/"
                 )
                 os.makedirs(output_path_dir, exist_ok=True)
-                if fn_suffix is not None:
-                    output_path = output_path_dir + f"{split}_{fn_suffix}.jsonl"
-                else:
-                    output_path = output_path_dir + f"{split}.jsonl"
+                output_path = output_path_dir + f"/{split}.jsonl"
+
+                lm_eval_yaml = copy.deepcopy(lm_eval_yaml_template_loglikelihood)
+
+            lm_eval_yaml["group"].append(group_name)
+            lm_eval_yaml["task"] = task_name
+            lm_eval_yaml["dataset_path"] = output_path_dir
+            lm_eval_yaml["dataset_name"] = task_name
+
+            for split_out in self.df.split.unique():
+                if split_out == "train":
+                    lm_eval_yaml["training_split"] = "train"
+                if split_out == "valid":
+                    lm_eval_yaml["validation_split"] = "validation"
+                if split_out == "test":
+                    lm_eval_yaml["test_split"] = "test"
+
+            fn_lm_eval_yaml = output_path_dir + "/config.yaml"
+            with open(fn_lm_eval_yaml, "w") as f:
+                yaml.dump(lm_eval_yaml, f, sort_keys=False)
 
             with open(output_path, "w") as f:
                 f.write(df_out.to_json(orient="records", lines=True, force_ascii=False))

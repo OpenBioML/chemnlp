@@ -95,13 +95,13 @@ templates:
       Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
       User: Yes, the molecule should {mutagenic#not &NULL}be {mutagenic__names__adjective}.
       Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {mutagenic#not &NULL}{mutagenic__names__adjective}: {SMILES#}
-    - Is the {SMILES__description} {SMILES#} {mutagenic__names__adjective}:<EOI> {mutagenic#no&yes}
+    - Is the {SMILES__description} {SMILES#} {mutagenic__names__adjective}:<EOI>{mutagenic#no&yes}
     - |-
       Task: Please classify a molecule based on the description.
       Description: A molecule that is {mutagenic__names__adjective}.
       {#Molecule |!}{SMILES__description}: {SMILES#}
       Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
-      Result:<EOI> {mutagenic#False&True}
+      Result:<EOI>{mutagenic#False&True}
     - |-
       Task: Please answer the multiple choice question.
       Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} {mutagenic__names__adjective}?
@@ -115,7 +115,7 @@ templates:
       Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
       Options:
       {mutagenic%}
-      Answer:<EOI> {%multiple_choice_result}
+      Answer:<EOI>{%multiple_choice_result}
     - |-
       Task: Please answer the multiple choice question.
       Question: Which molecules are {mutagenic#not &NULL}{mutagenic__names__adjective}?
@@ -129,4 +129,4 @@ templates:
       Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
       Options:
       {SMILES%mutagenic%}
-      Answer:<EOI> {%multiple_choice_result}
+      Answer:<EOI>{%multiple_choice_result}

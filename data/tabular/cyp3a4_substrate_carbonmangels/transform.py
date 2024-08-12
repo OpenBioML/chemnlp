@@ -179,15 +179,15 @@ Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should 
 User: Yes, the molecule should {CYP3A4_Substrate#not &NULL}be a {CYP3A4_Substrate__names__noun}.
 Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {CYP3A4_Substrate#not &NULL}a {CYP3A4_Substrate__names__noun}: {SMILES#}""",  # noqa: E501
             # Benchmarking text templates
-            "Is the {SMILES__description} {SMILES#} a {CYP3A4_Substrate__names__noun}:<EOI> {CYP3A4_Substrate#no&yes}",  # noqa: E501 for the benchmarking setup <EOI> separates input and output
+            "Is the {SMILES__description} {SMILES#} a {CYP3A4_Substrate__names__noun}:<EOI>{CYP3A4_Substrate#no&yes}",  # noqa: E501 for the benchmarking setup <EOI>separates input and output
             """Task: Please classify a molecule based on the description.
 Description: A molecule that is a {CYP3A4_Substrate__names__noun}.
 {#Molecule |!}{SMILES__description}: {SMILES#}
 Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
-Result:<EOI> {CYP3A4_Substrate#False&True}""",  # noqa: E501
+Result:<EOI>{CYP3A4_Substrate#False&True}""",  # noqa: E501
             # noqa: E501 """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
             # Description: A molecule that is {CYP3A4_Substrate__names__verb}.
-            # Result:<EOI> {SMILES#}""",  # noqa: E501
+            # Result:<EOI>{SMILES#}""",  # noqa: E501
             """Task: Please answer the multiple choice question.
 Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} {CYP3A4_Substrate__names__verb}?
 Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
@@ -199,7 +199,7 @@ Question: Is the molecule with the {SMILES__description} {#representation of |!}
 Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
 Options:
 {CYP3A4_Substrate%}
-Answer:<EOI> {%multiple_choice_result}""",  # noqa: E501
+Answer:<EOI>{%multiple_choice_result}""",  # noqa: E501
             """Task: Please answer the multiple choice question.
 Question: Which molecules are {CYP3A4_Substrate#not &NULL}a {CYP3A4_Substrate__names__noun}?
 Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
@@ -211,7 +211,7 @@ Question: Which molecules are {CYP3A4_Substrate#not &NULL}{CYP3A4_Substrate__nam
 Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
 Options:
 {SMILES%CYP3A4_Substrate%}
-Answer:<EOI> {%multiple_choice_result}""",  # noqa: E501
+Answer:<EOI>{%multiple_choice_result}""",  # noqa: E501
         ],
     }
 

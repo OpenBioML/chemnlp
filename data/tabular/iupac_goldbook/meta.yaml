@@ -88,8 +88,8 @@ templates:
       Task: Please {#give me|create|generate!} a {definition__names__noun} of a {term__names__noun}.
       Term: {term#}
       Constraint: Answer the question with {#full|complete!} sentences.
-      Result:<EOI> {definition#}
+      Result:<EOI>{definition#}
     - |-
       Task: Please {#give me|create|generate!} a {term__names__noun} for the {#following |!}{definition__names__noun}:
       Definition: {definition#}
-      Result:<EOI> {term#}
+      Result:<EOI>{term#}

@@ -193,29 +193,29 @@ Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should 
 User: Yes, the molecule should have a {GAFF__names__noun} of {GAFF#} {GAFF__units}.
 Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} represents a molecule that has a {GAFF__names__noun} of {GAFF#} {GAFF__units}: {SMILES#}""",  # noqa: E501
             # Benchmarking text templates
-            "The {exp_value__names__noun} of the molecule with the {SMILES__description} {SMILES#} is:<EOI> {exp_value#} {exp_value__units}",  # noqa: E501
-            "The {exp_value__names__noun} of the {SMILES__description} {SMILES#} is:<EOI> {exp_value#} {exp_value__units}",  # noqa: E501
-            "The {exp_value__names__noun} of the molecule with the {SMILES__description} {SMILES#} is:<EOI> {exp_value#} {exp_value__units}",  # noqa: E501
+            "The {exp_value__names__noun} of the molecule with the {SMILES__description} {SMILES#} is:<EOI>{exp_value#} {exp_value__units}",  # noqa: E501
+            "The {exp_value__names__noun} of the {SMILES__description} {SMILES#} is:<EOI>{exp_value#} {exp_value__units}",  # noqa: E501
+            "The {exp_value__names__noun} of the molecule {SMILES__description} {SMILES#} is:<EOI>{exp_value#} {exp_value__units}",  # noqa: E501
             """Task: Please predict a molecule feature based on the description.
 Description: Predict the {exp_value__names__noun} in {exp_value__units} of a molecule.
 {#Molecule |!}{SMILES__description}: {SMILES#}
 Constraint: Even if you are {#uncertain|not sure!}, you must answer with a numeric value in {exp_value__units} without using any {#other|additional!} words.
-Result:<EOI> {exp_value#} {exp_value__units}""",  # noqa: E501
+Result:<EOI>{exp_value#} {exp_value__units}""",  # noqa: E501
             """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
 Description: A molecule that has {exp_value__names__noun} of {exp_value#} {exp_value__units}.
-Result:<EOI> {SMILES#}""",  # noqa: E501
+Result:<EOI>{SMILES#}""",  # noqa: E501
             # GAFF
-            "The {GAFF__names__noun} of the molecule with the {SMILES__description} {SMILES#} is:<EOI> {GAFF#} {GAFF__units}",  # noqa: E501
-            "The {GAFF__names__noun} of the {SMILES__description} {SMILES#} is:<EOI> {GAFF#} {GAFF__units}",  # noqa: E501
-            "The {GAFF__names__noun} of the molecule with the {SMILES__description} {SMILES#} is:<EOI> {GAFF#} {GAFF__units}",  # noqa: E501
+            "The {GAFF__names__noun} of the molecule with the {SMILES__description} {SMILES#} is:<EOI>{GAFF#} {GAFF__units}",  # noqa: E501
+            "The {GAFF__names__noun} of the {SMILES__description} {SMILES#} is:<EOI>{GAFF#} {GAFF__units}",  # noqa: E501
+            "The {GAFF__names__noun} of the molecule {SMILES__description} {SMILES#} is:<EOI>{GAFF#} {GAFF__units}",  # noqa: E501
             """Task: Please predict a molecule feature based on the description.
 Description: Predict the {GAFF__names__noun} in {GAFF__units} of a molecule.
 {#Molecule |!}{SMILES__description}: {SMILES#}
 Constraint: Even if you are {#uncertain|not sure!}, you must answer with a numeric value in {GAFF__units} without using any {#other|additional!} words.
-Result:<EOI> {GAFF#} {GAFF__units}""",  # noqa: E501
+Result:<EOI>{GAFF#} {GAFF__units}""",  # noqa: E501
             """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
 Description: A molecule that has {GAFF__names__noun} of {GAFF#} {GAFF__units}.
-Result:<EOI> {SMILES#}""",  # noqa: E501
+Result:<EOI>{SMILES#}""",  # noqa: E501
         ],
     }
     fn_meta = "meta.yaml"
