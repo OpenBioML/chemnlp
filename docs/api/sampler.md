@@ -153,5 +153,6 @@ print(mc_result)
 - The `TemplateSampler` class supports wrapping of identifiers with tags when the `wrap_identifiers` option is enabled in the configuration.
 - Wrapped identifiers use the format `[BEGIN_IDENTIFIER_TYPE]value[END_IDENTIFIER_TYPE]`.
 - Identifier types are based on the `IdentifierEnum` class, which includes common chemical identifiers like SMILES, InChI, and others.
+- If you have `SMILES` as columns as well as one of `["selfies", "deepsmiles", "canonical", "inchi", "iupac_name']` in the dataframe (they do not even need to be in the `meta.yaml`) the engine will automatically replace the `SMILES` with the other identifiers (randomly).
 
 For more detailed information on the implementation and advanced usage, please refer to the source code and unit tests.

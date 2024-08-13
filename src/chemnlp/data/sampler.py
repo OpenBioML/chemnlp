@@ -58,6 +58,26 @@ class TemplateSampler:
         self.class_balanced = False
         self.balance_column = None
         self.wrap_identifiers = config.get("wrap_identifiers", False)
+        self.additional_targets = self._get_additional_targets(df)
+        self._add_additional_targets_to_meta()
+
+    def _get_additional_targets(self, df: pd.DataFrame) -> List[str]:
+        additional_targets = []
+        for col in ["selfies", "deepsmiles", "canonical", "inchi", "iupac_name"]:
+            if col in df.columns:
+                additional_targets.append(col)
+        return additional_targets
+
+    def _add_additional_targets_to_meta(self):
+        additional_targets_meta = {
+            "selfies": {"id": "selfies", "type": "selfies", "description": "SELFIES"},
+            "deepsmiles": {"id": "deepsmiles", "type": "deepsmiles", "description": "DeepSMILES"},
+            "canonical": {"id": "canonical", "type": "canonical", "description": "canonical SMILES"},
+            "inchi": {"id": "inchi", "type": "inchi", "description": "InChI"},
+            "iupac_name": {"id": "iupac_name", "type": "iupac_name", "description": "IUPAC name"},
+        }
+        for target in self.additional_targets:
+            self.meta["targets"].append(additional_targets_meta[target])
 
     def _wrap_identifier(self, identifier: str, value: str) -> str:
         """Wrap the identifier value with tags if wrap_identifiers is enabled."""
@@ -517,6 +537,11 @@ class TemplateSampler:
         """
         if sample is None:
             sample = self.df.sample(1).iloc[0]
+        if self.additional_targets and "SMILES" in sample.index:
+            non_nan_targets = [target for target in ["SMILES"] + self.additional_targets if pd.notna(sample[target])]
+            new_target = random.choice(non_nan_targets)
+            if new_target != "SMILES":
+                template = template.replace("{SMILES", "{" + new_target)
         sample_dict = self.get_sample_dict(sample, template)
         return self._fill_template(template, sample_dict)
 

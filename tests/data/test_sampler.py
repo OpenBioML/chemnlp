@@ -19,6 +19,17 @@ def sample_df():
         }
     )
 
+@pytest.fixture
+def sample_multiple_identifier_df():
+    return pd.DataFrame({
+        'SMILES': ['CC(C)NCC(O)c1ccc(O)c(O)c1', 'CC1=C(C(=O)NC2=C1C=CC=C2)C3=CC=CC=C3'],
+        'selfies': ['[C][C][Branch1][C][C][N][C][C][Branch1][O][C][=C][C][=C][C][Branch1][O][C][=C][Branch1][O][C][=C]', '[C][C]1[=C][Branch1][C][Branch2][=O][N][C]2[=C]1[C][=C][C][=C][C]2[C]3[=C][C][=C][C][=C][C]3'],
+        'inchi': ['InChI=1S/C11H17NO3/c1-8(2)12-6-9(13)10-4-3-5-11(14)7-10/h3-5,7-9,12-14H,6H2,1-2H3', 'InChI=1S/C15H11NO/c17-14-11-9-5-1-3-7-13(9)16-15(14)10-6-2-4-8-12(10)11/h1-8,16H'],
+        'compound_name': ['Isoproterenol', 'Phenytoin'],
+        'LogP': [0.08, 2.47],
+        'is_active': [True, False],
+        'split': ['train', 'test']
+    })
 
 @pytest.fixture
 def sample_meta():
@@ -53,6 +64,23 @@ def sample_meta():
         ],
     }
 
+
+@pytest.fixture
+def sample_multiple_identifier_meta():
+    return {
+        "targets": [
+            {"id": "LogP", "type": "continuous", "description": "Logarithm of partition coefficient"},
+            {"id": "is_active", "type": "categorical", "description": "Activity status"}
+        ],
+        "identifiers": [
+            {"id": "SMILES", "type": "SMILES", "description": "SMILES notation"},
+            {"id": "compound_name", "type": "Other", "description": "Compound name"}
+        ],
+        "templates": [
+            "The molecule with SMILES {SMILES#} has a LogP of {LogP#}.",
+            "The compound {compound_name#} is {is_active#active&inactive}."
+        ]
+    }
 
 @pytest.fixture
 def sample_config():
@@ -475,3 +503,23 @@ def test_polymer_multiple_properties(
     assert "*CC(*)C" in result
     assert "275.0" in result
     assert "0.90" in result
+
+def test_additional_targets(sample_multiple_identifier_df, sample_multiple_identifier_meta, sample_config):
+    sampler = TemplateSampler(sample_multiple_identifier_df, sample_multiple_identifier_meta, sample_config)
+    assert set(sampler.additional_targets) == {"selfies", "inchi"}
+    print(sampler.meta['targets'])
+    assert len(sampler.meta["targets"]) == 4
+
+
+
+def test_sample_with_random_replacement(sample_multiple_identifier_df, sample_multiple_identifier_meta, sample_config):
+    sampler = TemplateSampler(sample_multiple_identifier_df, sample_multiple_identifier_meta, sample_config)
+    template = "The compound with {SMILES__description} {SMILES#} has a {LogP__description} of {LogP#}"
+    results = [sampler.sample(sample_multiple_identifier_df.iloc[0], template) for _ in range(20)]
+    smiles_count = sum("CC(C)NCC(O)c1ccc(O)c(O)c1" in r for r in results)
+    selfies_count = sum("[C][C][Branch1][C][C][N][C][C][Branch1][O][C][=C][C][=C][C][Branch1][O][C][=C][Branch1][O][C][=C]" in r for r in results)
+    inchi_count = sum("InChI=1S/C11H17NO3/c1-8(2)12-6-9(13)10-4-3-5-11(14)7-10/h3-5,7-9,12-14H,6H2,1-2H3" in r for r in results)
+    assert smiles_count > 0
+    assert selfies_count > 0
+    assert inchi_count > 0
+    assert smiles_count + selfies_count + inchi_count == 20
