@@ -47,7 +47,7 @@ templates:
     {exp%}
     Answer: {%multiple_choice_result}
   - |-
-    Question: Please estimate the {exp__names__noun} of {SMILES#} by picking one choice of {%multiple_choice_enum%3-6%aA1}.
+    Question: Please {#estimate|guess|predict|provide!} the {exp__names__noun} of {SMILES#} by picking one choice of {%multiple_choice_enum%3-6%aA1}.
     Options:
     {exp%}
     Answer: {%multiple_choice_result}
@@ -57,3 +57,40 @@ templates:
     Options:
     {exp%}
     Answer:<EOI>{%multiple_choice_result}
+  - |-
+    Question: What is the {exp__names__noun} for the {#molecule|chemical|compound!} represented by the {SMILES__description} {SMILES#}?
+
+    Answer:<EOI>{exp}
+  - |-
+    Task: Determine the {exp__names__noun} for the given {SMILES__description}.
+
+    Molecule: {SMILES#}
+
+    Answer:<EOI>{exp}
+  - |-
+    Task: Please {#estimate|guess|predict|provide!} the {exp__names__noun} for the following {SMILES__description}.
+
+    Molecule: {SMILES#}
+
+    Answer:<EOI>{exp}
+  - |-
+    Question: What is the experimental {exp__names__noun} for the molecule with the {SMILES__description} {SMILES#}?
+
+    Answer:<EOI>{exp}
+  - |-
+    Task: Identify the {exp__names__noun} for the given {#molecule|chemical|compound!}.
+
+    Molecule: {SMILES#}
+
+    Answer:<EOI>{exp}
+  - |-
+    Task: Please select the correct {exp__names__noun} for the {#molecule|chemical|compound!} represented by the {SMILES__description} {SMILES#}.
+
+    Options:
+    {exp%}
+
+    Answer:<EOI>{%multiple_choice_result}
+  - |-
+    Task: {#Estimate|Guess|Predict|Provide!} the {exp__names__noun} for the {#molecule|chemical|compound!} with the {SMILES__description} {SMILES#}.
+
+    Answer:<EOI>{exp}

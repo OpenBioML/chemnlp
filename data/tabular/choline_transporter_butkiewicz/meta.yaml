@@ -62,56 +62,56 @@ templates:
   - The polymer with the {compound_name__names__noun} of {compound_name#} has an {Tg_exp__names__noun} of {Tg_exp#} {Tg_exp__units}.
   - The polymer with the {compound_name__names__noun} of {compound_name#} has a {Tg_calc__names__noun} of {Tg_calc#} {Tg_calc__units}.
   - The polymer with the {compound_name__names__noun} of {compound_name#} has a {rho_300K_calc__names__noun} of {rho_300K_calc#} {rho_300K_calc__units}.
-  - What is the {Tg_exp__names__noun} of the polymer with the {PSMILES__description} {PSMILES#}? Answer:<EOI> {Tg_exp#} {Tg_exp__units}.
-  - What is the {Tg_calc__names__noun} of the polymer with the {PSMILES__description} {PSMILES#}? Answer:<EOI> {Tg_calc#} {Tg_calc__units}.
-  - What is the {rho_300K_calc__names__noun} of the polymer with the {PSMILES__description} {PSMILES#}? Answer:<EOI> {rho_300K_calc#} {rho_300K_calc__units}.
-  - What is the {Tg_exp__names__noun} of the polymer with the {compound_name__names__noun} {compound_name#}? Answer:<EOI> {Tg_exp#} {Tg_exp__units}.
-  - What is the {Tg_calc__names__noun} of the polymer with the {compound_name__names__noun} {compound_name#}? Answer:<EOI> {Tg_calc#} {Tg_calc__units}.
-  - What is the {rho_300K_calc__names__noun} of the polymer with the {compound_name__names__noun} {compound_name#}? Answer:<EOI> {rho_300K_calc#} {rho_300K_calc__units}.
+  - What is the {Tg_exp__names__noun} of the polymer with the {PSMILES__description} {PSMILES#}? Answer:<EOI>{Tg_exp#} {Tg_exp__units}.
+  - What is the {Tg_calc__names__noun} of the polymer with the {PSMILES__description} {PSMILES#}? Answer:<EOI>{Tg_calc#} {Tg_calc__units}.
+  - What is the {rho_300K_calc__names__noun} of the polymer with the {PSMILES__description} {PSMILES#}? Answer:<EOI>{rho_300K_calc#} {rho_300K_calc__units}.
+  - What is the {Tg_exp__names__noun} of the polymer with the {compound_name__names__noun} {compound_name#}? Answer:<EOI>{Tg_exp#} {Tg_exp__units}.
+  - What is the {Tg_calc__names__noun} of the polymer with the {compound_name__names__noun} {compound_name#}? Answer:<EOI>{Tg_calc#} {Tg_calc__units}.
+  - What is the {rho_300K_calc__names__noun} of the polymer with the {compound_name__names__noun} {compound_name#}? Answer:<EOI>{rho_300K_calc#} {rho_300K_calc__units}.
   - The polymer with the {PSMILES__description} {PSMILES#} has an {Tg_exp__names__noun} of {Tg_exp#} {Tg_exp__units} and a {Tg_calc__names__noun} of {Tg_calc#} {Tg_calc__units}.
   - The polymer with the {compound_name__names__noun} {compound_name#} has an {Tg_exp__names__noun} of {Tg_exp#} {Tg_exp__units} and a {Tg_calc__names__noun} of {Tg_calc#} {Tg_calc__units}.
-  - Compare the {Tg_exp__names__noun} and {Tg_calc__names__noun} for the polymer with the {PSMILES__description} {PSMILES#}. Answer:<EOI> {Tg_exp#} {Tg_exp__units}, {Tg_calc#} {Tg_calc__units}.
-  - Compare the {Tg_exp__names__noun} and {Tg_calc__names__noun} for the polymer with the {compound_name__names__noun} {compound_name#}. Answer:<EOI> {Tg_exp#} {Tg_exp__units}, {Tg_calc#} {Tg_calc__units}.
-  - What is the {rho_300K_calc__names__noun} of the polymer with the {PSMILES__description} {PSMILES#} at 300K? Answer:<EOI> {rho_300K_calc#} {rho_300K_calc__units}.
-  - What is the {rho_300K_calc__names__noun} of the polymer with the {compound_name__names__noun} {compound_name#} at 300K? Answer:<EOI> {rho_300K_calc#} {rho_300K_calc__units}.
-  - What is the {Tg_exp__names__noun} of the polymer with the {PSMILES__description} {PSMILES#} in Kelvin? Answer:<EOI> {Tg_exp#}.
-  - What is the {Tg_calc__names__noun} of the polymer with the {PSMILES__description} {PSMILES#} in Kelvin? Answer:<EOI> {Tg_calc#}.
-  - What is the {rho_300K_calc__names__noun} of the polymer with the {PSMILES__description} {PSMILES#} in g/cm^3? Answer:<EOI> {rho_300K_calc#}.
-  - What is the {Tg_exp__names__noun} of the polymer with the {compound_name__names__noun} {compound_name#} in Kelvin? Answer:<EOI> {Tg_exp#}.
-  - What is the {Tg_calc__names__noun} of the polymer with the {compound_name__names__noun} {compound_name#} in Kelvin? Answer:<EOI> {Tg_calc#}.
-  - What is the {rho_300K_calc__names__noun} of the polymer with the {compound_name__names__noun} {compound_name#} in g/cm^3? Answer:<EOI> {rho_300K_calc#}.
+  - Compare the {Tg_exp__names__noun} and {Tg_calc__names__noun} for the polymer with the {PSMILES__description} {PSMILES#}. Answer:<EOI>{Tg_exp#} {Tg_exp__units}, {Tg_calc#} {Tg_calc__units}.
+  - Compare the {Tg_exp__names__noun} and {Tg_calc__names__noun} for the polymer with the {compound_name__names__noun} {compound_name#}. Answer:<EOI>{Tg_exp#} {Tg_exp__units}, {Tg_calc#} {Tg_calc__units}.
+  - What is the {rho_300K_calc__names__noun} of the polymer with the {PSMILES__description} {PSMILES#} at 300K? Answer:<EOI>{rho_300K_calc#} {rho_300K_calc__units}.
+  - What is the {rho_300K_calc__names__noun} of the polymer with the {compound_name__names__noun} {compound_name#} at 300K? Answer:<EOI>{rho_300K_calc#} {rho_300K_calc__units}.
+  - What is the {Tg_exp__names__noun} of the polymer with the {PSMILES__description} {PSMILES#} in Kelvin? Answer:<EOI>{Tg_exp#}.
+  - What is the {Tg_calc__names__noun} of the polymer with the {PSMILES__description} {PSMILES#} in Kelvin? Answer:<EOI>{Tg_calc#}.
+  - What is the {rho_300K_calc__names__noun} of the polymer with the {PSMILES__description} {PSMILES#} in g/cm^3? Answer:<EOI>{rho_300K_calc#}.
+  - What is the {Tg_exp__names__noun} of the polymer with the {compound_name__names__noun} {compound_name#} in Kelvin? Answer:<EOI>{Tg_exp#}.
+  - What is the {Tg_calc__names__noun} of the polymer with the {compound_name__names__noun} {compound_name#} in Kelvin? Answer:<EOI>{Tg_calc#}.
+  - What is the {rho_300K_calc__names__noun} of the polymer with the {compound_name__names__noun} {compound_name#} in g/cm^3? Answer:<EOI>{rho_300K_calc#}.
   - The polymer with the {PSMILES__description} {PSMILES#} has an {Tg_exp__names__noun} of {Tg_exp#} {Tg_exp__units} and a {rho_300K_calc__names__noun} of {rho_300K_calc#} {rho_300K_calc__units}.
   - The polymer with the {compound_name__names__noun} {compound_name#} has an {Tg_exp__names__noun} of {Tg_exp#} {Tg_exp__units} and a {rho_300K_calc__names__noun} of {rho_300K_calc#} {rho_300K_calc__units}.
-  - Compare the {Tg_exp__names__noun} and {rho_300K_calc__names__noun} for the polymer with the {PSMILES__description} {PSMILES#}. Answer:<EOI> {Tg_exp#} {Tg_exp__units}, {rho_300K_calc#} {rho_300K_calc__units}.
-  - Compare the {Tg_exp__names__noun} and {rho_300K_calc__names__noun} for the polymer with the {compound_name__names__noun} {compound_name#}. Answer:<EOI> {Tg_exp#} {Tg_exp__units}, {rho_300K_calc#} {rho_300K_calc__units}.
+  - Compare the {Tg_exp__names__noun} and {rho_300K_calc__names__noun} for the polymer with the {PSMILES__description} {PSMILES#}. Answer:<EOI>{Tg_exp#} {Tg_exp__units}, {rho_300K_calc#} {rho_300K_calc__units}.
+  - Compare the {Tg_exp__names__noun} and {rho_300K_calc__names__noun} for the polymer with the {compound_name__names__noun} {compound_name#}. Answer:<EOI>{Tg_exp#} {Tg_exp__units}, {rho_300K_calc#} {rho_300K_calc__units}.
   - |-
     Question: What is the {Tg_exp__names__noun} of the polymer with the {PSMILES__description} {PSMILES#}?
     Constraint: You must pick either {%multiple_choice_enum%3%aA1} without using any other words.
     Options:
     {Tg_exp%}
-    Answer:<EOI> {%multiple_choice_result}
+    Answer:<EOI>{%multiple_choice_result}
   - Question: What is the {Tg_calc__names__noun} of the polymer with the {PSMILES__description} {PSMILES#}?
     Constraint: You must pick either {%multiple_choice_enum%3%aA1} without using any other words.
     Options:
     {Tg_calc%}
-    Answer:<EOI> {%multiple_choice_result}
+    Answer:<EOI>{%multiple_choice_result}
   - Question: What is the {rho_300K_calc__names__noun} of the polymer with the {PSMILES__description} {PSMILES#}?
     Constraint: You must pick either {%multiple_choice_enum%3%aA1} without using any other words.
     Options:
     {rho_300K_calc%}
-    Answer:<EOI> {%multiple_choice_result}
+    Answer:<EOI>{%multiple_choice_result}
   - Question: What is the {Tg_exp__names__noun} of the polymer with the {compound_name__names__noun} {compound_name#}?
     Constraint: You must pick either {%multiple_choice_enum%3%aA1} without using any other words.
     Options:
     {Tg_exp%}
-    Answer:<EOI> {%multiple_choice_result}
+    Answer:<EOI>{%multiple_choice_result}
   - Question: What is the {Tg_calc__names__noun} of the polymer with the {compound_name__names__noun} {compound_name#}?
     Constraint: You must pick either {%multiple_choice_enum%3%aA1} without using any other words.
     Options:
     {Tg_calc%}
-    Answer:<EOI> {%multiple_choice_result}
+    Answer:<EOI>{%multiple_choice_result}
   - Question: What is the {rho_300K_calc__names__noun} of the polymer with the {compound_name__names__noun} {compound_name#}?
     Constraint: You must pick either {%multiple_choice_enum%3%aA1} without using any other words.
     Options:
     {rho_300K_calc%}
-    Answer:<EOI> {%multiple_choice_result}
+    Answer:<EOI>{%multiple_choice_result}

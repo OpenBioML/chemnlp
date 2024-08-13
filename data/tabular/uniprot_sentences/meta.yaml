@@ -48,8 +48,8 @@ templates:
   - |-
     Task: {#Generate|Create|Come up with!} a description {#of a few sentences |!}for the {#protein|amino acid sequence|AA sequence|polypeptide!}{# below|!}.
     {#Protein|Amino acid sequence|AA sequence|Polypeptide!}: {sequence#}
-    {#Output|Result!}:<EOI> {sentences#}
+    {#Output|Result!}:<EOI>{sentences#}
   - |-
     Task: {#Generate|Create|Come up with!} a {#protein|amino acid sequence|AA sequence|polypeptide!} based on the description.
     Description: {sentences#}
-    {#Output|Result!}:<EOI> {sequence#}
+    {#Output|Result!}:<EOI>{sequence#}

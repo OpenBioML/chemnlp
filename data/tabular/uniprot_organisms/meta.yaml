@@ -43,4 +43,4 @@ templates:
   - |-
     Task: {#Predict|Identify!} the organism in which {#the below|this!} {#protein|amino acid sequence|AA sequence|polypeptide!} can be found.
     {#Amino acid sequence|Sequence|AA sequence!}: {other#}
-    Result:<EOI> {organisms#}
+    Result:<EOI>{organisms#}

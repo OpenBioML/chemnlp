@@ -48,8 +48,8 @@ templates:
   - |-
     Task: {#Predict|Identify!} a {#biochemical |chemical |!}reaction that can be catalyzed by {#this|the following!} {#protein|amino acid sequence|AA sequence|polypeptide!}.
     {#Amino acid sequence |Sequence|AA sequence!}: {other#}
-    Result:<EOI> {reactions#}
+    Result:<EOI>{reactions#}
   - |-
     Task: {#Generate|Create|Come up with|Design!} a {#protein|amino acid sequence|AA sequence|polypeptide!} that can catalyze {#a|this!} specific {#biochemical |chemical |!}reaction.
     Reaction: {reactions#}
-    {#Output|Result!}:<EOI> {other#}
+    {#Output|Result!}:<EOI>{other#}

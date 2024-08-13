@@ -25,19 +25,19 @@ Guidelines for templates:
 
     - `Is the {SMILES__description} {SMILES#} a {CYP2D6_Substrate__names__noun}:<EOI>{CYP2D6_Substrate#no&yes}`
     - `Task: Please {#create|generate!} a {#molecule |!}{SMILES__description} that has a {#bioaffinity|affinity!} to {#the protein |!}{protein_name#} with a {standard_type#} {#value |!}of {standard_value#} {standard_units#}.
-    Result:<EOI> {SMILES#}`
+    Result:<EOI>{SMILES#}`
     - `Task: Please {#derive|estimate|approximate!} {#the bioaffinity|the affinity!} of a {#molecule to a protein|protein to a molecule!}.
     Protein{# name|!}: {protein_name#}
     {#Molecule |!}{SMILES__description}: {SMILES#}
     Constraint{#s|!}: The {#resulting|derived|calculated!} {standard_type#} {#value |!}should be in {standard_units#}. Even if you are {#uncertain|not sure!}, you must {#derive|estimate|come up with!} a {standard_type#} {#value |!}without using any {#other|additional!} words.
-    Result:<EOI> {standard_value#} {standard_units#}`
+    Result:<EOI>{standard_value#} {standard_units#}`
     - `Question: What is the {#the bioaffinity|the affinity!} of a {#molecule to a protein|protein to a molecule!}?
     Protein{# name|!}: {protein_name#}
     {#Molecule |!}{SMILES__description}: {SMILES#}
     Constraint: The {#shown|listed!} {standard_type#} values {#below |!}are in {standard_units#}. Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%3-5%aA1} without using any other words.
     Options:
     {standard_value%}
-    Answer:<EOI> {%multiple_choice_result}`
+    Answer:<EOI>{%multiple_choice_result}`
 
 3. Conditional Statements:
 - Use {COLUMN#not &NULL} for conditional text based on column values. Note that this only makes sense for columns that are boolean.
@@ -46,7 +46,7 @@ Guidelines for templates:
 - Use {#option1|option2|option3!} for random selection of text. Use this to add variety to the prompts. If there are synonyms or different ways to ask the same question, use this to add variety. For example
 
     - `Task: Please {#create|generate!} a {#molecule |!}{SMILES__description} that has a {#bioaffinity|affinity!} to {#the protein |!}{protein_name#} with a {standard_type#} {#value |!}of {standard_value#} {standard_units#}.
-    Result:<EOI> {SMILES#}`
+    Result:<EOI>{SMILES#}`
 
 5. Use `__` to access a field in the meta data. for example {target__names__noun} will access the noun field of the target names. NEVER hardcode the target names. Always use the templating syntax. This is also crucial for identifiers as we have some post-processing routines that rely on this.
 
@@ -99,7 +99,7 @@ def generate_augmented_meta_yaml(
     with open(f"{data_dir}/meta.yaml", "r") as f:
         yaml_content = f.read()
 
-    prompt = f"""You are given the following meta.yaml structure for a dataset. Based on the column names and example data provided, augment the meta.yaml structure with appropriate templates. Ensure that the logic in the templates is consistent with the data and existing templates. If you are unsure, do not perform any augmentation. Add at least five new templates.  Ensure to add templates in benchmarking style (e.g.., using `Answer:<EOI>` to seperate questions from the answer, ideally we want to have also questions where the answer after <EOI> is only one number or string, such as Answer:<EOI> number. You can do this sometimes by specifying in the question in which unit you want to have the answer). Ensure to use the name/description variables to insert the identifier and target names, for example using `{{target__names__noun}}`. Never hardcode those values. Do not start lines with `{{`.
+    prompt = f"""You are given the following meta.yaml structure for a dataset. Based on the column names and example data provided, augment the meta.yaml structure with appropriate templates. Ensure that the logic in the templates is consistent with the data and existing templates. If you are unsure, do not perform any augmentation. Add at least five new templates.  Ensure to add templates in benchmarking style (e.g.., using `Answer:<EOI>` to seperate questions from the answer, ideally we want to have also questions where the answer after <EOI> is only one number or string, such as Answer:<EOI>number. You can do this sometimes by specifying in the question in which unit you want to have the answer). Ensure to use the name/description variables to insert the identifier and target names, for example using `{{target__names__noun}}`. Never hardcode those values. Do not start lines with `{{`.
 
     {yaml_content}
     """

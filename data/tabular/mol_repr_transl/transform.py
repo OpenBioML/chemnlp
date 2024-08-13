@@ -46,18 +46,18 @@ Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, this molecule has a {T
         """User: Can you {#tell me|create|generate!} the {IDENTIFIER__names__noun} of the molecule with the {TARGET__names__noun} {TARGET#}?
 Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, this molecule has a {IDENTIFIER__names__noun} of {IDENTIFIER#}.""",  # noqa: E501
         # Benchmarking text templates
-        "The molecule with the {IDENTIFIER__names__noun} {#representation of |!}{IDENTIFIER#} can also be represented with the {TARGET__names__noun}{# representation|!}:<EOI> {TARGET#}.",  # noqa: E501
-        "The molecule with the {TARGET__names__noun} {#representation of |!}{TARGET#} can also be represented with the {IDENTIFIER__names__noun}{# representation|!}:<EOI> {IDENTIFIER#}.",  # noqa: E501
+        "The molecule with the {IDENTIFIER__names__noun} {#representation of |!}{IDENTIFIER#} can also be represented with the {TARGET__names__noun}{# representation|!}:<EOI>{TARGET#}.",  # noqa: E501
+        "The molecule with the {TARGET__names__noun} {#representation of |!}{TARGET#} can also be represented with the {IDENTIFIER__names__noun}{# representation|!}:<EOI>{IDENTIFIER#}.",  # noqa: E501
         """Task: Please {#create|generate!} a molecule representation based on {#the input molecule representation and |!}the description.
 Description: {#Generate|Create!} the {TARGET__names__noun} from the {IDENTIFIER__names__noun}.
 {#Molecule |!}{IDENTIFIER__names__noun}: {IDENTIFIER#}
 Constraint: Even if you are {#uncertain|not sure!}, you must answer with a representation without using any {#other|additional!} words.
-Result:<EOI> {TARGET#}""",  # noqa: E501
+Result:<EOI>{TARGET#}""",  # noqa: E501
         """Task: Please {#create|generate!} a molecule representation based on {#the input molecule representation and |!}the description.
 Description: {#Generate|Create!} the {IDENTIFIER__names__noun} from the {TARGET__names__noun}.
 {#Molecule |!}{TARGET__names__noun}: {TARGET#}
 Constraint: Even if you are {#uncertain|not sure!}, you must answer with a representation without using any {#other|additional!} words.
-Result:<EOI> {IDENTIFIER#}""",  # noqa: E501
+Result:<EOI>{IDENTIFIER#}""",  # noqa: E501
     ],
 }
 
