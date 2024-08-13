@@ -37,7 +37,7 @@ Generates a text sample based on a template and a data sample.
 
 - `sample`: A row from the dataset. If None, a random sample is chosen.
 - `template`: The template string to be filled.
-- Returns: The completed text sample with all variables replaced by their values.
+- Returns: Dictionary containing the filled template.
 
 ##### `enable_class_balancing`
 
@@ -112,8 +112,8 @@ template = "The molecule with SMILES {SMILES#} has a {property#} of {value#}."
 
 # Generate a sample
 result = sampler.sample(df.iloc[0], template)
-print(result)
-# Output: The molecule with SMILES [BEGIN_SMILES]CC(C)NCC(O)c1ccc(O)c(O)c1[END_SMILES] has a LogP of 1.23.
+print(result['text'])
+# Output: "The molecule with SMILES [BEGIN_SMILES]CC(C)NCC(O)c1ccc(O)c(O)c1[END_SMILES] has a {property#} of {value#}."
 ```
 
 Using class balancing:
@@ -140,7 +140,6 @@ Answer: {%multiple_choice_result}
 """
 
 mc_result = sampler.sample(df.iloc[0], multiple_choice_template)
-print(mc_result)
 ```
 
 ## Notes

@@ -2,7 +2,7 @@ from chemnlp.data.constants import DEFAULT_SIGNIFICANT_DIGITS
 import pandas as pd
 import random
 import math
-from typing import List, Dict, Union, Callable, Optional, Tuple
+from typing import List, Dict, Union, Callable, Optional, Tuple, Any
 import re
 from string import ascii_lowercase, ascii_uppercase
 from chemnlp.data.random_variable import RandomVariable
@@ -11,7 +11,6 @@ from functools import lru_cache
 from chemnlp.data_val.model import IdentifierEnum
 
 
-# ToDo: handle somewhere that the meta contains multiple templates
 class TemplateSampler:
     """
     A class for sampling and generating text based on templates and data.
@@ -60,6 +59,21 @@ class TemplateSampler:
         self.wrap_identifiers = config.get("wrap_identifiers", False)
         self.additional_targets = self._get_additional_targets(df)
         self._add_additional_targets_to_meta()
+
+        self.templates = meta.get("templates", [])
+        self.benchmarking_templates = config.get("benchmarking_templates", False)
+        self.multiple_choice_benchmarking_templates = config.get("multiple_choice_benchmarking_templates", False)
+        self.multiple_choice_benchmarking_format = config.get("multiple_choice_benchmarking_format", None)
+
+        # Filter templates based on benchmarking settings
+        if self.benchmarking_templates:
+            self.templates = [t for t in self.templates if "<EOI>" in t]
+            if self.multiple_choice_benchmarking_templates:
+                self.templates = [t for t in self.templates if "%multiple_choice_" in t]
+            else:
+                self.templates = [t for t in self.templates if "%multiple_choice_" not in t]
+        else:
+            self.templates = [t for t in self.templates if "<EOI>" not in t]
 
     def _get_additional_targets(self, df: pd.DataFrame) -> List[str]:
         additional_targets = []
@@ -533,7 +547,7 @@ class TemplateSampler:
         else:
             raise KeyError(f"Unable to find key '{var}' in meta information.")
 
-    def sample(self, sample: pd.Series, template: str) -> str:
+    def sample(self, sample: pd.Series, template: str) -> Dict[str, Any]:
         """
         Generate a text sample based on a template and a data sample.
 
@@ -545,7 +559,7 @@ class TemplateSampler:
             template (str): The template string to be filled.
 
         Returns:
-            str: The completed text sample with all variables replaced by their values.
+            Dict[str, Any]: A dictionary containing the filled template, the input text, and the output text.
         """
         if sample is None:
             sample = self.df.sample(1).iloc[0]
@@ -558,8 +572,38 @@ class TemplateSampler:
             new_target = random.choice(non_nan_targets)
             if new_target != "SMILES":
                 template = template.replace("{SMILES", "{" + new_target)
+
         sample_dict = self.get_sample_dict(sample, template)
-        return self._fill_template(template, sample_dict)
+        filled_template = self._fill_template(template, sample_dict)
+
+        result = {
+            "text": filled_template.replace('<EOI>', ' '),
+            "input": filled_template,
+            "output": "",
+            "answer_choices": [],
+            "correct_output_index": None
+        }
+
+        if self.benchmarking_templates:
+            input_output = filled_template.split("<EOI>")
+            if len(input_output) == 2:
+                result["input"] = input_output[0].strip()
+                result["output"] = input_output[1].strip()
+
+            if (
+                self.multiple_choice_benchmarking_templates
+                and any(k.startswith("%multiple_choice_") for k in sample_dict)
+            ):
+                result["answer_choices"] = sample_dict.get("%multiple_choice_symbols", [])
+                result["correct_output_index"] = sample_dict.get("%multiple_choice_result_idx")
+
+                # Convert to string representation for consistent output
+                result["answer_choices"] = "|".join(result["answer_choices"])
+                if isinstance(result["correct_output_index"], list):
+                    result["correct_output_index"] = "|".join(map(str, result["correct_output_index"]))
+                else:
+                    result["correct_output_index"] = str(result["correct_output_index"])
+        return result
 
     def _fill_template(
         self, template: str, sample_dict: Dict[str, Union[str, List[str]]]
