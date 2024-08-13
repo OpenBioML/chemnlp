@@ -7,7 +7,7 @@ targets:
     units: deg C
     type: continuous
     names:
-      - noun: mean melting point
+      - noun: melting point
     uris:
   - id: mp_range
     description: melting point range
@@ -45,45 +45,69 @@ bibtex:
     }
 templates:
   - |-
-    {#Task: |Task: |!}{#Predict|Estimate!} the melting point of {NAME#}.
-    {#Answer: |A: |!}The melting point is {mp#} deg C.
+    {#Task: |Task: |!}{#Predict|Estimate!} the {mp__names__noun} of {NAME#}.
+    {#Answer: |A: |!}The {mp__names__noun} is {mp#} {mp__units}.
   - |-
-    {#Task: |Task: |!}{#Predict|Estimate!} the melting point of a {#molecule|compound!} with the {SMILES__description} {SMILES#}?
-    {#Answer: |A: |!}{#The melting point is |!}{mp#} deg C.
+    {#Task: |Task: |!}{#Predict|Estimate!} the {mp__names__noun} of a {#molecule|compound!} with the {SMILES__description} {SMILES#}?
+    {#Answer: |A: |!}{#The {mp__names__noun} is |!}{mp#} {mp__units}.
   - |-
-    {#Question: |Q: !}What is the melting point of {NAME#}?
-    {#Answer: |A: |!}{#The melting point is |!}{mp#} deg C.
+    {#Question: |Q: !}What is the {mp__names__noun} of {NAME#}?
+    {#Answer: |A: |!}{#The melting point is |!}{mp#} {mp__units}.
   - |-
-    {#Question: |Q: !}What is the melting point of a {#molecule|compound!} with the {SMILES__description} {SMILES#}?
-    {#Answer: |A: |!}{#The melting point is |!}{mp#} deg C.
+    {#Question: |Q: !}What is the {mp__names__noun} of a {#molecule|compound!} with the {SMILES__description} {SMILES#}?
+    {#Answer: |A: |!}{#The melting point is |!}{mp#} {mp__units}.
   - |-
-    {#Question: |Q: !}What is the melting point of {NAME#}?
-    {#Answer: |A: |!}{#The melting point is in the range |!}{mp_range#} deg C.
+    {#Question: |Q: !}What is the {mp__names__noun} of {NAME#}?
+    {#Answer: |A: |!}{#The melting point is in the range |!}{mp_range#} {mp__units}.
   - |-
-    {#Question: |Q: !}What is the melting point of a {#molecule|compound!} with the {SMILES__description} {SMILES#}?
-    {#Answer: |A: |!}{#The melting point is in the range |!}{mp_range#} deg C.
+    {#Question: |Q: !}What is the {mp__names__noun} of a {#molecule|compound!} with the {SMILES__description} {SMILES#}?
+    {#Answer: |A: |!}{#The melting point is in the range |!}{mp_range#} {mp__units}.
   - |-
-    {#Question: |Q: !}What is a compound with a melting point of {mp#} deg C?
+    {#Question: |Q: !}What is a compound with a {mp__names__noun} of {mp#} {mp__units}?
     {#Answer: |A: |!}{NAME#}
   - |-
-    {#Question: |Q: !}What is a compound with a melting point in the range {mp_range#} deg C?
+    {#Question: |Q: !}What is a compound with a {mp__names__noun} in the range {mp_range#} {mp__units}?
     {#Answer: |A: |!}{NAME#}
   - |-
     User: I have a question about {NAME#}.
     Assistant: {#Sure, what is your question?|How can I help?|That sounds interesting, how can I help?|Interesting, how can I help?!}
-    User: What is the melting point of {#this compound|this molecule!}?
-    Assistant: {#The melting point is |!}{mp#} deg C.
+    User: What is the {mp__names__noun} of {#this compound|this molecule!}?
+    Assistant: {#The melting point is |!}{mp#} {mp__units}.
   - |-
     User: I have a question about a {#compound|molecule!} with the {SMILES__description} {SMILES#}.
     Assistant: {#Sure, what is your question?|How can I help?|That sounds interesting, how can I help?|Interesting, how can I help?!}
-    User: What is the melting point of {#this compound|this molecule!}?
-    Assistant: {#The melting point is |!}{mp#} deg C. {#Is there anything else I can help you with?|Do you have any other questions?|Do you have any other questions for me?|Is there anything else I can help you with today?|Do you have any other questions for me today?!}
+    User: What is the {mp__names__noun} of {#this compound|this molecule!}?
+    Assistant: {#The melting point is |!}{mp#} {mp__units}. {#Is there anything else I can help you with?|Do you have any other questions?|Do you have any other questions for me?|Is there anything else I can help you with today?|Do you have any other questions for me today?!}
     User: {#Yes,|Indeed,!} what is the name of {#this compound|this molecule!}?
     Assistant: {NAME#}
   - |-
     User: I have a question about {NAME#}.
     Assistant: {#Sure, what is your question?|How can I help?|That sounds interesting, how can I help?|Interesting, how can I help?!}
-    User: What is the melting point of {#this compound|this molecule!}?
-    Assistant: {#The melting point is |!}{mp_range#} deg C. {#Is there anything else I can help you with?|Do you have any other questions?|Do you have any other questions for me?|Is there anything else I can help you with today?|Do you have any other questions for me today?!}
+    User: What is the {mp__names__noun} of {#this compound|this molecule!}?
+    Assistant: {#The melting point is |!}{mp_range#} {mp__units}. {#Is there anything else I can help you with?|Do you have any other questions?|Do you have any other questions for me?|Is there anything else I can help you with today?|Do you have any other questions for me today?!}
     User: {#Yes,|Indeed,!} what is the {SMILES__description} of {#this compound|this molecule!}?
     Assistant: {SMILES#}
+  - |-
+    Task: Please estimate the {mp_names__noun} of a compound.
+
+    Compound: {NAME#}
+
+    Result:<EOI> {mp#} {mp__units}
+  - |-
+    Task: Please estimate the {mp_names__noun} of a compound.
+
+    {SMILES__description}: {SMILES#}
+
+    Result:<EOI> {mp#} {mp__units}
+  - |-
+    Question: What is the {mp_names__noun} of a compound with the {SMILES__description} {SMILES#} in {mp__units}?
+
+    Answer:<EOI> {mp#}
+  - |-
+    Question: Which molecule has a {mp_names__noun} of {mp#} {mp__units}?
+    Pick {%multiple_choice_enum%3%aA1}.
+
+    Options:
+    {SMILES%}
+
+    Answer: {%multiple_choice_result}

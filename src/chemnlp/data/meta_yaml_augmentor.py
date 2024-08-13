@@ -76,6 +76,8 @@ Do not start lines with curly braces. Do not use curly braces for anything other
       This is a multi-line string.
       It can contain multiple lines.
 
+Stick to the syntax of the templating language that is described above. Do not use any other syntax and do not remove the special characters.
+
 Just return raw YAML string, do not wrap it into backticks or anything else.
 """
 

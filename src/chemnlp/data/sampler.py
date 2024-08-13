@@ -71,10 +71,22 @@ class TemplateSampler:
     def _add_additional_targets_to_meta(self):
         additional_targets_meta = {
             "selfies": {"id": "selfies", "type": "selfies", "description": "SELFIES"},
-            "deepsmiles": {"id": "deepsmiles", "type": "deepsmiles", "description": "DeepSMILES"},
-            "canonical": {"id": "canonical", "type": "canonical", "description": "canonical SMILES"},
+            "deepsmiles": {
+                "id": "deepsmiles",
+                "type": "deepsmiles",
+                "description": "DeepSMILES",
+            },
+            "canonical": {
+                "id": "canonical",
+                "type": "canonical",
+                "description": "canonical SMILES",
+            },
             "inchi": {"id": "inchi", "type": "inchi", "description": "InChI"},
-            "iupac_name": {"id": "iupac_name", "type": "iupac_name", "description": "IUPAC name"},
+            "iupac_name": {
+                "id": "iupac_name",
+                "type": "iupac_name",
+                "description": "IUPAC name",
+            },
         }
         for target in self.additional_targets:
             self.meta["targets"].append(additional_targets_meta[target])
@@ -538,7 +550,11 @@ class TemplateSampler:
         if sample is None:
             sample = self.df.sample(1).iloc[0]
         if self.additional_targets and "SMILES" in sample.index:
-            non_nan_targets = [target for target in ["SMILES"] + self.additional_targets if pd.notna(sample[target])]
+            non_nan_targets = [
+                target
+                for target in ["SMILES"] + self.additional_targets
+                if pd.notna(sample[target])
+            ]
             new_target = random.choice(non_nan_targets)
             if new_target != "SMILES":
                 template = template.replace("{SMILES", "{" + new_target)
