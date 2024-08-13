@@ -2,6 +2,7 @@ import pandas as pd
 import yaml
 from typing import Dict, Any
 from litellm import completion
+import fire
 
 CONSTANT_PROMPT = """
 
@@ -100,7 +101,10 @@ Guidelines for advanced templates:
 4. Random Choices:
 - Use {#option1|option2|option3!} for random selection of text.
 
-Generate a similar meta.yaml structure for the given dataset, including appropriate targets, identifiers, and templates based on the column names and example data provided. Include at least one multiple choice template and one benchmarking template."""
+Generate a similar meta.yaml structure for the given dataset, including appropriate targets, identifiers, and templates based on the column names and example data provided. Include at least one multiple choice template and one benchmarking template.
+
+Just return raw YAML string, no need to wrap it into backticks or anything else.
+"""
 
 
 def generate_meta_yaml(
@@ -140,8 +144,10 @@ Example data:
 
     # Call the LLM with the prompt
     llm_response = completion(
-        model=model, messages=[{"role": "user", "content": prompt}]
+        model=model, messages=[{"role": "user", "content": prompt}], temperature=0
     )
+
+    llm_response = llm_response.choices[0].message.content
 
     # Parse the LLM's response and convert it to a dictionary
     try:
@@ -153,24 +159,41 @@ Example data:
     return meta_yaml
 
 
-# Example usage
-if __name__ == "__main__":
-    # Load your DataFrame
-    df = pd.read_csv("your_dataset.csv")
+def cli(
+    data_path: str,
+    dataset_name: str,
+    description: str,
+    model: str = "gpt-4o",
+    output_path: str = None,
+):
+    """
+    Generate a meta.yaml structure for a dataset using an LLM based on a CSV file.
 
-    # Generate meta.yaml
-    meta_yaml = generate_meta_yaml(
-        df,
-        dataset_name="Your Dataset Name",
-        description="A brief description of your dataset",
-    )
+    Args:
+        data_path (str): The path to the CSV file containing the dataset.
+        dataset_name (str): The name of the dataset.
+        description (str): A brief description of the dataset.
+        model (str, optional): The LLM model to use. Defaults to 'gpt-4o'.
+        output_path (str, optional): The path to save the generated meta.yaml. Defaults to None.
+    """
+    # Load the dataset from the CSV file
+    df = pd.read_csv(data_path)
 
+    # Generate the meta.yaml structure
+    meta_yaml = generate_meta_yaml(df, dataset_name, description, model)
+
+    output_path = output_path or "meta.yaml"
     # Print or save the generated meta.yaml
     if meta_yaml:
         print(yaml.dump(meta_yaml, default_flow_style=False))
 
         # Optionally, save to a file
-        with open("meta.yaml", "w") as f:
+        with open(output_path, "w") as f:
             yaml.dump(meta_yaml, f, default_flow_style=False)
     else:
         print("Failed to generate meta.yaml")
+
+
+# Example usage
+if __name__ == "__main__":
+    fire.Fire(cli)

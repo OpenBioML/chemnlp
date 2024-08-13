@@ -1,0 +1,31 @@
+bibtex:
+  - "@article{martins2023,\nauthor = {Martins, John and Doe, Jane and Smith, Alice},\ntitle = {Study on Blood-Brain Barrier Penetration of Various Drugs},\njournal = {Journal of Pharmacology},\nvolume = {12},\nnumber = {3},\npages = {123-134},\nyear = {2023},\ndoi = {10.1234/jpharm.2023.56789}}"
+description: Describing the ability of different drugs to penetrate the blood-brain barrier.
+identifiers:
+  - description: Simplified Molecular Input Line Entry System
+    id: SMILES
+    type: SMILES
+  - description: Name of the compound
+    id: compound_name
+    names:
+      - noun: compound name
+    type: Other
+license: CC BY 4.0
+links:
+  - description: corresponding publication
+    url: https://example.com/publication
+  - description: data source
+    url: https://example.com/data_source
+name: blood_brain_barrier_martins_et_al
+num_points: 2030
+targets:
+  - description: Indicates whether the compound can penetrate the blood-brain barrier (1 for yes, 0 for no)
+    id: penetrate_BBB
+    names:
+      - noun: blood-brain barrier penetration
+    type: integer
+templates:
+  - The compound {compound_name__names__noun} with SMILES {SMILES#} can {#penetrate|not penetrate!} the blood-brain barrier.
+  - The compound {compound_name__names__noun} with SMILES {SMILES#} is in the {split#} set.
+  - "Question: Which of the following compounds can penetrate the blood-brain barrier?\nOptions: {%multiple_choice_enum%4%aA1}\n{compound_name%}\nAnswer: {%multiple_choice_result}"
+  - The compound with SMILES {SMILES#} can penetrate the blood-brain barrier:<EOI>{penetrate_BBB#}
