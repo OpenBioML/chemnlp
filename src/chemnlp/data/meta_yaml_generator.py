@@ -4,7 +4,7 @@ from typing import Dict, Any
 from litellm import completion
 import fire
 
-CONSTANT_PROMPT = """
+CONSTANT_PROMPT_FOR_META_GENERATION = """
 
 Use the following example as a guide for the structure and content, paying special attention to the advanced template formats:
 
@@ -103,7 +103,7 @@ Guidelines for advanced templates:
 
 Generate a similar meta.yaml structure for the given dataset, including appropriate targets, identifiers, and templates based on the column names and example data provided. Include at least one multiple choice template and one benchmarking template.
 
-Just return raw YAML string, no need to wrap it into backticks or anything else.
+Just return raw YAML string, do not wrap it into backticks or anything else.
 """
 
 
@@ -139,7 +139,7 @@ Columns:
 
 Example data:
 {yaml.dump(example_data, default_flow_style=False)}"""
-        + CONSTANT_PROMPT
+        + CONSTANT_PROMPT_FOR_META_GENERATION
     )
 
     # Call the LLM with the prompt
@@ -164,7 +164,7 @@ def cli(
     dataset_name: str,
     description: str,
     model: str = "gpt-4o",
-    output_path: str = None,
+    output_path: Optional[str] = None,
 ):
     """
     Generate a meta.yaml structure for a dataset using an LLM based on a CSV file.
@@ -175,6 +175,7 @@ def cli(
         description (str): A brief description of the dataset.
         model (str, optional): The LLM model to use. Defaults to 'gpt-4o'.
         output_path (str, optional): The path to save the generated meta.yaml. Defaults to None.
+            If `None`, it defaults to "meta.yaml".
     """
     # Load the dataset from the CSV file
     df = pd.read_csv(data_path)
