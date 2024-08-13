@@ -1,8 +1,6 @@
 site_name: ChemNLP Documentation
 theme:
   name: material
-  palette:
-    primary: teal
 nav:
   - Home: index.md
   - User Guide:
@@ -10,10 +8,13 @@ nav:
       - Quick Start: user-guide/quickstart.md
   - API Reference:
       - Sampler Module: api/sampler.md
+      - Sampler CLI: api/sampler_cli.md
+      - Meta YAML Generator: api/meta_yaml_generator.md
+      - Meta YAML Augmentor: api/meta_yaml_augmentor.md
   - Examples:
       - Basic Usage: examples/basic-usage.md
       - Advanced Techniques: examples/advanced-techniques.md
-  - Contributing: contributing.md
+  - Contributing: CONTRIBUTING.md
   - Changelog: changelog.md
 markdown_extensions:
   - pymdownx.highlight

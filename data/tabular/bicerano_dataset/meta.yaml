@@ -54,12 +54,12 @@ bibtex:
     year = {2021},
     doi = {10.1021/acsapm.0c00524}}
 templates:
-  - The polymer with the {PSMILES__description} of {PSMILES#} has an experimental glass transition temperature of {Tg_exp#} K.
-  - The polymer with the {PSMILES__description} of {PSMILES#} has a computed glass transition temperature of {Tg_calc#} K.
-  - The polymer with the {PSMILES__description} of {PSMILES#} has a computed density at 300 K of {rho_300K_calc#} g/cc.
-  - The polymer with the {compound_name__names__noun} of {compound_name#} has an experimental glass transition temperature of {Tg_exp#} K.
-  - The polymer with the {compound_name__names__noun} of {compound_name#} has a computed glass transition temperature of {Tg_calc#} K.
-  - The polymer with the {compound_name__names__noun} of {compound_name#} has a computed density at 300 K of {rho_300K_calc#} g/cc.
+  - The polymer with the {PSMILES__description} of {PSMILES#} has an experimental glass transition temperature of {Tg_exp#} {Tg_exp__units}.
+  - The polymer with the {PSMILES__description} of {PSMILES#} has a computed glass transition temperature of {Tg_calc#} {Tg_exp__units}.
+  - The polymer with the {PSMILES__description} of {PSMILES#} has a computed density at 300 K of {rho_300K_calc#} {rho_300K_calc__units}.
+  - The polymer with the {compound_name__names__noun} of {compound_name#} has an experimental glass transition temperature of {Tg_exp#} {Tg_exp__units}.
+  - The polymer with the {compound_name__names__noun} of {compound_name#} has a computed glass transition temperature of {Tg_calc#} {Tg_calc__units}.
+  - The polymer with the {compound_name__names__noun} of {compound_name#} has a computed density at 300 K of {rho_300K_calc#} {rho_300K_calc__units}.
   - |-
-    Question: What is a polymer with a computed glass transition temperature of {Tg_calc#} K and a computed density at 300 K of {rho_300K_calc#} g/cc.
+    Question: What is a polymer with a computed glass transition temperature of {Tg_calc#} {Tg_calc__units} and a computed density at 300 K of {rho_300K_calc#} {rho_300K_calc__units}.
     Answer: A polymer with {PSMILES__description} {PSMILES#}

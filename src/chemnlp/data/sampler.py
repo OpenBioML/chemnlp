@@ -61,7 +61,6 @@ class TemplateSampler:
 
     def _wrap_identifier(self, identifier: str, value: str) -> str:
         """Wrap the identifier value with tags if wrap_identifiers is enabled."""
-        print("wrap_identifier", identifier, value, self.wrap_identifiers)
 
         if not self.wrap_identifiers:
             return value
@@ -164,6 +163,7 @@ class TemplateSampler:
         elif ("#" in var) and ("&" in var):
             var, choices = var.split("#")
             choices = choices.split("&")
+            print("var and choices and sample", var, choices, sample)
             choice = choices[sample[var]]
             return "" if choice == "NULL" else choice
 

@@ -23,7 +23,7 @@ Answer: {%multiple_choice_result}`
 `Is the {SMILES__description} {SMILES#} a {CYP2D6_Substrate__names__noun}:<EOI>{CYP2D6_Substrate#no&yes}`
 
 3. Conditional Statements:
-- Use {COLUMN#not &NULL} for conditional text based on column values.
+- Use {COLUMN#not &NULL} for conditional text based on column values. Note that this only makes sense for columns that are boolean.
 
 4. Random Choices:
 - Use {#option1|option2|option3!} for random selection of text.

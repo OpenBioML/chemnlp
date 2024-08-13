@@ -93,6 +93,76 @@ def large_sample_df():
 
 
 @pytest.fixture
+def sample_polymer_df():
+    return pd.DataFrame(
+        {
+            "PSMILES": ["*CC(*)C", "*CC(C)C*", "*C(CC)CCC*"],
+            "compound_name": [
+                "Poly(propylene)",
+                "Poly(isobutylene)",
+                "Poly(pentylene)",
+            ],
+            "Tg_exp": [273.15, 200.0, 250.0],
+            "Tg_calc": [275.0, 205.0, 245.0],
+            "rho_300K_calc": [0.90, 0.92, 0.88],
+            "split": ["train", "test", "validation"],
+        }
+    )
+
+
+@pytest.fixture
+def sample_polymer_meta():
+    return {
+        "identifiers": [
+            {
+                "id": "PSMILES",
+                "type": "PSMILES",
+                "description": "PSMILES representation",
+            },
+            {
+                "id": "compound_name",
+                "type": "Other",
+                "description": "polymer name",
+                "names": [{"noun": "compound name"}, {"noun": "polymer name"}],
+            },
+        ],
+        "targets": [
+            {
+                "id": "Tg_exp",
+                "type": "continuous",
+                "description": "Experimental glass transition temperature",
+                "units": "K",
+                "names": [{"noun": "experimental glass transition temperature"}],
+            },
+            {
+                "id": "Tg_calc",
+                "type": "continuous",
+                "description": "Computed glass transition temperature",
+                "units": "K",
+                "names": [{"noun": "computed glass transition temperature"}],
+            },
+            {
+                "id": "rho_300K_calc",
+                "type": "continuous",
+                "description": "Computed density at 300K",
+                "units": "g/cm³",
+                "names": [{"noun": "computed density at 300 K"}],
+            },
+        ],
+    }
+
+
+@pytest.fixture
+def sample_polymer_config():
+    return {
+        "DEFAULT_SIGNIFICANT_DIGITS": 2,
+        "multiple_choice_rnd_symbols": ["", ".)", ")"],
+        "multiple_choice_benchmarking_templates": False,
+        "multiple_choice_benchmarking_format": None,
+    }
+
+
+@pytest.fixture
 def large_sample_meta(sample_meta):
     sample_meta["targets"].append(
         {
@@ -293,3 +363,115 @@ def test_wrapping_with_continuous_value(
     result = sampler.sample(large_sample_df.iloc[0], template)
     assert "[BEGIN_SMILES]" in result and "[END_SMILES]" in result
     assert re.search(r"LogP: \d+\.\d{2}", result)  # Checks for 2 decimal places
+
+
+def test_polymer_template_1(
+    sample_polymer_df, sample_polymer_meta, sample_polymer_config
+):
+    sampler = TemplateSampler(
+        sample_polymer_df, sample_polymer_meta, sample_polymer_config
+    )
+    template = "The polymer with the {PSMILES__description} of {PSMILES#} has an experimental glass transition temperature of {Tg_exp#} {Tg_exp__units}."
+    result = sampler.sample(sample_polymer_df.iloc[0], template)
+    assert "PSMILES representation" in result
+    assert "*CC(*)C" in result
+    assert "273.15" in result
+    assert "K" in result
+
+
+def test_polymer_template_2(
+    sample_polymer_df, sample_polymer_meta, sample_polymer_config
+):
+    sampler = TemplateSampler(
+        sample_polymer_df, sample_polymer_meta, sample_polymer_config
+    )
+    template = "The polymer with the {compound_name__names__noun} of {compound_name#} has a computed density at 300 K of {rho_300K_calc#} {rho_300K_calc__units}."
+    result = sampler.sample(sample_polymer_df.iloc[1], template)
+    assert "polymer name" in result or "compound name" in result
+    assert "Poly(isobutylene)" in result
+    assert "0.92" in result
+    assert "g/cm³" in result
+
+
+def test_polymer_question_answer(
+    sample_polymer_df, sample_polymer_meta, sample_polymer_config
+):
+    sampler = TemplateSampler(
+        sample_polymer_df, sample_polymer_meta, sample_polymer_config
+    )
+    template = """Question: What is a polymer with a computed glass transition temperature of {Tg_calc#} {Tg_calc__units} and a computed density at 300 K of {rho_300K_calc#} {rho_300K_calc__units}.
+
+Answer: A polymer with {PSMILES__description} {PSMILES#}"""
+    result = sampler.sample(sample_polymer_df.iloc[0], template)
+    assert "275.0" in result
+    assert "0.90" in result
+    assert "PSMILES representation" in result
+    assert "*CC(*)C" in result
+
+
+def test_polymer_multiple_choice(
+    sample_polymer_df, sample_polymer_meta, sample_polymer_config
+):
+    sampler = TemplateSampler(
+        sample_polymer_df, sample_polymer_meta, sample_polymer_config
+    )
+    template = """Task: Please answer the multiple choice question.
+
+Question: Which polymer has an experimental glass transition temperature of {Tg_exp#} {Tg_exp__units}?
+
+Options:
+
+{%multiple_choice_enum%3%aA1}
+
+{compound_name%}
+
+Answer: {%multiple_choice_result}"""
+    result = sampler.sample(sample_polymer_df.iloc[0], template)
+    assert "273.15" in result
+    assert "K" in result
+    assert any(
+        symbol in result for symbol in ["A", "B", "C", "a", "b", "c", "1", "2", "3"]
+    )
+
+    # check that the answer is the correct polymer name, i.e. Poly(propylene)
+    last_line_enum = result.split("\n")[-1].replace("Answer: ", "").strip()
+
+    # find the option with that enum
+    for line in result.split("\n"):
+        if line.startswith(last_line_enum):
+            # if any polymer name is in the line, we run the assert
+            if any(
+                polymer_name in line
+                for polymer_name in [
+                    "Poly(propylene)",
+                    "Poly(ethylene)",
+                    "Poly(propylene-alt-ethylene)",
+                ]
+            ):
+                assert "Poly(propylene)" in line
+
+
+def test_polymer_property_comparison(
+    sample_polymer_df, sample_polymer_meta, sample_polymer_config
+):
+    sampler = TemplateSampler(
+        sample_polymer_df, sample_polymer_meta, sample_polymer_config
+    )
+    template = "The polymer {compound_name#} has an experimental Tg of {Tg_exp#} K and a computed Tg of {Tg_calc#} K."
+    result = sampler.sample(sample_polymer_df.iloc[0], template)
+    assert "Poly(propylene)" in result
+    assert "273.15" in result
+    assert "275.0" in result
+
+
+def test_polymer_multiple_properties(
+    sample_polymer_df, sample_polymer_meta, sample_polymer_config
+):
+    sampler = TemplateSampler(
+        sample_polymer_df, sample_polymer_meta, sample_polymer_config
+    )
+    template = "The polymer with PSMILES {PSMILES#} has a computed Tg of {Tg_calc#} K and a computed density at 300 K of {rho_300K_calc#} g/cm³."
+    result = sampler.sample(sample_polymer_df.iloc[0], template)
+    assert "*CC(*)C" in result
+    assert "275.0" in result
+    assert "0.90" in result
