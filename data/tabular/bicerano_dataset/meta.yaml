@@ -1,65 +1,139 @@
-name: bicerano_dataset
-description: |-
-  This paper outlines a MD simulation workflow based on GPU MD simulation and the
-  refined optimized potentials for liquid simulation (OPLS) OPLS3e force field to
-  calculate glass transition temperatures (Tgs) of 315 polymers for which Bicerano
-  reported experimental values.
-targets:
-  - id: Tg_exp
-    description: experimental glass transition temperature
-    units: K
-    type: float
-    names:
-      - noun: experimental glass transition temperature
-    uris:
-  - id: Tg_calc
-    description: calculated glass transition T
-    units: K
-    type: float
-    names:
-      - noun: computed glass transition temperature
-  - id: rho_300K_calc
-    description: computed density at 300K
-    units: g/cm^3
-    type: float
-    names:
-      - noun: computed polymer density at 300K
-identifiers:
-  - id: PSMILES
-    type: PSMILES
-    description: PSMILES
-  - id: compound_name
-    type: Other
-    names:
-      - noun: compound name
-    description: polymer name
-license: CC BY 4.0
-links:
-  - url: https://pubs.acs.org/doi/10.1021/acsapm.0c00524#
-    description: corresponding publication
-  - url:
-      - https://raw.githubusercontent.com/AdrianM0/chemnlp/main/data/tabular/bicerano_dataset/HT_MD_polymer_properties.csv
-    description: data source
-num_points: 315
 bibtex:
-  - |-
-    @article{afzal2021,
-    author = {Afzal, Mohammad Atif Faiz and Browning, Andrea R. and Goldberg, Alexander and Halls, Mathew D. and Gavartin, Jacob L. and Morisato,
+  - "@article{afzal2021,
+    author = {Afzal, Mohammad Atif Faiz and Browning, Andrea R. and Goldberg, Alexander
+    and Halls, Mathew D. and Gavartin, Jacob L. and Morisato,
     Tsuguo and Hughes, Thomas F. and Giesen, David J. and Goose, Joseph E.},
-    title = {High-Throughput Molecular Dynamics Simulations and Validation of Thermophysical Properties of Polymers for Various Applications},
+    title = {High-Throughput Molecular Dynamics Simulations and Validation of Thermophysical
+    Properties of Polymers for Various Applications},
     journal = {ACS Applied Polymer Materials},
     volume = {3},
     number = {2},
     pages = {620-630},
     year = {2021},
-    doi = {10.1021/acsapm.0c00524}}
+    doi = {10.1021/acsapm.0c00524}}"
+description:
+  "This paper outlines a MD simulation workflow based on GPU MD simulation
+  and the refined optimized potentials for liquid simulation (OPLS) OPLS3e force field to calculate glass transition temperatures (Tgs) of 315 polymers for which Bicerano reported experimental values."
+identifiers:
+  - description: PSMILES
+    id: PSMILES
+    type: PSMILES
+  - description: polymer name
+    id: compound_name
+    names:
+      - noun: comxpound name
+    type: Other
+license: CC BY 4.0
+links:
+  - description: corresponding publication
+    url: https://pubs.acs.org/doi/10.1021/acsapm.0c00524#
+  - description: data source
+    url:
+      - https://raw.githubusercontent.com/AdrianM0/chemnlp/main/data/tabular/bicerano_dataset/HT_MD_polymer_properties.csv
+name: bicerano_dataset
+num_points: 315
+targets:
+  - description: experimental glass transition temperature
+    id: Tg_exp
+    names:
+      - noun: experimental glass transition temperature
+    type: float
+    units: K
+    uris: null
+  - description: calculated glass transition temperature
+    id: Tg_calc
+    names:
+      - noun: MD-computed glass transition temperature (OPLS3e force field)
+      - noun: computed glass transition temperature (using MD with OPLS3e force field)
+    type: float
+    units: K
+  - description: computed density at 300K
+    id: rho_300K_calc
+    names:
+      - noun: computed polymer density at 300K (using MD with OPLS3e force field)
+      - noun: computed density at 300K (using MD with OPLS3e force field)
+    type: float
+    units: g/cm^3
 templates:
-  - The polymer with the {PSMILES__description} of {PSMILES#} has an experimental glass transition temperature of {Tg_exp#} {Tg_exp__units}.
-  - The polymer with the {PSMILES__description} of {PSMILES#} has a computed glass transition temperature of {Tg_calc#} {Tg_exp__units}.
-  - The polymer with the {PSMILES__description} of {PSMILES#} has a computed density at 300 K of {rho_300K_calc#} {rho_300K_calc__units}.
-  - The polymer with the {compound_name__names__noun} of {compound_name#} has an experimental glass transition temperature of {Tg_exp#} {Tg_exp__units}.
-  - The polymer with the {compound_name__names__noun} of {compound_name#} has a computed glass transition temperature of {Tg_calc#} {Tg_calc__units}.
-  - The polymer with the {compound_name__names__noun} of {compound_name#} has a computed density at 300 K of {rho_300K_calc#} {rho_300K_calc__units}.
+  - The polymer with the {PSMILES__description} of {PSMILES#} has an  {Tg_exp__names__noun} of {Tg_exp#} {Tg_exp__units}.
+  - The polymer with the {PSMILES__description} of {PSMILES#} has a  {Tg_calc__names__noun}  of {Tg_calc#} {Tg_exp__units}.
+  - The polymer with the {PSMILES__description} of {PSMILES#} has a {rho_300K_calc__names__noun} of {rho_300K_calc#} {rho_300K_calc__units}.
+  - The polymer with the {compound_name__names__noun} of {compound_name#} has an {Tg_exp__names__noun} of {Tg_exp#} {Tg_exp__units}.
+  - The polymer with the {compound_name__names__noun} of {compound_name#} has a {Tg_calc__names__noun} of {Tg_calc#} {Tg_calc__units}.
+  - The polymer with the {compound_name__names__noun} of {compound_name#} has a {rho_300K_calc__names__noun} of {rho_300K_calc#} {rho_300K_calc__units}.
+  - What is the {Tg_exp__names__noun} of the polymer with the {PSMILES__description} {PSMILES#}? Answer:<EOI> {Tg_exp#} {Tg_exp__units}.
+  - What is the {Tg_calc__names__noun} of the polymer with the {PSMILES__description} {PSMILES#}? Answer:<EOI> {Tg_calc#} {Tg_calc__units}.
+  - What is the {rho_300K_calc__names__noun} of the polymer with the {PSMILES__description} {PSMILES#}? Answer:<EOI> {rho_300K_calc#} {rho_300K_calc__units}.
+  - What is the {Tg_exp__names__noun} of the polymer with the {compound_name__names__noun} {compound_name#}? Answer:<EOI> {Tg_exp#} {Tg_exp__units}.
+  - What is the {Tg_calc__names__noun} of the polymer with the {compound_name__names__noun} {compound_name#}? Answer:<EOI> {Tg_calc#} {Tg_calc__units}.
+  - What is the {rho_300K_calc__names__noun} of the polymer with the {compound_name__names__noun} {compound_name#}? Answer:<EOI> {rho_300K_calc#} {rho_300K_calc__units}.
+  - The polymer with the {PSMILES__description} {PSMILES#} has an {Tg_exp__names__noun} of {Tg_exp#} {Tg_exp__units} and a {Tg_calc__names__noun} of {Tg_calc#} {Tg_calc__units}.
+  - The polymer with the {compound_name__names__noun} {compound_name#} has an {Tg_exp__names__noun} of {Tg_exp#} {Tg_exp__units} and a {Tg_calc__names__noun} of {Tg_calc#} {Tg_calc__units}.
+  - Compare the {Tg_exp__names__noun} and {Tg_calc__names__noun} for the polymer with the {PSMILES__description} {PSMILES#}. Answer:<EOI> {Tg_exp#} {Tg_exp__units}, {Tg_calc#} {Tg_calc__units}.
+  - Compare the {Tg_exp__names__noun} and {Tg_calc__names__noun} for the polymer with the {compound_name__names__noun} {compound_name#}. Answer:<EOI> {Tg_exp#} {Tg_exp__units}, {Tg_calc#} {Tg_calc__units}.
+  - What is the {rho_300K_calc__names__noun} of the polymer with the {PSMILES__description} {PSMILES#} at 300K? Answer:<EOI> {rho_300K_calc#} {rho_300K_calc__units}.
+  - What is the {rho_300K_calc__names__noun} of the polymer with the {compound_name__names__noun} {compound_name#} at 300K? Answer:<EOI> {rho_300K_calc#} {rho_300K_calc__units}.
   - |-
-    Question: What is a polymer with a computed glass transition temperature of {Tg_calc#} {Tg_calc__units} and a computed density at 300 K of {rho_300K_calc#} {rho_300K_calc__units}.
-    Answer: A polymer with {PSMILES__description} {PSMILES#}
+    Task: Please answer the multiple choice question.
+
+    Question: What is the {Tg_exp__names__noun} of the polymer with the {PSMILES__description} {PSMILES#}?
+
+    Constraint: You must pick one of {%multiple_choice_enum%3%aA1}.
+
+    Options:
+
+    {Tg_exp#}
+
+    Answer:<EOI> {%multiple_choice_result}
+  - |-
+    Task: Please answer the multiple choice question.
+
+    Question: What is the {Tg_calc__names__noun} of the polymer with the {compound_name__names__noun}
+    {compound_name#}?
+
+    Constraint: You must pick one of {%multiple_choice_enum%3%aA1}.
+
+    Options:
+
+    {Tg_calc#}
+
+    Answer:<EOI> {%multiple_choice_result}
+  - |-
+    Task: Please answer the multiple choice question.
+
+    Question: What is the {rho_300K_calc__names__noun} of the polymer with the {PSMILES__description} {PSMILES#}?
+
+    Constraint: You must pick one of {%multiple_choice_enum%3%aA1}.
+
+    Options:
+
+    {%multiple_choice_enum%3%aA1}
+
+    {rho_300K_calc#}
+
+    Answer:<EOI> {%multiple_choice_result}
+  - |-
+    Task: Please answer the multiple choice question.
+
+    Question: What is the {Tg_exp__names__noun} of the polymer with the {compound_name__names__noun} {compound_name#}?
+
+    Constraint: You must pick one of {%multiple_choice_enum%3%aA1}.
+
+    Options:
+
+    {Tg_exp#}
+
+    Answer:<EOI> {%multiple_choice_result}
+  - |-
+    Task: Please answer the multiple choice question.
+
+    Question: What is the {Tg_calc__names__noun} of the polymer with the {PSMILES__description}
+    {PSMILES#}?
+
+    Constraint: You must pick one of {%multiple_choice_enum%3%aA1}.
+
+    Options:
+
+    {Tg_calc#}
+
+    Answer:<EOI> {%multiple_choice_result}

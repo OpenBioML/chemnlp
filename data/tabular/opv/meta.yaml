@@ -156,3 +156,77 @@ templates:
     Task: Predict the {PCE_ave__names__noun} of a {#non-fullerene|PC71BM|PCBM!} {#organic photovoltaics|OPV|organic solar cell|organic photovoltaics (OPV)!} device based on a description of the donor polymer.
     Description: The donor polymer has monomer {SMILES__description} {SMILES#} and {#Mw|weight-average molecular weight|weight-average molecular weight (Mw)!} {Mw#} g/mol and {#PDI|polydispersity index|polydispersity index (PDI)!} of {PDI#}.
     Solution: {#The power conversion efficiency is |The PCE is !}{PCE_ave#} %.
+  - |-
+    Question: What is the {Voc__names__noun} of a {#non-fullerene|PC71BM|PCBM!} {#organic photovoltaics|OPV|organic solar cell|organic photovoltaics (OPV)!} device with a donor polymer with monomer {SMILES__description} {SMILES#}?
+
+    Answer:<EOI>{Voc#} {Voc__units}
+  - |-
+    Question: What is the {Jsc__names__noun} of a {#non-fullerene|PC71BM|PCBM!} {#organic photovoltaics|OPV|organic solar cell|organic photovoltaics (OPV)!} device with a donor polymer with monomer {SMILES__description} {SMILES#}?
+
+    Answer:<EOI>{Jsc#} {Jsc__units}
+  - |-
+    Question: What is the {FF__names__noun} of a {#non-fullerene|PC71BM|PCBM!} {#organic photovoltaics|OPV|organic solar cell|organic photovoltaics (OPV)!} device with a donor polymer with monomer {SMILES__description} {SMILES#}?
+
+    Answer:<EOI>{FF#}
+  - |-
+    Question: What is the {bandgap__names__noun} of a polymer with monomer {SMILES__description} {SMILES#}?
+
+    Answer:<EOI>{bandgap#} {bandgap__units}
+  - |-
+    Task: Please answer the multiple choice question.
+
+    Question: What is the {PCE_ave__names__noun} of a {#non-fullerene|PC71BM|PCBM!} {#organic photovoltaics|OPV|organic solar cell|organic photovoltaics (OPV)!} device with a donor polymer with monomer {SMILES__description} {SMILES#}?
+
+    Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%3%aA1} without using any {#other|additional!} words.
+
+    Options:
+
+    {PCE_ave%}
+
+    Answer:<EOI>{%multiple_choice_result}
+  - |-
+    Task: Please answer the multiple choice question.
+
+    Question: What is the {Voc__names__noun} of a {#non-fullerene|PC71BM|PCBM!} {#organic photovoltaics|OPV|organic solar cell|organic photovoltaics (OPV)!} device with a donor polymer with monomer {SMILES__description} {SMILES#}?
+
+    Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%3%aA1} without using any {#other|additional!} words.
+
+    Options:
+
+    {Voc%}
+
+    Answer:<EOI>{%multiple_choice_result}
+  - |-
+    Task: Please answer the multiple choice question.
+
+    Question: What is the {Jsc__names__noun} of a {#non-fullerene|PC71BM|PCBM!} {#organic photovoltaics|OPV|organic solar cell|organic photovoltaics (OPV)!} device with a donor polymer with monomer {SMILES__description} {SMILES#}?
+
+    Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%3%aA1} without using any {#other|additional!} words.
+
+    Options:
+
+    {Jsc%}
+
+    Answer:<EOI>{%multiple_choice_result}
+  - |-
+    Task: Please answer the multiple choice question.
+
+    Question: What is the {FF__names__noun} of a {#non-fullerene|PC71BM|PCBM!} {#organic photovoltaics|OPV|organic solar cell|organic photovoltaics (OPV)!} device with a donor polymer with monomer {SMILES__description} {SMILES#}?
+
+    Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%3%aA1}.
+
+    Options:
+
+    {FF%}
+
+    Answer:<EOI>{%multiple_choice_result}
+  - |-
+    Task: Please answer the multiple choice question.
+
+    Question: What is the {bandgap__names__noun} of a polymer with monomer {SMILES__description} {SMILES#}? You must pick either {%multiple_choice_enum%3%aA1}.
+
+    Options:
+
+    {bandgap%}
+
+    Answer:<EOI>{%multiple_choice_result}

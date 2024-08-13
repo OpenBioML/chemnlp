@@ -48,6 +48,7 @@ The augmentation process involves:
 1. **LLM Integration**: This tool requires integration with an LLM service. Ensure you have the necessary credentials and access set up. By default it uses, `gpt-4o`. For this, you need to expose the `OPENAI_API_KEY` environment variable.
 
 2. **Output Quality**: The quality of the augmented `meta.yaml` depends on the capabilities of the LLM being used. Manual review and adjustment may be necessary.
+It also depends on the quality of the existing `meta.yaml` file. If the existing file doesn't follow the standards (and, for example, hard codes target names) the augmentation may not be successful.
 
 ## Example Usage in Python
 
