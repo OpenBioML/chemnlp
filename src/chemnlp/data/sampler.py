@@ -12,6 +12,7 @@ from chemnlp.data_val.model import IdentifierEnum
 import os
 import yaml
 import json
+from loguru import logger
 
 
 class TemplateSampler:
@@ -801,7 +802,12 @@ class TemplateSampler:
             "rows": [],
             "path": [],
         }
-
+        # if split is not defined, we assume that the data is not split
+        # and we will export it as a single file
+        # otherwise, we will export the data based on the split
+        if "split" not in self.df.columns:
+            self.df['split'] = 'train'
+            logger.warning("No split column found in the data. Exporting as a single file.")
         for split in self.df["split"].unique():
             df_split = self.df[self.df["split"] == split]
             samples = [self.sample(row, template) for _, row in df_split.iterrows()]

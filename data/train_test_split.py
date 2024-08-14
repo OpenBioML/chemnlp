@@ -299,10 +299,10 @@ def remaining_split(
     non_smiles_yaml_files = [
         file
         for file in yaml_files
-        # if not (
-        #    yaml_file_has_column_of_type(file, "SMILES")
-        #    or yaml_file_has_column_of_type(file, "AS_SEQUENCE")
-        # )
+        if not (
+           yaml_file_has_column_of_type(file, "SMILES")
+           or yaml_file_has_column_of_type(file, "AS_SEQUENCE")
+        )
     ]
 
     # if we debug, we only run split on the first 5 datasets
@@ -902,9 +902,6 @@ def run_all_split(
     run_transform_py: bool = False,
 ):
     """Runs all splitting steps on the datasets in the data_dir directory."""
-    # cluster = LocalCluster(memory_limit="64GB")
-    # client = Client(cluster)
-    # logging.info(f"Dashboard available at: {client.dashboard_link}")
 
     print('Running "as_sequence" split...')
     as_sequence_split(

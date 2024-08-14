@@ -4,6 +4,26 @@ import yaml
 from typing import Any
 
 
+import numpy as np
+
+def add_random_split_column(df):
+    # Calculate the number of rows for each split
+    n_rows = len(df)
+    n_train = int(0.7 * n_rows)
+    n_test = int(0.15 * n_rows)
+    n_valid = n_rows - n_train - n_test
+
+    # Create the split column
+    split = ['train'] * n_train + ['test'] * n_test + ['valid'] * n_valid
+
+    # Shuffle the split column
+    np.random.shuffle(split)
+
+    # Add the split column to the dataframe
+    df['split'] = split
+
+    return df
+
 def oxford_comma_join(items: List[str]) -> str:
     """Join a list of items with Oxford comma"""
     if len(items) == 1:

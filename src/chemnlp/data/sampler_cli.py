@@ -40,7 +40,6 @@ def process_dataset(
     chunksize: int = 1_000_000,
     class_balanced: bool = False,
     benchmarking: bool = False,
-    multiple_choice: bool = False,
     additional_templates: Optional[List[str]] = None,
     use_standard_templates: bool = True,
     wrap_identifiers: bool = False,
@@ -54,7 +53,6 @@ def process_dataset(
         chunksize (int): Number of rows to process at a time
         class_balanced (bool): Whether to use class balancing
         benchmarking (bool): Whether to use benchmarking templates
-        multiple_choice (bool): Whether to use multiple-choice templates
         additional_templates (List[str], optional): Additional templates to use
         use_standard_templates (bool): Whether to use standard tabular text templates
         wrap_identifiers (bool): Whether to wrap identifiers in templates
@@ -91,7 +89,7 @@ def process_dataset(
     config = {
         "DEFAULT_SIGNIFICANT_DIGITS": DEFAULT_SIGNIFICANT_DIGITS,
         "multiple_choice_rnd_symbols": multiple_choice_rnd_symbols,
-        "multiple_choice_benchmarking_templates": multiple_choice,
+        "multiple_choice_benchmarking_templates": True,
         "multiple_choice_benchmarking_format": None,
         "wrap_identifiers": wrap_identifiers,
         "benchmarking_templates": benchmarking,
@@ -100,10 +98,6 @@ def process_dataset(
     templates = meta["templates"]
     if benchmarking:
         templates = [t for t in templates if "<EOI>" in t]
-        if multiple_choice:
-            templates = [t for t in templates if "%multiple_choice_" in t]
-        else:
-            templates = [t for t in templates if "%multiple_choice_" not in t]
     else:
         templates = [t for t in templates if "<EOI>" not in t]
 
@@ -149,7 +143,6 @@ def main(
     chunksize: int = 1_000_000,
     class_balanced: bool = False,
     benchmarking: bool = False,
-    multiple_choice: bool = False,
     additional_templates: Optional[List[str]] = None,
     use_standard_templates: bool = True,
     wrap_identifiers: bool = False,
@@ -163,7 +156,6 @@ def main(
         chunksize (int): Number of rows to process at a time
         class_balanced (bool): Whether to use class balancing
         benchmarking (bool): Whether to use benchmarking templates
-        multiple_choice (bool): Whether to use multiple-choice templates
         additional_templates (List[str], optional): Additional templates to use
         use_standard_templates (bool): Whether to use standard tabular text templates
         wrap_identifiers (bool): Whether to wrap identifiers in templates
@@ -174,7 +166,6 @@ def main(
         chunksize,
         class_balanced,
         benchmarking,
-        multiple_choice,
         additional_templates,
         use_standard_templates,
         wrap_identifiers,
