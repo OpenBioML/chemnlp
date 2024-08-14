@@ -230,6 +230,8 @@ def large_sample_meta(sample_meta):
 
 
 def test_basic_identifier_wrapping(sample_df, sample_meta, sample_config_with_wrapping):
+
+    sample_config_with_wrapping['excluded_from_wrapping'] = []
     sampler = TemplateSampler(sample_df, sample_meta, sample_config_with_wrapping)
     template = "SMILES: {SMILES#}, Name: {compound_name#}"
     result = sampler.sample(sample_df.iloc[0], template)
@@ -371,6 +373,7 @@ def test_random_sampling(large_sample_df, large_sample_meta, sample_config):
 
 
 def test_multiple_identifier_types(sample_df, sample_meta, sample_config_with_wrapping):
+    sample_config_with_wrapping['excluded_from_wrapping'] = []
     sampler = TemplateSampler(sample_df, sample_meta, sample_config_with_wrapping)
     template = "SMILES: {SMILES#}, Name: {compound_name#}"
     result = sampler.sample(sample_df.iloc[0], template)

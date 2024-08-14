@@ -11,8 +11,8 @@ from chemnlp.data.constants import (
     EXCLUDE_FROM_STANDARD_TABULAR_TEXT_TEMPLATES,
     DEFAULT_SIGNIFICANT_DIGITS,
 )
-
-
+from loguru import logger
+from pathlib import Path
 def determine_balance_column(meta: dict, template: str) -> Optional[str]:
     """
     Determine which column to use for class balancing based on the template and metadata.
@@ -101,14 +101,14 @@ def process_dataset(
         templates = [t for t in templates if "<EOI>" in t]
     else:
         templates = [t for t in templates if "<EOI>" not in t]
-
-    output_dir = os.path.join(output_dir, os.path.dirname(data_dir))
-    os.makedirs(output_dir, exist_ok=True)
-
+    logger.debug(f"Outout directory: {output_dir}, {os.path.isdir(output_dir)}")
+    output_dir_ = os.path.join(Path(output_dir), os.path.basename(data_dir))
+    os.makedirs(output_dir_, exist_ok=True)
     for chunk_idx, df_chunk in enumerate(
         pd.read_csv(data_path, chunksize=chunksize, low_memory=False)
     ):
-        chunk_output_dir = os.path.join(output_dir, f"chunk_{chunk_idx}")
+        chunk_output_dir = os.path.join(output_dir_, f"chunk_{chunk_idx}")
+        logger.debug(f"Processing chunk {chunk_idx} to {chunk_output_dir}")
         os.makedirs(chunk_output_dir, exist_ok=True)
 
         sampler = TemplateSampler(df_chunk, meta, config, data_dir)

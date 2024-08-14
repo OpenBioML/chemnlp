@@ -117,19 +117,19 @@ bibtex:
 templates:
   - |-
     Question: What is the {PCE_ave__names__noun} of a {#non-fullerene|PC71BM|PCBM!} {#organic photovoltaics|OPV|organic solar cell|organic photovoltaics (OPV)!} device with a donor polymer with monomer {SMILES__description} {SMILES#} and {#Mw|weight-average molecular weight|weight-average molecular weight (Mw)!} {Mw#} g/mol and {#PDI|polydispersity index|polydispersity index (PDI)!} of {PDI#}?
-    Answer: {#The power conversion efficiency is |The PCE is!}{PCE_ave#} %.
+    Answer: {#The power conversion efficiency is |The PCE is !}{PCE_ave#} %.
   - |-
     Question: What is the {Voc__names__noun} of a {#non-fullerene|PC71BM|PCBM!} {#organic photovoltaics|OPV|organic solar cell|organic photovoltaics (OPV)!} device with a donor polymer with monomer {SMILES__description} {SMILES#} and {#Mw|weight-average molecular weight|weight-average molecular weight (Mw)!} {Mw#} g/mol and {#PDI|polydispersity index|polydispersity index (PDI)!} of {PDI#}?
-    Answer: {#The open-circuit voltage is |The Voc is!}{Voc#} {Voc__units}.
+    Answer: {#The open-circuit voltage is |The Voc is !}{Voc#} {Voc__units}.
   - |-
     Question: What is the {Jsc__names__noun} of a {#non-fullerene|PC71BM|PCBM!} {#organic photovoltaics|OPV|organic solar cell|organic photovoltaics (OPV)!} device with a donor polymer with monomer {SMILES__description} {SMILES#} and {#Mw|weight-average molecular weight|weight-average molecular weight (Mw)!} {Mw#} g/mol and {#PDI|polydispersity index|polydispersity index (PDI)!} of {PDI#}?
-    Answer: {#The short-circuit current density is |The Jsc is!}{Jsc#} {Jsc__units}.
+    Answer: {#The short-circuit current density is |The Jsc is !}{Jsc#} {Jsc__units}.
   - |-
     Question: What is the {FF__names__noun} of a {#non-fullerene|PC71BM|PCBM!} {#organic photovoltaics|OPV|organic solar cell|organic photovoltaics (OPV)!} device with a donor polymer with monomer {SMILES__description} {SMILES#} and {#Mw|weight-average molecular weight|weight-average molecular weight (Mw)!} {Mw#} g/mol and {#PDI|polydispersity index|polydispersity index (PDI)!} of {PDI#}?
     Answer: {#The fill factor is |The FF is !}{FF#}.
   - |-
     Question: What is the {bandgap__names__noun} of a polymer with monomer {SMILES__description} {SMILES#}?
-    Answer: {#The bandgap is |The bandgap of the polymer is!}{bandgap#} {bandgap__units}.
+    Answer: {#The bandgap is |The bandgap of the polymer is !}{bandgap#} {bandgap__units}.
   - |-
     Question: What is the {HOMO__names__noun} of a polymer with monomer {SMILES__description} {SMILES#}?
     Answer: The {HOMO__names__noun} {#of the polymer|!} is {HOMO#} {HOMO__units}.
