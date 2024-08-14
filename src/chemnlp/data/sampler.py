@@ -9,6 +9,9 @@ from chemnlp.data.random_variable import RandomVariable
 from functools import partial
 from functools import lru_cache
 from chemnlp.data_val.model import IdentifierEnum
+import os
+import yaml
+import json
 
 
 class TemplateSampler:
@@ -24,6 +27,8 @@ class TemplateSampler:
         df (pd.DataFrame): The dataset used for sampling.
         meta (Dict): Metadata about the dataset, including identifiers and targets.
         config (Dict): Configuration parameters for the sampler.
+        path_data_dir (Optional[str]): The path to the data directory.
+            This is important for the export.
         column_datafield_sampler (Callable): A function for sampling from multiple options.
 
     Examples:
@@ -40,11 +45,29 @@ class TemplateSampler:
             The molecule with SMILES CC(=O)OC1=CC=CC=C1C(=O)O has a solubility of 3.142.
     """
 
+    __slots__ = (
+        "df",
+        "meta",
+        "config",
+        "path_data_dir",
+        "column_datafield_sampler",
+        "benchmarking_templates",
+        "multiple_choice_benchmarking_templates",
+        "multiple_choice_benchmarking_format",
+        "templates",
+        "additional_targets",
+        "df_orig",
+        "class_balanced",
+        "wrap_identifiers",
+        "balance_column",
+    )
+
     def __init__(
         self,
         df: pd.DataFrame,
         meta: Dict,
         config: Dict,
+        path_data_dir: Optional[str] = None,
         column_datafield_sampler: Optional[Callable] = None,
     ):
         self.df_orig = df
@@ -57,28 +80,66 @@ class TemplateSampler:
         self.class_balanced = False
         self.balance_column = None
         self.wrap_identifiers = config.get("wrap_identifiers", False)
-        self.additional_targets = self._get_additional_targets(df)
+        self.additional_targets = self._get_additional_targets()
         self._add_additional_targets_to_meta()
 
-        self.templates = meta.get("templates", [])
         self.benchmarking_templates = config.get("benchmarking_templates", False)
-        self.multiple_choice_benchmarking_templates = config.get("multiple_choice_benchmarking_templates", False)
-        self.multiple_choice_benchmarking_format = config.get("multiple_choice_benchmarking_format", None)
+        self.multiple_choice_benchmarking_templates = config.get(
+            "multiple_choice_benchmarking_templates", False
+        )
+        self.multiple_choice_benchmarking_format = config.get(
+            "multiple_choice_benchmarking_format", None
+        )
 
-        # Filter templates based on benchmarking settings
+        self.path_data_dir = path_data_dir
+        self._initialize_attributes()
+
+    @classmethod
+    def from_directory(
+        cls,
+        path_data_dir: str,
+        config: Dict,
+        column_datafield_sampler: Optional[Callable] = None,
+    ):
+        meta = cls._load_meta(path_data_dir)
+        df = cls._load_dataframe(path_data_dir)
+        return cls(df, meta, config, path_data_dir, column_datafield_sampler)
+
+    @staticmethod
+    def _load_meta(path_data_dir: str) -> Dict:
+        meta_path = os.path.join(path_data_dir, "meta.yaml")
+        with open(meta_path, "r") as f:
+            return yaml.safe_load(f)
+
+    @staticmethod
+    def _load_dataframe(path_data_dir: str) -> pd.DataFrame:
+        csv_path = os.path.join(path_data_dir, "data_clean.csv")
+        df = pd.read_csv(csv_path, low_memory=False)
+        df = df.replace("REPLACENULL", "")
+        return df
+
+    def _initialize_attributes(self):
+        # Initialize templates
+        self.templates = self.meta.get("templates", [])
         if self.benchmarking_templates:
             self.templates = [t for t in self.templates if "<EOI>" in t]
             if self.multiple_choice_benchmarking_templates:
                 self.templates = [t for t in self.templates if "%multiple_choice_" in t]
             else:
-                self.templates = [t for t in self.templates if "%multiple_choice_" not in t]
+                self.templates = [
+                    t for t in self.templates if "%multiple_choice_" not in t
+                ]
         else:
             self.templates = [t for t in self.templates if "<EOI>" not in t]
 
-    def _get_additional_targets(self, df: pd.DataFrame) -> List[str]:
+        # Initialize additional targets
+        self.additional_targets = self._get_additional_targets()
+        self._add_additional_targets_to_meta()
+
+    def _get_additional_targets(self) -> List[str]:
         additional_targets = []
         for col in ["selfies", "deepsmiles", "canonical", "inchi", "iupac_name"]:
-            if col in df.columns:
+            if col in self.df.columns:
                 additional_targets.append(col)
         return additional_targets
 
@@ -577,11 +638,11 @@ class TemplateSampler:
         filled_template = self._fill_template(template, sample_dict)
 
         result = {
-            "text": filled_template.replace('<EOI>', ' '),
+            "text": filled_template.replace("<EOI>", " "),
             "input": filled_template,
             "output": "",
             "answer_choices": [],
-            "correct_output_index": None
+            "correct_output_index": None,
         }
 
         if self.benchmarking_templates:
@@ -590,17 +651,22 @@ class TemplateSampler:
                 result["input"] = input_output[0].strip()
                 result["output"] = input_output[1].strip()
 
-            if (
-                self.multiple_choice_benchmarking_templates
-                and any(k.startswith("%multiple_choice_") for k in sample_dict)
+            if self.multiple_choice_benchmarking_templates and any(
+                k.startswith("%multiple_choice_") for k in sample_dict
             ):
-                result["answer_choices"] = sample_dict.get("%multiple_choice_symbols", [])
-                result["correct_output_index"] = sample_dict.get("%multiple_choice_result_idx")
+                result["answer_choices"] = sample_dict.get(
+                    "%multiple_choice_symbols", []
+                )
+                result["correct_output_index"] = sample_dict.get(
+                    "%multiple_choice_result_idx"
+                )
 
                 # Convert to string representation for consistent output
                 result["answer_choices"] = "|".join(result["answer_choices"])
                 if isinstance(result["correct_output_index"], list):
-                    result["correct_output_index"] = "|".join(map(str, result["correct_output_index"]))
+                    result["correct_output_index"] = "|".join(
+                        map(str, result["correct_output_index"])
+                    )
                 else:
                     result["correct_output_index"] = str(result["correct_output_index"])
         return result
@@ -616,3 +682,162 @@ class TemplateSampler:
                 value = self._wrap_identifier(identifier, str(value))
             template = template.replace("{" + key + "}", str(value))
         return template
+
+    def _create_config(self, output_dir: str) -> Dict[str, Any]:
+        """
+        Create a configuration dictionary for the exported data.
+
+        Args:
+            path_data_dir (str): The path to the data directory.
+            output_dir (str): The directory where the data is exported.
+
+        Returns:
+            Dict[str, Any]: A dictionary containing the configuration.
+        """
+        if self.path_data_dir is None:
+            raise ValueError(
+                "The path to the data directory is not set. \
+                For the export to work, the path must be set."
+            )
+        group_name = os.path.basename(os.path.dirname(self.path_data_dir))
+        task_name = os.path.basename(self.path_data_dir)
+
+        if self.multiple_choice_benchmarking_templates:
+            if self.multiple_choice_benchmarking_format:
+                task_name += f"_benchmark_multiple_choice_format-{self.multiple_choice_benchmarking_format}"
+            else:
+                task_name += "_benchmark_multiple_choice"
+        elif self.benchmarking_templates:
+            task_name += "_benchmark"
+
+        config = {
+            "group": ["chemnlp", group_name],
+            "task": task_name,
+            "dataset_path": os.path.abspath(output_dir),
+            "dataset_name": task_name,
+        }
+
+        if self.benchmarking_templates:
+            if self.multiple_choice_benchmarking_templates:
+                config.update(
+                    {
+                        "output_type": "multiple_choice",
+                        "doc_to_choice": "{{answer_choices}}",
+                        "metric_list": [
+                            {
+                                "metric": "acc",
+                                "aggregation": "mean",
+                                "higher_is_better": True,
+                            },
+                            {
+                                "metric": "acc_norm",
+                                "aggregation": "mean",
+                                "higher_is_better": True,
+                            },
+                        ],
+                    }
+                )
+            else:
+                config.update(
+                    {
+                        "output_type": "loglikelihood",
+                        "metric_list": [
+                            {
+                                "metric": "perplexity",
+                                "aggregation": "perplexity",
+                                "higher_is_better": False,
+                            },
+                            {
+                                "metric": "acc",
+                                "aggregation": "mean",
+                                "higher_is_better": True,
+                            },
+                        ],
+                    }
+                )
+        else:
+            config.update(
+                {
+                    "output_type": "loglikelihood",
+                    "doc_to_text": "text",
+                    "metric_list": [
+                        {
+                            "metric": "perplexity",
+                            "aggregation": "perplexity",
+                            "higher_is_better": False,
+                        },
+                    ],
+                }
+            )
+
+        config["doc_to_text"] = "input"
+        config["doc_to_target"] = "output"
+
+        for split in self.df["split"].unique():
+            if split == "train":
+                config["training_split"] = "train"
+            elif split == "valid":
+                config["validation_split"] = "valid"
+            elif split == "test":
+                config["test_split"] = "test"
+
+        return config
+
+    def export(self, output_dir: str, template: str) -> pd.DataFrame:
+        """
+        Sample the data using the given template and export the results as separate jsonl files based on the split.
+
+        Args:
+            output_dir (str): The directory to save the exported files.
+            template (str): The template to use for sampling.
+
+        Returns:
+            pd.DataFrame: A DataFrame with information about the exported data.
+        """
+        os.makedirs(output_dir, exist_ok=True)
+
+        print_data = {
+            "split": [],
+            "rows": [],
+            "path": [],
+        }
+
+        for split in self.df["split"].unique():
+            df_split = self.df[self.df["split"] == split]
+            samples = [self.sample(row, template) for _, row in df_split.iterrows()]
+
+            df_out = pd.DataFrame(samples)
+
+            if self.benchmarking_templates:
+                columns_to_keep = ["input", "output"]
+                if self.multiple_choice_benchmarking_templates:
+                    columns_to_keep.extend(["answer_choices", "correct_output_index"])
+            else:
+                columns_to_keep = ["text"]
+
+            df_out = df_out[columns_to_keep]
+
+            output_path = os.path.join(output_dir, f"{split}.jsonl")
+            with open(output_path, "w") as f:
+                for _, row in df_out.iterrows():
+                    json.dump(row.to_dict(), f)
+                    f.write("\n")
+
+            rows_split = len(df_out)
+            print_data["split"].append(split)
+            print_data["rows"].append(rows_split)
+            print_data["path"].append(output_path)
+
+        # Create config.yaml
+        config = self._create_config(output_dir)
+        config_path = os.path.join(output_dir, "config.yaml")
+        with open(config_path, "w") as f:
+            yaml.dump(config, f, sort_keys=False)
+
+        # Add total row if there's more than one split
+        if len(self.df["split"].unique()) > 1:
+            print_data["split"].append("total")
+            print_data["rows"].append(len(self.df))
+            print_data["path"].append("")
+
+        return pd.DataFrame(print_data)

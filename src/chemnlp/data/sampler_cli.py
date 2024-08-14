@@ -94,57 +94,53 @@ def process_dataset(
         "multiple_choice_benchmarking_templates": multiple_choice,
         "multiple_choice_benchmarking_format": None,
         "wrap_identifiers": wrap_identifiers,
+        "benchmarking_templates": benchmarking,
     }
 
-    with pd.read_csv(data_path, chunksize=chunksize, low_memory=False) as reader:
-        for chunk_idx, df_chunk in enumerate(reader):
-            sampler = TemplateSampler(
-                df_chunk,
-                meta,
-                config,
+    templates = meta["templates"]
+    if benchmarking:
+        templates = [t for t in templates if "<EOI>" in t]
+        if multiple_choice:
+            templates = [t for t in templates if "%multiple_choice_" in t]
+        else:
+            templates = [t for t in templates if "%multiple_choice_" not in t]
+    else:
+        templates = [t for t in templates if "<EOI>" not in t]
+
+    for chunk_idx, df_chunk in enumerate(
+        pd.read_csv(data_path, chunksize=chunksize, low_memory=False)
+    ):
+        chunk_output_dir = os.path.join(output_dir, f"chunk_{chunk_idx}")
+        os.makedirs(chunk_output_dir, exist_ok=True)
+
+        sampler = TemplateSampler(df_chunk, meta, config, data_dir)
+
+        for template_idx, template in enumerate(templates):
+            print(
+                f"\nProcessing chunk {chunk_idx}, template {template_idx}:\n{template}"
             )
 
-            templates = meta["templates"]
-            if benchmarking:
-                templates = [t for t in templates if "<EOI>" in t]
-                if multiple_choice:
-                    templates = [t for t in templates if "%multiple_choice_" in t]
-                else:
-                    templates = [t for t in templates if "%multiple_choice_" not in t]
-            else:
-                templates = [t for t in templates if "<EOI>" not in t]
+            # Determine balance column
+            balance_column = (
+                determine_balance_column(meta, template) if class_balanced else None
+            )
 
-            for template_idx, template in enumerate(templates):
-                print(
-                    f"\nProcessing chunk {chunk_idx}, template {template_idx}:\n{template}"
-                )
+            # Enable class balancing if needed
+            if balance_column:
+                sampler.enable_class_balancing(balance_column)
+                print(f"Enabled class balancing on column: {balance_column}")
 
-                # Determine balance column
-                balance_column = (
-                    determine_balance_column(meta, template) if class_balanced else None
-                )
+            # Export step
+            template_output_dir = os.path.join(
+                chunk_output_dir, f"template_{template_idx}"
+            )
+            result_df = sampler.export(template_output_dir, template)
 
-                # Sampling step
-                if balance_column:
-                    sampler.enable_class_balancing(balance_column)
-                    print(f"Enabled class balancing on column: {balance_column}")
+            print(f"Exported samples to {template_output_dir}")
+            print(result_df)
 
-                sampled_data = df_chunk.apply(
-                    lambda row: sampler.sample(row, template), axis=1
-                )
-
-                # Export step
-                output_path = os.path.join(
-                    output_dir, f"chunk_{chunk_idx}_template_{template_idx}.jsonl"
-                )
-                with open(output_path, "w") as f:
-                    for sample in sampled_data:
-                        f.write(f"{sample}\n")
-
-                if balance_column:
-                    sampler.disable_class_balancing()
-
-                print(f"Exported samples to {output_path}")
+            if balance_column:
+                sampler.disable_class_balancing()
 
 
 def main(

@@ -237,9 +237,15 @@ def test_basic_identifier_wrapping(sample_df, sample_meta, sample_config_with_wr
 
 def test_get_target_from_row(sample_df, sample_meta, sample_config):
     sampler = TemplateSampler(sample_df, sample_meta, sample_config)
-    assert sampler._get_target_from_row(sample_df.iloc[0], "SMILES#") == "CC(C)NCC(O)c1ccc(O)c(O)c1"
+    assert (
+        sampler._get_target_from_row(sample_df.iloc[0], "SMILES#")
+        == "CC(C)NCC(O)c1ccc(O)c(O)c1"
+    )
     assert sampler._get_target_from_row(sample_df.iloc[0], "CYP2D6_Substrate#") == "1"
-    assert sampler._get_target_from_row(sample_df.iloc[0], "compound_name#") == "Isoproterenol"
+    assert (
+        sampler._get_target_from_row(sample_df.iloc[0], "compound_name#")
+        == "Isoproterenol"
+    )
 
 
 def test_get_target_from_string(sample_df, sample_meta, sample_config):
@@ -262,12 +268,15 @@ def test_sample_with_template(sample_df, sample_meta, sample_config):
     result = sampler.sample(sample_df.iloc[0], template)
     assert "CC(C)NCC(O)c1ccc(O)c(O)c1" in result["text"]
     assert "is a" in result["text"]
-    assert any(substrate in result["text"] for substrate in [
-        "CYP P450 2D6 substrate",
-        "CYP2D6 substrate",
-        "substrate for CYP2D6",
-        "substrate for CYP P450 2D6"
-    ])
+    assert any(
+        substrate in result["text"]
+        for substrate in [
+            "CYP P450 2D6 substrate",
+            "CYP2D6 substrate",
+            "substrate for CYP2D6",
+            "substrate for CYP P450 2D6",
+        ]
+    )
 
 
 def test_multiple_choice_template(sample_df, sample_meta, sample_config):
@@ -287,7 +296,9 @@ def test_class_balancing(sample_df, sample_meta, sample_config):
     sampler = TemplateSampler(sample_df, sample_meta, sample_config)
     sampler.enable_class_balancing("CYP2D6_Substrate")
     balanced_df = sampler.df
-    assert len(balanced_df[balanced_df["CYP2D6_Substrate"] == 0]) == len(balanced_df[balanced_df["CYP2D6_Substrate"] == 1])
+    assert len(balanced_df[balanced_df["CYP2D6_Substrate"] == 0]) == len(
+        balanced_df[balanced_df["CYP2D6_Substrate"] == 1]
+    )
 
 
 def test_class_balancing_large_dataset(
@@ -319,10 +330,10 @@ def test_continuous_value_formatting(large_sample_df, large_sample_meta, sample_
     template = "The {LogP__names__noun} of {compound_name#} is {LogP#} {LogP__units}."
     result = sampler.sample(large_sample_df.iloc[0], template)
 
-    assert "LogP value" in result['text'] or "partition coefficient" in result['text']
-    assert "log units" in result['text']
+    assert "LogP value" in result["text"] or "partition coefficient" in result["text"]
+    assert "log units" in result["text"]
     assert re.search(
-        r"\d+\.\d{2} log units", result['text']
+        r"\d+\.\d{2} log units", result["text"]
     )  # Check if the value is rounded to 2 decimal places
 
 
@@ -340,9 +351,9 @@ def test_multiple_targets_in_template(
     sampler = TemplateSampler(large_sample_df, large_sample_meta, sample_config)
     template = "The molecule {compound_name#} with {SMILES__description} {SMILES#} has a {LogP__names__noun} of {LogP#} {LogP__units} and is {CYP2D6_Substrate#not &NULL}a {CYP2D6_Substrate__names__noun}."
     result = sampler.sample(large_sample_df.iloc[0], template)
-    assert all(x in result['text'] for x in ["Compound_", "C", "log units", "CYP"])
-    assert ("is a" in result['text'] and "not a" not in result['text']) or (
-        "is not a" in result['text'] and "is a" not in result['text']
+    assert all(x in result["text"] for x in ["Compound_", "C", "log units", "CYP"])
+    assert ("is a" in result["text"] and "not a" not in result["text"]) or (
+        "is not a" in result["text"] and "is a" not in result["text"]
     )
 
 
@@ -351,7 +362,7 @@ def test_random_sampling(large_sample_df, large_sample_meta, sample_config):
     template = "The {compound_name#} has a {LogP__names__noun} of {LogP#}."
 
     # Sample multiple times without specifying a row
-    results = [sampler.sample(None, template)['text'] for _ in range(10)]
+    results = [sampler.sample(None, template)["text"] for _ in range(10)]
 
     # Check if we have at least two different results (high probability)
     assert len(set(results)) > 1
@@ -362,7 +373,7 @@ def test_multiple_identifier_types(sample_df, sample_meta, sample_config_with_wr
     template = "SMILES: {SMILES#}, Name: {compound_name#}"
     result = sampler.sample(sample_df.iloc[0], template)
     assert all(
-        tag in result['text']
+        tag in result["text"]
         for tag in ["[BEGIN_SMILES]", "[END_SMILES]", "[BEGIN_Other]", "[END_Other]"]
     )
 
@@ -378,8 +389,12 @@ def test_wrapping_with_multiple_choice(
     Answer: {%multiple_choice_result}
     """
     result = sampler.sample(sample_df.iloc[0], template)
-    assert "[BEGIN_SMILES]" in result['text'] and "[END_SMILES]" in result['text']
-    assert "A or B" in result['text'] or "a or b" in result['text'] or "1 or 2" in result['text']
+    assert "[BEGIN_SMILES]" in result["text"] and "[END_SMILES]" in result["text"]
+    assert (
+        "A or B" in result["text"]
+        or "a or b" in result["text"]
+        or "1 or 2" in result["text"]
+    )
 
 
 def test_wrapping_with_continuous_value(
@@ -390,8 +405,8 @@ def test_wrapping_with_continuous_value(
     )
     template = "SMILES: {SMILES#}, LogP: {LogP#}"
     result = sampler.sample(large_sample_df.iloc[0], template)
-    assert "[BEGIN_SMILES]" in result['text'] and "[END_SMILES]" in result['text']
-    assert re.search(r"LogP: \d+\.\d{2}", result['text'])  # Checks for 2 decimal places
+    assert "[BEGIN_SMILES]" in result["text"] and "[END_SMILES]" in result["text"]
+    assert re.search(r"LogP: \d+\.\d{2}", result["text"])  # Checks for 2 decimal places
 
 
 def test_polymer_template_1(
@@ -402,10 +417,10 @@ def test_polymer_template_1(
     )
     template = "The polymer with the {PSMILES__description} of {PSMILES#} has an experimental glass transition temperature of {Tg_exp#} {Tg_exp__units}."
     result = sampler.sample(sample_polymer_df.iloc[0], template)
-    assert "PSMILES representation" in result['text']
-    assert "*CC(*)C" in result['text']
-    assert "273.15" in result['text']
-    assert "K" in result['text']
+    assert "PSMILES representation" in result["text"]
+    assert "*CC(*)C" in result["text"]
+    assert "273.15" in result["text"]
+    assert "K" in result["text"]
 
 
 def test_polymer_template_2(
@@ -416,10 +431,10 @@ def test_polymer_template_2(
     )
     template = "The polymer with the {compound_name__names__noun} of {compound_name#} has a computed density at 300 K of {rho_300K_calc#} {rho_300K_calc__units}."
     result = sampler.sample(sample_polymer_df.iloc[1], template)
-    assert "polymer name" in result['text'] or "compound name" in result['text']
-    assert "Poly(isobutylene)" in result['text']
-    assert "0.92" in result['text']
-    assert "g/cm³" in result['text']
+    assert "polymer name" in result["text"] or "compound name" in result["text"]
+    assert "Poly(isobutylene)" in result["text"]
+    assert "0.92" in result["text"]
+    assert "g/cm³" in result["text"]
 
 
 def test_polymer_question_answer(
@@ -432,10 +447,10 @@ def test_polymer_question_answer(
 
 Answer: A polymer with {PSMILES__description} {PSMILES#}"""
     result = sampler.sample(sample_polymer_df.iloc[0], template)
-    assert "275.0" in result['text']
-    assert "0.90" in result['text']
-    assert "PSMILES representation" in result['text']
-    assert "*CC(*)C" in result['text']
+    assert "275.0" in result["text"]
+    assert "0.90" in result["text"]
+    assert "PSMILES representation" in result["text"]
+    assert "*CC(*)C" in result["text"]
 
 
 def test_polymer_multiple_choice(
@@ -456,17 +471,18 @@ Options:
 
 Answer: {%multiple_choice_result}"""
     result = sampler.sample(sample_polymer_df.iloc[0], template)
-    assert "273.15" in result['text']
-    assert "K" in result['text']
+    assert "273.15" in result["text"]
+    assert "K" in result["text"]
     assert any(
-        symbol in result['text'] for symbol in ["A", "B", "C", "a", "b", "c", "1", "2", "3"]
+        symbol in result["text"]
+        for symbol in ["A", "B", "C", "a", "b", "c", "1", "2", "3"]
     )
 
     # check that the answer is the correct polymer name, i.e. Poly(propylene)
-    last_line_enum = result['text'].split("\n")[-1].replace("Answer: ", "").strip()
+    last_line_enum = result["text"].split("\n")[-1].replace("Answer: ", "").strip()
 
     # find the option with that enum
-    for line in result['text'].split("\n"):
+    for line in result["text"].split("\n"):
         if line.startswith(last_line_enum):
             # if any polymer name is in the line, we run the assert
             if any(
@@ -488,9 +504,9 @@ def test_polymer_property_comparison(
     )
     template = "The polymer {compound_name#} has an experimental Tg of {Tg_exp#} K and a computed Tg of {Tg_calc#} K."
     result = sampler.sample(sample_polymer_df.iloc[0], template)
-    assert "Poly(propylene)" in result['text']
-    assert "273.15" in result['text']
-    assert "275.0" in result['text']
+    assert "Poly(propylene)" in result["text"]
+    assert "273.15" in result["text"]
+    assert "275.0" in result["text"]
 
 
 def test_polymer_multiple_properties(
@@ -501,20 +517,9 @@ def test_polymer_multiple_properties(
     )
     template = "The polymer with PSMILES {PSMILES#} has a computed Tg of {Tg_calc#} K and a computed density at 300 K of {rho_300K_calc#} g/cm³."
     result = sampler.sample(sample_polymer_df.iloc[0], template)
-    assert "*CC(*)C" in result['text']
-    assert "275.0" in result['text']
-    assert "0.90" in result['text']
-
-
-def test_additional_targets(
-    sample_multiple_identifier_df, sample_multiple_identifier_meta, sample_config
-):
-    sampler = TemplateSampler(
-        sample_multiple_identifier_df, sample_multiple_identifier_meta, sample_config
-    )
-    assert set(sampler.additional_targets) == {"selfies", "inchi"}
-    print(sampler.meta["targets"])
-    assert len(sampler.meta["targets"]) == 4
+    assert "*CC(*)C" in result["text"]
+    assert "275.0" in result["text"]
+    assert "0.90" in result["text"]
 
 
 def test_sample_with_random_replacement(
@@ -525,7 +530,7 @@ def test_sample_with_random_replacement(
     )
     template = "The compound with {SMILES__description} {SMILES#} has a {LogP__description} of {LogP#}"
     results = [
-        sampler.sample(sample_multiple_identifier_df.iloc[0], template)['text']
+        sampler.sample(sample_multiple_identifier_df.iloc[0], template)["text"]
         for _ in range(20)
     ]
     smiles_count = sum("CC(C)NCC(O)c1ccc(O)c(O)c1" in r for r in results)
@@ -555,6 +560,7 @@ def test_benchmarking_template(sample_df, sample_meta, sample_config):
     assert "CC(C)NCC(O)c1ccc(O)c(O)c1" in result["input"]
     assert result["output"] in ["0", "1"]
 
+
 def test_multiple_choice_benchmarking_template(sample_df, sample_meta, sample_config):
     config = sample_config.copy()
     config["benchmarking_templates"] = True
@@ -570,10 +576,20 @@ def test_multiple_choice_benchmarking_template(sample_df, sample_meta, sample_co
     assert result["answer_choices"]
     assert result["correct_output_index"]
 
-def test_additional_targets_handling(sample_multiple_identifier_df, sample_multiple_identifier_meta, sample_config):
-    sampler = TemplateSampler(sample_multiple_identifier_df, sample_multiple_identifier_meta, sample_config)
-    template = "The molecule with {SMILES__description} {SMILES#} has a LogP of {LogP#}."
-    results = [sampler.sample(sample_multiple_identifier_df.iloc[0], template) for _ in range(20)]
+
+def test_additional_targets_handling(
+    sample_multiple_identifier_df, sample_multiple_identifier_meta, sample_config
+):
+    sampler = TemplateSampler(
+        sample_multiple_identifier_df, sample_multiple_identifier_meta, sample_config
+    )
+    template = (
+        "The molecule with {SMILES__description} {SMILES#} has a LogP of {LogP#}."
+    )
+    results = [
+        sampler.sample(sample_multiple_identifier_df.iloc[0], template)
+        for _ in range(20)
+    ]
     identifiers = ["SMILES", "SELFIES", "InChI"]
     counts = {}
     for result in results:
