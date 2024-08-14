@@ -102,6 +102,9 @@ def process_dataset(
     else:
         templates = [t for t in templates if "<EOI>" not in t]
 
+    output_dir = os.path.join(output_dir, os.path.dirname(data_dir))
+    os.makedirs(output_dir, exist_ok=True)
+
     for chunk_idx, df_chunk in enumerate(
         pd.read_csv(data_path, chunksize=chunksize, low_memory=False)
     ):
