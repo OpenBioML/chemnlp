@@ -111,7 +111,7 @@ def sample_config():
         "multiple_choice_rnd_symbols": ["", ".)", ")"],
         "multiple_choice_benchmarking_templates": False,
         "multiple_choice_benchmarking_format": None,
-                "excluded_from_wrapping": ['Other']
+        "excluded_from_wrapping": ["Other"],
     }
 
 
@@ -123,7 +123,7 @@ def sample_config_with_wrapping():
         "multiple_choice_benchmarking_templates": False,
         "multiple_choice_benchmarking_format": None,
         "wrap_identifiers": True,
-                "excluded_from_wrapping": ['Other']
+        "excluded_from_wrapping": ["Other"],
     }
 
 

@@ -152,8 +152,10 @@ def _cli(data_dir: str, model: str = "gpt-4o", override: bool = False):
 
     return augmented_meta_yaml
 
+
 def cli():
     fire.Fire(_cli)
+
 
 if __name__ == "__main__":
     fire.Fire(_cli)

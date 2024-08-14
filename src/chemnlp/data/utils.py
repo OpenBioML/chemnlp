@@ -26,12 +26,14 @@ def add_random_split_column(df):
 
     return df
 
+
 def _add_random_split_column(file):
     df = pd.read_csv(file)
     df = add_random_split_column(df)
     df.to_csv(file, index=False)
 
-def add_random_split_column_cli(file: str):
+
+def add_random_split_column_cli():
     fire.Fire(_add_random_split_column)
 
 

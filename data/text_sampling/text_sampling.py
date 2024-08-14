@@ -664,7 +664,6 @@ class TemplateSampler:
             multiple_choice_enum_idx = multiple_choice_enum_idx[0]  # unpack list
             multiple_choice_enum = input_variables[multiple_choice_enum_idx]
 
-
             # get multiple_choice_var
             multiple_choice_var_idx = [
                 i for i, x in enumerate(input_variables) if x.endswith("%")

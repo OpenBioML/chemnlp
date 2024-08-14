@@ -198,6 +198,7 @@ def _cli(
 def cli():
     fire.Fire(_cli)
 
+
 # Example usage
 if __name__ == "__main__":
     fire.Fire(_cli)

@@ -187,7 +187,9 @@ class TemplateSampler:
         except ValueError:
             identifier_type = None
 
-        if identifier_type and identifier_type not in self.config.get('excluded_from_wrapping', []):
+        if identifier_type and identifier_type not in self.config.get(
+            "excluded_from_wrapping", []
+        ):
             return f"[BEGIN_{identifier_type}]{value}[END_{identifier_type}]"
         return value
 

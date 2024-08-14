@@ -93,7 +93,7 @@ def process_dataset(
         "multiple_choice_benchmarking_format": None,
         "wrap_identifiers": wrap_identifiers,
         "benchmarking_templates": benchmarking,
-        "excluded_from_wrapping": ['Other']
+        "excluded_from_wrapping": ["Other"],
     }
 
     templates = meta["templates"]
@@ -172,8 +172,10 @@ def main(
         wrap_identifiers,
     )
 
+
 def cli():
     fire.Fire(main)
+
 
 if __name__ == "__main__":
     fire.Fire(main)
