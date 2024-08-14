@@ -187,7 +187,7 @@ class TemplateSampler:
         except ValueError:
             identifier_type = None
 
-        if identifier_type:
+        if identifier_type and identifier_type not in self.config.get('excluded_from_wrapping', []):
             return f"[BEGIN_{identifier_type}]{value}[END_{identifier_type}]"
         return value
 
@@ -806,22 +806,24 @@ class TemplateSampler:
         # and we will export it as a single file
         # otherwise, we will export the data based on the split
         if "split" not in self.df.columns:
-            self.df['split'] = 'train'
-            logger.warning("No split column found in the data. Exporting as a single file.")
+            self.df["split"] = "train"
+            logger.warning(
+                "No split column found in the data. Exporting as a single file."
+            )
         for split in self.df["split"].unique():
             df_split = self.df[self.df["split"] == split]
             samples = [self.sample(row, template) for _, row in df_split.iterrows()]
 
             df_out = pd.DataFrame(samples)
 
-            if self.benchmarking_templates:
-                columns_to_keep = ["input", "output"]
-                if self.multiple_choice_benchmarking_templates:
-                    columns_to_keep.extend(["answer_choices", "correct_output_index"])
-            else:
-                columns_to_keep = ["text"]
+            # if self.benchmarking_templates:
+            #     columns_to_keep = ["input", "output", "text"]
+            #     if self.multiple_choice_benchmarking_templates:
+            #         columns_to_keep.extend(["answer_choices", "correct_output_index"])
+            # else:
+            #     columns_to_keep = ["text"]
 
-            df_out = df_out[columns_to_keep]
+            # df_out = df_out[columns_to_keep]
 
             output_path = os.path.join(output_dir, f"{split}.jsonl")
             with open(output_path, "w") as f:

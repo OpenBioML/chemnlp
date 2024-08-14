@@ -3,8 +3,10 @@ from typing import List
 import yaml
 from typing import Any
 
-
+import fire
 import numpy as np
+import pandas as pd
+
 
 def add_random_split_column(df):
     # Calculate the number of rows for each split
@@ -14,15 +16,24 @@ def add_random_split_column(df):
     n_valid = n_rows - n_train - n_test
 
     # Create the split column
-    split = ['train'] * n_train + ['test'] * n_test + ['valid'] * n_valid
+    split = ["train"] * n_train + ["test"] * n_test + ["valid"] * n_valid
 
     # Shuffle the split column
     np.random.shuffle(split)
 
     # Add the split column to the dataframe
-    df['split'] = split
+    df["split"] = split
 
     return df
+
+def _add_random_split_column(file):
+    df = pd.read_csv(file)
+    df = add_random_split_column(df)
+    df.to_csv(file, index=False)
+
+def add_random_split_column_cli(file: str):
+    fire.Fire(_add_random_split_column)
+
 
 def oxford_comma_join(items: List[str]) -> str:
     """Join a list of items with Oxford comma"""

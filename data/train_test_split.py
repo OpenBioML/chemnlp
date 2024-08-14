@@ -300,8 +300,8 @@ def remaining_split(
         file
         for file in yaml_files
         if not (
-           yaml_file_has_column_of_type(file, "SMILES")
-           or yaml_file_has_column_of_type(file, "AS_SEQUENCE")
+            yaml_file_has_column_of_type(file, "SMILES")
+            or yaml_file_has_column_of_type(file, "AS_SEQUENCE")
         )
     ]
 

@@ -31,6 +31,8 @@ def transform_data():
 
     clean_data.columns = clean_columns
 
+    clean_data["compound_name"] = clean_data["compound_name"].str.strip()
+
     clean_data["PSMILES"] = clean_data["PSMILES"].str.replace(
         "[Ce]", "[*]", regex=False
     )

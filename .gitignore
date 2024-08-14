@@ -146,3 +146,5 @@ scratch/
 *.swp
 
 .DS_Store
+sampled_data/
+sampled_benchmark/

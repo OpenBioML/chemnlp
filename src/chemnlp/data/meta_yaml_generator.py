@@ -159,7 +159,7 @@ Example data:
     return meta_yaml
 
 
-def cli(
+def _cli(
     data_path: str,
     dataset_name: str,
     description: str,
@@ -195,6 +195,9 @@ def cli(
         print("Failed to generate meta.yaml")
 
 
+def cli():
+    fire.Fire(_cli)
+
 # Example usage
 if __name__ == "__main__":
-    fire.Fire(cli)
+    fire.Fire(_cli)

@@ -128,7 +128,7 @@ def generate_augmented_meta_yaml(
     return meta_yaml
 
 
-def cli(data_dir: str, model: str = "gpt-4o", override: bool = False):
+def _cli(data_dir: str, model: str = "gpt-4o", override: bool = False):
     """
     Generate augmented meta.yaml for the given dataset.
 
@@ -152,6 +152,8 @@ def cli(data_dir: str, model: str = "gpt-4o", override: bool = False):
 
     return augmented_meta_yaml
 
+def cli():
+    fire.Fire(_cli)
 
 if __name__ == "__main__":
-    fire.Fire(cli)
+    fire.Fire(_cli)
