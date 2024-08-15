@@ -135,7 +135,6 @@ scripts/wandb
 # scratch
 scratch/
 
-
 # let's don't commit data unless we really want to
 *.tab
 *.csv
@@ -148,4 +147,7 @@ scratch/
 .DS_Store
 sampled_data/
 sampled_benchmark/
+sampled/
+sampled_benchmark_wrapped/
+sampled_wrapped/
 *.jsonl

@@ -69,7 +69,9 @@ def process_dataset(
         dataset_name = os.path.basename(data_dir.strip("/"))
         logger.info(f"Adding standard templates for dataset '{dataset_name}'")
         if dataset_name not in EXCLUDE_FROM_STANDARD_TABULAR_TEXT_TEMPLATES:
-            logger.info(f"Adding standard templates for dataset since it is not excluded '{dataset_name}'")
+            logger.info(
+                f"Adding standard templates for dataset since it is not excluded '{dataset_name}'"
+            )
             if any(identifier["id"] == "SMILES" for identifier in meta["identifiers"]):
                 if len(meta["targets"]) == 1:
                     target_id = meta["targets"][0]["id"]

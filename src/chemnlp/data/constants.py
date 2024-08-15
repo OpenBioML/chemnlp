@@ -113,7 +113,7 @@ EXCLUDE_FROM_STANDARD_TABULAR_TEXT_TEMPLATES = [
     "human_intestinal_absorption",  # boolean target data
     "iupac_goldbook",  # text only, no SMILES
     "iupac_smiles",  # translation from IUPAC name to SMILES
-    "lipophilicity", # "dimensionless makes stuff awkward"
+    "lipophilicity",  # "dimensionless makes stuff awkward"
     "kcnq2_potassium_channel_butkiewicz",  # boolean target data
     "m1_muscarinic_receptor_agonists_butkiewicz",  # boolean target data
     "m1_muscarinic_receptor_antagonists_butkiewicz",  # boolean target data

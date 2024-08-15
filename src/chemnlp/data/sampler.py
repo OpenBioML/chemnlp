@@ -447,8 +447,10 @@ class TemplateSampler:
         all_choices = self.df[multiple_choice_var].unique()
 
         # look up in meta the type of multiple_choice_var
-        var_dict =  next(
-            x for x in self.meta["identifiers"] + self.meta["targets"] if x["id"] == multiple_choice_var
+        var_dict = next(
+            x
+            for x in self.meta["identifiers"] + self.meta["targets"]
+            if x["id"] == multiple_choice_var
         )
         if len(all_choices) > cutoff_full_unique:
             all_choices = (
@@ -463,7 +465,12 @@ class TemplateSampler:
                 ),
             )
 
-            all_choices = sorted([f"{round(x, significant_digits):.{significant_digits}f}" for x in all_choices])
+            all_choices = sorted(
+                [
+                    f"{round(x, significant_digits):.{significant_digits}f}"
+                    for x in all_choices
+                ]
+            )
         else:
             all_choices = sorted([str(x) for x in all_choices])
 
