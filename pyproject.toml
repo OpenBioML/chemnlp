@@ -13,21 +13,21 @@ dynamic = ["version"]
 [project.optional-dependencies]
 dev = ["pre-commit", "pytest"]
 dataset_creation = [
-    "PyTDC",
-    "rdkit",
-    "ruamel.yaml",
-    "selfies",
-    "deepsmiles",
-    "pubchempy",
-    "bioc",
-    "pylatexenc",
-    "canonicalize_psmiles@git+https://github.com/Ramprasad-Group/canonicalize_psmiles.git",
-    "rxn-chem-utils",
-    "backoff",
-    "givemeconformer",
-    "chembl_webresource_client",
-    "dask",
-    "pandarallel",
+  "PyTDC",
+  "rdkit",
+  "ruamel.yaml",
+  "selfies",
+  "deepsmiles",
+  "pubchempy",
+  "bioc",
+  "pylatexenc",
+  "canonicalize_psmiles@git+https://github.com/Ramprasad-Group/canonicalize_psmiles.git",
+  "rxn-chem-utils",
+  "backoff",
+  "givemeconformer",
+  "chembl_webresource_client",
+  "dask",
+  "pandarallel"
 ]
 
 [project.scripts]
