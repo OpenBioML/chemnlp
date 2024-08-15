@@ -8,6 +8,7 @@ import wandb
 from datasets import load_dataset
 import fire
 
+
 def load_model(
     rank: int = 128,
     train_embeddings: bool = True,
@@ -56,7 +57,7 @@ def load_model(
 
 
 def train(
-    model, tokenizer, dataset, run_name: str, batch_size: int = 64, max_seq_length=2048
+    model, tokenizer, dataset, run_name: str, batch_size: int = 64, max_seq_length=2048, eval_dataset=None
 ):
     wandb.init(project="chemnlp-ablations", name=run_name)
     trainer = UnslothTrainer(
@@ -66,6 +67,7 @@ def train(
         dataset_text_field="text",
         max_seq_length=max_seq_length,
         dataset_num_proc=2,
+        eval_dataset=eval_dataset,
         args=UnslothTrainingArguments(
             per_device_train_batch_size=batch_size,
             gradient_accumulation_steps=1,
@@ -81,6 +83,8 @@ def train(
             lr_scheduler_type="linear",
             seed=3407,
             output_dir=f"outputs_{run_name}",
+            eval_strategy = 'steps' if eval_dataset is not None else 'no',
+            eval_steps = 10_000 if eval_dataset is not None else None
         ),
     )
 
@@ -116,19 +120,27 @@ def create_dataset(tokenizer, datasets):
     return dataset
 
 
-def run(data_files: List[str],  run_name: str, batch_size: int=64, add_special_tokens: Optional[List[str]]=None, train_embeddings: bool=True):
+def run(
+    data_files: List[str],
+    run_name: str,
+    batch_size: int = 64,
+    add_special_tokens: Optional[List[str]] = None,
+    train_embeddings: bool = True,
+    eval_data_files: Optional[List[str]] = None,
+):
     print(f"Data files {data_files}")
     print(f"Run name {run_name}")
     print(f"Batch size {batch_size}")
     print(f"Add special tokens {add_special_tokens}")
     print(f"Train embeddings {train_embeddings}")
-    model, tokenizer = load_model(train_embeddings=train_embeddings, add_special_tokens=add_special_tokens )
-
-    dataset = create_dataset(
-        tokenizer, data_files
+    model, tokenizer = load_model(
+        train_embeddings=train_embeddings, add_special_tokens=add_special_tokens
     )
 
-    train(model, tokenizer, dataset, run_name, batch_size=batch_size)
+    dataset = create_dataset(tokenizer, data_files)
+    eval_dataset = create_dataset(tokenizer, eval_data_files) if eval_data_files else None
+
+    train(model, tokenizer, dataset, run_name, batch_size=batch_size, eval_dataset=eval_dataset)
 
 
 if __name__ == "__main__":

@@ -172,7 +172,6 @@ class TemplateSampler:
         """Wrap the identifier value with tags if wrap_identifiers is enabled."""
 
         if not self.wrap_identifiers:
-            logger.debug("Not wrapping identifiers.")
             return value
 
         identifier_type = next(
@@ -189,11 +188,9 @@ class TemplateSampler:
         except ValueError:
             identifier_type = None
 
-        logger.debug(f'Identifier type: {identifier_type}, value: {value}')
         if identifier_type and identifier_type not in self.config.get(
             "excluded_from_wrapping", []
         ):
-            logger.debug(f"Wrapping {identifier_type} with tags.")
             return f"[BEGIN_{identifier_type}]{value}[END_{identifier_type}]"
         return value
 
