@@ -13,6 +13,7 @@ import os
 import yaml
 import json
 from loguru import logger
+from tqdm import tqdm
 
 
 class TemplateSampler:
@@ -836,8 +837,11 @@ class TemplateSampler:
             )
         for split in self.df["split"].unique():
             df_split = self.df[self.df["split"] == split]
-            samples = [self.sample(row, template) for _, row in df_split.iterrows()]
-
+            samples = []
+            for _, row in tqdm(df_split.iterrows(), total=len(df_split)):
+                sample_dict = row.to_dict()
+                sample = self._fill_template(template, sample_dict)
+                samples.append(sample)
             df_out = pd.DataFrame(samples)
 
             # if self.benchmarking_templates:
