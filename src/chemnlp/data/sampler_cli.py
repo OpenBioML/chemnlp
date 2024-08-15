@@ -102,6 +102,7 @@ def process_dataset(
         "excluded_from_wrapping": ["Other"],
     }
 
+
     templates = meta["templates"]
     if benchmarking:
         templates = [t for t in templates if "<EOI>" in t]
@@ -116,7 +117,9 @@ def process_dataset(
         logger.debug(f"Processing chunk {chunk_idx} to {chunk_output_dir}")
         os.makedirs(chunk_output_dir, exist_ok=True)
 
-        sampler = TemplateSampler(df_chunk, meta, config, data_dir)
+        sampler = TemplateSampler(df_chunk, meta=meta, config=config, path_data_dir=data_dir)
+        if wrap_identifiers:
+            assert sampler.wrap_identifiers, "Wrap identifiers must be enabled in the sampler"
 
         for template_idx, template in enumerate(templates):
             print(
@@ -177,7 +180,7 @@ def main(
         benchmarking,
         additional_templates,
         use_standard_templates,
-        wrap_identifiers,
+        wrap_identifiers=wrap_identifiers,
     )
 
 

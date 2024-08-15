@@ -19,10 +19,10 @@ targets:
 benchmarks: []
 identifiers:
   - id: SMILES
-    type: text
+    type: SMILES
     description: SMILES
   - id: NAME
-    type: text
+    type: Other
     description: name
 license: CC BY 4.0
 links:

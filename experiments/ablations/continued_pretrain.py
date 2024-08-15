@@ -23,8 +23,8 @@ def load_model(
         dtype=dtype,
         load_in_4bit=load_in_4bit,
     )
-
-    add_new_tokens(model, tokenizer, new_tokens=add_special_tokens)
+    if add_special_tokens is not None:
+        add_new_tokens(model, tokenizer, new_tokens=add_special_tokens)
 
     target_modules = [
         "q_proj",
@@ -116,7 +116,12 @@ def create_dataset(tokenizer, datasets):
     return dataset
 
 
-def run(data_files: List[str], train_embeddings: bool, run_name: str, batch_size: int, add_special_tokens: Optional[List[str]]=None)
+def run(data_files: List[str],  run_name: str, batch_size: int=64, add_special_tokens: Optional[List[str]]=None, train_embeddings: bool=True):
+    print(f"Data files {data_files}")
+    print(f"Run name {run_name}")
+    print(f"Batch size {batch_size}")
+    print(f"Add special tokens {add_special_tokens}")
+    print(f"Train embeddings {train_embeddings}")
     model, tokenizer = load_model(train_embeddings=train_embeddings, add_special_tokens=add_special_tokens )
 
     dataset = create_dataset(
