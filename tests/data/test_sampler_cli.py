@@ -4,7 +4,7 @@ import yaml
 import json
 from chemnlp.data.sampler_cli import process_dataset
 from chemnlp.data.constants import STANDARD_TABULAR_TEXT_TEMPLATES
-import os
+
 
 @pytest.fixture
 def temp_tabular_data_dir(tmp_path):
@@ -89,7 +89,7 @@ def test_process_dataset(temp_data_dir, temp_output_dir):
     )
 
     # Check that output files were created
-    chunk_dir = temp_output_dir /  "data" / "chunk_0"
+    chunk_dir = temp_output_dir / "data" / "chunk_0"
     template_dir = chunk_dir / "template_0"
     assert template_dir.exists()
 
@@ -114,7 +114,7 @@ def test_process_dataset_benchmarking(temp_data_dir, temp_output_dir):
     )
 
     # Check that output files were created
-    chunk_dir = temp_output_dir / "data"/ "chunk_0"
+    chunk_dir = temp_output_dir / "data" / "chunk_0"
     template_dir = chunk_dir / "template_0"
     assert template_dir.exists()
 
@@ -144,7 +144,7 @@ def test_process_dataset_class_balanced(temp_data_dir, temp_output_dir):
     )
 
     # Check that output files were created
-    chunk_dir = temp_output_dir / "data"/ "chunk_0"
+    chunk_dir = temp_output_dir / "data" / "chunk_0"
     template_dir = chunk_dir / "template_0"
     assert template_dir.exists()
 
@@ -174,10 +174,8 @@ def test_process_dataset_with_standard_templates(
     # Check that output files were created
     chunk_dir = temp_output_dir / "test_dataset" / "chunk_0"
 
-
     # Count the number of template directories
     template_dirs = list(chunk_dir.glob("template_*"))
-
 
     # Expected number of templates: 1 custom + len(STANDARD_TABULAR_TEXT_TEMPLATES)
     expected_template_count = 1 + len(

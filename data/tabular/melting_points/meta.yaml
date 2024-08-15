@@ -6,6 +6,7 @@ targets:
     description: mean melting point
     units: deg C
     type: continuous
+    significant_digits: 0
     names:
       - noun: melting point
     uris:
@@ -49,7 +50,7 @@ templates:
     {#Answer: |A: |!}The {mp__names__noun} is {mp#} {mp__units}.
   - |-
     {#Task: |Task: |!}{#Predict|Estimate!} the {mp__names__noun} of a {#molecule|compound!} with the {SMILES__description} {SMILES#}?
-    {#Answer: |A: |!}{#The {mp__names__noun} is |!}{mp#} {mp__units}.
+    {#Answer: |A: |!}{#The melting point is |!}{mp#} {mp__units}.
   - |-
     {#Question: |Q: !}What is the {mp__names__noun} of {NAME#}?
     {#Answer: |A: |!}{#The melting point is |!}{mp#} {mp__units}.
@@ -88,23 +89,23 @@ templates:
     User: {#Yes,|Indeed,!} what is the {SMILES__description} of {#this compound|this molecule!}?
     Assistant: {SMILES#}
   - |-
-    Task: Please estimate the {mp_names__noun} of a compound.
+    Task: Please estimate the {mp__names__noun} of a compound.
 
     Compound: {NAME#}
 
     Result:<EOI>{mp#} {mp__units}
   - |-
-    Task: Please estimate the {mp_names__noun} of a compound.
+    Task: Please estimate the {mp__names__noun} of a compound.
 
     {SMILES__description}: {SMILES#}
 
     Result:<EOI>{mp#} {mp__units}
   - |-
-    Question: What is the {mp_names__noun} of a compound with the {SMILES__description} {SMILES#} in {mp__units}?
+    Question: What is the {mp__names__noun} of a compound with the {SMILES__description} {SMILES#} in {mp__units}?
 
     Answer:<EOI>{mp#}
   - |-
-    Question: Which molecule has a {mp_names__noun} of {mp#} {mp__units}?
+    Question: Which molecule has a {mp__names__noun} of {mp#} {mp__units}?
     Pick {%multiple_choice_enum%3%aA1}.
 
     Options:

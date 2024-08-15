@@ -1,0 +1,16 @@
+group:
+- chemnlp
+- melting_points
+task: _benchmark_multiple_choice
+dataset_path: /Users/kevinmaikjablonka/git/openbioml/chemnlp/sampled/melting_points/chunk_0/template_6
+dataset_name: _benchmark_multiple_choice
+output_type: loglikelihood
+doc_to_text: input
+metric_list:
+- metric: perplexity
+  aggregation: perplexity
+  higher_is_better: false
+doc_to_target: output
+training_split: train
+test_split: test
+validation_split: valid

@@ -53,19 +53,19 @@ templates:
     {#Text: |!}{sentence#}
     Assistant: {#I found|There is!} {matched_words#}.
   - |-
-    Task: {#Extract|Identify!} the disease mentions in the given {sentence__names__noun}. List the {target__names__noun} found. If there is no {#match|mention of a disease|matching entity!}, return `no match`.
+    Task: {#Extract|Identify!} the disease mentions in the given {sentence__names__noun}. List the diseases found. If there is no {#match|mention of a disease|matching entity!}, return `no match`.
 
     {#Sentence: |Text: |!}{sentence#}
 
     Answer: {matched_words#}
   - |-
-    Task: {#Extract|Identify!} the {target__names__noun} from the {sentence__names__noun} below. If there is no {#match|mention of a disease|matching entity!}, return `no match`.
+    Task: {#Extract|Identify!} the diseases from the {sentence__names__noun} below. If there is no {#match|mention of a disease|matching entity!}, return `no match`.
 
     {#Sentence: |Text: |!}{sentence#}
 
     Answer:<EOI>{matched_words#}
   - |-
-    Task: {#Please identify|Identify!} the {target__names__noun} in the {sentence__names__noun} provided. If there is no {#match|mention of a disease|matching entity!}, return `no match`.
+    Task: {#Please identify|Identify!} the diseases in the {sentence__names__noun} provided. If there is no {#match|mention of a disease|matching entity!}, return `no match`.
 
     {#Sentence: |Text: |!}{sentence#}
 

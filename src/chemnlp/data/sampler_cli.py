@@ -13,6 +13,8 @@ from chemnlp.data.constants import (
 )
 from loguru import logger
 from pathlib import Path
+
+
 def determine_balance_column(meta: dict, template: str) -> Optional[str]:
     """
     Determine which column to use for class balancing based on the template and metadata.
@@ -64,8 +66,10 @@ def process_dataset(
 
     # Add standard templates if applicable
     if use_standard_templates and "/tabular/" in data_dir:
-        dataset_name = os.path.basename(data_dir)
+        dataset_name = os.path.basename(data_dir.strip("/"))
+        logger.info(f"Adding standard templates for dataset '{dataset_name}'")
         if dataset_name not in EXCLUDE_FROM_STANDARD_TABULAR_TEXT_TEMPLATES:
+            logger.info(f"Adding standard templates for dataset since it is not excluded '{dataset_name}'")
             if any(identifier["id"] == "SMILES" for identifier in meta["identifiers"]):
                 if len(meta["targets"]) == 1:
                     target_id = meta["targets"][0]["id"]
@@ -101,8 +105,7 @@ def process_dataset(
         templates = [t for t in templates if "<EOI>" in t]
     else:
         templates = [t for t in templates if "<EOI>" not in t]
-    logger.debug(f"Outout directory: {output_dir}, {os.path.isdir(output_dir)}")
-    output_dir_ = os.path.join(Path(output_dir), os.path.basename(data_dir))
+    output_dir_ = os.path.join(Path(output_dir), os.path.basename(data_dir.strip("/")))
     os.makedirs(output_dir_, exist_ok=True)
     for chunk_idx, df_chunk in enumerate(
         pd.read_csv(data_path, chunksize=chunksize, low_memory=False)

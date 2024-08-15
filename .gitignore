@@ -148,3 +148,4 @@ scratch/
 .DS_Store
 sampled_data/
 sampled_benchmark/
+*.jsonl

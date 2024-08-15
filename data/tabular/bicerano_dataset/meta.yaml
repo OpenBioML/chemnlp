@@ -27,6 +27,7 @@ targets:
     type: continuous
     units: K
     uris: null
+    significant_digits: 0
   - description: calculated glass transition temperature
     id: Tg_calc
     names:
@@ -34,6 +35,7 @@ targets:
       - noun: computed glass transition temperature (using MD with OPLS3e force field)
     type: continuous
     units: K
+    significant_digits: 0
   - description: computed density at 300K
     id: rho_300K_calc
     names:
@@ -41,9 +43,10 @@ targets:
       - noun: computed density at 300K (using MD with OPLS3e force field)
     type: continuous
     units: g/cm^3
+    significant_digits: 2
 templates:
-  - The polymer with the {PSMILES__description} of {PSMILES#} has an  {Tg_exp__names__noun} of {Tg_exp#} {Tg_exp__units}.
-  - The polymer with the {PSMILES__description} of {PSMILES#} has a  {Tg_calc__names__noun}  of {Tg_calc#} {Tg_exp__units}.
+  - The polymer with the {PSMILES__description} of {PSMILES#} has an {Tg_exp__names__noun} of {Tg_exp#} {Tg_exp__units}.
+  - The polymer with the {PSMILES__description} of {PSMILES#} has a {Tg_calc__names__noun} of {Tg_calc#} {Tg_exp__units}.
   - The polymer with the {PSMILES__description} of {PSMILES#} has a {rho_300K_calc__names__noun} of {rho_300K_calc#} {rho_300K_calc__units}.
   - The polymer with the {compound_name__names__noun} of {compound_name#} has an {Tg_exp__names__noun} of {Tg_exp#} {Tg_exp__units}.
   - The polymer with the {compound_name__names__noun} of {compound_name#} has a {Tg_calc__names__noun} of {Tg_calc#} {Tg_calc__units}.

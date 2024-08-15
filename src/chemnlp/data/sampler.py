@@ -273,7 +273,6 @@ class TemplateSampler:
         elif ("#" in var) and ("&" in var):
             var, choices = var.split("#")
             choices = choices.split("&")
-            print("var and choices and sample", var, choices, sample)
             choice = choices[sample[var]]
             return "" if choice == "NULL" else choice
 
@@ -446,11 +445,27 @@ class TemplateSampler:
     ) -> Tuple[List[str], int]:
         cutoff_full_unique = 100
         all_choices = self.df[multiple_choice_var].unique()
+
+        # look up in meta the type of multiple_choice_var
+        var_dict =  next(
+            x for x in self.meta["identifiers"] + self.meta["targets"] if x["id"] == multiple_choice_var
+        )
         if len(all_choices) > cutoff_full_unique:
             all_choices = (
                 self.df[multiple_choice_var].sample(cutoff_full_unique).unique()
             )
-        all_choices = sorted([str(x) for x in all_choices])
+
+        if var_dict["type"] == "continuous":
+            significant_digits = var_dict.get(
+                "significant_digits",
+                self.config.get(
+                    "DEFAULT_SIGNIFICANT_DIGITS", DEFAULT_SIGNIFICANT_DIGITS
+                ),
+            )
+
+            all_choices = sorted([f"{round(x, significant_digits):.{significant_digits}f}" for x in all_choices])
+        else:
+            all_choices = sorted([str(x) for x in all_choices])
 
         if all_choices == ["0", "1"]:
             all_choices = ["False", "True"]

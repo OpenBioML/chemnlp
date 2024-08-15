@@ -52,7 +52,6 @@ targets:
     units: eV
     type: continuous
     names:
-      - noun: bandgap of the polymer
       - noun: bandgap
     uris:
     significant_digits: 2
@@ -141,12 +140,12 @@ templates:
   - The {#non-fullerene|PC71BM|PCBM!} {#organic photovoltaics|OPV|organic solar cell|organic photovoltaics (OPV)!} device with a donor polymer with monomer {SMILES__description} {SMILES#} and {#Mw|weight-average molecular weight|weight-average molecular weight (Mw)!} {Mw#} g/mol and {#PDI|polydispersity index|polydispersity index (PDI)!} of {PDI#} has a {FF__names__noun} of {FF#}.
   - |-
     User: I {#want to|would like to|aim to|wish to!} {#design|create|build!} a {#non-fullerene|PC71BM|PCBM!} {#organic photovoltaics|OPV|organic solar cell|organic photovoltaics (OPV)!} device with a {PCE_ave__names__noun} of {PCE_ave#}%.
-    Assistant: {#That's interesting.|Cool.|!} Do you have a donor polymer in mind?
+    Assistant: {#That's interesting. |Cool. |!}Do you have a donor polymer in mind?
     User: Yes, I would like to use a polymer with monomer {SMILES__description} {SMILES#} and {#would like to|need to|must!} know the {PDI__names__noun} and {Mw__names__noun} of the polymer I should use.
     Assistant: {#I recommend|I suggest|I propose!} trying a {Mw__names__noun} of {Mw#} g/mol and a {PDI__names__noun} of {PDI#}.
   - |-
     User: I {#want to|would like to|aim to|wish to!} {#design|create|build!} a {#non-fullerene|PC71BM|PCBM!} {#organic photovoltaics|OPV|organic solar cell|organic photovoltaics (OPV)!} device with a {PCE_ave__names__noun} of {PCE_ave#}%.
-    Assistant: {#That's interesting.|Cool.|!} Do you have additional constraints?
+    Assistant: {#That's interesting. |Cool. |!}Do you have additional constraints?
     User: {#Yes, |Yeah, |Indeed, |!}I would like to have a {Jsc__names__noun} of {Jsc#} {Jsc__units}.
     Assistant: {#I recommend|I suggest|I propose!} trying a {Mw__names__noun} of {Mw#} g/mol and {PDI__names__noun} of {PDI#} of a polymer with monomer {SMILES__description} {SMILES#}.
   - |-
