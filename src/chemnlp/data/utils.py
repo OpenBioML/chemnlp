@@ -8,6 +8,45 @@ import numpy as np
 import pandas as pd
 
 
+from pathlib import Path
+import fire
+
+def get_all_datasets(root_dir):
+    return [d.name for d in Path(root_dir).iterdir() if d.is_dir()]
+
+def concatenate_jsonl_files(root_dir, output_file, datasets=None, file_type='train'):
+    root_dir = Path(root_dir)
+
+    if datasets is None:
+        datasets = get_all_datasets(root_dir)
+    elif isinstance(datasets, str):
+        datasets = [datasets]
+
+    print(f"Processing datasets: {', '.join(datasets)}")
+    print(f"File type: {file_type}.jsonl")
+
+    with open(output_file, 'w') as outfile:
+        for dataset in datasets:
+            dataset_path = root_dir / dataset
+            if not dataset_path.is_dir():
+                print(f"Warning: Dataset '{dataset}' not found. Skipping.")
+                continue
+
+            for chunk_dir in dataset_path.glob('chunk_*'):
+                for template_dir in chunk_dir.glob('template_*'):
+                    jsonl_file = template_dir / f'{file_type}.jsonl'
+                    if jsonl_file.is_file():
+                        with open(jsonl_file, 'r') as infile:
+                            for line in infile:
+                                outfile.write(line)
+
+    print(f"Concatenated {file_type}.jsonl files have been saved to {output_file}")
+
+def concatenate_jsonl_files_cli():
+    fire.Fire(concatenate_jsonl_files)
+
+
+
 def add_random_split_column(df):
     # Calculate the number of rows for each split
     n_rows = len(df)

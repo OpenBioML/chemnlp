@@ -35,6 +35,7 @@ chemnlp-generate-meta = "chemnlp.data.meta_yaml_generator:cli"
 chemnlp-augment-meta = "chemnlp.data.meta_yaml_augmenter:cli"
 chemnlp-sample = "chemnlp.data.sampler_cli:cli"
 chemnlp-add-random-split-column = "chemnlp.data.utils:add_random_split_column_cli"
+chemnlp-concatenate-jsonl = "chemnlp.data.utils:concatenate_jsonl_files_cli"
 
 [tool.setuptools_scm]
 version_scheme = "post-release"

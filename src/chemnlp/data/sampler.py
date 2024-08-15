@@ -839,9 +839,8 @@ class TemplateSampler:
             df_split = self.df[self.df["split"] == split]
             samples = []
             for _, row in tqdm(df_split.iterrows(), total=len(df_split)):
-                sample_dict = row.to_dict()
-                sample = self._fill_template(template, sample_dict)
-                samples.append(sample)
+                sampled = self.sample(row, template)
+                samples.append(sampled)
             df_out = pd.DataFrame(samples)
 
             # if self.benchmarking_templates:
