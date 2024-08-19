@@ -1,0 +1,30 @@
+---
+name: libre_textbooks
+description: A dataset of scraped articles from libre textbooks
+targets:
+    - id: html
+      description: A scraped page from libre textbooks
+      units:
+      type: text
+      names:
+          - natural language article
+      pubchem_aids: []
+      uris: []
+identifiers:
+    - id: url 
+      type: string
+      description: url of the page the content is scraped from
+    - id: text_length
+      type: int
+      description: text character count
+license: CC BY 4.0
+links:
+    - name: Libre Textbooks
+      url: https://chem.libretexts.org/Bookshelves
+      description: ''
+    - name: Hugging Face dataset upload
+      url: https://huggingface.co/datasets/Hack90/libre_chem_textbooks
+      description: Hugging Face dataset uploaded to HF account
+benchmarks: []
+num_points: 3740
+bibtex: []
