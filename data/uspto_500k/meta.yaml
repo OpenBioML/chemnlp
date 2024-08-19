@@ -1,0 +1,41 @@
+---
+name: uspto_500k
+description: United States Patent and Trademark Office reaction dataset with yields.
+targets:
+    - id: yield
+      description: reaction yields
+      units: '%'
+      type: continuous
+      names:
+          - reaction yield
+          - yield
+      uris:
+          - http://purl.allotrope.org/ontologies/quality#AFQ_0000227
+identifiers:
+    - id: reaction_SMILES
+      type: RXNSMILES
+      description: reaction SMILES
+license: CC0
+links:
+    - url: https://doi.org/10.17863/CAM.16293
+      description: corresponding publication
+    - url: https://github.com/reymond-group/drfp/blob/main/data/uspto_yields_below.csv
+      description: data source
+    - url: https://github.com/reymond-group/drfp/blob/main/data/uspto_yields_above.csv
+      description: data source
+    - url: https://tdcommons.ai/single_pred_tasks/yields/#uspto
+      description: other source
+num_points: 853638
+bibtex:
+    - |-
+      @article{https://doi.org/10.17863/cam.16293,
+      doi = {10.17863/CAM.16293},
+      url = {https://www.repository.cam.ac.uk/handle/1810/244727},
+      year = {2012},
+      publisher = {Apollo - University of Cambridge Repository},
+      keywords = {Name to structure,  OPSIN,  Chemical text mining,  Text mining,
+      Patent reaction extraction,  Reaction mining,  Patents},
+      language = {en},
+      author = {Lowe,  Daniel Mark},
+      title = {Extraction of chemical structures and reactions from the literature},
+      copyright = {All Rights Reserved}
