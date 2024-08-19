@@ -1,0 +1,39 @@
+name: buchwald_hartwig_doyle
+description: High-throughput experimentation palladium-catalyzed Buchwald Hardwig
+  C-N cross-coupling data set with yields.
+targets:
+- id: yield
+  description: Reaction yields analyzed by UPLC
+  units: '%'
+  type: continuous
+  names:
+  - Reaction yield
+  - yield
+identifiers:
+- id: reaction_SMILES
+  type: RXNSMILES
+  description: RXNSMILES
+license: MIT
+links:
+- url: https://doi.org/10.1126/science.aar5169
+  description: corresponding publication
+- url: https://www.sciencedirect.com/science/article/pii/S2451929420300851
+  description: publication with data processing
+- url: https://github.com/rxn4chemistry/rxn_yields/blob/master/rxn_yields/data.py
+  description: preprocessing
+- url: https://github.com/reymond-group/drfp/tree/main/data
+  description: dataset
+num_points: 3955
+url: https://doi.org/10.1126/science.aar5169
+bibtex:
+- |-
+  @article{ahneman2018predicting,
+  title={Predicting reaction performance in C--N cross-coupling using machine learning},
+  author={Ahneman, Derek T and Estrada, Jes{'u}s G and Lin, Shishi and Dreher, Spencer D and Doyle, Abigail G},
+  journal={Science},
+  volume={360},
+  number={6385},
+  pages={186--190},
+  year={2018},
+  publisher={American Association for the Advancement of Science},
+  }
