@@ -1,0 +1,16 @@
+---
+name: thermoml_archive
+description: ThermoML is an XML-based IUPAC standard for the storage and exchange of experimental thermophysical and thermochemical property data. The ThermoML
+    archive is a subset of Thermodynamics Research Center (TRC) data holdings corresponding to cooperation between NIST TRC and five journals.
+targets:
+identifiers: []
+license: https://www.nist.gov/open/license
+num_points:
+bibtex:
+    - "@article{Riccardi2022,\n    title = {Towards improved {{FAIRness}} of the {{ThermoML Archive}}},\n    author = {Riccardi, Demian and Trautt, Zachary\
+      \ and Bazyleva, Ala and Paulechka, Eugene and Diky, Vladimir and Magee, Joseph W. and Kazakov, Andrei F. and Townsend, Scott A. and Muzny, Chris D.},\n\
+      \    year = {2022},\n    journal = {Journal of Computational Chemistry},\n    volume = {43},\n    number = {12},\n    pages = {879--887},\n    doi\
+      \ = {10.1002/jcc.26842},\n    langid = {english}\n  }"
+templates:
+fields:
+links:
