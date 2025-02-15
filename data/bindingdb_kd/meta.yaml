@@ -1,0 +1,72 @@
+name: bindingdb_kd
+description: |-
+  BindingDB is a public, web-accessible database of
+              measured binding affinities, focusing chiefly on the interactions of
+              protein considered to be drug-targets with small, drug-like molecules.
+targets:
+- id: BindingDB_Kd
+  description: binding affinity of the given compound for a given target or protein
+  units: KD
+  type: continuous
+  names:
+  - noun: The strength of binding of a single molecule to its ligand
+  - noun: Drug potency for certain protein target
+  - verb: Inhibit certain protein
+  - verb: Change the functionality and protein conformation
+  - adjective: Inhibition of certain protein target
+  - adjective: Inhibition of certain protein target to change its function
+  uris:
+  - http://purl.obolibrary.org/obo/MI_0646
+benchmarks:
+- name: TDC
+  link: https://tdcommons.ai/
+  split_column: split
+identifiers:
+- id: SMILES
+  type: SMILES
+  description: SMILES
+- id: Target_ID
+  type: Other
+  names:
+  - noun: protein target id
+  - noun: protein id
+  description: protein target id
+- id: Target
+  type: Other
+  names:
+  - noun: protein sequence
+  - noun: protein fastq
+  description: protein sequence in fastq
+license: CC BY 3.0 US.
+links:
+- url: https://doi.org/10.1093/nar/gkl999
+  description: corresponding publication
+- url: https://arxiv.org/abs/2004.08919
+  description: corresponding publication
+- url: https://tdcommons.ai/single_pred_tasks/adme/#bbb-blood-brain-barrier-martins-et-al
+  description: data source
+num_points: 47941
+bibtex:
+- |-
+  @article{https://doi.org/10.48550/arxiv.2004.08919,
+      doi = {10.48550/ARXIV.2004.08919},
+      url = {https://arxiv.org/abs/2004.08919},
+      author = {Huang,  Kexin and Fu,  Tianfan and Glass,  Lucas and Zitnik,  Marinka and Xiao,  Cao and Sun,  Jimeng},
+      keywords = {Machine Learning (cs.LG),  Quantitative Methods (q-bio.QM),  Machine Learning (stat.ML),  FOS: Computer and information sciences,  FOS: Computer and information sciences,  FOS: Biological sciences,  FOS: Biological sciences},
+      title = {DeepPurpose: a Deep Learning Library for Drug-Target Interaction Prediction},
+      publisher = {arXiv},
+      year = {2020},
+      copyright = {Creative Commons Attribution 4.0 International}
+- |-
+  @article{Liu2007,
+      doi = {10.1093/nar/gkl999},
+      url = {https://doi.org/10.1093/nar/gkl999},
+      year = {2007},
+      month = jan,
+      publisher = {Oxford University Press ({OUP})},
+      volume = {35},
+      number = {Database},
+      pages = {D198--D201},
+      author = {T. Liu and Y. Lin and X. Wen and R. N. Jorissen and M. K. Gilson},
+      title = {BindingDB: a web-accessible database of experimentally determined protein-ligand binding affinities},
+      journal = {Nucleic Acids Research}
