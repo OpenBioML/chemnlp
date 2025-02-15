@@ -1,0 +1,46 @@
+name: toxcast
+description: ToxCast includes qualitative results of over 600 experiments on 8k compounds.
+targets:
+- id: Toxicity
+  description: Presence of a compound toxicity in a specific assay.
+  units: ''
+  type: categorical
+  names:
+  - noun: Toxicity
+  - noun: Toxic compound
+  - noun: Toxicity in specific assay
+- id: Assay
+  description: Assay where the compound tested
+  units: ''
+  type: categorical
+  names:
+  - noun: Toxicity
+  - noun: Toxicity assay
+  - noun: Experimental assay
+  uris:
+  - https://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI_Thesaurus&ns=ncit&code=C60819
+identifiers:
+- id: SMILES
+  type: SMILES
+  description: SMILES
+license: CC BY 4.0
+links:
+- url: https://doi.org/10.1021/acs.chemrestox.6b00135
+  description: corresponding publication
+- url: https://tdcommons.ai/single_pred_tasks/tox/#toxcast
+  description: data source
+num_points: 1533660
+bibtex:
+- |-
+  @article{Richard2016,
+                doi = {10.1021/acs.chemrestox.6b00135},
+                url = {https://doi.org/10.1021/acs.chemrestox.6b00135},
+                year = {2016},
+                month = jul,
+                publisher = {American Chemical Society (ACS)},
+                volume = {29},
+                number = {8},
+                pages = {1225--1251},
+                author = {Ann M. Richard and Richard S. Judson and Keith A. Houck and Christopher M. Grulke and Patra Volarath and Inthirany Thillainadarajah and Chihae Yang and James Rathman and Matthew T. Martin and John F. Wambaugh and Thomas B. Knudsen and Jayaram Kancherla and Kamel Mansouri and Grace Patlewicz and Antony J. Williams and Stephen B. Little and Kevin M. Crofton and Russell S. Thomas},
+                title = {ToxCast Chemical Landscape: Paving the Road to 21st Century Toxicology},
+                journal = {Chemical Research in Toxicology}
