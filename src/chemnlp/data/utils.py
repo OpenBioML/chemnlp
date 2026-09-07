@@ -1,14 +1,10 @@
-from typing import List
-
-import yaml
-from typing import Any
+from pathlib import Path
+from typing import Any, List
 
 import fire
 import numpy as np
 import pandas as pd
-
-
-from pathlib import Path
+import yaml
 
 
 def get_all_datasets(root_dir):
@@ -38,8 +34,7 @@ def concatenate_jsonl_files(root_dir, output_file, datasets=None, file_type="tra
                     jsonl_file = template_dir / f"{file_type}.jsonl"
                     if jsonl_file.is_file():
                         with open(jsonl_file, "r") as infile:
-                            for line in infile:
-                                outfile.write(line)
+                            outfile.writelines(infile)
 
     print(f"Concatenated {file_type}.jsonl files have been saved to {output_file}")
 

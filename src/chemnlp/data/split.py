@@ -1,6 +1,7 @@
 from collections import defaultdict
+from collections.abc import Iterable
 from random import Random
-from typing import Dict, Iterable, List
+from typing import Dict, List
 
 import pandas as pd
 from rdkit import Chem

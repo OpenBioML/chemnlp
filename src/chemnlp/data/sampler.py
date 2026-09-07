@@ -1,19 +1,20 @@
-from chemnlp.data.constants import DEFAULT_SIGNIFICANT_DIGITS
-import pandas as pd
-import random
-import math
-from typing import List, Dict, Union, Callable, Optional, Tuple, Any
-import re
-from string import ascii_lowercase, ascii_uppercase
-from chemnlp.data.random_variable import RandomVariable
-from functools import partial
-from functools import lru_cache
-from chemnlp.data_val.model import IdentifierEnum
-import os
-import yaml
 import json
+import math
+import os
+import random
+import re
+from functools import cache, partial
+from string import ascii_lowercase, ascii_uppercase
+from typing import Any, Callable, Dict, List, Optional, Tuple, Union
+
+import pandas as pd
+import yaml
 from loguru import logger
 from tqdm import tqdm
+
+from chemnlp.data.constants import DEFAULT_SIGNIFICANT_DIGITS
+from chemnlp.data.random_variable import RandomVariable
+from chemnlp.data_val.model import IdentifierEnum
 
 
 class TemplateSampler:
@@ -48,20 +49,20 @@ class TemplateSampler:
     """
 
     __slots__ = (
-        "df",
-        "meta",
-        "config",
-        "path_data_dir",
-        "column_datafield_sampler",
-        "benchmarking_templates",
-        "multiple_choice_benchmarking_templates",
-        "multiple_choice_benchmarking_format",
-        "templates",
         "additional_targets",
-        "df_orig",
-        "class_balanced",
-        "wrap_identifiers",
         "balance_column",
+        "benchmarking_templates",
+        "class_balanced",
+        "column_datafield_sampler",
+        "config",
+        "df",
+        "df_orig",
+        "meta",
+        "multiple_choice_benchmarking_format",
+        "multiple_choice_benchmarking_templates",
+        "path_data_dir",
+        "templates",
+        "wrap_identifiers",
     )
 
     def __init__(
@@ -567,7 +568,7 @@ class TemplateSampler:
     def _get_input_variables_from_template(self, template: str) -> List[str]:
         return re.findall(r"\{([^}]+)\}", template)
 
-    @lru_cache(maxsize=None)
+    @cache
     def _get_random_text_identifiers_and_targets(self) -> dict:
         """Cached version of get_random_text_identifiers_and_targets"""
         rnd_texts = {}
@@ -721,10 +722,8 @@ class TemplateSampler:
             Dict[str, Any]: A dictionary containing the configuration.
         """
         if self.path_data_dir is None:
-            raise ValueError(
-                "The path to the data directory is not set. \
-                For the export to work, the path must be set."
-            )
+            raise ValueError("The path to the data directory is not set. \
+                For the export to work, the path must be set.")
         group_name = os.path.basename(os.path.dirname(self.path_data_dir))
         task_name = os.path.basename(self.path_data_dir)
 

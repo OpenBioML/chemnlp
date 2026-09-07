@@ -50,7 +50,7 @@ This dataset deposited version under CHEMBL assay 1614674.""",
         "targets": [
             {
                 "id": "half_life_duration",  # name of the column in a tabular dataset
-                "description": "the time it takes for the plasma concentration of a drug in the body to be reduced by half",  # noqa: E501
+                "description": "the time it takes for the plasma concentration of a drug in the body to be reduced by half",
                 "units": "hours",  # units of the values in this column (leave empty if unitless)
                 "type": "continuous",
                 "names": [  # names for the property (to sample from for building the prompts)
