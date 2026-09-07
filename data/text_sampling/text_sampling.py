@@ -14,56 +14,56 @@ from utils import load_yaml, str_presenter
 DEFAULT_SIGNIFICANT_DIGITS = 3
 
 standard_tabular_text_templates = [
-    "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} has a {TARGET__names__noun} of {TARGET#} {TARGET__units}.",  # noqa: E501
-    "Based on the {SMILES__description} {#representation of |!}{SMILES#}, the molecule has a {TARGET__names__noun} of {TARGET#} {TARGET__units}.",  # noqa: E501
-    "The {SMILES__description} {SMILES#} {#represents|is representing!} a molecule {#that has a|with a!} {TARGET__names__noun} of {TARGET#} {TARGET__units}.",  # noqa: E501
+    "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} has a {TARGET__names__noun} of {TARGET#} {TARGET__units}.",
+    "Based on the {SMILES__description} {#representation of |!}{SMILES#}, the molecule has a {TARGET__names__noun} of {TARGET#} {TARGET__units}.",
+    "The {SMILES__description} {SMILES#} {#represents|is representing!} a molecule {#that has a|with a!} {TARGET__names__noun} of {TARGET#} {TARGET__units}.",
     "The molecule with the {SMILES__description} {SMILES#} has a {TARGET__names__noun} of {TARGET#} {TARGET__units}.",
     # Instruction tuning text templates
     """Task: Please predict a molecule feature based on the description.
 Description: Predict the {TARGET__names__noun} in {TARGET__units}.
 {#Molecule |!}{SMILES__description}: {SMILES#}
 Constraint: Even if you are {#uncertain|not sure!}, you must answer with a numeric value in {TARGET__units} without using any {#other|additional!} words.
-Result: {TARGET#} {TARGET__units}""",  # noqa: E501
+Result: {TARGET#} {TARGET__units}""",
     """Task: Please predict a molecule feature based on the description.
 Description: Predict the {TARGET__names__noun} in {TARGET__units}.
 {SMILES__description}: {SMILES#}
 Constraint: Even if you are {#uncertain|not sure!}, you must answer with a numeric value in {TARGET__units} without the unit and without using any {#other|additional!} words.
-Result: {TARGET#}""",  # noqa: E501
+Result: {TARGET#}""",
     """Task: Please {#give me|create|generate!} a {#molecule|chemical|compound!} with {SMILES__description} based on the {#text |!}description{# below|!}.
 Description: A molecule that has a {TARGET__names__noun} of {TARGET#} {TARGET__units}.
-Result: {SMILES#}""",  # noqa: E501
+Result: {SMILES#}""",
     # Conversational text templates
     """User: Can you {#tell me|derive|estimate!} the {TARGET__names__noun} in {TARGET__units} of the molecule with the {SMILES__description} {SMILES#}?
-Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, this molecule has a {TARGET__names__noun} of {TARGET#} {TARGET__units}.""",  # noqa: E501
+Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, this molecule has a {TARGET__names__noun} of {TARGET#} {TARGET__units}.""",
     """User: Can you {#give me|create|generate!} the {SMILES__description} of a molecule that has a {TARGET__names__noun} of {TARGET#} {TARGET__units}?
-Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}""",  # noqa: E501
+Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}""",
     """User: I'm {#searching|looking!} for the {SMILES__description} of a molecule that has a {TARGET__names__noun} of {TARGET#} {TARGET__units}.
-Assistant: This is a molecule that has a {TARGET__names__noun} of {TARGET#} {TARGET__units}: {SMILES#}""",  # noqa: E501
+Assistant: This is a molecule that has a {TARGET__names__noun} of {TARGET#} {TARGET__units}: {SMILES#}""",
     """User: I want to {#come up with|create|generate!} the {SMILES__description} of a {#molecule|chemical|chemical compound!}.
 Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
 User: Yes, please. The molecule should have a {TARGET__names__noun} of {TARGET#} {TARGET__units}.
-Assistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} represents a molecule that has a {TARGET__names__noun} of {TARGET#} {TARGET__units}: {SMILES#}""",  # noqa: E501
+Assistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} represents a molecule that has a {TARGET__names__noun} of {TARGET#} {TARGET__units}: {SMILES#}""",
     """User: I want to {#come up with|create|generate!} a {SMILES__description} of a {#molecule|chemical|chemical structure!}.
 Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
 User: Yes, the molecule should have a {TARGET__names__noun} of {TARGET#} {TARGET__units}.
-Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} represents a molecule that has a {TARGET__names__noun} of {TARGET#} {TARGET__units}: {SMILES#}""",  # noqa: E501
+Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} represents a molecule that has a {TARGET__names__noun} of {TARGET#} {TARGET__units}: {SMILES#}""",
     # Benchmarking text templates
-    "The {TARGET__names__noun} of the molecule with the {SMILES__description} {SMILES#} is:<EOI>{TARGET#} {TARGET__units}",  # noqa: E501
-    "The {TARGET__names__noun} of the {SMILES__description} {SMILES#} is:<EOI>{TARGET#} {TARGET__units}",  # noqa: E501
-    "The {TARGET__names__noun} of the molecule {SMILES__description} {SMILES#} is:<EOI>{TARGET#} {TARGET__units}",  # noqa: E501
+    "The {TARGET__names__noun} of the molecule with the {SMILES__description} {SMILES#} is:<EOI>{TARGET#} {TARGET__units}",
+    "The {TARGET__names__noun} of the {SMILES__description} {SMILES#} is:<EOI>{TARGET#} {TARGET__units}",
+    "The {TARGET__names__noun} of the molecule {SMILES__description} {SMILES#} is:<EOI>{TARGET#} {TARGET__units}",
     """Task: Please predict a molecule feature based on the description.
 Description: Predict the {TARGET__names__noun} in {TARGET__units} of a molecule.
 {#Molecule |!}{SMILES__description}: {SMILES#}
 Constraint: Even if you are {#uncertain|not sure!}, you must answer with a numeric value in {TARGET__units} without using any {#other|additional!} words.
-Result:<EOI>{TARGET#} {TARGET__units}""",  # noqa: E501
+Result:<EOI>{TARGET#} {TARGET__units}""",
     """Task: Please predict a molecule feature based on the description.
 Description: Predict the {TARGET__names__noun} in {TARGET__units} of a molecule.
 {#Molecule |!}{SMILES__description}: {SMILES#}
 Constraint: Even if you are {#uncertain|not sure!}, you must answer with a numeric value in {TARGET__units} without the unit and without using any {#other|additional!} words.
-Result:<EOI>{TARGET#}""",  # noqa: E501
+Result:<EOI>{TARGET#}""",
     """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
 Description: A molecule that has a {TARGET__names__noun} of {TARGET#} {TARGET__units}.
-Result:<EOI>{SMILES#}""",  # noqa: E501
+Result:<EOI>{SMILES#}""",
 ]
 
 
@@ -335,7 +335,7 @@ class PromptTemplate:
     def insert(self, data: dict) -> str:
         """Inserts the data and checks before if we got all the data for the present input_variables.
         More input_variables in data doesn't matter."""
-        assert all(x in data.keys() for x in self.input_variables)
+        assert all(x in data for x in self.input_variables)
         template = self.template
         for k in data:
             if k not in self.input_variables:
@@ -808,7 +808,7 @@ class TemplateSampler:
             # uncomment below to append correct_choice_idx with the symbols prefix and suffix
             # multiple_choice_result = f"{rnd_symbol_prefix}{symbols[correct_choice_idx]}{rnd_symbol_suffix}"
             # uncomment below to append correct_choice to the answer after the correct choice symbol
-            # multiple_choice_result = f"{rnd_symbol_prefix}{symbols[correct_choice_idx]}{rnd_symbol_suffix} {correct_choice}"  # noqa: E501
+            # multiple_choice_result = f"{rnd_symbol_prefix}{symbols[correct_choice_idx]}{rnd_symbol_suffix} {correct_choice}"
             # else:
             # uncomment to include setup w/o symbols
             # if random.random() > 0.5:
@@ -954,7 +954,7 @@ class TemplateSampler:
                 self.df = self.df_orig
             print(self.df[target_to_balance].value_counts())
         # else:
-        #    assert template_idx is None and class_balanced is True, "class_balanced sampling is only supported with template_idx."  # noqa: E501
+        #    assert template_idx is None and class_balanced is True, "class_balanced sampling is only supported with template_idx."
 
         self.df["sample"] = self.df.apply(
             lambda sample: self.sample(sample, template_idx), axis=1

@@ -4,7 +4,7 @@ import pandas as pd
 
 def process():
     df = pd.read_parquet(
-        "https://huggingface.co/datasets/kjappelbaum/chemnlp-chem-caption/resolve/main/rdkit_feat/train-00000-of-00001-7cea16ab26bf74cf.parquet?download=true"  # noqa
+        "https://huggingface.co/datasets/kjappelbaum/chemnlp-chem-caption/resolve/main/rdkit_feat/train-00000-of-00001-7cea16ab26bf74cf.parquet?download=true"
     )
     df["num_bonds_simple"] = df[
         [
