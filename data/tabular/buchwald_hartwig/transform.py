@@ -78,7 +78,7 @@ def generate_buchwald_hartwig_rxns(df):
     and https://github.com/rxn4chemistry/rxn_yields/blob/master/rxn_yields/data.py
     """
     df = df.copy()
-    fwd_template = "[F,Cl,Br,I]-[c;H0;D3;+0:1](:[c,n:2]):[c,n:3].[NH2;D1;+0:4]-[c:5]>>[c,n:2]:[c;H0;D3;+0:1](:[c,n:3])-[NH;D2;+0:4]-[c:5]"  # noqa
+    fwd_template = "[F,Cl,Br,I]-[c;H0;D3;+0:1](:[c,n:2]):[c,n:3].[NH2;D1;+0:4]-[c:5]>>[c,n:2]:[c;H0;D3;+0:1](:[c,n:3])-[NH;D2;+0:4]-[c:5]"
     methylaniline = "Cc1ccc(N)cc1"
     pd_catalyst = "O=S(=O)(O[Pd]1~[NH2]C2C=CC=CC=2C2C=CC=CC1=2)C(F)(F)F"
     methylaniline_mol = Chem.MolFromSmiles(methylaniline)

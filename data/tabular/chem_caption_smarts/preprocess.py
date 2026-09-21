@@ -1,5 +1,6 @@
 # flake8: noqa
 """Preprocess the raw outputs from the text-output of chem-caption to a tabular dataset."""
+
 from glob import glob
 
 import pandas as pd

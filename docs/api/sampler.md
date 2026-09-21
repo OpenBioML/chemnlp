@@ -1,5 +1,28 @@
 # Sampler Module
 
+<!--TOC-->
+
+______________________________________________________________________
+
+**Table of Contents**
+
+- [Overview](#overview)
+- [TemplateSampler](#templatesampler)
+  - [Class: TemplateSampler](#class-templatesampler)
+    - [Initialization](#initialization)
+    - [Configuration Options](#configuration-options)
+    - [Main Methods](#main-methods)
+      - [`sample`](#sample)
+      - [`enable_class_balancing`](#enable_class_balancing)
+      - [`disable_class_balancing`](#disable_class_balancing)
+    - [Identifier Wrapping](#identifier-wrapping)
+    - [Usage Examples](#usage-examples)
+- [Notes](#notes)
+
+______________________________________________________________________
+
+<!--TOC-->
+
 ## Overview
 
 The `sampler` module provides functionality for generating text samples based on templates and data. It is primarily used for creating datasets for natural language processing tasks in chemistry and related fields. The main class in this module is `TemplateSampler`, which allows for flexible text generation with support for multiple choice questions, class balancing, and identifier wrapping.
