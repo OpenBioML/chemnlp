@@ -57,9 +57,7 @@ def get_and_transform_data():
     def cleanup(x):
         if isinstance(x, list):
             return x[0]
-        elif x is None:
-            return ""
-        elif x.find("[image:") != -1:
+        elif x is None or x.find("[image:") != -1:
             return ""
         else:
             return x
@@ -136,41 +134,41 @@ spanning the whole range of chemistry.""",
             "}",
         ],
         "templates": [
-            'The {term__names__noun} "{term#}" can be {#described|defined!} {#by|as!}:\n{#definition}',  # noqa
+            'The {term__names__noun} "{term#}" can be {#described|defined!} {#by|as!}:\n{#definition}',
             """Task: Please {#give me|create|generate!} a {definition__names__noun} of a {term__names__noun}.
 Term: {term#}
 Constraint: Answer the question with {#full|complete!} sentences.
-Result: {definition#}""",  # noqa
+Result: {definition#}""",
             """Task: Please {#give me|create|generate!} a {term__names__noun} for the {#following |!}{definition__names__noun}:
 Definition: {definition#}
-Result: {term#}""",  # noqa
+Result: {term#}""",
             """User: Can you {#give me|create|generate!} a {term__names__noun} {#described|defined!} by:
 {#definition}
-Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {term#}""",  # noqa
+Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {term#}""",
             """User: Can you {#give me|create|generate!} the {definition__names__noun} for the following {term__names__noun}:
 {#term}
 Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go:
-{#definition}""",  # noqa
+{#definition}""",
             """User: I'm {#searching|looking!} for the {term__names__noun} that can be described {#by|as!}:
 {#definition}
-Assistant: This {term__names__noun} fits {#your|this!} definition: {term#}""",  # noqa
+Assistant: This {term__names__noun} fits {#your|this!} definition: {term#}""",
             """User: I want to {#come up with|create|generate!} a {definition__names__noun}.
 Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
 User: Yes, please. The {term__names__noun} can be described {#by|as!}:
 {#term}
-Assistant: {#Ok|Got it!},{# here you go,|!} this {definition__names__noun} fits {#your|this!} description: {definition#}""",  # noqa
+Assistant: {#Ok|Got it!},{# here you go,|!} this {definition__names__noun} fits {#your|this!} description: {definition#}""",
             """User: I want to {#come up with|create|generate!} a {term__names__noun}.
 Assistant: {#This sounds very exciting. |This sounds very interesting. |!}How is the {term__names__noun} described?
 User: The {term__names__noun} can be described {#by|as!}:
 {#definition}
-Assistant: {#Ok|Got it!},{# here you go,|!} this {term__names__noun} fits {#your|this!} description: {term#}""",  # noqa
+Assistant: {#Ok|Got it!},{# here you go,|!} this {term__names__noun} fits {#your|this!} description: {term#}""",
             """Task: Please {#give me|create|generate!} a {definition__names__noun} of a {term__names__noun}.
 Term: {term#}
 Constraint: Answer the question with {#full|complete!} sentences.
-Result:<EOI>{definition#}""",  # noqa
+Result:<EOI>{definition#}""",
             """Task: Please {#give me|create|generate!} a {term__names__noun} for the {#following |!}{definition__names__noun}:
 Definition: {definition#}
-Result:<EOI>{term#}""",  # noqa
+Result:<EOI>{term#}""",
         ],
     }
 
