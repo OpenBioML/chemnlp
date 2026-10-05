@@ -469,7 +469,7 @@ def as_sequence_split(
     val = all_as_sequence[train_size : train_size + val_size]
     test = all_as_sequence[train_size + val_size :]
     print(
-        f"In total, there are {len(all_as_sequence)} AS_SEQUENCEs. Split sizes: {len(train)} train, {len(val)} valid, {len(test)} test."  # noqa: E501
+        f"In total, there are {len(all_as_sequence)} AS_SEQUENCEs. Split sizes: {len(train)} train, {len(val)} valid, {len(test)} test."
     )
 
     with open("val_as_sequences.txt", "w") as f:
@@ -637,7 +637,7 @@ def smiles_split(
         if (
             yaml_file_has_column_of_type(file, "SMILES")
             and not yaml_file_has_column_of_type(file, "AS_SEQUENCE")
-        )  # noqa: E501
+        )
     ]
     # we filter those out that are in the to_scaffold_split list
     not_scaffold_split_yaml_files = [
@@ -707,7 +707,7 @@ def smiles_split(
         # split_counts = ddf["split"].value_counts().compute()
 
         # print(
-        #    f"Dataset {file} has {len(ddf)} datapoints. Split sizes: {split_counts['train']} train, {split_counts['valid']} valid, {split_counts['test']} test."  # noqa: E501
+        #    f"Dataset {file} has {len(ddf)} datapoints. Split sizes: {split_counts['train']} train, {split_counts['valid']} valid, {split_counts['test']} test."
         # )
 
         # we then write the new data_clean.csv file
@@ -872,10 +872,10 @@ def scaffold_split(
 
         # to ensure overall scaffold splitting does not distort train/val/test split sizes for each dataset
         print(
-            f"Dataset {file} has {len(df)} datapoints. Split sizes: {len(df[df['split'] == 'train'])} train, {len(df[df['split'] == 'valid'])} valid, {len(df[df['split'] == 'test'])} test."  # noqa: E501
+            f"Dataset {file} has {len(df)} datapoints. Split sizes: {len(df[df['split'] == 'train'])} train, {len(df[df['split'] == 'valid'])} valid, {len(df[df['split'] == 'test'])} test."
         )
         print(
-            f"Dataset {file} has {len(df)} datapoints. Split fractions: {len(df[df['split'] == 'train']) / len(df)} train, {len(df[df['split'] == 'valid']) / len(df)} valid, {len(df[df['split'] == 'test']) / len(df)} test."  # noqa: E501
+            f"Dataset {file} has {len(df)} datapoints. Split fractions: {len(df[df['split'] == 'train']) / len(df)} train, {len(df[df['split'] == 'valid']) / len(df)} valid, {len(df[df['split'] == 'test']) / len(df)} test."
         )
         if override:
             # write the new data_clean.csv file

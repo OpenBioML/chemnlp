@@ -136,17 +136,17 @@ title = {admetSAR: A Comprehensive Source and Free Tool for Assessment of Chemic
 journal = {Journal of Chemical Information and Modeling}""",
         ],
         "templates": [
-            "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} {#shows|exhibits|displays!} {carcinogen#no &NULL}{carcinogen__names__adjective} {#properties|effects!}.",  # noqa: E501
-            "Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule has {carcinogen#no &NULL}{carcinogen__names__adjective} {#effects|properties|characteristics|features!}.",  # noqa: E501
-            "The {SMILES__description} {SMILES#} represents a molecule that is {carcinogen#not &NULL}identified as {carcinogen__names__adjective}.",  # noqa: E501
+            "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} {#shows|exhibits|displays!} {carcinogen#no &NULL}{carcinogen__names__adjective} {#properties|effects!}.",
+            "Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule has {carcinogen#no &NULL}{carcinogen__names__adjective} {#effects|properties|characteristics|features!}.",
+            "The {SMILES__description} {SMILES#} represents a molecule that is {carcinogen#not &NULL}identified as {carcinogen__names__adjective}.",
             "The {SMILES__description} {SMILES#} is {carcinogen#not &NULL}{carcinogen__names__adjective}.",
-            "The {#molecule |!}{SMILES__description} {SMILES#} is {carcinogen#not &NULL}{carcinogen__names__adjective}.",  # noqa: E501 not all variables need to be used
+            "The {#molecule |!}{SMILES__description} {SMILES#} is {carcinogen#not &NULL}{carcinogen__names__adjective}.",
             # Instruction tuning text templates
             """Task: Please classify a molecule based on the description.
 Description: A molecule that is {carcinogen__names__adjective}.
 {#Molecule |!}{SMILES__description}: {SMILES#}
 Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
-Result: {carcinogen#False&True}""",  # noqa: E501
+Result: {carcinogen#False&True}""",
             """Task: Please classify a molecule based on the description.
 Description: A molecule that is {carcinogen__names__adjective}.
 {#Molecule |!}{SMILES__description}: {SMILES#}
@@ -154,58 +154,58 @@ Constraint: Answer the question in a {#full|complete!} sentence.
 Result: This molecule is {carcinogen#not &NULL}{carcinogen__names__adjective}.""",
             """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
 Description: A molecule that is {carcinogen#not &NULL}{carcinogen__names__adjective}.
-Result: {SMILES#}""",  # noqa: E501
+Result: {SMILES#}""",
             # Conversational text templates
             """User: Can you {#tell me|derive|estimate!} if the molecule with the {SMILES__description} {SMILES#} is {carcinogen__names__adjective}?
-Assistant: {carcinogen#No&Yes}, this molecule is {carcinogen#not &NULL}{carcinogen__names__adjective}.""",  # noqa: E501
+Assistant: {carcinogen#No&Yes}, this molecule is {carcinogen#not &NULL}{carcinogen__names__adjective}.""",
             """User: Is the molecule with the {SMILES__description} {SMILES#} {carcinogen__names__adjective}?
-Assistant: {carcinogen#No&Yes}, it is {carcinogen#not &NULL}{carcinogen__names__adjective}.""",  # noqa: E501
+Assistant: {carcinogen#No&Yes}, it is {carcinogen#not &NULL}{carcinogen__names__adjective}.""",
             """User: Can you {#give me|create|generate!} the {SMILES__description} of a molecule that is {carcinogen#not &NULL}{carcinogen__names__adjective}?
-Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}""",  # noqa: E501
+Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}""",
             """User: I'm {#searching|looking!} for the {SMILES__description} of a molecule that is {carcinogen#not &NULL}{carcinogen__names__adjective}?
-Assistant: This is a molecule that is {carcinogen#not &NULL}{carcinogen__names__adjective}: {SMILES#}""",  # noqa: E501
+Assistant: This is a molecule that is {carcinogen#not &NULL}{carcinogen__names__adjective}: {SMILES#}""",
             """User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
 Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
 User: Yes, please. The molecule should {carcinogen#not &NULL}be {carcinogen__names__adjective}.
-Assistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} is {carcinogen#not &NULL}{carcinogen__names__adjective}: {SMILES#}""",  # noqa: E501
+Assistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} is {carcinogen#not &NULL}{carcinogen__names__adjective}: {SMILES#}""",
             """User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
 Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
 User: Yes, the molecule should {carcinogen#not &NULL}be {carcinogen__names__adjective}.
-Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {carcinogen#not &NULL}{carcinogen__names__adjective}: {SMILES#}""",  # noqa: E501
+Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {carcinogen#not &NULL}{carcinogen__names__adjective}: {SMILES#}""",
             # Benchmarking text templates
-            "Is the {SMILES__description} {SMILES#} {carcinogen__names__adjective}:<EOI>{carcinogen#no&yes}",  # noqa: E501 for the benchmarking setup <EOI>separates input and output
+            "Is the {SMILES__description} {SMILES#} {carcinogen__names__adjective}:<EOI>{carcinogen#no&yes}",
             """Task: Please classify a molecule based on the description.
 Description: A molecule that is {carcinogen__names__adjective}.
 {#Molecule |!}{SMILES__description}: {SMILES#}
 Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
-Result:<EOI>{carcinogen#False&True}""",  # noqa: E501
-            # noqa: E501 """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+Result:<EOI>{carcinogen#False&True}""",
+
             # Description: A molecule that is {carcinogen__names__adjective}.
-            # Result:<EOI>{SMILES#}""",  # noqa: E501
+            # Result:<EOI>{SMILES#}""",
             """Task: Please answer the multiple choice question.
 Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} {carcinogen__names__adjective}?
 Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
 Options:
 {carcinogen%}
-Answer: {%multiple_choice_result}""",  # noqa: E501
+Answer: {%multiple_choice_result}""",
             """Task: Please answer the multiple choice question.
 Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} {carcinogen__names__adjective}?
 Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
 Options:
 {carcinogen%}
-Answer:<EOI>{%multiple_choice_result}""",  # noqa: E501
+Answer:<EOI>{%multiple_choice_result}""",
             """Task: Please answer the multiple choice question.
 Question: Which molecules are {carcinogen#not &NULL}{carcinogen__names__adjective}?
 Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
 Options:
 {SMILES%carcinogen%}
-Answer: {%multiple_choice_result}""",  # noqa: E501
+Answer: {%multiple_choice_result}""",
             """Task: Please answer the multiple choice question.
 Question: Which molecules are {carcinogen#not &NULL}{carcinogen__names__adjective}?
 Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
 Options:
 {SMILES%carcinogen%}
-Answer:<EOI>{%multiple_choice_result}""",  # noqa: E501
+Answer:<EOI>{%multiple_choice_result}""",
         ],
     }
 
