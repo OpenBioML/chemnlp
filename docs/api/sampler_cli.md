@@ -1,5 +1,31 @@
 # Sampler CLI
 
+<!--TOC-->
+
+______________________________________________________________________
+
+**Table of Contents**
+
+- [Overview](#overview)
+- [Usage](#usage)
+  - [Arguments](#arguments)
+  - [Options](#options)
+- [Detailed Option Descriptions](#detailed-option-descriptions)
+  - [`chunksize`](#chunksize)
+  - [`class_balanced`](#class_balanced)
+  - [`benchmarking`](#benchmarking)
+  - [`multiple_choice`](#multiple_choice)
+  - [`additional_templates`](#additional_templates)
+  - [`use_standard_templates`](#use_standard_templates)
+  - [`wrap_identifiers`](#wrap_identifiers)
+- [Examples](#examples)
+- [Notes](#notes)
+- [Troubleshooting](#troubleshooting)
+
+______________________________________________________________________
+
+<!--TOC-->
+
 ## Overview
 
 The Sampler CLI is a command-line interface tool designed to process chemical datasets using the `TemplateSampler`. It allows for flexible text generation based on templates, with support for various sampling scenarios including class balancing, benchmarking, and multiple-choice questions.

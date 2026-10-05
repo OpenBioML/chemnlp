@@ -22,7 +22,7 @@ if __name__ == "__main__":
     print("loadinggg ...")
     ds = datasets.load_dataset(
         "json",
-        **{"data_files": {"train": args.data_path}, "split": "train"},
+        data_files={"train": args.data_path}, split="train",
         num_proc=os.cpu_count(),
         keep_in_memory=True,
     )

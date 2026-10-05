@@ -131,17 +131,17 @@ def get_and_transform_data():
         publisher={Wiley Online Library}""",
         ],
         "templates": [
-            "The sequence of {#aminoacids|AAs!} {sequence#} {#shows|exhibits|demonstrates!} {soluble#no &NULL}{soluble__names__adjective} properties.",  # noqa: E501
-            "The aminoacid sequence {sequence#} {#shows|exhibits|displays!} {soluble#no &NULL}{soluble__names__adjective} properties.",  # noqa: E501
-            "Based on the {sequence__description} {#representation |!}{sequence#}, the aminoacid sequence has {soluble#no &NULL}{soluble__names__adjective} {#properties|characteristics|features!}.",  # noqa: E501
-            "The {sequence__description} {sequence#} {#represents|is from!} an aminoacid sequence that is {soluble#not &NULL}identified as {soluble__names__adjective}.",  # noqa: E501
-            "The {#aminoacid sequence |!}{sequence__description} {sequence#} is {soluble#not &NULL}{soluble__names__adjective}.",  # noqa: E501 not all variables need to be used
+            "The sequence of {#aminoacids|AAs!} {sequence#} {#shows|exhibits|demonstrates!} {soluble#no &NULL}{soluble__names__adjective} properties.",
+            "The aminoacid sequence {sequence#} {#shows|exhibits|displays!} {soluble#no &NULL}{soluble__names__adjective} properties.",
+            "Based on the {sequence__description} {#representation |!}{sequence#}, the aminoacid sequence has {soluble#no &NULL}{soluble__names__adjective} {#properties|characteristics|features!}.",
+            "The {sequence__description} {sequence#} {#represents|is from!} an aminoacid sequence that is {soluble#not &NULL}identified as {soluble__names__adjective}.",
+            "The {#aminoacid sequence |!}{sequence__description} {sequence#} is {soluble#not &NULL}{soluble__names__adjective}.",
             # Instruction tuning text templates
             """Task: Please classify a aminoacid sequence based on the description.
 Description: A aminoacid sequence that is {soluble__names__adjective}.
 {#aminoacid sequence |!}{sequence__description}: {sequence#}
 Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
-Result: {soluble#False&True}""",  # noqa: E501
+Result: {soluble#False&True}""",
             """Task: Please classify a aminoacid sequence based on the description.
 Description: A aminoacid sequence that is {soluble__names__adjective}.
 {#aminoacid sequence |!}{sequence__description}: {sequence#}
@@ -149,58 +149,58 @@ Constraint: Answer the question in a {#full|complete!} sentence.
 Result: This aminoacid sequence is {soluble#not &NULL}{soluble__names__adjective}.""",
             """Task: Please {#give me|create|generate!} a {#aminoacid sequence |!}{sequence__description} based on the {#text |!}description{# below|!}.
 Description: A aminoacid sequence that is {soluble__names__adjective}.
-Result: {sequence#}""",  # noqa: E501
+Result: {sequence#}""",
             # Conversational text templates
             """User: Can you {#tell me|derive|estimate!} if the aminoacid sequence with the {sequence__description} {sequence#} is {soluble__names__adjective}?
-Assistant: {soluble#No&Yes}, this aminoacid sequence is {soluble#not &NULL}{soluble__names__adjective}.""",  # noqa: E501
+Assistant: {soluble#No&Yes}, this aminoacid sequence is {soluble#not &NULL}{soluble__names__adjective}.""",
             """User: Is the aminoacid sequence with the {sequence__description} {sequence#} {soluble__names__adjective}?
-Assistant: {soluble#No&Yes}, it is {soluble#not &NULL}{soluble__names__adjective}.""",  # noqa: E501
+Assistant: {soluble#No&Yes}, it is {soluble#not &NULL}{soluble__names__adjective}.""",
             """User: Can you {#give me|create|generate!} the {sequence__description} of a aminoacid sequence that is {soluble#not &NULL}{soluble__names__adjective}?
-Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {sequence#}""",  # noqa: E501
+Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {sequence#}""",
             """User: I'm {#searching|looking!} for the {sequence__description} of a aminoacid sequence that is {soluble#not &NULL}{soluble__names__adjective}?
-Assistant: This is a aminoacid sequence that is {soluble#not &NULL}{soluble__names__adjective}: {sequence#}""",  # noqa: E501
+Assistant: This is a aminoacid sequence that is {soluble#not &NULL}{soluble__names__adjective}: {sequence#}""",
             """User: I want to {#come up with|create|generate!} a {#aminoacid sequence |!}{sequence__description}.
 Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
 User: Yes, please. The aminoacid sequence should {soluble#not &NULL}be {soluble__names__adjective}.
-Assistant: {#Ok|Got it!},{# here you go,|!} this {sequence__description} is {soluble#not &NULL}{soluble__names__adjective}: {sequence#}""",  # noqa: E501
+Assistant: {#Ok|Got it!},{# here you go,|!} this {sequence__description} is {soluble#not &NULL}{soluble__names__adjective}: {sequence#}""",
             """User: I want to {#come up with|create|generate!} a {#aminoacid sequence |!}{sequence__description}.
 Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#aminoacid sequence|one!}?
 User: Yes, the aminoacid sequence should {soluble#not &NULL}be {soluble__names__adjective}.
-Assistant: {#Understood|Got it|Ok!}, this {sequence__description} is {soluble#not &NULL}{soluble__names__adjective}: {sequence#}""",  # noqa: E501
+Assistant: {#Understood|Got it|Ok!}, this {sequence__description} is {soluble#not &NULL}{soluble__names__adjective}: {sequence#}""",
             # Benchmarking text templates
-            "Is the {sequence__description} {sequence#} {soluble__names__adjective}:<EOI>{soluble#no&yes}",  # noqa: E501 for the benchmarking setup <EOI>separates input and output
+            "Is the {sequence__description} {sequence#} {soluble__names__adjective}:<EOI>{soluble#no&yes}",
             """Task: Please classify a aminoacid sequence based on the description.
 Description: A aminoacid sequence that is {soluble__names__adjective}.
 {#aminoacid sequence |!}{sequence__description}: {sequence#}
 Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
-Result:<EOI>{soluble#False&True}""",  # noqa: E501
+Result:<EOI>{soluble#False&True}""",
             """Task: Please {#give me|create|generate!} a {#aminoacid sequence |!}{sequence__description} based on the {#text |!}description{# below|!}.
 Description: A aminoacid sequence that is {soluble__names__adjective}.
-Result:<EOI>{sequence#}""",  # noqa: E501
+Result:<EOI>{sequence#}""",
             """Task: Please answer the multiple choice question.
 Question: Is the aminoacid sequence with the {sequence__description} {#representation of |!}{sequence#} {soluble__names__adjective}?
 Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
 Options:
 {soluble%}
-Answer: {%multiple_choice_result}""",  # noqa: E501
+Answer: {%multiple_choice_result}""",
             """Task: Please answer the multiple choice question.
 Question: Is the aminoacid sequence with the {sequence__description} {#representation of |!}{sequence#} {soluble__names__adjective}?
 Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
 Options:
 {soluble%}
-Answer:<EOI>{%multiple_choice_result}""",  # noqa: E501
+Answer:<EOI>{%multiple_choice_result}""",
             """Task: Please answer the multiple choice question.
 Question: Which aminoacid sequences are {soluble#not &NULL}{soluble__names__adjective}?
 Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
 Options:
 {sequence%soluble%}
-Answer: {%multiple_choice_result}""",  # noqa: E501
+Answer: {%multiple_choice_result}""",
             """Task: Please answer the multiple choice question.
 Question: Which aminoacid sequences are {soluble#not &NULL}{soluble__names__adjective}?
 Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
 Options:
 {sequence%soluble%}
-Answer:<EOI>{%multiple_choice_result}""",  # noqa: E501
+Answer:<EOI>{%multiple_choice_result}""",
         ],
     }
 

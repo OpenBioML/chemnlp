@@ -21,8 +21,8 @@ def uniCode2Latex(text: str) -> str:
         text = text.replace(chr(code), f"$_{code-8320}$")
 
     text = text.replace("\u0305", "$^-$")
-    text = text.replace("\u207A", "$^+$")
-    text = text.replace("\u207B", "$^-$")
+    text = text.replace("\u207a", "$^+$")
+    text = text.replace("\u207b", "$^-$")
     text = text.replace("\u2074", "$^4$")
     text = text.replace("\u2070", "$^0$")
     text = text.replace("\u2078", "$^1$")
