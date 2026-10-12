@@ -1,8 +1,10 @@
-import pytest
-import pandas as pd
-from chemnlp.data.sampler import TemplateSampler
-import numpy as np
 import re
+
+import numpy as np
+import pandas as pd
+import pytest
+
+from chemnlp.data.sampler import TemplateSampler
 
 
 @pytest.fixture
