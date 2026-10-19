@@ -95,7 +95,7 @@ the drug with high lipid solubility, low plasma protein binding rate.""",
                 "description": "corresponding publication",
             },
             {
-                "url": "https://tdcommons.ai/single_pred_tasks/adme/#vdss-volumn-of-distribution-at-steady-state-lombardo-et-al",  # noqa: E501
+                "url": "https://tdcommons.ai/single_pred_tasks/adme/#vdss-volumn-of-distribution-at-steady-state-lombardo-et-al",
                 "description": "data source",
             },
         ],
