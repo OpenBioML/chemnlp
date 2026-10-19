@@ -123,7 +123,7 @@ def canonicalize_smiles(smi):
 
 
 def make_reaction_smiles(row):
-    precursors = f" {row['reactant1_SMILES']}.{row['reactant2_SMILES']}.{row['catalyst_SMILES']}.{row['ligand_SMILES']}.{row['reagent_SMILES']}.{row['solvent_SMILES']} "  # noqa
+    precursors = f" {row['reactant1_SMILES']}.{row['reactant2_SMILES']}.{row['catalyst_SMILES']}.{row['ligand_SMILES']}.{row['reagent_SMILES']}.{row['solvent_SMILES']} "
     product = "C1=C(C2=C(C)C=CC3N(C4OCCCC4)N=CC2=3)C=CC2=NC=CC=C12"
     #     print(precursors, product)
     can_precursors = Chem.MolToSmiles(
