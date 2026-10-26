@@ -27,37 +27,37 @@ meta_template = {
     "num_points": None,
     "bibtex": ["Please see source material."],
     "templates": [
-        "The molecule with the {IDENTIFIER__names__noun} {#representation of |!}{IDENTIFIER#} can also be represented with the {TARGET__names__noun} {#representation |!}{TARGET#}.",  # noqa: E501
-        "The molecule with the {TARGET__names__noun} {#representation of |!}{TARGET#} can also be represented with the {IDENTIFIER__names__noun} {#representation |!}{IDENTIFIER#}.",  # noqa: E501
+        "The molecule with the {IDENTIFIER__names__noun} {#representation of |!}{IDENTIFIER#} can also be represented with the {TARGET__names__noun} {#representation |!}{TARGET#}.",
+        "The molecule with the {TARGET__names__noun} {#representation of |!}{TARGET#} can also be represented with the {IDENTIFIER__names__noun} {#representation |!}{IDENTIFIER#}.",
         # Instruction tuning text templates
         """Task: Please {#create|generate!} a molecule representation based on {#the input molecule representation and |!}the description.
 Description: {#Generate|Create!} the {TARGET__names__noun} from the {IDENTIFIER__names__noun}.
 {#Molecule |!}{IDENTIFIER__names__noun}: {IDENTIFIER#}
 Constraint: Even if you are {#uncertain|not sure!}, you must answer with a representation without using any {#other|additional!} words.
-Result: {TARGET#}""",  # noqa: E501
+Result: {TARGET#}""",
         """Task: Please {#create|generate!} a molecule representation based on {#the input molecule representation and |!}the description.
 Description: {#Generate|Create!} the {IDENTIFIER__names__noun} from the {TARGET__names__noun}.
 {#Molecule |!}{TARGET__names__noun}: {TARGET#}
 Constraint: Even if you are {#uncertain|not sure!}, you must answer with a representation without using any {#other|additional!} words.
-Result: {IDENTIFIER#}""",  # noqa: E501
+Result: {IDENTIFIER#}""",
         # Conversational text templates
         """User: Can you {#tell me|create|generate!} the {TARGET__names__noun} of the molecule with the {IDENTIFIER__names__noun} {IDENTIFIER#}?
-Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, this molecule has a {TARGET__names__noun} of {TARGET#}.""",  # noqa: E501
+Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, this molecule has a {TARGET__names__noun} of {TARGET#}.""",
         """User: Can you {#tell me|create|generate!} the {IDENTIFIER__names__noun} of the molecule with the {TARGET__names__noun} {TARGET#}?
-Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, this molecule has a {IDENTIFIER__names__noun} of {IDENTIFIER#}.""",  # noqa: E501
+Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, this molecule has a {IDENTIFIER__names__noun} of {IDENTIFIER#}.""",
         # Benchmarking text templates
-        "The molecule with the {IDENTIFIER__names__noun} {#representation of |!}{IDENTIFIER#} can also be represented with the {TARGET__names__noun}{# representation|!}:<EOI>{TARGET#}.",  # noqa: E501
-        "The molecule with the {TARGET__names__noun} {#representation of |!}{TARGET#} can also be represented with the {IDENTIFIER__names__noun}{# representation|!}:<EOI>{IDENTIFIER#}.",  # noqa: E501
+        "The molecule with the {IDENTIFIER__names__noun} {#representation of |!}{IDENTIFIER#} can also be represented with the {TARGET__names__noun}{# representation|!}:<EOI>{TARGET#}.",
+        "The molecule with the {TARGET__names__noun} {#representation of |!}{TARGET#} can also be represented with the {IDENTIFIER__names__noun}{# representation|!}:<EOI>{IDENTIFIER#}.",
         """Task: Please {#create|generate!} a molecule representation based on {#the input molecule representation and |!}the description.
 Description: {#Generate|Create!} the {TARGET__names__noun} from the {IDENTIFIER__names__noun}.
 {#Molecule |!}{IDENTIFIER__names__noun}: {IDENTIFIER#}
 Constraint: Even if you are {#uncertain|not sure!}, you must answer with a representation without using any {#other|additional!} words.
-Result:<EOI>{TARGET#}""",  # noqa: E501
+Result:<EOI>{TARGET#}""",
         """Task: Please {#create|generate!} a molecule representation based on {#the input molecule representation and |!}the description.
 Description: {#Generate|Create!} the {IDENTIFIER__names__noun} from the {TARGET__names__noun}.
 {#Molecule |!}{TARGET__names__noun}: {TARGET#}
 Constraint: Even if you are {#uncertain|not sure!}, you must answer with a representation without using any {#other|additional!} words.
-Result:<EOI>{IDENTIFIER#}""",  # noqa: E501
+Result:<EOI>{IDENTIFIER#}""",
     ],
 }
 
@@ -78,7 +78,7 @@ def smiles_with_hydrogens(smiles):
         mol = Chem.MolFromSmiles(smiles)
         mol = Chem.AddHs(mol)
         return Chem.MolToSmiles(mol)
-    except BaseException:  # noqa: E722
+    except BaseException:
         return pd.NA
 
 
@@ -100,7 +100,7 @@ def get_and_transform_data():
     col_len = len(df.columns) - 1
     # else:
     #    print(
-    #        "CAUTION: No split information found, maybe you need to rerun the train_test_split.py script over extend_tabular_processed.csv?"  # noqa: E501
+    #        "CAUTION: No split information found, maybe you need to rerun the train_test_split.py script over extend_tabular_processed.csv?"
     #    )
     #    col_len = len(df.columns)
 
