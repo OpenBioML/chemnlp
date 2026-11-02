@@ -44,6 +44,5 @@ if __name__ == "__main__":
         print(f"Output file already exists, please check: {path_jsonl_out}")
     else:
         with open(path_jsonl_out, "a") as fout:
-            for sample in data:
-                fout.write(json.dumps(sample) + "\n")
+            fout.writelines(json.dumps(sample) + "\n" for sample in data)
         print(f"JSONL saved to: {path_jsonl_out}")

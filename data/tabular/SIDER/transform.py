@@ -74,19 +74,19 @@ def write_meta(column_ids: pd.Index, descriptions: List[str], num_points: int) -
     ]
 
     templates = [
-        "The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description}"  # noqa: E501
+        "The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description}"
         + " {#representation of |!}{SMILES#} is {"
         + col_id
         + "#not a &a }"
         + "{#potential cause|potential reason!} for {"
         + col_id
-        + "__names__noun}."  # noqa: E501
+        + "__names__noun}."
         for col_id in column_ids[1:]
     ]
 
     meta = {
         "name": "SIDER",  # unique identifier, we will also use this for directory names
-        "description": f"""Database of marketed drugs and adverse drug reactions (ADR), grouped into {len(column_ids[1:])} system organ classes.""",  # noqa: E501
+        "description": f"""Database of marketed drugs and adverse drug reactions (ADR), grouped into {len(column_ids[1:])} system organ classes.""",
         "identifiers": [
             {
                 "id": "SMILES",  # column name

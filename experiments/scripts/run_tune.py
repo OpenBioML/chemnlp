@@ -14,6 +14,7 @@ import datasets
 import torch
 import transformers
 import wandb
+from chemnlp.trainer import LLcheMTrainer
 from peft import PromptTuningConfig, PromptTuningInit, TaskType, get_peft_model
 from transformers import (
     AutoTokenizer,
@@ -22,7 +23,6 @@ from transformers import (
 )
 
 from chemnlp.data_val.config import TrainPipelineConfig
-from chemnlp.trainer import LLcheMTrainer
 from chemnlp.utils import (
     collect_cpu_memory,
     collect_gpu_memory,
