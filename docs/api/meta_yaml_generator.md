@@ -1,5 +1,19 @@
 # Meta YAML Generator
 
+<!--TOC-->
+
+______________________________________________________________________
+
+**Table of Contents**
+
+- [Overview](#overview)
+- [`generate_meta_yaml`](#generate_meta_yaml)
+- [Usage Example](#usage-example)
+
+______________________________________________________________________
+
+<!--TOC-->
+
 ## Overview
 
 The Meta YAML Generator is a tool designed to automatically create a `meta.yaml` file for chemical datasets using Large Language Models (LLMs). It analyzes the structure of a given DataFrame and generates a comprehensive metadata file, including advanced sampling methods and template formats.

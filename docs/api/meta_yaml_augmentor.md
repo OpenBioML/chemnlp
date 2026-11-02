@@ -1,5 +1,25 @@
 # Meta YAML Augmenter
 
+<!--TOC-->
+
+______________________________________________________________________
+
+**Table of Contents**
+
+- [Overview](#overview)
+- [generate_augmented_meta_yaml](#generate_augmented_meta_yaml)
+- [CLI Interface](#cli-interface)
+  - [Usage](#usage)
+  - [Arguments](#arguments)
+  - [Example](#example)
+- [Augmentation Process](#augmentation-process)
+- [Notes](#notes)
+- [Example Usage in Python](#example-usage-in-python)
+
+______________________________________________________________________
+
+<!--TOC-->
+
 ## Overview
 
 The Meta YAML Augmenter is a tool designed to enhance existing `meta.yaml` files for chemical datasets. It uses Large Language Models (LLMs) to generate additional templates and improve the metadata structure, particularly focusing on advanced sampling methods and template formats.
