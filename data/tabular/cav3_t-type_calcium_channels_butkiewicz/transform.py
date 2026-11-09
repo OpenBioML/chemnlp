@@ -138,74 +138,74 @@ title = {{H}igh-{T}hroughput {S}creening {A}ssay {D}atasets from the {P}ub{C}hem
 journal = {Chemical Science}}""",
         ],
         "templates": [
-            "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} {#shows|exhibits|displays!} {activity_cav3_t_type_calcium_channels#no &NULL}{activity_cav3_t_type_calcium_channels__names__noun}.",  # noqa: E501
-            "Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule {#shows|exhibits|displays!} {activity_cav3_t_type_calcium_channels#no &NULL}{activity_cav3_t_type_calcium_channels__names__noun}.",  # noqa: E501
-            "The {SMILES__description} {SMILES#} represents a molecule that {#shows|exhibits|displays!} {activity_cav3_t_type_calcium_channels#no &NULL}{activity_cav3_t_type_calcium_channels__names__noun}.",  # noqa: E501
-            "The {#molecule |!}{SMILES__description} {SMILES#} is {activity_cav3_t_type_calcium_channels#not &NULL}{activity_cav3_t_type_calcium_channels__names__gerund}.",  # noqa: E501 not all variables need to be used
+            "The molecule with the {SMILES__description} {#representation of |!}{SMILES#} {#shows|exhibits|displays!} {activity_cav3_t_type_calcium_channels#no &NULL}{activity_cav3_t_type_calcium_channels__names__noun}.",
+            "Based on the {SMILES__description} {#representation |!}{SMILES#}, the molecule {#shows|exhibits|displays!} {activity_cav3_t_type_calcium_channels#no &NULL}{activity_cav3_t_type_calcium_channels__names__noun}.",
+            "The {SMILES__description} {SMILES#} represents a molecule that {#shows|exhibits|displays!} {activity_cav3_t_type_calcium_channels#no &NULL}{activity_cav3_t_type_calcium_channels__names__noun}.",
+            "The {#molecule |!}{SMILES__description} {SMILES#} is {activity_cav3_t_type_calcium_channels#not &NULL}{activity_cav3_t_type_calcium_channels__names__gerund}.",
             # Instruction tuning text templates
             """Task: Please classify a molecule based on the description.
 Description: A molecule that is {activity_cav3_t_type_calcium_channels__names__gerund}.
 {#Molecule |!}{SMILES__description}: {SMILES#}
 Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
-Result: {activity_cav3_t_type_calcium_channels#False&True}""",  # noqa: E501
+Result: {activity_cav3_t_type_calcium_channels#False&True}""",
             """Task: Please classify a molecule based on the description.
 Description: A molecule that is {activity_cav3_t_type_calcium_channels__names__gerund}.
 {#Molecule |!}{SMILES__description}: {SMILES#}
 Constraint: Answer the question in a {#full|complete!} sentence.
-Result: This molecule is {activity_cav3_t_type_calcium_channels#not &NULL}{activity_cav3_t_type_calcium_channels__names__gerund}.""",  # noqa: E501
+Result: This molecule is {activity_cav3_t_type_calcium_channels#not &NULL}{activity_cav3_t_type_calcium_channels__names__gerund}.""",
             """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
 Description: A molecule that is {activity_cav3_t_type_calcium_channels#not &NULL}{activity_cav3_t_type_calcium_channels__names__gerund}.
-Result: {SMILES#}""",  # noqa: E501
+Result: {SMILES#}""",
             # Conversational text templates
             """User: Can you {#tell me|derive|estimate!} if the molecule with the {SMILES__description} {SMILES#} is {activity_cav3_t_type_calcium_channels__names__gerund}?
-Assistant: {activity_cav3_t_type_calcium_channels#No&Yes}, this molecule is {activity_cav3_t_type_calcium_channels#not &NULL}{activity_cav3_t_type_calcium_channels__names__gerund}.""",  # noqa: E501
+Assistant: {activity_cav3_t_type_calcium_channels#No&Yes}, this molecule is {activity_cav3_t_type_calcium_channels#not &NULL}{activity_cav3_t_type_calcium_channels__names__gerund}.""",
             """User: Is the molecule with the {SMILES__description} {SMILES#} {activity_cav3_t_type_calcium_channels__names__gerund}?
-Assistant: {activity_cav3_t_type_calcium_channels#No&Yes}, it is {activity_cav3_t_type_calcium_channels#not &NULL}{activity_cav3_t_type_calcium_channels__names__gerund}.""",  # noqa: E501
+Assistant: {activity_cav3_t_type_calcium_channels#No&Yes}, it is {activity_cav3_t_type_calcium_channels#not &NULL}{activity_cav3_t_type_calcium_channels__names__gerund}.""",
             """User: Can you {#give me|create|generate!} the {SMILES__description} of a molecule that is {activity_cav3_t_type_calcium_channels#not &NULL}{activity_cav3_t_type_calcium_channels__names__gerund}?
-Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}""",  # noqa: E501
+Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {SMILES#}""",
             """User: I'm {#searching|looking!} for the {SMILES__description} of a molecule that is {activity_cav3_t_type_calcium_channels#not &NULL}{activity_cav3_t_type_calcium_channels__names__gerund}?
-Assistant: This is a molecule that is {activity_cav3_t_type_calcium_channels#not &NULL}{activity_cav3_t_type_calcium_channels__names__gerund}: {SMILES#}""",  # noqa: E501
+Assistant: This is a molecule that is {activity_cav3_t_type_calcium_channels#not &NULL}{activity_cav3_t_type_calcium_channels__names__gerund}: {SMILES#}""",
             """User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
 Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should I consider any {#constraints|specific points!} for the {#generation|creation!}?
 User: Yes, please. The molecule should {activity_cav3_t_type_calcium_channels#not &NULL}be {activity_cav3_t_type_calcium_channels__names__gerund}.
-Assistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} is {activity_cav3_t_type_calcium_channels#not &NULL}{activity_cav3_t_type_calcium_channels__names__gerund}: {SMILES#}""",  # noqa: E501
+Assistant: {#Ok|Got it!},{# here you go,|!} this {SMILES__description} is {activity_cav3_t_type_calcium_channels#not &NULL}{activity_cav3_t_type_calcium_channels__names__gerund}: {SMILES#}""",
             """User: I want to {#come up with|create|generate!} a {#molecule |!}{SMILES__description}.
 Assistant: {#This sounds very exciting. |This sounds very interesting. !}Should it be a special {#molecule|one!}?
 User: Yes, the molecule should {activity_cav3_t_type_calcium_channels#not &NULL}be {activity_cav3_t_type_calcium_channels__names__gerund}.
-Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {activity_cav3_t_type_calcium_channels#not &NULL}{activity_cav3_t_type_calcium_channels__names__gerund}: {SMILES#}""",  # noqa: E501
+Assistant: {#Understood|Got it|Ok!}, this {SMILES__description} is {activity_cav3_t_type_calcium_channels#not &NULL}{activity_cav3_t_type_calcium_channels__names__gerund}: {SMILES#}""",
             # Benchmarking text templates
-            "Is the {SMILES__description} {SMILES#} {activity_cav3_t_type_calcium_channels__names__gerund}:<EOI>{activity_cav3_t_type_calcium_channels#no&yes}",  # noqa: E501 for the benchmarking setup <EOI>separates input and output
+            "Is the {SMILES__description} {SMILES#} {activity_cav3_t_type_calcium_channels__names__gerund}:<EOI>{activity_cav3_t_type_calcium_channels#no&yes}",
             """Task: Please classify a molecule based on the description.
 Description: A molecule that is {activity_cav3_t_type_calcium_channels__names__gerund}.
 {#Molecule |!}{SMILES__description}: {SMILES#}
 Constraint: Even if you are {#uncertain|not sure!}, you must pick either "True" or "False" without using any {#other|additional!} words.
-Result:<EOI>{activity_cav3_t_type_calcium_channels#False&True}""",  # noqa: E501
+Result:<EOI>{activity_cav3_t_type_calcium_channels#False&True}""",
             """Task: Please classify a molecule based on the description.
 Description: A molecule that is {activity_cav3_t_type_calcium_channels__names__gerund}.
 {#Molecule |!}{SMILES__description}: {SMILES#}
 Constraint: Answer the question in a {#full|complete!} sentence.
-Result:<EOI>This molecule is {activity_cav3_t_type_calcium_channels#not &NULL}{activity_cav3_t_type_calcium_channels__names__gerund}.""",  # noqa: E501
-            # noqa: E501 """Task: Please {#give me|create|generate!} a {#molecule |!}{SMILES__description} based on the {#text |!}description{# below|!}.
+Result:<EOI>This molecule is {activity_cav3_t_type_calcium_channels#not &NULL}{activity_cav3_t_type_calcium_channels__names__gerund}.""",
+
             # Description: A molecule that is {activity_cav3_t_type_calcium_channels__names__gerund}.
-            # Result:<EOI>{SMILES#}""",  # noqa: E501
+            # Result:<EOI>{SMILES#}""",
             """Task: Please answer the multiple choice question.
 Question: Is the molecule with the {SMILES__description} {#representation of |!}{SMILES#} {activity_cav3_t_type_calcium_channels__names__gerund}?
 Constraint: Even if you are {#uncertain|not sure!}, you must pick either {%multiple_choice_enum%2%aA1} without using any {#other|additional!} words.
 Options:
 {activity_cav3_t_type_calcium_channels%}
-Answer:<EOI>{%multiple_choice_result}""",  # noqa: E501
+Answer:<EOI>{%multiple_choice_result}""",
             """Task: Please answer the multiple choice question.
 Question: Which molecules are {activity_cav3_t_type_calcium_channels#not &NULL}{activity_cav3_t_type_calcium_channels__names__gerund}?
 Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
 Options:
 {SMILES%activity_cav3_t_type_calcium_channels%}
-Answer: {%multiple_choice_result}""",  # noqa: E501
+Answer: {%multiple_choice_result}""",
             """Task: Please answer the multiple choice question.
 Question: Which molecules are {activity_cav3_t_type_calcium_channels#not &NULL}{activity_cav3_t_type_calcium_channels__names__gerund}?
 Constraint: You must select none, one or more options from {%multiple_choice_enum%2-5%aA1} without using any {#other|additional!} words.
 Options:
 {SMILES%activity_cav3_t_type_calcium_channels%}
-Answer:<EOI>{%multiple_choice_result}""",  # noqa: E501
+Answer:<EOI>{%multiple_choice_result}""",
         ],
     }
 

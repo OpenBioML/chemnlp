@@ -214,46 +214,46 @@ Suleyman Er},
 journal = {Nature Scientific Data}""",
         ],
         "templates": [
-            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {solubilityAqSolPred__names__noun} of {solubilityAqSolPred#} {solubilityAqSolPred__units}.""",  # noqa: E501
-            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {molecularSurface__names__noun} of {molecularSurface#} {molecularSurface__units}.""",  # noqa: E501
-            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {reactionFieldEnergy__names__noun} of {reactionFieldEnergy#} {reactionFieldEnergy__units}.""",  # noqa: E501
-            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {solventAccessSurface__names__noun} of {solventAccessSurface#} {solventAccessSurface__units}.""",  # noqa: E501
-            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {cavityEnergy__names__noun} of {cavityEnergy#} {cavityEnergy__units}.""",  # noqa: E501
-            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {gasEnergy__names__noun} of {gasEnergy#} {gasEnergy__units}.""",  # noqa: E501
-            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {gasHomo__names__noun} of {gasHomo#} {gasHomo__units}.""",  # noqa: E501
-            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {gasLumo__names__noun} of {gasLumo#} {gasLumo__units}.""",  # noqa: E501
-            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {solutionEnergy__names__noun} of {solutionEnergy#} {solutionEnergy__units}.""",  # noqa: E501
-            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {solutionLumo__names__noun} of {solutionLumo#} {solutionLumo__units}.""",  # noqa: E501
-            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {nuclearRepulsionEnergy__names__noun} of {nuclearRepulsionEnergy#} {nuclearRepulsionEnergy__units}.""",  # noqa: E501
-            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {optGasEnergy__names__noun} of {optGasEnergy#} {optGasEnergy__units}.""",  # noqa: E501
-            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {optGasHomo__names__noun} of {optGasHomo#} {optGasHomo__units}.""",  # noqa: E501
-            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {optGasLumo__names__noun} of {optGasLumo#} {optGasLumo__units}."""  # noqa: E501
-            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {InChI__description} {#representation of |!}{InChI#} has a {solubilityAqSolPred__names__noun} of {solubilityAqSolPred#} {solubilityAqSolPred__units}.""",  # noqa: E501
-            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {InChI__description} {#representation of |!}{InChI#} has a {molecularSurface__names__noun} of {molecularSurface#} {molecularSurface__units}.""",  # noqa: E501
-            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {InChI__description} {#representation of |!}{InChI#} has a {reactionFieldEnergy__names__noun} of {reactionFieldEnergy#} {reactionFieldEnergy__units}.""",  # noqa: E501
-            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {InChI__description} {#representation of |!}{InChI#} has a {solventAccessSurface__names__noun} of {solventAccessSurface#} {solventAccessSurface__units}.""",  # noqa: E501
-            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {InChI__description} {#representation of |!}{InChI#} has a {cavityEnergy__names__noun} of {cavityEnergy#} {cavityEnergy__units}.""",  # noqa: E501
-            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {InChI__description} {#representation of |!}{InChI#} has a {gasEnergy__names__noun} of {gasEnergy#} {gasEnergy__units}.""",  # noqa: E501
-            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {InChI__description} {#representation of |!}{InChI#} has a {gasHomo__names__noun} of {gasHomo#} {gasHomo__units}.""",  # noqa: E501
-            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {InChI__description} {#representation of |!}{InChI#} has a {gasLumo__names__noun} of {gasLumo#} {gasLumo__units}.""",  # noqa: E501
-            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {InChI__description} {#representation of |!}{InChI#} has a {solutionEnergy__names__noun} of {solutionEnergy#} {solutionEnergy__units}.""",  # noqa: E501
-            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {InChI__description} {#representation of |!}{InChI#} has a {solutionLumo__names__noun} of {solutionLumo#} {solutionLumo__units}.""",  # noqa: E501
-            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {InChI__description} {#representation of |!}{InChI#} has a {nuclearRepulsionEnergy__names__noun} of {nuclearRepulsionEnergy#} {nuclearRepulsionEnergy__units}.""",  # noqa: E501
-            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {InChI__description} {#representation of |!}{InChI#} has a {optGasEnergy__names__noun} of {optGasEnergy#} {optGasEnergy__units}.""",  # noqa: E501
-            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {InChI__description} {#representation of |!}{InChI#} has a {optGasHomo__names__noun} of {optGasHomo#} {optGasHomo__units}.""",  # noqa: E501
-            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {InChI__description} {#representation of |!}{InChI#} has a {optGasLumo__names__noun} of {optGasLumo#} {optGasLumo__units}.""",  # noqa: E501
+            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {solubilityAqSolPred__names__noun} of {solubilityAqSolPred#} {solubilityAqSolPred__units}.""",
+            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {molecularSurface__names__noun} of {molecularSurface#} {molecularSurface__units}.""",
+            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {reactionFieldEnergy__names__noun} of {reactionFieldEnergy#} {reactionFieldEnergy__units}.""",
+            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {solventAccessSurface__names__noun} of {solventAccessSurface#} {solventAccessSurface__units}.""",
+            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {cavityEnergy__names__noun} of {cavityEnergy#} {cavityEnergy__units}.""",
+            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {gasEnergy__names__noun} of {gasEnergy#} {gasEnergy__units}.""",
+            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {gasHomo__names__noun} of {gasHomo#} {gasHomo__units}.""",
+            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {gasLumo__names__noun} of {gasLumo#} {gasLumo__units}.""",
+            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {solutionEnergy__names__noun} of {solutionEnergy#} {solutionEnergy__units}.""",
+            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {solutionLumo__names__noun} of {solutionLumo#} {solutionLumo__units}.""",
+            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {nuclearRepulsionEnergy__names__noun} of {nuclearRepulsionEnergy#} {nuclearRepulsionEnergy__units}.""",
+            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {optGasEnergy__names__noun} of {optGasEnergy#} {optGasEnergy__units}.""",
+            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {optGasHomo__names__noun} of {optGasHomo#} {optGasHomo__units}.""",
+            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} {#representation of |!}{SMILES#} has a {optGasLumo__names__noun} of {optGasLumo#} {optGasLumo__units}."""
+            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {InChI__description} {#representation of |!}{InChI#} has a {solubilityAqSolPred__names__noun} of {solubilityAqSolPred#} {solubilityAqSolPred__units}.""",
+            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {InChI__description} {#representation of |!}{InChI#} has a {molecularSurface__names__noun} of {molecularSurface#} {molecularSurface__units}.""",
+            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {InChI__description} {#representation of |!}{InChI#} has a {reactionFieldEnergy__names__noun} of {reactionFieldEnergy#} {reactionFieldEnergy__units}.""",
+            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {InChI__description} {#representation of |!}{InChI#} has a {solventAccessSurface__names__noun} of {solventAccessSurface#} {solventAccessSurface__units}.""",
+            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {InChI__description} {#representation of |!}{InChI#} has a {cavityEnergy__names__noun} of {cavityEnergy#} {cavityEnergy__units}.""",
+            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {InChI__description} {#representation of |!}{InChI#} has a {gasEnergy__names__noun} of {gasEnergy#} {gasEnergy__units}.""",
+            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {InChI__description} {#representation of |!}{InChI#} has a {gasHomo__names__noun} of {gasHomo#} {gasHomo__units}.""",
+            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {InChI__description} {#representation of |!}{InChI#} has a {gasLumo__names__noun} of {gasLumo#} {gasLumo__units}.""",
+            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {InChI__description} {#representation of |!}{InChI#} has a {solutionEnergy__names__noun} of {solutionEnergy#} {solutionEnergy__units}.""",
+            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {InChI__description} {#representation of |!}{InChI#} has a {solutionLumo__names__noun} of {solutionLumo#} {solutionLumo__units}.""",
+            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {InChI__description} {#representation of |!}{InChI#} has a {nuclearRepulsionEnergy__names__noun} of {nuclearRepulsionEnergy#} {nuclearRepulsionEnergy__units}.""",
+            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {InChI__description} {#representation of |!}{InChI#} has a {optGasEnergy__names__noun} of {optGasEnergy#} {optGasEnergy__units}.""",
+            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {InChI__description} {#representation of |!}{InChI#} has a {optGasHomo__names__noun} of {optGasHomo#} {optGasHomo__units}.""",
+            """The {#molecule|compound|chemical|molecular species|chemical compound!} with the {InChI__description} {#representation of |!}{InChI#} has a {optGasLumo__names__noun} of {optGasLumo#} {optGasLumo__units}.""",
             """Task: Please {#give me|create|generate!} a {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} based on the {#text |!}description{# below|!}.
 Description: It has an {solubilityAqSolPred__names__noun} {solubilityAqSolPred#} {solubilityAqSolPred__units} and a {cavityEnergy__names__noun} of {cavityEnergy#} {cavityEnergy__units}.
-      Result: {SMILES#}""",  # noqa: E501
+      Result: {SMILES#}""",
             """Task: Please {#give me|create|generate!} a {#molecule|compound|chemical|molecular species|chemical compound!} with the {InChI__description} based on the {#text |!}description{# below|!}.
 Description: It has an {solubilityAqSolPred__names__noun} {solubilityAqSolPred#} {solubilityAqSolPred__units} and a {cavityEnergy__names__noun} of {cavityEnergy#} {cavityEnergy__units}.
-      Result: {InChI#}""",  # noqa: E501
+      Result: {InChI#}""",
             """Task: Please {#give me|create|generate!} a {#molecule|compound|chemical|molecular species|chemical compound!} with the {SMILES__description} based on the {#text |!}description{# below|!}.
 Description: It has an {solutionLumo__names__noun} {solutionLumo#} {solutionLumo__units} and a {solutionHomo__names__noun} of {solutionHomo#} {solutionHomo__units}.
-Result: {SMILES#}""",  # noqa: E501
+Result: {SMILES#}""",
             """Task: Please {#give me|create|generate!} a {#molecule|compound|chemical|molecular species|chemical compound!} with the {InChI__description} based on the {#text |!}description{# below|!}.
 Description: It has an {solutionLumo__names__noun} {solutionLumo#} {solutionLumo__units} and a {solutionHomo__names__noun} of {solutionHomo#} {solutionHomo__units}.
-Result: {InChI#}""",  # noqa: E501
+Result: {InChI#}""",
         ],
     }
 
