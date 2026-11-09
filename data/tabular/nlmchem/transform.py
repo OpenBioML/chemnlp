@@ -85,29 +85,29 @@ url = {https://doi.org/10.1038/s41597-021-00875-1}
 }""",
         ],
         "templates": [
-            'The {Abbreviation__names__noun} "{Abbreviation#}" stands for "{#Full_Form}".',  # noqa
+            'The {Abbreviation__names__noun} "{Abbreviation#}" stands for "{#Full_Form}".',
             """Task: Please give me the {Full_Form__names__noun} of the {Abbreviation__names__noun}.
 Abbreviation: {Abbreviation#}
 Constraint: Answer the question with {#full|complete!} words.
-Result: {Full_Form#}""",  # noqa
+Result: {Full_Form#}""",
             """Task: Please give me the {Abbreviation__names__noun} of the following {Full_Form__names__noun}.
 Full form or meaning of the abbreviation: {Full_Form#}
 Constraint: Answer the question with an {Abbreviation__names__noun}.
-Result: {Abbreviation#}""",  # noqa
+Result: {Abbreviation#}""",
             """User: Can you give me the {Abbreviation__names__noun} of the following {Full_Form__names__noun}: {#Full_Form}
-Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {Abbreviation#}""",  # noqa
+Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {Abbreviation#}""",
             """User: Can you give me the {Full_Form__names__noun} of the following {Abbreviation__names__noun}: {#Abbreviation}
-Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {Full_Form#}""",  # noqa
+Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {Full_Form#}""",
             """User: I'm {#searching|looking!} for the {Abbreviation__names__noun} for: {#Full_Form}
-Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {Abbreviation#}""",  # noqa
+Assistant: {#Yes|Of course|Sure|Yes, I'm happy to help!}, here you go: {Abbreviation#}""",
             """Task: Please give me the {Full_Form__names__noun} of the {Abbreviation__names__noun}.
 Abbreviation: {Abbreviation#}
 Constraint: Answer the question with {#full|complete!} words.
-Result:<EOI>{Full_Form#}""",  # noqa
+Result:<EOI>{Full_Form#}""",
             """Task: Please give me the {Abbreviation__names__noun} of the following {Full_Form__names__noun}.
 Full form or meaning of the abbreviation: {Full_Form#}
 Constraint: Answer the question with an {Abbreviation__names__noun}.
-Result:<EOI>{Abbreviation#}""",  # noqa
+Result:<EOI>{Abbreviation#}""",
         ],
     }
 

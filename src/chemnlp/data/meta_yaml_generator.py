@@ -1,8 +1,9 @@
+from typing import Any, Dict
+
+import fire
 import pandas as pd
 import yaml
-from typing import Dict, Any
 from litellm import completion
-import fire
 
 CONSTANT_PROMPT_FOR_META_GENERATION = """
 

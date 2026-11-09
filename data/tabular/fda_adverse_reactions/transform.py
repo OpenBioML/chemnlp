@@ -7,7 +7,7 @@ from chembl_webresource_client.new_client import new_client
 
 molecule = new_client.molecule
 
-DATASET_URL = "ftp://ftp.ebi.ac.uk/pub/databases/opentargets/platform/23.02/output/etl/json/fda/significantAdverseDrugReactions"  # noqa
+DATASET_URL = "ftp://ftp.ebi.ac.uk/pub/databases/opentargets/platform/23.02/output/etl/json/fda/significantAdverseDrugReactions"
 DOWNLOAD_FOLDER = "./fda/significantAdverseDrugReactions"
 EBI_URL = "https://www.ebi.ac.uk/chembl/api/data/molecule/{}"
 
