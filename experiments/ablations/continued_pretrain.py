@@ -1,12 +1,16 @@
-from unsloth import FastLanguageModel
+from typing import List, Optional
+
+import fire
 import torch
-from unsloth import add_new_tokens
-from typing import Optional, List
-from unsloth import is_bfloat16_supported
-from unsloth import UnslothTrainer, UnslothTrainingArguments
 import wandb
 from datasets import load_dataset
-import fire
+from unsloth import (
+    FastLanguageModel,
+    UnslothTrainer,
+    UnslothTrainingArguments,
+    add_new_tokens,
+    is_bfloat16_supported,
+)
 
 
 def load_model(
@@ -57,7 +61,13 @@ def load_model(
 
 
 def train(
-    model, tokenizer, dataset, run_name: str, batch_size: int = 64, max_seq_length=2048, eval_dataset=None
+    model,
+    tokenizer,
+    dataset,
+    run_name: str,
+    batch_size: int = 64,
+    max_seq_length=2048,
+    eval_dataset=None,
 ):
     wandb.init(project="chemnlp-ablations", name=run_name)
     trainer = UnslothTrainer(
@@ -83,8 +93,8 @@ def train(
             lr_scheduler_type="linear",
             seed=3407,
             output_dir=f"outputs_{run_name}",
-            eval_strategy = 'steps' if eval_dataset is not None else 'no',
-            eval_steps = 10_000 if eval_dataset is not None else None
+            eval_strategy="steps" if eval_dataset is not None else "no",
+            eval_steps=10_000 if eval_dataset is not None else None,
         ),
     )
 
@@ -138,9 +148,18 @@ def run(
     )
 
     dataset = create_dataset(tokenizer, data_files)
-    eval_dataset = create_dataset(tokenizer, eval_data_files) if eval_data_files else None
+    eval_dataset = (
+        create_dataset(tokenizer, eval_data_files) if eval_data_files else None
+    )
 
-    train(model, tokenizer, dataset, run_name, batch_size=batch_size, eval_dataset=eval_dataset)
+    train(
+        model,
+        tokenizer,
+        dataset,
+        run_name,
+        batch_size=batch_size,
+        eval_dataset=eval_dataset,
+    )
 
 
 if __name__ == "__main__":

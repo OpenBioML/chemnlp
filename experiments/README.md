@@ -1,5 +1,18 @@
 # Working with the Stability cluster
 
+<!--TOC-->
+
+______________________________________________________________________
+
+**Table of Contents**
+
+- [GPT-Neox](#gpt-neox)
+- [Hugging Face](#hugging-face)
+
+______________________________________________________________________
+
+<!--TOC-->
+
 We currently run our large scale experiments on the Stability AI HPC cluster.
 This subdirectory features a few helpful scripts that can help you get up and
 running on the cluster.
