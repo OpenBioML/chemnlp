@@ -1,5 +1,23 @@
 # Contributing to ChemNLP
 
+<!--TOC-->
+
+______________________________________________________________________
+
+**Table of Contents**
+
+- [Getting Started](#getting-started)
+- [Implementing a Dataset](#implementing-a-dataset)
+  - [meta.yaml Structure](#metayaml-structure)
+  - [transform.py Guidelines](#transformpy-guidelines)
+- [Text Templates](#text-templates)
+- [Testing Your Contribution](#testing-your-contribution)
+- [Submitting Your Contribution](#submitting-your-contribution)
+
+______________________________________________________________________
+
+<!--TOC-->
+
 Thank you for your interest in contributing to ChemNLP! There are many ways to contribute, including implementing datasets, improving code, and enhancing documentation.
 
 ## Getting Started

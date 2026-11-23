@@ -20,7 +20,7 @@ allowed_single_output_features = [
 
 allowed_multi_output_features = [
     "['rotable_proportion', 'non_rotable_proportion']",
-    "['num_unspecified_bond', 'num_single_bonds', 'num_double_bonds', 'num_triple_bonds', 'num_quadruple_bonds', 'num_quintuple_bonds', 'num_hextuple_bonds', 'num_oneandahalf_bonds', 'num_twoandahalf_bonds', 'num_threeandahalf_bonds', 'num_fourandahalf_bonds', 'num_fiveandahalf_bonds', 'num_aromatic_bonds', 'num_ionic_bonds', 'num_hydrogen_bonds', 'num_threecenter_bonds', 'num_dativeone_bonds', 'num_dative_bonds', 'num_other_bonds', 'num_zero_bonds', 'num_bonds']",  # noqa
+    "['num_unspecified_bond', 'num_single_bonds', 'num_double_bonds', 'num_triple_bonds', 'num_quadruple_bonds', 'num_quintuple_bonds', 'num_hextuple_bonds', 'num_oneandahalf_bonds', 'num_twoandahalf_bonds', 'num_threeandahalf_bonds', 'num_fourandahalf_bonds', 'num_fiveandahalf_bonds', 'num_aromatic_bonds', 'num_ionic_bonds', 'num_hydrogen_bonds', 'num_threecenter_bonds', 'num_dativeone_bonds', 'num_dative_bonds', 'num_other_bonds', 'num_zero_bonds', 'num_bonds']",
     "['carbon_mass', 'hydrogen_mass', 'nitrogen_mass', 'oxygen_mass']",
     "['num_carbon_atoms', 'num_hydrogen_atoms', 'num_nitrogen_atoms', 'num_oxygen_atoms']",
     "['npr1_value', 'npr2_value']",
